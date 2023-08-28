@@ -1,0 +1,26 @@
+server:
+  port: 8863
+  tomcat:
+    accept-count: 1000
+    max-threads: 1000
+    max-connections: 10000
+    min-spare-threads: 100
+
+#项目信息
+project:
+  id: Pj4401830001
+  groupCode: WD
+
+#数据文件目录
+dirName:
+  config: config
+  point: point
+  physicalWorld: physical_world
+  ibmsLogicalGroup: ibms_logical_group
+  ibmsPhysicalWorld: ibms_physical_world
+  temp: temp
+
+#dmp服务请求信息
+url:
+  dmp: http://127.0.0.1:9805
+  monitor: http://10.199.87.73:9930/zkt-monitor
