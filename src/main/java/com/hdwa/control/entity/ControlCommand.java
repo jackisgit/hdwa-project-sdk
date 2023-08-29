@@ -2,10 +2,10 @@ package com.hdwa.control.entity;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
+import com.hdwa.control.constant.CommonConst;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -17,7 +17,6 @@ import java.util.Date;
  * @version: V4.0
  */
 @Data
-@NoArgsConstructor
 @Accessors(chain = true)
 @AllArgsConstructor
 @Builder
@@ -109,6 +108,15 @@ public class ControlCommand implements Serializable {
     @Override
     public String toString() {
         return JSONObject.toJSONString(this);
+    }
+
+    public ControlCommand() {
+    }
+
+    public ControlCommand(String id, Integer commandResult) {
+        this.id = id;
+        this.commandResult = commandResult;
+        this.projectId = CommonConst.projectId;
     }
 
 }

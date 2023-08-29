@@ -5,15 +5,14 @@ import cn.hutool.core.date.TimeInterval;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.control.client.EmsControlClient;
-import com.hdwa.control.constant.CommonConst;
 import com.hdwa.control.entity.*;
+import com.hdwa.control.kafka.KafkaProducer;
 import com.hdwa.control.utils.DateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import java.time.temporal.ChronoUnit;
@@ -32,7 +31,7 @@ public class CommandJob extends QuartzJobBean {
     EmsControlClient emsControlClient;
 
     @Autowired
-    private KafkaTemplate kafkaTemplate;
+    private KafkaProducer kafkaProducer;
 
     @Value("${iot.project.url:127.0.0.1:8852}")
     public String url;
@@ -87,11 +86,7 @@ public class CommandJob extends QuartzJobBean {
                     }
                     PointSetParam pointset = PointSetParam.builder().building(projectId).funcid(Integer.parseInt(command.getFuncId())).meter(command.getMeterId()).data(Double.parseDouble(value)).operation("pointset").build();
                     pointsetQueue.add(pointset);
-                    ControlCommand commandback = new ControlCommand();
-                    commandback.setCommandResult(2);
-                    commandback.setId(command.getId());
-                    commandback.setProjectId(CommonConst.projectId);
-                    commandbacks.add(commandback);
+                    commandbacks.add(new ControlCommand(command.getId(), 2));
                 }
                 ArrayList<PointSetParam> pointSetParams = new ArrayList<>(batchSize);
                 while (pointsetQueue.drainTo(pointSetParams, batchSize) > 0) {
@@ -100,15 +95,15 @@ public class CommandJob extends QuartzJobBean {
                         batchPointSetParam.setBuilding(projectId);
                         batchPointSetParam.setPoints(pointSetParams);
                         BatchPointSetResult batchPointSetResult = emsControlClient.pointSetBatch(batchPointSetParam);
-                        log.info("控制指令:[{}]:[{}] 的执行结果为：[{}]", url + "/pointsetbatch_post", JSONObject.toJSONString(batchPointSetParam), JSONObject.toJSONString(batchPointSetResult));
+                        log.info("下发控制指令:[{}]:[{}] 的执行结果为：[{}]", url + "/pointsetbatch_post", JSONObject.toJSONString(batchPointSetParam), JSONObject.toJSONString(batchPointSetResult));
                         pointSetParams.clear();
                     } catch (Exception e) {
-                        log.error("控制指令下发失败", e);
+                        log.error("下发控制指令失败", e);
                     }
                 }
                 ControlCommandMessage message = new ControlCommandMessage(2);
                 message.setContent(commandbacks);
-                kafkaTemplate.send(topics, JSONObject.toJSONString(message));
+                kafkaProducer.send(topics, message);
                 log.info("边端指令反馈云端2, message: {}", JSONObject.toJSONString(message));
             }
             log.info("定时任务[{}]:[{}min]执行毫秒数为：{} 毫秒", context.getJobDetail().getKey(), delayMinute, timer.interval());

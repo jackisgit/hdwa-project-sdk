@@ -19,7 +19,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.util.CollectionUtils;
 
@@ -38,7 +37,7 @@ public class KafkaMessageReceiver {
     private RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
-    private KafkaTemplate kafkaTemplate;
+    private KafkaProducer kafkaProducer;
 
     @Value("${spring.kafka.producer.edgeTopic}")
     public String topic;
@@ -58,10 +57,10 @@ public class KafkaMessageReceiver {
             try {
                 ControlCommandMessage message = JSON.parseObject(consumerRecords.value(), ControlCommandMessage.class);
                 String consumerProjectId = message.getProjectId();
-                log.info("云端消息接收=========================================, projectId:{}, message:{}", consumerProjectId, JSONUtil.toJsonStr(message));
                 if (!Objects.equals(consumerProjectId, CommonConst.projectId)) {
                     continue;
                 }
+                log.info("云端消息接收=========================================, message:{}", JSONUtil.toJsonStr(message));
                 handlerMsg(message);
             } catch (Exception e) {
                 log.error("控制边缘端异常: " + e.getMessage(), e);
@@ -79,29 +78,25 @@ public class KafkaMessageReceiver {
             commandService.deleteCommandAfterFlagDate(flagDate);
         }
         // 处理控制指令
+        ControlCommandMessage response = new ControlCommandMessage(2);
+        response.setStreamId(message.getStreamId());
         List<ControlCommand> responseContent = new ArrayList<>();
         List<ControlCommand> content = message.getContent();
         if (!CollectionUtils.isEmpty(content)) {
             for (ControlCommand command : content) {
                 String value = JSONObject.parseObject(command.getPointAction()).getString("value");
                 if (StringUtils.isAnyBlank(command.getFuncId(), command.getMeterId(), value, command.getCommandTime())) {
-                    ControlCommandMessage nm = new ControlCommandMessage(3, Collections.singletonList(command), false);
-                    nm.setErrorMessage("command is not valid");
-                    kafkaTemplate.send(topic, JSONObject.toJSONString(nm));
-                    log.warn("command is not valid;[{}]", command);
+                    responseContent.add(new ControlCommand(command.getId(), -2));
+                    log.warn("command is not valid; [{}]", JSON.toJSONString(command));
                     continue;
                 }
                 // 获取设备手自动状态
                 Object manualAutoSetValue = redisTemplate.opsForValue().get(command.getManualAutoSet());
                 if (!Objects.equals(manualAutoSetValue, 1.0d)) {
-                    log.info("设备{}手自动状态未设置自动, key: {}, value: {}", command.getObjectId(), command.getManualAutoSet(), manualAutoSetValue);
+                    responseContent.add(new ControlCommand(command.getId(), -1));
+                    log.info("设备[{}]手自动状态未设置自动, {}: {}", command.getObjectId(), command.getManualAutoSet(), manualAutoSetValue);
                     continue;
                 }
-                ControlCommand tmpNewcommand = new ControlCommand();
-                tmpNewcommand.setId(command.getId());
-                tmpNewcommand.setCommandResult(1);
-                tmpNewcommand.setProjectId(CommonConst.projectId);
-                responseContent.add(tmpNewcommand);
                 LocalDateTime commandTime = DateUtils.parse(command.getCommandTime());
                 Date startTime = DateUtils.localDateTime2Date(commandTime);
                 String hour = DateUtils.format(commandTime, DateUtils.sdfHour);
@@ -110,17 +105,16 @@ public class KafkaMessageReceiver {
                 jobDataMap.put("commandResult", command.toString());
                 try {
                     commandService.addCommand(startTime, jobName, hour, jobDataMap, JSON.toJSONString(command));
+                    responseContent.add(new ControlCommand(command.getId(), 1));
                 } catch (SchedulerException e) {
+                    responseContent.add(new ControlCommand(command.getId(), 0));
                     log.error("addCommand error: ", e);
                 }
             }
+            response.setContent(responseContent);
+            kafkaProducer.send(topic, response);
+            log.info("边端指令反馈云端1, response: {}", JSONObject.toJSONString(response));
         }
-        ControlCommandMessage response = new ControlCommandMessage(2);
-        response.setStreamId(message.getStreamId());
-        response.setContent(responseContent);
-        response.setProjectId(CommonConst.projectId);
-        kafkaTemplate.send(topic, JSONObject.toJSONString(response));
-        log.info("边端指令反馈云端1, response: {}", JSONObject.toJSONString(response));
     }
 
 }

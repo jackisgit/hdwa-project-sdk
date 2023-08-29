@@ -25,7 +25,7 @@ import java.util.Set;
 @ConditionalOnProperty(prefix = "spring.kafka", name = "enable", havingValue = "true")
 public class KafkaCommonConfig implements InitializingBean {
     private final KafkaProperties properties;
-    //@Value("${NamesrvAddr:192.168.0.1}")
+
     @Value("${spring.kafka.consumer.topics}")
     private String edgeTopic;
 
@@ -66,7 +66,6 @@ public class KafkaCommonConfig implements InitializingBean {
 
     //创建生产者配置map，ProducerConfig中的可配置属性比spring boot自动配置要多
     private Map<String, Object> producerProperties() {
-
         return properties.buildProducerProperties();
     }
 
@@ -79,7 +78,6 @@ public class KafkaCommonConfig implements InitializingBean {
     public DefaultKafkaProducerFactory produceFactory() {
         return new DefaultKafkaProducerFactory(producerProperties());
     }
-
 
     /**
      * 不使用spring boot的KafkaAutoConfiguration默认方式创建的KafkaTemplate，重新定义
@@ -104,4 +102,5 @@ public class KafkaCommonConfig implements InitializingBean {
         topicSet.add(edgeTopic);
         return StringUtils.join(topicSet, ",");
     }
+
 }

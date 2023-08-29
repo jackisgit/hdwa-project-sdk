@@ -74,13 +74,13 @@ public class CommandServiceImpl implements CommandService {
                             .withIdentity("trigger_" + jobName, jobName)
                             .usingJobData(jobDataMap)
                             .withSchedule(simpleSchedule().withMisfireHandlingInstructionIgnoreMisfires()).build();
-                    //已经存在的job实例和触发器自动覆盖 job实 例 唯 一标识：
+                    // 已经存在的job实例和触发器自动覆盖
                     HashSet<Trigger> triggerSet = new HashSet<>();
                     Date fireTime = trigger.getFireTimeAfter(date);
                     if (fireTime != null) {
                         log.info("设置定时任务的执行时间为:【{}】, msg: {}", DateUtils.formatDate(fireTime), msg);
                     } else {
-                        log.warn("【{}】执行时间为 空!", jobKey);
+                        log.warn("【{}】执行时间为空", jobKey);
                         return;
                     }
                     triggerSet.add(trigger);
@@ -103,7 +103,7 @@ public class CommandServiceImpl implements CommandService {
             GroupMatcher<JobKey> matcher = GroupMatcher.groupEquals(jobGroupName);
             Set<JobKey> jobkeySet = quartzScheduler.getJobKeys(matcher);
             if (jobGroupName.compareTo(hour) > 0) {
-                //分组使用的小时，大于标志小时的未来任务可以直接删除，否则就需要根据具体时间判断
+                // 分组使用的小时，大于标志小时的未来任务可以直接删除，否则就需要根据具体时间判断
                 jobkeyList.addAll(jobkeySet);
             } else {
                 for (JobKey jobKey : jobkeySet) {

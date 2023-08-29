@@ -42,15 +42,9 @@ public class WebConfig extends WebMvcConfigurationSupport {
     }
 
     /**
-     * @description: 放行swagger 静态资源文件，否则swagger页面打不开，报404错误
-     * WebMvcConfigurationSupport导致自动配置失效， 因为WebMvc的自动配置都在WebMvcAutoConfiguration类中
-     * 参考：https://blog.csdn.net/universsky2015/article/details/108064340
-     * @param: registry
-     * @return: void
-     * @author: xingmaojun
-     * @company: Persagy Technology Co.,Ltd
-     * @since: 2020/10/27 20:16
-     * @version: V1.0
+     * 放行swagger 静态资源文件
+     *
+     * @param registry
      */
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -59,14 +53,6 @@ public class WebConfig extends WebMvcConfigurationSupport {
         super.addResourceHandlers(registry);
     }
 
-
-    /**
-     * Description: 添加支持的类型
-     *
-     * @return List<MediaType>
-     * @author luoguangyi
-     * @since 2019年9月3日: 下午6:20:33 Update By luoguangyi 2019年9月3日: 下午6:20:33
-     */
     private HttpMessageConverter createFastJsonConverter() {
         //===========替换框架json为fastjson
         FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
