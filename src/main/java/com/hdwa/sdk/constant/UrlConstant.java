@@ -74,7 +74,7 @@ public class UrlConstant {
     /**
      * ibms逻辑分组数据 文件名
      */
-    public static final String IMBS_GROUP_ARRAY = "imbsGroupArray.json";
+    public static final String IMBS_GROUP_ARRAY = "ibmsGroupArray.json";
 
     /**
      * .json 文件格式
@@ -93,6 +93,6 @@ public class UrlConstant {
     /**
      * tmp-dataSource 文件名
      */
-    public static final String TMP_DATASOURCE = "tmp-dataSource.json";
+    public static final String TMP_DATASOURCE = "temp-dataSource.json";
 
 }

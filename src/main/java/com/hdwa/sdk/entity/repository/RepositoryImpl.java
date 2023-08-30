@@ -20,6 +20,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class RepositoryImpl extends RepositoryBase {
 
     /**
+     * <p>物理世界</p>
      * <p>类型定义-全量数据</p>
      * <p>数据来源 physical_world/classArray.json</p>
      */
@@ -83,7 +84,7 @@ public class RepositoryImpl extends RepositoryBase {
 
     /**
      * <p>对象数据--id-sdo</p>
-     * * <p>id--->sdo</p>
+     * <p>id--->sdo</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
     public Map<String, SceneDataObject> id2sdv = new HashMap<>(16);
@@ -158,6 +159,46 @@ public class RepositoryImpl extends RepositoryBase {
     public Map<String, List<ObjectInfo>> set2ObjectInfoList = new HashMap<>(16);
 
 
+    /**
+     * <p>IBMS物理世界</p>
+     * <p>场景对象</p>
+     * <p>数据来源 ibms_physical_world/sceneArray.json</p>
+     */
+    public SceneDataSet ZKTSceneArray = new SceneDataSet(false);
+
+
+    /**
+     * <p>IBMS物理世界</p>
+     * <p>场景编码--对象数据 (ibms类型编码->对象数据)</p>
+     * <p>ibmsSceneCode--ibmsClassCode->对象数据 </p>
+     * <p>数据来源 ibms_physical_world/sceneArray.json</p>
+     */
+    public Map<String, Map<String, SceneDataValue>> ZKTObjectArrayDic = new HashMap<>(16);
+
+    /**
+     * <p>IBMS物理世界</p>
+     * <p>类型定义数据</p>
+     * <p>数据来源 ibms_physical_world/classArray.json</p>
+     */
+    public SceneDataSet ZKTClassArray = new SceneDataSet(false);
+
+
+    /**
+     * <p>IBMS逻辑编组</p>
+     * <p>逻辑编组数据</p>
+     * <p>数据来源 ibms_logical_group/ibmsLogicalGroup.json</p>
+     */
+    public SceneDataSet IBMSGroupArray = new SceneDataSet(false);
+
+
+    /**
+     * <p>IBMS逻辑编组</p>
+     * <p>场景编码--分组数据 (ibms类型编码->分组数据)</p>
+     * <p>ibmsSceneCode--ibmsClassCode->分组数据 </p>
+     * <p>数据来源 ibms_logical_group/**.json</p>
+     */
+    public Map<String, Map<String, SceneDataSet>> IBMSArrayDic = new HashMap<>(16);
+
     public static boolean accelerate_enable = false;
     public static long accelerate_ratio = 60 * 60 * 24;
     public static String init_timeString = "2021-01-01 00:00:00";
@@ -172,38 +213,16 @@ public class RepositoryImpl extends RepositoryBase {
 
 
 
-    /**
-     * @子系统基本数据
-     * @数据来源 /sceneArray.json
-     */
-    public SceneDataSet ZKTSceneArray = new SceneDataSet(false);
-    /**
-     * @zkt类型定义数据
-     * @数据来源 /classArray.json
-     * @数据表 rwd_def_class_wd ？
-     */
-    public SceneDataSet ZKTClassArray = new SceneDataSet(false);
-    /**
-     * @子系统和下级设备类型
-     * @子系统数据来源 /"ibmsSceneCode".json
-     * @下级设备数据来源 /"ibmsClassCode".json
-     */
-    public Map<String, Map<String, SceneDataValue>> ZKTObjectArrayDic = new ConcurrentHashMap<String, Map<String, SceneDataValue>>();
+
+
     public SceneDataSet ZKTAlarmTypeArray = new SceneDataSet(false);
     /**
      * @子系统连接状态
      * @数据来源 /sceneArray.json
      */
     public SceneDataSet subsystem_connect_status = new SceneDataSet(false);
-    /**
-     * @编组数据
-     */
-    public SceneDataSet IBMSGroupArray = new SceneDataSet(false);
-    /**
-     * @ibmsSecneCode对应的ibmsClassCode
-     * @数据来源 groupArray.json
-     */
-    public Map<String, Map<String, SceneDataSet>> IBMSArrayDic = new ConcurrentHashMap<String, Map<String, SceneDataSet>>();
+
+
     /**
      * @信息点数据
      * @数据来源 info-point-list.json

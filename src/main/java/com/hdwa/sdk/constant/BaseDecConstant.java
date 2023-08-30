@@ -95,9 +95,47 @@ public class BaseDecConstant {
     public static final String ID = "id";
 
     /**
+     * 现实编码名称 String
+     */
+    public static final String REALITY_CODE_NAME = "ibmsxianshimingcheng";
+
+
+    /**
+     * localName String
+     */
+    public static final String LOCAL_NAME = "localName";
+
+    /**
      * name String
      */
     public static final String NAME = "name";
+
+
+    /**
+     * ggzm String
+     */
+    public static final String GGZM = "ggzm";
+
+    /**
+     * yjzm String
+     */
+    public static final String YJZM = "yjzm";
+
+    /**
+     * zhaominghuilu String
+     */
+    public static final String LIGHTING_CIRCUIT = "zhaominghuilu";
+
+
+    /**
+     * 回路编号 String
+     */
+    public static final String CIRCUIT_ID = "回路编号";
+
+    /**
+     * 名称 String
+     */
+    public static final String NAME2 = "名称";
 
     /**
      * aliasName String
@@ -107,6 +145,25 @@ public class BaseDecConstant {
      * ibms String
      */
     public static final String IBMS = "ibms";
+    /**
+     * floorId String
+     */
+    public static final String FLOOR_ID = "floorId";
+    /**
+    /**
+     * 所在楼层 String
+     */
+    public static final String PLACE_FLOOR = "所在楼层";
+    /**
+    /**
+     * 楼层编号 String
+     */
+    public static final String FLOOR_CODE = "楼层编号";
+    /**
+    /**
+     * 楼层名称 String
+     */
+    public static final String FLOOR_NAME = "楼层名称";
     /**
      * ibmsSceneCode String
      */
@@ -119,6 +176,93 @@ public class BaseDecConstant {
      * logicalGroupingId String
      */
     public static final String LOGICAL_GROUPING_ID = "logicalGroupingId";
+
+    /**
+     * logicalGroupingName String
+     */
+    public static final String LOGICAL_GROUPING_NAME = "logicalGroupingName";
+
+    /**
+     * firstCode String
+     */
+    public static final String FIRST_CODE = "firstCode";
+
+    /**
+     * 一级编组 String
+     */
+    public static final String PRIMARY_GROUPING = "一级编组";
+
+
+    /**
+     * 一级编组名称 String
+     */
+    public static final String PRIMARY_GROUPING_NAME = "一级编组名称";
+
+    /**
+     * 二级编组 String
+     */
+    public static final String TWO_GROUPING = "二级编组";
+
+    /**
+     * 二级编组名称 String
+     */
+    public static final String TWO_GROUPING_NAME = "二级编组名称";
+
+
+    /**
+     * 模块编号 String
+     */
+    public static final String MODEL_CODE = "模块编号";
+
+    /**
+     * 模块名称 String
+     */
+    public static final String MODEL_NAME = "模块名称";
+
+    /**
+     * 配电箱编号 String
+     */
+    public static final String DISTRIBUTION_BOX_CODE = "配电箱编号";
+
+    /**
+     * 配电箱名称 String
+     */
+    public static final String DISTRIBUTION_BOX_NAME = "配电箱名称";
+
+    /**
+     * 所在物业空间 String
+     */
+    public static final String PROPERTY_SPACE = "所在物业空间";
+
+    /**
+     * 电井编号 String
+     */
+    public static final String ELECTRIC_WELL_CODE = "电井编号";
+
+    /**
+     * 电井名称 String
+     */
+    public static final String ELECTRIC_WELL_NAME = "电井名称";
+
+    /**
+     * 被设备供电 String
+     */
+    public static final String POWERED_BY_EQUIPMENT = "被设备供电";
+
+    /**
+     * 被设备控制 String
+     */
+    public static final String DEVICE_CONTROLLED = "被设备控制";
+
+    /**
+     * 编组类型 String
+     */
+    public static final String GROUPING_TYPE = "编组类型";
+
+    /**
+     * -temp String
+     */
+    public static final String TEMP2 = "temp-";
     /**
      * -id string
      */
@@ -128,6 +272,12 @@ public class BaseDecConstant {
      * code String
      */
     public static final String CODE = "code";
+
+
+    /**
+     * flag String
+     */
+    public static final String FLAG = "flag";
 
     /**
      * 条件 String
@@ -177,6 +327,47 @@ public class BaseDecConstant {
      */
     public static final String OBJ_TYPE = "objType";
 
+
+    /**
+     * objId string
+     */
+    public static final String OBJ_ID = "objId";
+
+
+    /**
+     * zkt-class string
+     */
+    public static final String ZKT_CLASS = "zkt-class";
+
+
+    /**
+     * zkt-object string
+     */
+    public static final String ZKT_OBJECT= "zkt-object";
+
+    /**
+     * ibms-group string
+     */
+    public static final String IBMS_GROUP= "ibms-group";
+
+
+
+    /**
+     * ibms-group-object string
+     */
+    public static final String IBMS_GROUP_OBJECT= "ibms-group-object";
+
+
+    /**
+     * group_one string
+     */
+    public static final String GROUP_ONE = "group-one";
+
+
+    /**
+     * group_two string
+     */
+    public static final String GROUP_TWO = "group-two";
 
     /**
      * rwd/class string
@@ -257,6 +448,11 @@ public class BaseDecConstant {
      * 清单String
      */
     public static final String DETAILED_LIST = "清单";
+
+    /**
+     * id清单String
+     */
+    public static final String ID_DETAILED_LIST = "-id清单";
 
     /**
      * 逻辑运算符String
@@ -413,6 +609,11 @@ public class BaseDecConstant {
      */
     public static final String RELATION = "relation";
 
+    /**
+     * reference String
+     */
+    public static final String REFERENCE = "reference";
+
 
     /**
      * groupCode String
@@ -423,6 +624,11 @@ public class BaseDecConstant {
      * projectId String
      */
     public static final String PROJECT_ID = "projectId";
+
+    /**
+     * parentId String
+     */
+    public static final String PARENT_ID = "parentId";
 
 
     /**

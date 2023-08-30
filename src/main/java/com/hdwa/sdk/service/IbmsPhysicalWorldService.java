@@ -4,9 +4,12 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.constant.UrlConstant;
-import com.hdwa.sdk.utils.FastJsonUtil;
-import com.hdwa.sdk.utils.FileUtil;
-import com.hdwa.sdk.utils.OkHttpClientUtil;
+import com.hdwa.sdk.entity.repository.RepositoryImpl;
+import com.hdwa.sdk.entity.scene.SceneDataObject;
+import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
+import com.hdwa.sdk.entity.scene.SceneDataSet;
+import com.hdwa.sdk.entity.scene.SceneDataValue;
+import com.hdwa.sdk.utils.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,8 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.nio.file.Files;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author abao
@@ -48,8 +53,7 @@ public class IbmsPhysicalWorldService {
         log.warn("************开始下载-IBMS物理世界数据");
         long startTime = System.currentTimeMillis();
         try {
-            String ibmsPhysicalPath = groupCode + File.separator + projectId + File.separator + ibmsPhysicalWorld;
-            File tempFile = new File(ibmsPhysicalPath + File.separator + temp);
+            File tempFile = new File(getPath() + File.separator + temp);
             //删除临时目录文件
             FileUtil.deleteRecursive(tempFile);
             //创建temp根目录文件夹
@@ -67,15 +71,126 @@ public class IbmsPhysicalWorldService {
             downLoadIbmsObject(object, classArray);
 
             //修改temp目录为当前时间目录
-            FileUtil.tempToNowDate(tempFile, new File(ibmsPhysicalPath));
+            FileUtil.tempToNowDate(tempFile, new File(getPath()));
             //只保留3个版本数据
-            FileUtil.clearHistoryDirectory(new File(ibmsPhysicalPath));
+            FileUtil.clearHistoryDirectory(new File(getPath()));
             log.warn("************结束下载-IBMS物理世界数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
             return "ok";
         } catch (Exception e) {
             log.error("下载IBMS物理世界数据异常", e);
         }
         return null;
+    }
+
+
+    /**
+     * 加载IBMS物理世界数据
+     *
+     * @return
+     * @return
+     */
+    public Object loadIbmsPhysicalWorldData(RepositoryImpl repository) {
+        log.warn("************开始加载-IBMS物理世界数据");
+        long startTime = System.currentTimeMillis();
+        File maxDir = FileUtil.getMaxDir(new File(getPath()));
+        loadObjectData(repository, maxDir);
+        log.warn("************结束加载-IBMS物理世界数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+        return "ok";
+    }
+
+    /**
+     * 加载IBMS对象数据
+     *
+     * @param repository
+     */
+    private void loadObjectData(RepositoryImpl repository, File maxDir) {
+        log.warn("*****开始加载-对象数据");
+        long startTime = System.currentTimeMillis();
+        try {
+            //场景数据
+            JSONArray sceneArray = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.SCENE_ARRAY));
+            SceneDataSet sceneSds = new SceneDataSet(false);
+            sceneSds.set = RWDUtil.array2SDOList(sceneArray);
+            repository.ZKTSceneArray = sceneSds;
+
+            //类型定义数据
+            JSONArray classArray = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.CLASS_ARRAY));
+            SceneDataSet classSds = new SceneDataSet(false, BaseDecConstant.ZKT_CLASS);
+            classSds.set = RWDUtil.array2SDOList(classArray);
+            repository.ZKTClassArray = classSds;
+
+            Map<String, Map<String, SceneDataValue>> objectArrayMap = new HashMap<>(16);
+            classArray.forEach(item -> {
+                JSONObject classItem = (JSONObject) item;
+                String ibmsSceneCode = (String) classItem.get(BaseDecConstant.IBMS_SCENE_CODE);
+                String ibmsClassCode = (String) classItem.get(BaseDecConstant.IBMS_CLASS_CODE);
+                String code = (String) classItem.get(BaseDecConstant.CODE);
+                String flag = (String) classItem.get(BaseDecConstant.FLAG);
+                //不存在初始对象
+                if (!objectArrayMap.containsKey(ibmsSceneCode)) {
+                    objectArrayMap.put(ibmsSceneCode, new HashMap<>(16));
+                }
+                Map<String, SceneDataValue> mapSdv = objectArrayMap.get(ibmsSceneCode);
+
+                File objectFile = new File(maxDir + File.separator + BaseDecConstant.OBJECT + File.separator + ibmsSceneCode + File.separator + ibmsClassCode + UrlConstant.JSON_FILE);
+                //没有数据的类型不做处理
+                if (!objectFile.exists()) {
+                    return;
+                }
+                //对象数据
+                JSONArray objectArray;
+                try {
+                    objectArray = ReadFileUtil.readJsonArray(objectFile);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                SceneDataSet objectSds = new SceneDataSet(false, BaseDecConstant.ZKT_OBJECT + "/" + ibmsSceneCode + "/" + ibmsClassCode);
+                //点位数据
+                SceneDataSet infoArray = repository.infoArrayDic.get(code);
+                infoArray.set.forEach(sdoTemp -> {
+                    //采集点位
+                    if (BaseApiUtil.getInfoTypeByTag(sdoTemp) != 0) {
+                        objectSds.setColChange(sdoTemp.get(BaseDecConstant.CODE).value_prim.value.toString());
+                    }
+                });
+
+                SceneDataValue objSdv = new SceneDataValue(null, null, null, null);
+                objectArray.forEach(temp -> {
+                    JSONObject objItem = (JSONObject) temp;
+                    SceneDataObject sdo = repository.id2sdv.get(objItem.get(BaseDecConstant.ID));
+                    if (sdo == null) {
+                        return;
+                    }
+                    //有引用参数
+                    if (flag != null && flag.equals(BaseDecConstant.REFERENCE)) {
+                        objectSds.set.add(sdo);
+                    } else {
+                        //加入ibmsSceneCode属性
+                        SceneDataValue tempSdv = new SceneDataValue(null, null, null, null);
+                        tempSdv.finish = true;
+                        tempSdv.value_prim = new SceneDataPrimitive();
+                        tempSdv.value_prim.value = ibmsSceneCode;
+                        sdo.put(BaseDecConstant.IBMS_SCENE_CODE, tempSdv);
+                        //加入ibmsClassCode属性
+                        tempSdv = new SceneDataValue(null, null, null, null);
+                        tempSdv.finish = true;
+                        tempSdv.value_prim = new SceneDataPrimitive();
+                        tempSdv.value_prim.value = ibmsClassCode;
+                        sdo.put(BaseDecConstant.IBMS_CLASS_CODE, tempSdv);
+
+                        SceneDataObject sdoSub = new SceneDataObject(repository, null, null, objSdv, null, null, sdo);
+                        objectSds.set.add(sdoSub);
+                    }
+                });
+                objSdv.value_array = objectSds;
+                objSdv.finish = true;
+                mapSdv.put(ibmsClassCode, objSdv);
+            });
+            repository.ZKTObjectArrayDic = objectArrayMap;
+            log.warn("*****结束加载-对象数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+        } catch (Exception e) {
+            log.error("加载IBMS物理世界数据异常", e);
+        }
     }
 
     /**
@@ -147,6 +262,15 @@ public class IbmsPhysicalWorldService {
     private void addProject(JSONObject requestBody) {
         requestBody.put(BaseDecConstant.GROUP_CODE, groupCode);
         requestBody.put(BaseDecConstant.PROJECT_ID, projectId);
+    }
+
+    /**
+     * 获取根目录路径
+     *
+     * @return
+     */
+    private String getPath() {
+        return groupCode + File.separator + projectId + File.separator + ibmsPhysicalWorld;
     }
 
 }

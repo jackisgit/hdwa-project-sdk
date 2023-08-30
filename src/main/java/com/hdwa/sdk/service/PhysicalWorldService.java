@@ -58,8 +58,7 @@ public class PhysicalWorldService {
         log.warn("************开始下载-物理世界数据");
         long startTime = System.currentTimeMillis();
         try {
-            String physicalPath = getPath();
-            File tempFile = new File(physicalPath + File.separator + temp);
+            File tempFile = new File(getPath() + File.separator + temp);
             //删除临时目录文件
             FileUtil.deleteRecursive(tempFile);
             //创建temp根目录文件夹
@@ -89,9 +88,9 @@ public class PhysicalWorldService {
             downPoint(jsonArray, point, list);
             downRelation(relation);
             //修改temp目录为当前时间目录
-            FileUtil.tempToNowDate(tempFile, new File(physicalPath));
+            FileUtil.tempToNowDate(tempFile, new File(getPath()));
             //只保留3个版本数据
-            FileUtil.clearHistoryDirectory(new File(physicalPath));
+            FileUtil.clearHistoryDirectory(new File(getPath()));
             log.warn("************结束下载-物理世界数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
 
             return "ok";
@@ -106,10 +105,9 @@ public class PhysicalWorldService {
      *
      * @return
      */
-    public Object loadPhysicalWorldData() {
+    public Object loadPhysicalWorldData(RepositoryImpl repository) {
         log.warn("************开始加载-物理世界数据");
         long startTime = System.currentTimeMillis();
-        RepositoryImpl repository = new RepositoryImpl();
         File maxDir = FileUtil.getMaxDir(new File(getPath()));
         loadClassDefData(repository, maxDir);
         loadPointDefData(repository, maxDir);
@@ -408,12 +406,7 @@ public class PhysicalWorldService {
                                 }
 
                                 infoKey.value_prim = RepositoryContainer.RepositoryProject.point2sdv.get(pointValue);
-                                SceneDataValue sceneDataValue = new SceneDataValue(null, null, null, null);
-                                sceneDataValue.finish = true;
-                                sceneDataValue.value_prim = new SceneDataPrimitive();
-                                sceneDataValue.value_prim.change = false;
-                                sceneDataValue.value_prim.value = pointValue;
-                                sdo.put(s + "-" + BaseDecConstant.METER_FUNGICIDE, sceneDataValue);
+                                initSdv(sdo, s, pointValue);
                             } else {
                                 sdo.remove(s);
                             }
@@ -442,12 +435,7 @@ public class PhysicalWorldService {
                                 }
 
                                 infoKey.value_prim = RepositoryContainer.RepositoryProject.set2sdv.get(pointValue);
-                                SceneDataValue tempSdv = new SceneDataValue(null, null, null, null);
-                                tempSdv.finish = true;
-                                tempSdv.value_prim = new SceneDataPrimitive();
-                                tempSdv.value_prim.change = false;
-                                tempSdv.value_prim.value = pointValue;
-                                sdo.put(s + "-" + BaseDecConstant.METER_FUNGICIDE, tempSdv);
+                                initSdv(sdo, s, pointValue);
                             } else {
                                 sdo.remove(s);
                             }
@@ -462,6 +450,21 @@ public class PhysicalWorldService {
     }
 
     /**
+     * 初始对象
+     * @param sdo
+     * @param s
+     * @param pointValue
+     */
+    private void initSdv(SceneDataObject sdo, String s, String pointValue) {
+        SceneDataValue tempSdv = new SceneDataValue(null, null, null, null);
+        tempSdv.finish = true;
+        tempSdv.value_prim = new SceneDataPrimitive();
+        tempSdv.value_prim.change = false;
+        tempSdv.value_prim.value = pointValue;
+        sdo.put(s + "-" + BaseDecConstant.METER_FUNGICIDE, tempSdv);
+    }
+
+    /**
      * 解析关系模版到对象数据
      *
      * @param repository
@@ -472,6 +475,11 @@ public class PhysicalWorldService {
         try {
             addProperName(repository);
             addProperValue(repository);
+            RelationModel.listRelation().forEach(rel -> {
+                relationFormObject(rel, repository);
+                relationToObject(rel, repository);
+            });
+
             log.warn("*****结束加载-解析关系模版数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
         } catch (Exception e) {
             log.error("加载解析关系模版数据异常", e);
@@ -550,9 +558,11 @@ public class PhysicalWorldService {
                         //主对象属性添加从对象id
                         if (StringUtils.isNotEmpty(rel.getFromName())) {
                             SceneDataValue tempSdv = objFrom.value_object.get(rel.getFromName());
+                            if (tempSdv.value_array == null) {
+                                tempSdv.value_array = new SceneDataSet(false);
+                            }
                             tempSdv.value_array.set.add(objTo);
                         }
-
                         //从对象属性添加主对象id
                         if (StringUtils.isNotEmpty(rel.getToName())) {
                             SceneDataValue tempSdv = objTo.value_object.get(rel.getToName());
@@ -563,6 +573,168 @@ public class PhysicalWorldService {
                         }
                     });
                 });
+    }
+
+
+    /**
+     * 主对象属性
+     * @param rel
+     * @param repository
+     */
+    private void relationFormObject(RelationModel.Rel rel, RepositoryImpl repository){
+        //主对象
+        if (StringUtils.isNotBlank(rel.getFromName()) && StringUtils.isNotBlank(rel.getFromMultiple())) {
+            //主对象数据
+            Map<String, SceneDataObject> fromObjectMap = repository.objType2id2Value.get(rel.getObjFrom());
+
+            fromObjectMap.forEach((s, sdo) -> {
+                //前面添加的属性名称
+                SceneDataObject sdoFrom = fromObjectMap.get(s);
+                SceneDataValue sdvFromItem = sdoFrom.value_object.get(rel.getFromName());
+                if (sdvFromItem.value_array != null) {
+                    //主对象为1
+                    if (rel.getFromMultiple().equals(BaseDecConstant.ONE)) {
+                        SceneDataValue tempSdvId = new SceneDataValue(repository, sdo, rel.getFromName() + BaseDecConstant.ID2, null);
+                        tempSdvId.value_prim = new SceneDataPrimitive();
+                        tempSdvId.finish = true;
+
+                        SceneDataValue tempSdvName = new SceneDataValue(repository, sdo, rel.getFromName() + BaseDecConstant.NAME2, null);
+                        tempSdvName.finish = true;
+                        tempSdvName.value_prim = new SceneDataPrimitive();
+                        //只有一条数据
+                        if (sdvFromItem.value_array.set.size() == 1) {
+                            tempSdvId.value_prim.value = sdvFromItem.value_array.set.get(BigInteger.ZERO.intValue()).get(BaseDecConstant.ID).value_prim.value;
+                            // TODO: 2023/8/28 现实编码名称是否还有用？
+                            if (sdvFromItem.value_array.set.get(BigInteger.ZERO.intValue()).get(BaseDecConstant.REALITY_CODE_NAME) == null) {
+                                tempSdvName.value_prim.value = sdvFromItem.value_array.set.get(BigInteger.ZERO.intValue()).get(BaseDecConstant.LOCAL_NAME).value_prim.value;
+                            } else {
+                                tempSdvName.value_prim.value = sdvFromItem.value_array.set.get(BigInteger.ZERO.intValue()).get(BaseDecConstant.REALITY_CODE_NAME).value_prim.value;
+                            }
+                        }
+                        //多条数据
+                        else if (sdvFromItem.value_array.set.size() > 1) {
+                            //从对象数据列表
+                            sdvFromItem.value_array.set.forEach(tempSdo -> {
+                                //赋值
+                                if (tempSdvId.value_prim.value == null) {
+                                    tempSdvId.value_prim.value = tempSdo.get(BaseDecConstant.ID).value_prim.value;
+                                    // TODO: 2023/8/28 现实编码名称是否还有用？
+                                    if (tempSdo.get(BaseDecConstant.REALITY_CODE_NAME) == null) {
+                                        tempSdvName.value_prim.value = tempSdo.get(BaseDecConstant.LOCAL_NAME).value_prim.value;
+                                    } else {
+                                        tempSdvName.value_prim.value = tempSdo.get(BaseDecConstant.REALITY_CODE_NAME).value_prim.value;
+                                    }
+                                } else {
+                                    //说明有多个关系
+                                    if (!tempSdvId.value_prim.value.equals(tempSdo.get(BaseDecConstant.ID).value_prim.value)) {
+                                        log.error(rel.getGraphCode() + "-----" + rel.getRelCode() + "----null：绑定了多个---" + rel.getToName() + "---" + tempSdvId.value_prim.value + "---" + tempSdo.get(BaseDecConstant.ID).value_prim.value);
+                                    }
+                                }
+                            });
+                        }
+
+                        sdoFrom.value_object.put(rel.getFromName() + BaseDecConstant.ID2, tempSdvId);
+                        sdoFrom.value_object.put(rel.getFromName() + BaseDecConstant.NAME2, tempSdvName);
+                    }//主对象为n
+                    else {
+                        SceneDataValue tempSdvId = new SceneDataValue(repository, sdo, rel.getFromName() + BaseDecConstant.ID_DETAILED_LIST, null);
+                        tempSdvId.finish = true;
+                        tempSdvId.value_array = new SceneDataSet(true);
+                        tempSdvId.value_array.singleValueSet = new CopyOnWriteArrayList<>();
+
+                        sdvFromItem.value_array.set.forEach(tempSdo -> {
+                            SceneDataValue tempSdv = new SceneDataValue(repository, null, null, null);
+                            tempSdv.finish = true;
+                            tempSdv.value_prim = new SceneDataPrimitive();
+                            tempSdv.value_prim.value = tempSdo.get(BaseDecConstant.ID).value_prim.value;
+
+                            tempSdvId.value_array.singleValueSet.add(tempSdv);
+                        });
+                        sdo.value_object.put(rel.getFromName() + BaseDecConstant.ID_DETAILED_LIST, tempSdvId);
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * 从对象属性
+     * @param rel
+     * @param repository
+     */
+    private void relationToObject(RelationModel.Rel rel,RepositoryImpl repository){
+        //主对象
+        if (StringUtils.isNotBlank(rel.getToName()) && StringUtils.isNotBlank(rel.getToMultiple())) {
+            //主对象数据
+            Map<String, SceneDataObject> toObjectMap = repository.objType2id2Value.get(rel.getObjTo());
+            toObjectMap.forEach((s, sdo) -> {
+                //前面添加的属性名称
+                SceneDataObject sdoTo = toObjectMap.get(s);
+                SceneDataValue sdvToItem = sdoTo.value_object.get(rel.getToName());
+                if (sdvToItem.value_array != null) {
+                    //主对象为1
+                    if (rel.getToMultiple().equals(BaseDecConstant.ONE)) {
+                        SceneDataValue tempSdvId = new SceneDataValue(repository, sdo, rel.getToName() + BaseDecConstant.ID2, null);
+                        tempSdvId.value_prim = new SceneDataPrimitive();
+                        tempSdvId.finish = true;
+
+                        SceneDataValue tempSdvName = new SceneDataValue(repository, sdo, rel.getToName() + BaseDecConstant.NAME2, null);
+                        tempSdvName.finish = true;
+                        tempSdvName.value_prim = new SceneDataPrimitive();
+                        //只有一条数据
+                        if (sdvToItem.value_array.set.size() == 1) {
+                            tempSdvId.value_prim.value = sdvToItem.value_array.set.get(BigInteger.ZERO.intValue()).get(BaseDecConstant.ID).value_prim.value;
+                            // TODO: 2023/8/28 现实编码名称是否还有用？
+                            if (sdvToItem.value_array.set.get(BigInteger.ZERO.intValue()).get(BaseDecConstant.REALITY_CODE_NAME) == null) {
+                                tempSdvName.value_prim.value = sdvToItem.value_array.set.get(BigInteger.ZERO.intValue()).get(BaseDecConstant.LOCAL_NAME).value_prim.value;
+                            } else {
+                                tempSdvName.value_prim.value = sdvToItem.value_array.set.get(BigInteger.ZERO.intValue()).get(BaseDecConstant.REALITY_CODE_NAME).value_prim.value;
+                            }
+                        }
+                        //多条数据
+                        else if (sdvToItem.value_array.set.size() > 1) {
+                            //从对象数据列表
+                            sdvToItem.value_array.set.forEach(tempSdo -> {
+                                //赋值
+                                if (tempSdvId.value_prim.value == null) {
+                                    tempSdvId.value_prim.value = tempSdo.get(BaseDecConstant.ID).value_prim.value;
+                                    // TODO: 2023/8/28 现实编码名称是否还有用？
+                                    if (tempSdo.get(BaseDecConstant.REALITY_CODE_NAME) == null) {
+                                        tempSdvName.value_prim.value = tempSdo.get(BaseDecConstant.LOCAL_NAME).value_prim.value;
+                                    } else {
+                                        tempSdvName.value_prim.value = tempSdo.get(BaseDecConstant.REALITY_CODE_NAME).value_prim.value;
+                                    }
+                                } else {
+                                    //说明有多个关系
+                                    if (!tempSdvId.value_prim.value.equals(tempSdo.get(BaseDecConstant.ID).value_prim.value)) {
+                                        log.error(rel.getGraphCode() + "-----" + rel.getRelCode() + "----null：绑定了多个---" + rel.getToName() + "---" + tempSdvId.value_prim.value + "---" + tempSdo.get(BaseDecConstant.ID).value_prim.value);
+                                    }
+                                }
+                            });
+                        }
+
+                        sdoTo.value_object.put(rel.getToName() + BaseDecConstant.ID2, tempSdvId);
+                        sdoTo.value_object.put(rel.getToName() + BaseDecConstant.NAME2, tempSdvName);
+                    }//主对象为n
+                    else {
+                        SceneDataValue tempSdvId = new SceneDataValue(repository, sdo, rel.getToName() + BaseDecConstant.ID_DETAILED_LIST, null);
+                        tempSdvId.finish = true;
+                        tempSdvId.value_array = new SceneDataSet(true);
+                        tempSdvId.value_array.singleValueSet = new CopyOnWriteArrayList<>();
+
+                        sdvToItem.value_array.set.forEach(tempSdo -> {
+                            SceneDataValue tempSdv = new SceneDataValue(repository, null, null, null);
+                            tempSdv.finish = true;
+                            tempSdv.value_prim = new SceneDataPrimitive();
+                            tempSdv.value_prim.value = tempSdo.get(BaseDecConstant.ID).value_prim.value;
+
+                            tempSdvId.value_array.singleValueSet.add(tempSdv);
+                        });
+                        sdo.value_object.put(rel.getToName() + BaseDecConstant.ID_DETAILED_LIST, tempSdvId);
+                    }
+                }
+            });
+        }
     }
 
     /**

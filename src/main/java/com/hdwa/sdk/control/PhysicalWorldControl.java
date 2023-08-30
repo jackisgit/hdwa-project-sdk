@@ -35,9 +35,7 @@ public class PhysicalWorldControl {
      */
     @GetMapping("/loadPhysicalWorldData")
     public Object loadPhysicalWorldData() {
-
-
-        return physicalWorldService.loadPhysicalWorldData();
+        return physicalWorldService.loadPhysicalWorldData(new RepositoryImpl());
     }
 
 }

@@ -1,5 +1,6 @@
 package com.hdwa.sdk.control;
 
+import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.service.IbmsPhysicalWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,12 +19,21 @@ public class IbmsPhysicalWorldControl {
     private IbmsPhysicalWorldService ibmsPhysicalWorldService;
 
     /**
-     * 下载物理世界数据
+     * 下载IBMS物理世界数据
      *
      * @return
      */
     @GetMapping("/downLoadData")
     public Object downLoadData() {
         return ibmsPhysicalWorldService.downLoadIbmsPhysicalWorldData();
+    }
+
+    /**
+     * 加载IBMS物理世界数据
+     * @return
+     */
+    @GetMapping("/loadIbmsPhysicalWorldData")
+    public Object loadIbmsPhysicalWorldData() {
+        return ibmsPhysicalWorldService.loadIbmsPhysicalWorldData(new RepositoryImpl());
     }
 }
