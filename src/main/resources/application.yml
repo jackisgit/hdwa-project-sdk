@@ -6,6 +6,13 @@ server:
     max-connections: 10000
     min-spare-threads: 100
 
+spring:
+  redis:
+    host: 10.199.205.81
+    port: 6379
+    password: hdwaredis0912jd
+    database: 5
+
 #项目信息
 project:
   id: Pj4401830001

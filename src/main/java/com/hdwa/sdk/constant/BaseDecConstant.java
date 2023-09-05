@@ -23,7 +23,7 @@ public class BaseDecConstant {
     /**
      * CBD接口路径 String
      */
-    public static final String CBD_API_JSON = "BJCBD";
+    public static final String CBD_API_JSON = "BJCBD_SDK_API";
 
     /**
      * CBD项目id String
@@ -43,17 +43,17 @@ public class BaseDecConstant {
     /**
      * 增城接口路径 String
      */
-    public static final String ZENG_CHENG_API_JSON = "GZZC";
+    public static final String ZENG_CHENG_API_JSON = "GZZC_SDK_API";
 
     /**
      * 浦西接口路径 String
      */
-    public static final String PU_XI_API_JSON = "QZPX";
+    public static final String PU_XI_API_JSON = "QZPX_SDK_API";
 
     /**
      * 其它接口路径 String
      */
-    public static final String BASE_API_JSON = "BASE";
+    public static final String BASE_API_JSON = "BASE_SDK_API";
 
     /**
      * 接口json路径 String
@@ -65,6 +65,29 @@ public class BaseDecConstant {
      * 产品模块String
      */
     public static final String PRODUCT_MODULE = "产品模块";
+
+    /**
+     * PropertyList String
+     */
+    public static final String PROPERTY_LIST = "PropertyList";
+
+    /**
+     * PropertyName String
+     */
+    public static final String PROPERTY_NAME = "PropertyName";
+
+
+    /**
+     * query_sql String
+     */
+    public static final String QUERY_SQL = "query_sql";
+
+
+
+    /**
+     * general_query String
+     */
+    public static final String GENERAL_QUERY = "general_query";
 
 
     /**
@@ -529,6 +552,11 @@ public class BaseDecConstant {
      * 自定义 String
      */
     public static final String CUSTOM = "custom";
+
+    /**
+     * custom_object String
+     */
+    public static final String CUSTOM_OBJECT = "custom_object";
 
     /**
      * 手自动点位 String

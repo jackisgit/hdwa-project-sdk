@@ -27,6 +27,9 @@ public class LoadDataMainService {
     @Autowired
     private AlarmService alarmService;
 
+    @Autowired
+    private ConfigApiService configApiService;
+
     RepositoryImpl repository = new RepositoryImpl();
 
 
@@ -56,9 +59,12 @@ public class LoadDataMainService {
 
 
         //if (repository.RepositoryProject.alarmArray.set.size() == 0) {
-            //加载报警数据
-            alarmService.loadAlarmData(repository);
+        //加载报警数据
+        alarmService.loadAlarmData(repository);
         //}
+
+        //加载接口数据
+        configApiService.loadConfigData(repository);
 
 
         return "ok";
