@@ -445,6 +445,17 @@ public class BaseDecConstant {
 
 
     /**
+     * 报警数量 String
+     */
+    public static final String ALARM_COUNT = "报警数量";
+
+    /**
+     * 报警列表 String
+     */
+    public static final String ALARM_LIST = "报警列表";
+
+
+    /**
      * 设定参数 String
      */
     public static final String SET_PARAM = "设定参数";

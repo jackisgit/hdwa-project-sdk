@@ -6,10 +6,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.constant.UrlConstant;
 import com.hdwa.sdk.entity.ExcelSheetEntity;
+import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.enums.PointEnum;
-import com.hdwa.sdk.utils.ExcelUtil;
-import com.hdwa.sdk.utils.FastJsonUtil;
-import com.hdwa.sdk.utils.FileUtil;
+import com.hdwa.sdk.utils.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -78,6 +77,26 @@ public class PointService {
         return null;
     }
 
+    /**
+     * 加载点位数据
+     * @param repository
+     * @return
+     */
+    public Object loadPointData(RepositoryImpl repository) {
+        log.warn("************开始加载-点位数据");
+        long startTime = System.currentTimeMillis();
+        File maxDir = FileUtil.getMaxDir(new File(getPath()));
+        try {
+            JSONArray pointList = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.POINT_LIST));
+            repository.InfoPointListArray.set = RWDUtil.array2SDOList(pointList);
+            JSONArray pointRelation = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.POINT_RELATION));
+            repository.InfoPointRelationArray.set = RWDUtil.array2SDOList(pointRelation);
+            log.warn("************结束加载-点位数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+        } catch (Exception e) {
+            log.error("加载点位数据异常", e);
+        }
+        return "ok";
+    }
 
     /**
      * 读取点位配置文件
@@ -210,5 +229,14 @@ public class PointService {
             value = value.trim();
         }
         return value;
+    }
+
+    /**
+     * 获取根目录路径
+     *
+     * @return
+     */
+    private String getPath() {
+        return groupCode + File.separator + projectId + File.separator + point;
     }
 }

@@ -24,6 +24,9 @@ public class LoadDataMainService {
     @Autowired
     private PointService pointService;
 
+    @Autowired
+    private AlarmService alarmService;
+
     RepositoryImpl repository = new RepositoryImpl();
 
 
@@ -50,6 +53,12 @@ public class LoadDataMainService {
             //加载点位数据
             pointService.loadPointData(repository);
         }
+
+
+        //if (repository.RepositoryProject.alarmArray.set.size() == 0) {
+            //加载报警数据
+            alarmService.loadAlarmData(repository);
+        //}
 
 
         return "ok";
