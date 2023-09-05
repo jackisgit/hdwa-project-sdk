@@ -150,17 +150,17 @@ public class BaseDecConstant {
      */
     public static final String FLOOR_ID = "floorId";
     /**
-    /**
+     * /**
      * 所在楼层 String
      */
     public static final String PLACE_FLOOR = "所在楼层";
     /**
-    /**
+     * /**
      * 楼层编号 String
      */
     public static final String FLOOR_CODE = "楼层编号";
     /**
-    /**
+     * /**
      * 楼层名称 String
      */
     public static final String FLOOR_NAME = "楼层名称";
@@ -349,19 +349,18 @@ public class BaseDecConstant {
     /**
      * zkt-object string
      */
-    public static final String ZKT_OBJECT= "zkt-object";
+    public static final String ZKT_OBJECT = "zkt-object";
 
     /**
      * ibms-group string
      */
-    public static final String IBMS_GROUP= "ibms-group";
-
+    public static final String IBMS_GROUP = "ibms-group";
 
 
     /**
      * ibms-group-object string
      */
-    public static final String IBMS_GROUP_OBJECT= "ibms-group-object";
+    public static final String IBMS_GROUP_OBJECT = "ibms-group-object";
 
 
     /**
@@ -613,6 +612,18 @@ public class BaseDecConstant {
      * point String
      */
     public static final String POINT = "point";
+
+
+    /**
+     * info-point-list String
+     */
+    public static final String INFO_POINT_LIST = "info-point-list";
+
+
+    /**
+     * info-point-relation String
+     */
+    public static final String INFO_POINT_RELATION = "info-point-relation";
 
 
     /**

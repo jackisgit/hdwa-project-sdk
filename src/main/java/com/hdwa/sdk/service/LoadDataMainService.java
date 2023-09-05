@@ -21,6 +21,9 @@ public class LoadDataMainService {
     @Autowired
     private IbmsLogicalGroupService ibmsLogicalGroupService;
 
+    @Autowired
+    private PointService pointService;
+
     RepositoryImpl repository = new RepositoryImpl();
 
 
@@ -33,13 +36,21 @@ public class LoadDataMainService {
             //加载物理世界数据
             physicalWorldService.loadPhysicalWorldData(repository);
         }
-        if (repository.IBMSArrayDic.size() == 0) {
+        if (repository.ZKTObjectArrayDic.size() == 0) {
             //加载IBMS物理世界数据
             ibmsPhysicalWorldService.loadIbmsPhysicalWorldData(repository);
         }
 
-        //加载IBMS逻辑编组数据
-        ibmsLogicalGroupService.loadLogicalGroupData(repository);
+        if (repository.IBMSArrayDic.size() == 0) {
+            //加载IBMS逻辑编组数据
+            ibmsLogicalGroupService.loadLogicalGroupData(repository);
+        }
+
+        if (repository.InfoPointListArray.set.size() == 0) {
+            //加载点位数据
+            pointService.loadPointData(repository);
+        }
+
 
         return "ok";
     }

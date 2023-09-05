@@ -2,6 +2,7 @@ package com.hdwa.sdk.entity.repository;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.scene.SceneDataObject;
 import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
 import com.hdwa.sdk.entity.scene.SceneDataSet;
@@ -199,6 +200,21 @@ public class RepositoryImpl extends RepositoryBase {
      */
     public Map<String, Map<String, SceneDataSet>> IBMSArrayDic = new HashMap<>(16);
 
+
+    /**
+     * <p>点位数据</p>
+     * <p>点位数据</p>
+     * <p>数据来源 point/point-list.json</p>
+     */
+    public SceneDataSet InfoPointListArray = new SceneDataSet(false, BaseDecConstant.INFO_POINT_LIST);
+
+    /**
+     * <p>点位数据</p>
+     * <p>点位关系数据</p>
+     * <p>数据来源 point/point-relation.json</p>
+     */
+    public SceneDataSet InfoPointRelationArray = new SceneDataSet(false, BaseDecConstant.INFO_POINT_RELATION);
+
     public static boolean accelerate_enable = false;
     public static long accelerate_ratio = 60 * 60 * 24;
     public static String init_timeString = "2021-01-01 00:00:00";
@@ -212,9 +228,6 @@ public class RepositoryImpl extends RepositoryBase {
     public SceneDataSet alarmConfigTrigger = new SceneDataSet(false);
 
 
-
-
-
     public SceneDataSet ZKTAlarmTypeArray = new SceneDataSet(false);
     /**
      * @子系统连接状态
@@ -223,16 +236,7 @@ public class RepositoryImpl extends RepositoryBase {
     public SceneDataSet subsystem_connect_status = new SceneDataSet(false);
 
 
-    /**
-     * @信息点数据
-     * @数据来源 info-point-list.json
-     */
-    public SceneDataSet InfoPointListArray = new SceneDataSet(false, "info-point-list");
-    /**
-     * @信息点关联数据
-     * @数据来源 info-point-relation.json
-     */
-    public SceneDataSet InfoPointRelationArray = new SceneDataSet(false, "info-point-relation");
+
     public SceneDataSet scaleplate = new SceneDataSet(false, "scaleplate");
     // 日历模式：周期性刷新，不需要拷贝
     public SceneDataSet IBMSCalendarModel = new SceneDataSet(false, true);
