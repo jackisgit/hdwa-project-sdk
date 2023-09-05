@@ -244,6 +244,12 @@ public class BaseDecConstant {
      */
     public static final String ELECTRIC_WELL_NAME = "电井名称";
 
+
+    /**
+     * 回路 String
+     */
+    public static final String LOOP = "回路";
+
     /**
      * 被设备供电 String
      */
@@ -363,6 +369,11 @@ public class BaseDecConstant {
      */
     public static final String GROUP_ONE = "group-one";
 
+
+    /**
+     * circuit回路 string
+     */
+    public static final String CIRCUIT = "circuit";
 
     /**
      * group_two string
