@@ -138,7 +138,7 @@ public class ConfigApiService {
      */
     private void analysisData(RepositoryImpl repository) {
         long startTime = System.currentTimeMillis();
-        log.warn("*****开始-解析计算对象和属性****");
+        log.warn("*****开始-解析计算对象和属性");
         try {
             repository.property2SDV_enable = true;
             repository.property2SDV.clear();
@@ -147,7 +147,7 @@ public class ConfigApiService {
             CalculateApiJsonUtil.calculateAll(repository, propertyList);
             repository.property2SDV_enable = false;
             repository.property2SDV.clear();
-            log.warn("*****结束-解析计算对象和属性****用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+            log.warn("*****结束-解析计算对象和属性用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
         } catch (Exception e) {
             log.error("解析-解析计算对象和属性-出现错误", e);
         }

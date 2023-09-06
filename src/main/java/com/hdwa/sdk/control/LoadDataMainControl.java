@@ -20,6 +20,7 @@ public class LoadDataMainControl {
 
     @GetMapping("/main")
     public Object loadDataMain(){
-        return loadDataMainService.loadDataMain();
+        loadDataMainService.loadDataMain();
+        return "ok";
     }
 }

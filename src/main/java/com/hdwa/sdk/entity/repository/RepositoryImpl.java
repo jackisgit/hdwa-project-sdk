@@ -216,61 +216,7 @@ public class RepositoryImpl extends RepositoryBase {
     public SceneDataSet InfoPointRelationArray = new SceneDataSet(false, BaseDecConstant.INFO_POINT_RELATION);
 
 
-    /**
-     * <p>IOT采集数据</p>
-     * <p>运行点位值--数据</p>
-     * <p>运行点位值 对象数据--->数据</p>
-     * <p>数据来源 physical_world/object/*.json</p>
-     */
-    public ConcurrentHashMap<String, SceneDataPrimitive> point2sdv = new ConcurrentHashMap<>(16);
 
-    /**
-     * <p>IOT采集数据</p>
-     * <p>数据--运行点位值</p>
-     * <p>数据 --->运行点位值</p>
-     * <p>数据来源 physical_world/object/*.json</p>
-     */
-    public ConcurrentHashMap<SceneDataPrimitive, String> sdv2point = new ConcurrentHashMap<>(16);
-
-
-    /**
-     * <p>IOT设置数据</p>
-     * <p>设定点位值--数据</p>
-     * <p>设定点位值 对象数据--->数据</p>
-     * <p>数据来源 physical_world/object/*.json</p>
-     */
-    public ConcurrentHashMap<String, SceneDataPrimitive> set2sdv = new ConcurrentHashMap<>(16);
-
-    /**
-     * <p>IOT设置数据</p>
-     * <p>数据--设定点位值</p>
-     * <p>数据 --->设定点位值</p>
-     * <p>数据来源 physical_world/object/*.json</p>
-     */
-    public ConcurrentHashMap<SceneDataPrimitive, String> sdv2set = new ConcurrentHashMap<>(16);
-
-
-    /**
-     * <p>报警数据</p>
-     */
-    public SceneDataSet alarmArray = new SceneDataSet(false, true);
-
-    /**
-     * <p>报警数据</p>
-     * <p>报警列表</p>
-     * <p>objId--sdv</p>
-     * <p>对象id --->报警列表</p>
-     */
-    public Map<String, SceneDataValue> id2alarmList = new HashMap<>(16);
-
-
-    /**
-     * <p>报警数据</p>
-     * <p>报警数量</p>
-     * <p>objId--sdv</p>
-     * <p>对象id --->报警数量</p>
-     */
-    public Map<String, SceneDataValue> id2alarmCount = new HashMap<>(16);
 
 
     public static boolean accelerate_enable = false;
@@ -532,7 +478,7 @@ public class RepositoryImpl extends RepositoryBase {
         } else if (Source.equals("scaleplate")) {
             result = this.scaleplate;
         } else if (Source.equals("alarm")) {
-            result = this.alarmArray;
+            result = PathDataContainer.alarmArray;
         } else if (Source.equals("info-point-list")) {
             result = this.InfoPointListArray;
         } else if (Source.equals("info-point-relation")) {
@@ -681,15 +627,15 @@ public class RepositoryImpl extends RepositoryBase {
         int affect_count = 0;
         // 加入计算队列
         if (this.enable_factor) {
-            for (String point : this.point2sdv.keySet()) {
-                SceneDataPrimitive sdv = this.point2sdv.get(point);
+            for (String point : PathDataContainer.point2sdv.keySet()) {
+                SceneDataPrimitive sdv = PathDataContainer.point2sdv.get(point);
                 if (sdv.value != null) {
                     item_count++;
                     affect_count += this.ProcessIOT(point);
                 }
             }
-            for (String point : this.set2sdv.keySet()) {
-                SceneDataPrimitive sdv = this.set2sdv.get(point);
+            for (String point : PathDataContainer.set2sdv.keySet()) {
+                SceneDataPrimitive sdv = PathDataContainer.set2sdv.get(point);
                 if (sdv.value != null) {
                     item_count++;
                     affect_count += this.ProcessIOT(point);
@@ -708,14 +654,14 @@ public class RepositoryImpl extends RepositoryBase {
         // 加入计算队列
         if (this.enable_factor) {
             item_count++;
-            affect_count += this.addWaitCompute(this.alarmArray);
-            for (String objId : this.id2alarmList.keySet()) {
-                SceneDataValue alarmList = this.id2alarmList.get(objId);
+            affect_count += this.addWaitCompute(PathDataContainer.alarmArray);
+            for (String objId : PathDataContainer.id2alarmList.keySet()) {
+                SceneDataValue alarmList = PathDataContainer.id2alarmList.get(objId);
                 item_count++;
                 affect_count += this.addWaitCompute(alarmList);
             }
-            for (String objId : this.id2alarmCount.keySet()) {
-                SceneDataValue alarmCount = this.id2alarmCount.get(objId);
+            for (String objId : PathDataContainer.id2alarmCount.keySet()) {
+                SceneDataValue alarmCount = PathDataContainer.id2alarmCount.get(objId);
                 item_count++;
                 affect_count += this.addWaitCompute(alarmCount);
             }

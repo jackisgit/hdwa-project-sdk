@@ -1,5 +1,7 @@
 package com.hdwa.sdk.service;
 
+import com.hdwa.sdk.entity.repository.RepositoryImpl;
+import com.hdwa.sdk.websocket.IotWebSocketClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.net.URI;
 import java.nio.file.Files;
 
 /**
@@ -42,13 +45,17 @@ public class InitialDataService implements CommandLineRunner {
     @Value("${dirName.temp}")
     private String temp;
 
+    @Value("${url.iotWebSocket}")
+    private String iotWebSocketUrl;
+
     @Autowired
     private LoadDataMainService loadDataMainService;
 
     @Override
     public void run(String... args) {
         initDir();
-        loadDataMainService.loadDataMain();
+        RepositoryImpl repository = loadDataMainService.loadDataMain();
+        initIotWebsocket(repository);
     }
 
     /**
@@ -108,6 +115,22 @@ public class InitialDataService implements CommandLineRunner {
 
         } catch (Exception e) {
             log.error("初始化文件异常");
+        }
+
+    }
+
+
+    /**
+     * iotWebSocket连接
+     */
+    private void initIotWebsocket(RepositoryImpl repository) {
+        try {
+            log.warn("************初始化iotWebSocket");
+            String url = iotWebSocketUrl + "?projectId=" + projectId.substring(2) + "&type=iot,text,pointset";
+            IotWebSocketClient client = new IotWebSocketClient(new URI(url), projectId, repository);
+            client.connect();
+        } catch (Exception e) {
+            log.error("*****建立iotWebsocket异常", e);
         }
 
     }

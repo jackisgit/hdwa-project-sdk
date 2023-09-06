@@ -1,6 +1,7 @@
 package com.hdwa.sdk.service;
 
 import com.hdwa.sdk.constant.BaseDecConstant;
+import com.hdwa.sdk.entity.repository.PathDataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.entity.scene.SceneDataObject;
 import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
@@ -31,7 +32,7 @@ public class AlarmService {
             log.warn("************开始加载-报警数据");
             long startTime = System.currentTimeMillis();
 
-            AlarmUtil.alarmColChange.forEach(s -> repository.alarmArray.setColChange(s));
+            AlarmUtil.alarmColChange.forEach(s -> PathDataContainer.alarmArray.setColChange(s));
             repository.objectArrayDic.forEach((s, sdv) -> {
                 if (!repository.code2objTypeMap.containsKey(s)) {
                     return;
@@ -49,12 +50,12 @@ public class AlarmService {
                     advList.value_array = new SceneDataSet(false);
                     advList.value_array.set = new CopyOnWriteArrayList<SceneDataObject>();
                     advList.value_array.setRowChange(true);
-                    repository.id2alarmList.putIfAbsent(objId, advList);
+                    PathDataContainer.id2alarmList.putIfAbsent(objId, advList);
                     AlarmUtil.alarmColChange.forEach(s1 -> {
                         advList.value_array.setColChange(s1);
                     });
 
-                    SceneDataValue alarmList = repository.id2alarmList.get(objId);
+                    SceneDataValue alarmList = PathDataContainer.id2alarmList.get(objId);
                     SceneDataValue sv_alarmList = new SceneDataValue(repository, sdo, BaseDecConstant.ALARM_LIST, null);
                     sv_alarmList.finish = true;
                     sv_alarmList.value_array = alarmList.value_array;
@@ -67,9 +68,9 @@ public class AlarmService {
                     advCount.value_prim = new SceneDataPrimitive();
                     advCount.value_prim.value = 0;
                     advCount.value_prim.change = true;
-                    repository.id2alarmCount.putIfAbsent(objId, advCount);
+                    PathDataContainer.id2alarmCount.putIfAbsent(objId, advCount);
 
-                    SceneDataValue alarmCount = repository.id2alarmCount.get(objId);
+                    SceneDataValue alarmCount = PathDataContainer.id2alarmCount.get(objId);
                     SceneDataValue sv_alarmCount = new SceneDataValue(repository, sdo, BaseDecConstant.ALARM_COUNT, null);
                     sv_alarmCount.finish = true;
                     sv_alarmCount.value_prim = alarmCount.value_prim;

@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.constant.UrlConstant;
 import com.hdwa.sdk.entity.repository.ObjectInfo;
+import com.hdwa.sdk.entity.repository.PathDataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.entity.scene.SceneDataObject;
@@ -400,12 +401,12 @@ public class PhysicalWorldService {
                                 // TODO: 2023/8/28  RepositoryContainer后续去掉
                                 SceneDataPrimitive sdp = new SceneDataPrimitive();
                                 sdp.change = true;
-                                SceneDataPrimitive exist = repository.point2sdv.putIfAbsent(pointValue, sdp);
+                                SceneDataPrimitive exist = PathDataContainer.point2sdv.putIfAbsent(pointValue, sdp);
                                 if (exist == null) {
-                                   repository.sdv2point.putIfAbsent(sdp, pointValue);
+                                    PathDataContainer.sdv2point.putIfAbsent(sdp, pointValue);
                                 }
 
-                                infoKey.value_prim = repository.point2sdv.get(pointValue);
+                                infoKey.value_prim = PathDataContainer.point2sdv.get(pointValue);
                                 initSdv(sdo, s, pointValue);
                             } else {
                                 sdo.remove(s);
@@ -429,12 +430,12 @@ public class PhysicalWorldService {
                                 // TODO: 2023/8/28  RepositoryContainer后续去掉
                                 SceneDataPrimitive sdp = new SceneDataPrimitive();
                                 sdp.change = true;
-                                SceneDataPrimitive exist = repository.set2sdv.putIfAbsent(pointValue, sdp);
+                                SceneDataPrimitive exist = PathDataContainer.set2sdv.putIfAbsent(pointValue, sdp);
                                 if (exist == null) {
-                                    repository.sdv2set.putIfAbsent(sdp, pointValue);
+                                    PathDataContainer.sdv2set.putIfAbsent(sdp, pointValue);
                                 }
 
-                                infoKey.value_prim = repository.set2sdv.get(pointValue);
+                                infoKey.value_prim = PathDataContainer.set2sdv.get(pointValue);
                                 initSdv(sdo, s, pointValue);
                             } else {
                                 sdo.remove(s);
@@ -461,7 +462,6 @@ public class PhysicalWorldService {
         tempSdv.value_prim = new SceneDataPrimitive();
         tempSdv.value_prim.change = false;
         tempSdv.value_prim.value = pointValue;
-        sdo.put(s + "-" + BaseDecConstant.METER_FUNGICIDE, tempSdv);
     }
 
     /**

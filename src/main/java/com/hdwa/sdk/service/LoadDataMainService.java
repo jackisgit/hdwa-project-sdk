@@ -38,7 +38,7 @@ public class LoadDataMainService {
     /**
      * 加载数据入口
      */
-    public Object loadDataMain() {
+    public RepositoryImpl loadDataMain() {
         RepositoryImpl repository = new RepositoryImpl();
 
         //加载物理世界数据
@@ -61,6 +61,7 @@ public class LoadDataMainService {
 
         //保存到数据容器
         PathDataContainer.projectMap.put(projectId, repository);
-        return "ok";
+
+        return repository;
     }
 }
