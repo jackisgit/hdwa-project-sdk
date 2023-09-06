@@ -1,7 +1,7 @@
 package com.hdwa.sdk.entity.repository;
 
 
-import com.hdwa.sdk.expression.AdvancedExpressionWalker;
+import com.hdwa.sdk.entity.expression.AdvancedExpressionWalker;
 
 import java.util.concurrent.locks.ReentrantLock;
 

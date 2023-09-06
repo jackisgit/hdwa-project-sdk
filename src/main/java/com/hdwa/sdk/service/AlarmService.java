@@ -28,7 +28,7 @@ public class AlarmService {
      */
     public void loadAlarmData(RepositoryImpl repository) {
         try {
-            log.warn("************开始加载-点位数据");
+            log.warn("************开始加载-报警数据");
             long startTime = System.currentTimeMillis();
 
             AlarmUtil.alarmColChange.forEach(s -> repository.alarmArray.setColChange(s));

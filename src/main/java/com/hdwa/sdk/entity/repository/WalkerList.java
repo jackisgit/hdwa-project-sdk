@@ -1,8 +1,8 @@
 package com.hdwa.sdk.entity.repository;
 
-import com.hdwa.sdk.expression.AdvancedExpressionLexer;
-import com.hdwa.sdk.expression.AdvancedExpressionParser;
-import com.hdwa.sdk.expression.AdvancedExpressionWalker;
+import com.hdwa.sdk.entity.expression.AdvancedExpressionLexer;
+import com.hdwa.sdk.entity.expression.AdvancedExpressionParser;
+import com.hdwa.sdk.entity.expression.AdvancedExpressionWalker;
 import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.CommonTree;

@@ -7,6 +7,9 @@ import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.constant.UrlConstant;
 import com.hdwa.sdk.entity.ExcelSheetEntity;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
+import com.hdwa.sdk.entity.scene.SceneDataObject;
+import com.hdwa.sdk.entity.scene.SceneObject;
+import com.hdwa.sdk.entity.scene.SceneProperty;
 import com.hdwa.sdk.enums.PointEnum;
 import com.hdwa.sdk.utils.*;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +21,11 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author abao
@@ -79,6 +86,7 @@ public class PointService {
 
     /**
      * 加载点位数据
+     *
      * @param repository
      * @return
      */
@@ -239,4 +247,298 @@ public class PointService {
     private String getPath() {
         return groupCode + File.separator + projectId + File.separator + point;
     }
+
+
+    /**
+     * 根据point.xls过滤设备
+     *
+     * @param Repository
+     * @throws Exception
+     */
+    public void filterPoint(RepositoryImpl Repository, SceneObject sceneObject) {
+        log.warn("*****开始加载-点位配置过滤设备");
+        long startTime = System.currentTimeMillis();
+        try {
+            // TODO: 2023/9/6 需要优化
+            Map<String, String> SceneName2Code = new HashMap<>(16);
+            for (com.hdwa.sdk.entity.scene.SceneDataObject SceneDataObject : Repository.ZKTSceneArray.set) {
+                String id = (String) SceneDataObject.get("id").value_prim.value;
+                String name = (String) SceneDataObject.get("名称").value_prim.value;
+                String alias = null;
+                if (SceneDataObject.containsKey("别名")) {
+                    alias = (String) SceneDataObject.get("别名").value_prim.value;
+                }
+                SceneName2Code.put(name, id);
+                if (alias != null && alias.length() > 0) {
+                    String[] aliasArray = alias.split(",");
+                    for (String one_alias : aliasArray) {
+                        SceneName2Code.put(one_alias, id);
+                    }
+                }
+            }
+            Map<String, Map<String, String>> SceneClassName = new ConcurrentHashMap<String, Map<String, String>>();
+            for (SceneDataObject SceneDataObject : Repository.ZKTClassArray.set) {
+                String ibmsSceneCode = (String) SceneDataObject.get("ibmsSceneCode").value_prim.value;
+                String ibmsClassCode = (String) SceneDataObject.get("ibmsClassCode").value_prim.value;
+                String name = (String) SceneDataObject.get("名称").value_prim.value;
+                String alias = null;
+                if (SceneDataObject.containsKey("别名")) {
+                    alias = (String) SceneDataObject.get("别名").value_prim.value;
+                }
+                SceneClassName.putIfAbsent(ibmsSceneCode, new ConcurrentHashMap<String, String>());
+                SceneClassName.get(ibmsSceneCode).put(name, ibmsClassCode);
+                if (alias != null && alias.length() > 0) {
+                    String[] aliasArray = alias.split(",");
+                    for (String one_alias : aliasArray) {
+                        SceneClassName.get(ibmsSceneCode).put(one_alias, ibmsClassCode);
+                    }
+                }
+            }
+            Map<String, Boolean> SceneVisible = new ConcurrentHashMap<String, Boolean>();
+            Map<String, Map<String, Boolean>> SceneClassVisible = new ConcurrentHashMap<String, Map<String, Boolean>>();
+            for (SceneDataObject SceneDataObject : Repository.InfoPointListArray.set) {
+                String ibmsSceneCode = (String) SceneDataObject.get("ibmsSceneCode").value_prim.value;
+                String ibmsClassCode = (String) SceneDataObject.get("ibmsClassCode").value_prim.value;
+                boolean isVisible = (Boolean) SceneDataObject.get("isVisible").value_prim.value;
+                SceneClassVisible.putIfAbsent(ibmsSceneCode, new ConcurrentHashMap<String, Boolean>());
+                SceneClassVisible.get(ibmsSceneCode).putIfAbsent(ibmsClassCode, false);
+                SceneVisible.putIfAbsent(ibmsSceneCode, false);
+                if (isVisible) {
+                    SceneClassVisible.get(ibmsSceneCode).put(ibmsClassCode, true);
+                    SceneVisible.put(ibmsSceneCode, true);
+                }
+            }
+          /*  for (String SceneCode : SceneVisible.keySet()) {
+                boolean isVisible = SceneVisible.get(SceneCode);
+                log.warn("excel " + isVisible + "\t" + SceneCode);
+            }
+            for (String SceneCode : SceneClassVisible.keySet()) {
+                Map<String, Boolean> classVisible = SceneClassVisible.get(SceneCode);
+                for (String ClassCode : classVisible.keySet()) {
+                    boolean isVisible = classVisible.get(ClassCode);
+                    log.warn("excel " + isVisible + "\t" + SceneCode + "\t" + ClassCode);
+                }
+            }
+*/
+
+            String[] parentPathArray = {"场景数据'首页'模块统计'模块", "场景数据'首页'模块统计'设备运行统计"};
+            for (String parentPath : parentPathArray) {
+                List<Object> tmpList = PathUtil.getByPath(sceneObject, parentPath);
+                for (Object tmp : tmpList) {
+                    SceneProperty spInner = (SceneProperty) tmp;
+                    if (spInner.propertyValueType.equals("static") && spInner.propertyValueSchema.equals("JSONArray")) {
+                        for (SceneObject soScene : spInner.static_array) {
+                            String SceneName = null;
+                            for (SceneProperty spInner2 : soScene.propertyList) {
+                                if (spInner2.propertyName.equals("名称")) {
+                                    SceneName = spInner2.static_value;
+                                    break;
+                                }
+                            }
+                            if (!SceneName2Code.containsKey(SceneName)) {
+                                continue;
+                            }
+                            String SceneCode = SceneName2Code.get(SceneName);
+                            //log.warn("scan " + SceneCode + "\t" + parentPath + "'名称=" + SceneName);
+
+                            if (!SceneVisible.containsKey(SceneCode)) {
+                                continue;
+                            }
+                            boolean isVisible = SceneVisible.get(SceneCode);
+                            if (!isVisible) {
+                                //log.warn(" delete " + parentPath + "'名称=" + SceneName);
+                                soScene.allow_pass = "0";
+                            }
+                        }
+
+                        List<SceneObject> static_array = new ArrayList<SceneObject>();
+                        boolean has_delete = false;
+                        for (SceneObject soScene : spInner.static_array) {
+                            if (soScene.allow_pass.equals("0")) {
+                                has_delete = true;
+                            } else {
+                                static_array.add(soScene);
+                            }
+                        }
+                        if (has_delete) {
+                            spInner.static_array = static_array.toArray(new SceneObject[0]);
+                        }
+                    }
+                }
+            }
+
+
+            parentPathArray = new String[]{"基础对象类型'设备", "基础对象'设备", "基础对象'品质", "基础对象'运营", "基础对象'安全", "基础对象'系统", "基础对象'逻辑编组", "场景数据'设备", "场景数据'品质",
+                    "场景数据'运营", "场景数据'安全"};
+            List<SceneProperty> equipTypeList = new ArrayList<>();
+            List<String> SceneCodeList = new ArrayList<>();
+            List<String> SceneNameList = new ArrayList<>();
+            List<String> PathList = new ArrayList<>();
+
+            for (String parentPath : parentPathArray) {
+                List<Object> tmpList = PathUtil.getByPath(sceneObject, parentPath);
+                for (Object tmp : tmpList) {
+                    SceneProperty spInner = (SceneProperty) tmp;
+                    if (spInner.propertyValueType.equals("static") && spInner.propertyValueSchema.equals("JSONArray")) {
+                        for (SceneObject soScene : spInner.static_array) {
+                            String SceneName = null;
+                            for (SceneProperty spInner2 : soScene.propertyList) {
+                                if (spInner2.propertyName.equals("名称")) {
+                                    SceneName = spInner2.static_value;
+                                    break;
+                                }
+                            }
+                            if (!SceneName2Code.containsKey(SceneName)) {
+                                continue;
+                            }
+                            String SceneCode = SceneName2Code.get(SceneName);
+
+                            SceneProperty equipType = null;
+                            SceneProperty equipType_gl = null;
+                            SceneProperty gailan = null;
+                            for (SceneProperty spInner2 : soScene.propertyList) {
+                                if (spInner2.propertyName.equals("设备类型")) {
+                                    equipType = spInner2;
+                                } else if (spInner2.propertyName.equals("系统概览")) {
+                                    if (spInner2.propertyValueType.equals("static") && spInner2.propertyValueSchema.equals("JSONArray")) {
+                                        gailan = spInner2;
+                                    } else if (spInner2.propertyValueType.equals("query") && spInner2.propertyValueSchema.equals("JSONArray")) {
+                                        for (SceneProperty spInner2_att : spInner2.query_attached) {
+                                            if (spInner2_att.propertyName.equals("设备类型")) {
+                                                equipType_gl = spInner2_att;
+                                                break;
+                                            }
+                                        }
+                                    } else if (spInner2.propertyValueType.equals("custom")) {
+                                        for (SceneProperty spInner2_att : spInner2.custom_object.propertyList) {
+                                            if (spInner2_att.propertyName.equals("设备类型")) {
+                                                equipType_gl = spInner2_att;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (equipType != null) {
+                                equipTypeList.add(equipType);
+                                SceneCodeList.add(SceneCode);
+                                SceneNameList.add(SceneName);
+                                PathList.add(parentPath + "'" + "名称=" + SceneName + "'" + "设备类型");
+                            }
+                            if (equipType_gl != null) {
+                                equipTypeList.add(equipType_gl);
+                                SceneCodeList.add(SceneCode);
+                                SceneNameList.add(SceneName);
+                                PathList.add(parentPath + "'" + "名称=" + SceneName + "'系统概览'" + "设备类型");
+                            }
+                            if (gailan != null) {
+                                equipTypeList.add(gailan);
+                                SceneCodeList.add(SceneCode);
+                                SceneNameList.add(SceneName);
+                                PathList.add(parentPath + "'" + "名称=" + SceneName + "'系统概览");
+                            }
+                        }
+                    } else if (spInner.propertyValueType.equals("custom")) {
+                        for (SceneProperty spInner2 : spInner.custom_object.propertyList) {
+                            String SceneName = spInner2.propertyName;
+                            if (!SceneName2Code.containsKey(SceneName)) {
+                                continue;
+                            }
+                            String SceneCode = SceneName2Code.get(SceneName);
+
+                            SceneProperty floor = null;
+                            for (SceneProperty spInner3 : spInner2.custom_object.propertyList) {
+                                if (spInner3.propertyName.equals("楼层数据")) {
+                                    floor = spInner3;
+                                    break;
+                                }
+                            }
+                            if (floor == null) {
+                                continue;
+                            }
+
+                            SceneProperty equipType = null;
+                            SceneProperty gailan = null;
+                            for (SceneProperty spInner2_att : floor.query_attached) {
+                                if (spInner2_att.propertyName.equals("设备类型")) {
+                                    equipType = spInner2_att;
+                                } else if (spInner2_att.propertyName.equals("系统概览")) {
+                                    gailan = spInner2_att;
+                                }
+                            }
+                            if (equipType != null) {
+                                equipTypeList.add(equipType);
+                                SceneCodeList.add(SceneCode);
+                                SceneNameList.add(SceneName);
+                                PathList.add(parentPath + "'" + SceneName + "'楼层数据" + "'设备类型");
+                            }
+                            if (gailan != null) {
+                                equipTypeList.add(gailan);
+                                SceneCodeList.add(SceneCode);
+                                SceneNameList.add(SceneName);
+                                PathList.add(parentPath + "'" + SceneName + "'楼层数据" + "'系统概览");
+                            }
+                        }
+                    }
+                }
+
+
+                for (int i = 0; i < equipTypeList.size(); i++) {
+                    SceneProperty equipType = equipTypeList.get(i);
+                    String SceneCode = SceneCodeList.get(i);
+                    String SceneName = SceneNameList.get(i);
+                    String Path = PathList.get(i);
+                    if (SceneCode.equals("sbzwy")) {
+                        continue;
+                    }
+                    //log.warn("scan " + SceneCode + "\t" + Path);
+                    for (SceneObject soEquipType : equipType.static_array) {
+                        SceneProperty spName = null;
+                        SceneProperty spList = null;
+                        for (SceneProperty spInner2 : soEquipType.propertyList) {
+                            if (spInner2.propertyName.equals("清单")) {
+                                spList = spInner2;
+                            } else if (spInner2.propertyName.equals("名称")) {
+                                spName = spInner2;
+                            }
+                        }
+                        String ibmsSceneCode;
+                        String ibmsClassCode;
+                        {
+                            ibmsSceneCode = SceneCode;
+                            ibmsClassCode = SceneClassName.get(ibmsSceneCode).get(spName.static_value);
+                        }
+                        if (ibmsClassCode == null) {
+                            continue;
+                        }
+
+                        if (!SceneClassVisible.containsKey(ibmsSceneCode) || !SceneClassVisible.get(ibmsSceneCode).containsKey(ibmsClassCode)) {
+                            continue;
+                        }
+                        boolean isVisible = SceneClassVisible.get(ibmsSceneCode).get(ibmsClassCode);
+                        if (!isVisible) {
+                            //log.warn("delete " + SceneName + " " + SceneCode + "\t" + Path + "'名称=" + spName.static_value);
+                            soEquipType.allow_pass = "0";
+                        }
+                    }
+                    List<SceneObject> static_array = new ArrayList<SceneObject>();
+                    boolean has_delete = false;
+                    for (SceneObject soEquipType : equipType.static_array) {
+                        if (soEquipType.allow_pass.equals("0")) {
+                            has_delete = true;
+                        } else {
+                            static_array.add(soEquipType);
+                        }
+                    }
+                    if (has_delete) {
+                        equipType.static_array = static_array.toArray(new SceneObject[0]);
+                    }
+                }
+            }
+            log.warn("*****结束加载-点位配置过滤设备-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+        } catch (Exception e) {
+            log.error("过滤点位配置设备时异常", e);
+        }
+    }
+
 }

@@ -34,6 +34,9 @@ public class ConfigApiService {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
+    @Autowired
+    private PointService pointService;
+
     @Value("${project.id}")
     private String projectId;
 
@@ -91,7 +94,7 @@ public class ConfigApiService {
      * @param repository
      */
     public void loadConfigData(RepositoryImpl repository) {
-        log.warn("*****开始加载-config接口数据");
+        log.warn("************开始加载-config接口数据");
         long startTime = System.currentTimeMillis();
         try {
             File maxDir = FileUtil.getMaxDir(new File(getPath()));
@@ -118,8 +121,11 @@ public class ConfigApiService {
             FastJsonUtil.setJava(sceneJson, sceneObject);
             repository.sceneJSON = sceneJson;
             repository.sceneObject = sceneObject;
+            //点位过滤配置
+            pointService.filterPoint(repository,sceneObject);
+
             analysisData(repository);
-            log.warn("*****结束加载-config接口数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+            log.warn("************结束加载-config接口数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
         } catch (Exception e) {
             log.error("加载config接口数据异常", e);
         }
