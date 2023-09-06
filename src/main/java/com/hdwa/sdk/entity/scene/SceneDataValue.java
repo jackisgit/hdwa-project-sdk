@@ -83,8 +83,7 @@ public class SceneDataValue {
     }
 
     public Object toJSON(boolean is_direct, int depth) {
-        Object result = this.toJSON(is_direct, depth, false);
-        return result;
+        return this.toJSON(is_direct, depth, false);
     }
 
     public Object toJSON(boolean is_direct, int depth, boolean with_change) {
@@ -102,11 +101,9 @@ public class SceneDataValue {
 
         if (curr_depth > 0 || curr_depth == -1) {
             if (this.value_object != null) {
-                JSONObject result = (JSONObject) this.value_object.toJSON(curr_depth, with_change);
-                return result;
+                return this.value_object.toJSON(curr_depth, with_change);
             } else if (this.value_array != null) {
-                JSONArray result = this.value_array.toJSON(curr_depth, with_change);
-                return result;
+                return this.value_array.toJSON(curr_depth, with_change);
             } else if (this.value_prim != null) {
                 return this.value_prim.value;
             }

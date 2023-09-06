@@ -215,6 +215,64 @@ public class RepositoryImpl extends RepositoryBase {
      */
     public SceneDataSet InfoPointRelationArray = new SceneDataSet(false, BaseDecConstant.INFO_POINT_RELATION);
 
+
+    /**
+     * <p>IOT采集数据</p>
+     * <p>运行点位值--数据</p>
+     * <p>运行点位值 对象数据--->数据</p>
+     * <p>数据来源 physical_world/object/*.json</p>
+     */
+    public ConcurrentHashMap<String, SceneDataPrimitive> point2sdv = new ConcurrentHashMap<>(16);
+
+    /**
+     * <p>IOT采集数据</p>
+     * <p>数据--运行点位值</p>
+     * <p>数据 --->运行点位值</p>
+     * <p>数据来源 physical_world/object/*.json</p>
+     */
+    public ConcurrentHashMap<SceneDataPrimitive, String> sdv2point = new ConcurrentHashMap<>(16);
+
+
+    /**
+     * <p>IOT设置数据</p>
+     * <p>设定点位值--数据</p>
+     * <p>设定点位值 对象数据--->数据</p>
+     * <p>数据来源 physical_world/object/*.json</p>
+     */
+    public ConcurrentHashMap<String, SceneDataPrimitive> set2sdv = new ConcurrentHashMap<>(16);
+
+    /**
+     * <p>IOT设置数据</p>
+     * <p>数据--设定点位值</p>
+     * <p>数据 --->设定点位值</p>
+     * <p>数据来源 physical_world/object/*.json</p>
+     */
+    public ConcurrentHashMap<SceneDataPrimitive, String> sdv2set = new ConcurrentHashMap<>(16);
+
+
+    /**
+     * <p>报警数据</p>
+     */
+    public SceneDataSet alarmArray = new SceneDataSet(false, true);
+
+    /**
+     * <p>报警数据</p>
+     * <p>报警列表</p>
+     * <p>objId--sdv</p>
+     * <p>对象id --->报警列表</p>
+     */
+    public Map<String, SceneDataValue> id2alarmList = new HashMap<>(16);
+
+
+    /**
+     * <p>报警数据</p>
+     * <p>报警数量</p>
+     * <p>objId--sdv</p>
+     * <p>对象id --->报警数量</p>
+     */
+    public Map<String, SceneDataValue> id2alarmCount = new HashMap<>(16);
+
+
     public static boolean accelerate_enable = false;
     public static long accelerate_ratio = 60 * 60 * 24;
     public static String init_timeString = "2021-01-01 00:00:00";
@@ -234,7 +292,6 @@ public class RepositoryImpl extends RepositoryBase {
      * @数据来源 /sceneArray.json
      */
     public SceneDataSet subsystem_connect_status = new SceneDataSet(false);
-
 
 
     public SceneDataSet scaleplate = new SceneDataSet(false, "scaleplate");
@@ -373,14 +430,6 @@ public class RepositoryImpl extends RepositoryBase {
         this.scaleplate = RepositoryContainer.instance.scaleplate;
     }
 
-    public ConcurrentHashMap<SceneDataPrimitive, String> sdv2point() {
-        return RepositoryProject.sdv2point;
-    }
-
-    public ConcurrentHashMap<SceneDataPrimitive, String> sdv2set() {
-        return RepositoryProject.sdv2set;
-    }
-
     //querySql，Source内容解析，Target\": {\r\n    \"Source\": \"rwd\",\r\n    \"rwd\": \"info\",\r\n    \"objType\": \"equipment\",\r\n    \"classCode\": \"ACATFU
     public SceneDataSet ParseSource(JSONObject descSet, String Source) {
         SceneDataSet result = null;
@@ -394,7 +443,9 @@ public class RepositoryImpl extends RepositoryBase {
                     if (objType.equals("equipment") || objType.equals("system") || objType.equals("space")) {//三种大类型
                         if (descSet.containsKey("classCode")) {//类型code
                             String classCode = (descSet.get("classCode")).toString();
-                            result = this.objectArrayDic.get(classCode).value_array;
+                            if (this.objectArrayDic.get(classCode) != null) {
+                                result = this.objectArrayDic.get(classCode).value_array;
+                            }
                         } else {
                             result = this.objectArrayDic.get(objType).value_array;
                         }
@@ -421,7 +472,9 @@ public class RepositoryImpl extends RepositoryBase {
                 if (descSet.get("graphCode") != null && descSet.get("relCode") != null) {
                     String graphCode = (descSet.get("graphCode")).toString();
                     String relCode = (descSet.get("relCode")).toString();
-                    result = this.relationArrayDic.get(graphCode).get(relCode);
+                    if (this.relationArrayDic.get(graphCode) != null) {
+                        result = this.relationArrayDic.get(graphCode).get(relCode);
+                    }
                 } else if (descSet.get("graphCode") != null) {//图例
                     String graphCode = (descSet.get("graphCode")).toString();
                     result = this.graphCodeDic.get(graphCode);
@@ -432,17 +485,16 @@ public class RepositoryImpl extends RepositoryBase {
                     result = this.relationAll;
                 }
             }
-            if (result == null) {
-                // result = new SceneDataSet(false);
-                // result.setRowChange(false);
-                return null;
-            }
+            // result = new SceneDataSet(false);
+            // result.setRowChange(false);
         } else if (Source.equals("zkt-class")) {//zkt类型定义数据
             result = this.ZKTClassArray;
         } else if (Source.equals("zkt-object")) { //zkt下级类型数据
             String ibmsSceneCode = (descSet.get("ibmsSceneCode")).toString();
             String ibmsClassCode = (descSet.get("ibmsClassCode")).toString();
-            result = this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode).value_array;
+            if (this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode) != null) {
+                result = this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode).value_array;
+            }
         } else if (Source.equals("ibms")) {
             String product = (descSet.get("product")).toString();
             String type = (descSet.get("type")).toString();
@@ -480,7 +532,7 @@ public class RepositoryImpl extends RepositoryBase {
         } else if (Source.equals("scaleplate")) {
             result = this.scaleplate;
         } else if (Source.equals("alarm")) {
-            result = this.RepositoryProject.alarmArray;
+            result = this.alarmArray;
         } else if (Source.equals("info-point-list")) {
             result = this.InfoPointListArray;
         } else if (Source.equals("info-point-relation")) {
@@ -629,15 +681,15 @@ public class RepositoryImpl extends RepositoryBase {
         int affect_count = 0;
         // 加入计算队列
         if (this.enable_factor) {
-            for (String point : this.RepositoryProject.point2sdv.keySet()) {
-                SceneDataPrimitive sdv = this.RepositoryProject.point2sdv.get(point);
+            for (String point : this.point2sdv.keySet()) {
+                SceneDataPrimitive sdv = this.point2sdv.get(point);
                 if (sdv.value != null) {
                     item_count++;
                     affect_count += this.ProcessIOT(point);
                 }
             }
-            for (String point : this.RepositoryProject.set2sdv.keySet()) {
-                SceneDataPrimitive sdv = this.RepositoryProject.set2sdv.get(point);
+            for (String point : this.set2sdv.keySet()) {
+                SceneDataPrimitive sdv = this.set2sdv.get(point);
                 if (sdv.value != null) {
                     item_count++;
                     affect_count += this.ProcessIOT(point);
@@ -656,14 +708,14 @@ public class RepositoryImpl extends RepositoryBase {
         // 加入计算队列
         if (this.enable_factor) {
             item_count++;
-            affect_count += this.addWaitCompute(this.RepositoryProject.alarmArray);
-            for (String objId : this.RepositoryProject.id2alarmList.keySet()) {
-                SceneDataValue alarmList = this.RepositoryProject.id2alarmList.get(objId);
+            affect_count += this.addWaitCompute(this.alarmArray);
+            for (String objId : this.id2alarmList.keySet()) {
+                SceneDataValue alarmList = this.id2alarmList.get(objId);
                 item_count++;
                 affect_count += this.addWaitCompute(alarmList);
             }
-            for (String objId : this.RepositoryProject.id2alarmCount.keySet()) {
-                SceneDataValue alarmCount = this.RepositoryProject.id2alarmCount.get(objId);
+            for (String objId : this.id2alarmCount.keySet()) {
+                SceneDataValue alarmCount = this.id2alarmCount.get(objId);
                 item_count++;
                 affect_count += this.addWaitCompute(alarmCount);
             }

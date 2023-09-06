@@ -66,7 +66,7 @@ public class SceneDataObject {
             result.put("sailfish_inner_RowChange", this.getRowChange());
         }
         for (String key : this.keySet()) {
-            if (KeywordUtil.containsKey(key)) {
+            if (KeywordUtil.keyProperty.contains(key)) {
                 continue;
             }
             SceneDataValue sdvInner = this.get(key);

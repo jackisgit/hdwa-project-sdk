@@ -400,12 +400,12 @@ public class PhysicalWorldService {
                                 // TODO: 2023/8/28  RepositoryContainer后续去掉
                                 SceneDataPrimitive sdp = new SceneDataPrimitive();
                                 sdp.change = true;
-                                SceneDataPrimitive exist = RepositoryContainer.RepositoryProject.point2sdv.putIfAbsent(pointValue, sdp);
+                                SceneDataPrimitive exist = repository.point2sdv.putIfAbsent(pointValue, sdp);
                                 if (exist == null) {
-                                    RepositoryContainer.RepositoryProject.sdv2point.putIfAbsent(sdp, pointValue);
+                                   repository.sdv2point.putIfAbsent(sdp, pointValue);
                                 }
 
-                                infoKey.value_prim = RepositoryContainer.RepositoryProject.point2sdv.get(pointValue);
+                                infoKey.value_prim = repository.point2sdv.get(pointValue);
                                 initSdv(sdo, s, pointValue);
                             } else {
                                 sdo.remove(s);
@@ -429,12 +429,12 @@ public class PhysicalWorldService {
                                 // TODO: 2023/8/28  RepositoryContainer后续去掉
                                 SceneDataPrimitive sdp = new SceneDataPrimitive();
                                 sdp.change = true;
-                                SceneDataPrimitive exist = RepositoryContainer.RepositoryProject.set2sdv.putIfAbsent(pointValue, sdp);
+                                SceneDataPrimitive exist = repository.set2sdv.putIfAbsent(pointValue, sdp);
                                 if (exist == null) {
-                                    RepositoryContainer.RepositoryProject.sdv2set.putIfAbsent(sdp, pointValue);
+                                    repository.sdv2set.putIfAbsent(sdp, pointValue);
                                 }
 
-                                infoKey.value_prim = RepositoryContainer.RepositoryProject.set2sdv.get(pointValue);
+                                infoKey.value_prim = repository.set2sdv.get(pointValue);
                                 initSdv(sdo, s, pointValue);
                             } else {
                                 sdo.remove(s);

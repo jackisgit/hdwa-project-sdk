@@ -35,7 +35,7 @@ public class CheckUtil {
                     }
                 }
                 sceneJSON.put("PropertyList", PropertyList);
-                FastJsonUtil.Set_JavaObject(sceneJSON, sceneObject);
+                FastJsonUtil.setJava(sceneJSON, sceneObject);
                 Repository.sceneJSON = sceneJSON;
             }
             Repository.sceneObject = sceneObject;

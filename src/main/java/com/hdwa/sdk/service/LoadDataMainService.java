@@ -1,7 +1,9 @@
 package com.hdwa.sdk.service;
 
+import com.hdwa.sdk.entity.repository.PathDataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
@@ -30,43 +32,35 @@ public class LoadDataMainService {
     @Autowired
     private ConfigApiService configApiService;
 
-    RepositoryImpl repository = new RepositoryImpl();
-
+    @Value("${project.id}")
+    private String projectId;
 
     /**
      * 加载数据入口
      */
     public Object loadDataMain() {
-        //这里是为了方便调试，如果已经加载过物理世界数据 就不在加载了
-        if (repository.classArray.set.size() == 0) {
-            //加载物理世界数据
-            physicalWorldService.loadPhysicalWorldData(repository);
-        }
-        if (repository.ZKTObjectArrayDic.size() == 0) {
-            //加载IBMS物理世界数据
-            ibmsPhysicalWorldService.loadIbmsPhysicalWorldData(repository);
-        }
+        RepositoryImpl repository = new RepositoryImpl();
 
-        if (repository.IBMSArrayDic.size() == 0) {
-            //加载IBMS逻辑编组数据
-            ibmsLogicalGroupService.loadLogicalGroupData(repository);
-        }
+        //加载物理世界数据
+        physicalWorldService.loadPhysicalWorldData(repository);
 
-        if (repository.InfoPointListArray.set.size() == 0) {
-            //加载点位数据
-            pointService.loadPointData(repository);
-        }
+        //加载IBMS物理世界数据
+        ibmsPhysicalWorldService.loadIbmsPhysicalWorldData(repository);
 
+        //加载IBMS逻辑编组数据
+        ibmsLogicalGroupService.loadLogicalGroupData(repository);
 
-        //if (repository.RepositoryProject.alarmArray.set.size() == 0) {
+        //加载点位数据
+        pointService.loadPointData(repository);
+
         //加载报警数据
         alarmService.loadAlarmData(repository);
-        //}
 
         //加载接口数据
         configApiService.loadConfigData(repository);
 
-
+        //保存到数据容器
+        PathDataContainer.projectMap.put(projectId, repository);
         return "ok";
     }
 }

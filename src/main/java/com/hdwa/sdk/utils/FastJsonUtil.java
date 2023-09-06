@@ -307,16 +307,19 @@ public class FastJsonUtil {
         }
     }
 
-    public static void Set_JavaObject(JSONObject json, Object entity) throws Exception {
+    /**
+     * json转换为类
+     * @param json
+     * @param entity
+     * @throws Exception
+     */
+    public static void setJava(JSONObject json, Object entity) throws Exception {
         Class<?> targetClass = entity.getClass();
-
         if (json == null) {
             return;
         }
-
         Method[] targetMethodArray = targetClass.getMethods();
-        for (int i = 0; i < targetMethodArray.length; i++) {
-            Method method = targetMethodArray[i];
+        for (Method method : targetMethodArray) {
             int modifiers = method.getModifiers();
             String methodName = method.getName();
             if (modifiers == 1 && methodName.startsWith("set")) {
@@ -331,7 +334,7 @@ public class FastJsonUtil {
                             Object sourceFieldValue = json.get(fieldName);
                             Object targetFieldValue = To_JavaObject(sourceFieldValue, paramClass);
 
-                            method.invoke(entity, new Object[]{targetFieldValue});
+                            method.invoke(entity, targetFieldValue);
                         }
                     }
                     {
@@ -341,7 +344,7 @@ public class FastJsonUtil {
                             Object sourceFieldValue = json.get(fieldName);
                             Object targetFieldValue = To_JavaObject(sourceFieldValue, paramClass);
 
-                            method.invoke(entity, new Object[]{targetFieldValue});
+                            method.invoke(entity, targetFieldValue);
                         }
                     }
                 }

@@ -1,6 +1,5 @@
 package com.hdwa.sdk.entity.repository;
 
-import com.hdwa.sdk.utils.ComputeUtil;
 import com.hdwa.sdk.utils.PathUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -69,11 +68,7 @@ public class RepositoryComputeThread extends Thread {
                     compute_lag += currTime.getTime() - (WaitItem.sdv.last_compute_time.getTime() + this.interval);
                 }
                 log.debug("compute: " + PathUtil.getDataPath(WaitItem.sdv));
-                boolean computeValueChanged = ComputeUtil.computeProperty(Repository, WaitItem.sdv);
-                if (computeValueChanged) {
-                    Repository.ComputeOccur(WaitItem.sdv);
-                    Repository.addWaitCompute(WaitItem.sdv);
-                }
+
             } catch (Exception e) {
                 try {
                     String path = PathUtil.getDataPath(WaitItem.sdv);

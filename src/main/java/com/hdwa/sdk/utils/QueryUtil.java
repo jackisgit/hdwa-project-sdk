@@ -21,10 +21,7 @@ import org.antlr.runtime.tree.CommonTreeNodeStream;
 import java.io.ByteArrayInputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.ReentrantLock;
@@ -59,15 +56,24 @@ public class QueryUtil {
             if (QueryType.equals("expression")) {
                 Map<String, Boolean> varDict;
                 Map<String, Boolean> varStringDict;
-                AdvancedExpressionWalker walker;
-                ReentrantLock lock;
+                AdvancedExpressionWalker walker = null;
+                ReentrantLock lock = null;
                 if (sv != null && sv.rel_property != null) {
                     varDict = Repository.p2varDict.get(sv.rel_property);
                     varStringDict = Repository.p2varStringDict.get(sv.rel_property);
+
+                    if (varDict == null) {
+                        varDict = new HashMap<>(16);
+                    }
+                    if (varStringDict == null) {
+                        varStringDict = new HashMap<>(16);
+                    }
                     {
                         WalkerWrapper WalkerWrapper = Repository.p2walker1.get(sv.rel_property);
-                        walker = WalkerWrapper.walker;
-                        lock = WalkerWrapper.lock;
+                        if (WalkerWrapper != null) {
+                            walker = WalkerWrapper.walker;
+                            lock = WalkerWrapper.lock;
+                        }
                     }
                 } else {
                     ANTLRInputStream input = new ANTLRInputStream(new ByteArrayInputStream((sql_json.get("expression") + "$").getBytes()));
@@ -103,9 +109,15 @@ public class QueryUtil {
                     lock = new ReentrantLock(true);
                 }
                 try {
-                    lock.lock();
-                    walker.clear();
-                    walker.reset();
+                    if (lock != null) {
+                        lock.lock();
+                    }
+                    if (walker != null) {
+                        walker.clear();
+                    }
+                    if (walker != null) {
+                        walker.reset();
+                    }
                     SceneDataPrimitive SceneValuePrimitive = new SceneDataPrimitive();
                     result = SceneValuePrimitive;
                     CriteriaBase criteria = parseCriteria(Repository, sv, CriteriaObject, queryAssist, new ConcurrentHashMap<String, Boolean>());
@@ -155,10 +167,17 @@ public class QueryUtil {
                             }
                         }
                     }
-                    ValueObject prog_result = walker.prog();
-                    SceneValuePrimitive.value = prog_result.value();
+                    ValueObject prog_result = null;
+                    if (walker != null) {
+                        prog_result = walker.prog();
+                    }
+                    if (prog_result != null) {
+                        SceneValuePrimitive.value = prog_result.value();
+                    }
                 } finally {
-                    lock.unlock();
+                    if (lock != null) {
+                        lock.unlock();
+                    }
                 }
             } else if (QueryType.equals("quote")) {
                 CriteriaBase criteria = parseCriteria(Repository, sv, CriteriaObject, queryAssist, new ConcurrentHashMap<String, Boolean>());
@@ -429,9 +448,8 @@ public class QueryUtil {
                             QueryAssist_3.rowFactor.merge(QueryAssist_after.rowFactor);
                             JSONObject AggregationObject = (JSONObject) Aggregation;
                             {
-                                JSONObject Item = AggregationObject;
-                                String Column = (String) Item.get("Column");
-                                String Function = (String) Item.get("Function");
+                                String Column = (String) AggregationObject.get("Column");
+                                String Function = (String) AggregationObject.get("Function");
                                 if (Function.equals("count")) {
                                 } else {
                                     if (QueryAssist_after.colFactorMap.containsKey(Column)) {
@@ -467,8 +485,7 @@ public class QueryUtil {
                     if (ReturnColumns != null) {
                         if (QueryAssist_1.rowChangeNeed) {
                             QueryAssist_1.rowFactor.merge(QueryAssist_after.rowFactor);
-                            for (int i = 0; i < ReturnColumns.size(); i++) {
-                                String Column = ReturnColumns.get(i);
+                            for (String Column : ReturnColumns) {
                                 if (QueryAssist_after.colFactorMap.containsKey(Column)) {
                                     InfluenceFactor InfluenceFactor = QueryAssist_after.colFactorMap.get(Column);
                                     QueryAssist_1.colFactorMap.putIfAbsent(Column, new InfluenceFactor());
@@ -476,13 +493,12 @@ public class QueryUtil {
                                 }
                             }
                         }
-                    } else if (UniqueReturnColumn != null) {
+                    } else {
                         if (QueryAssist_1.rowChangeNeed) {
                             QueryAssist_1.rowFactor.merge(QueryAssist_after.rowFactor);
                             {
-                                String Column = UniqueReturnColumn;
-                                if (QueryAssist_after.colFactorMap.containsKey(Column)) {
-                                    InfluenceFactor InfluenceFactor = QueryAssist_after.colFactorMap.get(Column);
+                                if (QueryAssist_after.colFactorMap.containsKey(UniqueReturnColumn)) {
+                                    InfluenceFactor InfluenceFactor = QueryAssist_after.colFactorMap.get(UniqueReturnColumn);
                                     QueryAssist_1.rowFactor.merge(InfluenceFactor);
                                 }
                             }
@@ -499,8 +515,7 @@ public class QueryUtil {
             }
             return result;
         } else if (sql_json.get("SetOperator") != null) {
-            Object result = parseSet(Repository, sv, sql_json, queryAssist, false);
-            return result;
+            return parseSet(Repository, sv, sql_json, queryAssist, false);
         } else {
             return null;
         }
@@ -546,9 +561,8 @@ public class QueryUtil {
             Limit = (JSONObject) sql_json.get("Limit");
         }
 
-        Object result = select_execute(targetSet, criteria, Aggregation, GroupBy, OrderBy, Limit, ReturnColumns, UniqueReturnColumn,
+        return select_execute(targetSet, criteria, Aggregation, GroupBy, OrderBy, Limit, ReturnColumns, UniqueReturnColumn,
                 new QueryAssist());
-        return result;
     }
 
     private static Object select_execute(SceneDataSet targetSet, CriteriaBase criteria, Object Aggregation, JSONArray GroupBy, JSONArray OrderBy,
@@ -577,8 +591,8 @@ public class QueryUtil {
             if (LogicOperatorString.equals("and") || LogicOperatorString.equals("or")) {
                 JSONArray Criterias = (JSONArray) CriteriaObject.get("Criterias");
                 List<CriteriaBase> criteriaList = new CopyOnWriteArrayList<CriteriaBase>();
-                for (int i = 0; i < Criterias.size(); i++) {
-                    JSONObject CriteriaObjectInner = (JSONObject) Criterias.get(i);
+                for (Object o : Criterias) {
+                    JSONObject CriteriaObjectInner = (JSONObject) o;
                     CriteriaBase criteriaInner = parseCriteria(Repository, sv, CriteriaObjectInner, queryAssist, CriteriaColumns);
                     criteriaList.add(criteriaInner);
                 }
@@ -636,74 +650,112 @@ public class QueryUtil {
                                         change = svInner_value_primitive.change;
                                     }
                                 }
-                                if (itemKeyInner.equals("e")) {
-                                    Match_e MatchInner = new Match_e(itemValueInner, change);
-                                    matchList.add(MatchInner);
-                                } else if (itemKeyInner.equals("ne")) {
-                                    Match_ne MatchInner = new Match_ne(itemValueInner, change);
-                                    matchList.add(MatchInner);
-                                } else if (itemKeyInner.equals("gt")) {
-                                    Match_gt MatchInner = new Match_gt(itemValueInner, change);
-                                    matchList.add(MatchInner);
-                                } else if (itemKeyInner.equals("gte")) {
-                                    Match_gte MatchInner = new Match_gte(itemValueInner, change);
-                                    matchList.add(MatchInner);
-                                } else if (itemKeyInner.equals("lt")) {
-                                    Match_lt MatchInner = new Match_lt(itemValueInner, change);
-                                    matchList.add(MatchInner);
-                                } else if (itemKeyInner.equals("lte")) {
-                                    Match_lte MatchInner = new Match_lte(itemValueInner, change);
-                                    matchList.add(MatchInner);
-                                } else if (itemKeyInner.equals("regex")) {
-                                    Match_regex MatchInner = new Match_regex(itemValueInner, change);
-                                    matchList.add(MatchInner);
-                                } else if (itemKeyInner.equals("contain")) {
-                                    Match_contain MatchInner = new Match_contain(itemValueInner, change);
-                                    matchList.add(MatchInner);
-                                } else if (itemKeyInner.equals("startwith")) {
-                                    Match_startwith MatchInner = new Match_startwith(itemValueInner, change);
-                                    matchList.add(MatchInner);
-                                } else if (itemKeyInner.equals("array_size")) {
-                                    Match_array_size MatchInner = new Match_array_size(itemValueInner, change);
-                                    matchList.add(MatchInner);
+                                switch (itemKeyInner) {
+                                    case "e": {
+                                        Match_e MatchInner = new Match_e(itemValueInner, change);
+                                        matchList.add(MatchInner);
+                                        break;
+                                    }
+                                    case "ne": {
+                                        Match_ne MatchInner = new Match_ne(itemValueInner, change);
+                                        matchList.add(MatchInner);
+                                        break;
+                                    }
+                                    case "gt": {
+                                        Match_gt MatchInner = new Match_gt(itemValueInner, change);
+                                        matchList.add(MatchInner);
+                                        break;
+                                    }
+                                    case "gte": {
+                                        Match_gte MatchInner = new Match_gte(itemValueInner, change);
+                                        matchList.add(MatchInner);
+                                        break;
+                                    }
+                                    case "lt": {
+                                        Match_lt MatchInner = new Match_lt(itemValueInner, change);
+                                        matchList.add(MatchInner);
+                                        break;
+                                    }
+                                    case "lte": {
+                                        Match_lte MatchInner = new Match_lte(itemValueInner, change);
+                                        matchList.add(MatchInner);
+                                        break;
+                                    }
+                                    case "regex": {
+                                        Match_regex MatchInner = new Match_regex(itemValueInner, change);
+                                        matchList.add(MatchInner);
+                                        break;
+                                    }
+                                    case "contain": {
+                                        Match_contain MatchInner = new Match_contain(itemValueInner, change);
+                                        matchList.add(MatchInner);
+                                        break;
+                                    }
+                                    case "startwith": {
+                                        Match_startwith MatchInner = new Match_startwith(itemValueInner, change);
+                                        matchList.add(MatchInner);
+                                        break;
+                                    }
+                                    case "array_size": {
+                                        Match_array_size MatchInner = new Match_array_size(itemValueInner, change);
+                                        matchList.add(MatchInner);
+                                        break;
+                                    }
                                 }
                             } else if (itemKeyInner.equals("in") || itemKeyInner.equals("notin") || itemKeyInner.equals("array_e")
                                     || itemKeyInner.equals("array_ne") || itemKeyInner.equals("array_include")
                                     || itemKeyInner.equals("array_included") || itemKeyInner.equals("array_exclude")
                                     || itemKeyInner.equals("array_intersect")) {
                                 if (itemValueInner instanceof JSONObject && ((JSONObject) itemValueInner).containsKey("pass")) {
-                                    if (itemKeyInner.equals("in")) {
-                                        Match_in MatchInner = new Match_in(null, false);
-                                        MatchInner.pass = true;
-                                        matchList.add(MatchInner);
-                                    } else if (itemKeyInner.equals("notin")) {
-                                        Match_notin MatchInner = new Match_notin(null, false);
-                                        MatchInner.pass = true;
-                                        matchList.add(MatchInner);
-                                    } else if (itemKeyInner.equals("array_e")) {
-                                        Match_array_e MatchInner = new Match_array_e(null, false);
-                                        MatchInner.pass = true;
-                                        matchList.add(MatchInner);
-                                    } else if (itemKeyInner.equals("array_ne")) {
-                                        Match_array_ne MatchInner = new Match_array_ne(null, false);
-                                        MatchInner.pass = true;
-                                        matchList.add(MatchInner);
-                                    } else if (itemKeyInner.equals("array_include")) {
-                                        Match_array_include MatchInner = new Match_array_include(null, false);
-                                        MatchInner.pass = true;
-                                        matchList.add(MatchInner);
-                                    } else if (itemKeyInner.equals("array_included")) {
-                                        Match_array_included MatchInner = new Match_array_included(null, false);
-                                        MatchInner.pass = true;
-                                        matchList.add(MatchInner);
-                                    } else if (itemKeyInner.equals("array_exclude")) {
-                                        Match_array_exclude MatchInner = new Match_array_exclude(null, false);
-                                        MatchInner.pass = true;
-                                        matchList.add(MatchInner);
-                                    } else if (itemKeyInner.equals("array_intersect")) {
-                                        Match_array_intersect MatchInner = new Match_array_intersect(null, false);
-                                        MatchInner.pass = true;
-                                        matchList.add(MatchInner);
+                                    switch (itemKeyInner) {
+                                        case "in": {
+                                            Match_in MatchInner = new Match_in(null, false);
+                                            MatchInner.pass = true;
+                                            matchList.add(MatchInner);
+                                            break;
+                                        }
+                                        case "notin": {
+                                            Match_notin MatchInner = new Match_notin(null, false);
+                                            MatchInner.pass = true;
+                                            matchList.add(MatchInner);
+                                            break;
+                                        }
+                                        case "array_e": {
+                                            Match_array_e MatchInner = new Match_array_e(null, false);
+                                            MatchInner.pass = true;
+                                            matchList.add(MatchInner);
+                                            break;
+                                        }
+                                        case "array_ne": {
+                                            Match_array_ne MatchInner = new Match_array_ne(null, false);
+                                            MatchInner.pass = true;
+                                            matchList.add(MatchInner);
+                                            break;
+                                        }
+                                        case "array_include": {
+                                            Match_array_include MatchInner = new Match_array_include(null, false);
+                                            MatchInner.pass = true;
+                                            matchList.add(MatchInner);
+                                            break;
+                                        }
+                                        case "array_included": {
+                                            Match_array_included MatchInner = new Match_array_included(null, false);
+                                            MatchInner.pass = true;
+                                            matchList.add(MatchInner);
+                                            break;
+                                        }
+                                        case "array_exclude": {
+                                            Match_array_exclude MatchInner = new Match_array_exclude(null, false);
+                                            MatchInner.pass = true;
+                                            matchList.add(MatchInner);
+                                            break;
+                                        }
+                                        case "array_intersect": {
+                                            Match_array_intersect MatchInner = new Match_array_intersect(null, false);
+                                            MatchInner.pass = true;
+                                            matchList.add(MatchInner);
+                                            break;
+                                        }
                                     }
                                 } else {
                                     HashSet<Object> valueSet = new HashSet<Object>();
@@ -724,30 +776,47 @@ public class QueryUtil {
                                             }
                                         }
                                     }
-                                    if (itemKeyInner.equals("in")) {
-                                        Match_in MatchInner = new Match_in(valueSet, resultArray.getRowChange());
-                                        matchList.add(MatchInner);
-                                    } else if (itemKeyInner.equals("notin")) {
-                                        Match_notin MatchInner = new Match_notin(valueSet, resultArray.getRowChange());
-                                        matchList.add(MatchInner);
-                                    } else if (itemKeyInner.equals("array_e")) {
-                                        Match_array_e MatchInner = new Match_array_e(valueSet, resultArray.getRowChange());
-                                        matchList.add(MatchInner);
-                                    } else if (itemKeyInner.equals("array_ne")) {
-                                        Match_array_ne MatchInner = new Match_array_ne(valueSet, resultArray.getRowChange());
-                                        matchList.add(MatchInner);
-                                    } else if (itemKeyInner.equals("array_include")) {
-                                        Match_array_include MatchInner = new Match_array_include(valueSet, resultArray.getRowChange());
-                                        matchList.add(MatchInner);
-                                    } else if (itemKeyInner.equals("array_included")) {
-                                        Match_array_included MatchInner = new Match_array_included(valueSet, resultArray.getRowChange());
-                                        matchList.add(MatchInner);
-                                    } else if (itemKeyInner.equals("array_exclude")) {
-                                        Match_array_exclude MatchInner = new Match_array_exclude(valueSet, resultArray.getRowChange());
-                                        matchList.add(MatchInner);
-                                    } else if (itemKeyInner.equals("array_intersect")) {
-                                        Match_array_intersect MatchInner = new Match_array_intersect(valueSet, resultArray.getRowChange());
-                                        matchList.add(MatchInner);
+                                    switch (itemKeyInner) {
+                                        case "in": {
+                                            Match_in MatchInner = new Match_in(valueSet, resultArray.getRowChange());
+                                            matchList.add(MatchInner);
+                                            break;
+                                        }
+                                        case "notin": {
+                                            Match_notin MatchInner = new Match_notin(valueSet, resultArray.getRowChange());
+                                            matchList.add(MatchInner);
+                                            break;
+                                        }
+                                        case "array_e": {
+                                            Match_array_e MatchInner = new Match_array_e(valueSet, resultArray.getRowChange());
+                                            matchList.add(MatchInner);
+                                            break;
+                                        }
+                                        case "array_ne": {
+                                            Match_array_ne MatchInner = new Match_array_ne(valueSet, resultArray.getRowChange());
+                                            matchList.add(MatchInner);
+                                            break;
+                                        }
+                                        case "array_include": {
+                                            Match_array_include MatchInner = new Match_array_include(valueSet, resultArray.getRowChange());
+                                            matchList.add(MatchInner);
+                                            break;
+                                        }
+                                        case "array_included": {
+                                            Match_array_included MatchInner = new Match_array_included(valueSet, resultArray.getRowChange());
+                                            matchList.add(MatchInner);
+                                            break;
+                                        }
+                                        case "array_exclude": {
+                                            Match_array_exclude MatchInner = new Match_array_exclude(valueSet, resultArray.getRowChange());
+                                            matchList.add(MatchInner);
+                                            break;
+                                        }
+                                        case "array_intersect": {
+                                            Match_array_intersect MatchInner = new Match_array_intersect(valueSet, resultArray.getRowChange());
+                                            matchList.add(MatchInner);
+                                            break;
+                                        }
                                     }
                                 }
                             } else if (itemKeyInner.equals("array_elemMatch_exist") || itemKeyInner.equals("array_elemMatch_all")) {
@@ -821,36 +890,37 @@ public class QueryUtil {
             if (index_ != -1) {
                 String propertyName = split.substring(0, index_);
                 String propertyValue = split.substring(index_ + 1);
-                if (svInner.value_array.getRowChange() || svInner.value_array.hasColChange(propertyName)) {
+                if (svInner != null && (svInner.value_array.getRowChange() || svInner.value_array.hasColChange(propertyName))) {
                     change = true;
                 }
                 SceneDataValue sv_valid = null;
-                for (SceneDataObject sdb : svInner.value_array.set) {
-                    SceneDataObject sod = (SceneDataObject) sdb;
-                    if (sod.containsKey(propertyName) && propertyValue.equals(sod.get(propertyName).value_prim.value)) {
-                        SceneDataValue svWrapper = new SceneDataValue(null, sod, propertyName, null);
-                        svWrapper.value_object = sod;
-                        sv_valid = svWrapper;
+                if (svInner != null) {
+                    for (SceneDataObject sdb : svInner.value_array.set) {
+                        if (sdb.containsKey(propertyName) && propertyValue.equals(sdb.get(propertyName).value_prim.value)) {
+                            SceneDataValue svWrapper = new SceneDataValue(null, sdb, propertyName, null);
+                            svWrapper.value_object = sdb;
+                            sv_valid = svWrapper;
+                        }
                     }
                 }
                 last_sdv = svInner;
-                if (sv_valid != null) {
-                    svInner = sv_valid;
-                } else {
-                    svInner = null;
-                }
+                svInner = sv_valid;
             } else {
                 if (last_sdv != null) {
                     if (last_sdv.value_array.getRowChange() || last_sdv.value_array.hasColChange(split)) {
                         change = true;
                     }
                 } else {
-                    if (svInner.value_object.getRowChange() || svInner.value_object.hasColChange(split)) {
+                    if (svInner != null && svInner.value_object != null && (svInner.value_object.getRowChange() || svInner.value_object.hasColChange(split))) {
                         change = true;
                     }
                 }
                 last_sdv = null;
-                svInner = svInner.value_object.get(split);
+                if (svInner != null) {
+                    if (svInner.value_object != null) {
+                        svInner = svInner.value_object.get(split);
+                    }
+                }
             }
         }
         SceneDataPrimitive result = new SceneDataPrimitive();
@@ -877,16 +947,12 @@ public class QueryUtil {
             result.setRowChange(false);
             if (isSingleValueSet) {
                 List<SceneDataValue> sdvList = RWDUtil.array2SDVList((JSONArray) setDesc);
-                result.singleValueSet = new CopyOnWriteArrayList<SceneDataValue>();
-                for (SceneDataValue sdv : sdvList) {
-                    result.singleValueSet.add(sdv);
-                }
+                result.singleValueSet = new CopyOnWriteArrayList<>();
+                result.singleValueSet.addAll(sdvList);
             } else {
                 List<SceneDataObject> sdvList = RWDUtil.array2SDOList((JSONArray) setDesc);
-                result.set = new CopyOnWriteArrayList<SceneDataObject>();
-                for (SceneDataObject sdv : sdvList) {
-                    result.set.add(sdv);
-                }
+                result.set = new CopyOnWriteArrayList<>();
+                result.set.addAll(sdvList);
             }
             return result;
         }
@@ -930,42 +996,46 @@ public class QueryUtil {
                             result.setRowChange(true);
                         }
                     }
-                    if (SetOperator.equals("add")) {
-                        for (SceneDataSet resultItem : resultList) {
-                            result.singleValueSet.addAll(resultItem.singleValueSet);
-                        }
-                    } else if (SetOperator.equals("merge")) {
-                        for (SceneDataSet resultItem : resultList) {
-                            for (SceneDataValue resultItemItem : resultItem.singleValueSet) {
-                                boolean exist = false;
-                                for (SceneDataValue existItem : result.singleValueSet) {
-                                    if (CompareUtil.Instance().CompareObject(existItem, resultItemItem)) {
-                                        exist = true;
-                                        break;
-                                    }
-                                }
-                                if (!exist) {
-                                    result.singleValueSet.add(resultItemItem);
-                                }
+                    switch (SetOperator) {
+                        case "add":
+                            for (SceneDataSet resultItem : resultList) {
+                                result.singleValueSet.addAll(resultItem.singleValueSet);
                             }
-                        }
-                    } else if (SetOperator.equals("unite")) {
-                        SceneDataSet resultFirst = resultList.get(0);
-                        for (SceneDataValue existItem : resultFirst.singleValueSet) {
-                            int exist = 0;
-                            for (int i = 1; i < resultList.size(); i++) {
-                                SceneDataSet resultItem = resultList.get(i);
+                            break;
+                        case "merge":
+                            for (SceneDataSet resultItem : resultList) {
                                 for (SceneDataValue resultItemItem : resultItem.singleValueSet) {
-                                    if (CompareUtil.Instance().CompareObject(existItem, resultItemItem)) {
-                                        exist++;
-                                        break;
+                                    boolean exist = false;
+                                    for (SceneDataValue existItem : result.singleValueSet) {
+                                        if (CompareUtil.Instance().CompareObject(existItem, resultItemItem)) {
+                                            exist = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!exist) {
+                                        result.singleValueSet.add(resultItemItem);
                                     }
                                 }
                             }
-                            if (exist == resultList.size() - 1) {
-                                result.singleValueSet.add(existItem);
+                            break;
+                        case "unite":
+                            SceneDataSet resultFirst = resultList.get(0);
+                            for (SceneDataValue existItem : resultFirst.singleValueSet) {
+                                int exist = 0;
+                                for (int i = 1; i < resultList.size(); i++) {
+                                    SceneDataSet resultItem = resultList.get(i);
+                                    for (SceneDataValue resultItemItem : resultItem.singleValueSet) {
+                                        if (CompareUtil.Instance().CompareObject(existItem, resultItemItem)) {
+                                            exist++;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (exist == resultList.size() - 1) {
+                                    result.singleValueSet.add(existItem);
+                                }
                             }
-                        }
+                            break;
                     }
                 } else if (SetOperator.equals("sub")) {
                     SceneDataSet Set1 = parseSet(Repository, sv, descSet.get("Set1"), QueryAssist, isSingleValueSet);
@@ -1177,7 +1247,7 @@ public class QueryUtil {
             }
         } else {
             // 查询目标可以是value_object或者value_array
-            List<SceneDataValue> svList = new CopyOnWriteArrayList<SceneDataValue>();
+            List<SceneDataValue> svList = new CopyOnWriteArrayList<>();
             if (parentData instanceof SceneDataValue) {
                 SceneDataValue tmpData = (SceneDataValue) parentData;
                 svList.add(tmpData);
@@ -1192,6 +1262,9 @@ public class QueryUtil {
                 int index_ = split.indexOf('=');
                 List<SceneDataValue> svListInner = new CopyOnWriteArrayList<SceneDataValue>();
                 for (SceneDataValue svInner : svList) {
+                    if (svInner == null) {
+                        continue;
+                    }
                     if (svInner.value_object != null) {
                         if (svInner.value_object.getRowChange()) {
                             result.setRowChange(true);
@@ -1266,19 +1339,24 @@ public class QueryUtil {
     private static SceneDataSet query_select(SceneDataSet set, CriteriaBase criteria) {
         SceneDataSet result = new SceneDataSet(false);
         result.set = new CopyOnWriteArrayList<SceneDataObject>();
-        for (int i = 0; i < set.set.size(); i++) {
-            SceneDataObject setValue = set.set.get(i);
-            if (criteria.match(setValue)) {
-                result.set.add(setValue);
+        if (set != null) {
+            for (int i = 0; i < set.set.size(); i++) {
+                SceneDataObject setValue = set.set.get(i);
+                if (criteria.match(setValue)) {
+                    result.set.add(setValue);
+                }
+            }
+
+            if (set.getRowChange() || criteriaColumnChange(set.getColChange(), criteria) || criteriaValueChange(criteria)) {
+                result.setRowChange(true);
+            } else {
+                for (String col : set.getColChange().keySet()) {
+                    result.setColChange(col);
+                }
             }
         }
-        if (set.getRowChange() || criteriaColumnChange(set.getColChange(), criteria) || criteriaValueChange(criteria)) {
-            result.setRowChange(true);
-        } else {
-            for (String col : set.getColChange().keySet()) {
-                result.setColChange(col);
-            }
-        }
+
+
         return result;
     }
 
