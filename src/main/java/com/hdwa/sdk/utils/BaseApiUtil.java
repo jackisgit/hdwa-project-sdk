@@ -108,6 +108,7 @@ public class BaseApiUtil {
 
     /**
      * 检查是否是运行参数
+     *
      * @param infoArray
      * @param code
      * @return
@@ -127,6 +128,7 @@ public class BaseApiUtil {
 
     /**
      * 检查是否是设定参数
+     *
      * @param infoArray
      * @param code
      * @return
@@ -145,6 +147,7 @@ public class BaseApiUtil {
 
     /**
      * 检查点位参数值有效性
+     *
      * @param infoValue
      * @return
      */

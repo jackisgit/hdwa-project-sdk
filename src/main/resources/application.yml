@@ -32,5 +32,6 @@ url:
   dmp: http://127.0.0.1:9805
   monitor: http://10.199.87.73:9930/zkt-monitor
   alarmUrl: http://10.199.87.73:9930/ibms-alarm
+  iotProject: http://10.53.32.205:18852
   iotWebSocket: ws://10.53.32.205:30019/websocket
   alarmWebSocket: ws://10.199.87.67:8825/webSocketServer

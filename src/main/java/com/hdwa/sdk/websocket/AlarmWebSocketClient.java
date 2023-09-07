@@ -25,25 +25,21 @@ import java.util.concurrent.TimeUnit;
 public class AlarmWebSocketClient extends WebSocketClient {
 
     /**
-     * WebSocket连接地址
-     */
-    public URI url;
-
-    /**
      * 报警服务url
      */
     private final String alarmUrl;
-
     /**
      * 项目id
      */
     private final String projectId;
-
     /**
      * 集团编码
      */
     private final String groupCode;
-
+    /**
+     * WebSocket连接地址
+     */
+    public URI url;
     ThreadPoolExecutor executor = new ThreadPoolExecutor(4, 8, 10,
             TimeUnit.SECONDS,
             new LinkedBlockingQueue<>(),

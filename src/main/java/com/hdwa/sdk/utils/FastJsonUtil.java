@@ -309,6 +309,7 @@ public class FastJsonUtil {
 
     /**
      * json转换为类
+     *
      * @param json
      * @param entity
      * @throws Exception

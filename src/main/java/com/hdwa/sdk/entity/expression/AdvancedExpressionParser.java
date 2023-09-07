@@ -252,9 +252,11 @@ public class AdvancedExpressionParser extends Parser {
     public static final BitSet FOLLOW_fourexpr_in_func744 = new BitSet(new long[]{0x0000000004000000L});
     public static final BitSet FOLLOW_26_in_func746 = new BitSet(new long[]{0x0000000000000002L});
     protected TreeAdaptor adaptor = new CommonTreeAdaptor();
+
     public AdvancedExpressionParser(TokenStream input) {
         this(input, new RecognizerSharedState());
     }
+
     public AdvancedExpressionParser(TokenStream input, RecognizerSharedState state) {
         super(input, state);
 

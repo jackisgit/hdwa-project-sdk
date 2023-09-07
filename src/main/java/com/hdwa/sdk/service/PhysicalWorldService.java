@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.constant.UrlConstant;
-import com.hdwa.sdk.entity.repository.ObjectInfo;
 import com.hdwa.sdk.entity.repository.DataContainer;
+import com.hdwa.sdk.entity.repository.ObjectInfo;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.entity.scene.SceneDataObject;
 import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
@@ -451,6 +451,7 @@ public class PhysicalWorldService {
 
     /**
      * 初始对象
+     *
      * @param sdo
      * @param s
      * @param pointValue
@@ -577,10 +578,11 @@ public class PhysicalWorldService {
 
     /**
      * 主对象属性
+     *
      * @param rel
      * @param repository
      */
-    private void relationFormObject(RelationModel.Rel rel, RepositoryImpl repository){
+    private void relationFormObject(RelationModel.Rel rel, RepositoryImpl repository) {
         //主对象
         if (StringUtils.isNotBlank(rel.getFromName()) && StringUtils.isNotBlank(rel.getFromMultiple())) {
             //主对象数据
@@ -658,10 +660,11 @@ public class PhysicalWorldService {
 
     /**
      * 从对象属性
+     *
      * @param rel
      * @param repository
      */
-    private void relationToObject(RelationModel.Rel rel,RepositoryImpl repository){
+    private void relationToObject(RelationModel.Rel rel, RepositoryImpl repository) {
         //主对象
         if (StringUtils.isNotBlank(rel.getToName()) && StringUtils.isNotBlank(rel.getToMultiple())) {
             //主对象数据

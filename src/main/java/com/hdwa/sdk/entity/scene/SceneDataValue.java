@@ -1,8 +1,6 @@
 package com.hdwa.sdk.entity.scene;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.hdwa.sdk.entity.repository.InfluenceFactor;
 import com.hdwa.sdk.entity.repository.RepositoryBase;

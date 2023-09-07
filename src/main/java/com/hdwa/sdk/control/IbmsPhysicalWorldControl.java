@@ -30,6 +30,7 @@ public class IbmsPhysicalWorldControl {
 
     /**
      * 加载IBMS物理世界数据
+     *
      * @return
      */
     @GetMapping("/loadIbmsPhysicalWorldData")

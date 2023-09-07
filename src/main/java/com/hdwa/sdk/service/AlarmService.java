@@ -1,6 +1,5 @@
 package com.hdwa.sdk.service;
 
-import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
@@ -11,7 +10,6 @@ import com.hdwa.sdk.entity.scene.SceneDataValue;
 import com.hdwa.sdk.utils.AlarmUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.CopyOnWriteArrayList;

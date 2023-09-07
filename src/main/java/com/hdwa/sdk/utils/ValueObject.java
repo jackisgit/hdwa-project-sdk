@@ -18,14 +18,17 @@ public class ValueObject {
     public ValueObject() {
 
     }
+
     public ValueObject(int type, Long value) {
         this.type = type;
         this.intValue = value;
     }
+
     public ValueObject(int type, Double value) {
         this.type = type;
         this.doubleValue = value;
     }
+
     public ValueObject(String value) {
         this.type = 2;
         this.stringValue = value;

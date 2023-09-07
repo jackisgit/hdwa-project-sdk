@@ -83,7 +83,6 @@ public class BaseDecConstant {
     public static final String QUERY_SQL = "query_sql";
 
 
-
     /**
      * general_query String
      */

@@ -493,9 +493,11 @@ public class AdvancedExpressionLexer extends Lexer {
     public AdvancedExpressionLexer() {
         ;
     }
+
     public AdvancedExpressionLexer(CharStream input) {
         this(input, new RecognizerSharedState());
     }
+
     public AdvancedExpressionLexer(CharStream input, RecognizerSharedState state) {
         super(input, state);
 

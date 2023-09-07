@@ -2,14 +2,10 @@ package com.hdwa.sdk.entity.repository;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.entity.scene.SceneDataObject;
-import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
-import com.hdwa.sdk.entity.scene.SceneDataSet;
-import com.hdwa.sdk.entity.scene.SceneDataValue;
 import com.hdwa.sdk.utils.LogOfDownload;
 import com.hdwa.sdk.utils.LogOfRun;
 import com.hdwa.sdk.utils.PacketBuffer;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,7 +15,6 @@ public class RepositoryProject {
 
     public String groupCode;
     public String projectId;
-
 
 
     public boolean compute_finish = false;

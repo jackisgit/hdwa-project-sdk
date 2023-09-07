@@ -92,22 +92,22 @@ public class RepositoryBase {
 
 
     // deamon任务到点位清单
-    public Map<SceneDataValue, List<String>> deamon_sdv2pointList = new ConcurrentHashMap<SceneDataValue, List<String>>();
+    public Map<SceneDataValue, List<String>> deamon_sdv2pointList = new HashMap<>(16);
 
-    public Map<SceneProperty, Map<String, Boolean>> p2varDict = new ConcurrentHashMap<SceneProperty, Map<String, Boolean>>();
-    public Map<SceneProperty, Map<String, Boolean>> p2varStringDict = new ConcurrentHashMap<SceneProperty, Map<String, Boolean>>();
-    public Map<SceneProperty, WalkerWrapper> p2walker1 = new ConcurrentHashMap<SceneProperty, WalkerWrapper>();
-    public Map<SceneProperty, WalkerList> p2walker2 = new ConcurrentHashMap<SceneProperty, WalkerList>();
+    public Map<SceneProperty, Map<String, Boolean>> p2varDict = new HashMap<>(16);
+    public Map<SceneProperty, Map<String, Boolean>> p2varStringDict = new HashMap<>(16);
+    public Map<SceneProperty, WalkerWrapper> p2walker1 = new HashMap<>(16);
+    public Map<SceneProperty, WalkerList> p2walker2 = new HashMap<>(16);
 
     // 结果数据
     public SceneDataObject objectData;
-    public Map<String, SceneDataValue> base_value = new ConcurrentHashMap<String, SceneDataValue>();
+    public Map<String, SceneDataValue> base_value = new HashMap<>(16);
 
 
     public RepositoryDependency dependency = new RepositoryDependency();
 
     public int thread_count;
-    public List<RepositoryComputeThread> threadList = new CopyOnWriteArrayList<RepositoryComputeThread>();
+    public List<RepositoryComputeThread> threadList = new CopyOnWriteArrayList<>();
     public WaitComputeQueue WaitCompute = new WaitComputeQueue();
 
     public RepositoryBase(boolean use_thread, boolean enable_factor, int thread_count, long interval_between_compute) {
@@ -120,7 +120,7 @@ public class RepositoryBase {
         }
     }
 
-    public RepositoryBase(){
+    public RepositoryBase() {
 
     }
 
@@ -137,11 +137,11 @@ public class RepositoryBase {
     }
 
     public ConcurrentHashMap<SceneDataPrimitive, String> sdv2point() {
-        return new ConcurrentHashMap<SceneDataPrimitive, String>();
+        return new ConcurrentHashMap<>();
     }
 
     public ConcurrentHashMap<SceneDataPrimitive, String> sdv2set() {
-        return new ConcurrentHashMap<SceneDataPrimitive, String>();
+        return new ConcurrentHashMap<>();
     }
 
     public SceneDataSet ParseSource(JSONObject descSet, String Source) {

@@ -70,6 +70,11 @@ public class UrlConstant {
      */
     public static final String QUERY_ORDER_STATE = "/alarmToWorkOrder/queryOrderStateByAlarmIds";
 
+    /**
+     * 控制指令 接口路径
+     */
+    public static final String iot_project_control = "/sync_pointsetbatch_post";
+
 
     /**
      * 类型定义数据 文件名

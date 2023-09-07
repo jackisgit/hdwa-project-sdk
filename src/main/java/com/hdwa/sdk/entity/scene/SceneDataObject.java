@@ -25,7 +25,8 @@ public class SceneDataObject {
     public SceneDataObject father;
     public Map<String, Boolean> fatherReturnColumnMap;
 
-    public SceneDataObject(){}
+    public SceneDataObject() {
+    }
 
     public SceneDataObject(RepositoryBase Repository, SceneDataObject parentObjectData, String myPropertyName, SceneDataValue parentArrayData,
                            SceneObject custom_object, SceneProperty[] query_attached, SceneDataObject father) {

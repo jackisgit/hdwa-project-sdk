@@ -288,9 +288,11 @@ public class AdvancedExpressionWalker extends TreeParser {
     protected DFA7 dfa7 = new DFA7(this);
     private Map<String, ValueObject> varValueMap = new HashMap<String, ValueObject>();
     private Map<String, ValueObject> varStringValueMap = new HashMap<String, ValueObject>();
+
     public AdvancedExpressionWalker(TreeNodeStream input) {
         this(input, new RecognizerSharedState());
     }
+
     public AdvancedExpressionWalker(TreeNodeStream input, RecognizerSharedState state) {
         super(input, state);
 

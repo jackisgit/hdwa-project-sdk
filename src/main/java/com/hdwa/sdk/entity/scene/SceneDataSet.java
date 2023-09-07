@@ -11,7 +11,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class SceneDataSet {
     public boolean isSingleValueSet = false;
-    public List<SceneDataObject> set =new ArrayList<>();
+    public List<SceneDataObject> set = new ArrayList<>();
     public List<SceneDataValue> singleValueSet = new ArrayList<>();
     public Change change = new Change();
 

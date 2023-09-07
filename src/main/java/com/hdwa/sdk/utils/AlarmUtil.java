@@ -1,6 +1,5 @@
 package com.hdwa.sdk.utils;
 
-import cn.hutool.core.thread.ExecutorBuilder;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -15,7 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author abao
@@ -27,6 +27,7 @@ public class AlarmUtil {
      * 报警改变字段
      */
     public static List<String> alarmColChange = Arrays.asList("state", "status", "treatState", "treatMode", "nature");
+    public static JSONArray history_alarm_path = new JSONArray();
     static Map<Integer, String> stateMap = new HashMap<>(16);
     static Map<Integer, String> statusMap = new HashMap<>(16);
     static Map<Integer, String> treatStateMap = new HashMap<>(16);
@@ -34,7 +35,6 @@ public class AlarmUtil {
     static Map<Integer, String> natureMap = new HashMap<>(16);
     static Map<String, String> levelMap = new HashMap<>(16);
     static Map<String, String> categoryMap = new HashMap<>(16);
-    public static JSONArray history_alarm_path = new JSONArray();
 
     static {
         history_alarm_path.add("基础对象");
@@ -64,6 +64,7 @@ public class AlarmUtil {
 
     /**
      * 刷新报警数据
+     *
      * @param projectId
      * @param groupCode
      * @param alarmUrl
@@ -296,6 +297,7 @@ public class AlarmUtil {
 
     /**
      * 计算报警数据
+     *
      * @param repository
      * @param AlarmJob
      */

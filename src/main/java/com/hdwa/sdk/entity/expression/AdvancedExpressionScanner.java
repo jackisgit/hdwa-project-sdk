@@ -285,9 +285,11 @@ public class AdvancedExpressionScanner extends TreeParser {
     public Map<String, Boolean> varStringDict = new HashMap<String, Boolean>();
     protected DFA6 dfa6 = new DFA6(this);
     protected DFA7 dfa7 = new DFA7(this);
+
     public AdvancedExpressionScanner(TreeNodeStream input) {
         this(input, new RecognizerSharedState());
     }
+
     public AdvancedExpressionScanner(TreeNodeStream input, RecognizerSharedState state) {
         super(input, state);
 

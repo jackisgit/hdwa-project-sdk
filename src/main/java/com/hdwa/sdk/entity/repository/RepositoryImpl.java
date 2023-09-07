@@ -20,13 +20,17 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Slf4j
 public class RepositoryImpl extends RepositoryBase {
 
+    public static boolean accelerate_enable = false;
+    public static long accelerate_ratio = 60 * 60 * 24;
+    public static String init_timeString = "2021-01-01 00:00:00";
+    public static Date init_time;
+    public static Date start_time;
     /**
      * <p>物理世界</p>
      * <p>类型定义-全量数据</p>
      * <p>数据来源 physical_world/classArray.json</p>
      */
     public SceneDataSet classArray = new SceneDataSet(false);
-
     /**
      * <p>类型定义数据--类型标记</p>
      * <p>objType--->boolean </p>
@@ -35,38 +39,30 @@ public class RepositoryImpl extends RepositoryBase {
      * <p>数据来源 physical_world/classArray.json</p>
      */
     public Map<String, Boolean> objTypeMap = new HashMap<>(16);
-
     /**
      * <p>类型定义数据--code-对象类型</p>
      * <p>classCode--->objType</p>
      * <p>数据来源 physical_world/classArray.json</p>
      */
     public Map<String, String> code2objTypeMap = new HashMap<>(16);
-
     /**
      * <p>类型定义数据--code-类型名称</p>
      * <p>classCode--->name</p>
      * <p>数据来源 physical_world/classArray.json</p>
      */
     public Map<String, String> classCode2NameMap = new HashMap<>(16);
-
-
     /**
      * <p>点位定义数据--code-对象类型列表</p>
      * <p>classCode--->sds</p>
      * <p>数据来源 physical_world/point/*.json</p>
      */
     public Map<String, SceneDataSet> infoArrayDic = new HashMap<>(16);
-
-
     /**
      * <p>点位定义数据--code-对象类型列表</p>
      * <p>classCode--->JsonArray</p>
      * <p>数据来源 physical_world/point/*.json</p>
      */
     public Map<String, JSONArray> infoArrayJson = new HashMap<>(16);
-
-
     /**
      * <p>dataSource数据</p>
      * <p>{"classCode":"FFEACU","code":"0","name":"正常","infoCode":"orderFailAlarm"}</p>
@@ -75,99 +71,82 @@ public class RepositoryImpl extends RepositoryBase {
      * <p>数据来源 physical_world/point/*.json</p>
      */
     public SceneDataSet infoDataSource = new SceneDataSet(false);
-
     /**
      * <p>对象数据--id-对象</p>
      * <p>id--->JsonObject</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
     public Map<String, JSONObject> id2object = new HashMap<>(16);
-
     /**
      * <p>对象数据--id-sdo</p>
      * <p>id--->sdo</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
     public Map<String, SceneDataObject> id2sdv = new HashMap<>(16);
-
     /**
      * <p>对象数据--全量数据</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
     public SceneDataSet objectArrayAll = new SceneDataSet(false);
-
     /**
      * <p>对象数据--全量数据</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
     public Map<String, SceneDataValue> objectArrayDic = new HashMap<>(16);
-
     /**
      * <p>对象数据--objType-（id-对象数据）</p>
      * <p>objType--->（id-->sdo）</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
     public Map<String, Map<String, SceneDataObject>> objType2id2Value = new HashMap<>(16);
-
-
     /**
      * <p>关系数据--graphCode-（relCode-关系数据）</p>
      * <p>graphCode 图例编码--->（relCode-->sds）</p>
      * <p>数据来源 physical_world/relation/*.json</p>
      */
     public Map<String, Map<String, SceneDataSet>> relationArrayDic = new HashMap<>(16);
-
     /**
      * <p>关系数据--graphCode-关系数据</p>
      * <p>graphCode 图例编码--->sds</p>
      * <p>数据来源 physical_world/relation/*.json</p>
      */
     public Map<String, SceneDataSet> graphCodeDic = new HashMap<>(16);
-
     /**
      * <p>关系数据--relCode-关系数据</p>
      * <p>relCode 关系编码--->sds</p>
      * <p>数据来源 physical_world/relation/*.json</p>
      */
     public Map<String, SceneDataSet> relCodeDic = new HashMap<>(16);
-
     /**
      * <p>关系数据--全量数据</p>
      * <p>sds</p>
      * <p>数据来源 physical_world/relation/*.json</p>
      */
     public SceneDataSet relationAll = new SceneDataSet(false);
-
     /**
      * <p>对象id--点位数据-（point-value）</p>
      * <p>objId 对象数据--->（point-->value）</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
     public Map<String, HashMap<String, String>> object2info2point = new HashMap<>(16);
-
     /**
      * <p>运行点位值--对象信息</p>
      * <p>运行点点位值 对象数据--->对象信息</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
     public Map<String, List<ObjectInfo>> point2ObjectInfoList = new HashMap<>(16);
-
     /**
      * <p>设定点位值--对象信息</p>
      * <p>设定点位值 对象数据--->对象信息</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
     public Map<String, List<ObjectInfo>> set2ObjectInfoList = new HashMap<>(16);
-
-
     /**
      * <p>IBMS物理世界</p>
      * <p>场景对象</p>
      * <p>数据来源 ibms_physical_world/sceneArray.json</p>
      */
     public SceneDataSet ZKTSceneArray = new SceneDataSet(false);
-
-
     /**
      * <p>IBMS物理世界</p>
      * <p>场景编码--对象数据 (ibms类型编码->对象数据)</p>
@@ -175,23 +154,18 @@ public class RepositoryImpl extends RepositoryBase {
      * <p>数据来源 ibms_physical_world/sceneArray.json</p>
      */
     public Map<String, Map<String, SceneDataValue>> ZKTObjectArrayDic = new HashMap<>(16);
-
     /**
      * <p>IBMS物理世界</p>
      * <p>类型定义数据</p>
      * <p>数据来源 ibms_physical_world/classArray.json</p>
      */
     public SceneDataSet ZKTClassArray = new SceneDataSet(false);
-
-
     /**
      * <p>IBMS逻辑编组</p>
      * <p>逻辑编组数据</p>
      * <p>数据来源 ibms_logical_group/ibmsLogicalGroup.json</p>
      */
     public SceneDataSet IBMSGroupArray = new SceneDataSet(false);
-
-
     /**
      * <p>IBMS逻辑编组</p>
      * <p>场景编码--分组数据 (ibms类型编码->分组数据)</p>
@@ -199,31 +173,18 @@ public class RepositoryImpl extends RepositoryBase {
      * <p>数据来源 ibms_logical_group/**.json</p>
      */
     public Map<String, Map<String, SceneDataSet>> IBMSArrayDic = new HashMap<>(16);
-
-
     /**
      * <p>点位数据</p>
      * <p>点位数据</p>
      * <p>数据来源 point/point-list.json</p>
      */
     public SceneDataSet InfoPointListArray = new SceneDataSet(false, BaseDecConstant.INFO_POINT_LIST);
-
     /**
      * <p>点位数据</p>
      * <p>点位关系数据</p>
      * <p>数据来源 point/point-relation.json</p>
      */
     public SceneDataSet InfoPointRelationArray = new SceneDataSet(false, BaseDecConstant.INFO_POINT_RELATION);
-
-
-
-
-
-    public static boolean accelerate_enable = false;
-    public static long accelerate_ratio = 60 * 60 * 24;
-    public static String init_timeString = "2021-01-01 00:00:00";
-    public static Date init_time;
-    public static Date start_time;
     public Map<String, JSONObject> general_queryMap;
     public RepositoryProject RepositoryProject;
     // to do lirong

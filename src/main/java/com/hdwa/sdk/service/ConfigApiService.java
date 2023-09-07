@@ -122,7 +122,7 @@ public class ConfigApiService {
             repository.sceneJSON = sceneJson;
             repository.sceneObject = sceneObject;
             //点位过滤配置
-            pointService.filterPoint(repository,sceneObject);
+            pointService.filterPoint(repository, sceneObject);
 
             analysisData(repository);
             log.warn("************结束加载-config接口数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
