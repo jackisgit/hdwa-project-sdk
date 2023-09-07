@@ -2,7 +2,7 @@ package com.hdwa.sdk.websocket;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.hdwa.sdk.entity.repository.PathDataContainer;
+import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
 import lombok.extern.slf4j.Slf4j;
@@ -12,13 +12,16 @@ import org.java_websocket.handshake.ServerHandshake;
 import java.net.URI;
 import java.util.Date;
 
+/**
+ * iot实施数据采集
+ */
 @Slf4j
 public class IotWebSocketClient extends WebSocketClient {
 
     /**
      * WebSocket连接地址
      */
-    public URI url;
+    private final URI url;
 
     /**
      * 项目id
@@ -26,53 +29,45 @@ public class IotWebSocketClient extends WebSocketClient {
     private final String projectId;
 
     /**
-     * 数据仓库
+     * 统计时间
      */
-    private RepositoryImpl repositoryNew;
+    private Date lastTime = new Date();
 
-    public IotWebSocketClient(URI url, String projectId) {
-        super(url);
-        this.url = url;
-        this.projectId = projectId;
-    }
-
+    /**
+     * 统计数量
+     */
+    private int count = 0;
 
     public IotWebSocketClient(URI url, String projectId, RepositoryImpl repository) {
         super(url);
         this.url = url;
         this.projectId = projectId;
-        this.repositoryNew = repository;
     }
 
     @Override
     public void onOpen(ServerHandshake arg0) {
-        log.warn("iotWebSocket连接已打开: " + url.toString());
+        log.warn("*****iotWebSocket连接已打开: " + url.toString());
     }
 
     @Override
     public void onClose(int arg0, String arg1, boolean arg2) {
-        log.warn("iotWebSocket连接已关闭: " + url.toString());
+        log.warn("*****iotWebSocket连接已关闭: " + url.toString());
     }
 
     @Override
     public void onError(Exception arg0) {
-        log.error("iotWebSocket连接错误: " + url.toString());
+        log.error("*****iotWebSocket连接错误: " + url.toString());
     }
 
-    Date lastTime = new Date();
-    int count = 0;
 
-    /**
-     * 接收上报数据 格式为{"data":"202208250851;HSWDBA2.3030015;64;23","type":"iot"}
-     */
     @Override
     public void onMessage(String arg0) {
-        RepositoryImpl repository = PathDataContainer.projectMap.get(projectId);
+        RepositoryImpl repository = DataContainer.projectMap.get(projectId);
         count++;
         Date currTime = new Date();
         if (currTime.getTime() / (1000L * 60) != lastTime.getTime() / (1000L * 60)) {
             lastTime = currTime;
-            log.warn("iotWebSocket-1分钟接收到数据数量: " + count);
+            log.warn("*****iotWebSocket-1分钟接收到数据数量: " + count);
             count = 0;
         }
 
@@ -91,11 +86,11 @@ public class IotWebSocketClient extends WebSocketClient {
                     //原始场景数据 SceneDataPrimitive
                     SceneDataPrimitive sdvInner = new SceneDataPrimitive();
                     sdvInner.change = true;
-                    SceneDataPrimitive exist_sdv = PathDataContainer.point2sdv.putIfAbsent(point, sdvInner);
+                    SceneDataPrimitive exist_sdv = DataContainer.point2sdv.putIfAbsent(point, sdvInner);
                     if (exist_sdv == null) {
-                        PathDataContainer.sdv2point.putIfAbsent(sdvInner, point);
+                        DataContainer.sdv2point.putIfAbsent(sdvInner, point);
                     }
-                    SceneDataPrimitive data = PathDataContainer.point2sdv.get(point);
+                    SceneDataPrimitive data = DataContainer.point2sdv.get(point);
                     if (type.equals("iot")) {
                         if (value.endsWith(".0")) {
                             value = value.substring(0, value.length() - ".0".length());
@@ -120,7 +115,7 @@ public class IotWebSocketClient extends WebSocketClient {
                         data.value = value;
                     }
                 } catch (Exception e) {
-                    log.error("iot和text数据解析异常", e);
+                    log.error("*****iotWebSocket iot和text数据解析异常", e);
                 }
             }
         } else if (type.equals("pointset")) {
@@ -135,11 +130,11 @@ public class IotWebSocketClient extends WebSocketClient {
             try {
                 SceneDataPrimitive sdvInner = new SceneDataPrimitive();
                 sdvInner.change = true;
-                SceneDataPrimitive exist_sdv = PathDataContainer.set2sdv.putIfAbsent(point, sdvInner);
+                SceneDataPrimitive exist_sdv = DataContainer.set2sdv.putIfAbsent(point, sdvInner);
                 if (exist_sdv == null) {
-                    PathDataContainer.sdv2set.putIfAbsent(sdvInner, point);
+                    DataContainer.sdv2set.putIfAbsent(sdvInner, point);
                 }
-                SceneDataPrimitive data = PathDataContainer.set2sdv.get(point);
+                SceneDataPrimitive data = DataContainer.set2sdv.get(point);
                 if (value.endsWith(".0")) {
                     value = value.substring(0, value.length() - ".0".length());
                 }
@@ -160,7 +155,7 @@ public class IotWebSocketClient extends WebSocketClient {
                     repository.ProcessIOT(point);
                 }
             } catch (Exception e) {
-                log.error("设置参数数据解析异常", e);
+                log.error("*****iotWebSocket设置参数数据解析异常", e);
             }
         }
     }

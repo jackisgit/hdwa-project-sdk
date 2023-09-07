@@ -1,6 +1,6 @@
 package com.hdwa.sdk.service;
 
-import com.hdwa.sdk.entity.repository.PathDataContainer;
+import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -60,7 +60,7 @@ public class LoadDataMainService {
         configApiService.loadConfigData(repository);
 
         //保存到数据容器
-        PathDataContainer.projectMap.put(projectId, repository);
+        DataContainer.projectMap.put(projectId, repository);
 
         return repository;
     }

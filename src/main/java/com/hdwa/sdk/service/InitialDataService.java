@@ -1,6 +1,7 @@
 package com.hdwa.sdk.service;
 
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
+import com.hdwa.sdk.websocket.AlarmWebSocketClient;
 import com.hdwa.sdk.websocket.IotWebSocketClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,12 @@ public class InitialDataService implements CommandLineRunner {
     @Value("${url.iotWebSocket}")
     private String iotWebSocketUrl;
 
+    @Value("${url.alarmWebSocket}")
+    private String alarmWebSocketUrl;
+
+    @Value("${url.alarmUrl}")
+    private String alarmUrl;
+
     @Autowired
     private LoadDataMainService loadDataMainService;
 
@@ -56,6 +63,7 @@ public class InitialDataService implements CommandLineRunner {
         initDir();
         RepositoryImpl repository = loadDataMainService.loadDataMain();
         initIotWebsocket(repository);
+        initAlarmWebsocket();
     }
 
     /**
@@ -132,6 +140,20 @@ public class InitialDataService implements CommandLineRunner {
         } catch (Exception e) {
             log.error("*****建立iotWebsocket异常", e);
         }
+    }
 
+
+    /**
+     * alarmWebSocket连接
+     */
+    private void initAlarmWebsocket() {
+        try {
+            log.warn("************初始化alarmWebSocket");
+            String url = alarmWebSocketUrl + "/" + projectId;
+            AlarmWebSocketClient client = new AlarmWebSocketClient(new URI(url), alarmUrl, projectId, groupCode);
+            client.connect();
+        } catch (Exception e) {
+            log.error("*****建立alarmWebsocket异常", e);
+        }
     }
 }

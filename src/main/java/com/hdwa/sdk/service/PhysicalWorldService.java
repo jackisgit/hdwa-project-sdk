@@ -5,8 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.constant.UrlConstant;
 import com.hdwa.sdk.entity.repository.ObjectInfo;
-import com.hdwa.sdk.entity.repository.PathDataContainer;
-import com.hdwa.sdk.entity.repository.RepositoryContainer;
+import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.entity.scene.SceneDataObject;
 import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
@@ -401,12 +400,12 @@ public class PhysicalWorldService {
                                 // TODO: 2023/8/28  RepositoryContainer后续去掉
                                 SceneDataPrimitive sdp = new SceneDataPrimitive();
                                 sdp.change = true;
-                                SceneDataPrimitive exist = PathDataContainer.point2sdv.putIfAbsent(pointValue, sdp);
+                                SceneDataPrimitive exist = DataContainer.point2sdv.putIfAbsent(pointValue, sdp);
                                 if (exist == null) {
-                                    PathDataContainer.sdv2point.putIfAbsent(sdp, pointValue);
+                                    DataContainer.sdv2point.putIfAbsent(sdp, pointValue);
                                 }
 
-                                infoKey.value_prim = PathDataContainer.point2sdv.get(pointValue);
+                                infoKey.value_prim = DataContainer.point2sdv.get(pointValue);
                                 initSdv(sdo, s, pointValue);
                             } else {
                                 sdo.remove(s);
@@ -430,12 +429,12 @@ public class PhysicalWorldService {
                                 // TODO: 2023/8/28  RepositoryContainer后续去掉
                                 SceneDataPrimitive sdp = new SceneDataPrimitive();
                                 sdp.change = true;
-                                SceneDataPrimitive exist = PathDataContainer.set2sdv.putIfAbsent(pointValue, sdp);
+                                SceneDataPrimitive exist = DataContainer.set2sdv.putIfAbsent(pointValue, sdp);
                                 if (exist == null) {
-                                    PathDataContainer.sdv2set.putIfAbsent(sdp, pointValue);
+                                    DataContainer.sdv2set.putIfAbsent(sdp, pointValue);
                                 }
 
-                                infoKey.value_prim = PathDataContainer.set2sdv.get(pointValue);
+                                infoKey.value_prim = DataContainer.set2sdv.get(pointValue);
                                 initSdv(sdo, s, pointValue);
                             } else {
                                 sdo.remove(s);

@@ -61,6 +61,17 @@ public class UrlConstant {
 
 
     /**
+     * 查询报警记录 接口路径
+     */
+    public static final String ALARM_RECORD_PAGE = "/alarm-record/page";
+
+    /**
+     * 查询工单接口 接口路径
+     */
+    public static final String QUERY_ORDER_STATE = "/alarmToWorkOrder/queryOrderStateByAlarmIds";
+
+
+    /**
      * 类型定义数据 文件名
      */
     public static final String CLASS_ARRAY = "classArray.json";

@@ -3,7 +3,7 @@ package com.hdwa.sdk.service;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.entity.PathApiParam;
-import com.hdwa.sdk.entity.repository.PathDataContainer;
+import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.utils.CalculateApiJsonUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +31,7 @@ public class PathApiService {
     public Object post(PathApiParam param) {
         try {
             JSONArray valuePath = param.getPath();
-            RepositoryImpl repository = PathDataContainer.projectMap.get(projectId);
+            RepositoryImpl repository = DataContainer.projectMap.get(projectId);
             if (repository == null) {
                 return "null";
             }
