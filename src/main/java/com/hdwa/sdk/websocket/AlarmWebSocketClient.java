@@ -3,6 +3,7 @@ package com.hdwa.sdk.websocket;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.utils.AlarmJob;
@@ -64,7 +65,7 @@ public class AlarmWebSocketClient extends WebSocketClient {
         try {
             RepositoryImpl repository = DataContainer.projectMap.get(projectId);
             JSONObject AlarmJob = new JSONObject();
-            AlarmJob.put("type", "refresh");
+            AlarmJob.put(BaseDecConstant.TYPE, BaseDecConstant.REFRESH);
             DataContainer.alarmBuffer.offer(AlarmJob, 16384);
             JSONArray content = new JSONArray();
             try {
@@ -72,7 +73,7 @@ public class AlarmWebSocketClient extends WebSocketClient {
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }
-            AlarmJob.put("Content", content);
+            AlarmJob.put(BaseDecConstant.CONTENT, content);
             log.warn("*****查询到报警数据: " + content.size());
             //多线程处理报警
             executor.execute(new AlarmJob(projectId));
@@ -94,11 +95,11 @@ public class AlarmWebSocketClient extends WebSocketClient {
     @Override
     public void onMessage(String arg0) {
         try {
-            log.warn("*****接收到报警处理数据：" + arg0);
-            RepositoryImpl repository = DataContainer.projectMap.get(projectId);
             JSONObject alarm = (JSONObject) JSON.parse(arg0);
-            if ((Integer) alarm.get("pushType") == 3) {
-                String alarmId = (String) alarm.get("alarmId");
+            log.warn("*****接收到报警处理数据：" + alarm.get(BaseDecConstant.ID));
+            RepositoryImpl repository = DataContainer.projectMap.get(projectId);
+            if ((Integer) alarm.get(BaseDecConstant.PUSH_TYPE) == 3) {
+                String alarmId = (String) alarm.get(BaseDecConstant.ALARM_ID);
                 AlarmUtil.processOrderDesc(alarmId, alarm);
             } else {
                 AlarmUtil.updateAlarm(alarm, repository);

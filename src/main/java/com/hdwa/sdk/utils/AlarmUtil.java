@@ -23,13 +23,6 @@ import java.util.concurrent.*;
  */
 @Slf4j
 public class AlarmUtil {
-
-    public static ExecutorService executor = ExecutorBuilder.create()
-            .setCorePoolSize(4)
-            .setMaxPoolSize(8)
-            .setWorkQueue(new LinkedBlockingQueue<>(1024))
-            .setHandler(new ThreadPoolExecutor.AbortPolicy())
-            .build();
     /**
      * 报警改变字段
      */
@@ -69,11 +62,19 @@ public class AlarmUtil {
         categoryMap.put("Sp", "空间报警");
     }
 
+    /**
+     * 刷新报警数据
+     * @param projectId
+     * @param groupCode
+     * @param alarmUrl
+     * @param repository
+     * @return
+     */
     public static JSONArray alarmRefresh(String projectId, String groupCode, String alarmUrl, RepositoryImpl repository) {
         try {
             JSONArray result = new JSONArray();
             //查询报警记录数据
-            log.warn("*****请求服务获取报警数据");
+            //log.warn("*****请求服务获取报警数据");
             JSONObject paramObject = new JSONObject();
             paramObject.put("appId", 0);
             paramObject.put("userId", "systemId");
@@ -107,7 +108,7 @@ public class AlarmUtil {
                 param.put("groupCode", groupCode);
                 param.put("ids", ids);
                 JSONArray contentOrderState = OkHttpClientUtil.httpPost(param, alarmUrl + UrlConstant.QUERY_ORDER_STATE).getJSONArray("Content");
-                log.warn("*****查询工单状态完成" + ids.size());
+                //log.warn("*****查询工单状态完成" + ids.size());
                 for (int i = 0; i < contentOrderState.size(); i++) {
                     JSONObject orderStateItem = contentOrderState.getJSONObject(i);
                     String alarmId = (String) orderStateItem.get("alarmId");
@@ -137,9 +138,8 @@ public class AlarmUtil {
      * 修改报警数据
      *
      * @param alarm
-     * @throws Exception
      */
-    public static void updateAlarm(JSONObject alarm, RepositoryImpl repository) throws Exception {
+    public static void updateAlarm(JSONObject alarm, RepositoryImpl repository) {
         SimpleDateFormat sdf_T = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         SimpleDateFormat sdf_blank = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -294,6 +294,11 @@ public class AlarmUtil {
         }
     }
 
+    /**
+     * 计算报警数据
+     * @param repository
+     * @param AlarmJob
+     */
     public static void calculatedAlarm(RepositoryImpl repository, JSONObject AlarmJob) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         try {
@@ -301,22 +306,22 @@ public class AlarmUtil {
             switch (type) {
                 case "refresh":
                     JSONArray Content = AlarmJob.getJSONArray("Content");
-                    AlarmUtil.exe_refresh(Content, repository);
+                    AlarmUtil.exeRefresh(Content, repository);
                     break;
                 case "alarm":
                     JSONObject alarm = AlarmJob.getJSONObject("alarm");
-                    AlarmUtil.exe_ProcessAlarm(alarm, true, repository);
+                    AlarmUtil.exeProcessAlarm(alarm, true, repository);
                     break;
                 case "order": {
                     String id = AlarmJob.getString("id");
                     JSONObject alarm_order = AlarmJob.getJSONObject("alarm_order");
-                    AlarmUtil.exe_ProcessOrderDesc(id, alarm_order);
+                    AlarmUtil.exeProcessOrderDesc(id, alarm_order);
                     break;
                 }
                 case "comment": {
                     String id = AlarmJob.getString("id");
                     JSONObject dtoJSON = AlarmJob.getJSONObject("dtoJSON");
-                    AlarmUtil.exe_ProcessAlarm_comment(id, dtoJSON);
+                    AlarmUtil.exeProcessAlarmComment(id, dtoJSON);
                     break;
                 }
             }
@@ -329,15 +334,15 @@ public class AlarmUtil {
             SceneDataValue alarmList = DataContainer.id2alarmList.get(id);
             for (int i = 0; i < alarmList.value_array.set.size(); i++) {
                 SceneDataObject sdoInner = alarmList.value_array.set.get(i);
-                AlarmUtil.chixushijian(sdf, currTime, sdoInner);
+                AlarmUtil.durationTime(sdf, currTime, sdoInner);
             }
         }
         for (SceneDataObject sdoInner : DataContainer.alarmArray.set) {
-            AlarmUtil.chixushijian(sdf, currTime, sdoInner);
+            AlarmUtil.durationTime(sdf, currTime, sdoInner);
         }
     }
 
-    public static String getTime(SimpleDateFormat sdf_T, SimpleDateFormat sdf_blank, SimpleDateFormat sdf, Object object) throws Exception {
+    public static String getTime(SimpleDateFormat sdf_T, SimpleDateFormat sdf_blank, SimpleDateFormat sdf, Object object) {
         String result;
         if (object instanceof Long) {
             Long timeLong = (Long) object;
@@ -376,7 +381,7 @@ public class AlarmUtil {
         DataContainer.alarmBuffer.offer(AlarmJob, 16384);
     }
 
-    public static void exe_refresh(JSONArray Content, RepositoryImpl repository) throws Exception {
+    public static void exeRefresh(JSONArray Content, RepositoryImpl repository) {
         DataContainer.alarmArray.set.clear();
         for (String objId : DataContainer.id2alarmList.keySet()) {
             DataContainer.id2alarmList.get(objId).value_array.set.clear();
@@ -387,7 +392,7 @@ public class AlarmUtil {
             for (int i = 0; i < Content.size(); i++) {
                 JSONObject alarm = Content.getJSONObject(i);
                 try {
-                    exe_ProcessAlarm(alarm, false, repository);
+                    exeProcessAlarm(alarm, false, repository);
                 } catch (Exception e) {
                     log.error("exe_refresh", e);
                 }
@@ -399,7 +404,7 @@ public class AlarmUtil {
     }
 
 
-    public static void exe_ProcessAlarm(JSONObject alarm, boolean addWaitCompute, RepositoryImpl repository) {
+    public static void exeProcessAlarm(JSONObject alarm, boolean addWaitCompute, RepositoryImpl repository) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         Date currentTime = new Date();
         String id = (String) alarm.get("id");
@@ -462,7 +467,7 @@ public class AlarmUtil {
             } else {
                 // 只替换非空字段
                 SceneDataObject sdoAlarm = RWDUtil.object2sod(alarm);
-                chixushijian(sdf, currentTime, sdoAlarm);
+                durationTime(sdf, currentTime, sdoAlarm);
                 if (existIndex != -1) {
                     SceneDataObject sdoExist = alarmList.value_array.set.get(existIndex);
                     for (String key : sdoAlarm.keySet()) {
@@ -534,7 +539,7 @@ public class AlarmUtil {
         }
     }
 
-    public static void exe_ProcessAlarm_comment(String id, JSONObject dtoJSON) {
+    public static void exeProcessAlarmComment(String id, JSONObject dtoJSON) {
         SceneDataSet alarmList = DataContainer.alarmArray;
         for (int i = 0; i < alarmList.set.size(); i++) {
             SceneDataObject sdoInner = (SceneDataObject) alarmList.set.get(i);
@@ -548,7 +553,7 @@ public class AlarmUtil {
         }
     }
 
-    public static void exe_ProcessOrderDesc(String id, JSONObject alarm_order) {
+    public static void exeProcessOrderDesc(String id, JSONObject alarm_order) {
         for (SceneDataObject sdo : DataContainer.alarmArray.set) {
             String idInner = (String) sdo.get("id").value_prim.value;
             if (idInner.equals(id)) {
@@ -573,7 +578,7 @@ public class AlarmUtil {
         }
     }
 
-    public static void chixushijian(SimpleDateFormat sdf, Date currentTime, SceneDataObject sdoInner) {
+    public static void durationTime(SimpleDateFormat sdf, Date currentTime, SceneDataObject sdoInner) {
         try {
             String triggerTime = (String) sdoInner.get("triggerTime").value_prim.value;
             String duration;
@@ -619,30 +624,17 @@ public class AlarmUtil {
     // 获取时间差方法
     public static String getTimeDiff(Date startDate, Date endDate) {
         long diffMS = endDate.getTime() - startDate.getTime();
-        // (1000 * 60 * 60 * 24)
-        Long dayMSRate = 86400000L;
-        // (1000 * 60 * 60)
-        Long hourMSRate = 3600000L;
-        // (1000 * 60)
-        Long minuteMSRate = 60000L;
-        // (1000)
-        Long secondMSRate = 1000L;
+        long dayMSRate = 86400000L;
+        long hourMSRate = 3600000L;
+        long minuteMSRate = 60000L;
+        long secondMSRate = 1000L;
         long days = diffMS / dayMSRate;
-        // 获取时
         long hours = diffMS % dayMSRate / hourMSRate;
-        // 获取分钟
         long minutes = diffMS % hourMSRate / minuteMSRate;
-        // 获取秒
         long seconds = diffMS % minuteMSRate / secondMSRate;
         return days + "天" + hours + "小时" + minutes + "分" + seconds + "秒";
     }
 
-    // 获取时间差方法
-    public static String getTimeDiff(Long startTimestamp, Long endTimestamp) {
-        Date startDate = new Date(startTimestamp);
-        Date endDate = new Date(endTimestamp);
-        return getTimeDiff(startDate, endDate);
-    }
 
     public static long getTimeDiffLong(SimpleDateFormat sdf, String startTimestamp, String endTimestamp) throws Exception {
         Date startDate = sdf.parse(startTimestamp);

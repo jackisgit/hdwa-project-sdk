@@ -164,6 +164,17 @@ public class BaseDecConstant {
      * aliasName String
      */
     public static final String ALIAS_NAME = "aliasName";
+
+    /**
+     * pushType String
+     */
+    public static final String PUSH_TYPE = "pushType";
+
+    /**
+     * alarmId String
+     */
+    public static final String ALARM_ID = "alarmId";
+
     /**
      * ibms String
      */
@@ -338,6 +349,11 @@ public class BaseDecConstant {
      * 类型string
      */
     public static final String TYPE = "type";
+
+    /**
+     * refresh string
+     */
+    public static final String REFRESH = "refresh";
 
     /**
      * from string
