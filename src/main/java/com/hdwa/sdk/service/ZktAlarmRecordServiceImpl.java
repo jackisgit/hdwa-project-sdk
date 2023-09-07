@@ -1,23 +1,23 @@
 package com.hdwa.sdk.service;
 
 import cn.hutool.core.collection.CollectionUtil;
-import com.alibaba.fastjson.JSONObject;
-import com.hdwa.sdk.cache.AlarmInfoCache;
-import com.hdwa.sdk.cache.ExpireAlarmQueue;
+import com.alibaba.fastjson.JSONObject;;
 import com.hdwa.sdk.entity.ZktAlarmRecord;
 import com.hdwa.sdk.mapper.ZktAlarmRecordMapper;
-import com.hdwa.sdk.vo.AlarmStateVO;
-import com.hdwa.sdk.vo.ExpireAlarmMessageVO;
 import com.redxun.common.base.db.BaseDao;
 import com.redxun.common.base.db.BaseService;
 import com.redxun.common.service.impl.SuperServiceImpl;
+import com.redxun.core.cache.alarm.AlarmInfoCache;
+import com.redxun.core.cache.alarm.ExpireAlarmQueue;
+import com.redxun.core.entity.alarm.AlarmStateVO;
+import com.redxun.core.entity.alarm.ExpireAlarmMessageVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 /**
-* [报警记录ID]业务服务类
+* [报警记录]业务服务类
 */
 @Service
 public class ZktAlarmRecordServiceImpl extends SuperServiceImpl<ZktAlarmRecordMapper, ZktAlarmRecord> implements BaseService<ZktAlarmRecord> {

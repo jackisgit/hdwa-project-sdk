@@ -18,15 +18,13 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.redxun.common.base.entity.BaseExtEntity;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 
-@Setter
-@Getter
+@Data
 @Builder
+@AllArgsConstructor
 @Accessors(chain = true)
 @TableName(value = "w_zkt_alarm_record")
 public class ZktAlarmRecord extends BaseExtEntity<String> {

@@ -5,7 +5,7 @@ import com.redxun.common.base.db.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
-* 报警记录ID数据库访问层
+* 报警记录数据库访问层
 */
 @Mapper
 public interface ZktAlarmRecordMapper extends BaseDao<ZktAlarmRecord> {

@@ -1,6 +1,6 @@
 package com.hdwa.sdk.kafka;
 import com.alibaba.fastjson.JSONObject;
-import com.hdwa.sdk.constant.CommonConst;
+import com.redxun.core.constant.alarm.CommonConst;
 import com.redxun.core.entity.alarm.netty.NettyMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
-
-import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * kafak生产
@@ -35,32 +34,32 @@ public class KafkaProducer {
 
     @Bean
     @Order(2)
-    public void queryDefine() throws InterruptedException {
-
+    public void queryDefine() {
         //启动的时候发送消息,获取全部报警定义
-        NettyMessage nettyMessage = new NettyMessage("", 4, CommonConst.projectId, CommonConst.groupCode);
+        NettyMessage<JSONObject> nettyMessage = new NettyMessage<>("", 4, CommonConst.projectId, CommonConst.groupCode);
         JSONObject content = new JSONObject();
         content.put("groupCode", CommonConst.groupCode);
         content.put("projectId", CommonConst.projectId);
-        nettyMessage.setContent(Arrays.asList(content));
+        nettyMessage.setContent(Collections.singletonList(content));
         send(nettyMessage);
     }
 
     public void send(NettyMessage<?> message) {
+        // todo 暂时注释
         //发送消息
-        ListenableFuture<SendResult<String, Object>> future = kafkaTemplate.send(topicEdgeAlarm, JSONObject.toJSONString(message));
-        future.addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
-            @Override
-            public void onFailure(Throwable throwable) {
-                //发送失败的处理
-                log.info(topicEdgeAlarm + " - 边缘端 发送消息失败：" + throwable.getMessage());
-            }
-
-            @Override
-            public void onSuccess(SendResult<String, Object> stringObjectSendResult) {
-                //成功的处理
-                log.info(topicEdgeAlarm + " - 边缘端 发送消息成功：" + stringObjectSendResult.toString());
-            }
-        });
+//        ListenableFuture<SendResult<String, Object>> future = kafkaTemplate.send(topicEdgeAlarm, JSONObject.toJSONString(message));
+//        future.addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
+//            @Override
+//            public void onFailure(Throwable throwable) {
+//                //发送失败的处理
+//                log.info(topicEdgeAlarm + " - 边缘端 发送消息失败：" + throwable.getMessage());
+//            }
+//
+//            @Override
+//            public void onSuccess(SendResult<String, Object> stringObjectSendResult) {
+//                //成功的处理
+//                log.info(topicEdgeAlarm + " - 边缘端 发送消息成功：" + stringObjectSendResult.toString());
+//            }
+//        });
     }
 }

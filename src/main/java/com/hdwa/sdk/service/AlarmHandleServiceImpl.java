@@ -7,18 +7,17 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.util.StringUtil;
 import com.googlecode.aviator.AviatorEvaluator;
 import com.googlecode.aviator.Expression;
-import com.hdwa.sdk.cache.AlarmInfoCache;
-import com.hdwa.sdk.cache.CurrentDataCache;
-import com.hdwa.sdk.cache.ExpireAlarmQueue;
-import com.hdwa.sdk.constant.CommonConst;
 import com.hdwa.sdk.entity.ZktAlarmRecord;
 import com.hdwa.sdk.kafka.KafkaProducer;
-import com.hdwa.sdk.vo.*;
+import com.redxun.core.cache.alarm.AlarmInfoCache;
+import com.redxun.core.cache.alarm.CurrentDataCache;
+import com.redxun.core.cache.alarm.ExpireAlarmQueue;
+import com.redxun.core.constant.alarm.CommonConst;
+import com.redxun.core.entity.alarm.*;
 import com.redxun.core.entity.alarm.netty.NettyMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.quartz.JobDataMap;
-import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,17 +35,20 @@ import static org.apache.commons.lang3.math.NumberUtils.INTEGER_ONE;
 @Service
 @Slf4j
 public class AlarmHandleServiceImpl {
+
     @Autowired
     CurrentDataCache currentDataCache;
+
     @Autowired
     ZktAlarmRecordServiceImpl zktAlarmRecordService;
+
     @Autowired
     KafkaProducer kafkaProducer;
 
     /**
      * 处理iot采集数据
      */
-    public void handleIOTData(String msg) throws SchedulerException, InterruptedException {
+    public void handleIOTData(String msg) throws InterruptedException {
         JSONObject parseObject = JSONObject.parseObject(msg);
         msg = parseObject.getString("data");
         if (StrUtil.isBlank(msg)) {
@@ -72,7 +74,7 @@ public class AlarmHandleServiceImpl {
         }
     }
 
-    private void validIotData(String dateTime, String meterId, String funcId, double value) throws SchedulerException, InterruptedException {
+    private void validIotData(String dateTime, String meterId, String funcId, double value) throws InterruptedException {
         //获取报警定义
         List<AlarmDefineVO> alarmDefines = AlarmInfoCache.getAlarmDefinitionIdByMeterFuncId(meterId, funcId);
         for (AlarmDefineVO alarmDefine : alarmDefines) {
@@ -87,16 +89,10 @@ public class AlarmHandleServiceImpl {
                 boolean match = codeDetail.stream().allMatch(p -> currentDataCache.hasKey(p.getString("meterId"), p.getString("funcId")));
                 //报警定义的所有信息点都有采集数值，具备判断条件
                 if (match) {
-                    /*if(condition.getRealRestraintTime()!=null) {
-                        if (condition.getRealRestraintTime().compareTo(LocalDateTime.now()) > 0) {
-                            continue;
-                        }
-                    }*/
                     String trigger = condition.getTrigger();
                     String end = condition.getEnd();
-                    HashMap<String, Object> paramMap = new HashMap<String, Object>();
-                    for (int j = 0; j < codeDetail.size(); j++) {
-                        JSONObject code = codeDetail.get(j);
+                    HashMap<String, Object> paramMap = new HashMap<>();
+                    for (JSONObject code : codeDetail) {
                         //缓存：key是infoCode，取出当前iot数据值
                         paramMap.put(code.getString("infoCode"), currentDataCache.getCurrentData(code.getString("meterId"), code.getString("funcId")));
                     }
@@ -107,7 +103,7 @@ public class AlarmHandleServiceImpl {
                     Boolean endResult = (Boolean) endExp.execute(paramMap);
                     log.info("triggerResult:[{}],endResult:[{}]", triggerResult, endResult);
                     if (triggerResult && endResult) {
-                        log.warn("报警触发条件和报警恢复条件同时满足，请检查，报警定义详情【{}】", alarmDefine.toString());
+                        log.warn("报警触发条件和报警恢复条件同时满足，请检查，报警定义详情【{}】", alarmDefine);
                     }
                     //获取当前报警状态
                     AlarmStateVO alarmState = AlarmInfoCache.getAlarmState(defineId);
@@ -155,7 +151,7 @@ public class AlarmHandleServiceImpl {
     /**
      * 当前数据正常判断逻辑
      */
-    private void handlerNowDataNormal(AlarmDefineVO alarmDefine, String dateTime, Condition condition, String defineId, Boolean endResult, AlarmStateVO alarmState, HashMap<String, Object> paramMap, String meterId, String funcId, double value) throws InterruptedException, SchedulerException {
+    private void handlerNowDataNormal(AlarmDefineVO alarmDefine, String dateTime, Condition condition, String defineId, Boolean endResult, AlarmStateVO alarmState, HashMap<String, Object> paramMap, String meterId, String funcId, double value) throws InterruptedException {
         //当前数据正常，报警状态为正常：清空之前的报警计时，重置回默认状态
         if (AlarmStateVO.State.NORMAL.getType().equals(alarmState.getState())) {
             alarmState = new AlarmStateVO(defineId);
@@ -180,7 +176,7 @@ public class AlarmHandleServiceImpl {
             //超过报警恢复设置的持续时间
             if (com.redxun.core.util.alarm.DateUtil.betweenTwoTimeSecond(endTime, dateTime) >= uphold) {
                 log.info("产生一条报警恢复消息[{}]>[{}]", com.redxun.core.util.alarm.DateUtil.betweenTwoTimeSecond(endTime, dateTime), uphold);
-                NettyMessage<AlarmRecordVO> nettyMessage = new NettyMessage("", 6, CommonConst.projectId, CommonConst.groupCode);
+                NettyMessage<AlarmRecordVO> nettyMessage = new NettyMessage<>("", 6, CommonConst.projectId, CommonConst.groupCode);
                 ZktAlarmRecord alarmRecordDO = zktAlarmRecordService.getById(AlarmInfoCache.getAlarmDefineId(alarmDefine));
                 if (alarmRecordDO == null) {
                     alarmRecordDO = new ZktAlarmRecord();
@@ -206,7 +202,7 @@ public class AlarmHandleServiceImpl {
                 //如果有报警ID,直接报警恢复
                 if (StringUtils.isNotEmpty(alarmId)) {
                     alarmResumeRecord.setId(alarmId);
-                    nettyMessage.setContent(Arrays.asList(alarmResumeRecord));
+                    nettyMessage.setContent(Collections.singletonList(alarmResumeRecord));
                     //{"id","123", "state":1, "groupCode":"wd", "projectId":"Pj123","endTime":"","endInfo":""}
                     // todo 改为kafka推送
                     //nettyClient.sendMessage(nettyMessage);
@@ -222,13 +218,12 @@ public class AlarmHandleServiceImpl {
                     //恢复
                     jobDataMap.put("state", "2");
                     log.info(JSONObject.toJSONString(jobDataMap));
-                    String jobName = defineId;
                     ExpireAlarmMessageVO em = new ExpireAlarmMessageVO();
                     //过期消息
                     em.setType("1");
                     em.setStartTime(DateUtil.offsetMinute(new Date(), 3).toJdkDate());
                     em.setJobDataMap(jobDataMap);
-                    em.setJobName(jobName);
+                    em.setJobName(defineId);
                     em.setJobGroupName("resume");
                     ExpireAlarmQueue.getExpireAlarmMessageQueue().produce(em);
                 }
@@ -250,7 +245,7 @@ public class AlarmHandleServiceImpl {
     /**
      * 处理当前值报警的情况
      */
-    private void handlerNowDataAlarm(AlarmDefineVO alarmDefine, AlarmStateVO alarmState, String dateTime, Condition condition, String defineId, HashMap<String, Object> paramMap, String meterId, String funcId, double value) throws SchedulerException, InterruptedException {
+    private void handlerNowDataAlarm(AlarmDefineVO alarmDefine, AlarmStateVO alarmState, String dateTime, Condition condition, String defineId, HashMap<String, Object> paramMap, String meterId, String funcId, double value) throws InterruptedException {
         alarmState.setLatestDataNormalstate(false);
         JSONObject effectTime = condition.getEffectTime();
         //无生效时间设置，则任何时间生效
@@ -333,7 +328,7 @@ public class AlarmHandleServiceImpl {
                     .ibmsClassCode(alarmDefine.getIbmsClassCode())
                     .ibmsSceneCode(alarmDefine.getIbmsSceneCode())
                     .build();
-            NettyMessage<AlarmRecordVO> nettyMessage = new NettyMessage("", 5, CommonConst.projectId, CommonConst.groupCode);
+            NettyMessage<AlarmRecordVO> nettyMessage = new NettyMessage<>("", 5, CommonConst.projectId, CommonConst.groupCode);
             nettyMessage.setContent(Collections.singletonList(alarmRecord));
             // todo 推送一条报警记录给远端，改为kafka推送
             //nettyClient.sendMessage(nettyMessage);
@@ -358,7 +353,7 @@ public class AlarmHandleServiceImpl {
                 log.error("产生一条定时过期报警消息");
                 ZktAlarmRecord zktAlarmRecord = ZktAlarmRecord.builder()
                         .alarmTime(alarmState.getAlarmStartTime())
-                        .effectEndTime(com.redxun.core.util.alarm.DateUtil.format(expireDateTime))
+                        .effectEndTime(com.redxun.core.util.alarm.DateUtil.format(Objects.requireNonNull(expireDateTime)))
                         .id(defineId)
                         .itemCode(alarmDefine.getItemCode())
                         .name(alarmDefine.getName())
@@ -380,16 +375,14 @@ public class AlarmHandleServiceImpl {
                 jobDataMap.put("defineId", defineId);
                 //过期
                 jobDataMap.put("state", "3");
-                String jobName = defineId;
                 ExpireAlarmMessageVO em = new ExpireAlarmMessageVO();
                 //过期消息
                 em.setType("1");
                 em.setStartTime(com.redxun.core.util.alarm.DateUtil.localDateTime2Date(expireDateTime));
                 em.setJobDataMap(jobDataMap);
-                em.setJobName(jobName);
+                em.setJobName(defineId);
                 em.setJobGroupName("expire");
                 ExpireAlarmQueue.getExpireAlarmMessageQueue().produce(em);
-                //alarmQuartzService.addExpireJob(DateUtils.localDateTime2Date(expireDateTime), jobName, "expire", jobDataMap);
             }
         } else {
             alarmState.setState(AlarmStateVO.State.NORMAL.getType());

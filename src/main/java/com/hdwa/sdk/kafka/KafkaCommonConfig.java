@@ -40,13 +40,11 @@ public class KafkaCommonConfig implements InitializingBean {
 
     //构造消费者属性map，ConsumerConfig中的可配置属性比spring boot自动配置要多
     private Map<String, Object> consumerProperties(){
-//        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         return properties.buildConsumerProperties();
     }
 
     /**
      * 不使用spring boot默认方式创建的DefaultKafkaConsumerFactory，重新定义创建方式
-     * @return
      */
     @Bean("consumerFactory")
     public DefaultKafkaConsumerFactory consumerFactory(){

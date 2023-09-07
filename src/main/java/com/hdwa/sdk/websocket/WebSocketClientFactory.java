@@ -3,10 +3,10 @@ package com.hdwa.sdk.websocket;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.TimeInterval;
 import cn.hutool.core.thread.ExecutorBuilder;
-import com.hdwa.sdk.constant.CommonConst;
 import com.hdwa.sdk.service.AlarmHandleServiceImpl;
-import com.hdwa.sdk.utils.GZIPCompressUtil;
-import com.hdwa.sdk.utils.LockUtil;
+import com.redxun.core.constant.alarm.CommonConst;
+import com.redxun.core.util.alarm.GZIPCompressUtil;
+import com.redxun.core.util.alarm.LockUtil;
 import org.java_websocket.WebSocket;
 import org.java_websocket.client.WebSocketClient;
 import lombok.extern.slf4j.Slf4j;
@@ -53,16 +53,12 @@ public class WebSocketClientFactory {
 
     /**
      * 创建websocket对象
-     *
-     * @return WebSocketClient
-     * @throws URISyntaxException
      */
     private WebSocketClient createNewWebSocketClient() throws URISyntaxException {
         log.info("iot-project连接地址为:[{}]", CommonConst.websocket);
         WebSocketClient webSocketClient = new WebSocketClient(new URI(CommonConst.websocket)) {
             @Override
             public void onOpen(ServerHandshake serverHandshake) {
-                //sendMsg(getOutCallWebSocketClientHolder(), CommonConst.building);
             }
 
             @Override
@@ -76,7 +72,7 @@ public class WebSocketClientFactory {
                         log.error("解密失败！", e);
                     }
                 }
-               //log.info("接收信息为：{}", message);
+
                 try {
                     while (!LockUtil.getInstance().isExecute()) {
                         try {
@@ -97,10 +93,6 @@ public class WebSocketClientFactory {
                             log.error("数据处理失败", e);
                         }
                     });
-                    // 控返不一致报警处理
-//                    if (CommonConst.collectEnable) {
-//                    	executor.execute(() -> returnDifferentAlarm.putMsg(finalMessage));
-//					}
                 } catch (Exception e) {
                     log.error("数据处理失败", e);
                 }
@@ -110,15 +102,12 @@ public class WebSocketClientFactory {
 
             @Override
             public void onClose(int code, String reason, boolean remote) {
-                //code, reason, remote
                 log.warn("关闭连接,code[{}],reson[{}],remote[{}]", code, reason, remote);
-                //retryOutCallWebSocketClient();
             }
 
             @Override
             public void onError(Exception e) {
                 log.error("连接异常", e);
-                //retryOutCallWebSocketClient();
             }
         };
         //默认为60 ，阻塞时间稍长会超时，此处改成 1200
@@ -126,7 +115,6 @@ public class WebSocketClientFactory {
         webSocketClient.connect();
         return webSocketClient;
     }
-
 
     /**
      * 项目启动或连接失败的时候打开新链接,进行连接认证
@@ -143,27 +131,23 @@ public class WebSocketClientFactory {
 
             log.info("打开新的websocket连接，并进行认证");
             WebSocketClient webSocketClient = this.createNewWebSocketClient();
-
             // 每次创建新的就放进去
             this.setOutCallWebSocketClientHolder(webSocketClient);
+
             return webSocketClient;
         } catch (URISyntaxException e) {
             log.error("retryOutCallWebSocketClient失败:", e);
         }
+
         return null;
     }
-
 
     /**
      * 发送消息
      * 注意： 要加超时设置，避免很多个都在同时超时占用资源
-     *
-     * @param webSocketClient 指定的webSocketClient
-     * @param message         消息
      */
     public void sendMsg(WebSocketClient webSocketClient, String message) {
         log.info("websocket向服务端发送消息，消息为：{}", message);
-        //long startOpenTimeMillis = System.currentTimeMillis();
         TimeInterval timer = DateUtil.timer();
         while (!webSocketClient.getReadyState().equals(WebSocket.READYSTATE.OPEN)) {
             log.debug("正在建立通道，请稍等");
@@ -179,7 +163,7 @@ public class WebSocketClientFactory {
      * 启动专门的定时任务去自动断开重新连接（10秒钟监测一次）
      */
     @Scheduled(initialDelay = 20000, fixedDelay = 60000)
-    public void holderConneted() {
+    public void holderConnected() {
         try {
             WebSocketClient outCallWebSocketClientHolder = this.getOutCallWebSocketClientHolder();
             if (null == outCallWebSocketClientHolder) {
