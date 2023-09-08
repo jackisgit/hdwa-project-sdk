@@ -20,7 +20,7 @@ public class UrlConstant {
     /**
      * 测试token
      */
-    public static final String TOKEN = "9be2851574aee0e310b093bff0e115188a3d020255fa57866cd0b8ca2eca140b.DS865SDFGVX5GN8GE8RDV2B4XB5D8B5";
+    public static final String TOKEN = "Bearer 1e25db16-123d-4743-b253-13ddac3d5c46";
 
 
     /**

@@ -27,8 +27,8 @@ public class OkHttpClientUtil {
      */
     public static JSONObject httpPost(JSONObject requestBody, String ur) throws Exception {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.connectTimeout(60, TimeUnit.SECONDS);
-        builder.readTimeout(60, TimeUnit.SECONDS);
+        builder.connectTimeout(60 * 3, TimeUnit.SECONDS);
+        builder.readTimeout(60 * 3, TimeUnit.SECONDS);
         OkHttpClient httpClient = builder.build();
         RequestBody res = RequestBody.create(okhttp3.MediaType.parse(MediaType.APPLICATION_JSON_VALUE), requestBody.toJSONString());
         // 创建 POST 请求

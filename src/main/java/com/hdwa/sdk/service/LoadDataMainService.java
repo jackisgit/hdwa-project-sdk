@@ -36,32 +36,34 @@ public class LoadDataMainService {
     private String projectId;
 
     /**
+     * 下载数据入口
+     */
+    public void downLoadDataMain() {
+        physicalWorldService.downLoadPhysicalWorldData();
+        ibmsPhysicalWorldService.downLoadIbmsPhysicalWorldData();
+        ibmsLogicalGroupService.downLoadLogicalGroupData();
+        pointService.downLoadPoint();
+        configApiService.downLoadConfig();
+    }
+
+    /**
      * 加载数据入口
      */
-    public RepositoryImpl loadDataMain() {
+    public void loadDataMain() {
         RepositoryImpl repository = new RepositoryImpl();
-
         //加载物理世界数据
         physicalWorldService.loadPhysicalWorldData(repository);
-
         //加载IBMS物理世界数据
         ibmsPhysicalWorldService.loadIbmsPhysicalWorldData(repository);
-
         //加载IBMS逻辑编组数据
         ibmsLogicalGroupService.loadLogicalGroupData(repository);
-
         //加载点位数据
         pointService.loadPointData(repository);
-
         //加载报警数据
         alarmService.loadAlarmData(repository);
-
         //加载接口数据
         configApiService.loadConfigData(repository);
-
         //保存到数据容器
         DataContainer.projectMap.put(projectId, repository);
-
-        return repository;
     }
 }

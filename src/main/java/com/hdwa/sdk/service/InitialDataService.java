@@ -1,6 +1,7 @@
 package com.hdwa.sdk.service;
 
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
+import com.hdwa.sdk.utils.FileUtil;
 import com.hdwa.sdk.websocket.AlarmWebSocketClient;
 import com.hdwa.sdk.websocket.IotWebSocketClient;
 import lombok.extern.slf4j.Slf4j;
@@ -61,9 +62,42 @@ public class InitialDataService implements CommandLineRunner {
     @Override
     public void run(String... args) {
         initDir();
-        RepositoryImpl repository = loadDataMainService.loadDataMain();
-        initIotWebsocket(repository);
-        initAlarmWebsocket();
+        downloadData();
+        //RepositoryImpl repository = loadDataMainService.loadDataMain();
+        //initIotWebsocket(repository);
+        //initAlarmWebsocket();
+    }
+
+    /**
+     * 如果本地没有数据就下载数据
+     */
+    private void downloadData() {
+        log.warn("*****检查本地已下载的文件");
+        String root = groupCode + File.separator + projectId + File.separator;
+        File physicalWorldDir = FileUtil.getMaxDir(new File(root + physicalWorld));
+        File ibmsPhysicalWorldDir = FileUtil.getMaxDir(new File(root + ibmsPhysicalWorld));
+        File ibmsLogicalGroupDir = FileUtil.getMaxDir(new File(root + ibmsLogicalGroup));
+        File pointDir = FileUtil.getMaxDir(new File(root + point));
+        File configDir = FileUtil.getMaxDir(new File(root + config));
+        boolean flag = false;
+        if (physicalWorldDir == null) {
+            flag = true;
+        }
+        if (ibmsPhysicalWorldDir == null) {
+            flag = true;
+        }
+        if (ibmsLogicalGroupDir == null) {
+            flag = true;
+        }
+        if (pointDir == null) {
+            flag = true;
+        }
+        if (configDir == null) {
+            flag = true;
+        }
+        if (flag) {
+            loadDataMainService.downLoadDataMain();
+        }
     }
 
     /**

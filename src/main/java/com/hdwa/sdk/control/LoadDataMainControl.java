@@ -12,15 +12,22 @@ import org.springframework.web.bind.annotation.RestController;
  * 加载数据入口控制器
  */
 @RestController
-@RequestMapping("/loadData")
+@RequestMapping("/data")
 public class LoadDataMainControl {
 
     @Autowired
     private LoadDataMainService loadDataMainService;
 
-    @GetMapping("/main")
+    @GetMapping("/loadDataMain")
     public Object loadDataMain() {
         loadDataMainService.loadDataMain();
+        return "ok";
+    }
+
+
+    @GetMapping("/downLoadDataMain")
+    public Object downLoadDataMain() {
+        loadDataMainService.downLoadDataMain();
         return "ok";
     }
 }

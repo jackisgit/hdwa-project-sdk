@@ -124,10 +124,18 @@ public class FileUtil {
      */
     public static File getMaxDir(File directory) {
         File[] subdirectories = directory.listFiles(File::isDirectory);
+        File resultFile;
         if (subdirectories != null && subdirectories.length > 0) {
             // 按文件名称降序排序
             Arrays.sort(subdirectories, Comparator.comparing(File::getName).reversed());
-            return subdirectories[0];
+            resultFile = subdirectories[0];
+            //临时目录排除
+            if (resultFile.getName().equals(BaseDecConstant.TEMP)) {
+                log.error("未找到文件夹：" + directory.getPath());
+                return null;
+            }else{
+                return resultFile;
+            }
         } else {
             log.error("未找到文件夹：" + directory.getPath());
         }

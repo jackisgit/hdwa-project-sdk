@@ -302,6 +302,12 @@ public class BaseDecConstant {
      * -temp String
      */
     public static final String TEMP2 = "temp-";
+
+    /**
+     * temp String
+     */
+    public static final String TEMP = "temp";
+
     /**
      * -id string
      */
