@@ -5,7 +5,6 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.redxun.core.constant.alarm.CommonConst;
 import com.redxun.core.constant.alarm.ExtraCommonConstant;
 import com.redxun.core.entity.alarm.AlarmDefineVO;
 import com.redxun.core.util.alarm.AlarmDefineUtil;

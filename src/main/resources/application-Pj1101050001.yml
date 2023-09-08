@@ -1,12 +1,15 @@
-server:
-  port: 18826
+#呼市赛罕，10.27.8.45
+group:
+  control:
+    host: 10.199.205.60
+    code: WD
+    project:
+      #------------------iot使用项目ID 需更改
+      id: Pj1101050001
+      #------------------iot使用项目ID，不包含PJ 需更改
+      iotid: 1101050001
 
 spring:
-  application:
-    name: hdwa-project-sdk
-  profiles:
-    active: Pj1101050001
-
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://10.199.205.60:3306/hdwa_ibms_alarm?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false
@@ -29,7 +32,6 @@ spring:
     maxOpenPreparedStatements: 50
     # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
     connectionProperties: druid.stat.slowSqlMillis=500;druid.stat.logSlowSql=true;config.decrypt=false
-
   #redis配置
   redis:
     host: ${group.control.host}
@@ -53,7 +55,7 @@ spring:
       # 设置生产者内存缓冲区的大小。
       buffer-memory: 33554432
       acks: 1
-      topics: control.edge2control
+      edgeTopic: control.edge2control
     consumer:
       # 自动提交的时间间隔 在spring boot 2.X 版本中这里采用的是值的类型为Duration 需要符合特定的格式，如1S,1M,2H,5D
       auto-commit-interval: 1S
@@ -75,13 +77,12 @@ spring:
       missing-topics-fatal: false
     properties:
       session:
-      timeout:
-        ms: 60000
-    max:
-      poll:
-        interval:
-          ms: 600000
-
+        timeout:
+          ms: 60000
+      max:
+        poll:
+          interval:
+            ms: 600000
 
 #------------------ mqtt 需要更改
 mqtt:
@@ -117,7 +118,7 @@ remote:
 
       # IOT程序
       iot:
-      # iot-collect 服务（无用）
+        # iot-collect 服务（无用）
 
     collect:
       # 是否启用collect服务的netty客户端,true-启用

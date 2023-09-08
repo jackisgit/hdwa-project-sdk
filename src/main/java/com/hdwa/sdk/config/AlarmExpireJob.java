@@ -4,10 +4,9 @@ import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import com.hdwa.sdk.entity.ZktAlarmRecord;
-import com.hdwa.sdk.kafka.KafkaProducer;
+import com.hdwa.sdk.kafka.HuidaKafkaProducer;
 import com.hdwa.sdk.service.ZktAlarmRecordServiceImpl;
 import com.redxun.core.cache.alarm.AlarmInfoCache;
-import com.redxun.core.constant.alarm.CommonConst;
 import com.redxun.core.entity.alarm.AlarmRecordVO;
 import com.redxun.core.entity.alarm.AlarmStateVO;
 import com.redxun.core.entity.alarm.netty.NettyMessage;
@@ -40,7 +39,7 @@ public class AlarmExpireJob extends QuartzJobBean {
     AlarmInfoCache alarmInfoCache;
 
     @Autowired
-    KafkaProducer kafkaProducer;
+    HuidaKafkaProducer kafkaProducer;
 
     /**
      * 报警记录信息详情

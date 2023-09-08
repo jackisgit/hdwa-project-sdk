@@ -3,10 +3,10 @@ package com.hdwa.sdk.kafka;
 import cn.hutool.core.collection.CollectionUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.hdwa.sdk.config.CommonConst;
 import com.hdwa.sdk.entity.ZktAlarmRecord;
 import com.hdwa.sdk.service.ZktAlarmRecordServiceImpl;
 import com.redxun.core.cache.alarm.AlarmInfoCache;
-import com.redxun.core.constant.alarm.CommonConst;
 import com.redxun.core.entity.alarm.AlarmDefineVO;
 import com.redxun.core.entity.alarm.AlarmStateVO;
 import com.redxun.core.entity.alarm.netty.NettyMessage;
@@ -15,28 +15,26 @@ import com.redxun.core.util.alarm.LockUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * kafak消费
- */
 @Configuration
 @Slf4j
-@ConditionalOnProperty(prefix = "spring.kafka", name = "enable", havingValue = "true")
-public class KafkaConsumer {
+public class HuidaKafkaConsumer {
 
     @Autowired
     private ZktAlarmRecordServiceImpl alarmRecordService;
 
-    @KafkaListener(topics = {"#{'${topicName}'.split(',')}"}, containerFactory = "listenerContainerFactory")
+
+    @KafkaListener(
+            containerFactory = "huidaKafkaListenerContainerFactory",
+            topics = {"xxxx"},
+            groupId = "huida-consumer")
     public void topicCloudAlarmConsumer(List<ConsumerRecord<?, String>> record, Acknowledgment ack) {
         for (ConsumerRecord<?, String> consumerRecords : record) {
             Optional<String> message = Optional.ofNullable(consumerRecords.value());

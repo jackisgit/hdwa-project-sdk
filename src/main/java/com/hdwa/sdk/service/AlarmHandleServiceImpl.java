@@ -7,12 +7,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.util.StringUtil;
 import com.googlecode.aviator.AviatorEvaluator;
 import com.googlecode.aviator.Expression;
+import com.hdwa.sdk.config.CommonConst;
 import com.hdwa.sdk.entity.ZktAlarmRecord;
-import com.hdwa.sdk.kafka.KafkaProducer;
+import com.hdwa.sdk.kafka.HuidaKafkaProducer;
 import com.redxun.core.cache.alarm.AlarmInfoCache;
 import com.redxun.core.cache.alarm.CurrentDataCache;
 import com.redxun.core.cache.alarm.ExpireAlarmQueue;
-import com.redxun.core.constant.alarm.CommonConst;
 import com.redxun.core.entity.alarm.*;
 import com.redxun.core.entity.alarm.netty.NettyMessage;
 import lombok.extern.slf4j.Slf4j;
@@ -37,13 +37,10 @@ import static org.apache.commons.lang3.math.NumberUtils.INTEGER_ONE;
 public class AlarmHandleServiceImpl {
 
     @Autowired
-    CurrentDataCache currentDataCache;
-
-    @Autowired
     ZktAlarmRecordServiceImpl zktAlarmRecordService;
 
     @Autowired
-    KafkaProducer kafkaProducer;
+    HuidaKafkaProducer kafkaProducer;
 
     /**
      * 处理iot采集数据
@@ -82,11 +79,11 @@ public class AlarmHandleServiceImpl {
             String defineId = AlarmInfoCache.getAlarmDefineId(alarmDefine);
             synchronized (defineId.intern()) {
                 //实时数据缓存
-                currentDataCache.putCurrentData(meterId, funcId, value);
+                CurrentDataCache.putCurrentData(meterId, funcId, value);
                 //报警触发条件
                 Condition condition = alarmDefine.getCondition();
                 List<JSONObject> codeDetail = condition.getInfoCodes();
-                boolean match = codeDetail.stream().allMatch(p -> currentDataCache.hasKey(p.getString("meterId"), p.getString("funcId")));
+                boolean match = codeDetail.stream().allMatch(p -> CurrentDataCache.hasKey(p.getString("meterId"), p.getString("funcId")));
                 //报警定义的所有信息点都有采集数值，具备判断条件
                 if (match) {
                     String trigger = condition.getTrigger();
@@ -94,7 +91,7 @@ public class AlarmHandleServiceImpl {
                     HashMap<String, Object> paramMap = new HashMap<>();
                     for (JSONObject code : codeDetail) {
                         //缓存：key是infoCode，取出当前iot数据值
-                        paramMap.put(code.getString("infoCode"), currentDataCache.getCurrentData(code.getString("meterId"), code.getString("funcId")));
+                        paramMap.put(code.getString("infoCode"), CurrentDataCache.getCurrentData(code.getString("meterId"), code.getString("funcId")));
                     }
                     //匹配计算
                     Expression triggerExp = AviatorEvaluator.compile(trigger, true);

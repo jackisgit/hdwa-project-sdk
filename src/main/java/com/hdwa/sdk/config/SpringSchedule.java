@@ -1,8 +1,7 @@
 package com.hdwa.sdk.config;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hdwa.sdk.kafka.KafkaProducer;
-import com.redxun.core.constant.alarm.CommonConst;
+import com.hdwa.sdk.kafka.HuidaKafkaProducer;
 import com.redxun.core.entity.alarm.netty.NettyMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import java.util.Arrays;
 public class SpringSchedule {
 
     @Autowired
-    KafkaProducer kafkaProducer;
+    HuidaKafkaProducer kafkaProducer;
 
     @Scheduled(cron = "${alarm.get.all.alarmdefine.cron}")
     public void allResetCron() throws InterruptedException {
