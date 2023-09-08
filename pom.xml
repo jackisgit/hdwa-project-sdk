@@ -15,7 +15,7 @@
     <artifactId>zkt-project-control</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>zkt-project-control</name>
-    <description>中控产品-项目控制系统</description>
+    <description>边端控制服务</description>
 
     <properties>
         <java.version>1.8</java.version>

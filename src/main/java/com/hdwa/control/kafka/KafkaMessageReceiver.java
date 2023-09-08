@@ -102,7 +102,7 @@ public class KafkaMessageReceiver {
                 String hour = DateUtils.format(commandTime, DateUtils.sdfHour);
                 String jobName = command.getFuncId() + "_" + command.getMeterId() + DateUtils.format(commandTime);
                 JobDataMap jobDataMap = new JobDataMap();
-                jobDataMap.put("commandResult", command.toString());
+                jobDataMap.put("controlCommand", JSONUtil.toJsonStr(command));
                 try {
                     commandService.addCommand(startTime, jobName, hour, jobDataMap, JSON.toJSONString(command));
                     responseContent.add(new ControlCommand(command.getId(), 1));

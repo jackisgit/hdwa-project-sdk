@@ -12,6 +12,10 @@ public class CommonConst {
      */
     public static String projectId;
     /**
+     * iotid
+     */
+    public static String iotId;
+    /**
      * 集团编码
      */
     public static String groupCode;

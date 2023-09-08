@@ -19,18 +19,18 @@ public class KafkaProducer {
     private KafkaTemplate<String, Object> kafkaTemplate;
 
     public void send(String topic, Object message) {
-        //发送消息
+        // 发送消息
         ListenableFuture<SendResult<String, Object>> future = kafkaTemplate.send(topic, JSONObject.toJSONString(message));
         future.addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
             @Override
-            public void onSuccess(SendResult<String, Object> stringObjectSendResult) {
-                // 成功的处理
+            public void onSuccess(SendResult<String, Object> sendResult) {
+                // 发送成功的处理
 
             }
 
             @Override
             public void onFailure(Throwable throwable) {
-                //发送失败的处理
+                // 发送失败的处理
                 log.info(topic + " 边端控制发送消息失败：" + throwable.getMessage());
             }
         });

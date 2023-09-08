@@ -54,10 +54,9 @@ public class CommandServiceImpl implements CommandService {
      * @param jobGroupName job分组
      * @param jobDataMap   触发器的数据（任务相关的数据都放在这里）
      * @return
-     * @throws SchedulerException
      */
     @Override
-    public String addCommand(Date startTime, String jobName, String jobGroupName, JobDataMap jobDataMap, String msg) throws SchedulerException {
+    public String addCommand(Date startTime, String jobName, String jobGroupName, JobDataMap jobDataMap, String msg) {
         executor.execute(() -> {
             String jobKeyString = jobName + "_" + jobGroupName;
             synchronized (jobKeyString.intern()) {
@@ -132,30 +131,7 @@ public class CommandServiceImpl implements CommandService {
             jobkeyList = jobkeyList.stream().distinct().collect(Collectors.toList());
             quartzScheduler.deleteJobs(jobkeyList);
         }
-        log.info("删除定时任务执行毫秒数为：{} 毫秒}", timer.interval());
-
-        return "success!";
-    }
-
-    /**
-     * 根据job分组ID批量删除工作内容
-     *
-     * @param jobGroupNames
-     * @return
-     * @throws SchedulerException
-     */
-    @Override
-    public synchronized String deleteCommandByJobGroups(List<String> jobGroupNames) throws SchedulerException {
-        List<JobKey> jobkeyList = new ArrayList<JobKey>();
-        for (String jobGroupName : jobGroupNames) {
-            GroupMatcher<JobKey> matcher = GroupMatcher.groupEquals(jobGroupName);
-            Set<JobKey> jobkeySet = quartzScheduler.getJobKeys(matcher);
-            jobkeyList.addAll(jobkeySet);
-        }
-        log.info("要删除控制指令集为：[{}]", JSONObject.toJSONString(jobkeyList));
-        if (CollectionUtil.isNotEmpty(jobkeyList)) {
-            quartzScheduler.deleteJobs(jobkeyList);
-        }
+        log.info("删除定时任务执行毫秒数为：{} 毫秒", timer.interval());
         return "success!";
     }
 

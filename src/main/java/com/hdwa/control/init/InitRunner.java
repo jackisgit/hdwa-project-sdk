@@ -41,11 +41,19 @@ public class InitRunner implements ServletContextAttributeListener, CommandLineR
     }
 
     /**
-     * 项目名称
+     * 项目id
      */
     @Value("${group.control.project.id}")
     public void setProjectId(String value) {
         CommonConst.projectId = value;
+    }
+
+    /**
+     * iotid
+     */
+    @Value("${group.control.project.iotid}")
+    public void setIotId(String value) {
+        CommonConst.iotId = value;
     }
 
     /**

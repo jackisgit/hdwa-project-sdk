@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.hdwa.control.constant.CommonConst;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -19,7 +18,6 @@ import java.util.Date;
 @Data
 @Accessors(chain = true)
 @AllArgsConstructor
-@Builder
 public class ControlCommand implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -105,6 +103,11 @@ public class ControlCommand implements Serializable {
      */
     private String logicalGroupingName;
 
+    /**
+     * 产品模块编码
+     */
+    private String ibmsSceneCode;
+
     @Override
     public String toString() {
         return JSONObject.toJSONString(this);
@@ -117,6 +120,13 @@ public class ControlCommand implements Serializable {
         this.id = id;
         this.commandResult = commandResult;
         this.projectId = CommonConst.projectId;
+    }
+
+    public ControlCommand(String id, Integer commandResult, String pointAction) {
+        this.id = id;
+        this.commandResult = commandResult;
+        this.projectId = CommonConst.projectId;
+        this.pointAction = pointAction;
     }
 
 }
