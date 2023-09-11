@@ -20,34 +20,85 @@ public class UrlConstant {
     /**
      * 测试token
      */
-    public static final String TOKEN = "Bearer 1e25db16-123d-4743-b253-13ddac3d5c46";
+    public static final String TOKEN = "9be2851574aee0e310b093bff0e115188a3d020255fa57866cd0b8ca2eca140b.DS865SDFGVX5GN8GE8RDV2B4XB5D8B5";
 
 
     /**
      * 类型定义数据 接口路径
      */
-    public static final String LIST_CLASS_DEFINER_URL = "/classDefiner/listClassDefiner";
+    public static final String LIST_CLASS_DEFINER_URL = "/openApi/listClassDefiner";
 
 
     /**
      * post 接口路径
      */
-    public static final String POST_URL = "/pathApi/post";
+    public static final String POST_URL = "/openApi/post";
 
     /**
      * 点位定义数据 接口路径
      */
-    public static final String LIST_POINT_DEFINER_URL = "/pointDefiner/listPointDefiner";
+    public static final String LIST_POINT_DEFINER_URL = "/openApi/listPointDefiner";
 
     /**
      * 对象数据 接口路径
      */
-    public static final String LIST_OBJECT_DATA_URL = "/objectData/listObjectData";
+    public static final String LIST_OBJECT_DATA_URL = "/openApi/listObjectData";
 
     /**
      * 关系数据 接口路径
      */
-    public static final String LIST_RELATION_DATA_URL = "/relation/listRelationData";
+    public static final String LIST_RELATION_DATA_URL = "/openApi/listRelationData";
+
+    ///**
+    // * 逻辑分组数据 接口路径
+    // */
+    //public static final String LOGICAL_GROUP_URL = "/openApi/logicalGrouping/list";
+    //
+    ///**
+    // * 逻辑分组包含的对象数据 接口路径
+    // */
+    //public static final String LOGICAL_OBJECT_URL = "/openApi/logicalObject/listPage";
+    //
+    //
+    ///**
+    // * 查询报警记录 接口路径
+    // */
+    //public static final String ALARM_RECORD_PAGE = "/openApi/alarm-record/page";
+    //
+    ///**
+    // * 查询工单接口 接口路径
+    // */
+    //public static final String QUERY_ORDER_STATE = "/openApi/alarmToWorkOrder/queryOrderStateByAlarmIds";
+
+    /**
+     * 控制指令 接口路径
+     */
+    public static final String iot_project_control = "/sync_pointsetbatch_post";
+
+    ///**
+    // * 类型定义数据 接口路径
+    // */
+    //public static final String LIST_CLASS_DEFINER_URL = "/classDefiner/listClassDefiner";
+    //
+    ///**
+    // * post 接口路径
+    // */
+    //public static final String POST_URL = "/pathApi/post";
+    //
+    ///**
+    // * 点位定义数据 接口路径
+    // */
+    //public static final String LIST_POINT_DEFINER_URL = "/pointDefiner/listPointDefiner";
+    //
+    ///**
+    // * 对象数据 接口路径
+    // */
+    //public static final String LIST_OBJECT_DATA_URL = "/objectData/listObjectData";
+    //
+    ///**
+    // * 关系数据 接口路径
+    // */
+    //public static final String LIST_RELATION_DATA_URL = "/relation/listRelationData";
 
     /**
      * 逻辑分组数据 接口路径
@@ -69,11 +120,6 @@ public class UrlConstant {
      * 查询工单接口 接口路径
      */
     public static final String QUERY_ORDER_STATE = "/alarmToWorkOrder/queryOrderStateByAlarmIds";
-
-    /**
-     * 控制指令 接口路径
-     */
-    public static final String iot_project_control = "/sync_pointsetbatch_post";
 
 
     /**
