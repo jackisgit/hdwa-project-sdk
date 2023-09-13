@@ -38,7 +38,7 @@ public class IotWebSocketClient extends WebSocketClient {
      */
     private int count = 0;
 
-    public IotWebSocketClient(URI url, String projectId, RepositoryImpl repository) {
+    public IotWebSocketClient(URI url, String projectId) {
         super(url);
         this.url = url;
         this.projectId = projectId;

@@ -95,6 +95,8 @@ public class PointService {
         long startTime = System.currentTimeMillis();
         File maxDir = FileUtil.getMaxDir(new File(getPath()));
         try {
+            //先加载控制文件
+            downLoadPoint();
             JSONArray pointList = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.POINT_LIST));
             repository.InfoPointListArray.set = RWDUtil.array2SDOList(pointList);
             JSONArray pointRelation = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.POINT_RELATION));
@@ -366,7 +368,6 @@ public class PointService {
                     }
                 }
             }
-
 
             parentPathArray = new String[]{"基础对象类型'设备", "基础对象'设备", "基础对象'品质", "基础对象'运营", "基础对象'安全", "基础对象'系统", "基础对象'逻辑编组", "场景数据'设备", "场景数据'品质",
                     "场景数据'运营", "场景数据'安全"};

@@ -63,9 +63,9 @@ public class InitialDataService implements CommandLineRunner {
     public void run(String... args) {
         initDir();
         downloadData();
-        //RepositoryImpl repository = loadDataMainService.loadDataMain();
-        //initIotWebsocket(repository);
-        //initAlarmWebsocket();
+        loadDataMainService.loadDataMain();
+        initIotWebsocket();
+        initAlarmWebsocket();
     }
 
     /**
@@ -165,11 +165,11 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * iotWebSocket连接
      */
-    private void initIotWebsocket(RepositoryImpl repository) {
+    private void initIotWebsocket() {
         try {
             log.warn("************初始化iotWebSocket");
             String url = iotWebSocketUrl + "?projectId=" + projectId.substring(2) + "&type=iot,text,pointset";
-            IotWebSocketClient client = new IotWebSocketClient(new URI(url), projectId, repository);
+            IotWebSocketClient client = new IotWebSocketClient(new URI(url), projectId);
             client.connect();
         } catch (Exception e) {
             log.error("*****建立iotWebsocket异常", e);
