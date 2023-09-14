@@ -116,7 +116,7 @@ public class ControlUtil {
             {
                 SceneDataObject sdo = sdoList.get(0);
                 Object objType = sdo.get("objType").value_prim.value;
-                Object objName = sdo.get("ibmsxianshimingcheng").value_prim.value;
+                Object objName = sdo.get("localName").value_prim.value;
                 Object systemCode = null;
                 String classCode = (String) sdo.get("classCode").value_prim.value;
                 Object belongSystem = sdo.get("所属场景") != null ? sdo.get("所属场景").value_prim.value : null;

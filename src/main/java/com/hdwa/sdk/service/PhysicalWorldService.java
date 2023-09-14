@@ -301,6 +301,9 @@ public class PhysicalWorldService {
                 //对象id-->对象值
                 Map<String, SceneDataObject> tempMap = new HashMap<>(16);
                 //对象类型-->对象列表
+                if (repository.objectArrayDic.get(objType) == null) {
+                    return;
+                }
                 SceneDataSet sdvList = repository.objectArrayDic.get(objType).value_array;
                 for (SceneDataObject sdv : sdvList.set) {
                     tempMap.put(sdv.value_object.get(BaseDecConstant.ID).value_prim.value.toString(), sdv);
@@ -498,6 +501,9 @@ public class PhysicalWorldService {
             Map<String, SceneDataObject> fromObjectMap = repository.objType2id2Value.get(rel.getObjFrom());
             //从对象数据
             Map<String, SceneDataObject> toObjectMap = repository.objType2id2Value.get(rel.getObjTo());
+            if (fromObjectMap == null || toObjectMap == null) {
+                return;
+            }
             //主对象角度有数据，添加属性名称
             if (StringUtils.isNotEmpty(rel.getFromName())) {
                 fromObjectMap.forEach((s, sdo) -> {
@@ -587,7 +593,9 @@ public class PhysicalWorldService {
         if (StringUtils.isNotBlank(rel.getFromName()) && StringUtils.isNotBlank(rel.getFromMultiple())) {
             //主对象数据
             Map<String, SceneDataObject> fromObjectMap = repository.objType2id2Value.get(rel.getObjFrom());
-
+            if (fromObjectMap == null) {
+                return;
+            }
             fromObjectMap.forEach((s, sdo) -> {
                 //前面添加的属性名称
                 SceneDataObject sdoFrom = fromObjectMap.get(s);
@@ -669,6 +677,9 @@ public class PhysicalWorldService {
         if (StringUtils.isNotBlank(rel.getToName()) && StringUtils.isNotBlank(rel.getToMultiple())) {
             //主对象数据
             Map<String, SceneDataObject> toObjectMap = repository.objType2id2Value.get(rel.getObjTo());
+            if (toObjectMap == null) {
+                return;
+            }
             toObjectMap.forEach((s, sdo) -> {
                 //前面添加的属性名称
                 SceneDataObject sdoTo = toObjectMap.get(s);

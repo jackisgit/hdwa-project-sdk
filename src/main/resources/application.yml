@@ -11,6 +11,7 @@ spring:
     host: 10.199.205.81
     port: 6379
     password: hdwaredis0912jd
+    timeout: 10000000
     database: 5
 
   kafka:
@@ -32,8 +33,8 @@ spring:
       properties:
         topic: dmpToSdk
         group:
-          #默认的消费组ID
-          id: dmp-${project.id}
+          #默认的消费组ID，设置成不一样的订阅者每个才能收到消息
+          id: sdk-#{ T(java.util.UUID).randomUUID().toString() }
         session:
           timeout:
             #消费会话超时时间(超过这个时间consumer没有发送心跳,就会触发rebalance操作)

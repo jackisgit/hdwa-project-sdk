@@ -119,7 +119,7 @@ public class BaseDecConstant {
     /**
      * 现实编码名称 String
      */
-    public static final String REALITY_CODE_NAME = "ibmsxianshimingcheng";
+    public static final String REALITY_CODE_NAME = "localName";
 
 
     /**

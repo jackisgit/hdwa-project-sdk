@@ -283,13 +283,13 @@ public class AlarmUtil {
                     SceneDataValue sdvInner = sdoInner.get("ibmsClassCode");
                     alarm.put("ibmsClassCode", sdvInner.value_prim.value);
                 }
-                if (sdoInner.containsKey("ibmsxianshimingcheng")) {
-                    SceneDataValue sdvInner = sdoInner.get("ibmsxianshimingcheng");
-                    alarm.put("ibmsxianshimingcheng", sdvInner.value_prim.value);
+                if (sdoInner.containsKey("localName")) {
+                    SceneDataValue sdvInner = sdoInner.get("localName");
+                    alarm.put("localName", sdvInner.value_prim.value);
                 }
-                if (sdoInner.containsKey("ibmsxianshibianma")) {
-                    SceneDataValue sdvInner = sdoInner.get("ibmsxianshibianma");
-                    alarm.put("ibmsxianshibianma", sdvInner.value_prim.value);
+                if (sdoInner.containsKey("localId")) {
+                    SceneDataValue sdvInner = sdoInner.get("localId");
+                    alarm.put("localId", sdvInner.value_prim.value);
                 }
             }
         }

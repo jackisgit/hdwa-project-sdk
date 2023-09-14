@@ -299,153 +299,143 @@ public class RepositoryImpl extends RepositoryBase {
         return base_value;
     }
 
-    public void copyFromRepositoryContainer() {
-        this.alarmConfigArray = RepositoryContainer.instance.alarmConfigArray;
-        this.alarmConfigTrigger = RepositoryContainer.instance.alarmConfigTrigger;
-
-        this.objTypeMap = RepositoryContainer.instance.objTypeMap;
-        this.classCode2NameMap = RepositoryContainer.instance.classCode2NameMap;
-        this.code2objTypeMap = RepositoryContainer.instance.code2objTypeMap;
-        this.classArray = RepositoryContainer.instance.classArray;
-        this.infoArrayDic = RepositoryContainer.instance.infoArrayDic;
-        this.infoArrayJson = RepositoryContainer.instance.infoArrayJson;
-        this.infoDataSource = RepositoryContainer.instance.infoDataSource;
-        this.objectArrayDic = RepositoryContainer.instance.objectArrayDic;
-        this.objectArrayAll = RepositoryContainer.instance.objectArrayAll;
-        this.object2info2point = RepositoryContainer.instance.object2info2point;
-        this.point2ObjectInfoList = RepositoryContainer.instance.point2ObjectInfoList;
-        this.set2ObjectInfoList = RepositoryContainer.instance.set2ObjectInfoList;
-        this.objType2id2Value = RepositoryContainer.instance.objType2id2Value;
-        this.relationArrayDic = RepositoryContainer.instance.relationArrayDic;
-        this.graphCodeDic = RepositoryContainer.instance.graphCodeDic;
-        this.relCodeDic = RepositoryContainer.instance.relCodeDic;
-        this.relationAll = RepositoryContainer.instance.relationAll;
-        this.id2object = RepositoryContainer.instance.id2object;
-        this.id2sdv = RepositoryContainer.instance.id2sdv;
-
-        this.ZKTSceneArray = RepositoryContainer.instance.ZKTSceneArray;
-        this.ZKTClassArray = RepositoryContainer.instance.ZKTClassArray;
-        this.ZKTObjectArrayDic = RepositoryContainer.instance.ZKTObjectArrayDic;
-        this.ZKTAlarmTypeArray = RepositoryContainer.instance.ZKTAlarmTypeArray;
-        this.subsystem_connect_status = RepositoryContainer.instance.subsystem_connect_status;
-
-        this.IBMSGroupArray = RepositoryContainer.instance.IBMSGroupArray;
-        this.IBMSArrayDic = RepositoryContainer.instance.IBMSArrayDic;
-
-        this.InfoPointListArray = RepositoryContainer.instance.InfoPointListArray;
-        this.InfoPointRelationArray = RepositoryContainer.instance.InfoPointRelationArray;
-        this.scaleplate = RepositoryContainer.instance.scaleplate;
-    }
-
-    //querySql，Source内容解析，Target\": {\r\n    \"Source\": \"rwd\",\r\n    \"rwd\": \"info\",\r\n    \"objType\": \"equipment\",\r\n    \"classCode\": \"ACATFU
     public SceneDataSet ParseSource(JSONObject descSet, String Source) {
         SceneDataSet result = null;
-        if (Source.equals("class")) {//类型定义数据
-            result = this.classArray;
-        } else if (Source.equals("rwd")) {
-            String rwd = (descSet.get("rwd")).toString();
-            if (rwd.equals("object")) {//对象静态数据
-                if (descSet.containsKey("objType")) {//大对象类型
-                    String objType = (descSet.get("objType")).toString();
-                    if (objType.equals("equipment") || objType.equals("system") || objType.equals("space")) {//三种大类型
-                        if (descSet.containsKey("classCode")) {//类型code
-                            String classCode = (descSet.get("classCode")).toString();
-                            if (this.objectArrayDic.get(classCode) != null) {
-                                result = this.objectArrayDic.get(classCode).value_array;
+        switch (Source) {
+            case "class": //类型定义数据
+                result = this.classArray;
+                break;
+            case "rwd":
+                String rwd = (descSet.get("rwd")).toString();
+                switch (rwd) {
+                    case "object": //对象静态数据
+                        if (descSet.containsKey("objType")) {//大对象类型
+                            String objType = (descSet.get("objType")).toString();
+                            if (objType.equals("equipment") || objType.equals("system") || objType.equals("space")) {//三种大类型
+                                if (descSet.containsKey("classCode")) {//类型code
+                                    String classCode = (descSet.get("classCode")).toString();
+                                    if (this.objectArrayDic.get(classCode) != null) {
+                                        result = this.objectArrayDic.get(classCode).value_array;
+                                    }
+                                } else {
+                                    if (this.objectArrayDic.get(objType) != null) {
+                                        result = this.objectArrayDic.get(objType).value_array;
+                                    }
+                                }
+                            } else {
+                                result = this.objectArrayDic.get(objType).value_array;
                             }
+                        } else if (descSet.containsKey("classCode")) {
+                            String classCode = (descSet.get("classCode")).toString();
+                            result = this.objectArrayDic.get(classCode).value_array;
                         } else {
-                            result = this.objectArrayDic.get(objType).value_array;
+                            result = this.objectArrayAll;
                         }
-                    } else {
-                        result = this.objectArrayDic.get(objType).value_array;
-                    }
-                } else if (descSet.containsKey("classCode")) {
-                    String classCode = (descSet.get("classCode")).toString();
-                    result = this.objectArrayDic.get(classCode).value_array;
-                } else {
-                    result = this.objectArrayAll;
+                        break;
+                    case "info": //类型点位数据
+                        String objType = (descSet.get("objType")).toString();
+                        if (objType.equals("equipment") || objType.equals("system") || objType.equals("space")) {
+                            String classCode = (descSet.get("classCode")).toString();
+                            result = this.infoArrayDic.get(classCode);
+                        } else {
+                            result = this.infoArrayDic.get(objType);
+                        }
+                        break;
+                    case "info_dataSource": //类型点位中dataSource数据
+                        result = this.infoDataSource;
+                        break;
+                    case "relation": //关系数据
+                        if (descSet.get("graphCode") != null && descSet.get("relCode") != null) {
+                            String graphCode = (descSet.get("graphCode")).toString();
+                            String relCode = (descSet.get("relCode")).toString();
+                            if (this.relationArrayDic.get(graphCode) != null) {
+                                result = this.relationArrayDic.get(graphCode).get(relCode);
+                            }
+                        } else if (descSet.get("graphCode") != null) {//图例
+                            String graphCode = (descSet.get("graphCode")).toString();
+                            result = this.graphCodeDic.get(graphCode);
+                        } else if (descSet.get("relCode") != null) {//关系类型
+                            String relCode = (descSet.get("relCode")).toString();
+                            result = this.relCodeDic.get(relCode);
+                        } else {
+                            result = this.relationAll;
+                        }
+                        break;
                 }
-            } else if (rwd.equals("info")) {//类型点位数据
-                String objType = (descSet.get("objType")).toString();
-                if (objType.equals("equipment") || objType.equals("system") || objType.equals("space")) {
-                    String classCode = (descSet.get("classCode")).toString();
-                    result = this.infoArrayDic.get(classCode);
-                } else {
-                    result = this.infoArrayDic.get(objType);
+                // result = new SceneDataSet(false);
+                // result.setRowChange(false);
+                break;
+            case "zkt-class": //zkt类型定义数据
+                result = this.ZKTClassArray;
+                break;
+            case "zkt-object": { //zkt下级类型数据
+                String ibmsSceneCode = (descSet.get("ibmsSceneCode")).toString();
+                String ibmsClassCode = (descSet.get("ibmsClassCode")).toString();
+                if (this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode) != null) {
+                    result = this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode).value_array;
                 }
-            } else if (rwd.equals("info_dataSource")) {//类型点位中dataSource数据
-                result = this.infoDataSource;
-            } else if (rwd.equals("relation")) {//关系数据
-                if (descSet.get("graphCode") != null && descSet.get("relCode") != null) {
-                    String graphCode = (descSet.get("graphCode")).toString();
-                    String relCode = (descSet.get("relCode")).toString();
-                    if (this.relationArrayDic.get(graphCode) != null) {
-                        result = this.relationArrayDic.get(graphCode).get(relCode);
-                    }
-                } else if (descSet.get("graphCode") != null) {//图例
-                    String graphCode = (descSet.get("graphCode")).toString();
-                    result = this.graphCodeDic.get(graphCode);
-                } else if (descSet.get("relCode") != null) {//关系类型
-                    String relCode = (descSet.get("relCode")).toString();
-                    result = this.relCodeDic.get(relCode);
-                } else {
-                    result = this.relationAll;
-                }
+                break;
             }
-            // result = new SceneDataSet(false);
-            // result.setRowChange(false);
-        } else if (Source.equals("zkt-class")) {//zkt类型定义数据
-            result = this.ZKTClassArray;
-        } else if (Source.equals("zkt-object")) { //zkt下级类型数据
-            String ibmsSceneCode = (descSet.get("ibmsSceneCode")).toString();
-            String ibmsClassCode = (descSet.get("ibmsClassCode")).toString();
-            if (this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode) != null) {
-                result = this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode).value_array;
-            }
-        } else if (Source.equals("ibms")) {
-            String product = (descSet.get("product")).toString();
-            String type = (descSet.get("type")).toString();
-            result = this.IBMSArrayDic.get(product).get(type);
-        } else if (Source.equals("ibms-group")) {
-            result = this.IBMSGroupArray;
-        } else if (Source.equals("ibms-group-object")) {
-            String ibmsSceneCode = (descSet.get("ibmsSceneCode")).toString();
-            String ibmsClassCode = (descSet.get("ibmsClassCode")).toString();
-            if (!this.IBMSArrayDic.containsKey(ibmsSceneCode)) {
-                result = new SceneDataSet(false);
-            } else {
-                Map<String, SceneDataSet> arrayMap = this.IBMSArrayDic.get(ibmsSceneCode);
-                if (!arrayMap.containsKey(ibmsClassCode)) {
+            case "ibms":
+                String product = (descSet.get("product")).toString();
+                String type = (descSet.get("type")).toString();
+                // TODO: 2023/9/14 没有逻辑编组数据
+                //result = this.IBMSArrayDic.get(product).get(type);
+                break;
+            case "ibms-group":
+                // TODO: 2023/9/14 没有逻辑编组数据
+                //result = this.IBMSGroupArray;
+                break;
+            case "ibms-group-object": {
+                String ibmsSceneCode = (descSet.get("ibmsSceneCode")).toString();
+                String ibmsClassCode = (descSet.get("ibmsClassCode")).toString();
+                if (!this.IBMSArrayDic.containsKey(ibmsSceneCode)) {
                     result = new SceneDataSet(false);
                 } else {
-                    result = this.IBMSArrayDic.get(ibmsSceneCode).get(ibmsClassCode);
+                    Map<String, SceneDataSet> arrayMap = this.IBMSArrayDic.get(ibmsSceneCode);
+                    if (!arrayMap.containsKey(ibmsClassCode)) {
+                        result = new SceneDataSet(false);
+                    } else {
+                        result = this.IBMSArrayDic.get(ibmsSceneCode).get(ibmsClassCode);
+                    }
                 }
+                break;
             }
-        } else if (Source.equals("alarmConfig")) {
-            String alarmConfig = (descSet.get("alarmConfig")).toString();
-            if (alarmConfig.equals("configTrigger")) {
-                result = this.alarmConfigTrigger;
-            } else {
-                result = this.alarmConfigArray;
-            }
-        } else if (Source.equals("ibms-model")) {
-            result = this.IBMSCalendarModel;
-        } else if (Source.equals("ibms-calendar")) {
-            result = this.IBMSCalendarBinding;
-        } else if (Source.equals("ibms-alarm-type")) {
-            result = this.ZKTAlarmTypeArray;
-        } else if (Source.equals("weather")) {
-            result = this.weather;
-        } else if (Source.equals("scaleplate")) {
-            result = this.scaleplate;
-        } else if (Source.equals("alarm")) {
-            result = DataContainer.alarmArray;
-        } else if (Source.equals("info-point-list")) {
-            result = this.InfoPointListArray;
-        } else if (Source.equals("info-point-relation")) {
-            result = this.InfoPointRelationArray;
-        } else if (Source.equals("subsystem-connect-status")) {
-            result = this.subsystem_connect_status;
+            case "alarmConfig":
+                String alarmConfig = (descSet.get("alarmConfig")).toString();
+                if (alarmConfig.equals("configTrigger")) {
+                    result = this.alarmConfigTrigger;
+                } else {
+                    result = this.alarmConfigArray;
+                }
+                break;
+            case "ibms-model":
+                result = this.IBMSCalendarModel;
+                break;
+            case "ibms-calendar":
+                result = this.IBMSCalendarBinding;
+                break;
+            case "ibms-alarm-type":
+                result = this.ZKTAlarmTypeArray;
+                break;
+            case "weather":
+                result = this.weather;
+                break;
+            case "scaleplate":
+                result = this.scaleplate;
+                break;
+            case "alarm":
+                result = DataContainer.alarmArray;
+                break;
+            case "info-point-list":
+                result = this.InfoPointListArray;
+                break;
+            case "info-point-relation":
+                result = this.InfoPointRelationArray;
+                break;
+            case "subsystem-connect-status":
+                result = this.subsystem_connect_status;
+                break;
         }
         return result;
     }

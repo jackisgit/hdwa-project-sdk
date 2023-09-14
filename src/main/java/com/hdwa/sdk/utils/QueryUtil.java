@@ -5,14 +5,14 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.hdwa.sdk.entity.criteria.*;
-import com.hdwa.sdk.entity.repository.InfluenceFactor;
-import com.hdwa.sdk.entity.repository.RepositoryBase;
-import com.hdwa.sdk.entity.repository.WalkerWrapper;
-import com.hdwa.sdk.entity.scene.*;
 import com.hdwa.sdk.entity.expression.AdvancedExpressionLexer;
 import com.hdwa.sdk.entity.expression.AdvancedExpressionParser;
 import com.hdwa.sdk.entity.expression.AdvancedExpressionScanner;
 import com.hdwa.sdk.entity.expression.AdvancedExpressionWalker;
+import com.hdwa.sdk.entity.repository.InfluenceFactor;
+import com.hdwa.sdk.entity.repository.RepositoryBase;
+import com.hdwa.sdk.entity.repository.WalkerWrapper;
+import com.hdwa.sdk.entity.scene.*;
 import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.CommonTree;
@@ -1293,8 +1293,7 @@ public class QueryUtil {
                                 result.setRowChange(true);
                             }
                             for (SceneDataObject sdb : svInner.value_array.set) {
-                                SceneDataObject sod = (SceneDataObject) sdb;
-                                svListInner.add(sod.get(split));
+                                svListInner.add(sdb.get(split));
                             }
                         }
                     }
@@ -1302,15 +1301,21 @@ public class QueryUtil {
                 svList = svListInner;
             }
             if (isDeamon) {
-                result.singleValueSet = new CopyOnWriteArrayList<SceneDataValue>();
+                result.singleValueSet = new CopyOnWriteArrayList<>();
                 result.singleValueSet.addAll(svList);
             } else {
-                result.set = new CopyOnWriteArrayList<SceneDataObject>();
+                result.set = new CopyOnWriteArrayList<>();
                 for (SceneDataValue svTmp : svList) {
-                    if (svTmp.value_array.getRowChange()) {
+                    if (svTmp == null) {
+                        continue;
+                    }
+                    if (svTmp.value_array != null && svTmp.value_array.getRowChange()) {
                         result.setRowChange(true);
                     }
-                    result.set.addAll(svTmp.value_array.set);
+
+                    if (svTmp.value_array != null) {
+                        result.set.addAll(svTmp.value_array.set);
+                    }
                     if (QueryAssist.rowChangeNeed) {
                         QueryAssist.rowFactor.rowChange.put(svTmp.value_array, true);
                         for (String col : QueryAssist.colChangeNeed.keySet()) {
@@ -1322,6 +1327,9 @@ public class QueryUtil {
                 }
                 if (!result.getRowChange()) {
                     for (SceneDataValue svTmp : svList) {
+                        if (svTmp == null || svTmp.value_array == null) {
+                            continue;
+                        }
                         for (String col : svTmp.value_array.getColChange().keySet()) {
                             result.setColChange(col);
                         }
@@ -1329,13 +1337,9 @@ public class QueryUtil {
                 }
             }
         }
-
         return result;
     }
 
-    /**
-     * @return SceneDataObject List<SceneDataValue> Object
-     */
     private static SceneDataSet query_select(SceneDataSet set, CriteriaBase criteria) {
         SceneDataSet result = new SceneDataSet(false);
         result.set = new CopyOnWriteArrayList<SceneDataObject>();
