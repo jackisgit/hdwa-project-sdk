@@ -26,9 +26,8 @@ public class FileUtil {
      * 只保留3个版本文件目录数据，老版本删除掉
      *
      * @return
-     * @throws IOException
      */
-    public static void clearHistoryDirectory(File directory) throws IOException {
+    public static void clearHistoryDirectory(File directory) {
         if (directory.exists() && directory.isDirectory()) {
             File[] subdirectories = directory.listFiles(File::isDirectory);
 
@@ -70,11 +69,9 @@ public class FileUtil {
      * 修改temp目录到当前时间目录
      *
      * @param temp
-     * @throws IOException
      */
-    public static void tempToNowDate(File temp, File physicalPath) throws IOException {
+    public static void tempToNowDate(File temp, File physicalPath) {
         File nowFile = new File(physicalPath + File.separator + BaseDecConstant.DATE_TIME_FORMATTER.format(LocalDateTime.now()));
-        Files.createDirectories(nowFile.toPath());
         temp.renameTo(nowFile);
         log.warn("*****rename：" + temp.getPath() + "----->" + nowFile.getPath());
     }

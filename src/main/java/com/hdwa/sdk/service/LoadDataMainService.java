@@ -41,7 +41,8 @@ public class LoadDataMainService {
     public void downLoadDataMain() {
         physicalWorldService.downLoadPhysicalWorldData();
         ibmsPhysicalWorldService.downLoadIbmsPhysicalWorldData();
-        ibmsLogicalGroupService.downLoadLogicalGroupData();
+        // TODO: 2023/9/14 还没有编组数据
+        //ibmsLogicalGroupService.downLoadLogicalGroupData();
         pointService.downLoadPoint();
         configApiService.downLoadConfig();
     }

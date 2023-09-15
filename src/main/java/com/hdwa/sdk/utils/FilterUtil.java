@@ -17,7 +17,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Slf4j
 public class FilterUtil {
 
-    public static JSONObject post_filter_and_page(RepositoryBase repository, JSONObject paramObject) {
+    public static JSONObject postPage(RepositoryBase repository, JSONObject paramObject) {
         JSONObject result = new JSONObject();
         try {
             JSONArray path = (JSONArray) paramObject.get("path");
@@ -74,7 +74,7 @@ public class FilterUtil {
         targetSet.set = new CopyOnWriteArrayList<>();
         for (SceneDataObject sdb : valueObject.value_array.set) {
             if (sdb != null) {
-                targetSet.set.add((SceneDataObject) sdb);
+                targetSet.set.add(sdb);
             }
         }
         SceneDataObject parentData = new SceneDataObject(null, null, null, null, null, null, null);

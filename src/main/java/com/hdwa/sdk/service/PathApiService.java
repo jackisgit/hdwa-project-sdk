@@ -1,11 +1,14 @@
 package com.hdwa.sdk.service;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.PathApiParam;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.utils.CalculateApiJsonUtil;
+import com.hdwa.sdk.utils.FilterUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -53,6 +56,24 @@ public class PathApiService {
         }
     }
 
+
+    /**
+     * 路径查询分页
+     *
+     * @param param
+     * @return
+     */
+    public Object postPage(PathApiParam param) {
+        RepositoryImpl repository = DataContainer.projectMap.get(projectId);
+        if (repository == null) {
+            return "null";
+        }
+        JSONObject result = FilterUtil.postPage(repository, (JSONObject) JSON.toJSON(param));
+        JSONArray jsonArray = (JSONArray) result.get(BaseDecConstant.CONTENT2);
+        jsonArray.forEach(this::removeAttribute);
+        return result;
+    }
+
     /**
      * 移除引用的属性
      *
@@ -62,6 +83,7 @@ public class PathApiService {
         JSONObject jsonObject = (JSONObject) o;
         jsonObject.remove("所在建筑");
         jsonObject.remove("所在楼层");
+        jsonObject.remove("楼层名称");
         jsonObject.remove("所在空间");
         jsonObject.remove("被设备控制");
         jsonObject.remove("控制设备");
@@ -69,5 +91,10 @@ public class PathApiService {
         jsonObject.remove("所属系统");
         jsonObject.remove("给设备供电");
         jsonObject.remove("关联系统");
+        jsonObject.remove("服务空间");
+        jsonObject.remove("空间名称");
+        jsonObject.remove("wdCode");
+        jsonObject.remove("grouping");
+        jsonObject.remove("aliasCode");
     }
 }

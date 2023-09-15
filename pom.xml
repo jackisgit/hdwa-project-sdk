@@ -132,7 +132,7 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.hdwa.HdwaProjectSdkApplication</mainClass>
-                    <skip>true</skip>
+<!--                    <skip>true</skip>-->
                 </configuration>
                 <executions>
                     <execution>

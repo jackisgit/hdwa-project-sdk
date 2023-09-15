@@ -50,12 +50,6 @@ spring:
       #latest 在各分区下有提交的offset时：从offset处开始消费  在各分区下无提交的offset时：从最新的数据开始消费
       auto-offset-reset: latest
 
-#项目信息
-project:
-#  id: Pj4401830001
-  id: Pj2102110210
-  groupCode: WD
-
 #数据文件目录
 dirName:
   config: config
@@ -67,10 +61,10 @@ dirName:
 
 #服务请求地址
 url:
-  dmp: http://127.0.0.1:9805
-#  dmp: http://10.199.208.69:32050/api-ibms-dmp
+  #  dmp: http://127.0.0.1:9805
+  dmp: http://10.199.208.69:32050/api-ibms-dmp
   monitor: http://10.199.87.73:9930/zkt-monitor
   alarmUrl: http://10.199.87.73:9930/ibms-alarm
-  iotProject: http://10.2.17.241:18852
-  iotWebSocket: ws:/10.2.17.241:30019/websocket
+  iotProject: http://127.0.0.1:18852
+  iotWebSocket: ws:/127.0.0.1:30019/websocket
   alarmWebSocket: ws://10.199.87.67:8825/webSocketServer

@@ -239,7 +239,7 @@ public class ControlUtil {
             build_object(detail.value_object, infoValueSet);
         }
         JSONArray points = new JSONArray();
-        JSONObject resultJsonObject = FilterUtil.post_filter_and_page(repository, JSONObject.parseObject(params.toString()));
+        JSONObject resultJsonObject = FilterUtil.postPage(repository, JSONObject.parseObject(params.toString()));
 
         //筛选真实要下发的数据
         List<Object> list = ((List<Map>) resultJsonObject.get("content")).stream().map(map -> map.get("id")).collect(Collectors.toList());

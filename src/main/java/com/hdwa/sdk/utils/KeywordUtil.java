@@ -1,13 +1,14 @@
 package com.hdwa.sdk.utils;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class KeywordUtil {
-    public static Map<String, Boolean> keyWordMap;
-    public static Map<String, Boolean> prefixMap;
-    public static Map<String, Boolean> suffixMap;
+    public static Map<String, Boolean> keyWordMap = new HashMap<>(16);
+    public static Map<String, Boolean> prefixMap = new HashMap<>(16);
+    public static Map<String, Boolean> suffixMap = new HashMap<>(16);
     public static List<String> keyProperty = new CopyOnWriteArrayList<String>();
 
     static {

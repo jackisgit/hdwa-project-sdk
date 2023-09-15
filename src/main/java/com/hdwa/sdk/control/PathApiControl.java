@@ -32,4 +32,15 @@ public class PathApiControl {
     }
 
 
+    /**
+     * 路径查询接口筛选分页
+     *
+     * @param param
+     * @return
+     */
+    @PostMapping(path = {"/postPage"})
+    public Object postPage(@RequestBody PathApiParam param) {
+        return pathApiService.postPage(param);
+    }
+
 }
