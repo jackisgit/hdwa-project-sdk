@@ -68,7 +68,7 @@ spring:
       # 是否自动提交偏移量，默认值是true,为了避免出现重复数据和数据丢失，可以把它设置为false,然后手动提交偏移量
       enable-auto-commit: false
       #------------------后缀为项目id 需要修改
-      group-id: zkt-contorl-project-${group.control.project.id}
+      group-id: project-control-${group.control.project.id}
       topics: control.control2edge
       heartbeat-interval: 10S
     listener:

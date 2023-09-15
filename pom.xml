@@ -12,9 +12,9 @@
     </parent>
 
     <groupId>com.hdwa</groupId>
-    <artifactId>zkt-project-control</artifactId>
+    <artifactId>hdwa-project-control</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>zkt-project-control</name>
+    <name>hdwa-project-control</name>
     <description>边端控制服务</description>
 
     <properties>
