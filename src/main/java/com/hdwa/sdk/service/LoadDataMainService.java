@@ -56,7 +56,8 @@ public class LoadDataMainService {
         //加载IBMS物理世界数据
         ibmsPhysicalWorldService.loadIbmsPhysicalWorldData(repository);
         //加载IBMS逻辑编组数据
-        ibmsLogicalGroupService.loadLogicalGroupData(repository);
+        // TODO: 2023/9/14 还没有编组数据 
+        //ibmsLogicalGroupService.loadLogicalGroupData(repository);
         //加载点位数据
         pointService.loadPointData(repository);
         //加载报警数据

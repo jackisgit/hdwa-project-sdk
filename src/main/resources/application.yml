@@ -12,7 +12,7 @@ spring:
     port: 6379
     password: hdwaredis0912jd
     timeout: 10000000
-    database: 5
+    database: 6
 
   kafka:
     bootstrap-servers: 10.199.205.61:9092
@@ -67,8 +67,8 @@ dirName:
 
 #服务请求地址
 url:
-#  dmp: http://127.0.0.1:9805
-  dmp: http://10.199.208.69:32050/api-ibms-dmp
+  dmp: http://127.0.0.1:9805
+#  dmp: http://10.199.208.69:32050/api-ibms-dmp
   monitor: http://10.199.87.73:9930/zkt-monitor
   alarmUrl: http://10.199.87.73:9930/ibms-alarm
   iotProject: http://10.2.17.241:18852
