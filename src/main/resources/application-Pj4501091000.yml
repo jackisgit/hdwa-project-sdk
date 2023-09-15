@@ -1,7 +1,6 @@
 #南宁万达茂，10.13.62.168
 group:
   control:
-    host: 127.0.0.1
     code: WD
     project:
       #------------------iot使用项目ID 需更改
@@ -12,7 +11,7 @@ group:
 spring:
   datasource:
     #------------------边端数据库地址 需要修改
-    url: jdbc:mysql://${group.control.host}:3306/huiyun?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://127.0.0.1:3306/huiyun?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     #------------------边端数据库用户 需要修改
     username: root
@@ -37,7 +36,7 @@ spring:
     connectionProperties: druid.stat.slowSqlMillis=500;druid.stat.logSlowSql=true;config.decrypt=false
   #redis配置
   redis:
-    host: ${group.control.host}
+    host: 127.0.0.1
     port: 16379
     password:
   quartz:
@@ -49,7 +48,7 @@ spring:
     ## 是否开启kafka
     enable: true
     #------------------kafka地址 需要修改
-    bootstrapServers: 10.199.87.63:19092,10.199.87.79:19092,10.199.87.85:19092
+    bootstrapServers: ${kafka.bootstrapServers}
     producer:
       # 发生错误后，消息重发的次数。
       retries: 2
@@ -86,17 +85,4 @@ spring:
         poll:
           interval:
             ms: 600000
-
-#------------------ mqtt 需要更改
-mqtt:
-  hostUrl: tcp://10.199.87.72:1893
-  username: admin
-  password: public
-  client-id: zkt-contorl-project-${group.control.project.id}
-  cleanSession: true
-  reconnect: true
-  timeout: 100
-  keepAlive: 100
-  isOpen: true
-  qos: 1
 

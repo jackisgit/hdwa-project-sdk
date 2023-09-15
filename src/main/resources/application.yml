@@ -9,3 +9,6 @@ spring:
 iot:
   project:
     url: 127.0.0.1:18852
+
+kafka:
+  bootstrapServers: 10.199.205.61:9092,10.199.205.71:9092,10.199.205.81:9092
