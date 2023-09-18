@@ -23,15 +23,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Slf4j
 public class AlarmService {
 
-    @Value("${project.id}")
-    private String projectId;
-
-    @Value("${project.groupCode}")
-    private String groupCode;
-
-    @Value("${url.alarmUrl}")
-    private String alarmUrl;
-
     /**
      * 加载报警数据
      *
@@ -92,6 +83,7 @@ public class AlarmService {
             log.warn("************结束加载-报警数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
         } catch (Exception e) {
             log.error("加载报警数据异常", e);
+            throw e;
         }
     }
 

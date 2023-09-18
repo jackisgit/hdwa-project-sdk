@@ -708,6 +708,12 @@ public class BaseDecConstant {
     public static final String PROJECT_ID = "projectId";
 
     /**
+     * 当前使用的项目id值
+     */
+    public static final String CURRENT_PROJECT_ID = System.getProperty(PROJECT_ID);
+
+
+    /**
      * parentId String
      */
     public static final String PARENT_ID = "parentId";

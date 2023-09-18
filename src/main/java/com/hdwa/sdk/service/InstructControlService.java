@@ -2,6 +2,7 @@ package com.hdwa.sdk.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.constant.UrlConstant;
 import com.hdwa.sdk.entity.InstructControlParam;
 import com.hdwa.sdk.entity.repository.DataContainer;
@@ -21,14 +22,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class InstructControlService {
 
-    @Value("${project.id}")
-    private String projectId;
-
     @Value("${project.groupCode}")
     private String groupCode;
 
     @Value("${url.iotProject}")
     private String iotProjectUrl;
+
 
     /**
      * 指令控制
@@ -38,7 +37,7 @@ public class InstructControlService {
      */
     public Object control(InstructControlParam param) {
         param.setGroupCode(groupCode);
-        param.setProjectId(projectId);
+        param.setProjectId(BaseDecConstant.CURRENT_PROJECT_ID);
         param.getInfoValueSet().forEach((s, o) -> {
             if (o instanceof String) {
                 try {
@@ -52,7 +51,7 @@ public class InstructControlService {
         });
         try {
             //组装要下发的指令
-            JSONArray points = ControlUtil.setPoints(DataContainer.projectMap.get(projectId), param);
+            JSONArray points = ControlUtil.setPoints(DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID), param);
             log.warn("*****下发控制指令参数：" + points);
             //下发操作
             JSONArray result = controlDelivery(points);
@@ -74,7 +73,7 @@ public class InstructControlService {
      * @return
      */
     public Object controlByEquBatch(InstructControlParam param) {
-        RepositoryImpl repository = DataContainer.projectMap.get(projectId);
+        RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
         JSONObject result = new JSONObject();
         JSONArray points = new JSONArray();
         param.getData().forEach(stringObjectMap -> {
@@ -120,7 +119,7 @@ public class InstructControlService {
      */
     private JSONArray controlDelivery(JSONArray points) throws Exception {
         JSONObject postJSON = new JSONObject();
-        postJSON.put("building", projectId.substring(2));
+        postJSON.put("building", BaseDecConstant.CURRENT_PROJECT_ID.substring(2));
         postJSON.put("points", points);
         return OkHttpClientUtil.httpPost(postJSON, iotProjectUrl + UrlConstant.iot_project_control).getJSONArray("points");
     }

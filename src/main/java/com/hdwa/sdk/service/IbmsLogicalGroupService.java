@@ -29,9 +29,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Service
 public class IbmsLogicalGroupService {
 
-    @Value("${project.id}")
-    private String projectId;
-
     @Value("${project.groupCode}")
     private String groupCode;
 
@@ -88,7 +85,7 @@ public class IbmsLogicalGroupService {
      * @return
      * @return
      */
-    public Object loadLogicalGroupData(RepositoryImpl repository) {
+    public String loadLogicalGroupData(RepositoryImpl repository) throws Exception {
         log.warn("************开始加载-IBMS逻辑编组数据");
         long startTime = System.currentTimeMillis();
         File maxDir = FileUtil.getMaxDir(new File(getPath()));
@@ -103,7 +100,7 @@ public class IbmsLogicalGroupService {
      * @param repository
      * @param maxDir
      */
-    private void loadGroupData(RepositoryImpl repository, File maxDir) {
+    private void loadGroupData(RepositoryImpl repository, File maxDir) throws Exception {
         log.warn("*****开始加载-逻辑编组数据");
         long startTime = System.currentTimeMillis();
         try {
@@ -121,7 +118,6 @@ public class IbmsLogicalGroupService {
             Arrays.stream(dirs)
                     .filter(File::isDirectory)
                     .forEach(dir -> {
-
                         Map<String, SceneDataSet> ibmsClassMap = new HashMap<>(16);
                         Arrays.stream(Objects.requireNonNull(dir.listFiles())).forEach(file -> {
                             String classCode = file.getName().substring(0, file.getName().indexOf('.'));
@@ -148,6 +144,7 @@ public class IbmsLogicalGroupService {
             log.warn("*****结束加载-逻辑编组数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
         } catch (Exception e) {
             log.error("加载逻辑编组数据异常", e);
+            throw e;
         }
     }
 
@@ -179,7 +176,7 @@ public class IbmsLogicalGroupService {
             levelGroupSdsOne.set = RWDUtil.array2SDOList(levelGroupOne);
             arrayMap.put(BaseDecConstant.PRIMARY_GROUPING, levelGroupSdsOne);
 
-            FileUtil.save(groupCode + File.separator + projectId + File.separator + temp + File.separator + BaseDecConstant.TEMP2 + dir.getName() + "-" + BaseDecConstant.GROUP_ONE + UrlConstant.JSON_FILE, FastJsonUtil.toFormatString(levelGroupOne));
+            FileUtil.save(groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + temp + File.separator + BaseDecConstant.TEMP2 + dir.getName() + "-" + BaseDecConstant.GROUP_ONE + UrlConstant.JSON_FILE, FastJsonUtil.toFormatString(levelGroupOne));
         } catch (Exception e) {
             log.error("处理照明一级逻辑编组数据异常", e);
         }
@@ -221,7 +218,7 @@ public class IbmsLogicalGroupService {
             levelGroupSdsOne.set = RWDUtil.array2SDOList(levelGroupTow);
             arrayMap.put(BaseDecConstant.TWO_GROUPING, levelGroupSdsOne);
 
-            FileUtil.save(groupCode + File.separator + projectId + File.separator + temp + File.separator + BaseDecConstant.TEMP2 + dir.getName() + "-" + BaseDecConstant.GROUP_TWO + UrlConstant.JSON_FILE, FastJsonUtil.toFormatString(levelGroupTow));
+            FileUtil.save(groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + temp + File.separator + BaseDecConstant.TEMP2 + dir.getName() + "-" + BaseDecConstant.GROUP_TWO + UrlConstant.JSON_FILE, FastJsonUtil.toFormatString(levelGroupTow));
         } catch (Exception e) {
             log.error("处理照明二级逻辑编组数据异常", e);
         }
@@ -325,7 +322,7 @@ public class IbmsLogicalGroupService {
             SceneDataSet circuit = new SceneDataSet(false);
             circuit.set = RWDUtil.array2SDOList(circuitArray);
             arrayMap.put(BaseDecConstant.LOOP, circuit);
-            FileUtil.save(groupCode + File.separator + projectId + File.separator + temp + File.separator + BaseDecConstant.TEMP2 + dir.getName() + "-" + BaseDecConstant.CIRCUIT + UrlConstant.JSON_FILE, FastJsonUtil.toFormatString(circuitArray));
+            FileUtil.save(groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + temp + File.separator + BaseDecConstant.TEMP2 + dir.getName() + "-" + BaseDecConstant.CIRCUIT + UrlConstant.JSON_FILE, FastJsonUtil.toFormatString(circuitArray));
 
             //加入回路信息
             circuit.set.forEach(sdo -> {
@@ -365,8 +362,9 @@ public class IbmsLogicalGroupService {
         long startTime = System.currentTimeMillis();
         log.warn("*****开始下载-逻辑分组数据集合");
         JSONObject requestBody = new JSONObject();
+        //requestBody.put(BaseDecConstant.PARENT_ID, "0");
         addProject(requestBody);
-        JSONArray groupArray = OkHttpClientUtil.httpPost(requestBody, monitorUrl + UrlConstant.LOGICAL_GROUP_URL).getJSONArray(BaseDecConstant.CONTENT);
+        JSONArray groupArray = OkHttpClientUtil.httpPost(requestBody, monitorUrl + UrlConstant.LOGICAL_GROUP_URL).getJSONArray(BaseDecConstant.DATA);
         FileUtil.save(file + File.separator + UrlConstant.IMBS_GROUP_ARRAY, FastJsonUtil.toFormatString(groupArray));
         log.warn("*****结束下载-逻辑分组数据集合-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
         return groupArray;
@@ -415,16 +413,18 @@ public class IbmsLogicalGroupService {
                         JSONObject requestBody = new JSONObject();
                         addProject(requestBody);
                         requestBody.put(BaseDecConstant.LOGICAL_GROUPING_ID, logicalGroupingId);
-                        JSONArray jsonArray = OkHttpClientUtil.httpPost(requestBody, monitorUrl + UrlConstant.LOGICAL_OBJECT_URL).getJSONArray(BaseDecConstant.CONTENT);
+                        JSONArray jsonArray = OkHttpClientUtil.httpPost(requestBody, monitorUrl + UrlConstant.LOGICAL_OBJECT_URL).getJSONObject(BaseDecConstant.RESULT).getJSONArray(BaseDecConstant.DATA);
                         //添加逻辑分组id
                         jsonArray.forEach(o -> ((JSONObject) o).put(BaseDecConstant.LOGICAL_GROUPING_ID, logicalGroupingId));
                         dataArray.addAll(jsonArray);
                     } catch (Exception e) {
-                        throw new RuntimeException(e);
+                        log.error("-----下载：" + sceneCode + "---" + classCode + "，异常" + e);
                     }
                 });
                 try {
-                    FileUtil.save(sceneCodeDir + File.separator + classCode + UrlConstant.JSON_FILE, FastJsonUtil.toFormatString(dataArray));
+                    if (dataArray.size() > 0) {
+                        FileUtil.save(sceneCodeDir + File.separator + classCode + UrlConstant.JSON_FILE, FastJsonUtil.toFormatString(dataArray));
+                    }
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -440,7 +440,7 @@ public class IbmsLogicalGroupService {
      */
     private void addProject(JSONObject requestBody) {
         requestBody.put(BaseDecConstant.GROUP_CODE, groupCode);
-        requestBody.put(BaseDecConstant.PROJECT_ID, projectId);
+        requestBody.put(BaseDecConstant.PROJECT_ID, BaseDecConstant.CURRENT_PROJECT_ID);
     }
 
     /**
@@ -449,7 +449,7 @@ public class IbmsLogicalGroupService {
      * @return
      */
     private String getPath() {
-        return groupCode + File.separator + projectId + File.separator + ibmsLogicalGroup;
+        return groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + ibmsLogicalGroup;
     }
 
     /**

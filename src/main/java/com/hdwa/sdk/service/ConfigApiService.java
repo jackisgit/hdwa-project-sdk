@@ -37,9 +37,6 @@ public class ConfigApiService {
     @Autowired
     private PointService pointService;
 
-    @Value("${project.id}")
-    private String projectId;
-
     @Value("${project.groupCode}")
     private String groupCode;
 
@@ -48,7 +45,6 @@ public class ConfigApiService {
 
     @Value("${dirName.temp}")
     private String temp;
-
 
     /**
      * 下载config接口文件
@@ -93,7 +89,7 @@ public class ConfigApiService {
      *
      * @param repository
      */
-    public void loadConfigData(RepositoryImpl repository) {
+    public String loadConfigData(RepositoryImpl repository) throws Exception {
         log.warn("************开始加载-config接口数据");
         long startTime = System.currentTimeMillis();
         try {
@@ -126,8 +122,10 @@ public class ConfigApiService {
 
             analysisData(repository);
             log.warn("************结束加载-config接口数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+            return "ok";
         } catch (Exception e) {
             log.error("加载config接口数据异常", e);
+            throw e;
         }
     }
 
@@ -160,7 +158,7 @@ public class ConfigApiService {
      * @return
      */
     private String getPath() {
-        return groupCode + File.separator + projectId + File.separator + config;
+        return groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + config;
     }
 
     /**
@@ -170,7 +168,7 @@ public class ConfigApiService {
      */
     private String getKey() {
         String key = BaseDecConstant.WD + "_";
-        switch (projectId) {
+        switch (BaseDecConstant.CURRENT_PROJECT_ID) {
             case BaseDecConstant.CBD_PROJECT_ID:
                 key += BaseDecConstant.CBD_API_JSON;
                 break;

@@ -29,9 +29,6 @@ import java.util.Map;
 @Service
 public class IbmsPhysicalWorldService {
 
-    @Value("${project.id}")
-    private String projectId;
-
     @Value("${project.groupCode}")
     private String groupCode;
 
@@ -89,7 +86,7 @@ public class IbmsPhysicalWorldService {
      * @return
      * @return
      */
-    public Object loadIbmsPhysicalWorldData(RepositoryImpl repository) {
+    public String loadIbmsPhysicalWorldData(RepositoryImpl repository) throws Exception {
         log.warn("************开始加载-IBMS物理世界数据");
         long startTime = System.currentTimeMillis();
         File maxDir = FileUtil.getMaxDir(new File(getPath()));
@@ -103,7 +100,7 @@ public class IbmsPhysicalWorldService {
      *
      * @param repository
      */
-    private void loadObjectData(RepositoryImpl repository, File maxDir) {
+    private void loadObjectData(RepositoryImpl repository, File maxDir) throws Exception {
         log.warn("*****开始加载-对象数据");
         long startTime = System.currentTimeMillis();
         try {
@@ -190,6 +187,7 @@ public class IbmsPhysicalWorldService {
             log.warn("*****结束加载-对象数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
         } catch (Exception e) {
             log.error("加载IBMS物理世界数据异常", e);
+            throw e;
         }
     }
 
@@ -261,7 +259,7 @@ public class IbmsPhysicalWorldService {
      */
     private void addProject(JSONObject requestBody) {
         requestBody.put(BaseDecConstant.GROUP_CODE, groupCode);
-        requestBody.put(BaseDecConstant.PROJECT_ID, projectId);
+        requestBody.put(BaseDecConstant.PROJECT_ID, BaseDecConstant.CURRENT_PROJECT_ID);
     }
 
     /**
@@ -270,7 +268,7 @@ public class IbmsPhysicalWorldService {
      * @return
      */
     private String getPath() {
-        return groupCode + File.separator + projectId + File.separator + ibmsPhysicalWorld;
+        return groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + ibmsPhysicalWorld;
     }
 
 }

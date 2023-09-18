@@ -34,7 +34,7 @@ public class ConfigApiControl {
      * @return
      */
     @GetMapping("/loadConfigData")
-    public void loadConfigData() {
+    public void loadConfigData() throws Exception {
         configApiService.loadConfigData(new RepositoryImpl());
     }
 

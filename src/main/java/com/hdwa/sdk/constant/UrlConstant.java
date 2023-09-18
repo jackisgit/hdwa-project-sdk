@@ -49,77 +49,33 @@ public class UrlConstant {
      */
     public static final String LIST_RELATION_DATA_URL = "/openApi/listRelationData";
 
-    ///**
-    // * 逻辑分组数据 接口路径
-    // */
-    //public static final String LOGICAL_GROUP_URL = "/openApi/logicalGrouping/list";
-    //
-    ///**
-    // * 逻辑分组包含的对象数据 接口路径
-    // */
-    //public static final String LOGICAL_OBJECT_URL = "/openApi/logicalObject/listPage";
-    //
-    //
-    ///**
-    // * 查询报警记录 接口路径
-    // */
-    //public static final String ALARM_RECORD_PAGE = "/openApi/alarm-record/page";
-    //
-    ///**
-    // * 查询工单接口 接口路径
-    // */
-    //public static final String QUERY_ORDER_STATE = "/openApi/alarmToWorkOrder/queryOrderStateByAlarmIds";
 
     /**
      * 控制指令 接口路径
      */
     public static final String iot_project_control = "/sync_pointsetbatch_post";
 
-    ///**
-    // * 类型定义数据 接口路径
-    // */
-    //public static final String LIST_CLASS_DEFINER_URL = "/classDefiner/listClassDefiner";
-    //
-    ///**
-    // * post 接口路径
-    // */
-    //public static final String POST_URL = "/pathApi/post";
-    //
-    ///**
-    // * 点位定义数据 接口路径
-    // */
-    //public static final String LIST_POINT_DEFINER_URL = "/pointDefiner/listPointDefiner";
-    //
-    ///**
-    // * 对象数据 接口路径
-    // */
-    //public static final String LIST_OBJECT_DATA_URL = "/objectData/listObjectData";
-    //
-    ///**
-    // * 关系数据 接口路径
-    // */
-    //public static final String LIST_RELATION_DATA_URL = "/relation/listRelationData";
 
     /**
      * 逻辑分组数据 接口路径
      */
-    public static final String LOGICAL_GROUP_URL = "/logicalGrouping/list";
+    public static final String LOGICAL_GROUP_URL = "/openApi/queryLogicalGrouping";
 
     /**
      * 逻辑分组包含的对象数据 接口路径
      */
-    public static final String LOGICAL_OBJECT_URL = "/logicalObject/listPage";
+    public static final String LOGICAL_OBJECT_URL = "/openApi/queryLogicalObject";
 
 
     /**
      * 查询报警记录 接口路径
      */
-    public static final String ALARM_RECORD_PAGE = "/alarm-record/page";
+    public static final String ALARM_RECORD_PAGE = "/openApi/alarm-record/page";
 
     /**
      * 查询工单接口 接口路径
      */
-    public static final String QUERY_ORDER_STATE = "/alarmToWorkOrder/queryOrderStateByAlarmIds";
+    public static final String QUERY_ORDER_STATE = "/openApi/alarmToWorkOrder/queryOrderStateByAlarmIds";
 
 
     /**

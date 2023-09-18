@@ -1,6 +1,6 @@
 package com.hdwa.sdk.service;
 
-import com.hdwa.sdk.entity.repository.RepositoryImpl;
+import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.utils.FileUtil;
 import com.hdwa.sdk.websocket.AlarmWebSocketClient;
 import com.hdwa.sdk.websocket.IotWebSocketClient;
@@ -22,9 +22,6 @@ import java.nio.file.Files;
 @Slf4j
 @Component
 public class InitialDataService implements CommandLineRunner {
-
-    @Value("${project.id}")
-    private String projectId;
 
     @Value("${project.groupCode}")
     private String groupCode;
@@ -73,7 +70,7 @@ public class InitialDataService implements CommandLineRunner {
      */
     private void downloadData() {
         log.warn("*****检查本地已下载的文件");
-        String root = groupCode + File.separator + projectId + File.separator;
+        String root = groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator;
         File physicalWorldDir = FileUtil.getMaxDir(new File(root + physicalWorld));
         File ibmsPhysicalWorldDir = FileUtil.getMaxDir(new File(root + ibmsPhysicalWorld));
         File ibmsLogicalGroupDir = FileUtil.getMaxDir(new File(root + ibmsLogicalGroup));
@@ -107,7 +104,7 @@ public class InitialDataService implements CommandLineRunner {
         log.warn("*****初始数据文件夹");
         try {
             // 创建根目录文件夹
-            File root = new File(groupCode + File.separator + projectId);
+            File root = new File(groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID);
             if (!root.exists()) {
                 log.warn(root.getPath());
                 Files.createDirectories(root.toPath());
@@ -168,8 +165,8 @@ public class InitialDataService implements CommandLineRunner {
     private void initIotWebsocket() {
         try {
             log.warn("************初始化iotWebSocket");
-            String url = iotWebSocketUrl + "?projectId=" + projectId.substring(2) + "&type=iot,text,pointset";
-            IotWebSocketClient client = new IotWebSocketClient(new URI(url), projectId);
+            String url = iotWebSocketUrl + "?projectId=" + BaseDecConstant.CURRENT_PROJECT_ID.substring(2) + "&type=iot,text,pointset";
+            IotWebSocketClient client = new IotWebSocketClient(new URI(url), BaseDecConstant.CURRENT_PROJECT_ID);
             client.connect();
         } catch (Exception e) {
             log.error("*****建立iotWebsocket异常", e);
@@ -183,8 +180,8 @@ public class InitialDataService implements CommandLineRunner {
     private void initAlarmWebsocket() {
         try {
             log.warn("************初始化alarmWebSocket");
-            String url = alarmWebSocketUrl + "/" + projectId;
-            AlarmWebSocketClient client = new AlarmWebSocketClient(new URI(url), alarmUrl, projectId, groupCode);
+            String url = alarmWebSocketUrl + "/" + BaseDecConstant.CURRENT_PROJECT_ID;
+            AlarmWebSocketClient client = new AlarmWebSocketClient(new URI(url), alarmUrl, BaseDecConstant.CURRENT_PROJECT_ID, groupCode);
             client.connect();
         } catch (Exception e) {
             log.error("*****建立alarmWebsocket异常", e);

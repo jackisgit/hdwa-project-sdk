@@ -10,7 +10,6 @@ import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.utils.CalculateApiJsonUtil;
 import com.hdwa.sdk.utils.FilterUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
@@ -22,9 +21,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class PathApiService {
 
-    @Value("${project.id}")
-    private String projectId;
-
     /**
      * 路径查询
      *
@@ -34,7 +30,7 @@ public class PathApiService {
     public Object post(PathApiParam param) {
         try {
             JSONArray valuePath = param.getPath();
-            RepositoryImpl repository = DataContainer.projectMap.get(projectId);
+            RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
             if (repository == null) {
                 return "null";
             }
@@ -52,7 +48,7 @@ public class PathApiService {
             return result;
         } catch (Exception e) {
             log.error("按路径查询接口出现异常", e);
-            throw new RuntimeException(e);
+            throw e;
         }
     }
 
@@ -64,14 +60,19 @@ public class PathApiService {
      * @return
      */
     public Object postPage(PathApiParam param) {
-        RepositoryImpl repository = DataContainer.projectMap.get(projectId);
-        if (repository == null) {
-            return "null";
+        try {
+            RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
+            if (repository == null) {
+                return "null";
+            }
+            JSONObject result = FilterUtil.postPage(repository, (JSONObject) JSON.toJSON(param));
+            JSONArray jsonArray = (JSONArray) result.get(BaseDecConstant.CONTENT2);
+            jsonArray.forEach(this::removeAttribute);
+            return result;
+        } catch (Exception e) {
+            log.error("按路径查询分页接口出现异常", e);
+            throw e;
         }
-        JSONObject result = FilterUtil.postPage(repository, (JSONObject) JSON.toJSON(param));
-        JSONArray jsonArray = (JSONArray) result.get(BaseDecConstant.CONTENT2);
-        jsonArray.forEach(this::removeAttribute);
-        return result;
     }
 
     /**

@@ -1,11 +1,11 @@
 package com.hdwa.sdk.kafka;
 
 import com.alibaba.fastjson.JSONObject;
+import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.service.LoadDataMainService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -20,13 +20,13 @@ import org.springframework.stereotype.Component;
 public class KafkaConsumer {
 
     @Autowired
-    private RedisTemplate<String, String> redisTemplate;
-
-    @Autowired
     private LoadDataMainService loadDataMainService;
 
-    @Value("${project.id}")
-    private String projectId;
+    private static final String projectId;
+
+    static {
+        projectId = System.getProperty(BaseDecConstant.PROJECT_ID);
+    }
 
 
     /**

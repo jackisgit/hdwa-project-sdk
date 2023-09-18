@@ -379,12 +379,10 @@ public class RepositoryImpl extends RepositoryBase {
             case "ibms":
                 String product = (descSet.get("product")).toString();
                 String type = (descSet.get("type")).toString();
-                // TODO: 2023/9/14 没有逻辑编组数据
-                //result = this.IBMSArrayDic.get(product).get(type);
+                result = this.IBMSArrayDic.get(product).get(type);
                 break;
             case "ibms-group":
-                // TODO: 2023/9/14 没有逻辑编组数据
-                //result = this.IBMSGroupArray;
+                result = this.IBMSGroupArray;
                 break;
             case "ibms-group-object": {
                 String ibmsSceneCode = (descSet.get("ibmsSceneCode")).toString();

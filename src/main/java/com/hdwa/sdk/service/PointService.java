@@ -36,9 +36,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class PointService {
 
-    @Value("${project.id}")
-    private String projectId;
-
     @Value("${project.groupCode}")
     private String groupCode;
 
@@ -47,7 +44,6 @@ public class PointService {
 
     @Value("${dirName.temp}")
     private String temp;
-
 
     /**
      * 下载点位数据
@@ -58,7 +54,7 @@ public class PointService {
         log.warn("************开始下载点位数据");
         long startTime = System.currentTimeMillis();
         try {
-            String pointPath = groupCode + File.separator + projectId + File.separator + point;
+            String pointPath = groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + point;
             File tempFile = new File(pointPath + File.separator + temp);
             //删除临时目录文件
             FileUtil.deleteRecursive(tempFile);
@@ -90,7 +86,7 @@ public class PointService {
      * @param repository
      * @return
      */
-    public Object loadPointData(RepositoryImpl repository) {
+    public void loadPointData(RepositoryImpl repository) throws Exception {
         log.warn("************开始加载-点位数据");
         long startTime = System.currentTimeMillis();
         File maxDir = FileUtil.getMaxDir(new File(getPath()));
@@ -104,8 +100,8 @@ public class PointService {
             log.warn("************结束加载-点位数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
         } catch (Exception e) {
             log.error("加载点位数据异常", e);
+            throw e;
         }
-        return "ok";
     }
 
     /**
@@ -247,7 +243,7 @@ public class PointService {
      * @return
      */
     private String getPath() {
-        return groupCode + File.separator + projectId + File.separator + point;
+        return groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + point;
     }
 
 

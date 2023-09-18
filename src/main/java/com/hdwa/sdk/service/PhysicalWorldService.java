@@ -33,9 +33,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Service
 public class PhysicalWorldService {
 
-    @Value("${project.id}")
-    private String projectId;
-
     @Value("${project.groupCode}")
     private String groupCode;
 
@@ -47,7 +44,6 @@ public class PhysicalWorldService {
 
     @Value("${url.dmp}")
     private String dmpUrl;
-
 
     /**
      * 下载物理世界数据
@@ -105,25 +101,30 @@ public class PhysicalWorldService {
      *
      * @return
      */
-    public Object loadPhysicalWorldData(RepositoryImpl repository) {
+    public Object loadPhysicalWorldData(RepositoryImpl repository) throws Exception {
         log.warn("************开始加载-物理世界数据");
         long startTime = System.currentTimeMillis();
-        File maxDir = FileUtil.getMaxDir(new File(getPath()));
-        loadClassDefData(repository, maxDir);
-        loadPointDefData(repository, maxDir);
-        loadObjectData(repository, maxDir);
-        loadRelationData(repository, maxDir);
-        disposePoint(repository);
-        loadRelationRef(repository);
-        log.warn("************结束加载-物理世界数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
-        return "ok";
+        try {
+            File maxDir = FileUtil.getMaxDir(new File(getPath()));
+            loadClassDefData(repository, maxDir);
+            loadPointDefData(repository, maxDir);
+            loadObjectData(repository, maxDir);
+            loadRelationData(repository, maxDir);
+            disposePoint(repository);
+            loadRelationRef(repository);
+            log.warn("************结束加载-物理世界数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+            return "ok";
+        } catch (Exception e) {
+            log.error("***加载-物理世界数据异常", e);
+            throw e;
+        }
     }
 
 
     /**
      * 加载类型定义数据
      */
-    private void loadClassDefData(RepositoryImpl repository, File maxDir) {
+    private void loadClassDefData(RepositoryImpl repository, File maxDir) throws Exception {
         log.warn("*****开始加载-类型定义数据数据");
         long startTime = System.currentTimeMillis();
         try {
@@ -149,6 +150,7 @@ public class PhysicalWorldService {
             log.warn("*****结束加载-类型定义数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
         } catch (Exception e) {
             log.error("加载类型定义数据异常", e);
+            throw e;
         }
     }
 
@@ -157,7 +159,7 @@ public class PhysicalWorldService {
      *
      * @param repository
      */
-    private void loadPointDefData(RepositoryImpl repository, File maxDir) {
+    private void loadPointDefData(RepositoryImpl repository, File maxDir) throws Exception {
         log.warn("*****开始加载-点位定义数据");
         long startTime = System.currentTimeMillis();
         try {
@@ -204,10 +206,11 @@ public class PhysicalWorldService {
             SceneDataSet sds = new SceneDataSet(false);
             sds.set = RWDUtil.array2SDOList(dataSourceAll);
             repository.infoDataSource = sds;
-            FileUtil.save(groupCode + File.separator + projectId + File.separator + temp + File.separator + UrlConstant.TMP_DATASOURCE, FastJsonUtil.toFormatString(dataSourceAll));
+            FileUtil.save(groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + temp + File.separator + UrlConstant.TMP_DATASOURCE, FastJsonUtil.toFormatString(dataSourceAll));
             log.warn("*****结束加载-点位定义数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
         } catch (Exception e) {
             log.error("加载点位定义数据异常", e);
+            throw e;
         }
     }
 
@@ -282,6 +285,7 @@ public class PhysicalWorldService {
             log.warn("*****结束加载-对象数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
         } catch (Exception e) {
             log.error("加载对象数据异常", e);
+            throw e;
         }
 
     }
@@ -349,6 +353,7 @@ public class PhysicalWorldService {
             log.warn("*****结束加载-关系数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
         } catch (Exception e) {
             log.error("加载关系数据异常", e);
+            throw e;
         }
     }
 
@@ -449,6 +454,7 @@ public class PhysicalWorldService {
             log.warn("*****结束加载-处理点位-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
         } catch (Exception e) {
             log.error("加载处理点位数据异常", e);
+            throw e;
         }
     }
 
@@ -482,10 +488,10 @@ public class PhysicalWorldService {
                 relationFormObject(rel, repository);
                 relationToObject(rel, repository);
             });
-
             log.warn("*****结束加载-解析关系模版数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
         } catch (Exception e) {
             log.error("加载解析关系模版数据异常", e);
+            throw e;
         }
     }
 
@@ -756,7 +762,7 @@ public class PhysicalWorldService {
      * @return
      */
     private String getPath() {
-        return groupCode + File.separator + projectId + File.separator + physicalWorld;
+        return groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + physicalWorld;
     }
 
 
@@ -855,7 +861,7 @@ public class PhysicalWorldService {
             }
             JSONObject requestBody = new JSONObject();
             requestBody.put(BaseDecConstant.GROUP_CODE, groupCode);
-            requestBody.put(BaseDecConstant.PROJECT_ID, projectId);
+            requestBody.put(BaseDecConstant.PROJECT_ID, BaseDecConstant.CURRENT_PROJECT_ID);
             JSONObject condition = new JSONObject();
             condition.put(BaseDecConstant.CLASS_CODE, code);
             requestBody.put(BaseDecConstant.CONDITION, condition);
@@ -895,7 +901,7 @@ public class PhysicalWorldService {
             criteriaJson.put(BaseDecConstant.CRITERIA_2, paramTemp);
             requestBody.put(BaseDecConstant.CONDITION, criteriaJson);
             requestBody.put(BaseDecConstant.GROUP_CODE, groupCode);
-            requestBody.put(BaseDecConstant.PROJECT_ID, projectId);
+            requestBody.put(BaseDecConstant.PROJECT_ID, BaseDecConstant.CURRENT_PROJECT_ID);
             addProject(requestBody);
             JSONArray relationArray = OkHttpClientUtil.httpPost(requestBody, dmpUrl + UrlConstant.LIST_RELATION_DATA_URL).getJSONArray(BaseDecConstant.DATA);
             FileUtil.save(typePath + File.separator + relCode + UrlConstant.JSON_FILE, FastJsonUtil.toFormatString(relationArray));
@@ -911,7 +917,7 @@ public class PhysicalWorldService {
      */
     private void addProject(JSONObject requestBody) {
         requestBody.put(BaseDecConstant.GROUP_CODE, groupCode);
-        requestBody.put(BaseDecConstant.PROJECT_ID, projectId);
+        requestBody.put(BaseDecConstant.PROJECT_ID, BaseDecConstant.CURRENT_PROJECT_ID);
     }
 
 
