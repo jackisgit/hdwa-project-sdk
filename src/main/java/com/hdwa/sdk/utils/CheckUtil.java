@@ -15,46 +15,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CheckUtil {
 
-    // 检查整个配置文件
-    @SuppressWarnings("unused")
-    public static JSONObject check(JSONObject sceneJSON_ori) {
-        JSONObject result = new JSONObject();
-        try {
-            RepositoryBase Repository = new RepositoryBase(false, false, 1, 100L);
-            SceneObject sceneObject = new SceneObject();
-            {
-                JSONArray PropertyList_ori = sceneJSON_ori.getJSONArray("PropertyList");
-                JSONObject sceneJSON = new JSONObject();
-                JSONArray PropertyList = new JSONArray();
-                for (int i = 0; i < PropertyList_ori.size(); i++) {
-                    JSONObject Property = PropertyList_ori.getJSONObject(i);
-                    String PropertyName = Property.getString("PropertyName");
-                    if (PropertyName.equals("general_query")) {
-                    } else {
-                        PropertyList.add(Property);
-                    }
-                }
-                sceneJSON.put("PropertyList", PropertyList);
-                FastJsonUtil.setJava(sceneJSON, sceneObject);
-                Repository.sceneJSON = sceneJSON;
-            }
-            Repository.sceneObject = sceneObject;
-            ComputeUtil.RefreshRepository(Repository);
-            List<List<SceneProperty>> spListList = ComputeUtil.computePrepare(Repository);
-            result.put("Result", "success");
-            return result;
-        } catch (ExceptionWrapper e) {
-            result.put("Result", "failure");
-            result.put("ErrorCode", "1");
-            result.put("Message", e.getMessageArray());
-            return result;
-        } catch (Exception e) {
-            result.put("Result", "failure");
-            result.put("ErrorCode", "2");
-            return result;
-        }
-    }
-
     // 确保将item加入result中
     private static void add(List<SceneProperty> result, SceneProperty item) {
         boolean exist = false;
@@ -109,12 +69,11 @@ public class CheckUtil {
                     add(result, Repository.attachproperty2host.get(sceneProperty));
                 }
             }
-            return result;
         } else {
             // query和deamon类型
             getPropertyBefore_query(Repository, sceneProperty, result);
-            return result;
         }
+        return result;
     }
 
     // propertyValueType是query、deamon
@@ -547,8 +506,8 @@ public class CheckUtil {
                         Object ReturnColumns = sql_json.get("ReturnColumns");
                         {
                             JSONArray ReturnColumnsArray = (JSONArray) ReturnColumns;
-                            for (int i = 0; i < ReturnColumnsArray.size(); i++) {
-                                String column = (String) ReturnColumnsArray.get(i);
+                            for (Object o : ReturnColumnsArray) {
+                                String column = (String) o;
                                 columnMap.put(column, true);
                             }
                         }
@@ -558,8 +517,8 @@ public class CheckUtil {
                     Object ReturnColumns = sql_json.get("GroupBy");
                     {
                         JSONArray ReturnColumnsArray = (JSONArray) ReturnColumns;
-                        for (int i = 0; i < ReturnColumnsArray.size(); i++) {
-                            String column = (String) ReturnColumnsArray.get(i);
+                        for (Object o : ReturnColumnsArray) {
+                            String column = (String) o;
                             columnMap.put(column, true);
                         }
                     }
@@ -568,8 +527,8 @@ public class CheckUtil {
                     Object ReturnColumns = sql_json.get("OrderBy");
                     {
                         JSONArray ReturnColumnsArray = (JSONArray) ReturnColumns;
-                        for (int i = 0; i < ReturnColumnsArray.size(); i++) {
-                            JSONObject columnWrapper = (JSONObject) ReturnColumnsArray.get(i);
+                        for (Object o : ReturnColumnsArray) {
+                            JSONObject columnWrapper = (JSONObject) o;
                             Object ColumnObject = columnWrapper.get("Column");
                             String column = (String) ColumnObject;
                             columnMap.put(column, true);
@@ -613,8 +572,8 @@ public class CheckUtil {
             String LogicOperatorString = (LogicOperator).toString();
             if (LogicOperatorString.equals("and") || LogicOperatorString.equals("or")) {
                 JSONArray Criterias = (JSONArray) CriteriaObject.get("Criterias");
-                for (int i = 0; i < Criterias.size(); i++) {
-                    JSONObject CriteriaObjectInner = (JSONObject) Criterias.get(i);
+                for (Object criteria : Criterias) {
+                    JSONObject CriteriaObjectInner = (JSONObject) criteria;
                     parseCriteriaColumn(CriteriaObjectInner, columnMap);
                 }
             } else if (LogicOperatorString.equals("not")) {
@@ -634,8 +593,8 @@ public class CheckUtil {
             String LogicOperatorString = (LogicOperator).toString();
             if (LogicOperatorString.equals("and") || LogicOperatorString.equals("or")) {
                 JSONArray Criterias = (JSONArray) CriteriaObject.get("Criterias");
-                for (int i = 0; i < Criterias.size(); i++) {
-                    JSONObject CriteriaObjectInner = (JSONObject) Criterias.get(i);
+                for (Object criteria : Criterias) {
+                    JSONObject CriteriaObjectInner = (JSONObject) criteria;
                     parseCriteria(CriteriaObjectInner, result);
                 }
             } else if (LogicOperatorString.equals("not")) {
@@ -723,8 +682,7 @@ public class CheckUtil {
                 children.add(Set1);
                 children.add(Set2);
             }
-            for (int i = 0; i < children.size(); i++) {
-                Object child = children.get(i);
+            for (Object child : children) {
                 if (child instanceof JSONObject) {
                     JSONObject TargetInner = (JSONObject) child;
                     Map<String, Map<String, Boolean>> resultInner = parseTarget(TargetInner, columnMap);

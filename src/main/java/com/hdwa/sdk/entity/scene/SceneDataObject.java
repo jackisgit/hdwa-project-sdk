@@ -6,6 +6,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.hdwa.sdk.entity.repository.RepositoryBase;
 import com.hdwa.sdk.utils.KeywordUtil;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -28,6 +29,27 @@ public class SceneDataObject {
     public SceneDataObject() {
     }
 
+    public SceneDataObject(RepositoryBase Repository, SceneDataValue parentArrayData,SceneObject custom_object, SceneProperty[] query_attached) {
+        this.parentArrayData = parentArrayData;
+        this.rel_object = custom_object;
+        this.query_attached = query_attached;
+
+        this.value_object = new HashMap<>(16);
+        if (this.rel_object != null) {
+            for (SceneProperty sceneProperty : this.rel_object.propertyList) {
+                SceneDataValue sdv = new SceneDataValue(Repository, this, sceneProperty.propertyName, sceneProperty);
+                this.value_object.put(sceneProperty.propertyName,sdv );
+            }
+        }
+        if (this.query_attached != null) {
+            for (SceneProperty sceneProperty : this.query_attached) {
+                this.value_object.put(sceneProperty.propertyName, new SceneDataValue(Repository, this, sceneProperty.propertyName, sceneProperty));
+            }
+        }
+    }
+
+
+
     public SceneDataObject(RepositoryBase Repository, SceneDataObject parentObjectData, String myPropertyName, SceneDataValue parentArrayData,
                            SceneObject custom_object, SceneProperty[] query_attached, SceneDataObject father) {
         this.parentObjectData = parentObjectData;
@@ -37,7 +59,7 @@ public class SceneDataObject {
         this.query_attached = query_attached;
         this.father = father;
 
-        this.value_object = new ConcurrentHashMap<String, SceneDataValue>();
+        this.value_object = new HashMap<>(16);
         if (this.rel_object != null) {
             for (SceneProperty sceneProperty : this.rel_object.propertyList) {
                 this.value_object.put(sceneProperty.propertyName, new SceneDataValue(Repository, this, sceneProperty.propertyName, sceneProperty));
@@ -67,9 +89,10 @@ public class SceneDataObject {
             result.put("sailfish_inner_RowChange", this.getRowChange());
         }
         for (String key : this.keySet()) {
-            if (KeywordUtil.keyProperty.contains(key)) {
-                continue;
-            }
+            // TODO: 2023/9/18 导致名称字段不显示
+            //if (KeywordUtil.keyProperty.contains(key)) {
+            //    continue;
+            //}
             SceneDataValue sdvInner = this.get(key);
             if (sdvInner != null) {
                 result.put(key, sdvInner.toJSON(false, depthInner, with_change));

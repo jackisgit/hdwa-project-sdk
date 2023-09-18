@@ -41,10 +41,9 @@ public class CalculateApiJsonUtil {
         properties.stream()
                 .filter(property -> property.getPropertyValueType().equals(BaseDecConstant.QUERY))
                 .forEach(property -> {
-                    JSONObject sqlJson = null;
                     //这里如果有异常就代表json格式错误
                     try {
-                        sqlJson = JSON.parseObject(property.query_sql);
+                        JSON.parseObject(property.query_sql);
                     } catch (Exception e) {
                         ExceptionItem exceptionItem = null;
                         try {
@@ -99,7 +98,7 @@ public class CalculateApiJsonUtil {
 
 
         //检查static
-        properties.stream()
+      /*  properties.stream()
                 .filter(property -> property.getPropertyValueType().equals(BaseDecConstant.STATIC))
                 .filter(property -> !property.propertyValueSchema.equals(BaseDecConstant.JSONARRAY) && !property.propertyValueSchema.equals(BaseDecConstant.JSONOBJECT))
                 .filter(property -> repositoryBase.check_static_value_basic && (property.static_value == null || property.static_value.length() == 0))
@@ -111,7 +110,7 @@ public class CalculateApiJsonUtil {
                         log.error("检查：" + BaseDecConstant.STATIC + "---出现异常");
                     }
                     exceptionList.add(exceptionItem);
-                });
+                });*/
 
 
         //有异常

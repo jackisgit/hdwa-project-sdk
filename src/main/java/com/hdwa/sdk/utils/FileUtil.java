@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -126,12 +125,18 @@ public class FileUtil {
             // 按文件名称降序排序
             Arrays.sort(subdirectories, Comparator.comparing(File::getName).reversed());
             resultFile = subdirectories[0];
+
             //临时目录排除
-            if (resultFile.getName().equals(BaseDecConstant.TEMP)) {
-                log.error("未找到文件夹：" + directory.getPath());
+            if (subdirectories.length == 1 && resultFile.getName().equals(BaseDecConstant.TEMP)) {
+                log.error("只有temp：" + directory.getPath());
                 return null;
-            }else{
-                return resultFile;
+            } else {
+                //temp排序在最大
+                if (resultFile.getName().equals(BaseDecConstant.TEMP)) {
+                    return subdirectories[1];
+                } else {
+                    return resultFile;
+                }
             }
         } else {
             log.error("未找到文件夹：" + directory.getPath());

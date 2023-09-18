@@ -820,6 +820,11 @@ public class PhysicalWorldService {
             requestBody.put(BaseDecConstant.CONDITION, criteriaJson);
             addProject(requestBody);
             JSONArray objectArray = OkHttpClientUtil.httpPost(requestBody, dmpUrl + UrlConstant.LIST_OBJECT_DATA_URL).getJSONArray(BaseDecConstant.DATA);
+            if (objectArray == null) {
+                log.error("*****下载-对象数据为bull");
+                nullClassList.add(code);
+                continue;
+            }
             //没有数据的类型就不下载文件
             if (objectArray.size() == 0) {
                 nullClassList.add(code);
