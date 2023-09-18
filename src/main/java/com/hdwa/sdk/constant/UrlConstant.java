@@ -70,12 +70,12 @@ public class UrlConstant {
     /**
      * 查询报警记录 接口路径
      */
-    public static final String ALARM_RECORD_PAGE = "/openApi/alarm-record/page";
+    public static final String ALARM_RECORD_PAGE = "/openApi/alarm/page";
 
     /**
      * 查询工单接口 接口路径
      */
-    public static final String QUERY_ORDER_STATE = "/openApi/alarmToWorkOrder/queryOrderStateByAlarmIds";
+    public static final String QUERY_ORDER_STATE = "/openApi/alarm/queryOrderStateByAlarmIds";
 
 
     /**

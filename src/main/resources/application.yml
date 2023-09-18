@@ -6,6 +6,30 @@ server:
     max-connections: 10000
     min-spare-threads: 100
 
+
+#项目信息
+project:
+  groupCode: WD
+
+#数据文件目录
+dirName:
+  config: config
+  point: point
+  physicalWorld: physical_world
+  ibmsLogicalGroup: ibms_logical_group
+  ibmsPhysicalWorld: ibms_physical_world
+  temp: temp
+
+#服务请求地址
+url:
+  #  dmp: http://127.0.0.1:9805
+  dmp: http://10.199.208.69:32050/api-ibms-dmp
+  monitor: http://10.199.208.69:32050/api-ibms-monitor
+  alarmUrl: http://10.199.208.69:32050/api-ibms-alarm
+  iotProject: http://10.199.205.79:18852
+  iotWebSocket: ws://10.199.205.79:8858/websocket
+  alarmWebSocket: ws://10.199.87.67:8825/webSocketServer
+
 spring:
   redis:
     host: 10.199.205.81
@@ -49,26 +73,3 @@ spring:
       #earliest 在各分区下有提交的offset时：从offset处开始消费  在各分区下无提交的offset时：从头开始消费
       #latest 在各分区下有提交的offset时：从offset处开始消费  在各分区下无提交的offset时：从最新的数据开始消费
       auto-offset-reset: latest
-
-#项目信息
-project:
-  groupCode: WD
-
-#数据文件目录
-dirName:
-  config: config
-  point: point
-  physicalWorld: physical_world
-  ibmsLogicalGroup: ibms_logical_group
-  ibmsPhysicalWorld: ibms_physical_world
-  temp: temp
-
-#服务请求地址
-url:
-  #  dmp: http://127.0.0.1:9805
-  dmp: http://10.199.208.69:32050/api-ibms-dmp
-  monitor: http://10.199.208.69:32050/api-ibms-monitor
-  alarmUrl: http://10.199.208.69:32050/api-ibms-alarm
-  iotProject: http://10.199.205.79:18852
-  iotWebSocket: ws:/10.199.205.79:30019/websocket
-  alarmWebSocket: ws://10.199.87.67:8825/webSocketServer

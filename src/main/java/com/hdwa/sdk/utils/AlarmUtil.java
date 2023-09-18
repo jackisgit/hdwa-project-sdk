@@ -3,6 +3,7 @@ package com.hdwa.sdk.utils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.constant.UrlConstant;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
@@ -85,7 +86,7 @@ public class AlarmUtil {
             paramObject.put("state", 1);
             paramObject.put("size", 5000);
             paramObject.put("current", 1);
-            JSONArray content = OkHttpClientUtil.httpPost(paramObject, alarmUrl + UrlConstant.ALARM_RECORD_PAGE).getJSONArray("Content");
+            JSONArray content = OkHttpClientUtil.httpPost(paramObject, alarmUrl + UrlConstant.ALARM_RECORD_PAGE).getJSONObject(BaseDecConstant.DATA).getJSONArray(BaseDecConstant.RECORDS);
             JSONArray ids = new JSONArray();
             Map<String, JSONObject> alarmMap = new HashMap<>(16);
             for (int i = 0; i < content.size(); i++) {
@@ -103,12 +104,10 @@ public class AlarmUtil {
             //查询工单状态
             if (ids.size() > 0) {
                 JSONObject param = new JSONObject();
-                param.put("appId", "0");
-                param.put("userId", "systemId");
                 param.put("projectId", projectId);
                 param.put("groupCode", groupCode);
                 param.put("ids", ids);
-                JSONArray contentOrderState = OkHttpClientUtil.httpPost(param, alarmUrl + UrlConstant.QUERY_ORDER_STATE).getJSONArray("Content");
+                JSONArray contentOrderState = OkHttpClientUtil.httpPost(param, alarmUrl + UrlConstant.QUERY_ORDER_STATE).getJSONArray(BaseDecConstant.DATA);
                 //log.warn("*****查询工单状态完成" + ids.size());
                 for (int i = 0; i < contentOrderState.size(); i++) {
                     JSONObject orderStateItem = contentOrderState.getJSONObject(i);
@@ -125,7 +124,7 @@ public class AlarmUtil {
                 try {
                     updateAlarm(alarm, repository);
                 } catch (Exception e) {
-                    log.error(e.getMessage(), e);
+                    log.error("处理报警记录出现异常", e);
                 }
             }
             return result;

@@ -5,9 +5,11 @@ import com.hdwa.sdk.utils.FileUtil;
 import com.hdwa.sdk.websocket.AlarmWebSocketClient;
 import com.hdwa.sdk.websocket.IotWebSocketClient;
 import lombok.extern.slf4j.Slf4j;
+import org.java_websocket.WebSocket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -162,12 +164,14 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * iotWebSocket连接
      */
+    IotWebSocketClient iotClient;
+
     private void initIotWebsocket() {
         try {
             log.warn("************初始化iotWebSocket");
             String url = iotWebSocketUrl + "?projectId=" + BaseDecConstant.CURRENT_PROJECT_ID.substring(2) + "&type=iot,text,pointset";
-            IotWebSocketClient client = new IotWebSocketClient(new URI(url), BaseDecConstant.CURRENT_PROJECT_ID);
-            client.connect();
+            iotClient = new IotWebSocketClient(new URI(url), BaseDecConstant.CURRENT_PROJECT_ID);
+            iotClient.connect();
         } catch (Exception e) {
             log.error("*****建立iotWebsocket异常", e);
         }
@@ -187,4 +191,37 @@ public class InitialDataService implements CommandLineRunner {
             log.error("*****建立alarmWebsocket异常", e);
         }
     }
+
+    /**
+     * webSocket重新连接
+     */
+    @Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 30)
+    public void resConnection() {
+        try {
+            if (!iotClient.isOpen()) {
+                log.error("************iotWebSocket连接已断开，正在重新连接，当前状态为[{}]", iotClient.getReadyState());
+                if (iotClient.getReadyState().equals(WebSocket.READYSTATE.CLOSING)
+                        || iotClient.getReadyState().equals(WebSocket.READYSTATE.CLOSED)
+                        || iotClient.getReadyState().equals(WebSocket.READYSTATE.NOT_YET_CONNECTED)) {
+                    iotClient.reconnect();
+                }
+            }
+        } catch (Exception e) {
+            log.error("************iotWebSocket连接异常，尝试重新连接：" + e.getMessage());
+            //关闭异常的连接，重新连接
+            try {
+                if (!iotClient.isOpen()) {
+                    iotClient.close();
+                }
+            } catch (Exception e2) {
+                log.error(e2.getMessage(), e2);
+            }
+            try {
+                iotClient.connect();
+            } catch (Exception e2) {
+                log.error(e2.getMessage(), e2);
+            }
+        }
+    }
+
 }

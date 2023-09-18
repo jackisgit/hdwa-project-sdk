@@ -752,6 +752,12 @@ public class BaseDecConstant {
      */
     public static final String CONTENT2 = "content";
 
+
+    /**
+     * records String
+     */
+    public static final String RECORDS = "records";
+
     /**
      * path String
      */

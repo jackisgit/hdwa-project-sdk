@@ -51,12 +51,12 @@ public class IotWebSocketClient extends WebSocketClient {
 
     @Override
     public void onClose(int arg0, String arg1, boolean arg2) {
-        log.warn("*****iotWebSocket连接已关闭: " + url.toString());
+        //log.warn("*****iotWebSocket连接已关闭: " + url.toString());
     }
 
     @Override
     public void onError(Exception arg0) {
-        log.error("*****iotWebSocket连接错误: " + url.toString());
+        //log.error("*****iotWebSocket连接错误: " + url.toString(), arg0);
     }
 
 
