@@ -144,13 +144,16 @@ public class IbmsPhysicalWorldService {
                 SceneDataSet objectSds = new SceneDataSet(false, BaseDecConstant.ZKT_OBJECT + "/" + ibmsSceneCode + "/" + ibmsClassCode);
                 //点位数据
                 SceneDataSet infoArray = repository.infoArrayDic.get(code);
-                infoArray.set.forEach(sdoTemp -> {
-                    //采集点位
-                    if (BaseApiUtil.getInfoTypeByTag(sdoTemp) != 0) {
-                        objectSds.setColChange(sdoTemp.get(BaseDecConstant.CODE).value_prim.value.toString());
-                    }
-                });
-
+                if (infoArray != null) {
+                    infoArray.set.forEach(sdoTemp -> {
+                        //采集点位
+                        if (BaseApiUtil.getInfoTypeByTag(sdoTemp) != 0) {
+                            objectSds.setColChange(sdoTemp.get(BaseDecConstant.CODE).value_prim.value.toString());
+                        }
+                    });
+                } else {
+                    log.warn("***{}：缺少点位定义数据", code);
+                }
                 SceneDataValue objSdv = new SceneDataValue(null, null, null, null);
                 objectArray.forEach(temp -> {
                     JSONObject objItem = (JSONObject) temp;

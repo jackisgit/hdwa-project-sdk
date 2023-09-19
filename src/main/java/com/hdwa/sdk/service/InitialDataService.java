@@ -164,8 +164,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * iotWebSocket连接
      */
-    IotWebSocketClient iotClient;
-
+    private IotWebSocketClient iotClient;
     private void initIotWebsocket() {
         try {
             log.warn("************初始化iotWebSocket");
@@ -181,12 +180,13 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * alarmWebSocket连接
      */
+    private AlarmWebSocketClient alarmClient;
     private void initAlarmWebsocket() {
         try {
             log.warn("************初始化alarmWebSocket");
             String url = alarmWebSocketUrl + "/" + BaseDecConstant.CURRENT_PROJECT_ID;
-            AlarmWebSocketClient client = new AlarmWebSocketClient(new URI(url), alarmUrl, BaseDecConstant.CURRENT_PROJECT_ID, groupCode);
-            client.connect();
+            alarmClient = new AlarmWebSocketClient(new URI(url), alarmUrl, BaseDecConstant.CURRENT_PROJECT_ID, groupCode);
+            alarmClient.connect();
         } catch (Exception e) {
             log.error("*****建立alarmWebsocket异常", e);
         }
@@ -197,6 +197,7 @@ public class InitialDataService implements CommandLineRunner {
      */
     @Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 30)
     public void resConnection() {
+        //iot重连接
         try {
             if (!iotClient.isOpen()) {
                 log.error("************iotWebSocket连接已断开，正在重新连接，当前状态为[{}]", iotClient.getReadyState());
@@ -208,19 +209,32 @@ public class InitialDataService implements CommandLineRunner {
             }
         } catch (Exception e) {
             log.error("************iotWebSocket连接异常，尝试重新连接：" + e.getMessage());
-            //关闭异常的连接，重新连接
-            try {
-                if (!iotClient.isOpen()) {
-                    iotClient.close();
+            //关闭异常的连接
+            if (!iotClient.isOpen()) {
+                iotClient.close();
+            }
+            //重新连接
+            iotClient.connect();
+        }
+
+        //报警重连
+        try {
+            if (!alarmClient.isOpen()) {
+                log.error("************alarmWebSocket连接已断开，正在重新连接，当前状态为[{}]", alarmClient.getReadyState());
+                if (alarmClient.getReadyState().equals(WebSocket.READYSTATE.CLOSING)
+                        || alarmClient.getReadyState().equals(WebSocket.READYSTATE.CLOSED)
+                        || alarmClient.getReadyState().equals(WebSocket.READYSTATE.NOT_YET_CONNECTED)) {
+                    alarmClient.reconnect();
                 }
-            } catch (Exception e2) {
-                log.error(e2.getMessage(), e2);
             }
-            try {
-                iotClient.connect();
-            } catch (Exception e2) {
-                log.error(e2.getMessage(), e2);
+        } catch (Exception e) {
+            log.error("************alarmWebSocket连接异常，尝试重新连接：" + e.getMessage());
+            //关闭异常的连接
+            if (!alarmClient.isOpen()) {
+                alarmClient.close();
             }
+            //重新连接
+            alarmClient.connect();
         }
     }
 

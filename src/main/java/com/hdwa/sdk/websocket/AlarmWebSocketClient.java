@@ -80,12 +80,12 @@ public class AlarmWebSocketClient extends WebSocketClient {
 
     @Override
     public void onClose(int arg0, String arg1, boolean arg2) {
-        log.warn("*****alarmWebSocket连接已关闭: " + url.toString());
+        //log.warn("*****alarmWebSocket连接已关闭: " + url.toString());
     }
 
     @Override
     public void onError(Exception arg0) {
-        log.error("*****alarmWebSocket连接错误: " + url.toString());
+        //log.error("*****alarmWebSocket连接错误: " + url.toString());
     }
 
     @Override
