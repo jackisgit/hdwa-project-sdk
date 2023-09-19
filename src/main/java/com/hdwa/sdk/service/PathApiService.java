@@ -39,13 +39,7 @@ public class PathApiService {
             }
             Object valueObject = CalculateApiJsonUtil.getValueObject(repository, valuePath);
 
-            Object result = CalculateApiJsonUtil.getValueJson(valueObject);
-            if (result instanceof JSONArray) {
-                ((JSONArray) result).forEach(this::removeAttribute);
-            } else if (result instanceof JSONObject) {
-                removeAttribute(result);
-            }
-            return result;
+            return CalculateApiJsonUtil.getValueJson(valueObject);
         } catch (Exception e) {
             log.error("按路径查询接口出现异常", e);
             throw e;
@@ -67,35 +61,10 @@ public class PathApiService {
             }
             JSONObject result = FilterUtil.postPage(repository, (JSONObject) JSON.toJSON(param));
             JSONArray jsonArray = (JSONArray) result.get(BaseDecConstant.CONTENT2);
-            jsonArray.forEach(this::removeAttribute);
             return result;
         } catch (Exception e) {
             log.error("按路径查询分页接口出现异常", e);
             throw e;
         }
-    }
-
-    /**
-     * 移除引用的属性
-     *
-     * @param o
-     */
-    private void removeAttribute(Object o) {
-        JSONObject jsonObject = (JSONObject) o;
-        jsonObject.remove("所在建筑");
-        jsonObject.remove("所在楼层");
-        jsonObject.remove("楼层名称");
-        jsonObject.remove("所在空间");
-        jsonObject.remove("被设备控制");
-        jsonObject.remove("控制设备");
-        jsonObject.remove("被设备供电");
-        jsonObject.remove("所属系统");
-        jsonObject.remove("给设备供电");
-        jsonObject.remove("关联系统");
-        jsonObject.remove("服务空间");
-        jsonObject.remove("空间名称");
-        jsonObject.remove("wdCode");
-        jsonObject.remove("grouping");
-        jsonObject.remove("aliasCode");
     }
 }

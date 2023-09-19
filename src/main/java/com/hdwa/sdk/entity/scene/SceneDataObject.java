@@ -89,10 +89,9 @@ public class SceneDataObject {
             result.put("sailfish_inner_RowChange", this.getRowChange());
         }
         for (String key : this.keySet()) {
-            // TODO: 2023/9/18 导致名称字段不显示
-            //if (KeywordUtil.keyProperty.contains(key)) {
-            //    continue;
-            //}
+            if (KeywordUtil.containsKey(key)) {
+                continue;
+            }
             SceneDataValue sdvInner = this.get(key);
             if (sdvInner != null) {
                 result.put(key, sdvInner.toJSON(false, depthInner, with_change));

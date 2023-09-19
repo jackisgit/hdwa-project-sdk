@@ -195,7 +195,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * webSocket重新连接
      */
-    @Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 30)
+    @Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60)
     public void resConnection() {
         //iot重连接
         try {

@@ -413,6 +413,7 @@ public class PhysicalWorldService {
                                     DataContainer.sdv2point.putIfAbsent(sdp, pointValue);
                                 }
 
+                                //iot采集值
                                 infoKey.value_prim = DataContainer.point2sdv.get(pointValue);
                                 initSdv(sdo, s, pointValue);
                             } else {
@@ -442,13 +443,16 @@ public class PhysicalWorldService {
                                     DataContainer.sdv2set.putIfAbsent(sdp, pointValue);
                                 }
 
+                                //iot设定值
                                 infoKey.value_prim = DataContainer.set2sdv.get(pointValue);
+
                                 initSdv(sdo, s, pointValue);
                             } else {
                                 sdo.remove(s);
                             }
                         }
                     });
+                    repository.id2sdv.put((String) sdo.get(BaseDecConstant.ID).value_prim.value, sdo);
                 });
             });
             log.warn("*****结束加载-处理点位-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
@@ -471,6 +475,7 @@ public class PhysicalWorldService {
         tempSdv.value_prim = new SceneDataPrimitive();
         tempSdv.value_prim.change = false;
         tempSdv.value_prim.value = pointValue;
+        sdo.put(s + "-" + BaseDecConstant.METER_FUNGICIDE, tempSdv);
     }
 
     /**

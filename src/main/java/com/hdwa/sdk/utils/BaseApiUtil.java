@@ -88,18 +88,13 @@ public class BaseApiUtil {
      */
     public static int getInfoTypeByTag(SceneDataObject info) {
         String firstTag = info.get(BaseDecConstant.FIRST_TAG) == null ? null : (String) info.get(BaseDecConstant.FIRST_TAG).value_prim.value;
-        String secondTag = info.get(BaseDecConstant.SECOND_TAG) == null ? null : (String) info.get(BaseDecConstant.SECOND_TAG).value_prim.value;
         if (firstTag != null) {
             if (firstTag.contains(BaseDecConstant.RUN_PARAM)) {
                 return 1;
             } else if (firstTag.contains(BaseDecConstant.EVENT_RECORD)) {
                 return 1;
             } else if (firstTag.contains(BaseDecConstant.SET_PARAM)) {
-                if (secondTag != null && secondTag.contains(BaseDecConstant.SET_FEEDBACK_VALUE)) {
-                    return 1;
-                } else {
-                    return 2;
-                }
+                return 2;
             }
         }
         //其它就是静态参数，技术参数 等等

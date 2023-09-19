@@ -1,5 +1,7 @@
 package com.hdwa.sdk.utils;
 
+import com.hdwa.sdk.constant.BaseDecConstant;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +14,28 @@ public class KeywordUtil {
     public static List<String> keyProperty = new CopyOnWriteArrayList<String>();
 
     static {
-        keyProperty.add("id");
         keyProperty.add("名称");
+        keyProperty.add("部件");
+
+        suffixMap.put("-" + BaseDecConstant.METER_FUNGICIDE, true);
+
+        keyWordMap.put("所在建筑", true);
+        keyWordMap.put("所在楼层", true);
+        keyWordMap.put("楼层名称", true);
+        keyWordMap.put("所在空间", true);
+        keyWordMap.put("被设备控制", true);
+        keyWordMap.put("控制设备", true);
+        keyWordMap.put("被设备供电", true);
+        keyWordMap.put("所属系统", true);
+        keyWordMap.put("给设备供电", true);
+        keyWordMap.put("关联系统", true);
+        keyWordMap.put("服务空间", true);
+        keyWordMap.put("空间名称", true);
+        keyWordMap.put("部件", true);
+        keyWordMap.put("报警列表", true);
+        keyWordMap.put("wdCode", true);
+        keyWordMap.put("grouping", true);
+        keyWordMap.put("aliasCode", true);
     }
 
     public static boolean containsKey(String key) {
