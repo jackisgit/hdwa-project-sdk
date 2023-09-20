@@ -94,9 +94,9 @@ public class PointService {
             //先加载控制文件
             downLoadPoint();
             JSONArray pointList = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.POINT_LIST));
-            repository.InfoPointListArray.set = RWDUtil.array2SDOList(pointList);
+            repository.InfoPointListArray.set = BaseApiUtil.arrayToSdoList(pointList);
             JSONArray pointRelation = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.POINT_RELATION));
-            repository.InfoPointRelationArray.set = RWDUtil.array2SDOList(pointRelation);
+            repository.InfoPointRelationArray.set = BaseApiUtil.arrayToSdoList(pointRelation);
             log.warn("************结束加载-点位数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
         } catch (Exception e) {
             log.error("加载点位数据异常", e);

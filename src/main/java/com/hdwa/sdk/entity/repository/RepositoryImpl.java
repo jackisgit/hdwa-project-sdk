@@ -7,7 +7,7 @@ import com.hdwa.sdk.entity.scene.SceneDataObject;
 import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
 import com.hdwa.sdk.entity.scene.SceneDataSet;
 import com.hdwa.sdk.entity.scene.SceneDataValue;
-import com.hdwa.sdk.utils.RWDUtil;
+import com.hdwa.sdk.utils.BaseApiUtil;
 import com.hdwa.sdk.websocket.WebSocketUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -470,7 +470,7 @@ public class RepositoryImpl extends RepositoryBase {
             for (int index_info = 0; index_info < infoArray.set.size(); index_info++) {
                 SceneDataObject info = infoArray.set.get(index_info);
                 String infoCode = (String) info.get("code").value_prim.value;
-                if (RWDUtil.getInfoType(info) == 1) {
+                if (BaseApiUtil.getInfoTypeByTag(info) == 1) {
                     for (int index_object = 0; index_object < objectArray.set.size(); index_object++) {
                         SceneDataObject obj = objectArray.set.get(index_object);
                         String Key = infoCode;
@@ -479,7 +479,7 @@ public class RepositoryImpl extends RepositoryBase {
                             this.dependency.add_sdv2SetColumn(sdv, objectArray, Key);
                         }
                     }
-                } else if (RWDUtil.getInfoType(info) == 2) {
+                } else if (BaseApiUtil.getInfoTypeByTag(info) == 2) {
                     for (int index_object = 0; index_object < objectArray.set.size(); index_object++) {
                         SceneDataObject obj = objectArray.set.get(index_object);
                         String Key = infoCode;

@@ -946,11 +946,11 @@ public class QueryUtil {
             result = new SceneDataSet(isSingleValueSet);
             result.setRowChange(false);
             if (isSingleValueSet) {
-                List<SceneDataValue> sdvList = RWDUtil.array2SDVList((JSONArray) setDesc);
+                List<SceneDataValue> sdvList = BaseApiUtil.arrayToSdvList((JSONArray) setDesc);
                 result.singleValueSet = new CopyOnWriteArrayList<>();
                 result.singleValueSet.addAll(sdvList);
             } else {
-                List<SceneDataObject> sdvList = RWDUtil.array2SDOList((JSONArray) setDesc);
+                List<SceneDataObject> sdvList = BaseApiUtil.arrayToSdoList((JSONArray) setDesc);
                 result.set = new CopyOnWriteArrayList<>();
                 result.set.addAll(sdvList);
             }

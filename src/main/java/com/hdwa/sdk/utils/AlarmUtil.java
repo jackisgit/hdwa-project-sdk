@@ -467,7 +467,7 @@ public class AlarmUtil {
                 }
             } else {
                 // 只替换非空字段
-                SceneDataObject sdoAlarm = RWDUtil.object2sod(alarm);
+                SceneDataObject sdoAlarm = BaseApiUtil.objectToSdo(alarm);
                 durationTime(sdf, currentTime, sdoAlarm);
                 if (existIndex != -1) {
                     SceneDataObject sdoExist = alarmList.value_array.set.get(existIndex);

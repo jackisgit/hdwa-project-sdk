@@ -130,7 +130,7 @@ public class PhysicalWorldService {
         try {
             JSONArray classArray = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.CLASS_ARRAY));
             SceneDataSet sds = new SceneDataSet(false, BaseDecConstant.RWD_CLASS_PATH);
-            sds.set = RWDUtil.array2SDOList(classArray);
+            sds.set = BaseApiUtil.arrayToSdoList(classArray);
             repository.classArray = sds;
 
             for (Object o : classArray) {
@@ -175,7 +175,7 @@ public class PhysicalWorldService {
                     String classCode = file.getName().substring(0, file.getName().indexOf('.'));
                     JSONArray array = ReadFileUtil.readJsonArray(file);
                     SceneDataSet sds = new SceneDataSet(false, BaseDecConstant.RWD_INFO_PATH + classCode);
-                    sds.set = RWDUtil.array2SDOList(array);
+                    sds.set = BaseApiUtil.arrayToSdoList(array);
                     sdsMap.put(classCode, sds);
                     pointArray.put(classCode, array);
                     array.stream()
@@ -204,7 +204,7 @@ public class PhysicalWorldService {
             repository.infoArrayJson = pointArray;
             //保存dataSource数据
             SceneDataSet sds = new SceneDataSet(false);
-            sds.set = RWDUtil.array2SDOList(dataSourceAll);
+            sds.set = BaseApiUtil.arrayToSdoList(dataSourceAll);
             repository.infoDataSource = sds;
             FileUtil.save(groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + temp + File.separator + UrlConstant.TMP_DATASOURCE, FastJsonUtil.toFormatString(dataSourceAll));
             log.warn("*****结束加载-点位定义数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
@@ -250,7 +250,7 @@ public class PhysicalWorldService {
                             .filter(pointItem -> BaseApiUtil.getInfoTypeByTag(pointItem) != 0)
                             .forEach(pointItem -> sds.setColChange((String) pointItem.get(BaseDecConstant.CODE).value_prim.value));
 
-                    sds.set = RWDUtil.array2SDOList(array);
+                    sds.set = BaseApiUtil.arrayToSdoList(array);
                     SceneDataValue sceneDataValue = new SceneDataValue(null, null, null, null);
                     //添加属性
                     sds.set.forEach(sdsItem -> {
@@ -332,7 +332,7 @@ public class PhysicalWorldService {
                         //关系数据
                         JSONArray array = ReadFileUtil.readJsonArray(file);
                         SceneDataSet sds = new SceneDataSet(false, BaseDecConstant.RWD_RELATION_PATH + graphicDir.getName() + "/" + relCode);
-                        sds.set = RWDUtil.array2SDOList(array);
+                        sds.set = BaseApiUtil.arrayToSdoList(array);
                         tempSds.put(relCode, sds);
                         graphCodeSet.set.addAll(sds.set);
                         if (!relCodeMap.containsKey(relCode)) {

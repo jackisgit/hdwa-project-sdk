@@ -107,13 +107,13 @@ public class IbmsPhysicalWorldService {
             //场景数据
             JSONArray sceneArray = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.SCENE_ARRAY));
             SceneDataSet sceneSds = new SceneDataSet(false);
-            sceneSds.set = RWDUtil.array2SDOList(sceneArray);
+            sceneSds.set = BaseApiUtil.arrayToSdoList(sceneArray);
             repository.ZKTSceneArray = sceneSds;
 
             //类型定义数据
             JSONArray classArray = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.CLASS_ARRAY));
             SceneDataSet classSds = new SceneDataSet(false, BaseDecConstant.ZKT_CLASS);
-            classSds.set = RWDUtil.array2SDOList(classArray);
+            classSds.set = BaseApiUtil.arrayToSdoList(classArray);
             repository.ZKTClassArray = classSds;
 
             Map<String, Map<String, SceneDataValue>> objectArrayMap = new HashMap<>(16);

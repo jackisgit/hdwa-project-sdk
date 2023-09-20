@@ -3,9 +3,7 @@ package com.hdwa.sdk.utils;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
-import com.hdwa.sdk.entity.scene.SceneDataObject;
-import com.hdwa.sdk.entity.scene.SceneObject;
-import com.hdwa.sdk.entity.scene.SceneProperty;
+import com.hdwa.sdk.entity.scene.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +15,68 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * 动态接口工具类
  */
 public class BaseApiUtil {
+
+
+    /**
+     * Array转List<sdo>
+     *
+     * @param array
+     * @return
+     */
+    public static List<SceneDataObject> arrayToSdoList(JSONArray array) {
+        List<SceneDataObject> result = new ArrayList<>();
+        for (Object item : array) {
+            JSONObject arrayItem = (JSONObject) item;
+            SceneDataObject sod = new SceneDataObject(null, null, null, null, null, null, null);
+            for (String kpKey : arrayItem.keySet()) {
+                Object kpValue = arrayItem.get(kpKey);
+                SceneDataValue svInner = new SceneDataValue(null, sod, kpKey, null);
+                svInner.finish = true;
+                svInner.value_prim = new SceneDataPrimitive();
+                svInner.value_prim.value = kpValue;
+                sod.put(kpKey, svInner);
+            }
+            result.add(sod);
+        }
+        return result;
+    }
+
+    /**
+     * Array转List<sdv>
+     *
+     * @param array
+     * @return
+     */
+    public static List<SceneDataValue> arrayToSdvList(JSONArray array) {
+        List<SceneDataValue> result = new CopyOnWriteArrayList<SceneDataValue>();
+        for (Object item : array) {
+            SceneDataValue svInner = new SceneDataValue(null, null, null, null);
+            svInner.finish = true;
+            svInner.value_prim = new SceneDataPrimitive();
+            svInner.value_prim.value = item;
+            result.add(svInner);
+        }
+        return result;
+    }
+
+
+    /**
+     * object转Sdo
+     * @param arrayItem
+     * @return
+     */
+    public static SceneDataObject objectToSdo(JSONObject arrayItem) {
+        SceneDataObject sod = new SceneDataObject(null, null, null, null, null, null, null);
+        for (String kpKey : arrayItem.keySet()) {
+            Object kpValue = arrayItem.get(kpKey);
+            SceneDataValue svInner = new SceneDataValue(null, sod, kpKey, null);
+            svInner.finish = true;
+            svInner.value_prim = new SceneDataPrimitive();
+            svInner.value_prim.value = kpValue;
+            sod.put(kpKey, svInner);
+        }
+        return sod;
+    }
 
     /**
      * 获取下级所有非custom自定义类型的对象

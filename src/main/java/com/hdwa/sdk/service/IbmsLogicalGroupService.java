@@ -112,7 +112,7 @@ public class IbmsLogicalGroupService {
                 arrayItem.put(BaseDecConstant.ID, arrayItem.get(BaseDecConstant.LOGICAL_GROUPING_ID));
             });
             SceneDataSet sds = new SceneDataSet(false, BaseDecConstant.IBMS_GROUP);
-            sds.set = RWDUtil.array2SDOList(groupArray);
+            sds.set = BaseApiUtil.arrayToSdoList(groupArray);
             repository.IBMSGroupArray = sds;
             File[] dirs = maxDir.listFiles();
             Arrays.stream(dirs)
@@ -129,7 +129,7 @@ public class IbmsLogicalGroupService {
                                 throw new RuntimeException(e);
                             }
                             SceneDataSet tempSds = new SceneDataSet(false, BaseDecConstant.IBMS_GROUP_OBJECT + "/" + dir.getName() + "/" + classCode);
-                            tempSds.set = RWDUtil.array2SDOList(array);
+                            tempSds.set = BaseApiUtil.arrayToSdoList(array);
                             ibmsClassMap.put(classCode, tempSds);
                         });
                         repository.IBMSArrayDic.put(dir.getName(), ibmsClassMap);
@@ -173,7 +173,7 @@ public class IbmsLogicalGroupService {
                 levelGroupOne.add(jsonObject);
             });
             SceneDataSet levelGroupSdsOne = new SceneDataSet(false);
-            levelGroupSdsOne.set = RWDUtil.array2SDOList(levelGroupOne);
+            levelGroupSdsOne.set = BaseApiUtil.arrayToSdoList(levelGroupOne);
             arrayMap.put(BaseDecConstant.PRIMARY_GROUPING, levelGroupSdsOne);
 
             FileUtil.save(groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + temp + File.separator + BaseDecConstant.TEMP2 + dir.getName() + "-" + BaseDecConstant.GROUP_ONE + UrlConstant.JSON_FILE, FastJsonUtil.toFormatString(levelGroupOne));
@@ -215,7 +215,7 @@ public class IbmsLogicalGroupService {
                 levelGroupTow.add(jsonObject);
             });
             SceneDataSet levelGroupSdsOne = new SceneDataSet(false);
-            levelGroupSdsOne.set = RWDUtil.array2SDOList(levelGroupTow);
+            levelGroupSdsOne.set = BaseApiUtil.arrayToSdoList(levelGroupTow);
             arrayMap.put(BaseDecConstant.TWO_GROUPING, levelGroupSdsOne);
 
             FileUtil.save(groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + temp + File.separator + BaseDecConstant.TEMP2 + dir.getName() + "-" + BaseDecConstant.GROUP_TWO + UrlConstant.JSON_FILE, FastJsonUtil.toFormatString(levelGroupTow));
@@ -320,7 +320,7 @@ public class IbmsLogicalGroupService {
                 circuitArray.add(jsonObject);
             });
             SceneDataSet circuit = new SceneDataSet(false);
-            circuit.set = RWDUtil.array2SDOList(circuitArray);
+            circuit.set = BaseApiUtil.arrayToSdoList(circuitArray);
             arrayMap.put(BaseDecConstant.LOOP, circuit);
             FileUtil.save(groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + temp + File.separator + BaseDecConstant.TEMP2 + dir.getName() + "-" + BaseDecConstant.CIRCUIT + UrlConstant.JSON_FILE, FastJsonUtil.toFormatString(circuitArray));
 
