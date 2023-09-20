@@ -171,7 +171,7 @@ public class PathUtil {
                 SceneDataObject tmpData = (SceneDataObject) tmp;
                 if (tmpData.myPropertyName == null) {
                     SceneDataValue sdvInner = null;
-                    for (String keyName : KeywordUtil.keyProperty) {
+                    for (String keyName : AttributeFilteringUtil.keyProperty) {
                         if (tmpData.get(keyName) != null) {
                             sdvInner = tmpData.get(keyName);
                             break;

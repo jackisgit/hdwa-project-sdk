@@ -9,7 +9,7 @@ import com.hdwa.sdk.entity.repository.RepositoryContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.entity.scene.SceneDataObject;
 import com.hdwa.sdk.entity.scene.SceneDataValue;
-import com.hdwa.sdk.utils.KeywordUtil;
+import com.hdwa.sdk.utils.AttributeFilteringUtil;
 import com.hdwa.sdk.utils.PathUtil;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
@@ -59,7 +59,7 @@ public class WebSocketUtil {
     // 支持路径通配符*
     public static void ProcessFirstSend_path(SceneDataObject objectData, String id, JSONArray sendArray) {
         for (String key : objectData.keySetSelf()) {
-            if (KeywordUtil.containsKey(key)) {
+            if (AttributeFilteringUtil.containsKey(key)) {
                 continue;
             }
             SceneDataValue sdv = objectData.get(key);

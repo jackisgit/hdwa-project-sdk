@@ -136,7 +136,7 @@ public class RecursiveUtil {
 
         int depthInner = depth == -1 ? -1 : (depth > 0 ? depth - 1 : 0);
         for (String key : sdo.keySet()) {
-            if (KeywordUtil.containsKey(key)) {
+            if (AttributeFilteringUtil.containsKey(key)) {
                 continue;
             }
 
@@ -320,7 +320,7 @@ public class RecursiveUtil {
         }
 
         for (String key : sdo.keySet()) {
-            if (KeywordUtil.containsKey(key)) {
+            if (AttributeFilteringUtil.containsKey(key)) {
                 continue;
             }
             print_variable_set(path + "-" + key, sdo.get(key));

@@ -487,14 +487,14 @@ public class CalculateApiJsonUtil {
                         repositoryBase.dependency.sdv2Children.putIfAbsent(arrayItemTmp, new CopyOnWriteArrayList<SceneDataObject>());
                         repositoryBase.dependency.sdv2Children.get(arrayItemTmp).add(sod);
                         boolean existKey = false;
-                        for (String keyName : KeywordUtil.keyProperty) {
+                        for (String keyName : AttributeFilteringUtil.keyProperty) {
                             if (sod.containsKey(keyName)) {
                                 existKey = true;
                                 break;
                             }
                         }
                         if (!existKey) {
-                            String keyDefault = KeywordUtil.keyDefault();
+                            String keyDefault = AttributeFilteringUtil.keyDefault();
                             SceneDataValue keySsv = new SceneDataValue(repositoryBase, sod, keyDefault, null);
                             keySsv.value_prim = new SceneDataPrimitive();
                             keySsv.value_prim.value = UUID.randomUUID().toString().replaceAll("-", "");
@@ -612,7 +612,7 @@ public class CalculateApiJsonUtil {
                     if (index < valuePath.size() - 1) {
                         index++;
                         SceneDataObject matchItem = null;
-                        for (String keyName : KeywordUtil.keyProperty) {
+                        for (String keyName : AttributeFilteringUtil.keyProperty) {
                             for (SceneDataObject sdbInner : currData.value_array.set) {
                                 if (sdbInner.containsKey(keyName) && sdbInner.get(keyName).value_prim.value.equals(valuePath.getString(index))) {
                                     matchItem = sdbInner;
@@ -634,7 +634,7 @@ public class CalculateApiJsonUtil {
                     if (index < valuePath.size() - 1) {
                         index++;
                         SceneDataObject matchItem = null;
-                        for (String keyName : KeywordUtil.keyProperty) {
+                        for (String keyName : AttributeFilteringUtil.keyProperty) {
                             for (SceneDataObject sdbInner : currData.value_array.set) {
                                 if (sdbInner.containsKey(keyName) && sdbInner.get(keyName).value_prim.value.equals(valuePath.getString(index))) {
                                     matchItem = sdbInner;

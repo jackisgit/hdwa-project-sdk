@@ -7,15 +7,30 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class KeywordUtil {
+/**
+ * 属性过滤类
+ */
+public class AttributeFilteringUtil {
+    /**
+     * 关键字
+     */
     public static Map<String, Boolean> keyWordMap = new HashMap<>(16);
+    /**
+     * 前缀
+     */
     public static Map<String, Boolean> prefixMap = new HashMap<>(16);
+    /**
+     * 后缀
+     */
     public static Map<String, Boolean> suffixMap = new HashMap<>(16);
+    /**
+     * 属性
+     */
     public static List<String> keyProperty = new CopyOnWriteArrayList<String>();
 
     static {
+        keyProperty.add("id");
         keyProperty.add("名称");
-        keyProperty.add("部件");
 
         suffixMap.put("-" + BaseDecConstant.METER_FUNGICIDE, true);
 

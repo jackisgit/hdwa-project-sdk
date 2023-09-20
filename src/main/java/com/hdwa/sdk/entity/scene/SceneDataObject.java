@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.hdwa.sdk.entity.repository.RepositoryBase;
-import com.hdwa.sdk.utils.KeywordUtil;
+import com.hdwa.sdk.utils.AttributeFilteringUtil;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -89,7 +89,7 @@ public class SceneDataObject {
             result.put("sailfish_inner_RowChange", this.getRowChange());
         }
         for (String key : this.keySet()) {
-            if (KeywordUtil.containsKey(key)) {
+            if (AttributeFilteringUtil.containsKey(key)) {
                 continue;
             }
             SceneDataValue sdvInner = this.get(key);
