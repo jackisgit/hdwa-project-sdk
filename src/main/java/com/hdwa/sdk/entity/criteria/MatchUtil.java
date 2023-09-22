@@ -67,16 +67,16 @@ public class MatchUtil {
                     } else {
                         Double value1 = noString1 instanceof Float ? (Float) noString1
                                 : (noString1 instanceof Double ? (Double) noString1 : ((BigDecimal) noString1).doubleValue());
-                        Long value2 = noString2 instanceof Integer ? (Integer) noString2
+                        long value2 = noString2 instanceof Integer ? (Integer) noString2
                                 : (noString2 instanceof Long ? (Long) noString2 : ((BigInteger) noString2).longValue());
-                        compareRsult = value1.compareTo(value2.doubleValue());
+                        compareRsult = value1.compareTo((double) value2);
                     }
                 } else {
-                    Long value1 = noString1 instanceof Integer ? (Integer) noString1
+                    long value1 = noString1 instanceof Integer ? (Integer) noString1
                             : (noString1 instanceof Long ? (Long) noString1 : ((BigInteger) noString1).longValue());
                     Double value2 = noString2 instanceof Float ? (Float) noString2
                             : (noString2 instanceof Double ? (Double) noString2 : ((BigDecimal) noString2).doubleValue());
-                    compareRsult = 0 - value2.compareTo(value1.doubleValue());
+                    compareRsult = -value2.compareTo((double) value1);
                 }
             } else {
                 Long value1 = noString1 instanceof Integer ? (Integer) noString1
@@ -89,20 +89,21 @@ public class MatchUtil {
             return false;
         }
 
-        if (fuhao.equals("gt")) {
-            return compareRsult >= 1;
-        } else if (fuhao.equals("gte")) {
-            return compareRsult >= 0;
-        } else if (fuhao.equals("lt")) {
-            return compareRsult < 0;
-        } else if (fuhao.equals("lte")) {
-            return compareRsult <= 0;
-        } else if (fuhao.equals("e")) {
-            return compareRsult == 0;
-        } else if (fuhao.equals("ne")) {
-            return compareRsult != 0;
-        } else {
-            return false;
+        switch (fuhao) {
+            case "gt":
+                return compareRsult >= 1;
+            case "gte":
+                return compareRsult >= 0;
+            case "lt":
+                return compareRsult < 0;
+            case "lte":
+                return compareRsult <= 0;
+            case "e":
+                return compareRsult == 0;
+            case "ne":
+                return compareRsult != 0;
+            default:
+                return false;
         }
     }
 }
