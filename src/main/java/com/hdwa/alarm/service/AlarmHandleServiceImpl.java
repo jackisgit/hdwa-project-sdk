@@ -1,4 +1,4 @@
-package com.hdwa.sdk.service;
+package com.hdwa.alarm.service;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -7,9 +7,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.util.StringUtil;
 import com.googlecode.aviator.AviatorEvaluator;
 import com.googlecode.aviator.Expression;
-import com.hdwa.sdk.config.CommonConst;
-import com.hdwa.sdk.entity.ZktAlarmRecord;
-import com.hdwa.sdk.kafka.HuidaKafkaProducer;
+import com.hdwa.alarm.config.CommonConst;
+import com.hdwa.alarm.entity.ZktAlarmRecord;
+import com.hdwa.alarm.kafka.KafkaProducer;
 import com.redxun.core.cache.alarm.AlarmInfoCache;
 import com.redxun.core.cache.alarm.CurrentDataCache;
 import com.redxun.core.cache.alarm.ExpireAlarmQueue;
@@ -40,7 +40,7 @@ public class AlarmHandleServiceImpl {
     ZktAlarmRecordServiceImpl zktAlarmRecordService;
 
     @Autowired
-    HuidaKafkaProducer kafkaProducer;
+    KafkaProducer kafkaProducer;
 
     /**
      * 处理iot采集数据
@@ -200,9 +200,6 @@ public class AlarmHandleServiceImpl {
                 if (StringUtils.isNotEmpty(alarmId)) {
                     alarmResumeRecord.setId(alarmId);
                     nettyMessage.setContent(Collections.singletonList(alarmResumeRecord));
-                    //{"id","123", "state":1, "groupCode":"wd", "projectId":"Pj123","endTime":"","endInfo":""}
-                    // todo 改为kafka推送
-                    //nettyClient.sendMessage(nettyMessage);
                     kafkaProducer.send(nettyMessage);
                 } else {
                     //如果没有报警ID,定时任务再次测试
@@ -327,8 +324,7 @@ public class AlarmHandleServiceImpl {
                     .build();
             NettyMessage<AlarmRecordVO> nettyMessage = new NettyMessage<>("", 5, CommonConst.projectId, CommonConst.groupCode);
             nettyMessage.setContent(Collections.singletonList(alarmRecord));
-            // todo 推送一条报警记录给远端，改为kafka推送
-            //nettyClient.sendMessage(nettyMessage);
+            // 推送一条报警记录给远端
             kafkaProducer.send(nettyMessage);
 
             ZktAlarmRecord zktAlarmRecordDO = zktAlarmRecordService.getById(defineId);

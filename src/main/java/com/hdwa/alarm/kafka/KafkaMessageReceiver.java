@@ -1,11 +1,11 @@
-package com.hdwa.sdk.kafka;
+package com.hdwa.alarm.kafka;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.hdwa.sdk.config.CommonConst;
-import com.hdwa.sdk.entity.ZktAlarmRecord;
-import com.hdwa.sdk.service.ZktAlarmRecordServiceImpl;
+import com.hdwa.alarm.config.CommonConst;
+import com.hdwa.alarm.entity.ZktAlarmRecord;
+import com.hdwa.alarm.service.ZktAlarmRecordServiceImpl;
 import com.redxun.core.cache.alarm.AlarmInfoCache;
 import com.redxun.core.entity.alarm.AlarmDefineVO;
 import com.redxun.core.entity.alarm.AlarmStateVO;
@@ -15,6 +15,7 @@ import com.redxun.core.util.alarm.LockUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
@@ -24,18 +25,18 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Configuration
+@ConditionalOnProperty(prefix = "spring.kafka", name = "enable", havingValue = "true")
 @Slf4j
-public class HuidaKafkaConsumer {
+public class KafkaMessageReceiver {
 
     @Autowired
     private ZktAlarmRecordServiceImpl alarmRecordService;
 
-
-    @KafkaListener(
-            containerFactory = "huidaKafkaListenerContainerFactory",
-            topics = {"xxxx"},
-            groupId = "huida-consumer")
-    public void topicCloudAlarmConsumer(List<ConsumerRecord<?, String>> record, Acknowledgment ack) {
+    /**
+     * listenerContainerFactory设置了批量拉取消息，因此参数是List<ConsumerRecord<Integer, String>>，否则是ConsumerRecord
+     */
+    @KafkaListener(topics = {"${spring.kafka.consumer.topics}"}, containerFactory = "listenerContainerFactory")
+    public void registryReceiver(List<ConsumerRecord<Integer, String>> record, Acknowledgment ack) {
         for (ConsumerRecord<?, String> consumerRecords : record) {
             Optional<String> message = Optional.ofNullable(consumerRecords.value());
             if (message.isPresent()) {
@@ -51,6 +52,7 @@ public class HuidaKafkaConsumer {
             }
         }
     }
+
 
     private void handlerMsg(NettyMessage<?> msg) {
         if (msg.getOpCode() == 7) {

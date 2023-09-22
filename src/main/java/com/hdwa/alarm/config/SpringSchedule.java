@@ -1,7 +1,7 @@
-package com.hdwa.sdk.config;
+package com.hdwa.alarm.config;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hdwa.sdk.kafka.HuidaKafkaProducer;
+import com.hdwa.alarm.kafka.KafkaProducer;
 import com.redxun.core.entity.alarm.netty.NettyMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class SpringSchedule {
 
     @Autowired
-    HuidaKafkaProducer kafkaProducer;
+    KafkaProducer kafkaProducer;
 
     @Scheduled(cron = "${alarm.get.all.alarmdefine.cron}")
     public void allResetCron() throws InterruptedException {
@@ -24,14 +24,12 @@ public class SpringSchedule {
         content.put("groupCode", CommonConst.groupCode);
         content.put("projectId", CommonConst.projectId);
         message.setContent(Arrays.asList(content));
-        // todo 改为kafka消息推送
-        //nettyClient.sendMessage(message);
         kafkaProducer.send(message);
     }
 
     @Scheduled(initialDelay = 2000, fixedDelay = 60000)
     public void connectCron() {
-        NettyMessage message = new NettyMessage("", 3, CommonConst.projectId, CommonConst.groupCode);
+        NettyMessage<?> message = new NettyMessage<>("", 3, CommonConst.projectId, CommonConst.groupCode);
 
         try {
             kafkaProducer.send(message);

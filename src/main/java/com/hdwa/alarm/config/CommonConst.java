@@ -1,4 +1,4 @@
-package com.hdwa.sdk.config;
+package com.hdwa.alarm.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

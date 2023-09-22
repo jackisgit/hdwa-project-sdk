@@ -1,11 +1,12 @@
-package com.hdwa.sdk.kafka;//package com.redxun.alarm.kafka;
+package com.hdwa.alarm.kafka;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hdwa.sdk.config.CommonConst;
+import com.hdwa.alarm.config.CommonConst;
 import com.redxun.core.entity.alarm.netty.NettyMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -18,10 +19,11 @@ import java.util.Collections;
 
 @Configuration
 @Slf4j
-public class HuidaKafkaProducer {
+@ConditionalOnProperty(prefix = "spring.kafka", name = "enable", havingValue = "true")
+public class KafkaProducer {
 
     @Autowired
-    private KafkaTemplate<String, Object> huidaKafkaTemplate;
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
     /**
      * 边缘端报警发送topic
@@ -42,21 +44,20 @@ public class HuidaKafkaProducer {
     }
 
     public void send(NettyMessage<?> message) {
-        // todo 暂时注释
         //发送消息
-//        ListenableFuture<SendResult<String, Object>> future = huidaKafkaTemplate.send(topicEdgeAlarm, JSONObject.toJSONString(message));
-//        future.addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
-//            @Override
-//            public void onFailure(Throwable throwable) {
-//                //发送失败的处理
-//                log.info(topicEdgeAlarm + " - 边缘端 发送消息失败：" + throwable.getMessage());
-//            }
-//
-//            @Override
-//            public void onSuccess(SendResult<String, Object> stringObjectSendResult) {
-//                //成功的处理
-//                log.info(topicEdgeAlarm + " - 边缘端 发送消息成功：" + stringObjectSendResult.toString());
-//            }
-//        });
+        ListenableFuture<SendResult<String, Object>> future = kafkaTemplate.send(topicEdgeAlarm, message);
+        future.addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
+            @Override
+            public void onFailure(Throwable throwable) {
+                //发送失败的处理
+                log.info(topicEdgeAlarm + " - 边缘端 发送消息失败：" + throwable.getMessage());
+            }
+
+            @Override
+            public void onSuccess(SendResult<String, Object> stringObjectSendResult) {
+                //成功的处理
+                log.info(topicEdgeAlarm + " - 边缘端 发送消息成功：" + stringObjectSendResult.toString());
+            }
+        });
     }
 }

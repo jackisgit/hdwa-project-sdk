@@ -1,7 +1,7 @@
-package com.hdwa.sdk.service;
+package com.hdwa.alarm.service;
 
 import cn.hutool.core.date.DateUtil;
-import com.hdwa.sdk.config.AlarmExpireJob;
+import com.hdwa.alarm.config.AlarmExpireJob;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;

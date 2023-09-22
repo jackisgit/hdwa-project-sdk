@@ -1,4 +1,4 @@
-package com.hdwa.sdk.config;
+package com.hdwa.alarm.config;
 
 import org.quartz.spi.JobFactory;
 import org.quartz.spi.TriggerFiredBundle;
@@ -33,7 +33,6 @@ public class QuartzConfiguration {
         return jobFactory;
     }
 
-    // @Qualifier("dataSource0")
     @Bean(name = "quartzScheduler")
     public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource, JobFactory jobFactory,
                                                      Properties quartzProperties) throws IOException {
@@ -50,6 +49,7 @@ public class QuartzConfiguration {
         factory.setAutoStartup(true);
         // factory.setConfigLocation(new ClassPathResource("/quartz.properties"));
         factory.setQuartzProperties(quartzProperties);
+
         return factory;
     }
 
@@ -59,6 +59,7 @@ public class QuartzConfiguration {
         propertiesFactoryBean.setLocation(new ClassPathResource("/quartz.properties"));
         // 在quartz.properties中的属性被读取并注入后再初始化对象
         propertiesFactoryBean.afterPropertiesSet();
+
         return propertiesFactoryBean.getObject();
     }
 
@@ -76,10 +77,6 @@ public class QuartzConfiguration {
 
         /**
          * 将job实例交给spring ioc托管 我们在job实例实现类内可以直接使用spring注入的调用被spring ioc管理的实例
-         *
-         * @param bundle
-         * @return
-         * @throws Exception
          */
         @Override
         protected Object createJobInstance(final TriggerFiredBundle bundle) throws Exception {

@@ -1,10 +1,11 @@
-package com.hdwa.sdk.config;
+package com.hdwa.alarm.config;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.redxun.core.cache.alarm.AlarmInfoCache;
 import com.redxun.core.constant.alarm.ExtraCommonConstant;
 import com.redxun.core.entity.alarm.AlarmDefineVO;
 import com.redxun.core.util.alarm.AlarmDefineUtil;
@@ -14,6 +15,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 报警定义初始化
@@ -37,11 +39,12 @@ public class InitAlarmDefine implements CommandLineRunner {
 			return;
 		}
 		JSONObject ibmsClassCodeObject = JSONObject.parseObject(ibmsClassCodeStr);
-		if (!ExtraCommonConstant.SUCCESS.equals(ibmsClassCodeObject.getString(ExtraCommonConstant.RESULT))) {
+		if (!ibmsClassCodeObject.getBoolean(ExtraCommonConstant.SUCCESS)) {
 			log.warn("远程报警服务异常，无报警规则要更新");
 			return;
 		}
-		JSONArray ibmsClassCodes = ibmsClassCodeObject.getJSONArray(ExtraCommonConstant.CONTENT);
+
+		JSONArray ibmsClassCodes = ibmsClassCodeObject.getJSONArray("data");
 		if (ibmsClassCodes == null || ibmsClassCodes.size() == 0) {
 			log.warn("不存在产品模块配置，无报警规则要更新");
 			return;
@@ -62,12 +65,12 @@ public class InitAlarmDefine implements CommandLineRunner {
 				continue;
 			}
 			JSONObject alarmDefineObject = JSONObject.parseObject(alarmDefineStr);
-			if (!ExtraCommonConstant.SUCCESS.equals(alarmDefineObject.getString(ExtraCommonConstant.RESULT))) {
+			if (!alarmDefineObject.getBoolean(ExtraCommonConstant.SUCCESS)) {
 				log.warn("远程报警服务异常，无报警规则要更新");
 				continue;
 			}
 			
-			String alarmDefines = alarmDefineObject.getString(ExtraCommonConstant.CONTENT);
+			String alarmDefines = alarmDefineObject.getString("data");
 			if (StrUtil.isBlank(alarmDefines)) {
 				log.warn("无报警规则要更新");
 				continue;
@@ -75,6 +78,8 @@ public class InitAlarmDefine implements CommandLineRunner {
 			List<AlarmDefineVO> alarmDefineList = JSONArray.parseArray(alarmDefines, AlarmDefineVO.class);
             if (CollectionUtil.isNotEmpty(alarmDefineList)) {
 				AlarmDefineUtil.listSomeAlarmDefine(alarmDefineList);
+				ConcurrentHashMap<String, AlarmDefineVO> alarmDefineMap = AlarmInfoCache.alarmDefineMap;
+				System.out.println(alarmDefineMap);
             }
 		}
 		

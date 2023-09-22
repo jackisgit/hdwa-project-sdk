@@ -1,10 +1,10 @@
-package com.hdwa.sdk.websocket;
+package com.hdwa.alarm.websocket;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.TimeInterval;
 import cn.hutool.core.thread.ExecutorBuilder;
-import com.hdwa.sdk.config.CommonConst;
-import com.hdwa.sdk.service.AlarmHandleServiceImpl;
+import com.hdwa.alarm.config.CommonConst;
+import com.hdwa.alarm.service.AlarmHandleServiceImpl;
 import com.redxun.core.util.alarm.GZIPCompressUtil;
 import com.redxun.core.util.alarm.LockUtil;
 import org.java_websocket.WebSocket;

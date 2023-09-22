@@ -1,0 +1,8 @@
+server:
+  port: 18826
+
+spring:
+  profiles:
+    active: Pj2102110210
+  application:
+    name: hdwa-project-sdk

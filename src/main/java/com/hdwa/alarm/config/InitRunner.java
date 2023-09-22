@@ -1,9 +1,9 @@
-package com.hdwa.sdk.config;
+package com.hdwa.alarm.config;
 
 import cn.hutool.core.thread.ThreadUtil;
 import com.googlecode.aviator.AviatorEvaluator;
-import com.hdwa.sdk.service.AlarmQuartzServiceImpl;
-import com.hdwa.sdk.websocket.WebSocketClientFactory;
+import com.hdwa.alarm.service.AlarmQuartzServiceImpl;
+import com.hdwa.alarm.websocket.WebSocketClientFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;

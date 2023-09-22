@@ -1,11 +1,9 @@
-package com.hdwa.sdk.service;
+package com.hdwa.alarm.service;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.hdwa.sdk.entity.ZktAlarmRecord;
-import com.hdwa.sdk.mapper.ZktAlarmRecordMapper;
+import com.hdwa.alarm.entity.ZktAlarmRecord;
+import com.hdwa.alarm.mapper.ZktAlarmRecordMapper;
 import com.redxun.common.base.db.BaseDao;
 import com.redxun.common.base.db.BaseService;
 import com.redxun.common.service.impl.SuperServiceImpl;

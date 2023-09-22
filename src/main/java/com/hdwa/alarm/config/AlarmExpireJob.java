@@ -1,11 +1,11 @@
-package com.hdwa.sdk.config;
+package com.hdwa.alarm.config;
 
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
-import com.hdwa.sdk.entity.ZktAlarmRecord;
-import com.hdwa.sdk.kafka.HuidaKafkaProducer;
-import com.hdwa.sdk.service.ZktAlarmRecordServiceImpl;
+import com.hdwa.alarm.entity.ZktAlarmRecord;
+import com.hdwa.alarm.kafka.KafkaProducer;
+import com.hdwa.alarm.service.ZktAlarmRecordServiceImpl;
 import com.redxun.core.cache.alarm.AlarmInfoCache;
 import com.redxun.core.entity.alarm.AlarmRecordVO;
 import com.redxun.core.entity.alarm.AlarmStateVO;
@@ -36,10 +36,7 @@ public class AlarmExpireJob extends QuartzJobBean {
     ZktAlarmRecordServiceImpl zktAlarmRecordService;
 
     @Autowired
-    AlarmInfoCache alarmInfoCache;
-
-    @Autowired
-    HuidaKafkaProducer kafkaProducer;
+    KafkaProducer kafkaProducer;
 
     /**
      * 报警记录信息详情
@@ -109,13 +106,10 @@ public class AlarmExpireJob extends QuartzJobBean {
                     message.setEndTime(com.redxun.core.util.alarm.DateUtil.parse(expireTime));
                 }
                 nettyMessage.setContent(Collections.singletonList(message));
-                //{"id","123", "state":1, "groupCode":"wd", "projectId":"Pj123"}
-                // todo 改为kafka消息推送
-                //nettyClient.sendMessage(nettyMessage);
                 kafkaProducer.send(nettyMessage);
                 //已经过期的时候删除掉这条报警定义了，保证不会再次产生报警
                 AlarmStateVO alarmState = new AlarmStateVO(defineId);
-                alarmInfoCache.setAlarmState(defineId, alarmState);
+                AlarmInfoCache.setAlarmState(defineId, alarmState);
                 if (zktAlarmRecordService.getById(zktAlarmRecordDO.getId()) != null) {
                     zktAlarmRecordService.delete(zktAlarmRecordDO.getId());
                 }

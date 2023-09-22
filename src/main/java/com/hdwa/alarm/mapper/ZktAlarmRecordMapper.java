@@ -1,6 +1,6 @@
-package com.hdwa.sdk.mapper;
+package com.hdwa.alarm.mapper;
 
-import com.hdwa.sdk.entity.ZktAlarmRecord;
+import com.hdwa.alarm.entity.ZktAlarmRecord;
 import com.redxun.common.base.db.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 

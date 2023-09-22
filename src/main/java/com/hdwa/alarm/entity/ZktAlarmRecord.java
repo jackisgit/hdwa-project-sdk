@@ -10,7 +10,7 @@
  * 版权：万达
  * </pre>
  */
-package com.hdwa.sdk.entity;
+package com.hdwa.alarm.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
