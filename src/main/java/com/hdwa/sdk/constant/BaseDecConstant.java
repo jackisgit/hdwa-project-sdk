@@ -67,6 +67,11 @@ public class BaseDecConstant {
     public static final String PRODUCT_MODULE = "产品模块";
 
     /**
+     *  product String
+     */
+    public static final String PRODUCT = "product";
+
+    /**
      * PropertyList String
      */
     public static final String PROPERTY_LIST = "PropertyList";
@@ -159,6 +164,12 @@ public class BaseDecConstant {
      */
     public static final String NAME2 = "名称";
 
+
+    /**
+     * 别名 String
+     */
+    public static final String ALIAS = "别名";
+
     /**
      * aliasName String
      */
@@ -168,6 +179,11 @@ public class BaseDecConstant {
      * pushType String
      */
     public static final String PUSH_TYPE = "pushType";
+
+    /**
+     * alarm String
+     */
+    public static final String ALARM = "alarm";
 
     /**
      * alarmId String
@@ -183,20 +199,25 @@ public class BaseDecConstant {
      */
     public static final String FLOOR_ID = "floorId";
     /**
-     * /**
+     *
      * 所在楼层 String
      */
     public static final String PLACE_FLOOR = "所在楼层";
     /**
-     * /**
+     *
      * 楼层编号 String
      */
     public static final String FLOOR_CODE = "楼层编号";
     /**
-     * /**
+     *
      * 楼层名称 String
      */
     public static final String FLOOR_NAME = "楼层名称";
+    /**
+     *
+     * 楼层数据 String
+     */
+    public static final String FLOOR_DATA = "楼层数据";
     /**
      * ibmsSceneCode String
      */
@@ -297,6 +318,15 @@ public class BaseDecConstant {
      * 编组类型 String
      */
     public static final String GROUPING_TYPE = "编组类型";
+    /**
+     * 设备类型 String
+     */
+    public static final String DEVICE_TYPE = "设备类型";
+
+    /**
+     * 系统概览 String
+     */
+    public static final String SYSTEM_OVERVIEW = "系统概览";
 
     /**
      * -temp String
@@ -681,6 +711,12 @@ public class BaseDecConstant {
 
 
     /**
+     * info_dataSource String
+     */
+    public static final String INFO_DATASOURCE = "info_dataSource";
+
+
+    /**
      * info-point-relation String
      */
     public static final String INFO_POINT_RELATION = "info-point-relation";
@@ -855,4 +891,14 @@ public class BaseDecConstant {
      * 日期格式化
      */
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+
+    /**
+     * 点位过滤父类路径
+     */
+    public static final String[] PARENT_PATH_ARRAY = {"场景数据'首页'模块统计'模块", "场景数据'首页'模块统计'设备运行统计"};
+
+    /**
+     * 点位过滤父类路径
+     */
+    public static final String[] PARENT_PATH_ARRAY_2 = {"基础对象类型'设备", "基础对象'设备", "基础对象'品质", "基础对象'运营", "基础对象'安全", "基础对象'系统", "基础对象'逻辑编组", "场景数据'设备", "场景数据'品质", "场景数据'运营", "场景数据'安全"};
 }
