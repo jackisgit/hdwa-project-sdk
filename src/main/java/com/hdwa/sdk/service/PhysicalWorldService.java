@@ -564,6 +564,9 @@ public class PhysicalWorldService {
                     Map<String, SceneDataObject> toObjectMap = repository.objType2id2Value.get(rel.getObjTo());
 
                     sdoList.forEach(tempSdo -> {
+                        if (fromObjectMap == null || toObjectMap == null) {
+                            return;
+                        }
                         //根据主对象id查找主对象数据
                         SceneDataObject objFrom = fromObjectMap.get(tempSdo.value_object.get(BaseDecConstant.OBJ_FROM).value_prim.value.toString());
                         //根据从对象id查找从对象数据

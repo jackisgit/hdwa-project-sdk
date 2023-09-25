@@ -1,6 +1,7 @@
 package com.hdwa.sdk.entity.repository;
 
 import com.alibaba.fastjson.JSONObject;
+import com.hdwa.sdk.entity.ExcelSheetEntity;
 import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
 import com.hdwa.sdk.entity.scene.SceneDataSet;
 import com.hdwa.sdk.entity.scene.SceneDataValue;
@@ -85,5 +86,12 @@ public class DataContainer {
      * <p>报警缓存数据</p>
      */
     public static PacketBuffer<JSONObject> alarmBuffer = new PacketBuffer<>();
+
+
+    /**
+     * <p>点位过滤数据</p>
+     * <p>存储使用的点位过滤文件，用来和最新文件比较，看是否需要更新</p>
+     */
+    public static Map<String, ExcelSheetEntity> pointMap = new HashMap<>(16);
 
 }

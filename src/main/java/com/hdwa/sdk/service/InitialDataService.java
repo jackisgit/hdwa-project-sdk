@@ -1,6 +1,9 @@
 package com.hdwa.sdk.service;
 
 import com.hdwa.sdk.constant.BaseDecConstant;
+import com.hdwa.sdk.entity.ExcelSheetEntity;
+import com.hdwa.sdk.entity.repository.DataContainer;
+import com.hdwa.sdk.utils.ExcelUtil;
 import com.hdwa.sdk.utils.FileUtil;
 import com.hdwa.sdk.websocket.AlarmWebSocketClient;
 import com.hdwa.sdk.websocket.IotWebSocketClient;
@@ -15,11 +18,12 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.net.URI;
 import java.nio.file.Files;
+import java.util.Map;
 
 /**
  * @author abao
  * @since 2023/8/9
- * 初始目录
+ * 初始数据
  */
 @Slf4j
 @Component
@@ -57,6 +61,9 @@ public class InitialDataService implements CommandLineRunner {
 
     @Autowired
     private LoadDataMainService loadDataMainService;
+
+    @Autowired
+    private PointService pointService;
 
     @Override
     public void run(String... args) {
@@ -165,6 +172,7 @@ public class InitialDataService implements CommandLineRunner {
      * iotWebSocket连接
      */
     private IotWebSocketClient iotClient;
+
     private void initIotWebsocket() {
         try {
             log.warn("************初始化iotWebSocket");
@@ -181,6 +189,7 @@ public class InitialDataService implements CommandLineRunner {
      * alarmWebSocket连接
      */
     private AlarmWebSocketClient alarmClient;
+
     private void initAlarmWebsocket() {
         try {
             log.warn("************初始化alarmWebSocket");
@@ -238,4 +247,30 @@ public class InitialDataService implements CommandLineRunner {
         }
     }
 
+
+    /**
+     * 检查point过滤文件是否修改
+     */
+    @Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60)
+    public void resPointExile() throws Exception {
+        boolean flag = false;
+        Map<String, ExcelSheetEntity> map2 = ExcelUtil.readExcel(pointService.readPointXlsx());
+
+        if (DataContainer.pointMap.size() != map2.size()) {
+            flag = true;
+        } else {
+            for (Map.Entry<String, ExcelSheetEntity> entry : DataContainer.pointMap.entrySet()) {
+                String key = entry.getKey();
+                ExcelSheetEntity value1 = entry.getValue();
+                ExcelSheetEntity value2 = map2.get(key);
+                if (!value1.equals(value2)) {
+                    flag = true;
+                }
+            }
+        }
+        if (flag) {
+            log.warn("*****开始更新点位过滤数据");
+            loadDataMainService.updatePoint(DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID));
+        }
+    }
 }

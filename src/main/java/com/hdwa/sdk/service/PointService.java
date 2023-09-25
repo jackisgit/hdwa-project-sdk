@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.constant.UrlConstant;
 import com.hdwa.sdk.entity.ExcelSheetEntity;
+import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.entity.scene.SceneDataObject;
 import com.hdwa.sdk.entity.scene.SceneObject;
@@ -63,8 +64,8 @@ public class PointService {
                 log.warn("*****文件路径" + tempFile.getPath());
                 Files.createDirectories(tempFile.toPath());
             }
-            // TODO: 2023/8/16 需要定时加载最新的点位数据
             InputStream inputStream = readPointXlsx();
+
             Map<String, ExcelSheetEntity> pointMap = ExcelUtil.readExcel(inputStream);
             downPoint(pointMap, tempFile);
 
@@ -72,6 +73,7 @@ public class PointService {
             FileUtil.tempToNowDate(tempFile, new File(pointPath));
             //只保留3个版本数据
             FileUtil.clearHistoryDirectory(new File(pointPath));
+            DataContainer.pointMap = pointMap;
             log.warn("************结束下载-点位数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
             return "ok";
         } catch (Exception e) {
@@ -89,10 +91,10 @@ public class PointService {
     public void loadPointData(RepositoryImpl repository) throws Exception {
         log.warn("************开始加载-点位数据");
         long startTime = System.currentTimeMillis();
-        File maxDir = FileUtil.getMaxDir(new File(getPath()));
+        //先加载控制文件
+        downLoadPoint();
         try {
-            //先加载控制文件
-            downLoadPoint();
+            File maxDir = FileUtil.getMaxDir(new File(getPath()));
             JSONArray pointList = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.POINT_LIST));
             repository.InfoPointListArray.set = BaseApiUtil.arrayToSdoList(pointList);
             JSONArray pointRelation = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.POINT_RELATION));
@@ -109,13 +111,13 @@ public class PointService {
      *
      * @return
      */
-    private InputStream readPointXlsx() {
+    public InputStream readPointXlsx() {
         //jar同级目录
         try {
             String filePath = System.getProperty(BaseDecConstant.USER_DIR) + File.separator + BaseDecConstant.POINT_FILE_NAME;
             InputStream inputStream = ResourceUtil.getStream(filePath);
             if (inputStream != null) {
-                log.warn("*****加载pointExcel文件路径：" + filePath);
+                //log.warn("*****加载pointExcel文件路径：" + filePath);
                 return inputStream;
             }
         } catch (Exception e) {
@@ -124,7 +126,7 @@ public class PointService {
         try {
             String filePath = File.separator + BaseDecConstant.CONFIG_DIR + File.separator + BaseDecConstant.POINT_FILE_NAME;
             InputStream inputStream = new ClassPathResource(filePath).getInputStream();
-            log.warn("*****加载pointExcel文件路径：" + filePath);
+            //log.warn("*****加载pointExcel文件路径：" + filePath);
             return inputStream;
         } catch (Exception e) {
             log.error("*****加载pointExcel默认文件路径异常", e);

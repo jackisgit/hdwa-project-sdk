@@ -185,28 +185,10 @@ public class RepositoryImpl extends RepositoryBase {
      * <p>数据来源 point/point-relation.json</p>
      */
     public SceneDataSet InfoPointRelationArray = new SceneDataSet(false, BaseDecConstant.INFO_POINT_RELATION);
+
     public Map<String, JSONObject> general_queryMap;
+
     public RepositoryProject RepositoryProject;
-    // to do lirong
-    // 报警配置数据
-    public SceneDataSet alarmConfigArray = new SceneDataSet(false);// id2alarmConfigTrigger
-    public SceneDataSet alarmConfigTrigger = new SceneDataSet(false);
-
-
-    public SceneDataSet ZKTAlarmTypeArray = new SceneDataSet(false);
-    /**
-     * @子系统连接状态
-     * @数据来源 /sceneArray.json
-     */
-    public SceneDataSet subsystem_connect_status = new SceneDataSet(false);
-
-
-    public SceneDataSet scaleplate = new SceneDataSet(false, "scaleplate");
-    // 日历模式：周期性刷新，不需要拷贝
-    public SceneDataSet IBMSCalendarModel = new SceneDataSet(false, true);
-    public SceneDataSet IBMSCalendarBinding = new SceneDataSet(false, true);
-    public SceneDataSet weather = new SceneDataSet(false, true);
-
 
     public RepositoryImpl() {
         super();
@@ -399,29 +381,6 @@ public class RepositoryImpl extends RepositoryBase {
                 }
                 break;
             }
-            case "alarmConfig":
-                String alarmConfig = (descSet.get("alarmConfig")).toString();
-                if (alarmConfig.equals("configTrigger")) {
-                    result = this.alarmConfigTrigger;
-                } else {
-                    result = this.alarmConfigArray;
-                }
-                break;
-            case "ibms-model":
-                result = this.IBMSCalendarModel;
-                break;
-            case "ibms-calendar":
-                result = this.IBMSCalendarBinding;
-                break;
-            case "ibms-alarm-type":
-                result = this.ZKTAlarmTypeArray;
-                break;
-            case "weather":
-                result = this.weather;
-                break;
-            case "scaleplate":
-                result = this.scaleplate;
-                break;
             case "alarm":
                 result = DataContainer.alarmArray;
                 break;
@@ -430,9 +389,6 @@ public class RepositoryImpl extends RepositoryBase {
                 break;
             case "info-point-relation":
                 result = this.InfoPointRelationArray;
-                break;
-            case "subsystem-connect-status":
-                result = this.subsystem_connect_status;
                 break;
         }
         return result;

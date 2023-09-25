@@ -69,7 +69,22 @@ public class LoadDataMainService {
         } catch (Exception e) {
             log.error("******** 加载数据入口异常", e);
         }
+    }
 
 
+    /**
+     * 更新点位过滤数据
+     */
+    public void updatePoint(RepositoryImpl repository) {
+        try {
+            //加载点位数据
+            pointService.loadPointData(repository);
+            //加载接口数据
+            configApiService.loadConfigData(repository);
+            //加载到数据容器
+            DataContainer.projectMap.put(System.getProperty(BaseDecConstant.PROJECT_ID), repository);
+        } catch (Exception e) {
+            log.error("******** 更新点位数据异常", e);
+        }
     }
 }
