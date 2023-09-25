@@ -20,11 +20,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Slf4j
 public class RepositoryImpl extends RepositoryBase {
 
-    public static boolean accelerate_enable = false;
-    public static long accelerate_ratio = 60 * 60 * 24;
-    public static String init_timeString = "2021-01-01 00:00:00";
-    public static Date init_time;
-    public static Date start_time;
     /**
      * <p>物理世界</p>
      * <p>类型定义-全量数据</p>
@@ -190,11 +185,18 @@ public class RepositoryImpl extends RepositoryBase {
 
     public RepositoryProject RepositoryProject;
 
+    public static boolean accelerate_enable = false;
+    public static long accelerate_ratio = 60 * 60 * 24;
+    public static String init_timeString = "2021-01-01 00:00:00";
+    public static Date init_time;
+    public static Date start_time;
+
     public RepositoryImpl() {
         super();
     }
 
 
+    // TODO: 2023/9/25 待优化 
     public RepositoryImpl(RepositoryProject RepositoryProject, boolean use_thread, boolean enable_factor, int thread_count,
                           long interval_between_compute) {
         super(use_thread, enable_factor, thread_count, interval_between_compute);
@@ -284,18 +286,18 @@ public class RepositoryImpl extends RepositoryBase {
     public SceneDataSet ParseSource(JSONObject descSet, String Source) {
         SceneDataSet result = null;
         switch (Source) {
-            case "class": //类型定义数据
+            case BaseDecConstant.CLASS:
                 result = this.classArray;
                 break;
-            case "rwd":
-                String rwd = (descSet.get("rwd")).toString();
+            case BaseDecConstant.RWD:
+                String rwd = (descSet.get(BaseDecConstant.RWD)).toString();
                 switch (rwd) {
-                    case "object": //对象静态数据
-                        if (descSet.containsKey("objType")) {//大对象类型
-                            String objType = (descSet.get("objType")).toString();
-                            if (objType.equals("equipment") || objType.equals("system") || objType.equals("space")) {//三种大类型
-                                if (descSet.containsKey("classCode")) {//类型code
-                                    String classCode = (descSet.get("classCode")).toString();
+                    case BaseDecConstant.OBJECT: 
+                        if (descSet.containsKey(BaseDecConstant.OBJ_TYPE)) {
+                            String objType = (descSet.get(BaseDecConstant.OBJ_TYPE)).toString();
+                            if (objType.equals(BaseDecConstant.EQUIPMENT) || objType.equals(BaseDecConstant.SYSTEM) || objType.equals(BaseDecConstant.SPACE)) {
+                                if (descSet.containsKey(BaseDecConstant.CLASS_CODE)) {
+                                    String classCode = (descSet.get(BaseDecConstant.CLASS_CODE)).toString();
                                     if (this.objectArrayDic.get(classCode) != null) {
                                         result = this.objectArrayDic.get(classCode).value_array;
                                     }
@@ -307,68 +309,66 @@ public class RepositoryImpl extends RepositoryBase {
                             } else {
                                 result = this.objectArrayDic.get(objType).value_array;
                             }
-                        } else if (descSet.containsKey("classCode")) {
-                            String classCode = (descSet.get("classCode")).toString();
+                        } else if (descSet.containsKey(BaseDecConstant.CLASS_CODE)) {
+                            String classCode = (descSet.get(BaseDecConstant.CLASS_CODE)).toString();
                             result = this.objectArrayDic.get(classCode).value_array;
                         } else {
                             result = this.objectArrayAll;
                         }
                         break;
-                    case "info": //类型点位数据
-                        String objType = (descSet.get("objType")).toString();
-                        if (objType.equals("equipment") || objType.equals("system") || objType.equals("space")) {
-                            String classCode = (descSet.get("classCode")).toString();
+                    case BaseDecConstant.INFO:
+                        String objType = (descSet.get(BaseDecConstant.OBJ_TYPE)).toString();
+                        if (objType.equals(BaseDecConstant.EQUIPMENT) || objType.equals(BaseDecConstant.SYSTEM) || objType.equals(BaseDecConstant.SPACE)) {
+                            String classCode = (descSet.get(BaseDecConstant.CLASS_CODE)).toString();
                             result = this.infoArrayDic.get(classCode);
                         } else {
                             result = this.infoArrayDic.get(objType);
                         }
                         break;
-                    case "info_dataSource": //类型点位中dataSource数据
+                    case BaseDecConstant.INFO_DATASOURCE:
                         result = this.infoDataSource;
                         break;
-                    case "relation": //关系数据
-                        if (descSet.get("graphCode") != null && descSet.get("relCode") != null) {
-                            String graphCode = (descSet.get("graphCode")).toString();
-                            String relCode = (descSet.get("relCode")).toString();
+                    case BaseDecConstant.RELATION:
+                        if (descSet.get(BaseDecConstant.GRAPH_CODE) != null && descSet.get(BaseDecConstant.REL_CODE) != null) {
+                            String graphCode = (descSet.get(BaseDecConstant.GRAPH_CODE)).toString();
+                            String relCode = (descSet.get(BaseDecConstant.REL_CODE)).toString();
                             if (this.relationArrayDic.get(graphCode) != null) {
                                 result = this.relationArrayDic.get(graphCode).get(relCode);
                             }
-                        } else if (descSet.get("graphCode") != null) {//图例
-                            String graphCode = (descSet.get("graphCode")).toString();
+                        } else if (descSet.get(BaseDecConstant.GRAPH_CODE) != null) {//图例
+                            String graphCode = (descSet.get(BaseDecConstant.GRAPH_CODE)).toString();
                             result = this.graphCodeDic.get(graphCode);
-                        } else if (descSet.get("relCode") != null) {//关系类型
-                            String relCode = (descSet.get("relCode")).toString();
+                        } else if (descSet.get(BaseDecConstant.REL_CODE) != null) {//关系类型
+                            String relCode = (descSet.get(BaseDecConstant.REL_CODE)).toString();
                             result = this.relCodeDic.get(relCode);
                         } else {
                             result = this.relationAll;
                         }
                         break;
                 }
-                // result = new SceneDataSet(false);
-                // result.setRowChange(false);
                 break;
-            case "zkt-class": //zkt类型定义数据
+            case BaseDecConstant.ZKT_CLASS:
                 result = this.ZKTClassArray;
                 break;
-            case "zkt-object": { //zkt下级类型数据
-                String ibmsSceneCode = (descSet.get("ibmsSceneCode")).toString();
-                String ibmsClassCode = (descSet.get("ibmsClassCode")).toString();
+            case BaseDecConstant.ZKT_OBJECT: {
+                String ibmsSceneCode = (descSet.get(BaseDecConstant.IBMS_SCENE_CODE)).toString();
+                String ibmsClassCode = (descSet.get(BaseDecConstant.IBMS_CLASS_CODE)).toString();
                 if (this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode) != null) {
                     result = this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode).value_array;
                 }
                 break;
             }
-            case "ibms":
-                String product = (descSet.get("product")).toString();
-                String type = (descSet.get("type")).toString();
+            case BaseDecConstant.IBMS:
+                String product = (descSet.get(BaseDecConstant.PRODUCT)).toString();
+                String type = (descSet.get(BaseDecConstant.TYPE)).toString();
                 result = this.IBMSArrayDic.get(product).get(type);
                 break;
-            case "ibms-group":
+            case BaseDecConstant.IBMS_GROUP:
                 result = this.IBMSGroupArray;
                 break;
-            case "ibms-group-object": {
-                String ibmsSceneCode = (descSet.get("ibmsSceneCode")).toString();
-                String ibmsClassCode = (descSet.get("ibmsClassCode")).toString();
+            case BaseDecConstant.IBMS_GROUP_OBJECT: {
+                String ibmsSceneCode = (descSet.get(BaseDecConstant.IBMS_SCENE_CODE)).toString();
+                String ibmsClassCode = (descSet.get(BaseDecConstant.IBMS_CLASS_CODE)).toString();
                 if (!this.IBMSArrayDic.containsKey(ibmsSceneCode)) {
                     result = new SceneDataSet(false);
                 } else {
@@ -381,13 +381,13 @@ public class RepositoryImpl extends RepositoryBase {
                 }
                 break;
             }
-            case "alarm":
+            case BaseDecConstant.ALARM:
                 result = DataContainer.alarmArray;
                 break;
-            case "info-point-list":
+            case BaseDecConstant.INFO_POINT_LIST:
                 result = this.InfoPointListArray;
                 break;
-            case "info-point-relation":
+            case BaseDecConstant.INFO_POINT_RELATION:
                 result = this.InfoPointRelationArray;
                 break;
         }
@@ -455,7 +455,7 @@ public class RepositoryImpl extends RepositoryBase {
                 continue;
             }
             String objType = this.code2objTypeMap.get(classCode);
-            if (!objType.equals("equipment") && !objType.equals("system") && !objType.equals("space")) {
+            if (!objType.equals(BaseDecConstant.EQUIPMENT) && !objType.equals(BaseDecConstant.SYSTEM) && !objType.equals(BaseDecConstant.SPACE)) {
                 continue;
             }
             SceneDataSet objectArray = this.objectArrayDic.get(classCode).value_array;
