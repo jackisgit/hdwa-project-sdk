@@ -1,8 +1,12 @@
 package com.hdwa.sdk.service;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.ExcelSheetEntity;
 import com.hdwa.sdk.entity.repository.DataContainer;
+import com.hdwa.sdk.entity.repository.RepositoryImpl;
+import com.hdwa.sdk.utils.AlarmUtil;
 import com.hdwa.sdk.utils.ExcelUtil;
 import com.hdwa.sdk.utils.FileUtil;
 import com.hdwa.sdk.websocket.AlarmWebSocketClient;
@@ -247,6 +251,26 @@ public class InitialDataService implements CommandLineRunner {
         }
     }
 
+    /**
+     * 刷新报警数据
+     */
+    @Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60)
+    public void loadAlarmData() {
+        try {
+            RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
+            JSONArray content = AlarmUtil.alarmRefresh(BaseDecConstant.CURRENT_PROJECT_ID, groupCode, alarmUrl, repository);
+            if (content.size() != 0) {
+                log.warn("****刷新报警数据数量：" + content.size());
+                JSONObject AlarmJob = new JSONObject();
+                AlarmJob.put(BaseDecConstant.TYPE, BaseDecConstant.REFRESH);
+                AlarmJob.put(BaseDecConstant.CONTENT, content);
+                DataContainer.alarmBuffer.offer(AlarmJob, 16384);
+            }
+        } catch (Exception e) {
+            log.error("****刷新报警数据出现异常", e);
+        }
+
+    }
 
     /**
      * 检查point过滤文件是否修改

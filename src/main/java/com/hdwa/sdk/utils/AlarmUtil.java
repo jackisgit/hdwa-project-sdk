@@ -131,11 +131,11 @@ public class AlarmUtil {
         } catch (Exception e) {
             log.error("查询报警数据出现异常", e);
         }
-        return null;
+        return new JSONArray();
     }
 
     /**
-     * 修改报警数据
+     * 添加报警数据属性
      *
      * @param alarm
      */
