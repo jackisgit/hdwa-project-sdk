@@ -239,7 +239,7 @@ public class IbmsPhysicalWorldService {
             try {
                 JSONArray objectArray = OkHttpClientUtil.httpPost(requestBody, dmpUrl + UrlConstant.LIST_OBJECT_DATA_URL).getJSONArray(BaseDecConstant.DATA);
                 //有数据的创建文件
-                if (objectArray.size() == 0) {
+                if (objectArray == null || objectArray.size() == 0) {
                     return;
                 }
                 //创建文件夹

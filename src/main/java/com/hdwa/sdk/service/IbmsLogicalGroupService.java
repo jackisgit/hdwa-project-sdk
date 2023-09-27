@@ -209,8 +209,10 @@ public class IbmsLogicalGroupService {
                 jsonObject.put(BaseDecConstant.GROUPING_TYPE, firstCode);
                 //楼层编码
                 if (dir.getName().equals(BaseDecConstant.GGZM)) {
-                    String floorId = (String) itemSdo.get(BaseDecConstant.FLOOR_ID).value_prim.value;
-                    jsonObject.put(BaseDecConstant.FLOOR_CODE, floorId);
+                    if (itemSdo.get(BaseDecConstant.FLOOR_ID) != null) {
+                        String floorId = (String) itemSdo.get(BaseDecConstant.FLOOR_ID).value_prim.value;
+                        jsonObject.put(BaseDecConstant.FLOOR_CODE, floorId);
+                    }
                 }
                 levelGroupTow.add(jsonObject);
             });
