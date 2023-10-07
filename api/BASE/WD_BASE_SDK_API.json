@@ -161962,7 +161962,7 @@
                                   {
                                     "PropertyName": "未排序基本参数点位",
                                     "allow_pass": "1",
-                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"SELTCC\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"zhaominghuilu\",          \"infoType\": \"基本参数\",          \"isVisible\": true        }      }    }  }}",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\" ,\"classCode\":{\"in\":[ \"PSPLLP\",\"PKPLLP\",\"GSPLLP\"]} },  \"Criteria\": { \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"zhaominghuilu\",          \"infoType\": \"基本参数\",          \"isVisible\": true        }      }    }  }}",
                                     "read_level": "1",
                                     "filter_rule": null,
                                     "custom_object": null,
@@ -162023,7 +162023,7 @@
                                   {
                                     "PropertyName": "未排序单设备控制点位",
                                     "allow_pass": "1",
-                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"SELTCC\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"zhaominghuilu\",          \"infoType\": \"设定参数\",          \"isVisible\": true        }      }    }  }}",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\" ,\"classCode\":{\"in\":[ \"PSPLLP\",\"PKPLLP\",\"GSPLLP\"]} },  \"Criteria\": {\"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"zhaominghuilu\",          \"infoType\": \"设定参数\",          \"isVisible\": true        }      }    }  }}",
                                     "read_level": "1",
                                     "filter_rule": null,
                                     "custom_object": null,
@@ -162069,7 +162069,7 @@
                                   {
                                     "PropertyName": "未排序批量控制点位",
                                     "allow_pass": "1",
-                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"SELTCC\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"zhaominghuilu\",          \"infoType\": \"设定参数\",          \"isVisible\": true,          \"isBatchControlParam\": true        }      }    }  }}",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\" ,\"classCode\":{\"in\":[ \"PSPLLP\",\"PKPLLP\",\"GSPLLP\"]} },  \"Criteria\": { \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"zhaominghuilu\",          \"infoType\": \"设定参数\",          \"isVisible\": true,          \"isBatchControlParam\": true        }      }    }  }}",
                                     "read_level": "1",
                                     "filter_rule": null,
                                     "custom_object": null,
@@ -162115,7 +162115,7 @@
                                   {
                                     "PropertyName": "未排序运行参数点位",
                                     "allow_pass": "1",
-                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"SELTCC\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"zhaominghuilu\",          \"infoType\": \"运行参数\",          \"isVisible\": true        }      }    }  }}",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\"  ,\"classCode\":{\"in\":[ \"PSPLLP\",\"PKPLLP\",\"GSPLLP\"]}},  \"Criteria\": { \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"zhaominghuilu\",          \"infoType\": \"运行参数\",          \"isVisible\": true        }      }    }  }}",
                                     "read_level": "1",
                                     "filter_rule": null,
                                     "custom_object": null,
@@ -162161,7 +162161,7 @@
                                   {
                                     "PropertyName": "未排序关键参数点位",
                                     "allow_pass": "1",
-                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"SELTCC\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"zhaominghuilu\",          \"infoType\": \"运行参数\",          \"isVisible\": true,          \"isKeyPoint\": true        }      }    }  }}",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\" ,\"classCode\":{\"in\":[ \"PSPLLP\",\"PKPLLP\",\"GSPLLP\"]} },  \"Criteria\": {  \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"zhaominghuilu\",          \"infoType\": \"运行参数\",          \"isVisible\": true,          \"isKeyPoint\": true        }      }    }  }}",
                                     "read_level": "1",
                                     "filter_rule": null,
                                     "custom_object": null,
@@ -162222,7 +162222,1159 @@
                                   {
                                     "PropertyName": "设备状态点位",
                                     "allow_pass": "1",
-                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"SELTCC\"  },  \"Criteria\": {    \"code\": {      \"in\": [        \"runStatus\",        \"onlineStatus\",        \"faultStatus\"      ]    }  }}",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\" ,\"classCode\":{\"in\":[ \"PSPLLP\",\"PKPLLP\",\"GSPLLP\"]} },  \"Criteria\": { \"code\": {      \"in\": [        \"runStatus\",        \"onlineStatus\",        \"faultStatus\"      ]    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "基本参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": null,
+                                    "read_level": "0",
+                                    "filter_rule": null,
+                                    "custom_object": {
+                                      "PropertyList": [
+                                        {
+                                          "PropertyName": "清单",
+                                          "allow_pass": "1",
+                                          "query_sql": null,
+                                          "read_level": "0",
+                                          "filter_rule": null,
+                                          "custom_object": null,
+                                          "static_value": null,
+                                          "offset_level": "0",
+                                          "query_attached": null,
+                                          "PropertyValueSchema": "JSONArray",
+                                          "static_array": [
+                                            {
+                                              "PropertyList": [
+                                                {
+                                                  "PropertyName": "基础信息",
+                                                  "allow_pass": "1",
+                                                  "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_4'未排序基本参数点位\"  },  \"Criteria\": {    \"infoStage\": \"基础信息\"  },  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                                  "read_level": "1",
+                                                  "filter_rule": null,
+                                                  "custom_object": null,
+                                                  "static_value": null,
+                                                  "offset_level": "0",
+                                                  "query_attached": null,
+                                                  "PropertyValueSchema": "JSONArray",
+                                                  "static_array": null,
+                                                  "PropertyVisible": false,
+                                                  "PropertyValueType": "query"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "PropertyList": [
+                                                {
+                                                  "PropertyName": "设计信息",
+                                                  "allow_pass": "1",
+                                                  "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_4'未排序基本参数点位\"  },  \"Criteria\": {    \"infoStage\": \"设计信息\"  },  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                                  "read_level": "1",
+                                                  "filter_rule": null,
+                                                  "custom_object": null,
+                                                  "static_value": null,
+                                                  "offset_level": "0",
+                                                  "query_attached": null,
+                                                  "PropertyValueSchema": "JSONArray",
+                                                  "static_array": null,
+                                                  "PropertyVisible": false,
+                                                  "PropertyValueType": "query"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "PropertyList": [
+                                                {
+                                                  "PropertyName": "施工信息",
+                                                  "allow_pass": "1",
+                                                  "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_4'未排序基本参数点位\"  },  \"Criteria\": {    \"infoStage\": \"施工信息\"  },  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                                  "read_level": "1",
+                                                  "filter_rule": null,
+                                                  "custom_object": null,
+                                                  "static_value": null,
+                                                  "offset_level": "0",
+                                                  "query_attached": null,
+                                                  "PropertyValueSchema": "JSONArray",
+                                                  "static_array": null,
+                                                  "PropertyVisible": false,
+                                                  "PropertyValueType": "query"
+                                                }
+                                              ]
+                                            }
+                                          ],
+                                          "PropertyVisible": false,
+                                          "PropertyValueType": "static"
+                                        }
+                                      ]
+                                    },
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONObject",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "custom"
+                                  }
+                                ]
+                              },
+                              "static_value": null,
+                              "offset_level": "0",
+                              "query_attached": null,
+                              "PropertyValueSchema": "JSONObject",
+                              "static_array": null,
+                              "PropertyVisible": false,
+                              "PropertyValueType": "custom"
+                            },
+                            {
+                              "PropertyName": "步行街公共照明回路",
+                              "allow_pass": "1",
+                              "query_sql": null,
+                              "read_level": "0",
+                              "filter_rule": null,
+                              "custom_object": {
+                                "PropertyList": [
+                                  {
+                                    "PropertyName": "未排序基本参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"PSPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"bxjzhaominghuilu\",          \"infoType\": \"基本参数\",          \"isVisible\": true        }      }    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": [
+                                      {
+                                        "PropertyName": "sequenceNo",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"bxjzhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "int",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      },
+                                      {
+                                        "PropertyName": "infoStage",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"bxjzhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"infoStage\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "string",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      },
+                                      {
+                                        "PropertyName": "isDefaultVisible",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"bxjzhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"isDefaultVisible\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "boolean",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      }
+                                    ],
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "未排序单设备控制点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"PSPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"bxjzhaominghuilu\",          \"infoType\": \"设定参数\",          \"isVisible\": true        }      }    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": [
+                                      {
+                                        "PropertyName": "sequenceNo",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"bxjzhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "int",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      }
+                                    ],
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "单设备控制点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_1'未排序单设备控制点位\"  },  \"Criteria\": {},  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "未排序批量控制点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"PSPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"bxjzhaominghuilu\",          \"infoType\": \"设定参数\",          \"isVisible\": true,          \"isBatchControlParam\": true        }      }    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": [
+                                      {
+                                        "PropertyName": "sequenceNo",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"bxjzhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "int",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      }
+                                    ],
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "批量控制点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_1'未排序批量控制点位\"  },  \"Criteria\": {},  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "未排序运行参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"PSPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"bxjzhaominghuilu\",          \"infoType\": \"运行参数\",          \"isVisible\": true        }      }    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": [
+                                      {
+                                        "PropertyName": "sequenceNo",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"bxjzhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "int",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      }
+                                    ],
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "运行参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_1'未排序运行参数点位\"  },  \"Criteria\": {},  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "未排序关键参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"PSPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"bxjzhaominghuilu\",          \"infoType\": \"运行参数\",          \"isVisible\": true,          \"isKeyPoint\": true        }      }    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": [
+                                      {
+                                        "PropertyName": "sequenceNo",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"bxjzhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "int",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      }
+                                    ],
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "关键参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_1'未排序关键参数点位\"  },  \"Criteria\": {},  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "控制关联点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-relation\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"bxjzhaominghuilu\"  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "设备状态点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"PSPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": [        \"runStatus\",        \"onlineStatus\",        \"faultStatus\"      ]    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "基本参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": null,
+                                    "read_level": "0",
+                                    "filter_rule": null,
+                                    "custom_object": {
+                                      "PropertyList": [
+                                        {
+                                          "PropertyName": "清单",
+                                          "allow_pass": "1",
+                                          "query_sql": null,
+                                          "read_level": "0",
+                                          "filter_rule": null,
+                                          "custom_object": null,
+                                          "static_value": null,
+                                          "offset_level": "0",
+                                          "query_attached": null,
+                                          "PropertyValueSchema": "JSONArray",
+                                          "static_array": [
+                                            {
+                                              "PropertyList": [
+                                                {
+                                                  "PropertyName": "基础信息",
+                                                  "allow_pass": "1",
+                                                  "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_4'未排序基本参数点位\"  },  \"Criteria\": {    \"infoStage\": \"基础信息\"  },  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                                  "read_level": "1",
+                                                  "filter_rule": null,
+                                                  "custom_object": null,
+                                                  "static_value": null,
+                                                  "offset_level": "0",
+                                                  "query_attached": null,
+                                                  "PropertyValueSchema": "JSONArray",
+                                                  "static_array": null,
+                                                  "PropertyVisible": false,
+                                                  "PropertyValueType": "query"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "PropertyList": [
+                                                {
+                                                  "PropertyName": "设计信息",
+                                                  "allow_pass": "1",
+                                                  "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_4'未排序基本参数点位\"  },  \"Criteria\": {    \"infoStage\": \"设计信息\"  },  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                                  "read_level": "1",
+                                                  "filter_rule": null,
+                                                  "custom_object": null,
+                                                  "static_value": null,
+                                                  "offset_level": "0",
+                                                  "query_attached": null,
+                                                  "PropertyValueSchema": "JSONArray",
+                                                  "static_array": null,
+                                                  "PropertyVisible": false,
+                                                  "PropertyValueType": "query"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "PropertyList": [
+                                                {
+                                                  "PropertyName": "施工信息",
+                                                  "allow_pass": "1",
+                                                  "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_4'未排序基本参数点位\"  },  \"Criteria\": {    \"infoStage\": \"施工信息\"  },  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                                  "read_level": "1",
+                                                  "filter_rule": null,
+                                                  "custom_object": null,
+                                                  "static_value": null,
+                                                  "offset_level": "0",
+                                                  "query_attached": null,
+                                                  "PropertyValueSchema": "JSONArray",
+                                                  "static_array": null,
+                                                  "PropertyVisible": false,
+                                                  "PropertyValueType": "query"
+                                                }
+                                              ]
+                                            }
+                                          ],
+                                          "PropertyVisible": false,
+                                          "PropertyValueType": "static"
+                                        }
+                                      ]
+                                    },
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONObject",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "custom"
+                                  }
+                                ]
+                              },
+                              "static_value": null,
+                              "offset_level": "0",
+                              "query_attached": null,
+                              "PropertyValueSchema": "JSONObject",
+                              "static_array": null,
+                              "PropertyVisible": false,
+                              "PropertyValueType": "custom"
+                            },
+                            {
+                              "PropertyName": "停车场公共照明回路",
+                              "allow_pass": "1",
+                              "query_sql": null,
+                              "read_level": "0",
+                              "filter_rule": null,
+                              "custom_object": {
+                                "PropertyList": [
+                                  {
+                                    "PropertyName": "未排序基本参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"PKPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"tcczhaominghuilu\",          \"infoType\": \"基本参数\",          \"isVisible\": true        }      }    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": [
+                                      {
+                                        "PropertyName": "sequenceNo",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"tcczhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "int",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      },
+                                      {
+                                        "PropertyName": "infoStage",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"tcczhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"infoStage\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "string",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      },
+                                      {
+                                        "PropertyName": "isDefaultVisible",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"tcczhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"isDefaultVisible\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "boolean",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      }
+                                    ],
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "未排序单设备控制点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"PKPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"tcczhaominghuilu\",          \"infoType\": \"设定参数\",          \"isVisible\": true        }      }    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": [
+                                      {
+                                        "PropertyName": "sequenceNo",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"tcczhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "int",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      }
+                                    ],
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "单设备控制点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_1'未排序单设备控制点位\"  },  \"Criteria\": {},  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "未排序批量控制点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"PKPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"tcczhaominghuilu\",          \"infoType\": \"设定参数\",          \"isVisible\": true,          \"isBatchControlParam\": true        }      }    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": [
+                                      {
+                                        "PropertyName": "sequenceNo",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"tcczhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "int",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      }
+                                    ],
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "批量控制点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_1'未排序批量控制点位\"  },  \"Criteria\": {},  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "未排序运行参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"PKPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"tcczhaominghuilu\",          \"infoType\": \"运行参数\",          \"isVisible\": true        }      }    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": [
+                                      {
+                                        "PropertyName": "sequenceNo",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"tcczhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "int",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      }
+                                    ],
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "运行参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_1'未排序运行参数点位\"  },  \"Criteria\": {},  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "未排序关键参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"PKPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"tcczhaominghuilu\",          \"infoType\": \"运行参数\",          \"isVisible\": true,          \"isKeyPoint\": true        }      }    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": [
+                                      {
+                                        "PropertyName": "sequenceNo",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"tcczhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "int",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      }
+                                    ],
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "关键参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_1'未排序关键参数点位\"  },  \"Criteria\": {},  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "控制关联点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-relation\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"tcczhaominghuilu\"  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "设备状态点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"PKPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": [        \"runStatus\",        \"onlineStatus\",        \"faultStatus\"      ]    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "基本参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": null,
+                                    "read_level": "0",
+                                    "filter_rule": null,
+                                    "custom_object": {
+                                      "PropertyList": [
+                                        {
+                                          "PropertyName": "清单",
+                                          "allow_pass": "1",
+                                          "query_sql": null,
+                                          "read_level": "0",
+                                          "filter_rule": null,
+                                          "custom_object": null,
+                                          "static_value": null,
+                                          "offset_level": "0",
+                                          "query_attached": null,
+                                          "PropertyValueSchema": "JSONArray",
+                                          "static_array": [
+                                            {
+                                              "PropertyList": [
+                                                {
+                                                  "PropertyName": "基础信息",
+                                                  "allow_pass": "1",
+                                                  "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_4'未排序基本参数点位\"  },  \"Criteria\": {    \"infoStage\": \"基础信息\"  },  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                                  "read_level": "1",
+                                                  "filter_rule": null,
+                                                  "custom_object": null,
+                                                  "static_value": null,
+                                                  "offset_level": "0",
+                                                  "query_attached": null,
+                                                  "PropertyValueSchema": "JSONArray",
+                                                  "static_array": null,
+                                                  "PropertyVisible": false,
+                                                  "PropertyValueType": "query"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "PropertyList": [
+                                                {
+                                                  "PropertyName": "设计信息",
+                                                  "allow_pass": "1",
+                                                  "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_4'未排序基本参数点位\"  },  \"Criteria\": {    \"infoStage\": \"设计信息\"  },  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                                  "read_level": "1",
+                                                  "filter_rule": null,
+                                                  "custom_object": null,
+                                                  "static_value": null,
+                                                  "offset_level": "0",
+                                                  "query_attached": null,
+                                                  "PropertyValueSchema": "JSONArray",
+                                                  "static_array": null,
+                                                  "PropertyVisible": false,
+                                                  "PropertyValueType": "query"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "PropertyList": [
+                                                {
+                                                  "PropertyName": "施工信息",
+                                                  "allow_pass": "1",
+                                                  "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_4'未排序基本参数点位\"  },  \"Criteria\": {    \"infoStage\": \"施工信息\"  },  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                                  "read_level": "1",
+                                                  "filter_rule": null,
+                                                  "custom_object": null,
+                                                  "static_value": null,
+                                                  "offset_level": "0",
+                                                  "query_attached": null,
+                                                  "PropertyValueSchema": "JSONArray",
+                                                  "static_array": null,
+                                                  "PropertyVisible": false,
+                                                  "PropertyValueType": "query"
+                                                }
+                                              ]
+                                            }
+                                          ],
+                                          "PropertyVisible": false,
+                                          "PropertyValueType": "static"
+                                        }
+                                      ]
+                                    },
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONObject",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "custom"
+                                  }
+                                ]
+                              },
+                              "static_value": null,
+                              "offset_level": "0",
+                              "query_attached": null,
+                              "PropertyValueSchema": "JSONObject",
+                              "static_array": null,
+                              "PropertyVisible": false,
+                              "PropertyValueType": "custom"
+                            },
+                            {
+                              "PropertyName": "百货公共照明回路",
+                              "allow_pass": "1",
+                              "query_sql": null,
+                              "read_level": "0",
+                              "filter_rule": null,
+                              "custom_object": {
+                                "PropertyList": [
+                                  {
+                                    "PropertyName": "未排序基本参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"GSPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"bhzhaominghuilu\",          \"infoType\": \"基本参数\",          \"isVisible\": true        }      }    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": [
+                                      {
+                                        "PropertyName": "sequenceNo",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"bhzhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "int",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      },
+                                      {
+                                        "PropertyName": "infoStage",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"bhzhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"infoStage\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "string",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      },
+                                      {
+                                        "PropertyName": "isDefaultVisible",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"bhzhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"isDefaultVisible\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "boolean",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      }
+                                    ],
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "未排序单设备控制点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"GSPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"bhzhaominghuilu\",          \"infoType\": \"设定参数\",          \"isVisible\": true        }      }    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": [
+                                      {
+                                        "PropertyName": "sequenceNo",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"bhzhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "int",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      }
+                                    ],
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "单设备控制点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_1'未排序单设备控制点位\"  },  \"Criteria\": {},  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "未排序批量控制点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"GSPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"bhzhaominghuilu\",          \"infoType\": \"设定参数\",          \"isVisible\": true,          \"isBatchControlParam\": true        }      }    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": [
+                                      {
+                                        "PropertyName": "sequenceNo",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"bhzhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "int",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      }
+                                    ],
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "批量控制点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_1'未排序批量控制点位\"  },  \"Criteria\": {},  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "未排序运行参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"GSPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"bhzhaominghuilu\",          \"infoType\": \"运行参数\",          \"isVisible\": true        }      }    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": [
+                                      {
+                                        "PropertyName": "sequenceNo",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"bhzhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "int",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      }
+                                    ],
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "运行参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_1'未排序运行参数点位\"  },  \"Criteria\": {},  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "未排序关键参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"GSPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": {        \"QueryType\": \"select\",        \"Target\": {          \"Source\": \"info-point-list\"        },        \"UniqueReturnColumn\": \"infoCode\",        \"Criteria\": {          \"ibmsSceneCode\": \"ggzm\",          \"ibmsClassCode\": \"bhzhaominghuilu\",          \"infoType\": \"运行参数\",          \"isVisible\": true,          \"isKeyPoint\": true        }      }    }  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": [
+                                      {
+                                        "PropertyName": "sequenceNo",
+                                        "allow_pass": "1",
+                                        "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-list\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"bhzhaominghuilu\",    \"infoCode\": {      \"ref\": \"ancestor_1'code\"    }  },  \"Limit\": {    \"Skip\": 0,    \"Count\": 1  },  \"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "read_level": "1",
+                                        "filter_rule": null,
+                                        "custom_object": null,
+                                        "static_value": null,
+                                        "offset_level": "0",
+                                        "query_attached": null,
+                                        "PropertyValueSchema": "int",
+                                        "static_array": null,
+                                        "PropertyVisible": false,
+                                        "PropertyValueType": "query"
+                                      }
+                                    ],
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "关键参数点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"ref\",    \"ref\": \"ancestor_1'未排序关键参数点位\"  },  \"Criteria\": {},  \"OrderBy\": [    {      \"Column\": \"sequenceNo\",      \"Asc\": true    }  ]}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "控制关联点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"info-point-relation\"  },  \"Criteria\": {    \"ibmsSceneCode\": \"ggzm\",    \"ibmsClassCode\": \"bhzhaominghuilu\"  }}",
+                                    "read_level": "1",
+                                    "filter_rule": null,
+                                    "custom_object": null,
+                                    "static_value": null,
+                                    "offset_level": "0",
+                                    "query_attached": null,
+                                    "PropertyValueSchema": "JSONArray",
+                                    "static_array": null,
+                                    "PropertyVisible": false,
+                                    "PropertyValueType": "query"
+                                  },
+                                  {
+                                    "PropertyName": "设备状态点位",
+                                    "allow_pass": "1",
+                                    "query_sql": "{  \"QueryType\": \"select\",  \"Target\": {    \"Source\": \"rwd\",    \"rwd\": \"info\",    \"objType\": \"equipment\",    \"classCode\": \"GSPLLP\"  },  \"Criteria\": {    \"code\": {      \"in\": [        \"runStatus\",        \"onlineStatus\",        \"faultStatus\"      ]    }  }}",
                                     "read_level": "1",
                                     "filter_rule": null,
                                     "custom_object": null,
