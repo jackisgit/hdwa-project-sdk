@@ -608,6 +608,9 @@ public class CalculateApiJsonUtil {
                 SceneDataValue currData = (SceneDataValue) tmpData;
                 currData = currData.value_object.get(valuePath.getString(index));
                 tmpData = currData;
+                if (currData==null) {
+                    continue;
+                }
                 if (currData.value_array != null) {
                     if (index < valuePath.size() - 1) {
                         index++;

@@ -21,6 +21,11 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * @author abao
+ * @since 2023/8/16
+ * 异常处理工具类
+ */
 @Slf4j
 public class ExpressionUtil {
 
@@ -80,30 +85,5 @@ public class ExpressionUtil {
         Repository.p2walker2.put(sp, WalkerList);
 
         return exceptionList;
-    }
-
-    public static void run(String expression) throws Exception {
-        ANTLRInputStream input = new ANTLRInputStream(new ByteArrayInputStream((expression + "$").getBytes()));
-        AdvancedExpressionLexer lexer = new AdvancedExpressionLexer(input);
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        AdvancedExpressionParser parser = new AdvancedExpressionParser(tokens);
-        AdvancedExpressionParser.prog_return r = parser.prog();
-        CommonTree t = (CommonTree) r.getTree();
-
-        CommonTreeNodeStream nodes = new CommonTreeNodeStream(t);
-        nodes.setTokenStream(tokens);
-
-        AdvancedExpressionScanner scanner = new AdvancedExpressionScanner(nodes);
-        scanner.prog();
-        for (String var : scanner.varDict.keySet()) {
-            log.info("var: " + var);
-        }
-
-        AdvancedExpressionWalker walker = new AdvancedExpressionWalker(nodes);
-        walker.reset();
-        for (String var : scanner.varDict.keySet()) {
-            walker.put(var, 1.0);
-        }
-        log.info("" + walker.prog());
     }
 }
