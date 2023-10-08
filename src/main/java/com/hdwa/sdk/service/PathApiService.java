@@ -59,9 +59,7 @@ public class PathApiService {
             if (repository == null) {
                 return "null";
             }
-            JSONObject result = FilterUtil.postPage(repository, (JSONObject) JSON.toJSON(param));
-            JSONArray jsonArray = (JSONArray) result.get(BaseDecConstant.CONTENT2);
-            return result;
+            return FilterUtil.postPage(repository, (JSONObject) JSON.toJSON(param));
         } catch (Exception e) {
             log.error("按路径查询分页接口出现异常", e);
             throw e;

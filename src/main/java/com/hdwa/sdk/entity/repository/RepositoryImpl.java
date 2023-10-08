@@ -292,7 +292,7 @@ public class RepositoryImpl extends RepositoryBase {
             case BaseDecConstant.RWD:
                 String rwd = (descSet.get(BaseDecConstant.RWD)).toString();
                 switch (rwd) {
-                    case BaseDecConstant.OBJECT: 
+                    case BaseDecConstant.OBJECT:
                         if (descSet.containsKey(BaseDecConstant.OBJ_TYPE)) {
                             String objType = (descSet.get(BaseDecConstant.OBJ_TYPE)).toString();
                             if (objType.equals(BaseDecConstant.EQUIPMENT) || objType.equals(BaseDecConstant.SYSTEM) || objType.equals(BaseDecConstant.SPACE)) {
@@ -361,7 +361,9 @@ public class RepositoryImpl extends RepositoryBase {
             case BaseDecConstant.IBMS:
                 String product = (descSet.get(BaseDecConstant.PRODUCT)).toString();
                 String type = (descSet.get(BaseDecConstant.TYPE)).toString();
-                result = this.IBMSArrayDic.get(product).get(type);
+                if (this.IBMSArrayDic.get(product) != null) {
+                    result = this.IBMSArrayDic.get(product).get(type);
+                }
                 break;
             case BaseDecConstant.IBMS_GROUP:
                 result = this.IBMSGroupArray;

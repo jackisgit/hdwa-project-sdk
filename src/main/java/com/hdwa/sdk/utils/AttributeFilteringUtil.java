@@ -51,6 +51,9 @@ public class AttributeFilteringUtil {
         keyWordMap.put("wdCode", true);
         keyWordMap.put("grouping", true);
         keyWordMap.put("aliasCode", true);
+        keyWordMap.put("aliasName", true);
+        keyWordMap.put("system", true);
+        keyWordMap.put("显示名称", true);
     }
 
     public static boolean containsKey(String key) {

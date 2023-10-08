@@ -835,7 +835,7 @@ public class PhysicalWorldService {
             addProject(requestBody);
             JSONArray objectArray = OkHttpClientUtil.httpPost(requestBody, dmpUrl + UrlConstant.LIST_OBJECT_DATA_URL).getJSONArray(BaseDecConstant.DATA);
             if (objectArray == null) {
-                log.error("*****下载-对象数据为bull");
+                log.error("*****下载-对象类型：" + code + "数据为null");
                 nullClassList.add(code);
                 continue;
             }
