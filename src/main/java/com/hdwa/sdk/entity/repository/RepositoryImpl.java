@@ -311,7 +311,9 @@ public class RepositoryImpl extends RepositoryBase {
                             }
                         } else if (descSet.containsKey(BaseDecConstant.CLASS_CODE)) {
                             String classCode = (descSet.get(BaseDecConstant.CLASS_CODE)).toString();
-                            result = this.objectArrayDic.get(classCode).value_array;
+                            if (this.objectArrayDic.get(classCode) != null) {
+                                result = this.objectArrayDic.get(classCode).value_array;
+                            }
                         } else {
                             result = this.objectArrayAll;
                         }
