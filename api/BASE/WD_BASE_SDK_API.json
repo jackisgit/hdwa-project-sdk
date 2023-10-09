@@ -8365,7 +8365,7 @@
                         {
                           "PropertyName":"楼层数据",
                           "allow_pass":"1",
-                          "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"Criteria\": {\"valid\": 1  },\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": false}]}",
+                          "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"Criteria\": {\"valid\": 1  },\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": false}]}",
                           "read_level":"4",
                           "filter_rule":"",
                           "custom_object":null,
@@ -40782,7 +40782,7 @@
               {
                 "PropertyName":"楼层",
                 "allow_pass":"1",
-                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
+                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
                 "read_level":"4",
                 "filter_rule":"",
                 "custom_object":null,
@@ -65115,7 +65115,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=末端'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=末端'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -65139,7 +65139,7 @@
                       {
                         "PropertyName":"楼层数据",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"floorSequenceID\"],\"Criteria\":{\"valid\": 1}}",
+                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"SN\"],\"Criteria\":{\"valid\": 1}}",
                         "read_level":"4",
                         "filter_rule":"",
                         "custom_object":null,
@@ -68516,7 +68516,7 @@
                       {
                         "PropertyName":"楼层数据",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"floorSequenceID\"],\"Criteria\":{\"valid\": 1}}",
+                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"SN\"],\"Criteria\":{\"valid\": 1}}",
                         "read_level":"4",
                         "filter_rule":"",
                         "custom_object":null,
@@ -68550,7 +68550,7 @@
                       {
                         "PropertyName":"配电关系默认楼层",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"Criteria\": {\"valid\": 1  },\"Limit\": {\"Skip\": 2,\"Count\": 1  },\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}]}",
+                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"Criteria\": {\"valid\": 1  },\"Limit\": {\"Skip\": 2,\"Count\": 1  },\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}]}",
                         "read_level":"1",
                         "filter_rule":"",
                         "custom_object":null,
@@ -68587,7 +68587,7 @@
                       {
                         "PropertyName":"楼层数据",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"floorSequenceID\"],\"Criteria\":{\"valid\": 1}}",
+                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"SN\"],\"Criteria\":{\"valid\": 1}}",
                         "read_level":"4",
                         "filter_rule":"",
                         "custom_object":null,
@@ -69089,7 +69089,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -69143,7 +69143,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=排水'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=排水'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -69244,7 +69244,7 @@
                       {
                         "PropertyName":"楼层数据",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1  }}",
+                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1  }}",
                         "read_level":"4",
                         "filter_rule":"",
                         "custom_object":null,
@@ -70067,7 +70067,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=配电监控'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=配电监控'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -70091,7 +70091,7 @@
                       {
                         "PropertyName":"楼层数据",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"],\"Criteria\": {\"valid\": 1,\"grouping\":1}}",
+                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"],\"Criteria\": {\"valid\": 1,\"grouping\":1}}",
                         "read_level":"1",
                         "filter_rule":"",
                         "custom_object":null,
@@ -71646,7 +71646,7 @@
                       {
                         "PropertyName":"楼层数据",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": false}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=DDC'清单\"},\"Criteria\": {},\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
+                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": false}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=DDC'清单\"},\"Criteria\": {},\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                         "read_level":"4",
                         "filter_rule":"",
                         "custom_object":null,
@@ -71876,7 +71876,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=DDC'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=DDC'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -71985,7 +71985,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=停车'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=停车'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -72065,7 +72065,7 @@
                       {
                         "PropertyName":"楼层数据",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1  }}",
+                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1  }}",
                         "read_level":"4",
                         "filter_rule":"",
                         "custom_object":null,
@@ -72792,7 +72792,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'公共照明'电井'清单\"},\"Criteria\": {\"所属楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所属楼层-id\"}    }}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'公共照明'电井'清单\"},\"Criteria\": {\"所属楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所属楼层-id\"}    }}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -72846,7 +72846,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'夜景照明'电井'清单\"},\"Criteria\": {\"所属楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所属楼层-id\"}    }}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'夜景照明'电井'清单\"},\"Criteria\": {\"所属楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所属楼层-id\"}    }}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -72900,7 +72900,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=门禁管理'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=门禁管理'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -72954,7 +72954,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=电梯'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=电梯'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -73008,7 +73008,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=防盗管理'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=防盗管理'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -73062,7 +73062,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=视频监控'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=视频监控'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -73116,7 +73116,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"floorSequenceID\"],\"OrderBy\":[{\"Column\":\"floorSequenceID\",\"Asc\":true}],\"Criteria\":{\"valid\":1,\"id\":{\"in\":{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\"},\"Criteria\":{\"classCode\":{\"in\":[\"OTSETP\",\"RHS\",\"OTSECT\",\"LXS\"]},\"所在楼层-id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objTo\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"ArchSubset\",\"relCode\":\"Bd2Fl\"},\"Criteria\":{\"objFrom\":{\"ref\":\"ancestor_1'id\"}}}}},\"UniqueReturnColumn\":\"所在楼层-id\"}}}}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"SN\"],\"OrderBy\":[{\"Column\":\"SN\",\"Asc\":true}],\"Criteria\":{\"valid\":1,\"id\":{\"in\":{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\"},\"Criteria\":{\"classCode\":{\"in\":[\"OTSETP\",\"RHS\",\"OTSECT\",\"LXS\"]},\"所在楼层-id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objTo\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"ArchSubset\",\"relCode\":\"Bd2Fl\"},\"Criteria\":{\"objFrom\":{\"ref\":\"ancestor_1'id\"}}}}},\"UniqueReturnColumn\":\"所在楼层-id\"}}}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -73188,7 +73188,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'所有楼层\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"floorSequenceID\",\"楼层名称\"],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\":{\"valid\": 1,\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"ArchSubset\",\"relCode\":\"Bd2Fl\"},\"Criteria\":{\"objFrom\":{\"ref\":\"ancestor_1'id\"}}}}}}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'所有楼层\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"SN\",\"楼层名称\"],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\":{\"valid\": 1,\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"ArchSubset\",\"relCode\":\"Bd2Fl\"},\"Criteria\":{\"objFrom\":{\"ref\":\"ancestor_1'id\"}}}}}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -73212,7 +73212,7 @@
                       {
                         "PropertyName":"楼层数据",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'所有楼层\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"floorSequenceID\",\"楼层名称\"],\"Criteria\":{\"valid\": 1}}",
+                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'所有楼层\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"SN\",\"楼层名称\"],\"Criteria\":{\"valid\": 1}}",
                         "read_level":"3",
                         "filter_rule":"",
                         "custom_object":null,
@@ -73811,7 +73811,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'所有楼层\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"floorSequenceID\",\"楼层名称\"],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\":{\"valid\": 1,\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"ArchSubset\",\"relCode\":\"Bd2Fl\"},\"Criteria\":{\"objFrom\":{\"ref\":\"ancestor_1'id\"}}}}}}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'所有楼层\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"SN\",\"楼层名称\"],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\":{\"valid\": 1,\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"ArchSubset\",\"relCode\":\"Bd2Fl\"},\"Criteria\":{\"objFrom\":{\"ref\":\"ancestor_1'id\"}}}}}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -73835,7 +73835,7 @@
                       {
                         "PropertyName":"楼层数据",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'所有楼层\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"floorSequenceID\",\"楼层名称\"],\"Criteria\":{\"valid\": 1}}",
+                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'所有楼层\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"SN\",\"楼层名称\"],\"Criteria\":{\"valid\": 1}}",
                         "read_level":"3",
                         "filter_rule":"",
                         "custom_object":null,
@@ -74459,7 +74459,7 @@
                               {
                                 "PropertyName":"楼层数据",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"floorSequenceID\"],\"OrderBy\":[{\"Column\":\"floorSequenceID\",\"Asc\":false}],\"Criteria\":{\"valid\":1}}",
+                                "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"SN\"],\"OrderBy\":[{\"Column\":\"SN\",\"Asc\":true}],\"Criteria\":{\"valid\":1}}",
                                 "read_level":"4",
                                 "filter_rule":"",
                                 "custom_object":null,
@@ -74732,7 +74732,7 @@
                                   {
                                     "PropertyName":"楼层数据",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_3'楼层数据\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
+                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_3'楼层数据\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
                                     "read_level":"4",
                                     "filter_rule":"",
                                     "custom_object":null,
@@ -74828,7 +74828,7 @@
                               {
                                 "PropertyName":"楼层数据",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"floorSequenceID\"],\"OrderBy\":[{\"Column\":\"floorSequenceID\",\"Asc\":true}],\"Criteria\":{\"valid\":1}}",
+                                "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"SN\"],\"OrderBy\":[{\"Column\":\"SN\",\"Asc\":true}],\"Criteria\":{\"valid\":1}}",
                                 "read_level":"4",
                                 "filter_rule":"",
                                 "custom_object":null,
@@ -75101,7 +75101,7 @@
                                   {
                                     "PropertyName":"楼层数据",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_3'楼层数据\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
+                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_3'楼层数据\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
                                     "read_level":"4",
                                     "filter_rule":"",
                                     "custom_object":null,
@@ -75200,7 +75200,7 @@
                               {
                                 "PropertyName":"楼层数据",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"floorSequenceID\"],\"OrderBy\":[{\"Column\":\"floorSequenceID\",\"Asc\":true}],\"Criteria\":{\"valid\":1}}",
+                                "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"SN\"],\"OrderBy\":[{\"Column\":\"SN\",\"Asc\":true}],\"Criteria\":{\"valid\":1}}",
                                 "read_level":"4",
                                 "filter_rule":"",
                                 "custom_object":null,
@@ -75473,7 +75473,7 @@
                                   {
                                     "PropertyName":"楼层数据",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_3'楼层数据\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
+                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_3'楼层数据\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
                                     "read_level":"4",
                                     "filter_rule":"",
                                     "custom_object":null,
@@ -75572,7 +75572,7 @@
                               {
                                 "PropertyName":"楼层数据",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"floorSequenceID\"],\"OrderBy\":[{\"Column\":\"floorSequenceID\",\"Asc\":true}],\"Criteria\":{\"valid\":1}}",
+                                "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"SN\"],\"OrderBy\":[{\"Column\":\"SN\",\"Asc\":true}],\"Criteria\":{\"valid\":1}}",
                                 "read_level":"4",
                                 "filter_rule":"",
                                 "custom_object":null,
@@ -75845,7 +75845,7 @@
                                   {
                                     "PropertyName":"楼层数据",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_3'楼层数据\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
+                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_3'楼层数据\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
                                     "read_level":"4",
                                     "filter_rule":"",
                                     "custom_object":null,
@@ -75944,7 +75944,7 @@
                               {
                                 "PropertyName":"楼层数据",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"floorSequenceID\"],\"OrderBy\":[{\"Column\":\"floorSequenceID\",\"Asc\":true}],\"Criteria\":{\"valid\":1}}",
+                                "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"SN\"],\"OrderBy\":[{\"Column\":\"SN\",\"Asc\":true}],\"Criteria\":{\"valid\":1}}",
                                 "read_level":"4",
                                 "filter_rule":"",
                                 "custom_object":null,
@@ -76217,7 +76217,7 @@
                                   {
                                     "PropertyName":"楼层数据",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_3'楼层数据\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
+                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_3'楼层数据\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
                                     "read_level":"4",
                                     "filter_rule":"",
                                     "custom_object":null,
@@ -76336,7 +76336,7 @@
                       {
                         "PropertyName":"楼层数据",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"floorSequenceID\"],\"Criteria\":{\"valid\": 1}}",
+                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"SN\"],\"Criteria\":{\"valid\": 1}}",
                         "read_level":"4",
                         "filter_rule":"",
                         "custom_object":null,
@@ -77078,7 +77078,7 @@
                           {
                             "PropertyName":"楼层数据",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true    }],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }            }        }    }}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true    }],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }            }        }    }}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -77171,7 +77171,7 @@
                                 {
                                   "PropertyName":"楼层数据",
                                   "allow_pass":"1",
-                                  "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\",\"localName\",\"localId\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": false}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
+                                  "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\",\"localName\",\"localId\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": false}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
                                   "read_level":"4",
                                   "filter_rule":"",
                                   "custom_object":null,
@@ -77310,7 +77310,7 @@
                       {
                         "PropertyName":"楼层数据",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"floorSequenceID\"],\"Criteria\":{\"valid\": 1}}",
+                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"SN\"],\"Criteria\":{\"valid\": 1}}",
                         "read_level":"4",
                         "filter_rule":"",
                         "custom_object":null,
@@ -78103,7 +78103,7 @@
                       {
                         "PropertyName":"楼层数据",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true    }],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=门禁管理'清单\"},\"Criteria\": {},\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
+                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true    }],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=门禁管理'清单\"},\"Criteria\": {},\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                         "read_level":"4",
                         "filter_rule":"",
                         "custom_object":null,
@@ -78295,7 +78295,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true    }],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=门禁管理'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"            },\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"                }                        }                    }                }            },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true    }],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=门禁管理'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"            },\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"                }                        }                    }                }            },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -78339,7 +78339,7 @@
                       {
                         "PropertyName":"楼层数据",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=防盗管理'清单\"},\"Criteria\": {},\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
+                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=防盗管理'清单\"},\"Criteria\": {},\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                         "read_level":"4",
                         "filter_rule":"",
                         "custom_object":null,
@@ -79207,7 +79207,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}  ],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=防盗管理'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}          }        }      }    },\"UniqueReturnColumn\": \"所在楼层-id\"}}}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}  ],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=防盗管理'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}          }        }      }    },\"UniqueReturnColumn\": \"所在楼层-id\"}}}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -79261,7 +79261,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"floorSequenceID\"],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\":{\"valid\": 1,\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"ArchSubset\",\"relCode\":\"Bd2Fl\"},\"Criteria\":{\"objFrom\":{\"ref\":\"ancestor_1'id\"}}}}}}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"objType\":\"floor\"},\"ReturnColumns\":[\"id\",\"localId\",\"localName\",\"SN\"],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\":{\"valid\": 1,\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"ArchSubset\",\"relCode\":\"Bd2Fl\"},\"Criteria\":{\"objFrom\":{\"ref\":\"ancestor_1'id\"}}}}}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -79285,7 +79285,7 @@
                       {
                         "PropertyName":"楼层数据",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"Criteria\": {\"valid\": 1  }}",
+                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"Criteria\": {\"valid\": 1  }}",
                         "read_level":"4",
                         "filter_rule":"",
                         "custom_object":null,
@@ -80684,7 +80684,7 @@
                       {
                         "PropertyName":"扶梯默认楼层",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"],\"Criteria\": {\"valid\": 1},\"Limit\": {\"Skip\": 3,\"Count\": 1},\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true    }]}",
+                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"],\"Criteria\": {\"valid\": 1},\"Limit\": {\"Skip\": 3,\"Count\": 1},\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true    }]}",
                         "read_level":"1",
                         "filter_rule":"",
                         "custom_object":null,
@@ -80721,7 +80721,7 @@
                       {
                         "PropertyName":"楼层数据",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=视频监控'清单\"},\"Criteria\": {},\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
+                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=视频监控'清单\"},\"Criteria\": {},\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                         "read_level":"4",
                         "filter_rule":"",
                         "custom_object":null,
@@ -81476,7 +81476,7 @@
                           {
                             "PropertyName":"children",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"floorSequenceID\"  ],\"OrderBy\": [{\"Column\": \"floorSequenceID\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=视频监控'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=视频监控'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
