@@ -302,7 +302,7 @@ public class RecursiveUtil {
                     if (sv.last_compute_time == null || currTime.getTime() - sv.last_compute_time.getTime() > 1000L) {
                         // String svPath = RecursiveUtil.getDataPath(sv);
                         // log.info("computeProperty" + "\t" + svPath);
-                        ComputeUtil.computeProperty(Repository, sv);
+                        CalculateApiJsonUtil.calculateProperty(Repository, sv);
                     }
                 } finally {
                     lock.unlock();

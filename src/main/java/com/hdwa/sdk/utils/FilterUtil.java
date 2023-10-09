@@ -55,7 +55,7 @@ public class FilterUtil {
     }
 
     private static List<SceneDataObject> filter(RepositoryBase Repository, JSONArray path, JSONObject params) throws Exception {
-        SceneDataValue valueObject = (SceneDataValue) ComputeUtil.getValueObject(Repository, path);
+        SceneDataValue valueObject = (SceneDataValue) CalculateApiJsonUtil.getValueObject(Repository, path);
         if (!Repository.enable_factor) {
             RecursiveUtil.refreshObject(Repository, valueObject);
         }

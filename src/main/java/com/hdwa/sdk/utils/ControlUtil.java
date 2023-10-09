@@ -24,7 +24,7 @@ public class ControlUtil {
 
     public static JSONArray setPoints(RepositoryImpl repository, InstructControlParam param) throws Exception {
         JSONArray result;
-        Object valueObject = ComputeUtil.getValueObject(repository, param.getPath());
+        Object valueObject = CalculateApiJsonUtil.getValueObject(repository, param.getPath());
 
         List<SceneDataObject> sdoList = new CopyOnWriteArrayList<>();
         if (valueObject instanceof SceneDataValue) {

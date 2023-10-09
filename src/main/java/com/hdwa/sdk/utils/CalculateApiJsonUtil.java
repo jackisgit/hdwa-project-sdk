@@ -42,8 +42,9 @@ public class CalculateApiJsonUtil {
                 .filter(property -> property.getPropertyValueType().equals(BaseDecConstant.QUERY))
                 .forEach(property -> {
                     //这里如果有异常就代表json格式错误
+                    JSONObject sqlJson = null;
                     try {
-                        JSON.parseObject(property.query_sql);
+                        sqlJson = JSON.parseObject(property.query_sql);
                     } catch (Exception e) {
                         ExceptionItem exceptionItem = null;
                         try {
@@ -55,27 +56,27 @@ public class CalculateApiJsonUtil {
                     }
 
                     //检查表达式格式
-                    //if (sqlJson != null) {
-                    //    String queryType = (String) sqlJson.get(BaseDecConstant.QUERY_TYPE);
-                    //    if (queryType != null) {
-                    //        if (queryType.equals(BaseDecConstant.EXPRESSION)) {
-                    //            String expression = (String) sqlJson.get(BaseDecConstant.EXPRESSION);
-                    //            JSONObject criteriaObject = (JSONObject) sqlJson.get(BaseDecConstant.CRITERIA);
-                    //            try {
-                    //                List<ExceptionItem> exceptionListInner = ExpressionUtil.buildAndPut(repositoryBase, property, expression, criteriaObject);
-                    //                exceptionList.addAll(exceptionListInner);
-                    //            } catch (Exception e) {
-                    //                ExceptionItem exceptionItem = null;
-                    //                try {
-                    //                    exceptionItem = new ExceptionItem(PathUtil.getPropertyPath(repositoryBase, property), "表达式格式错误", expression);
-                    //                } catch (Exception e2) {
-                    //                    log.error("检查：" + BaseDecConstant.EXPRESSION + "---出现异常");
-                    //                }
-                    //                exceptionList.add(exceptionItem);
-                    //            }
-                    //        }
-                    //    }
-                    //}
+                    if (sqlJson != null) {
+                        String queryType = (String) sqlJson.get(BaseDecConstant.QUERY_TYPE);
+                        if (queryType != null) {
+                            if (queryType.equals(BaseDecConstant.EXPRESSION)) {
+                                String expression = (String) sqlJson.get(BaseDecConstant.EXPRESSION);
+                                JSONObject criteriaObject = (JSONObject) sqlJson.get(BaseDecConstant.CRITERIA);
+                                try {
+                                    List<ExceptionItem> exceptionListInner = ExpressionUtil.buildAndPut(repositoryBase, property, expression, criteriaObject);
+                                    exceptionList.addAll(exceptionListInner);
+                                } catch (Exception e) {
+                                    ExceptionItem exceptionItem = null;
+                                    try {
+                                        exceptionItem = new ExceptionItem(PathUtil.getPropertyPath(repositoryBase, property), "表达式格式错误", expression);
+                                    } catch (Exception e2) {
+                                        log.error("检查：" + BaseDecConstant.EXPRESSION + "---出现异常");
+                                    }
+                                    exceptionList.add(exceptionItem);
+                                }
+                            }
+                        }
+                    }
                 });
 
         //检查deamon
@@ -98,7 +99,7 @@ public class CalculateApiJsonUtil {
 
 
         //检查static
-      /*  properties.stream()
+        properties.stream()
                 .filter(property -> property.getPropertyValueType().equals(BaseDecConstant.STATIC))
                 .filter(property -> !property.propertyValueSchema.equals(BaseDecConstant.JSONARRAY) && !property.propertyValueSchema.equals(BaseDecConstant.JSONOBJECT))
                 .filter(property -> repositoryBase.check_static_value_basic && (property.static_value == null || property.static_value.length() == 0))
@@ -110,7 +111,7 @@ public class CalculateApiJsonUtil {
                         log.error("检查：" + BaseDecConstant.STATIC + "---出现异常");
                     }
                     exceptionList.add(exceptionItem);
-                });*/
+                });
 
 
         //有异常
@@ -608,7 +609,7 @@ public class CalculateApiJsonUtil {
                 SceneDataValue currData = (SceneDataValue) tmpData;
                 currData = currData.value_object.get(valuePath.getString(index));
                 tmpData = currData;
-                if (currData==null) {
+                if (currData == null) {
                     continue;
                 }
                 if (currData.value_array != null) {
