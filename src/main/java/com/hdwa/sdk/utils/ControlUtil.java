@@ -2,8 +2,9 @@ package com.hdwa.sdk.utils;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.InstructControlParam;
-import com.hdwa.sdk.entity.repository.RepositoryContainer;
+import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.entity.scene.SceneDataObject;
 import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
@@ -62,7 +63,7 @@ public class ControlUtil {
 
 
     public static void setControlValue(JSONArray path, JSONObject infoValueSet) {
-        JSONObject exist_value = RepositoryContainer.RepositoryProject.controlValueMap.putIfAbsent(path.toJSONString(), infoValueSet);
+        JSONObject exist_value = DataContainer.controlValueMap.putIfAbsent(path.toJSONString(), infoValueSet);
         if (exist_value != null) {
             for (String info_code : infoValueSet.keySet()) {
                 exist_value.put(info_code, infoValueSet.get(info_code));
@@ -71,7 +72,7 @@ public class ControlUtil {
     }
 
     public static JSONObject getControlValue(JSONArray path) {
-        JSONObject result = RepositoryContainer.RepositoryProject.controlValueMap.get(path.toString());
+        JSONObject result = DataContainer.controlValueMap.get(path.toString());
         if (result == null) {
             result = new JSONObject();
         }
@@ -91,8 +92,8 @@ public class ControlUtil {
     public static void saveOperationLog(String userId, String userName, List<SceneDataObject> sdoList, JSONObject infoValueSet, JSONArray points) {
         try {
             JSONObject postParam = new JSONObject();
-            postParam.put("groupCode", RepositoryContainer.RepositoryProject.groupCode);
-            postParam.put("projectId", RepositoryContainer.RepositoryProject.projectId);
+            postParam.put("groupCode", BaseDecConstant.WD);
+            postParam.put("projectId", BaseDecConstant.CURRENT_PROJECT_ID);
             if (userId == null || userId.length() == 0) {
                 postParam.put("userId", "systemId");
             } else {
@@ -121,7 +122,8 @@ public class ControlUtil {
                 String classCode = (String) sdo.get("classCode").value_prim.value;
                 Object belongSystem = sdo.get("所属场景") != null ? sdo.get("所属场景").value_prim.value : null;
 
-                List<SceneDataObject> infoList = RepositoryContainer.instance.infoArrayDic.get(classCode).set;
+                RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
+                List<SceneDataObject> infoList = repository.infoArrayDic.get(classCode).set;
                 postParam.put("objType", objType);
                 postParam.put("objName", objName);
                 postParam.put("systemCode", systemCode);

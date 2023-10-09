@@ -21,8 +21,8 @@ public class OkHttpClientUtil {
     static OkHttpClient httpClient;
 
     static {
-        builder.connectTimeout(60 * 30, TimeUnit.SECONDS);
-        builder.readTimeout(60 * 30, TimeUnit.SECONDS);
+        builder.connectTimeout(60, TimeUnit.SECONDS);
+        builder.readTimeout(60, TimeUnit.SECONDS);
         httpClient = builder.build();
     }
 

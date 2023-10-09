@@ -6,15 +6,6 @@ public class ValueObject {
     public Double doubleValue;
     public String stringValue;
 
-    // public ValueObject(String text) {
-    // try {
-    // this.intValue = Long.parseLong(text);
-    // } catch (Exception e) {
-    // this.doubleValue = Double.parseDouble(text);
-    // this.type = 1;
-    // }
-    // }
-
     public ValueObject() {
 
     }
@@ -47,10 +38,6 @@ public class ValueObject {
     }
 
     public boolean is_null() {
-        if (this.type == 2 && this.stringValue == null) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.type == 2 && this.stringValue == null;
     }
 }

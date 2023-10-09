@@ -119,7 +119,7 @@ public class PathUtil {
             tmpIndexList.add(soIndex);
         }
 
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (int i = tmpList.size() - 1; i >= 0; i--) {
             Object obj = tmpList.get(i);
             if (obj instanceof SceneProperty) {
@@ -131,7 +131,7 @@ public class PathUtil {
             } else if (obj instanceof SceneObject) {
                 Integer soIndex = tmpIndexList.get(i);
                 if (soIndex != null) {
-                    sb.append("[" + soIndex + "]");
+                    sb.append("[").append(soIndex).append("]");
                 }
             }
         }
@@ -139,8 +139,7 @@ public class PathUtil {
     }
 
     public static String getDataPath(Object sv) throws Exception {
-        String result = getDataPath(sv, new JSONArray());
-        return result;
+        return getDataPath(sv, new JSONArray());
     }
 
     public static String getDataPath(Object sv, JSONArray pathArray) throws Exception {
@@ -160,12 +159,12 @@ public class PathUtil {
                 }
             }
         }
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (int i = 1; i < list.size(); i++) {
             Object tmp = list.get(i);
             if (tmp instanceof SceneDataValue) {
                 SceneDataValue tmpData = (SceneDataValue) tmp;
-                sb.append((sb.length() > 0 ? "." : "") + tmpData.myPropertyName);
+                sb.append(sb.length() > 0 ? "." : "").append(tmpData.myPropertyName);
                 pathArray.add(tmpData.myPropertyName);
             } else if (tmp instanceof SceneDataObject) {
                 SceneDataObject tmpData = (SceneDataObject) tmp;

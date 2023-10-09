@@ -94,4 +94,10 @@ public class DataContainer {
      */
     public static Map<String, ExcelSheetEntity> pointMap = new HashMap<>(16);
 
+
+    /**
+     * <p>指定路径的控制值</p>
+     */
+    public static Map<String, JSONObject> controlValueMap = new HashMap<>(16);
+
 }

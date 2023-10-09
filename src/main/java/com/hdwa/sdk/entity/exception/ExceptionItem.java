@@ -1,6 +1,5 @@
 package com.hdwa.sdk.entity.exception;
 
-@SuppressWarnings("serial")
 public class ExceptionItem extends Exception {
     public String path;
     public String type;

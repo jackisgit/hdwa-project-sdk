@@ -18,7 +18,6 @@ public class CompareUtil {
         return instance;
     }
 
-    @SuppressWarnings("unchecked")
     public boolean CompareObject(SceneDataValue sdv1, SceneDataValue sdv2) {
         if (sdv1 == null && sdv2 == null) {
             return true;

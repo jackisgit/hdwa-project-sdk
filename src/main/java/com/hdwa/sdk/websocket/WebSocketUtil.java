@@ -4,8 +4,9 @@ import cn.hutool.core.thread.ExecutorBuilder;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.hdwa.sdk.constant.BaseDecConstant;
+import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.ObjectInfo;
-import com.hdwa.sdk.entity.repository.RepositoryContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.entity.scene.SceneDataObject;
 import com.hdwa.sdk.entity.scene.SceneDataValue;
@@ -181,48 +182,45 @@ public class WebSocketUtil {
     }
 
     public static void ProcessComputeOccur(SceneDataValue sdv) {
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    JSONArray pathArray = new JSONArray();
-                    PathUtil.getDataPath(sdv, pathArray);
-                    int[] flagArray = new int[pathArray.size()];
-                    while (true) {
-                        JSONArray pathArrayInner = pathString(pathArray, flagArray);
-                        if (path2idList.containsKey(pathArrayInner.toString())) {
-                            Map<String, Boolean> idList = path2idList.get(pathArrayInner.toString());
-                            JSONArray sendArray = new JSONArray();
-                            JSONObject sendItem = new JSONObject();
-                            sendItem.put("path", pathArray);
-                            int depth = 1;
-                            Object data = sdv.toJSON(true, depth);
-                            sendItem.put("data", data);
-                            sendArray.add(sendItem);
-                            for (String id : idList.keySet()) {
-                                SendAndClear(id, sendArray);
-                            }
-                        }
-                        boolean all_0 = false;
-                        for (int i = 0; i < flagArray.length; i++) {
-                            if (flagArray[i] == 0) {
-                                flagArray[i] = 1;
-                                break;
-                            } else {
-                                flagArray[i] = 0;
-                                if (i == flagArray.length - 1) {
-                                    all_0 = true;
-                                    break;
-                                }
-                            }
-                        }
-                        if (all_0) {
-                            break;
+        Runnable runnable = () -> {
+            try {
+                JSONArray pathArray = new JSONArray();
+                PathUtil.getDataPath(sdv, pathArray);
+                int[] flagArray = new int[pathArray.size()];
+                while (true) {
+                    JSONArray pathArrayInner = pathString(pathArray, flagArray);
+                    if (path2idList.containsKey(pathArrayInner.toString())) {
+                        Map<String, Boolean> idList = path2idList.get(pathArrayInner.toString());
+                        JSONArray sendArray = new JSONArray();
+                        JSONObject sendItem = new JSONObject();
+                        sendItem.put("path", pathArray);
+                        int depth = 1;
+                        Object data = sdv.toJSON(true, depth);
+                        sendItem.put("data", data);
+                        sendArray.add(sendItem);
+                        for (String id : idList.keySet()) {
+                            SendAndClear(id, sendArray);
                         }
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    boolean all_0 = false;
+                    for (int i = 0; i < flagArray.length; i++) {
+                        if (flagArray[i] == 0) {
+                            flagArray[i] = 1;
+                            break;
+                        } else {
+                            flagArray[i] = 0;
+                            if (i == flagArray.length - 1) {
+                                all_0 = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (all_0) {
+                        break;
+                    }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         };
         WebSocketUtil.executor.execute(new Thread(runnable));
@@ -241,7 +239,7 @@ public class WebSocketUtil {
     public static void ProcessIOTReceived(JSONObject json) {
         try {
             Runnable runnable = () -> {
-                RepositoryImpl Repository = RepositoryContainer.instance;
+                RepositoryImpl Repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
                 String type = json.getString("type");
                 if (type.equals("iot") || type.equals("text")) {
                     String message = json.getString("data");

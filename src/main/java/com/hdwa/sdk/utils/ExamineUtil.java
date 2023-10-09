@@ -337,66 +337,83 @@ public class ExamineUtil {
                     } else {
                         for (String itemKeyInner : valueInner.keySet()) {
                             Object itemValueInner = valueInner.get(itemKeyInner);
-                            if (itemKeyInner.equals("e") || itemKeyInner.equals("ne") || itemKeyInner.equals("gt") || itemKeyInner.equals("gte")
-                                    || itemKeyInner.equals("lt") || itemKeyInner.equals("lte") || itemKeyInner.equals("regex")
-                                    || itemKeyInner.equals("contain") || itemKeyInner.equals("startwith") || itemKeyInner.equals("array_size")) {
-                                if (itemValueInner instanceof JSONObject) {
-                                    JSONObject valueInnerInner = (JSONObject) itemValueInner;
-                                    if (valueInnerInner.get("ref") != null) {
-                                        checkCriteriaRef(Repository, sceneProperty, valueInnerInner, errorList);
+                            switch (itemKeyInner) {
+                                case "e":
+                                case "ne":
+                                case "gt":
+                                case "gte":
+                                case "lt":
+                                case "lte":
+                                case "regex":
+                                case "contain":
+                                case "startwith":
+                                case "array_size":
+                                    if (itemValueInner instanceof JSONObject) {
+                                        JSONObject valueInnerInner = (JSONObject) itemValueInner;
+                                        if (valueInnerInner.get("ref") != null) {
+                                            checkCriteriaRef(Repository, sceneProperty, valueInnerInner, errorList);
+                                        }
                                     }
-                                }
-                                if (itemKeyInner.equals("regex") || itemKeyInner.equals("contain") || itemKeyInner.equals("startwith")) {
-                                    if (itemValueInner == null || !(itemValueInner instanceof String)) {
-                                        errorList
-                                                .add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
-                                                        itemKeyInner + " type error: " + (itemValueInner == null ? "null"
-                                                                : itemValueInner.toString() + "(" + itemValueInner.getClass().getName() + ")"),
-                                                        itemValue.toString()));
-                                    }
-                                } else if (itemKeyInner.equals("array_size")) {
-                                    if (itemValueInner == null) {
-                                        errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty), "array_size null",
-                                                itemValue.toString()));
-                                    } else {
-                                        if (itemValueInner instanceof Integer) {
-                                        } else if (itemValueInner instanceof JSONObject) {
-                                            JSONObject itemValueInnerJSON = (JSONObject) itemValueInner;
-                                            String[] keys = {"e", "ne", "gt", "gte", "lt", "lte"};
-                                            ExamineAssistUtil.useless(Repository, sceneProperty, itemValueInnerJSON, keys, errorList);
-                                            for (String keyInner2 : itemValueInnerJSON.keySet()) {
-                                                Object valueInner2 = itemValueInnerJSON.get(keyInner2);
-                                                if (valueInner2 == null || !(valueInner2 instanceof Integer)) {
-                                                    errorList
-                                                            .add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
-                                                                    itemKeyInner + " " + keyInner2 + " type error: " + (valueInner2 == null ? "null"
-                                                                            : valueInner2.toString() + "(" + valueInner2.getClass().getName() + ")"),
-                                                                    itemValue.toString()));
-                                                }
-                                            }
-                                        } else {
+                                    if (itemKeyInner.equals("regex") || itemKeyInner.equals("contain") || itemKeyInner.equals("startwith")) {
+                                        if (itemValueInner == null || !(itemValueInner instanceof String)) {
                                             errorList
                                                     .add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
                                                             itemKeyInner + " type error: " + (itemValueInner == null ? "null"
                                                                     : itemValueInner.toString() + "(" + itemValueInner.getClass().getName() + ")"),
                                                             itemValue.toString()));
                                         }
+                                    } else if (itemKeyInner.equals("array_size")) {
+                                        if (itemValueInner == null) {
+                                            errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty), "array_size null",
+                                                    itemValue.toString()));
+                                        } else {
+                                            if (itemValueInner instanceof Integer) {
+                                            } else if (itemValueInner instanceof JSONObject) {
+                                                JSONObject itemValueInnerJSON = (JSONObject) itemValueInner;
+                                                String[] keys = {"e", "ne", "gt", "gte", "lt", "lte"};
+                                                ExamineAssistUtil.useless(Repository, sceneProperty, itemValueInnerJSON, keys, errorList);
+                                                for (String keyInner2 : itemValueInnerJSON.keySet()) {
+                                                    Object valueInner2 = itemValueInnerJSON.get(keyInner2);
+                                                    if (valueInner2 == null || !(valueInner2 instanceof Integer)) {
+                                                        errorList
+                                                                .add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                                                                        itemKeyInner + " " + keyInner2 + " type error: " + (valueInner2 == null ? "null"
+                                                                                : valueInner2.toString() + "(" + valueInner2.getClass().getName() + ")"),
+                                                                        itemValue.toString()));
+                                                    }
+                                                }
+                                            } else {
+                                                errorList
+                                                        .add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                                                                itemKeyInner + " type error: " + (itemValueInner == null ? "null"
+                                                                        : itemValueInner.toString() + "(" + itemValueInner.getClass().getName() + ")"),
+                                                                itemValue.toString()));
+                                            }
+                                        }
                                     }
-                                }
-                            } else if (itemKeyInner.equals("in") || itemKeyInner.equals("notin") || itemKeyInner.equals("array_e")
-                                    || itemKeyInner.equals("array_ne") || itemKeyInner.equals("array_include")
-                                    || itemKeyInner.equals("array_included") || itemKeyInner.equals("array_exclude")
-                                    || itemKeyInner.equals("array_intersect")) {
-                                if (itemValueInner instanceof JSONObject && ((JSONObject) itemValueInner).containsKey("pass")) {
-                                } else {
-                                    checkSet(Repository, sceneProperty, itemValueInner, true, errorList);
-                                }
-                            } else if (itemKeyInner.equals("array_elemMatch_exist") || itemKeyInner.equals("array_elemMatch_all")) {
-                                JSONObject itemValueInnerJSON = (JSONObject) itemValueInner;
-                                checkCriteria(Repository, sceneProperty, itemValueInnerJSON, errorList);
-                            } else {
-                                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
-                                        "Criteria item key error: " + itemKeyInner, itemValue.toString()));
+                                    break;
+                                case "in":
+                                case "notin":
+                                case "array_e":
+                                case "array_ne":
+                                case "array_include":
+                                case "array_included":
+                                case "array_exclude":
+                                case "array_intersect":
+                                    if (itemValueInner instanceof JSONObject && ((JSONObject) itemValueInner).containsKey("pass")) {
+                                    } else {
+                                        checkSet(Repository, sceneProperty, itemValueInner, true, errorList);
+                                    }
+                                    break;
+                                case "array_elemMatch_exist":
+                                case "array_elemMatch_all":
+                                    JSONObject itemValueInnerJSON = (JSONObject) itemValueInner;
+                                    checkCriteria(Repository, sceneProperty, itemValueInnerJSON, errorList);
+                                    break;
+                                default:
+                                    errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                                            "Criteria item key error: " + itemKeyInner, itemValue.toString()));
+                                    break;
                             }
                         }
                     }

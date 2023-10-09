@@ -40,7 +40,6 @@ public class QueryAssist {
                 col.put(key, colFactor.toJSON());
             }
             result.put("col", col);
-        } else {
         }
         return result;
     }

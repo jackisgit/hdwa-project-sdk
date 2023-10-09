@@ -194,20 +194,4 @@ public class RepositoryBase {
     public void ComputeOccur(SceneDataValue sdv) {
 
     }
-
-    public void log_step_count(int step_count) {
-
-    }
-
-    public void log_step_begin(int step, int property_count, int value_count) {
-
-    }
-
-    public void log_step_end(int step, int finish_count) {
-
-    }
-
-    public void log_error(String path, String message) {
-
-    }
 }

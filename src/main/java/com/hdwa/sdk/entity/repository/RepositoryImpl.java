@@ -183,8 +183,6 @@ public class RepositoryImpl extends RepositoryBase {
 
     public Map<String, JSONObject> general_queryMap;
 
-    public RepositoryProject RepositoryProject;
-
     public static boolean accelerate_enable = false;
     public static long accelerate_ratio = 60 * 60 * 24;
     public static String init_timeString = "2021-01-01 00:00:00";
@@ -197,10 +195,9 @@ public class RepositoryImpl extends RepositoryBase {
 
 
     // TODO: 2023/9/25 待优化 
-    public RepositoryImpl(RepositoryProject RepositoryProject, boolean use_thread, boolean enable_factor, int thread_count,
+    public RepositoryImpl( boolean use_thread, boolean enable_factor, int thread_count,
                           long interval_between_compute) {
         super(use_thread, enable_factor, thread_count, interval_between_compute);
-        this.RepositoryProject = RepositoryProject;
         this.base_value = generate_base_value();
     }
 
@@ -606,33 +603,5 @@ public class RepositoryImpl extends RepositoryBase {
     @Override
     public void ComputeOccur(SceneDataValue sdv) {
         WebSocketUtil.ProcessComputeOccur(sdv);
-    }
-
-    @Override
-    public void log_step_count(int step_count) {
-        this.RepositoryProject.LogOfRun.step_count = step_count;
-    }
-
-    @Override
-    public void log_step_begin(int step, int property_count, int value_count) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        JSONObject stepJSON = new JSONObject();
-        stepJSON.put("property_count", property_count);
-        stepJSON.put("value_count", value_count);
-        stepJSON.put("beginTime", sdf.format(new Date()));
-        this.RepositoryProject.LogOfRun.stepList.add(stepJSON);
-    }
-
-    @Override
-    public void log_step_end(int step, int finish_count) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        JSONObject stepJSON = this.RepositoryProject.LogOfRun.stepList.get(this.RepositoryProject.LogOfRun.stepList.size() - 1);
-        stepJSON.put("finish_count", finish_count);
-        stepJSON.put("endTime", sdf.format(new Date()));
-    }
-
-    @Override
-    public void log_error(String path, String message) {
-        this.RepositoryProject.LogOfRun.error(path, message);
     }
 }

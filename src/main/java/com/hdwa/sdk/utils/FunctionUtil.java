@@ -20,7 +20,7 @@ public class FunctionUtil {
         result.type = 1;
         Class<?> mathClass = Math.class;
         try {
-            Method method = mathClass.getMethod(function, new Class[]{});
+            Method method = mathClass.getMethod(function);
             result.doubleValue = (Double) method.invoke(mathClass, new Object[]{});
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,7 +43,7 @@ public class FunctionUtil {
         }
         Class<?> mathClass = Math.class;
         try {
-            Method method = mathClass.getMethod(function, new Class[]{double.class});
+            Method method = mathClass.getMethod(function, double.class);
             result.doubleValue = (Double) method.invoke(mathClass, new Object[]{valuea});
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,7 +72,7 @@ public class FunctionUtil {
         }
         Class<?> mathClass = Math.class;
         try {
-            Method method = mathClass.getMethod(function, new Class[]{double.class, double.class});
+            Method method = mathClass.getMethod(function, double.class, double.class);
             result.doubleValue = (Double) method.invoke(mathClass, new Object[]{valuea, valueb});
         } catch (Exception e) {
             e.printStackTrace();

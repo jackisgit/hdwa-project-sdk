@@ -39,7 +39,6 @@ public class FilterUtil {
             for (int i = pageSize * pageIndex; i < pageSize * (pageIndex + 1) && i < array.size(); i++) {
                 sdv.value_array.set.add(array.get(i));
             }
-            int read_level = 0;
             JSONArray content = (JSONArray) sdv.toJSON(true, -1);
 
             result.put("content", content);
@@ -68,7 +67,7 @@ public class FilterUtil {
         }
         JSONObject CriteriaObject = JSON.parseObject(filter_rule).getJSONObject("Criteria");
         List<String> refPropertyList = new CopyOnWriteArrayList<String>();
-        JSONObject CriteriaNew = (JSONObject) parseCriteria(CriteriaObject, params, refPropertyList);
+        JSONObject CriteriaNew = (JSONObject) parseCriteria(CriteriaObject, params);
 
         SceneDataSet targetSet = new SceneDataSet(false);
         targetSet.set = new CopyOnWriteArrayList<>();
@@ -97,7 +96,6 @@ public class FilterUtil {
             }
             parentData.put(key, svInner);
         }
-        // SceneDataValue sv = new SceneDataValue(Repository, parentData, valueObject.rel_property.propertyName, valueObject.rel_property);
         SceneDataValue sv = new SceneDataValue(Repository, parentData, valueObject.rel_property.propertyName, null);
         JSONObject sql_json = JSON.parseObject(filter_rule);
         sql_json.put("Criteria", CriteriaNew);
@@ -106,7 +104,7 @@ public class FilterUtil {
         return array.set;
     }
 
-    public static Object parseCriteria(JSONObject CriteriaObject, JSONObject params, List<String> criteriaList) throws Exception {
+    public static Object parseCriteria(JSONObject CriteriaObject, JSONObject params) throws Exception {
         JSONObject pass = new JSONObject();
         pass.put("pass", true);
         boolean is_ref_ancestor_1 = false;
@@ -126,14 +124,14 @@ public class FilterUtil {
             for (String itemKey : CriteriaObject.keySet()) {
                 Object itemValue = CriteriaObject.get(itemKey);
                 if (itemValue instanceof JSONObject) {
-                    Object valueNew = parseCriteria((JSONObject) itemValue, params, criteriaList);
+                    Object valueNew = parseCriteria((JSONObject) itemValue, params);
                     result.put(itemKey, valueNew);
                 } else if (itemValue instanceof JSONArray) {
                     JSONArray itemValueArray = (JSONArray) itemValue;
                     JSONArray itemValueNew = new JSONArray();
                     for (Object itemValueArrayItem : itemValueArray) {
                         if (itemValueArrayItem instanceof JSONObject) {
-                            Object valueNew = parseCriteria((JSONObject) itemValueArrayItem, params, criteriaList);
+                            Object valueNew = parseCriteria((JSONObject) itemValueArrayItem, params);
                             itemValueNew.add(valueNew);
                         } else {
                             itemValueNew.add(itemValueArrayItem);

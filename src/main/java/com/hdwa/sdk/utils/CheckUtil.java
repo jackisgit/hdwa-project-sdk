@@ -15,7 +15,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CheckUtil {
 
-    // 确保将item加入result中
     private static void add(List<SceneProperty> result, SceneProperty item) {
         boolean exist = false;
         for (SceneProperty sp : result) {
@@ -29,7 +28,6 @@ public class CheckUtil {
         }
     }
 
-    // 确保将itemList中的所有元素加入result中
     private static void addAll(List<SceneProperty> result, List<SceneProperty> itemList) {
         for (SceneProperty sp : itemList) {
             add(result, sp);
@@ -38,7 +36,6 @@ public class CheckUtil {
 
     public static List<SceneProperty> getPropertyBefore(RepositoryBase Repository, SceneProperty sceneProperty) throws Exception {
         List<SceneProperty> result = new CopyOnWriteArrayList<SceneProperty>();
-        // 往上追溯到根节点，其中query类型的都加入result中
         SceneProperty parentTmp = sceneProperty;
         while (true) {
             if (Repository.attachproperty2host.containsKey(parentTmp)) {
@@ -64,22 +61,18 @@ public class CheckUtil {
         if (sceneProperty.propertyValueType.equals("static")) {
             if (sceneProperty.propertyValueSchema.equals("JSONArray")) {
             } else {
-                // 静态附加属性依赖于宿主
                 if (Repository.attachproperty2host.containsKey(sceneProperty)) {
                     add(result, Repository.attachproperty2host.get(sceneProperty));
                 }
             }
         } else {
-            // query和deamon类型
             getPropertyBefore_query(Repository, sceneProperty, result);
         }
         return result;
     }
 
-    // propertyValueType是query、deamon
     private static void getPropertyBefore_query(RepositoryBase Repository, SceneProperty sceneProperty, List<SceneProperty> result) throws Exception {
         JSONObject sql_json = JSON.parseObject(sceneProperty.query_sql);
-        // Map存储引用项涉及哪些列
         String requireSchema = null;
         boolean requireSingleValueSet = false;
         if (sceneProperty.propertyValueType.equals("query")) {
@@ -94,7 +87,7 @@ public class CheckUtil {
 
         Map<String, Map<String, Boolean>> refList = new ConcurrentHashMap<String, Map<String, Boolean>>();
         query(sql_json, refList);
-        // 查询目标中的引用为true，其他引用为false
+
         for (String refString : refList.keySet()) {
             Map<String, Boolean> columns = refList.get(refString);
             String[] splits = refString.split("'");
@@ -147,21 +140,17 @@ public class CheckUtil {
                 spList = getProperty(Repository, tmpObject, splits, 1);
             }
             addAll(result, spList);
-            // 查询中引用集合的关联依赖属性
             if (columns != null) {
                 List<SceneProperty> tmpList = new CopyOnWriteArrayList<SceneProperty>();
                 for (String column : columns.keySet()) {
                     List<SceneProperty> attachedInner = get_attached(Repository, spList, column);
                     tmpList.addAll(attachedInner);
                 }
-                for (SceneProperty spTmp : tmpList) {
-                    result.add(spTmp);
-                }
+                result.addAll(tmpList);
             }
         }
     }
 
-    // 沿著引用集合往下找
     private static List<SceneProperty> getProperty(RepositoryBase Repository, SceneObject parentData, String[] splits, int splits_index)
             throws Exception {
         String name = splits[splits_index];
@@ -180,7 +169,6 @@ public class CheckUtil {
         }
     }
 
-    // 根据当前所处parent级别获取依赖属性
     private static List<SceneProperty> getProperty(RepositoryBase Repository, SceneProperty parentData, String[] splits, int splits_index)
             throws Exception {
         List<SceneProperty> result = new CopyOnWriteArrayList<SceneProperty>();
@@ -190,7 +178,6 @@ public class CheckUtil {
         if (splits_index == splits.length) {
             result.add(parentData);
         } else if (parentData.propertyValueType.equals("static") && parentData.propertyValueSchema.equals("JSONArray")) {
-            // 静态数组根据是否有匹配，找下一级Object的对应属性
             String split = splits[splits_index];
             int index_ = split.indexOf('=');
             if (index_ != -1) {
@@ -260,7 +247,6 @@ public class CheckUtil {
         return result;
     }
 
-    // 根据关联column寻找依赖的属性，递归往前找
     private static List<SceneProperty> get_attached(RepositoryBase Repository, List<SceneProperty> startList, String column) throws Exception {
         List<SceneProperty> result = new CopyOnWriteArrayList<SceneProperty>();
         for (SceneProperty spTmp : startList) {
@@ -294,7 +280,6 @@ public class CheckUtil {
         return result;
     }
 
-    // 寻找集合依赖的集合
     private static List<SceneProperty> get_parent_ref_Set(RepositoryBase Repository, SceneProperty sceneProperty) throws Exception {
         List<SceneProperty> result = new CopyOnWriteArrayList<SceneProperty>();
         if (!sceneProperty.propertyValueType.equals("query")) {
@@ -437,7 +422,6 @@ public class CheckUtil {
         return result;
     }
 
-    // 根据语句寻找依赖集合
     private static Map<String, Boolean> get_parent_ref(Object obj) throws Exception {
         Map<String, Boolean> columnMap = new ConcurrentHashMap<String, Boolean>();
         if (!(obj instanceof JSONObject)) {
@@ -489,7 +473,6 @@ public class CheckUtil {
         return columnMap;
     }
 
-    // 查询依赖的ref集合，以及依赖哪些列
     public static void query(JSONObject sql_json, Map<String, Map<String, Boolean>> result) throws Exception {
         if (sql_json.containsKey("QueryType")) {
             String QueryType = (String) sql_json.get("QueryType");
@@ -556,7 +539,6 @@ public class CheckUtil {
                 }
             }
 
-            // 扫描查询条件
             JSONObject CriteriaObject = (JSONObject) sql_json.get("Criteria");
             {
                 parseCriteria(CriteriaObject, result);
@@ -654,9 +636,7 @@ public class CheckUtil {
             String Source = SetDesc.getString("Source");
             if (Source.equals("ref")) {
                 String refString = (SetDesc.get("ref")).toString();
-                if (!result.containsKey(refString)) {
-                    result.put(refString, new ConcurrentHashMap<String, Boolean>());
-                }
+                result.put(refString, new ConcurrentHashMap<String, Boolean>());
                 Map<String, Boolean> columnMapTmp = result.get(refString);
                 for (String tmp : columnMap.keySet()) {
                     columnMapTmp.put(tmp, true);

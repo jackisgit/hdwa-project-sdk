@@ -12,16 +12,22 @@ public class ValueObjectUtil {
 
         ValueObject result = new ValueObject();
         if (a.type == 0 && b.type == 0) {
-            if (operator.equals("+")) {
-                result.intValue = a.intValue + b.intValue;
-            } else if (operator.equals("-")) {
-                result.intValue = a.intValue - b.intValue;
-            } else if (operator.equals("*")) {
-                result.intValue = a.intValue * b.intValue;
-            } else if (operator.equals("/")) {
-                result.intValue = a.intValue / b.intValue;
-            } else if (operator.equals("%")) {
-                result.intValue = a.intValue % b.intValue;
+            switch (operator) {
+                case "+":
+                    result.intValue = a.intValue + b.intValue;
+                    break;
+                case "-":
+                    result.intValue = a.intValue - b.intValue;
+                    break;
+                case "*":
+                    result.intValue = a.intValue * b.intValue;
+                    break;
+                case "/":
+                    result.intValue = a.intValue / b.intValue;
+                    break;
+                case "%":
+                    result.intValue = a.intValue % b.intValue;
+                    break;
             }
         } else {
             result.type = 1;
@@ -37,16 +43,22 @@ public class ValueObjectUtil {
             } else {
                 valueb = b.doubleValue;
             }
-            if (operator.equals("+")) {
-                result.doubleValue = valuea + valueb;
-            } else if (operator.equals("-")) {
-                result.doubleValue = valuea - valueb;
-            } else if (operator.equals("*")) {
-                result.doubleValue = valuea * valueb;
-            } else if (operator.equals("/")) {
-                result.doubleValue = valuea / valueb;
-            } else if (operator.equals("%")) {
-                result.doubleValue = valuea % valueb;
+            switch (operator) {
+                case "+":
+                    result.doubleValue = valuea + valueb;
+                    break;
+                case "-":
+                    result.doubleValue = valuea - valueb;
+                    break;
+                case "*":
+                    result.doubleValue = valuea * valueb;
+                    break;
+                case "/":
+                    result.doubleValue = valuea / valueb;
+                    break;
+                case "%":
+                    result.doubleValue = valuea % valueb;
+                    break;
             }
         }
         return result;
@@ -63,23 +75,11 @@ public class ValueObjectUtil {
 
     public static boolean stringcompare(String operator, ValueObject a, ValueObject b) {
         if (a.is_null() && b.is_null()) {
-            if (operator.equals("==")) {
-                return true;
-            } else {
-                return false;
-            }
+            return operator.equals("==");
         } else if (a.is_null()) {
-            if (operator.equals("<") || operator.equals("<=") || operator.equals("!=")) {
-                return true;
-            } else {
-                return false;
-            }
+            return operator.equals("<") || operator.equals("<=") || operator.equals("!=");
         } else if (b.is_null()) {
-            if (operator.equals(">") || operator.equals(">=") || operator.equals("!=")) {
-                return true;
-            } else {
-                return false;
-            }
+            return operator.equals(">") || operator.equals(">=") || operator.equals("!=");
         }
 
         if (operator.equals("contains")) {
@@ -90,18 +90,19 @@ public class ValueObjectUtil {
             return matcher.matches();
         } else {
             int cmp = a.stringValue.compareTo(b.stringValue);
-            if (operator.equals("<")) {
-                return cmp < 0;
-            } else if (operator.equals("<=")) {
-                return cmp <= 0;
-            } else if (operator.equals(">")) {
-                return cmp > 0;
-            } else if (operator.equals(">=")) {
-                return cmp >= 0;
-            } else if (operator.equals("==")) {
-                return cmp == 0;
-            } else if (operator.equals("!=")) {
-                return cmp != 0;
+            switch (operator) {
+                case "<":
+                    return cmp < 0;
+                case "<=":
+                    return cmp <= 0;
+                case ">":
+                    return cmp > 0;
+                case ">=":
+                    return cmp >= 0;
+                case "==":
+                    return cmp == 0;
+                case "!=":
+                    return cmp != 0;
             }
         }
         return true;
@@ -118,38 +119,27 @@ public class ValueObjectUtil {
 
     public static boolean compare(String operator, ValueObject a, ValueObject b) {
         if (a.is_null() && b.is_null()) {
-            if (operator.equals("==")) {
-                return true;
-            } else {
-                return false;
-            }
+            return operator.equals("==");
         } else if (a.is_null()) {
-            if (operator.equals("<") || operator.equals("<=") || operator.equals("!=")) {
-                return true;
-            } else {
-                return false;
-            }
+            return operator.equals("<") || operator.equals("<=") || operator.equals("!=");
         } else if (b.is_null()) {
-            if (operator.equals(">") || operator.equals(">=") || operator.equals("!=")) {
-                return true;
-            } else {
-                return false;
-            }
+            return operator.equals(">") || operator.equals(">=") || operator.equals("!=");
         }
 
         if (a.type == 0 && b.type == 0) {
-            if (operator.equals("<")) {
-                return a.intValue < b.intValue;
-            } else if (operator.equals("<=")) {
-                return a.intValue <= b.intValue;
-            } else if (operator.equals(">")) {
-                return a.intValue > b.intValue;
-            } else if (operator.equals(">=")) {
-                return a.intValue >= b.intValue;
-            } else if (operator.equals("==")) {
-                return a.intValue == b.intValue;
-            } else if (operator.equals("!=")) {
-                return a.intValue != b.intValue;
+            switch (operator) {
+                case "<":
+                    return a.intValue < b.intValue;
+                case "<=":
+                    return a.intValue <= b.intValue;
+                case ">":
+                    return a.intValue > b.intValue;
+                case ">=":
+                    return a.intValue >= b.intValue;
+                case "==":
+                    return a.intValue == b.intValue;
+                case "!=":
+                    return a.intValue != b.intValue;
             }
         } else {
             double valuea;
@@ -164,18 +154,19 @@ public class ValueObjectUtil {
             } else {
                 valueb = b.doubleValue;
             }
-            if (operator.equals("<")) {
-                return valuea < valueb;
-            } else if (operator.equals("<=")) {
-                return valuea <= valueb;
-            } else if (operator.equals(">")) {
-                return valuea > valueb;
-            } else if (operator.equals(">=")) {
-                return valuea >= valueb;
-            } else if (operator.equals("==")) {
-                return valuea == valueb;
-            } else if (operator.equals("!=")) {
-                return valuea != valueb;
+            switch (operator) {
+                case "<":
+                    return valuea < valueb;
+                case "<=":
+                    return valuea <= valueb;
+                case ">":
+                    return valuea > valueb;
+                case ">=":
+                    return valuea >= valueb;
+                case "==":
+                    return valuea == valueb;
+                case "!=":
+                    return valuea != valueb;
             }
         }
         return true;
