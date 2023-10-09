@@ -614,7 +614,7 @@ public class PhysicalWorldService {
                 //前面添加的属性名称
                 SceneDataObject sdoFrom = fromObjectMap.get(s);
                 SceneDataValue sdvFromItem = sdoFrom.value_object.get(rel.getFromName());
-                if (sdvFromItem.value_array != null) {
+                if (sdvFromItem != null && sdvFromItem.value_array != null) {
                     //主对象为1
                     if (rel.getFromMultiple().equals(BaseDecConstant.ONE)) {
                         SceneDataValue tempSdvId = new SceneDataValue(repository, sdo, rel.getFromName() + BaseDecConstant.ID2, null);
