@@ -10330,7 +10330,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"zuhekongtiao\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"zuhekongtiao\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -10990,7 +10990,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"fengjipanguan\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"fengjipanguan\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -11395,7 +11395,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"diaozhuangkongtiao\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"diaozhuangkongtiao\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -12055,7 +12055,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"xinfengji\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"xinfengji\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -12528,7 +12528,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"rehuishouxinfengji\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"rehuishouxinfengji\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -13001,7 +13001,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"songfengji\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"songfengji\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -13355,7 +13355,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"refengmu\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"refengmu\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -13641,7 +13641,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"paifengji\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"paifengji\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -13995,7 +13995,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"qiongdingpaifeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"qiongdingpaifeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -14349,7 +14349,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"tongduanfa\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"tongduanfa\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -14581,7 +14581,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"tiaojiefa\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"tiaojiefa\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -14813,7 +14813,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"peidianxiang\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"peidianxiang\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -16027,7 +16027,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lzqk\",\"ibmsClassCode\": \"lixinji\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lzqk\",\"ibmsClassCode\": \"lixinji\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -16227,7 +16227,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzqk\",\"ibmsClassCode\": \"lengqueta\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzqk\",\"ibmsClassCode\": \"lengqueta\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -16427,7 +16427,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzqk\",\"ibmsClassCode\": \"lengdongshuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzqk\",\"ibmsClassCode\": \"lengdongshuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -16627,7 +16627,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzqk\",\"ibmsClassCode\": \"lengqueshuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzqk\",\"ibmsClassCode\": \"lengqueshuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -16827,7 +16827,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzqk\",\"ibmsClassCode\": \"fenshuiqi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzqk\",\"ibmsClassCode\": \"fenshuiqi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -17027,7 +17027,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzqk\",\"ibmsClassCode\": \"jishuiqi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzqk\",\"ibmsClassCode\": \"jishuiqi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -17227,7 +17227,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzqk\",\"ibmsClassCode\": \"gonglengbushuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzqk\",\"ibmsClassCode\": \"gonglengbushuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -19626,7 +19626,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"lixinji\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"lixinji\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -19826,7 +19826,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"lengqueta\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"lengqueta\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -20026,7 +20026,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"lengdongshuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"lengdongshuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -20226,7 +20226,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"lengqueshuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"lengqueshuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -20426,7 +20426,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"fenshuiqi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"fenshuiqi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -20626,7 +20626,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"jishuiqi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"jishuiqi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -20826,7 +20826,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"gonglengbushuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"gonglengbushuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -21226,7 +21226,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"tongduanfa\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"tongduanfa\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -21426,7 +21426,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"tiaojiefa\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"tiaojiefa\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -21626,7 +21626,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"gonglengshuixiang\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"gonglengshuixiang\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -21826,7 +21826,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"gonglenghuanre\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"gonglenghuanre\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -22026,7 +22026,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"gonglengdingyabushui\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lzbh\",\"ibmsClassCode\": \"gonglengdingyabushui\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -23191,7 +23191,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsxt\",\"ibmsClassCode\": \"jishuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsxt\",\"ibmsClassCode\": \"jishuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -23402,7 +23402,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsxt\",\"ibmsClassCode\": \"jishuishuixiang\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsxt\",\"ibmsClassCode\": \"jishuishuixiang\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -23613,7 +23613,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"jsxt\",\"ibmsClassCode\": \"zhongshuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"jsxt\",\"ibmsClassCode\": \"zhongshuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -23779,7 +23779,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"jsxt\",\"ibmsClassCode\": \"zhongshuishuixiang\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"jsxt\",\"ibmsClassCode\": \"zhongshuishuixiang\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -23945,7 +23945,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsxt\",\"ibmsClassCode\": \"zhongshuiyalichuanganqi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsxt\",\"ibmsClassCode\": \"zhongshuiyalichuanganqi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -24111,7 +24111,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsxt\",\"ibmsClassCode\": \"shenghuojishuiyalichuanganqi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsxt\",\"ibmsClassCode\": \"shenghuojishuiyalichuanganqi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -24322,7 +24322,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsxt\",\"ibmsClassCode\": \"tongduanfa\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsxt\",\"ibmsClassCode\": \"tongduanfa\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"2",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -25098,7 +25098,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsbh\",\"ibmsClassCode\": \"jishuibeng\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsbh\",\"ibmsClassCode\": \"jishuibeng\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -25309,7 +25309,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsbh\",\"ibmsClassCode\": \"jishuishuixiang\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsbh\",\"ibmsClassCode\": \"jishuishuixiang\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -25520,7 +25520,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"jsbh\",\"ibmsClassCode\": \"zhongshuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"jsbh\",\"ibmsClassCode\": \"zhongshuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -25686,7 +25686,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"jsbh\",\"ibmsClassCode\": \"zhongshuishuixiang\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"jsbh\",\"ibmsClassCode\": \"zhongshuishuixiang\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -25852,7 +25852,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsbh\",\"ibmsClassCode\": \"zhongshuiyalichuanganqi\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsbh\",\"ibmsClassCode\": \"zhongshuiyalichuanganqi\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -26018,7 +26018,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsbh\",\"ibmsClassCode\": \"shenghuojishuiyalichuanganqi\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsbh\",\"ibmsClassCode\": \"shenghuojishuiyalichuanganqi\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -26229,7 +26229,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsbh\",\"ibmsClassCode\": \"tongduanfa\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"jsbh\",\"ibmsClassCode\": \"tongduanfa\"}, \"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"2",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -26574,7 +26574,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"jishuikeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"jishuikeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -26876,7 +26876,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"qianwubeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"qianwubeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -27159,7 +27159,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"geyouchi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"geyouchi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -27993,7 +27993,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"gypd\",\"ibmsClassCode\": \"kaibisuo\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"gypd\",\"ibmsClassCode\": \"kaibisuo\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -28502,7 +28502,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"gypd\",\"ibmsClassCode\": \"gaoyakaiguangui\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"gypd\",\"ibmsClassCode\": \"gaoyakaiguangui\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -28778,7 +28778,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"gypd\",\"ibmsClassCode\": \"bianyaqi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"gypd\",\"ibmsClassCode\": \"bianyaqi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -28961,7 +28961,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"gypd\",\"ibmsClassCode\": \"zhiliuping\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"gypd\",\"ibmsClassCode\": \"zhiliuping\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -33628,7 +33628,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"tcxt\",\"ibmsClassCode\": \"chewei\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"tcxt\",\"ibmsClassCode\": \"chewei\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -57575,7 +57575,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"dtxt\",\"ibmsClassCode\": \"zhiti\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"dtxt\",\"ibmsClassCode\": \"zhiti\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"2",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -57809,7 +57809,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"dtxt\",\"ibmsClassCode\": \"futi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"localId\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"dtxt\",\"ibmsClassCode\": \"futi\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"2",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
