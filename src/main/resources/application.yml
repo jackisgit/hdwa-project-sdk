@@ -22,7 +22,7 @@ dirName:
 
 #服务请求地址
 url:
-  #  dmp: http://127.0.0.1:9805
+#  dmp: http://127.0.0.1:9805
   dmp: http://10.199.208.69:32050/api-ibms-dmp
   monitor: http://10.199.208.69:32050/api-ibms-monitor
   alarmUrl: http://10.199.208.69:32050/api-ibms-alarm
@@ -33,6 +33,7 @@ url:
 spring:
   redis:
     host: 10.199.205.81
+#    host: 127.0.0.1
     port: 6379
     password: hdwaredis0912jd
     timeout: 10000000

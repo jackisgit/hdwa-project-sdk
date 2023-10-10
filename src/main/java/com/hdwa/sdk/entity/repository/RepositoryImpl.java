@@ -195,7 +195,7 @@ public class RepositoryImpl extends RepositoryBase {
 
 
     // TODO: 2023/9/25 待优化 
-    public RepositoryImpl( boolean use_thread, boolean enable_factor, int thread_count,
+    public RepositoryImpl(boolean use_thread, boolean enable_factor, int thread_count,
                           long interval_between_compute) {
         super(use_thread, enable_factor, thread_count, interval_between_compute);
         this.base_value = generate_base_value();
@@ -352,7 +352,7 @@ public class RepositoryImpl extends RepositoryBase {
             case BaseDecConstant.ZKT_OBJECT: {
                 String ibmsSceneCode = (descSet.get(BaseDecConstant.IBMS_SCENE_CODE)).toString();
                 String ibmsClassCode = (descSet.get(BaseDecConstant.IBMS_CLASS_CODE)).toString();
-                if (this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode) != null) {
+                if (this.ZKTObjectArrayDic.get(ibmsSceneCode) != null && this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode) != null) {
                     result = this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode).value_array;
                 }
                 break;
