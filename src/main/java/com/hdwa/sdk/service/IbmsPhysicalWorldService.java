@@ -152,7 +152,7 @@ public class IbmsPhysicalWorldService {
                         }
                     });
                 } else {
-                    log.warn("***{}：缺少点位定义数据", code);
+                    log.warn("***{}-{}-{}：缺少点位定义数据", ibmsSceneCode, ibmsClassCode, code);
                 }
                 SceneDataValue objSdv = new SceneDataValue(null, null, null, null);
                 objectArray.forEach(temp -> {

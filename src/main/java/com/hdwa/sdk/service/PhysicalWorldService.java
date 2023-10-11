@@ -641,7 +641,6 @@ public class PhysicalWorldService {
                                 //赋值
                                 if (tempSdvId.value_prim.value == null) {
                                     tempSdvId.value_prim.value = tempSdo.get(BaseDecConstant.ID).value_prim.value;
-                                    // TODO: 2023/8/28 现实编码名称是否还有用？
                                     if (tempSdo.get(BaseDecConstant.REALITY_CODE_NAME) == null) {
                                         tempSdvName.value_prim.value = tempSdo.get(BaseDecConstant.LOCAL_NAME).value_prim.value;
                                     } else {
@@ -650,7 +649,7 @@ public class PhysicalWorldService {
                                 } else {
                                     //说明有多个关系
                                     if (!tempSdvId.value_prim.value.equals(tempSdo.get(BaseDecConstant.ID).value_prim.value)) {
-                                        log.error(rel.getGraphCode() + "-----" + rel.getRelCode() + "----null：绑定了多个---" + rel.getToName() + "---" + tempSdvId.value_prim.value + "---" + tempSdo.get(BaseDecConstant.ID).value_prim.value);
+                                        log.error(sdoFrom.value_object.get(BaseDecConstant.ID) + "----" + rel.getGraphCode() + "----" + rel.getRelCode() + "----绑定了多个：" + tempSdvId.value_prim.value + "、" + tempSdo.get(BaseDecConstant.ID).value_prim.value);
                                     }
                                 }
                             });
@@ -725,7 +724,6 @@ public class PhysicalWorldService {
                                 //赋值
                                 if (tempSdvId.value_prim.value == null) {
                                     tempSdvId.value_prim.value = tempSdo.get(BaseDecConstant.ID).value_prim.value;
-                                    // TODO: 2023/8/28 现实编码名称是否还有用？
                                     if (tempSdo.get(BaseDecConstant.REALITY_CODE_NAME) == null) {
                                         tempSdvName.value_prim.value = tempSdo.get(BaseDecConstant.LOCAL_NAME).value_prim.value;
                                     } else {
@@ -734,7 +732,7 @@ public class PhysicalWorldService {
                                 } else {
                                     //说明有多个关系
                                     if (!tempSdvId.value_prim.value.equals(tempSdo.get(BaseDecConstant.ID).value_prim.value)) {
-                                        log.error(rel.getGraphCode() + "-----" + rel.getRelCode() + "----null：绑定了多个---" + rel.getToName() + "---" + tempSdvId.value_prim.value + "---" + tempSdo.get(BaseDecConstant.ID).value_prim.value);
+                                        log.error(sdoTo.value_object.get(BaseDecConstant.ID) + "----" + rel.getGraphCode() + "----" + rel.getRelCode() + "----绑定了多个：" + tempSdvId.value_prim.value + "、" + tempSdo.get(BaseDecConstant.ID).value_prim.value);
                                     }
                                 }
                             });
