@@ -54,6 +54,9 @@ public class AttributeFilteringUtil {
         keyWordMap.put("aliasName", true);
         keyWordMap.put("system", true);
         keyWordMap.put("显示名称", true);
+        keyWordMap.put("所属控制模块对象", true);
+        keyWordMap.put("所属配电箱对象", true);
+        keyWordMap.put("所属电井对象", true);
     }
 
     public static boolean containsKey(String key) {

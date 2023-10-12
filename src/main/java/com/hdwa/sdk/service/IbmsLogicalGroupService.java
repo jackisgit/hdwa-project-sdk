@@ -334,11 +334,11 @@ public class IbmsLogicalGroupService {
                     SceneDataValue sdv = new SceneDataValue(null, null, null, null);
                     sdv.value_prim = new SceneDataPrimitive();
                     sdv.value_prim.change = false;
-                    eqpSdo.put(BaseDecConstant.MODEL_NAME, sdo.containsKey(BaseDecConstant.MODEL_NAME) ? sdo.get(BaseDecConstant.MODEL_NAME) : sdv);
-                    eqpSdo.put(BaseDecConstant.DISTRIBUTION_BOX_NAME, sdo.containsKey(BaseDecConstant.DISTRIBUTION_BOX_NAME) ? sdo.get(BaseDecConstant.DISTRIBUTION_BOX_NAME) : sdv);
-                    eqpSdo.put(BaseDecConstant.DISTRIBUTION_BOX_CODE, sdo.containsKey(BaseDecConstant.DISTRIBUTION_BOX_CODE) ? sdo.get(BaseDecConstant.DISTRIBUTION_BOX_CODE) : sdv);
-                    eqpSdo.put(BaseDecConstant.ELECTRIC_WELL_NAME, sdo.containsKey(BaseDecConstant.ELECTRIC_WELL_NAME) ? sdo.get(BaseDecConstant.ELECTRIC_WELL_NAME) : sdv);
-                    eqpSdo.put(BaseDecConstant.ELECTRIC_WELL_CODE, sdo.containsKey(BaseDecConstant.ELECTRIC_WELL_CODE) ? sdo.get(BaseDecConstant.ELECTRIC_WELL_CODE) : sdv);
+                    //eqpSdo.put(BaseDecConstant.MODEL_NAME, sdo.containsKey(BaseDecConstant.MODEL_NAME) ? sdo.get(BaseDecConstant.MODEL_NAME) : sdv);
+                    //eqpSdo.put(BaseDecConstant.DISTRIBUTION_BOX_NAME, sdo.containsKey(BaseDecConstant.DISTRIBUTION_BOX_NAME) ? sdo.get(BaseDecConstant.DISTRIBUTION_BOX_NAME) : sdv);
+                    //eqpSdo.put(BaseDecConstant.DISTRIBUTION_BOX_CODE, sdo.containsKey(BaseDecConstant.DISTRIBUTION_BOX_CODE) ? sdo.get(BaseDecConstant.DISTRIBUTION_BOX_CODE) : sdv);
+                    //eqpSdo.put(BaseDecConstant.ELECTRIC_WELL_NAME, sdo.containsKey(BaseDecConstant.ELECTRIC_WELL_NAME) ? sdo.get(BaseDecConstant.ELECTRIC_WELL_NAME) : sdv);
+                    //eqpSdo.put(BaseDecConstant.ELECTRIC_WELL_CODE, sdo.containsKey(BaseDecConstant.ELECTRIC_WELL_CODE) ? sdo.get(BaseDecConstant.ELECTRIC_WELL_CODE) : sdv);
                     eqpSdo.put(BaseDecConstant.PRIMARY_GROUPING_NAME, sdo.containsKey(BaseDecConstant.PRIMARY_GROUPING_NAME) ? sdo.get(BaseDecConstant.PRIMARY_GROUPING_NAME) : sdv);
                     eqpSdo.put(BaseDecConstant.TWO_GROUPING_NAME, sdo.containsKey(BaseDecConstant.TWO_GROUPING_NAME) ? sdo.get(BaseDecConstant.TWO_GROUPING_NAME) : sdv);
                     eqpSdo.put(BaseDecConstant.GROUPING_TYPE, sdo.containsKey(BaseDecConstant.GROUPING_TYPE) ? sdo.get(BaseDecConstant.GROUPING_TYPE) : sdv);
