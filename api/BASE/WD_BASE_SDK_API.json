@@ -41682,357 +41682,353 @@
                               "PropertyValueType":"static"
                             },
                             {
-                              "PropertyName":"照明场景",
-                              "allow_pass":"1",
-                              "query_sql":"",
-                              "read_level":"4",
-                              "filter_rule":null,
-                              "custom_object":null,
-                              "static_value":"照明场景",
-                              "offset_level":"0",
-                              "query_attached":[
-                              ],
-                              "PropertyValueSchema":"JSONArray",
-                              "static_array":[
+                              "PropertyName": "子系统概览",
+                              "allow_pass": "1",
+                              "query_sql": "",
+                              "read_level": "4",
+                              "filter_rule": null,
+                              "custom_object": null,
+                              "static_value": "子系统概览",
+                              "offset_level": "0",
+                              "query_attached": [],
+                              "PropertyValueSchema": "JSONArray",
+                              "static_array": [
                                 {
-                                  "PropertyList":[
+                                  "PropertyList": [
                                     {
-                                      "PropertyName":"名称",
-                                      "allow_pass":"1",
-                                      "query_sql":"",
-                                      "read_level":"3",
-                                      "filter_rule":"",
-                                      "custom_object":null,
-                                      "static_value":"楼体照明",
-                                      "offset_level":"0",
-                                      "query_attached":null,
-                                      "PropertyValueSchema":"string",
-                                      "static_array":null,
-                                      "PropertyVisible":false,
-                                      "PropertyValueType":"static"
+                                      "PropertyName": "名称",
+                                      "allow_pass": "1",
+                                      "query_sql": "",
+                                      "read_level": "3",
+                                      "filter_rule": "",
+                                      "custom_object": null,
+                                      "static_value": "楼体夜景照明回路",
+                                      "offset_level": "0",
+                                      "query_attached": null,
+                                      "PropertyValueSchema": "string",
+                                      "static_array": null,
+                                      "PropertyVisible": false,
+                                      "PropertyValueType": "static"
                                     },
                                     {
-                                      "PropertyName":"统计",
-                                      "allow_pass":"1",
-                                      "query_sql":"",
-                                      "read_level":"1",
-                                      "filter_rule":"",
-                                      "custom_object":null,
-                                      "static_value":null,
-                                      "offset_level":"0",
-                                      "query_attached":[
+                                      "PropertyName": "统计",
+                                      "allow_pass": "1",
+                                      "query_sql": "",
+                                      "read_level": "3",
+                                      "filter_rule": "",
+                                      "custom_object": null,
+                                      "static_value": null,
+                                      "offset_level": "0",
+                                      "query_attached": [
                                       ],
-                                      "PropertyValueSchema":"JSONArray",
-                                      "static_array":[
+                                      "PropertyValueSchema": "JSONArray",
+                                      "static_array": [
                                         {
-                                          "PropertyList":[
+                                          "PropertyList": [
                                             {
-                                              "PropertyName":"名称",
-                                              "allow_pass":"1",
-                                              "query_sql":"",
-                                              "read_level":"1",
-                                              "filter_rule":null,
-                                              "custom_object":null,
-                                              "static_value":"总数",
-                                              "offset_level":"0",
-                                              "query_attached":[
+                                              "PropertyName": "名称",
+                                              "allow_pass": "1",
+                                              "query_sql": "",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": "总数",
+                                              "offset_level": "0",
+                                              "query_attached": [],
+                                              "PropertyValueSchema": "string",
+                                              "static_array": [
                                               ],
-                                              "PropertyValueSchema":"string",
-                                              "static_array":[
-                                              ],
-                                              "PropertyVisible":false,
-                                              "PropertyValueType":"static"
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "static"
                                             },
                                             {
-                                              "PropertyName":"数量",
-                                              "allow_pass":"1",
-                                              "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_5'清单\"},\"Criteria\":{\"lightLocate\":{\"in\":[\"4\",\"4.0\"]}},\"Aggregation\": {\"Function\": \"count\"}}",
-                                              "read_level":"1",
-                                              "filter_rule":null,
-                                              "custom_object":null,
-                                              "static_value":null,
-                                              "offset_level":"1",
-                                              "query_attached":[
+                                              "PropertyName": "数量",
+                                              "allow_pass": "1",
+                                              "query_sql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_6'楼体夜景照明回路'清单\"},\"Criteria\":{},\"Aggregation\": {\"Function\": \"count\"}\n}",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": null,
+                                              "offset_level": "0",
+                                              "query_attached": [
                                               ],
-                                              "PropertyValueSchema":"int",
-                                              "static_array":[
+                                              "PropertyValueSchema": "int",
+                                              "static_array": [
                                               ],
-                                              "PropertyVisible":false,
-                                              "PropertyValueType":"query"
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "query"
                                             }
                                           ]
                                         },
                                         {
-                                          "PropertyList":[
+                                          "PropertyList": [
                                             {
-                                              "PropertyName":"名称",
-                                              "allow_pass":"1",
-                                              "query_sql":"",
-                                              "read_level":"1",
-                                              "filter_rule":null,
-                                              "custom_object":null,
-                                              "static_value":"开启",
-                                              "offset_level":"0",
-                                              "query_attached":[
+                                              "PropertyName": "名称",
+                                              "allow_pass": "1",
+                                              "query_sql": "",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": "开启",
+                                              "offset_level": "0",
+                                              "query_attached": [
                                               ],
-                                              "PropertyValueSchema":"string",
-                                              "static_array":[
+                                              "PropertyValueSchema": "string",
+                                              "static_array": [
                                               ],
-                                              "PropertyVisible":false,
-                                              "PropertyValueType":"static"
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "static"
                                             },
                                             {
-                                              "PropertyName":"数量",
-                                              "allow_pass":"1",
-                                              "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_5'清单\"},\"Criteria\":{\"runStatus\":{\"in\":[1,1.0]},\"lightLocate\":{\"in\":[\"4\",\"4.0\"]}},\"Aggregation\": {\"Function\": \"count\"}}",
-                                              "read_level":"1",
-                                              "filter_rule":null,
-                                              "custom_object":null,
-                                              "static_value":null,
-                                              "offset_level":"0",
-                                              "query_attached":[
+                                              "PropertyName": "数量",
+                                              "allow_pass": "1",
+                                              "query_sql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_6'楼体夜景照明回路'清单\"},\"Criteria\":{\"runStatus\":{\"in\":[1,1.0]}},\"Aggregation\": {\"Function\": \"count\"}\n}",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": null,
+                                              "offset_level": "0",
+                                              "query_attached": [
                                               ],
-                                              "PropertyValueSchema":"int",
-                                              "static_array":[
+                                              "PropertyValueSchema": "int",
+                                              "static_array": [
                                               ],
-                                              "PropertyVisible":false,
-                                              "PropertyValueType":"query"
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "query"
                                             }
                                           ]
                                         }
                                       ],
-                                      "PropertyVisible":false,
-                                      "PropertyValueType":"static"
+                                      "PropertyVisible": false,
+                                      "PropertyValueType": "static"
                                     }
                                   ]
                                 },
                                 {
-                                  "PropertyList":[
+                                  "PropertyList": [
                                     {
-                                      "PropertyName":"名称",
-                                      "allow_pass":"1",
-                                      "query_sql":"",
-                                      "read_level":"1",
-                                      "filter_rule":"",
-                                      "custom_object":null,
-                                      "static_value":"夜景照明",
-                                      "offset_level":"0",
-                                      "query_attached":null,
-                                      "PropertyValueSchema":"string",
-                                      "static_array":null,
-                                      "PropertyVisible":false,
-                                      "PropertyValueType":"static"
+                                      "PropertyName": "名称",
+                                      "allow_pass": "1",
+                                      "query_sql": "",
+                                      "read_level": "3",
+                                      "filter_rule": "",
+                                      "custom_object": null,
+                                      "static_value": "景观夜景照明回路",
+                                      "offset_level": "0",
+                                      "query_attached": null,
+                                      "PropertyValueSchema": "string",
+                                      "static_array": null,
+                                      "PropertyVisible": false,
+                                      "PropertyValueType": "static"
                                     },
                                     {
-                                      "PropertyName":"统计",
-                                      "allow_pass":"1",
-                                      "query_sql":"",
-                                      "read_level":"3",
-                                      "filter_rule":"",
-                                      "custom_object":null,
-                                      "static_value":null,
-                                      "offset_level":"0",
-                                      "query_attached":[
+                                      "PropertyName": "统计",
+                                      "allow_pass": "1",
+                                      "query_sql": "",
+                                      "read_level": "3",
+                                      "filter_rule": "",
+                                      "custom_object": null,
+                                      "static_value": null,
+                                      "offset_level": "0",
+                                      "query_attached": [
                                       ],
-                                      "PropertyValueSchema":"JSONArray",
-                                      "static_array":[
+                                      "PropertyValueSchema": "JSONArray",
+                                      "static_array": [
                                         {
-                                          "PropertyList":[
+                                          "PropertyList": [
                                             {
-                                              "PropertyName":"名称",
-                                              "allow_pass":"1",
-                                              "query_sql":"",
-                                              "read_level":"1",
-                                              "filter_rule":null,
-                                              "custom_object":null,
-                                              "static_value":"总数",
-                                              "offset_level":"0",
-                                              "query_attached":[
+                                              "PropertyName": "名称",
+                                              "allow_pass": "1",
+                                              "query_sql": "",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": "总数",
+                                              "offset_level": "0",
+                                              "query_attached": [],
+                                              "PropertyValueSchema": "string",
+                                              "static_array": [
                                               ],
-                                              "PropertyValueSchema":"string",
-                                              "static_array":[
-                                              ],
-                                              "PropertyVisible":false,
-                                              "PropertyValueType":"static"
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "static"
                                             },
                                             {
-                                              "PropertyName":"数量",
-                                              "allow_pass":"1",
-                                              "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_5'清单\"},\"Criteria\":{\"lightLocate\":{\"in\":[\"5\",\"5.0\"]}},\"Aggregation\": {\"Function\": \"count\"}}",
-                                              "read_level":"1",
-                                              "filter_rule":null,
-                                              "custom_object":null,
-                                              "static_value":null,
-                                              "offset_level":"0",
-                                              "query_attached":[
+                                              "PropertyName": "数量",
+                                              "allow_pass": "1",
+                                              "query_sql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_6'景观夜景照明回路'清单\"},\"Criteria\":{},\"Aggregation\": {\"Function\": \"count\"}\n}",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": null,
+                                              "offset_level": "0",
+                                              "query_attached": [
                                               ],
-                                              "PropertyValueSchema":"int",
-                                              "static_array":[
+                                              "PropertyValueSchema": "int",
+                                              "static_array": [
                                               ],
-                                              "PropertyVisible":false,
-                                              "PropertyValueType":"query"
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "query"
                                             }
                                           ]
                                         },
                                         {
-                                          "PropertyList":[
+                                          "PropertyList": [
                                             {
-                                              "PropertyName":"名称",
-                                              "allow_pass":"1",
-                                              "query_sql":"",
-                                              "read_level":"1",
-                                              "filter_rule":null,
-                                              "custom_object":null,
-                                              "static_value":"开启",
-                                              "offset_level":"0",
-                                              "query_attached":[
+                                              "PropertyName": "名称",
+                                              "allow_pass": "1",
+                                              "query_sql": "",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": "开启",
+                                              "offset_level": "0",
+                                              "query_attached": [
                                               ],
-                                              "PropertyValueSchema":"string",
-                                              "static_array":[
+                                              "PropertyValueSchema": "string",
+                                              "static_array": [
                                               ],
-                                              "PropertyVisible":false,
-                                              "PropertyValueType":"static"
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "static"
                                             },
                                             {
-                                              "PropertyName":"数量",
-                                              "allow_pass":"1",
-                                              "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_5'清单\"},\"Criteria\":{\"runStatus\":{\"in\":[1,1.0]},\"lightLocate\":{\"in\":[\"5\",\"5.0\"]}},\"Aggregation\": {\"Function\": \"count\"}}",
-                                              "read_level":"1",
-                                              "filter_rule":null,
-                                              "custom_object":null,
-                                              "static_value":null,
-                                              "offset_level":"0",
-                                              "query_attached":[
+                                              "PropertyName": "数量",
+                                              "allow_pass": "1",
+                                              "query_sql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_6'景观夜景照明回路'清单\"},\"Criteria\":{\"runStatus\":{\"in\":[1,1.0]}},\"Aggregation\": {\"Function\": \"count\"}\n}",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": null,
+                                              "offset_level": "0",
+                                              "query_attached": [
                                               ],
-                                              "PropertyValueSchema":"int",
-                                              "static_array":[
+                                              "PropertyValueSchema": "int",
+                                              "static_array": [
                                               ],
-                                              "PropertyVisible":false,
-                                              "PropertyValueType":"query"
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "query"
                                             }
                                           ]
                                         }
                                       ],
-                                      "PropertyVisible":false,
-                                      "PropertyValueType":"static"
+                                      "PropertyVisible": false,
+                                      "PropertyValueType": "static"
                                     }
                                   ]
-                                },
+                                }
                                 {
-                                  "PropertyList":[
+                                  "PropertyList": [
                                     {
-                                      "PropertyName":"名称",
-                                      "allow_pass":"1",
-                                      "query_sql":"",
-                                      "read_level":"1",
-                                      "filter_rule":"",
-                                      "custom_object":null,
-                                      "static_value":"标识照明",
-                                      "offset_level":"0",
-                                      "query_attached":null,
-                                      "PropertyValueSchema":"string",
-                                      "static_array":null,
-                                      "PropertyVisible":false,
-                                      "PropertyValueType":"static"
+                                      "PropertyName": "名称",
+                                      "allow_pass": "1",
+                                      "query_sql": "",
+                                      "read_level": "3",
+                                      "filter_rule": "",
+                                      "custom_object": null,
+                                      "static_value": "标识夜景照明回路",
+                                      "offset_level": "0",
+                                      "query_attached": null,
+                                      "PropertyValueSchema": "string",
+                                      "static_array": null,
+                                      "PropertyVisible": false,
+                                      "PropertyValueType": "static"
                                     },
                                     {
-                                      "PropertyName":"统计",
-                                      "allow_pass":"1",
-                                      "query_sql":"",
-                                      "read_level":"3",
-                                      "filter_rule":"",
-                                      "custom_object":null,
-                                      "static_value":null,
-                                      "offset_level":"0",
-                                      "query_attached":[
+                                      "PropertyName": "统计",
+                                      "allow_pass": "1",
+                                      "query_sql": "",
+                                      "read_level": "3",
+                                      "filter_rule": "",
+                                      "custom_object": null,
+                                      "static_value": null,
+                                      "offset_level": "0",
+                                      "query_attached": [
                                       ],
-                                      "PropertyValueSchema":"JSONArray",
-                                      "static_array":[
+                                      "PropertyValueSchema": "JSONArray",
+                                      "static_array": [
                                         {
-                                          "PropertyList":[
+                                          "PropertyList": [
                                             {
-                                              "PropertyName":"名称",
-                                              "allow_pass":"1",
-                                              "query_sql":"",
-                                              "read_level":"1",
-                                              "filter_rule":null,
-                                              "custom_object":null,
-                                              "static_value":"总数",
-                                              "offset_level":"0",
-                                              "query_attached":[
+                                              "PropertyName": "名称",
+                                              "allow_pass": "1",
+                                              "query_sql": "",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": "总数",
+                                              "offset_level": "0",
+                                              "query_attached": [],
+                                              "PropertyValueSchema": "string",
+                                              "static_array": [
                                               ],
-                                              "PropertyValueSchema":"string",
-                                              "static_array":[
-                                              ],
-                                              "PropertyVisible":false,
-                                              "PropertyValueType":"static"
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "static"
                                             },
                                             {
-                                              "PropertyName":"数量",
-                                              "allow_pass":"1",
-                                              "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_5'清单\"},\"Criteria\":{\"lightLocate\":{\"in\":[\"6\",\"6.0\"]}},\"Aggregation\": {\"Function\": \"count\"}}",
-                                              "read_level":"1",
-                                              "filter_rule":null,
-                                              "custom_object":null,
-                                              "static_value":null,
-                                              "offset_level":"0",
-                                              "query_attached":[
+                                              "PropertyName": "数量",
+                                              "allow_pass": "1",
+                                              "query_sql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_6'标识夜景照明回路'清单\"},\"Criteria\":{},\"Aggregation\": {\"Function\": \"count\"}\n}",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": null,
+                                              "offset_level": "0",
+                                              "query_attached": [
                                               ],
-                                              "PropertyValueSchema":"int",
-                                              "static_array":[
+                                              "PropertyValueSchema": "int",
+                                              "static_array": [
                                               ],
-                                              "PropertyVisible":false,
-                                              "PropertyValueType":"query"
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "query"
                                             }
                                           ]
                                         },
                                         {
-                                          "PropertyList":[
+                                          "PropertyList": [
                                             {
-                                              "PropertyName":"名称",
-                                              "allow_pass":"1",
-                                              "query_sql":"",
-                                              "read_level":"1",
-                                              "filter_rule":null,
-                                              "custom_object":null,
-                                              "static_value":"开启",
-                                              "offset_level":"0",
-                                              "query_attached":[
+                                              "PropertyName": "名称",
+                                              "allow_pass": "1",
+                                              "query_sql": "",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": "开启",
+                                              "offset_level": "0",
+                                              "query_attached": [
                                               ],
-                                              "PropertyValueSchema":"string",
-                                              "static_array":[
+                                              "PropertyValueSchema": "string",
+                                              "static_array": [
                                               ],
-                                              "PropertyVisible":false,
-                                              "PropertyValueType":"static"
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "static"
                                             },
                                             {
-                                              "PropertyName":"数量",
-                                              "allow_pass":"1",
-                                              "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_5'清单\"},\"Criteria\":{\"runStatus\":{\"in\":[1,1.0]},\"lightLocate\":{\"in\":[\"6\",\"6.0\"]}},\"Aggregation\": {\"Function\": \"count\"}}",
-                                              "read_level":"1",
-                                              "filter_rule":null,
-                                              "custom_object":null,
-                                              "static_value":null,
-                                              "offset_level":"0",
-                                              "query_attached":[
+                                              "PropertyName": "数量",
+                                              "allow_pass": "1",
+                                              "query_sql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_6'标识夜景照明回路'清单\"},\"Criteria\":{\"runStatus\":{\"in\":[1,1.0]}},\"Aggregation\": {\"Function\": \"count\"}\n}",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": null,
+                                              "offset_level": "0",
+                                              "query_attached": [
                                               ],
-                                              "PropertyValueSchema":"int",
-                                              "static_array":[
+                                              "PropertyValueSchema": "int",
+                                              "static_array": [
                                               ],
-                                              "PropertyVisible":false,
-                                              "PropertyValueType":"query"
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "query"
                                             }
                                           ]
                                         }
                                       ],
-                                      "PropertyVisible":false,
-                                      "PropertyValueType":"static"
+                                      "PropertyVisible": false,
+                                      "PropertyValueType": "static"
                                     }
                                   ]
                                 }
                               ],
-                              "PropertyVisible":true,
-                              "PropertyValueType":"static"
+                              "PropertyVisible": true,
+                              "PropertyValueType": "static"
                             }
                           ]
                         },
@@ -47392,6 +47388,355 @@
                               ],
                               "PropertyVisible":false,
                               "PropertyValueType":"static"
+                            },
+                            {
+                              "PropertyName": "子系统概览",
+                              "allow_pass": "1",
+                              "query_sql": "",
+                              "read_level": "4",
+                              "filter_rule": null,
+                              "custom_object": null,
+                              "static_value": "子系统概览",
+                              "offset_level": "0",
+                              "query_attached": [],
+                              "PropertyValueSchema": "JSONArray",
+                              "static_array": [
+                                {
+                                  "PropertyList": [
+                                    {
+                                      "PropertyName": "名称",
+                                      "allow_pass": "1",
+                                      "query_sql": "",
+                                      "read_level": "3",
+                                      "filter_rule": "",
+                                      "custom_object": null,
+                                      "static_value": "步行街公共照明回路",
+                                      "offset_level": "0",
+                                      "query_attached": null,
+                                      "PropertyValueSchema": "string",
+                                      "static_array": null,
+                                      "PropertyVisible": false,
+                                      "PropertyValueType": "static"
+                                    },
+                                    {
+                                      "PropertyName": "统计",
+                                      "allow_pass": "1",
+                                      "query_sql": "",
+                                      "read_level": "3",
+                                      "filter_rule": "",
+                                      "custom_object": null,
+                                      "static_value": null,
+                                      "offset_level": "0",
+                                      "query_attached": [
+                                      ],
+                                      "PropertyValueSchema": "JSONArray",
+                                      "static_array": [
+                                        {
+                                          "PropertyList": [
+                                            {
+                                              "PropertyName": "名称",
+                                              "allow_pass": "1",
+                                              "query_sql": "",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": "总数",
+                                              "offset_level": "0",
+                                              "query_attached": [],
+                                              "PropertyValueSchema": "string",
+                                              "static_array": [
+                                              ],
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "static"
+                                            },
+                                            {
+                                              "PropertyName": "数量",
+                                              "allow_pass": "1",
+                                              "query_sql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_6'步行街公共照明回路'清单\"},\"Criteria\":{},\"Aggregation\": {\"Function\": \"count\"}\n}",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": null,
+                                              "offset_level": "0",
+                                              "query_attached": [
+                                              ],
+                                              "PropertyValueSchema": "int",
+                                              "static_array": [
+                                              ],
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "query"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "PropertyList": [
+                                            {
+                                              "PropertyName": "名称",
+                                              "allow_pass": "1",
+                                              "query_sql": "",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": "开启",
+                                              "offset_level": "0",
+                                              "query_attached": [
+                                              ],
+                                              "PropertyValueSchema": "string",
+                                              "static_array": [
+                                              ],
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "static"
+                                            },
+                                            {
+                                              "PropertyName": "数量",
+                                              "allow_pass": "1",
+                                              "query_sql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_6'步行街公共照明回路'清单\"},\"Criteria\":{\"runStatus\":{\"in\":[1,1.0]}},\"Aggregation\": {\"Function\": \"count\"}\n}",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": null,
+                                              "offset_level": "0",
+                                              "query_attached": [
+                                              ],
+                                              "PropertyValueSchema": "int",
+                                              "static_array": [
+                                              ],
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "query"
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "PropertyVisible": false,
+                                      "PropertyValueType": "static"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "PropertyList": [
+                                    {
+                                      "PropertyName": "名称",
+                                      "allow_pass": "1",
+                                      "query_sql": "",
+                                      "read_level": "3",
+                                      "filter_rule": "",
+                                      "custom_object": null,
+                                      "static_value": "停车场公共照明回路",
+                                      "offset_level": "0",
+                                      "query_attached": null,
+                                      "PropertyValueSchema": "string",
+                                      "static_array": null,
+                                      "PropertyVisible": false,
+                                      "PropertyValueType": "static"
+                                    },
+                                    {
+                                      "PropertyName": "统计",
+                                      "allow_pass": "1",
+                                      "query_sql": "",
+                                      "read_level": "3",
+                                      "filter_rule": "",
+                                      "custom_object": null,
+                                      "static_value": null,
+                                      "offset_level": "0",
+                                      "query_attached": [
+                                      ],
+                                      "PropertyValueSchema": "JSONArray",
+                                      "static_array": [
+                                        {
+                                          "PropertyList": [
+                                            {
+                                              "PropertyName": "名称",
+                                              "allow_pass": "1",
+                                              "query_sql": "",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": "总数",
+                                              "offset_level": "0",
+                                              "query_attached": [],
+                                              "PropertyValueSchema": "string",
+                                              "static_array": [
+                                              ],
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "static"
+                                            },
+                                            {
+                                              "PropertyName": "数量",
+                                              "allow_pass": "1",
+                                              "query_sql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_6'停车场公共照明回路'清单\"},\"Criteria\":{},\"Aggregation\": {\"Function\": \"count\"}\n}",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": null,
+                                              "offset_level": "0",
+                                              "query_attached": [
+                                              ],
+                                              "PropertyValueSchema": "int",
+                                              "static_array": [
+                                              ],
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "query"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "PropertyList": [
+                                            {
+                                              "PropertyName": "名称",
+                                              "allow_pass": "1",
+                                              "query_sql": "",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": "开启",
+                                              "offset_level": "0",
+                                              "query_attached": [
+                                              ],
+                                              "PropertyValueSchema": "string",
+                                              "static_array": [
+                                              ],
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "static"
+                                            },
+                                            {
+                                              "PropertyName": "数量",
+                                              "allow_pass": "1",
+                                              "query_sql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_6'停车场公共照明回路'清单\"},\"Criteria\":{\"runStatus\":{\"in\":[1,1.0]}},\"Aggregation\": {\"Function\": \"count\"}\n}",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": null,
+                                              "offset_level": "0",
+                                              "query_attached": [
+                                              ],
+                                              "PropertyValueSchema": "int",
+                                              "static_array": [
+                                              ],
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "query"
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "PropertyVisible": false,
+                                      "PropertyValueType": "static"
+                                    }
+                                  ]
+                                }
+                                {
+                                  "PropertyList": [
+                                    {
+                                      "PropertyName": "名称",
+                                      "allow_pass": "1",
+                                      "query_sql": "",
+                                      "read_level": "3",
+                                      "filter_rule": "",
+                                      "custom_object": null,
+                                      "static_value": "百货公共照明回路",
+                                      "offset_level": "0",
+                                      "query_attached": null,
+                                      "PropertyValueSchema": "string",
+                                      "static_array": null,
+                                      "PropertyVisible": false,
+                                      "PropertyValueType": "static"
+                                    },
+                                    {
+                                      "PropertyName": "统计",
+                                      "allow_pass": "1",
+                                      "query_sql": "",
+                                      "read_level": "3",
+                                      "filter_rule": "",
+                                      "custom_object": null,
+                                      "static_value": null,
+                                      "offset_level": "0",
+                                      "query_attached": [
+                                      ],
+                                      "PropertyValueSchema": "JSONArray",
+                                      "static_array": [
+                                        {
+                                          "PropertyList": [
+                                            {
+                                              "PropertyName": "名称",
+                                              "allow_pass": "1",
+                                              "query_sql": "",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": "总数",
+                                              "offset_level": "0",
+                                              "query_attached": [],
+                                              "PropertyValueSchema": "string",
+                                              "static_array": [
+                                              ],
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "static"
+                                            },
+                                            {
+                                              "PropertyName": "数量",
+                                              "allow_pass": "1",
+                                              "query_sql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_6'百货公共照明回路'清单\"},\"Criteria\":{},\"Aggregation\": {\"Function\": \"count\"}\n}",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": null,
+                                              "offset_level": "0",
+                                              "query_attached": [
+                                              ],
+                                              "PropertyValueSchema": "int",
+                                              "static_array": [
+                                              ],
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "query"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "PropertyList": [
+                                            {
+                                              "PropertyName": "名称",
+                                              "allow_pass": "1",
+                                              "query_sql": "",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": "开启",
+                                              "offset_level": "0",
+                                              "query_attached": [
+                                              ],
+                                              "PropertyValueSchema": "string",
+                                              "static_array": [
+                                              ],
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "static"
+                                            },
+                                            {
+                                              "PropertyName": "数量",
+                                              "allow_pass": "1",
+                                              "query_sql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_6'百货公共照明回路'清单\"},\"Criteria\":{\"runStatus\":{\"in\":[1,1.0]}},\"Aggregation\": {\"Function\": \"count\"}\n}",
+                                              "read_level": "1",
+                                              "filter_rule": null,
+                                              "custom_object": null,
+                                              "static_value": null,
+                                              "offset_level": "0",
+                                              "query_attached": [
+                                              ],
+                                              "PropertyValueSchema": "int",
+                                              "static_array": [
+                                              ],
+                                              "PropertyVisible": false,
+                                              "PropertyValueType": "query"
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "PropertyVisible": false,
+                                      "PropertyValueType": "static"
+                                    }
+                                  ]
+                                }
+                              ],
+                              "PropertyVisible": true,
+                              "PropertyValueType": "static"
                             }
                           ]
                         },
