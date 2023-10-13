@@ -154,7 +154,7 @@ public class AlarmUtil {
         }
 
         JSONObject triggerInfo = (JSONObject) alarm.get("triggerInfo");
-        if (triggerInfo.size() == 1) {
+        if (triggerInfo != null && triggerInfo.size() == 1) {
             String[] infos = triggerInfo.keySet().toArray(new String[0]);
             alarm.put("triggerMainInfo", infos[0]);
         }
