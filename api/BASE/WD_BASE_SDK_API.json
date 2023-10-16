@@ -182,7 +182,7 @@
                     "read_level":"1",
                     "filter_rule":"",
                     "custom_object":null,
-                    "static_value":"冷源1#",
+                    "static_value":"ACCC1",
                     "offset_level":"0",
                     "query_attached":[
                     ],
@@ -581,7 +581,7 @@
                     "read_level":"1",
                     "filter_rule":"",
                     "custom_object":null,
-                    "static_value":"冷源1#",
+                    "static_value":"ACCC1",
                     "offset_level":"0",
                     "query_attached":[
                     ],
@@ -626,7 +626,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=离心式冷水机组'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=离心式冷水机组'清单\"},\"Criteria\": {}}",
                             "read_level":"2",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -662,7 +662,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=冷却塔'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=冷却塔'清单\"},\"Criteria\": {}}",
                             "read_level":"2",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -700,7 +700,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=供冷冷冻水泵'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=供冷冷冻水泵'清单\"},\"Criteria\": {}}",
                             "read_level":"2",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -738,7 +738,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=供冷冷却水泵'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=供冷冷却水泵'清单\"},\"Criteria\": {}}",
                             "read_level":"2",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -776,7 +776,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=供冷分水器'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=供冷分水器'清单\"},\"Criteria\": {}}",
                             "read_level":"2",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -814,7 +814,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=供冷集水器'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=供冷集水器'清单\"},\"Criteria\": {}}",
                             "read_level":"2",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -852,7 +852,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=供冷水箱'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=供冷水箱'清单\"},\"Criteria\": {}}",
                             "read_level":"2",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -890,7 +890,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=螺杆式冷水机组'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=螺杆式冷水机组'清单\"},\"Criteria\": {}}",
                             "read_level":"2",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -1070,7 +1070,7 @@
                     "read_level":"1",
                     "filter_rule":"",
                     "custom_object":null,
-                    "static_value":"给水1#",
+                    "static_value":"WSDW1",
                     "offset_level":"0",
                     "query_attached":[
                     ],
@@ -1115,7 +1115,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'设备类型'名称=生活给水水泵'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'设备类型'名称=生活给水水泵'清单\"},\"Criteria\": {}}",
                             "read_level":"2",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -1153,7 +1153,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'设备类型'名称=生活给水储水箱'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'设备类型'名称=生活给水储水箱'清单\"},\"Criteria\": {}}",
                             "read_level":"2",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -1191,7 +1191,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'设备类型'名称=中水供水水泵'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'设备类型'名称=中水供水水泵'清单\"},\"Criteria\": {}}",
                             "read_level":"2",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -1229,7 +1229,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'设备类型'名称=中水储水箱'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'设备类型'名称=中水储水箱'清单\"},\"Criteria\": {}}",
                             "read_level":"2",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -1564,7 +1564,7 @@
                     "read_level":"1",
                     "filter_rule":null,
                     "custom_object":null,
-                    "static_value":"热源1#",
+                    "static_value":"ACCH1",
                     "offset_level":"0",
                     "query_attached":null,
                     "PropertyValueSchema":"string",
@@ -1607,7 +1607,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=热源1#'设备类型'名称=供热燃气锅炉'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCH1'设备类型'名称=供热燃气锅炉'清单\"},\"Criteria\": {}}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -1645,7 +1645,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=热源1#'设备类型'名称=供热水泵'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCH1'设备类型'名称=供热水泵'清单\"},\"Criteria\": {}}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -1683,7 +1683,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=热源1#'设备类型'名称=供热补水泵'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCH1'设备类型'名称=供热补水泵'清单\"},\"Criteria\": {}}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -1721,7 +1721,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=热源1#'设备类型'名称=供热水箱'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCH1'设备类型'名称=供热水箱'清单\"},\"Criteria\": {}}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -1759,7 +1759,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=热源1#'设备类型'名称=供热换热器'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCH1'设备类型'名称=供热换热器'清单\"},\"Criteria\": {}}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -1797,7 +1797,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=热源1#'设备类型'名称=供热定压补水装置'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCH1'设备类型'名称=供热定压补水装置'清单\"},\"Criteria\": {}}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -1835,7 +1835,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=热源1#'设备类型'名称=供热水加药装置'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCH1'设备类型'名称=供热水加药装置'清单\"},\"Criteria\": {}}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -1917,7 +1917,7 @@
                     "read_level":"1",
                     "filter_rule":"",
                     "custom_object":null,
-                    "static_value":"冷源1#",
+                    "static_value":"ACCC1",
                     "offset_level":"0",
                     "query_attached":null,
                     "PropertyValueSchema":"string",
@@ -2188,7 +2188,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=离心式冷水机组'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=离心式冷水机组'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2226,7 +2226,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=冷却塔'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=冷却塔'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2264,7 +2264,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=供冷冷冻水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=供冷冷冻水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2302,7 +2302,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=供冷冷却水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=供冷冷却水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2340,7 +2340,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=供冷分水器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=供冷分水器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2378,7 +2378,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=供冷集水器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=供冷集水器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2416,7 +2416,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=供冷补水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=供冷补水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2454,7 +2454,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=螺杆式冷水机组'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=螺杆式冷水机组'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2492,7 +2492,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=供冷乙二醇泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=供冷乙二醇泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2530,7 +2530,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=供冷水箱'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=供冷水箱'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2568,7 +2568,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=供冷换热器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=供冷换热器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2606,7 +2606,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=供冷蓄冷热槽'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=供冷蓄冷热槽'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2644,7 +2644,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=供冷定压补水装置'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=供冷定压补水装置'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2682,7 +2682,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=供冷水加药装置'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=供冷水加药装置'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2720,7 +2720,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=温度传感器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=温度传感器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2758,7 +2758,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=压力传感器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=压力传感器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2796,7 +2796,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=流量传感器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=流量传感器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2834,7 +2834,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=通断阀'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=通断阀'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2872,7 +2872,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'设备类型'名称=调节阀'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=调节阀'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -2993,7 +2993,7 @@
                               {
                                 "PropertyName":"数值",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警未处理'数值\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警未处理'数值\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -3010,7 +3010,7 @@
                               {
                                 "PropertyName":"颜色",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警未处理'颜色\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警未处理'颜色\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -3082,7 +3082,7 @@
                               {
                                 "PropertyName":"数值",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警处理中'数值\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警处理中'数值\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -3099,7 +3099,7 @@
                               {
                                 "PropertyName":"颜色",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{ \"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警处理中'颜色\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{ \"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警处理中'颜色\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -3171,7 +3171,7 @@
                               {
                                 "PropertyName":"数值",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=开启'数值\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=开启'数值\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -3188,7 +3188,7 @@
                               {
                                 "PropertyName":"颜色",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=开启'颜色\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=开启'颜色\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -3260,7 +3260,7 @@
                               {
                                 "PropertyName":"数值",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=关闭'数值\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=关闭'数值\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -3277,7 +3277,7 @@
                               {
                                 "PropertyName":"颜色",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=关闭'颜色\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=关闭'颜色\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -3349,7 +3349,7 @@
                               {
                                 "PropertyName":"数值",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=离线'数值\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=离线'数值\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -3366,7 +3366,7 @@
                               {
                                 "PropertyName":"颜色",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=离线'颜色\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=离线'颜色\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -3423,7 +3423,7 @@
                       {
                         "PropertyName":"报警列表",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源1#'清单'报警列表\"},\"Criteria\": {\"objId\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
+                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'清单'报警列表\"},\"Criteria\": {\"objId\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
                         "read_level":"4",
                         "filter_rule":null,
                         "custom_object":null,
@@ -3497,7 +3497,7 @@
                     "read_level":"1",
                     "filter_rule":"",
                     "custom_object":null,
-                    "static_value":"冷源2#",
+                    "static_value":"ACCC2",
                     "offset_level":"0",
                     "query_attached":null,
                     "PropertyValueSchema":"string",
@@ -3768,7 +3768,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=离心式冷水机组'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=离心式冷水机组'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -3806,7 +3806,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=冷却塔'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=冷却塔'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -3844,7 +3844,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=供冷冷冻水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=供冷冷冻水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -3882,7 +3882,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=供冷冷却水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=供冷冷却水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -3920,7 +3920,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=供冷分水器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=供冷分水器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -3958,7 +3958,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=供冷集水器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=供冷集水器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -3996,7 +3996,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=供冷补水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=供冷补水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -4034,7 +4034,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=螺杆式冷水机组'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=螺杆式冷水机组'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -4072,7 +4072,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=供冷乙二醇泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=供冷乙二醇泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -4110,7 +4110,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=供冷水箱'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=供冷水箱'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -4148,7 +4148,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=供冷换热器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=供冷换热器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -4186,7 +4186,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=供冷蓄冷热槽'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=供冷蓄冷热槽'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -4224,7 +4224,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=供冷定压补水装置'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=供冷定压补水装置'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -4262,7 +4262,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=供冷水加药装置'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=供冷水加药装置'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -4300,7 +4300,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=温度传感器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=温度传感器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -4338,7 +4338,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=压力传感器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=压力传感器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -4376,7 +4376,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=流量传感器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=流量传感器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -4414,7 +4414,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=通断阀'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=通断阀'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -4452,7 +4452,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'设备类型'名称=调节阀'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=调节阀'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -4573,7 +4573,7 @@
                               {
                                 "PropertyName":"数值",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警未处理'数值\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警未处理'数值\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -4590,7 +4590,7 @@
                               {
                                 "PropertyName":"颜色",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警未处理'颜色\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警未处理'颜色\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -4662,7 +4662,7 @@
                               {
                                 "PropertyName":"数值",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警处理中'数值\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警处理中'数值\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -4679,7 +4679,7 @@
                               {
                                 "PropertyName":"颜色",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{ \"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警处理中'颜色\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{ \"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警处理中'颜色\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -4751,7 +4751,7 @@
                               {
                                 "PropertyName":"数值",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=开启'数值\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=开启'数值\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -4768,7 +4768,7 @@
                               {
                                 "PropertyName":"颜色",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=开启'颜色\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=开启'颜色\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -4840,7 +4840,7 @@
                               {
                                 "PropertyName":"数值",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=关闭'数值\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=关闭'数值\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -4857,7 +4857,7 @@
                               {
                                 "PropertyName":"颜色",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=关闭'颜色\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=关闭'颜色\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -4929,7 +4929,7 @@
                               {
                                 "PropertyName":"数值",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=离线'数值\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=离线'数值\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -4946,7 +4946,7 @@
                               {
                                 "PropertyName":"颜色",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=离线'颜色\"}}}",
+                                "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=离线'颜色\"}}}",
                                 "read_level":"1",
                                 "filter_rule":null,
                                 "custom_object":null,
@@ -5003,7 +5003,7 @@
                       {
                         "PropertyName":"报警列表",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=冷源2#'清单'报警列表\"},\"Criteria\": {\"objId\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
+                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'清单'报警列表\"},\"Criteria\": {\"objId\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
                         "read_level":"4",
                         "filter_rule":null,
                         "custom_object":null,
@@ -6572,7 +6572,7 @@
                     "read_level":"1",
                     "filter_rule":"",
                     "custom_object":null,
-                    "static_value":"给水1#",
+                    "static_value":"WSDW1",
                     "offset_level":"0",
                     "query_attached":[
                     ],
@@ -6617,7 +6617,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'设备类型'名称=生活给水水泵'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'设备类型'名称=生活给水水泵'清单\"},\"Criteria\": {}}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -6655,7 +6655,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'设备类型'名称=生活给水储水箱'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'设备类型'名称=生活给水储水箱'清单\"},\"Criteria\": {}}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -6693,7 +6693,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'设备类型'名称=中水供水水泵'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'设备类型'名称=中水供水水泵'清单\"},\"Criteria\": {}}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -6731,7 +6731,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{ \"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'设备类型'名称=中水储水箱'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{ \"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'设备类型'名称=中水储水箱'清单\"},\"Criteria\": {}}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -6769,7 +6769,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{ \"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'设备类型'名称=温度传感器'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{ \"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'设备类型'名称=温度传感器'清单\"},\"Criteria\": {}}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -6836,7 +6836,7 @@
                       {
                         "PropertyName":"清单",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'清单\"},\"Criteria\": {\"valid\": 1,\"id\": {\"notin\": [\"test-id\"  ],\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
+                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'清单\"},\"Criteria\": {\"valid\": 1,\"id\": {\"notin\": [\"test-id\"  ],\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
                         "read_level":"1",
                         "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                         "custom_object":null,
@@ -6885,7 +6885,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'设备类型'名称=生活给水水泵'清单\"},\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'设备类型'名称=生活给水水泵'清单\"},\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"1",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -7027,7 +7027,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'设备类型'名称=生活给水储水箱'清单\"},\"Criteria\": {\"valid\": 1,\"id\": {\"notin\": [\"test-id\"  ],\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'设备类型'名称=生活给水储水箱'清单\"},\"Criteria\": {\"valid\": 1,\"id\": {\"notin\": [\"test-id\"  ],\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"1",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -7242,7 +7242,7 @@
                       {
                         "PropertyName":"报警列表",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'清单'报警列表\"},\"Criteria\": {\"objId\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
+                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'清单'报警列表\"},\"Criteria\": {\"objId\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
                         "read_level":"4",
                         "filter_rule":null,
                         "custom_object":null,
@@ -7286,7 +7286,7 @@
                     "read_level":"1",
                     "filter_rule":"",
                     "custom_object":null,
-                    "static_value":"给水2#",
+                    "static_value":"WSDW2",
                     "offset_level":"0",
                     "query_attached":[
                     ],
@@ -7331,7 +7331,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水2#'设备类型'名称=生活给水水泵'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW2'设备类型'名称=生活给水水泵'清单\"},\"Criteria\": {}}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -7369,7 +7369,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水2#'设备类型'名称=生活给水储水箱'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW2'设备类型'名称=生活给水储水箱'清单\"},\"Criteria\": {}}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -7407,7 +7407,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水2#'设备类型'名称=中水供水水泵'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW2'设备类型'名称=中水供水水泵'清单\"},\"Criteria\": {}}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -7445,7 +7445,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{ \"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水2#'设备类型'名称=中水储水箱'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{ \"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW2'设备类型'名称=中水储水箱'清单\"},\"Criteria\": {}}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -7483,7 +7483,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{ \"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水2#'设备类型'名称=温度传感器'清单\"},\"Criteria\": {}}",
+                            "query_sql":"{ \"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW2'设备类型'名称=温度传感器'清单\"},\"Criteria\": {}}",
                             "read_level":"1",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -7550,7 +7550,7 @@
                       {
                         "PropertyName":"清单",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水2#'清单\"},\"Criteria\": {\"valid\": 1,\"id\": {\"notin\": [\"test-id\"  ],\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
+                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW2'清单\"},\"Criteria\": {\"valid\": 1,\"id\": {\"notin\": [\"test-id\"  ],\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
                         "read_level":"1",
                         "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                         "custom_object":null,
@@ -7599,7 +7599,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水2#'设备类型'名称=生活给水水泵'清单\"},\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW2'设备类型'名称=生活给水水泵'清单\"},\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"1",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -7741,7 +7741,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水2#'设备类型'名称=生活给水储水箱'清单\"},\"Criteria\": {\"valid\": 1,\"id\": {\"notin\": [\"test-id\"  ],\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW2'设备类型'名称=生活给水储水箱'清单\"},\"Criteria\": {\"valid\": 1,\"id\": {\"notin\": [\"test-id\"  ],\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"1",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "custom_object":null,
@@ -7956,7 +7956,7 @@
                       {
                         "PropertyName":"报警列表",
                         "allow_pass":"1",
-                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'清单'报警列表\"},\"Criteria\": {\"objId\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
+                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'清单'报警列表\"},\"Criteria\": {\"objId\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
                         "read_level":"4",
                         "filter_rule":null,
                         "custom_object":null,
@@ -9268,7 +9268,7 @@
                     "read_level":"1",
                     "filter_rule":"",
                     "custom_object":null,
-                    "static_value":"热源1#",
+                    "static_value":"ACCH1",
                     "offset_level":"0",
                     "query_attached":null,
                     "PropertyValueSchema":"string",
@@ -15534,7 +15534,7 @@
                     "read_level":"1",
                     "filter_rule":"",
                     "custom_object":null,
-                    "static_value":"冷源1#",
+                    "static_value":"ACCC1",
                     "offset_level":"0",
                     "query_attached":[
                     ],
@@ -18712,7 +18712,7 @@
                           {
                             "PropertyName":"数值",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警未处理'数值\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警未处理'数值\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -18729,7 +18729,7 @@
                           {
                             "PropertyName":"颜色",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警未处理'颜色\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警未处理'颜色\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -18801,7 +18801,7 @@
                           {
                             "PropertyName":"数值",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警处理中'数值\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警处理中'数值\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -18818,7 +18818,7 @@
                           {
                             "PropertyName":"颜色",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{ \"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警处理中'颜色\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{ \"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警处理中'颜色\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -18890,7 +18890,7 @@
                           {
                             "PropertyName":"数值",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=开启'数值\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=开启'数值\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -18907,7 +18907,7 @@
                           {
                             "PropertyName":"颜色",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=开启'颜色\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=开启'颜色\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -18979,7 +18979,7 @@
                           {
                             "PropertyName":"数值",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=关闭'数值\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=关闭'数值\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -18996,7 +18996,7 @@
                           {
                             "PropertyName":"颜色",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=关闭'颜色\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=关闭'颜色\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -19068,7 +19068,7 @@
                           {
                             "PropertyName":"数值",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=离线'数值\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=离线'数值\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -19085,7 +19085,7 @@
                           {
                             "PropertyName":"颜色",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=离线'颜色\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=离线'颜色\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -19133,7 +19133,7 @@
                     "read_level":"1",
                     "filter_rule":"",
                     "custom_object":null,
-                    "static_value":"冷源2#",
+                    "static_value":"ACCC2",
                     "offset_level":"0",
                     "query_attached":[
                     ],
@@ -22311,7 +22311,7 @@
                           {
                             "PropertyName":"数值",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警未处理'数值\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警未处理'数值\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -22328,7 +22328,7 @@
                           {
                             "PropertyName":"颜色",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警未处理'颜色\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警未处理'颜色\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -22400,7 +22400,7 @@
                           {
                             "PropertyName":"数值",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警处理中'数值\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警处理中'数值\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -22417,7 +22417,7 @@
                           {
                             "PropertyName":"颜色",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{ \"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警处理中'颜色\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{ \"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警处理中'颜色\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -22489,7 +22489,7 @@
                           {
                             "PropertyName":"数值",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=开启'数值\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=开启'数值\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -22506,7 +22506,7 @@
                           {
                             "PropertyName":"颜色",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=开启'颜色\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=开启'颜色\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -22578,7 +22578,7 @@
                           {
                             "PropertyName":"数值",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=关闭'数值\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=关闭'数值\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -22595,7 +22595,7 @@
                           {
                             "PropertyName":"颜色",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=关闭'颜色\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=关闭'颜色\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -22667,7 +22667,7 @@
                           {
                             "PropertyName":"数值",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=离线'数值\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=离线'数值\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -22684,7 +22684,7 @@
                           {
                             "PropertyName":"颜色",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=离线'颜色\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=离线'颜色\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -22732,7 +22732,7 @@
                     "read_level":"1",
                     "filter_rule":"",
                     "custom_object":null,
-                    "static_value":"给水1#",
+                    "static_value":"WSDW1",
                     "offset_level":"0",
                     "query_attached":[
                     ],
@@ -24639,7 +24639,7 @@
                     "read_level":"1",
                     "filter_rule":"",
                     "custom_object":null,
-                    "static_value":"给水2#",
+                    "static_value":"WSDW2",
                     "offset_level":"0",
                     "query_attached":[
                     ],
@@ -30537,7 +30537,7 @@
                     "read_level":"1",
                     "filter_rule":null,
                     "custom_object":null,
-                    "static_value":"热源1#",
+                    "static_value":"ACCH1",
                     "offset_level":"0",
                     "query_attached":null,
                     "PropertyValueSchema":"string",
@@ -32913,7 +32913,7 @@
                           {
                             "PropertyName":"数值",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警未处理'数值\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警未处理'数值\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -32930,7 +32930,7 @@
                           {
                             "PropertyName":"颜色",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警未处理'颜色\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警未处理'颜色\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -33002,7 +33002,7 @@
                           {
                             "PropertyName":"数值",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警处理中'数值\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警处理中'数值\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -33019,7 +33019,7 @@
                           {
                             "PropertyName":"颜色",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{ \"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=报警处理中'颜色\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{ \"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=报警处理中'颜色\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -33091,7 +33091,7 @@
                           {
                             "PropertyName":"数值",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=开启'数值\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=开启'数值\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -33108,7 +33108,7 @@
                           {
                             "PropertyName":"颜色",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=开启'颜色\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=开启'颜色\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -33180,7 +33180,7 @@
                           {
                             "PropertyName":"数值",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=关闭'数值\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=关闭'数值\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -33197,7 +33197,7 @@
                           {
                             "PropertyName":"颜色",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=关闭'颜色\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=关闭'颜色\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -33269,7 +33269,7 @@
                           {
                             "PropertyName":"数值",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=离线'数值\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=离线'数值\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -33286,7 +33286,7 @@
                           {
                             "PropertyName":"颜色",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'冷源1#'设备状态表'名称=离线'颜色\"}}}",
+                            "query_sql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"场景基础'设备'ACCC1'设备状态表'名称=离线'颜色\"}}}",
                             "read_level":"1",
                             "filter_rule":null,
                             "custom_object":null,
@@ -37107,7 +37107,7 @@
                     "read_level":"1",
                     "filter_rule":"",
                     "custom_object":null,
-                    "static_value":"冷源1#",
+                    "static_value":"ACCC1",
                     "offset_level":"0",
                     "query_attached":[
                     ],
@@ -37674,7 +37674,7 @@
                     "read_level":"1",
                     "filter_rule":"",
                     "custom_object":null,
-                    "static_value":"给水1#",
+                    "static_value":"WSDW1",
                     "offset_level":"0",
                     "query_attached":[
                     ],
@@ -61088,7 +61088,7 @@
           {
             "PropertyName":"空间树",
             "allow_pass":"1",
-            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"SetOperator\": \"add\",\"SetArray\": [      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'空间'名称=环境品质'清单\"},\"Criteria\": {}      },      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'空间'名称=客流管理'清单\"},\"Criteria\": {}      },      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'空间'名称=给水1#'清单\"},\"Criteria\": {}      },      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'空间'名称=消防水'清单\"},\"Criteria\": {}      },      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'空间'名称=配电监控'清单\"},\"Criteria\": {}      },      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'空间'名称=配电关系'清单\"},\"Criteria\": {}      },      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'公共照明'电井'清单\"},\"Criteria\": {}      },      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'夜景照明'电井'清单\"},\"Criteria\": {}      },      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'空间'名称=防盗管理'清单\"},\"Criteria\": {}      }    ]  },\"Criteria\": {},\"ReturnColumns\": [\"ibmsClassCode\",\"ibmsSceneCode\",\"classCode\",\"localName\",\"localId\",\"id\",\"bimId\",\"所在建筑-id\",\"所在楼层-id\",\"所属场景\",\"对象类型\",\"所属模块\",\"对象类别\",\"温度空间\",\"照度空间\",\"湿度空间\",\"CO2空间\",\"PM2.5空间\",\"所属楼层-id\"  ]}",
+            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"SetOperator\": \"add\",\"SetArray\": [      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'空间'名称=环境品质'清单\"},\"Criteria\": {}      },      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'空间'名称=客流管理'清单\"},\"Criteria\": {}      },      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'空间'名称=WSDW1'清单\"},\"Criteria\": {}      },      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'空间'名称=消防水'清单\"},\"Criteria\": {}      },      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'空间'名称=配电监控'清单\"},\"Criteria\": {}      },      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'空间'名称=配电关系'清单\"},\"Criteria\": {}      },      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'公共照明'电井'清单\"},\"Criteria\": {}      },      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'夜景照明'电井'清单\"},\"Criteria\": {}      },      {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'空间'名称=防盗管理'清单\"},\"Criteria\": {}      }    ]  },\"Criteria\": {},\"ReturnColumns\": [\"ibmsClassCode\",\"ibmsSceneCode\",\"classCode\",\"localName\",\"localId\",\"id\",\"bimId\",\"所在建筑-id\",\"所在楼层-id\",\"所属场景\",\"对象类型\",\"所属模块\",\"对象类别\",\"温度空间\",\"照度空间\",\"湿度空间\",\"CO2空间\",\"PM2.5空间\",\"所属楼层-id\"  ]}",
             "read_level":"4",
             "filter_rule":"{\"QueryType\": \"select\",\"Criteria\": {\"LogicOperator\": \"and\",\"Criterias\": [      {\"状态\": {\"ref\": \"ancestor_1'状态\"}      },      {\"LogicOperator\": \"or\",\"Criterias\": [          {\"localId\": {\"contain\": {\"ref\": \"ancestor_1'搜索关键字\"}            }          },          {\"localName\": {\"contain\": {\"ref\": \"ancestor_1'搜索关键字\"}            }          }        ]      }    ]  }}",
             "custom_object":null,
@@ -61152,7 +61152,7 @@
                           "read_level":"1",
                           "filter_rule":"",
                           "custom_object":null,
-                          "static_value":"冷源1#",
+                          "static_value":"ACCC1",
                           "offset_level":"0",
                           "query_attached":[
                           ],
@@ -61165,7 +61165,7 @@
                         {
                           "PropertyName":"系统",
                           "allow_pass":"1",
-                          "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'系统'名称=冷源1#'清单\"},\"Criteria\":{}}",
+                          "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'系统'名称=ACCC1'清单\"},\"Criteria\":{}}",
                           "read_level":"1",
                           "filter_rule":"",
                           "custom_object":null,
@@ -62476,7 +62476,7 @@
                         {
                           "PropertyName":"机房",
                           "allow_pass":"1",
-                          "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'空间'名称=冷源1#'清单\"},\"Criteria\":{\"id\":{\"ref\":\"ancestor_1'系统'机房id\"}}}",
+                          "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'空间'名称=ACCC1'清单\"},\"Criteria\":{\"id\":{\"ref\":\"ancestor_1'系统'机房id\"}}}",
                           "read_level":"4",
                           "filter_rule":"",
                           "custom_object":null,
@@ -62499,7 +62499,7 @@
                           "read_level":"1",
                           "filter_rule":"",
                           "custom_object":null,
-                          "static_value":"冷源2#",
+                          "static_value":"ACCC2",
                           "offset_level":"0",
                           "query_attached":[
                           ],
@@ -62512,7 +62512,7 @@
                         {
                           "PropertyName":"系统",
                           "allow_pass":"1",
-                          "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'系统'名称=冷源2#'清单\"},\"Criteria\":{}}",
+                          "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'系统'名称=ACCC2'清单\"},\"Criteria\":{}}",
                           "read_level":"1",
                           "filter_rule":"",
                           "custom_object":null,
@@ -63823,7 +63823,7 @@
                         {
                           "PropertyName":"机房",
                           "allow_pass":"1",
-                          "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'空间'名称=冷源1#'清单\"},\"Criteria\":{\"id\":{\"ref\":\"ancestor_1'系统'机房id\"}}}",
+                          "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'空间'名称=ACCC1'清单\"},\"Criteria\":{\"id\":{\"ref\":\"ancestor_1'系统'机房id\"}}}",
                           "read_level":"4",
                           "filter_rule":"",
                           "custom_object":null,
@@ -63865,7 +63865,7 @@
                           "read_level":"1",
                           "filter_rule":"",
                           "custom_object":null,
-                          "static_value":"热源1#",
+                          "static_value":"ACCH1",
                           "offset_level":"0",
                           "query_attached":[
                           ],
@@ -63878,7 +63878,7 @@
                         {
                           "PropertyName":"系统",
                           "allow_pass":"1",
-                          "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'系统'名称=热源1#'清单\"},\"Criteria\":{}}",
+                          "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'系统'名称=ACCH1'清单\"},\"Criteria\":{}}",
                           "read_level":"1",
                           "filter_rule":"",
                           "custom_object":null,
@@ -65189,7 +65189,7 @@
                         {
                           "PropertyName":"机房",
                           "allow_pass":"1",
-                          "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'空间'名称=冷源1#'清单\"},\"Criteria\":{\"id\":{\"ref\":\"ancestor_1'系统'机房id\"}}}",
+                          "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'空间'名称=ACCC1'清单\"},\"Criteria\":{\"id\":{\"ref\":\"ancestor_1'系统'机房id\"}}}",
                           "read_level":"4",
                           "filter_rule":"",
                           "custom_object":null,
@@ -68873,7 +68873,7 @@
                                   {
                                     "PropertyName":"清单",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'设备类型'名称=生活给水水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"    }            }        }    }}}",
+                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'设备类型'名称=生活给水水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"    }            }        }    }}}",
                                     "read_level":"1",
                                     "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                     "custom_object":null,
@@ -68911,7 +68911,7 @@
                                   {
                                     "PropertyName":"清单",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'设备类型'名称=生活给水储水箱'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"    }            }        }    }}}",
+                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'设备类型'名称=生活给水储水箱'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"    }            }        }    }}}",
                                     "read_level":"1",
                                     "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                     "custom_object":null,
@@ -68949,7 +68949,7 @@
                                   {
                                     "PropertyName":"清单",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'设备类型'名称=中水供水水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"    }            }        }    }}}",
+                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'设备类型'名称=中水供水水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"    }            }        }    }}}",
                                     "read_level":"1",
                                     "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                     "custom_object":null,
@@ -68987,7 +68987,7 @@
                                   {
                                     "PropertyName":"清单",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'设备类型'名称=中水储水箱'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"    }            }        }    }}}",
+                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'设备类型'名称=中水储水箱'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"    }            }        }    }}}",
                                     "read_level":"1",
                                     "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                     "custom_object":null,
@@ -69025,7 +69025,7 @@
                                   {
                                     "PropertyName":"清单",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'设备类型'名称=温度传感器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"    }            }        }    }}}",
+                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'设备类型'名称=温度传感器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"    }            }        }    }}}",
                                     "read_level":"1",
                                     "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                     "custom_object":null,
@@ -69063,7 +69063,7 @@
                                   {
                                     "PropertyName":"清单",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'设备类型'名称=通断阀'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'设备类型'名称=通断阀'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                     "read_level":"1",
                                     "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                     "custom_object":null,
@@ -69103,7 +69103,7 @@
                           {
                             "PropertyName":"系统概览",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'系统'名称=给水1#'系统概览\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Sy2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'系统'名称=WSDW1'系统概览\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Sy2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_1'id\"}        }      }    }}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":{
@@ -69202,7 +69202,7 @@
                           {
                             "PropertyName":"楼层",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=给水1#'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=WSDW1'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                             "read_level":"4",
                             "filter_rule":"",
                             "custom_object":null,
@@ -87340,7 +87340,7 @@
                   "PropertyValueType":"custom"
                 },
                 {
-                  "PropertyName":"冷源1#",
+                  "PropertyName":"ACCC1",
                   "allow_pass":"1",
                   "query_sql":"",
                   "read_level":"1",
@@ -94808,7 +94808,7 @@
                   "PropertyValueType":"custom"
                 },
                 {
-                  "PropertyName":"冷源2#",
+                  "PropertyName":"ACCC2",
                   "allow_pass":"1",
                   "query_sql":"",
                   "read_level":"1",
@@ -103488,7 +103488,7 @@
                   "PropertyValueType":"custom"
                 }
                 {
-                  "PropertyName":"给水1#",
+                  "PropertyName":"WSDW1",
                   "allow_pass":"1",
                   "query_sql":"",
                   "read_level":"1",
@@ -106585,7 +106585,7 @@
                   "PropertyValueType":"custom"
                 },
                 {
-                  "PropertyName":"给水2#",
+                  "PropertyName":"WSDW2",
                   "allow_pass":"1",
                   "query_sql":"",
                   "read_level":"1",
@@ -132666,7 +132666,7 @@
                   "PropertyValueType":"custom"
                 },
                 {
-                  "PropertyName":"热源1#",
+                  "PropertyName":"ACCH1",
                   "allow_pass":"1",
                   "query_sql":"",
                   "read_level":"1",
