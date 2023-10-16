@@ -11,21 +11,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * @author abao
+ * @since 2023/7/25
+ * 单个数据值对象
+ */
 public class SceneDataValue {
-    public boolean finish = false;
 
+    public boolean finish = false;
     public SceneDataObject parentObjectData;
     public String myPropertyName;
-
     public SceneProperty rel_property;
-
     public SceneDataObject value_object;
     public SceneDataSet value_array;
     public SceneDataPrimitive value_prim;
-
     public InfluenceFactor rowFactor;
     public Map<String, InfluenceFactor> colFactorMap;
-
     public Date last_compute_time;
     public ReentrantLock lock;
 

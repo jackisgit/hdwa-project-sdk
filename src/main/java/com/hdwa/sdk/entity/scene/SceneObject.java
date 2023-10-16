@@ -1,8 +1,18 @@
 package com.hdwa.sdk.entity.scene;
 
+/**
+ * @author abao
+ * @since 2023/7/25
+ * 场景对象
+ */
 public class SceneObject {
+
+    /**
+     * 属性集合，一个包含多个对象 为一个整体
+     */
     public SceneProperty[] propertyList;
-    public String allow_pass = "1";// 1表示通过，0表示截断
+
+    public String allow_pass = "1";
 
     public SceneProperty[] getPropertyList() {
         return propertyList;

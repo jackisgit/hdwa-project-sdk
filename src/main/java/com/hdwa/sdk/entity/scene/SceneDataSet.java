@@ -9,12 +9,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * @author abao
+ * @since 2023/7/25
+ * 场景对象集合
+ */
 public class SceneDataSet {
+
     public boolean isSingleValueSet = false;
     public List<SceneDataObject> set = new ArrayList<>();
     public List<SceneDataValue> singleValueSet = new ArrayList<>();
     public Change change = new Change();
-
     public String path;
 
     public SceneDataSet(boolean isSingleValueSet) {
@@ -32,9 +37,9 @@ public class SceneDataSet {
     public void init(boolean isSingleValueSet, boolean rowChange, String path) {
         this.isSingleValueSet = isSingleValueSet;
         if (this.isSingleValueSet) {
-            this.singleValueSet = new CopyOnWriteArrayList<SceneDataValue>();
+            this.singleValueSet = new CopyOnWriteArrayList<>();
         } else {
-            this.set = new CopyOnWriteArrayList<SceneDataObject>();
+            this.set = new CopyOnWriteArrayList<>();
         }
 
         this.setRowChange(rowChange);
@@ -69,8 +74,7 @@ public class SceneDataSet {
     }
 
     public JSONArray toJSON(int depth) {
-        JSONArray result = this.toJSON(depth, false);
-        return result;
+        return this.toJSON(depth, false);
     }
 
     public JSONArray toJSON(int depth, boolean with_change) {

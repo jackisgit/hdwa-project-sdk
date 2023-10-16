@@ -26,7 +26,7 @@ public class AttributeFilteringUtil {
     /**
      * 属性
      */
-    public static List<String> keyProperty = new CopyOnWriteArrayList<String>();
+    public static List<String> keyProperty = new CopyOnWriteArrayList<>();
 
     static {
         keyProperty.add("id");
@@ -53,6 +53,10 @@ public class AttributeFilteringUtil {
         keyWordMap.put("aliasCode", true);
         keyWordMap.put("aliasName", true);
         keyWordMap.put("system", true);
+        keyWordMap.put("valid", true);
+        keyWordMap.put("systemName", true);
+        keyWordMap.put("subSystemName", true);
+        keyWordMap.put("subSystem", true);
         keyWordMap.put("显示名称", true);
         keyWordMap.put("所属控制模块对象", true);
         keyWordMap.put("所属配电箱对象", true);

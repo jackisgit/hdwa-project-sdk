@@ -12,24 +12,27 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * @author abao
+ * @since 2023/8/25
+ * 场景对象类
+ */
 public class SceneDataObject {
+
     public SceneDataObject parentObjectData;
     public String myPropertyName;
     public SceneDataValue parentArrayData;
-
     public SceneObject rel_object;
     public SceneProperty[] query_attached;
-
     public Map<String, SceneDataValue> value_object;
     public Change change = new Change();
-
     public SceneDataObject father;
     public Map<String, Boolean> fatherReturnColumnMap;
 
     public SceneDataObject() {
     }
 
-    public SceneDataObject(RepositoryBase Repository, SceneDataValue parentArrayData,SceneObject custom_object, SceneProperty[] query_attached) {
+    public SceneDataObject(RepositoryBase Repository, SceneDataValue parentArrayData, SceneObject custom_object, SceneProperty[] query_attached) {
         this.parentArrayData = parentArrayData;
         this.rel_object = custom_object;
         this.query_attached = query_attached;
@@ -38,7 +41,7 @@ public class SceneDataObject {
         if (this.rel_object != null) {
             for (SceneProperty sceneProperty : this.rel_object.propertyList) {
                 SceneDataValue sdv = new SceneDataValue(Repository, this, sceneProperty.propertyName, sceneProperty);
-                this.value_object.put(sceneProperty.propertyName,sdv );
+                this.value_object.put(sceneProperty.propertyName, sdv);
             }
         }
         if (this.query_attached != null) {
@@ -47,7 +50,6 @@ public class SceneDataObject {
             }
         }
     }
-
 
 
     public SceneDataObject(RepositoryBase Repository, SceneDataObject parentObjectData, String myPropertyName, SceneDataValue parentArrayData,
@@ -73,8 +75,7 @@ public class SceneDataObject {
     }
 
     public Object toJSON(int depth) {
-        Object result = this.toJSON(depth, false);
-        return result;
+        return this.toJSON(depth, false);
     }
 
     public Object toJSON(int depth, boolean with_change) {
@@ -106,14 +107,11 @@ public class SceneDataObject {
     }
 
     public Set<String> keySetSelf() {
-        Set<String> result = new HashSet<String>();
-        result.addAll(this.value_object.keySet());
-        return result;
+        return new HashSet<>(this.value_object.keySet());
     }
 
     public Set<String> keySet() {
-        Set<String> result = new HashSet<String>();
-        result.addAll(this.value_object.keySet());
+        Set<String> result = new HashSet<>(this.value_object.keySet());
         if (this.father != null) {
             for (String key : this.father.keySet()) {
                 if (this.fatherReturnColumnMap == null || this.fatherReturnColumnMap.containsKey(key)) {
@@ -175,14 +173,14 @@ public class SceneDataObject {
         }
     }
 
-    public void setRowChange(boolean value) throws Exception {
+    public void setRowChange(boolean value) {
         this.change.row_change = value;
     }
 
     public Map<String, Boolean> getColChange() {
         Map<String, Boolean> result;
         if (this.father != null) {
-            result = new ConcurrentHashMap<String, Boolean>();
+            result = new ConcurrentHashMap<>();
             Map<String, Boolean> result_father = this.father.getColChange();
             {
                 for (String col : result_father.keySet()) {

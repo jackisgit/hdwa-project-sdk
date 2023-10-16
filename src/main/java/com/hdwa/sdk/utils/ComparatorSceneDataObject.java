@@ -1,13 +1,20 @@
-package com.hdwa.sdk.entity.scene;
+package com.hdwa.sdk.utils;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.hdwa.sdk.entity.scene.SceneDataObject;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Comparator;
 
+/**
+ * @author abao
+ * @since 2023/8/25
+ * 场景排序对象
+ */
 public class ComparatorSceneDataObject implements Comparator<SceneDataObject> {
+
     JSONArray OrderBy;
 
     public ComparatorSceneDataObject(JSONArray OrderBy) {
@@ -15,8 +22,8 @@ public class ComparatorSceneDataObject implements Comparator<SceneDataObject> {
     }
 
     public int compare(SceneDataObject o1, SceneDataObject o2) {
-        for (int i = 0; i < OrderBy.size(); i++) {
-            JSONObject item = (JSONObject) OrderBy.get(i);
+        for (Object o : OrderBy) {
+            JSONObject item = (JSONObject) o;
             String Column = (String) item.get("Column");
             Boolean Asc = (Boolean) item.get("Asc");
             Object v1 = null;
@@ -39,8 +46,6 @@ public class ComparatorSceneDataObject implements Comparator<SceneDataObject> {
                 } else {
                     return -1;
                 }
-            } else if (v1 == null && v2 == null) {
-                continue;
             } else {
                 int cmp;
                 if (v1 instanceof String && v2 instanceof String) {
@@ -62,13 +67,11 @@ public class ComparatorSceneDataObject implements Comparator<SceneDataObject> {
                 } else {
                     continue;
                 }
-                if (cmp == 0) {
-                    continue;
-                } else {
+                if (cmp != 0) {
                     if (Asc) {
                         return cmp;
                     } else {
-                        return 0 - cmp;
+                        return -cmp;
                     }
                 }
             }

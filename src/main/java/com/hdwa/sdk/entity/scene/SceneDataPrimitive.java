@@ -1,6 +1,12 @@
 package com.hdwa.sdk.entity.scene;
 
+/**
+ * @author abao
+ * @since 2023/7/25
+ * 值对象
+ */
 public class SceneDataPrimitive {
+
     public Object value;
     public boolean change;
 

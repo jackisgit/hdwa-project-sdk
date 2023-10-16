@@ -1,26 +1,77 @@
 package com.hdwa.sdk.entity.scene;
 
+/**
+ * @author abao
+ * @since 2023/7/25
+ * 场景属性对象
+ */
 public class SceneProperty {
+
+    /**
+     * 属性名称
+     */
     public String propertyName;
+
+    /**
+     * 使用状态 0不使用，1启用
+     */
     public boolean propertyVisible;
 
-    public String propertyValueSchema;// JSONObject、JSONArray、string、double、int、boolean
-    public String propertyValueType;// static、query、custom、deamon
+    /**
+     * 查询后的返回数据值类型
+     * JSONObject、JSONArray、string、double、int、boolean
+     */
+    public String propertyValueSchema;
 
-    public String filter_rule;// 筛选规则
-    public String read_level;// 0表示递归全部、其他正整数表示层次
+    /**
+     * 属性值种类
+     * static、query、custom、deamon
+     */
+    public String propertyValueType;
+
+    /**
+     * 筛选规则
+     */
+    public String filter_rule;
+
+    /**
+     * 查询层级 0表示递归全部、其他正整数表示层次
+     */
+    public String read_level;
+
+    /**
+     * 偏移量
+     */
     public String offset_level;
-    public String allow_pass;// 1表示通过，0表示截断
 
-    // type=custom
+    /**
+     * 标识 1表示通过，0表示截断
+     */
+    public String allow_pass;
+
+    /**
+     * 自定义对象
+     */
     public SceneObject custom_object;
 
-    // type=static
+    /**
+     * 静态值
+     */
     public String static_value;
+
+    /**
+     * 静态查询
+     */
     public SceneObject[] static_array;
 
-    // type=query
+    /**
+     * 查询语句
+     */
     public String query_sql;
+
+    /**
+     * 附加查询
+     */
     public SceneProperty[] query_attached;
 
     public String getPropertyName() {

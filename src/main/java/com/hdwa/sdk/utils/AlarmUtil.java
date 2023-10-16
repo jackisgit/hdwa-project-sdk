@@ -330,17 +330,17 @@ public class AlarmUtil {
             log.error(e.getMessage(), e);
         }
 
-        Date currTime = new Date();
+        /*Date currTime = new Date();
         for (String id : DataContainer.id2alarmList.keySet()) {
             SceneDataValue alarmList = DataContainer.id2alarmList.get(id);
             for (int i = 0; i < alarmList.value_array.set.size(); i++) {
                 SceneDataObject sdoInner = alarmList.value_array.set.get(i);
-                AlarmUtil.durationTime(sdf, currTime, sdoInner);
+                //AlarmUtil.durationTime(sdf, currTime, sdoInner);
             }
         }
         for (SceneDataObject sdoInner : DataContainer.alarmArray.set) {
-            AlarmUtil.durationTime(sdf, currTime, sdoInner);
-        }
+            //AlarmUtil.durationTime(sdf, currTime, sdoInner);
+        }*/
     }
 
     public static String getTime(SimpleDateFormat sdf_T, SimpleDateFormat sdf_blank, SimpleDateFormat sdf, Object object) {
@@ -468,7 +468,7 @@ public class AlarmUtil {
             } else {
                 // 只替换非空字段
                 SceneDataObject sdoAlarm = BaseApiUtil.objectToSdo(alarm);
-                durationTime(sdf, currentTime, sdoAlarm);
+                //durationTime(sdf, currentTime, sdoAlarm);
                 if (existIndex != -1) {
                     SceneDataObject sdoExist = alarmList.value_array.set.get(existIndex);
                     for (String key : sdoAlarm.keySet()) {
