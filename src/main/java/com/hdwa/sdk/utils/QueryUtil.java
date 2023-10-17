@@ -4,7 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.hdwa.sdk.entity.criteria.*;
+import com.hdwa.sdk.entity.criteria.Criteria;
+import com.hdwa.sdk.entity.criteria.CriteriaBase;
+import com.hdwa.sdk.entity.criteria.Match;
+import com.hdwa.sdk.entity.criteria.MatchBase;
 import com.hdwa.sdk.entity.expression.AdvancedExpressionLexer;
 import com.hdwa.sdk.entity.expression.AdvancedExpressionParser;
 import com.hdwa.sdk.entity.expression.AdvancedExpressionScanner;
@@ -12,7 +15,10 @@ import com.hdwa.sdk.entity.expression.AdvancedExpressionWalker;
 import com.hdwa.sdk.entity.repository.InfluenceFactor;
 import com.hdwa.sdk.entity.repository.RepositoryBase;
 import com.hdwa.sdk.entity.repository.WalkerWrapper;
-import com.hdwa.sdk.entity.scene.*;
+import com.hdwa.sdk.entity.scene.SceneDataObject;
+import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
+import com.hdwa.sdk.entity.scene.SceneDataSet;
+import com.hdwa.sdk.entity.scene.SceneDataValue;
 import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.CommonTree;
@@ -21,7 +27,10 @@ import org.antlr.runtime.tree.CommonTreeNodeStream;
 import java.io.ByteArrayInputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.ReentrantLock;
@@ -142,7 +151,11 @@ public class QueryUtil {
                             } else if (me.value instanceof BigDecimal) {
                                 walker.put(var, ((BigDecimal) me.value).doubleValue());
                             } else {
-                                throw new Exception(me.value.getClass().toString());
+                                //throw new Exception(me.value.getClass().toString());
+                                if (me.value.toString().contains("null")) {
+                                    walker.put_null(var);
+                                }
+
                             }
                         }
                     }
