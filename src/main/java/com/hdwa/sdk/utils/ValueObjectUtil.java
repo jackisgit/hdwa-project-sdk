@@ -118,55 +118,61 @@ public class ValueObjectUtil {
     }
 
     public static boolean compare(String operator, ValueObject a, ValueObject b) {
-        if (a.is_null() && b.is_null()) {
+        if ((a != null && b != null) && (a.is_null() && b.is_null())) {
             return operator.equals("==");
-        } else if (a.is_null()) {
-            return operator.equals("<") || operator.equals("<=") || operator.equals("!=");
-        } else if (b.is_null()) {
-            return operator.equals(">") || operator.equals(">=") || operator.equals("!=");
+        } else if (a != null) {
+            if (a.is_null()) {
+                return operator.equals("<") || operator.equals("<=") || operator.equals("!=");
+            } else if (b != null && b.is_null()) {
+                return operator.equals(">") || operator.equals(">=") || operator.equals("!=");
+            }
         }
 
-        if (a.type == 0 && b.type == 0) {
-            switch (operator) {
-                case "<":
-                    return a.intValue < b.intValue;
-                case "<=":
-                    return a.intValue <= b.intValue;
-                case ">":
-                    return a.intValue > b.intValue;
-                case ">=":
-                    return a.intValue >= b.intValue;
-                case "==":
-                    return a.intValue == b.intValue;
-                case "!=":
-                    return a.intValue != b.intValue;
-            }
-        } else {
-            double valuea;
-            if (a.type == 0) {
-                valuea = a.intValue;
-            } else {
-                valuea = a.doubleValue;
-            }
-            double valueb;
-            if (b.type == 0) {
-                valueb = b.intValue;
-            } else {
-                valueb = b.doubleValue;
-            }
-            switch (operator) {
-                case "<":
-                    return valuea < valueb;
-                case "<=":
-                    return valuea <= valueb;
-                case ">":
-                    return valuea > valueb;
-                case ">=":
-                    return valuea >= valueb;
-                case "==":
-                    return valuea == valueb;
-                case "!=":
-                    return valuea != valueb;
+        if (a != null) {
+            if (b != null) {
+                if (a.type == 0 && b.type == 0) {
+                    switch (operator) {
+                        case "<":
+                            return a.intValue < b.intValue;
+                        case "<=":
+                            return a.intValue <= b.intValue;
+                        case ">":
+                            return a.intValue > b.intValue;
+                        case ">=":
+                            return a.intValue >= b.intValue;
+                        case "==":
+                            return a.intValue == b.intValue;
+                        case "!=":
+                            return a.intValue != b.intValue;
+                    }
+                } else {
+                    double valuea;
+                    if (a.type == 0) {
+                        valuea = a.intValue;
+                    } else {
+                        valuea = a.doubleValue;
+                    }
+                    double valueb;
+                    if (b.type == 0) {
+                        valueb = b.intValue;
+                    } else {
+                        valueb = b.doubleValue;
+                    }
+                    switch (operator) {
+                        case "<":
+                            return valuea < valueb;
+                        case "<=":
+                            return valuea <= valueb;
+                        case ">":
+                            return valuea > valueb;
+                        case ">=":
+                            return valuea >= valueb;
+                        case "==":
+                            return valuea == valueb;
+                        case "!=":
+                            return valuea != valueb;
+                    }
+                }
             }
         }
         return true;
