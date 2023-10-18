@@ -1654,7 +1654,7 @@ public class QueryUtil {
                     for (SceneDataPrimitive jtSDP : agg_items_one) {
                         Object jt = jtSDP != null ? jtSDP.value : null;
                         if (jt != null) {
-                            double jtValue;
+                            double jtValue = 0.0;
                             if (jt instanceof Integer) {
                                 jtValue = ((Integer) jt).doubleValue();
                             } else if (jt instanceof Long) {
@@ -1668,7 +1668,7 @@ public class QueryUtil {
                             } else if (jt instanceof BigDecimal) {
                                 jtValue = ((BigDecimal) jt).doubleValue();
                             } else {
-                                throw new Exception(jt.getClass().toString());
+                                //throw new Exception(jt.getClass().toString());
                             }
                             sum += jtValue;
                             count_valid++;
