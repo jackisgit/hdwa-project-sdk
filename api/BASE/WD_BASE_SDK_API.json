@@ -74582,7 +74582,7 @@
                                   {
                                     "PropertyName":"设备",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"ReturnColumns\":[\"id\",\"localId\",\"localName\"]},\"Criteria\":{\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objFrom\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechInArch\",\"relCode\":\"Eq2Fl\"},\"Criteria\":{\"objTo\":{\"ref\":\"ancestor_1'id\"}}}},\"valid\":1,\"classCode\":\"OTSETP\"}}",
+                                    "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"ReturnColumns\":[\"id\",\"localId\",\"localName\"]},\"Criteria\":{\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objFrom\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechInArch\",\"relCode\":\"Eq2Fl\"},\"Criteria\":{\"objTo\":{\"ref\":\"ancestor_1'id\"}}}},\"valid\":1,\"classCode\":\"TPS\"}}",
                                     "read_level":"2",
                                     "filter_rule":"",
                                     "custom_object":null,
@@ -74595,40 +74595,6 @@
                                     ],
                                     "PropertyVisible":false,
                                     "PropertyValueType":"query"
-                                  },
-                                  {
-                                    "PropertyName":"楼层平均值",
-                                    "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'设备\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"avg\",\"Column\": \"temp\"}}",
-                                    "read_level":"1",
-                                    "filter_rule":"",
-                                    "custom_object":null,
-                                    "static_value":null,
-                                    "offset_level":"0",
-                                    "query_attached":[
-                                    ],
-                                    "PropertyValueSchema":"double",
-                                    "static_array":[
-                                    ],
-                                    "PropertyVisible":false,
-                                    "PropertyValueType":"query"
-                                  },
-                                  {
-                                    "PropertyName":"楼层平均值变化曲线",
-                                    "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\":\"curve\",\"Criteria\":{\"currData\":{\"ref\":\"ancestor_1'设备'temp\"},  }}",
-                                    "read_level":"1",
-                                    "filter_rule":null,
-                                    "custom_object":null,
-                                    "static_value":"1",
-                                    "offset_level":"0",
-                                    "query_attached":[
-                                    ],
-                                    "PropertyValueSchema":"int",
-                                    "static_array":[
-                                    ],
-                                    "PropertyVisible":false,
-                                    "PropertyValueType":"deamon"
                                   },
                                   {
                                     "PropertyName":"异常清单",
@@ -74868,40 +74834,6 @@
                                         ],
                                         "PropertyVisible":false,
                                         "PropertyValueType":"query"
-                                      },
-                                      {
-                                        "PropertyName":"楼层平均值",
-                                        "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'设备\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"avg\",\"Column\": \"temp\"}}",
-                                        "read_level":"1",
-                                        "filter_rule":"",
-                                        "custom_object":null,
-                                        "static_value":null,
-                                        "offset_level":"0",
-                                        "query_attached":[
-                                        ],
-                                        "PropertyValueSchema":"double",
-                                        "static_array":[
-                                        ],
-                                        "PropertyVisible":false,
-                                        "PropertyValueType":"query"
-                                      },
-                                      {
-                                        "PropertyName":"楼层平均值变化曲线",
-                                        "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\":\"curve\",\"Criteria\":{\"currData\":{\"ref\":\"ancestor_1'设备'temp\"},  }}",
-                                        "read_level":"1",
-                                        "filter_rule":null,
-                                        "custom_object":null,
-                                        "static_value":"1",
-                                        "offset_level":"0",
-                                        "query_attached":[
-                                        ],
-                                        "PropertyValueSchema":"int",
-                                        "static_array":[
-                                        ],
-                                        "PropertyVisible":false,
-                                        "PropertyValueType":"deamon"
                                       }
                                     ],
                                     "PropertyValueSchema":"JSONArray",
@@ -74964,40 +74896,6 @@
                                     ],
                                     "PropertyVisible":false,
                                     "PropertyValueType":"query"
-                                  },
-                                  {
-                                    "PropertyName":"楼层平均值",
-                                    "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'设备\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"avg\",\"Column\": \"rH\"}}",
-                                    "read_level":"1",
-                                    "filter_rule":"",
-                                    "custom_object":null,
-                                    "static_value":null,
-                                    "offset_level":"0",
-                                    "query_attached":[
-                                    ],
-                                    "PropertyValueSchema":"double",
-                                    "static_array":[
-                                    ],
-                                    "PropertyVisible":false,
-                                    "PropertyValueType":"query"
-                                  },
-                                  {
-                                    "PropertyName":"楼层平均值变化曲线",
-                                    "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\":\"curve\",\"Criteria\":{\"currData\":{\"ref\":\"ancestor_1'设备'rH\"},  }}",
-                                    "read_level":"1",
-                                    "filter_rule":null,
-                                    "custom_object":null,
-                                    "static_value":"1",
-                                    "offset_level":"0",
-                                    "query_attached":[
-                                    ],
-                                    "PropertyValueSchema":"int",
-                                    "static_array":[
-                                    ],
-                                    "PropertyVisible":false,
-                                    "PropertyValueType":"deamon"
                                   },
                                   {
                                     "PropertyName":"异常清单",
@@ -75237,40 +75135,6 @@
                                         ],
                                         "PropertyVisible":false,
                                         "PropertyValueType":"query"
-                                      },
-                                      {
-                                        "PropertyName":"楼层平均值",
-                                        "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'设备\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"avg\",\"Column\": \"rH\"}}",
-                                        "read_level":"1",
-                                        "filter_rule":"",
-                                        "custom_object":null,
-                                        "static_value":null,
-                                        "offset_level":"0",
-                                        "query_attached":[
-                                        ],
-                                        "PropertyValueSchema":"double",
-                                        "static_array":[
-                                        ],
-                                        "PropertyVisible":false,
-                                        "PropertyValueType":"query"
-                                      },
-                                      {
-                                        "PropertyName":"楼层平均值变化曲线",
-                                        "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\":\"curve\",\"Criteria\":{\"currData\":{\"ref\":\"ancestor_1'设备'rH\"},  }}",
-                                        "read_level":"1",
-                                        "filter_rule":null,
-                                        "custom_object":null,
-                                        "static_value":"1",
-                                        "offset_level":"0",
-                                        "query_attached":[
-                                        ],
-                                        "PropertyValueSchema":"int",
-                                        "static_array":[
-                                        ],
-                                        "PropertyVisible":false,
-                                        "PropertyValueType":"deamon"
                                       }
                                     ],
                                     "PropertyValueSchema":"JSONArray",
@@ -75323,7 +75187,7 @@
                                   {
                                     "PropertyName":"设备",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"ReturnColumns\":[\"id\",\"localId\",\"localName\"]},\"Criteria\":{\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objFrom\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechInArch\",\"relCode\":\"Eq2Fl\"},\"Criteria\":{\"objTo\":{\"ref\":\"ancestor_1'id\"}}}},\"valid\":1,\"classCode\":\"OTSECT\",\"wdCode\":\"CO2S\"}}",
+                                    "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"ReturnColumns\":[\"id\",\"localId\",\"localName\"]},\"Criteria\":{\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objFrom\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechInArch\",\"relCode\":\"Eq2Fl\"},\"Criteria\":{\"objTo\":{\"ref\":\"ancestor_1'id\"}}}},\"valid\":1,\"classCode\":\"CO2S\"}}",
                                     "read_level":"4",
                                     "filter_rule":"",
                                     "custom_object":null,
@@ -75336,40 +75200,6 @@
                                     ],
                                     "PropertyVisible":false,
                                     "PropertyValueType":"query"
-                                  },
-                                  {
-                                    "PropertyName":"楼层平均值",
-                                    "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'设备\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"avg\",\"Column\": \"wD_co2nongdu\"}}",
-                                    "read_level":"1",
-                                    "filter_rule":"",
-                                    "custom_object":null,
-                                    "static_value":null,
-                                    "offset_level":"0",
-                                    "query_attached":[
-                                    ],
-                                    "PropertyValueSchema":"double",
-                                    "static_array":[
-                                    ],
-                                    "PropertyVisible":false,
-                                    "PropertyValueType":"query"
-                                  },
-                                  {
-                                    "PropertyName":"楼层平均值变化曲线",
-                                    "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\":\"curve\",\"Criteria\":{\"currData\":{\"ref\":\"ancestor_1'设备'wD_co2nongdu\"},  }}",
-                                    "read_level":"1",
-                                    "filter_rule":null,
-                                    "custom_object":null,
-                                    "static_value":"1",
-                                    "offset_level":"0",
-                                    "query_attached":[
-                                    ],
-                                    "PropertyValueSchema":"int",
-                                    "static_array":[
-                                    ],
-                                    "PropertyVisible":false,
-                                    "PropertyValueType":"deamon"
                                   },
                                   {
                                     "PropertyName":"异常清单",
@@ -75596,7 +75426,7 @@
                                       {
                                         "PropertyName":"设备",
                                         "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"ReturnColumns\":[\"id\",\"localId\",\"localName\"]},\"Criteria\":{\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objFrom\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechInArch\",\"relCode\":\"Eq2Fl\"},\"Criteria\":{\"objTo\":{\"ref\":\"ancestor_1'id\"}}}},\"valid\":1,\"classCode\":\"OTSECT\",\"wdCode\":\"CO2S\"}}",
+                                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"ReturnColumns\":[\"id\",\"localId\",\"localName\"]},\"Criteria\":{\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objFrom\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechInArch\",\"relCode\":\"Eq2Fl\"},\"Criteria\":{\"objTo\":{\"ref\":\"ancestor_1'id\"}}}},\"valid\":1,\"classCode\":\"CO2S\"}}",
                                         "read_level":"4",
                                         "filter_rule":"",
                                         "custom_object":null,
@@ -75609,40 +75439,6 @@
                                         ],
                                         "PropertyVisible":false,
                                         "PropertyValueType":"query"
-                                      },
-                                      {
-                                        "PropertyName":"楼层平均值",
-                                        "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'设备\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"avg\",\"Column\": \"wD_co2nongdu\"}}",
-                                        "read_level":"1",
-                                        "filter_rule":"",
-                                        "custom_object":null,
-                                        "static_value":null,
-                                        "offset_level":"0",
-                                        "query_attached":[
-                                        ],
-                                        "PropertyValueSchema":"double",
-                                        "static_array":[
-                                        ],
-                                        "PropertyVisible":false,
-                                        "PropertyValueType":"query"
-                                      },
-                                      {
-                                        "PropertyName":"楼层平均值变化曲线",
-                                        "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\":\"curve\",\"Criteria\":{\"currData\":{\"ref\":\"ancestor_1'设备'wD_co2nongdu\"},  }}",
-                                        "read_level":"1",
-                                        "filter_rule":null,
-                                        "custom_object":null,
-                                        "static_value":"1",
-                                        "offset_level":"0",
-                                        "query_attached":[
-                                        ],
-                                        "PropertyValueSchema":"int",
-                                        "static_array":[
-                                        ],
-                                        "PropertyVisible":false,
-                                        "PropertyValueType":"deamon"
                                       }
                                     ],
                                     "PropertyValueSchema":"JSONArray",
@@ -75695,7 +75491,7 @@
                                   {
                                     "PropertyName":"设备",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"ReturnColumns\":[\"id\",\"localId\",\"localName\"]},\"Criteria\":{\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objFrom\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechInArch\",\"relCode\":\"Eq2Fl\"},\"Criteria\":{\"objTo\":{\"ref\":\"ancestor_1'id\"}}}},\"valid\":1,\"classCode\":\"OTSECT\",\"wdCode\":\"COS\"}}",
+                                    "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"ReturnColumns\":[\"id\",\"localId\",\"localName\"]},\"Criteria\":{\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objFrom\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechInArch\",\"relCode\":\"Eq2Fl\"},\"Criteria\":{\"objTo\":{\"ref\":\"ancestor_1'id\"}}}},\"valid\":1,\"classCode\":\"COS\"}}",
                                     "read_level":"2",
                                     "filter_rule":"",
                                     "custom_object":null,
@@ -75708,40 +75504,6 @@
                                     ],
                                     "PropertyVisible":false,
                                     "PropertyValueType":"query"
-                                  },
-                                  {
-                                    "PropertyName":"楼层平均值",
-                                    "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'设备\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"avg\",\"Column\": \"concentrate\"}}",
-                                    "read_level":"1",
-                                    "filter_rule":"",
-                                    "custom_object":null,
-                                    "static_value":null,
-                                    "offset_level":"0",
-                                    "query_attached":[
-                                    ],
-                                    "PropertyValueSchema":"double",
-                                    "static_array":[
-                                    ],
-                                    "PropertyVisible":false,
-                                    "PropertyValueType":"query"
-                                  },
-                                  {
-                                    "PropertyName":"楼层平均值变化曲线",
-                                    "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"curve\",\"Criteria\": {\"currData\": {\"ref\": \"ancestor_1'设备'concentrate\"}}}",
-                                    "read_level":"1",
-                                    "filter_rule":null,
-                                    "custom_object":null,
-                                    "static_value":"1",
-                                    "offset_level":"0",
-                                    "query_attached":[
-                                    ],
-                                    "PropertyValueSchema":"int",
-                                    "static_array":[
-                                    ],
-                                    "PropertyVisible":false,
-                                    "PropertyValueType":"deamon"
                                   },
                                   {
                                     "PropertyName":"异常清单",
@@ -75968,7 +75730,7 @@
                                       {
                                         "PropertyName":"设备",
                                         "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"ReturnColumns\":[\"id\",\"localId\",\"localName\"]},\"Criteria\":{\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objFrom\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechInArch\",\"relCode\":\"Eq2Fl\"},\"Criteria\":{\"objTo\":{\"ref\":\"ancestor_1'id\"}}}},\"valid\":1,\"classCode\":\"OTSECT\",\"wdCode\":\"COS\"}}",
+                                        "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"ReturnColumns\":[\"id\",\"localId\",\"localName\"]},\"Criteria\":{\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objFrom\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechInArch\",\"relCode\":\"Eq2Fl\"},\"Criteria\":{\"objTo\":{\"ref\":\"ancestor_1'id\"}}}},\"valid\":1,\"classCode\":\"COS\"}}",
                                         "read_level":"2",
                                         "filter_rule":"",
                                         "custom_object":null,
@@ -75981,40 +75743,6 @@
                                         ],
                                         "PropertyVisible":false,
                                         "PropertyValueType":"query"
-                                      },
-                                      {
-                                        "PropertyName":"楼层平均值",
-                                        "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'设备\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"avg\",\"Column\": \"concentrate\"}}",
-                                        "read_level":"1",
-                                        "filter_rule":"",
-                                        "custom_object":null,
-                                        "static_value":null,
-                                        "offset_level":"0",
-                                        "query_attached":[
-                                        ],
-                                        "PropertyValueSchema":"double",
-                                        "static_array":[
-                                        ],
-                                        "PropertyVisible":false,
-                                        "PropertyValueType":"query"
-                                      },
-                                      {
-                                        "PropertyName":"楼层平均值变化曲线",
-                                        "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\": \"curve\",\"Criteria\": {\"currData\": {\"ref\": \"ancestor_1'设备'concentrate\"}}}",
-                                        "read_level":"1",
-                                        "filter_rule":null,
-                                        "custom_object":null,
-                                        "static_value":"1",
-                                        "offset_level":"0",
-                                        "query_attached":[
-                                        ],
-                                        "PropertyValueSchema":"int",
-                                        "static_array":[
-                                        ],
-                                        "PropertyVisible":false,
-                                        "PropertyValueType":"deamon"
                                       }
                                     ],
                                     "PropertyValueSchema":"JSONArray",
@@ -76080,40 +75808,6 @@
                                     ],
                                     "PropertyVisible":false,
                                     "PropertyValueType":"query"
-                                  },
-                                  {
-                                    "PropertyName":"楼层平均值",
-                                    "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'设备\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"avg\",\"Column\": \"illum\"}}",
-                                    "read_level":"1",
-                                    "filter_rule":"",
-                                    "custom_object":null,
-                                    "static_value":null,
-                                    "offset_level":"0",
-                                    "query_attached":[
-                                    ],
-                                    "PropertyValueSchema":"double",
-                                    "static_array":[
-                                    ],
-                                    "PropertyVisible":false,
-                                    "PropertyValueType":"query"
-                                  },
-                                  {
-                                    "PropertyName":"楼层平均值变化曲线",
-                                    "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"curve\",\"Criteria\": {\"currData\": {\"ref\": \"ancestor_1'设备'illum\"}}}",
-                                    "read_level":"1",
-                                    "filter_rule":null,
-                                    "custom_object":null,
-                                    "static_value":"1",
-                                    "offset_level":"0",
-                                    "query_attached":[
-                                    ],
-                                    "PropertyValueSchema":"int",
-                                    "static_array":[
-                                    ],
-                                    "PropertyVisible":false,
-                                    "PropertyValueType":"deamon"
                                   },
                                   {
                                     "PropertyName":"异常清单",
@@ -76353,40 +76047,6 @@
                                         ],
                                         "PropertyVisible":false,
                                         "PropertyValueType":"query"
-                                      },
-                                      {
-                                        "PropertyName":"楼层平均值",
-                                        "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'设备\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"avg\",\"Column\": \"illum\"}}",
-                                        "read_level":"1",
-                                        "filter_rule":"",
-                                        "custom_object":null,
-                                        "static_value":null,
-                                        "offset_level":"0",
-                                        "query_attached":[
-                                        ],
-                                        "PropertyValueSchema":"double",
-                                        "static_array":[
-                                        ],
-                                        "PropertyVisible":false,
-                                        "PropertyValueType":"query"
-                                      },
-                                      {
-                                        "PropertyName":"楼层平均值变化曲线",
-                                        "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\": \"curve\",\"Criteria\": {\"currData\": {\"ref\": \"ancestor_1'设备'illum\"}}}",
-                                        "read_level":"1",
-                                        "filter_rule":null,
-                                        "custom_object":null,
-                                        "static_value":"1",
-                                        "offset_level":"0",
-                                        "query_attached":[
-                                        ],
-                                        "PropertyValueSchema":"int",
-                                        "static_array":[
-                                        ],
-                                        "PropertyVisible":false,
-                                        "PropertyValueType":"deamon"
                                       }
                                     ],
                                     "PropertyValueSchema":"JSONArray",
@@ -142473,7 +142133,7 @@
                                         {
                                           "PropertyName":"设备",
                                           "allow_pass":"1",
-                                          "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\", \"ibmsSceneCode\": \"hjpz\", \"ibmsClassCode\": \"nongdu\"},\"Criteria\":{\"wdCode\":\"CO2S\"}}",
+                                          "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\", \"ibmsSceneCode\": \"hjpz\", \"ibmsClassCode\": \"eryanghuatan\"},\"Criteria\":{}}",
                                           "read_level":"1",
                                           "filter_rule":"",
                                           "custom_object":null,
@@ -142542,7 +142202,7 @@
                                         {
                                           "PropertyName":"设备",
                                           "allow_pass":"1",
-                                          "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\", \"ibmsSceneCode\": \"hjpz\", \"ibmsClassCode\": \"nongdu\"},\"Criteria\":{\"wdCode\":\"COS\"}}",
+                                          "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\", \"ibmsSceneCode\": \"hjpz\", \"ibmsClassCode\": \"yiyanghuatan\"},\"Criteria\":{}}",
                                           "read_level":"1",
                                           "filter_rule":"",
                                           "custom_object":null,
