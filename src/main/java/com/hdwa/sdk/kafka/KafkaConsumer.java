@@ -6,7 +6,6 @@ import com.hdwa.sdk.service.LoadDataMainService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -38,8 +37,14 @@ public class KafkaConsumer {
         MessageDto msg = JSONObject.parseObject(record.value(), MessageDto.class);
         if (projectId.equals(msg.getProjectId())) {
             log.warn("=======开始消费DMP消息：{}", record.value());
-            loadDataMainService.downLoadDataMain();
-            loadDataMainService.loadDataMain();
+            //全量更新或者只更新逻辑编组数据
+            if (msg.getMsgType().equals("0")) {
+                log.warn("=======开始全流程更新数据");
+                loadDataMainService.main();
+            } else if (msg.getMsgType().equals("1")) {
+                log.warn("=======开始更新逻辑编组数据");
+                loadDataMainService.logicGroupMain();
+            }
         }
     }
 

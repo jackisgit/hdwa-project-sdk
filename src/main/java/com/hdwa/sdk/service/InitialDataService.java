@@ -260,7 +260,7 @@ public class InitialDataService implements CommandLineRunner {
             RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
             JSONArray content = AlarmUtil.alarmRefresh(BaseDecConstant.CURRENT_PROJECT_ID, groupCode, alarmUrl, repository);
             if (content.size() != 0) {
-                log.warn("****刷新报警数据数量：" + content.size());
+                log.warn("****定时刷新报警数据数量：" + content.size());
                 JSONObject AlarmJob = new JSONObject();
                 AlarmJob.put(BaseDecConstant.TYPE, BaseDecConstant.REFRESH);
                 AlarmJob.put(BaseDecConstant.CONTENT, content);

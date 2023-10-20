@@ -5,7 +5,6 @@ import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
@@ -44,6 +43,37 @@ public class LoadDataMainService {
         ibmsLogicalGroupService.downLoadLogicalGroupData();
         pointService.downLoadPoint();
         configApiService.downLoadConfig();
+    }
+
+    /**
+     * 先下载后加载数据全流程
+     */
+    public void main() {
+        try {
+            downLoadDataMain();
+            loadDataMain();
+        } catch (Exception e) {
+            log.error("***执行全流程出现异常", e);
+        }
+    }
+
+
+    /**
+     * 下载逻辑编组数据后加载数据流程
+     */
+    public void logicGroupMain() {
+        try {
+            RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
+            ibmsLogicalGroupService.downLoadLogicalGroupData();
+            //加载IBMS逻辑编组数据
+            ibmsLogicalGroupService.loadLogicalGroupData(repository);
+            //加载接口数据
+            configApiService.loadConfigData(repository);
+            //加载到数据容器
+            DataContainer.projectMap.put(System.getProperty(BaseDecConstant.PROJECT_ID), repository);
+        } catch (Exception e) {
+            log.error("***执行加载逻辑编组流程出现异常", e);
+        }
     }
 
     /**

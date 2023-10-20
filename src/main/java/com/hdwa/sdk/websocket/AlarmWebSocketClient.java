@@ -13,6 +13,7 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
+import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -41,6 +42,17 @@ public class AlarmWebSocketClient extends WebSocketClient {
      */
     public URI url;
 
+
+    /**
+     * 统计时间
+     */
+    private Date lastTime = new Date();
+
+    /**
+     * 统计数量
+     */
+    private int count = 0;
+
     ThreadPoolExecutor executor = new ThreadPoolExecutor(4, 8, 10,
             TimeUnit.SECONDS,
             new LinkedBlockingQueue<>(),
@@ -64,12 +76,7 @@ public class AlarmWebSocketClient extends WebSocketClient {
             JSONObject AlarmJob = new JSONObject();
             AlarmJob.put(BaseDecConstant.TYPE, BaseDecConstant.REFRESH);
             DataContainer.alarmBuffer.offer(AlarmJob, 16384);
-            JSONArray content = new JSONArray();
-            try {
-                content = AlarmUtil.alarmRefresh(projectId, groupCode, alarmUrl, repository);
-            } catch (Exception e) {
-                log.error(e.getMessage(), e);
-            }
+            JSONArray content = AlarmUtil.alarmRefresh(projectId, groupCode, alarmUrl, repository);
             AlarmJob.put(BaseDecConstant.CONTENT, content);
             log.warn("*****查询到报警数据: " + content.size());
             //多线程处理报警
@@ -91,9 +98,19 @@ public class AlarmWebSocketClient extends WebSocketClient {
 
     @Override
     public void onMessage(String arg0) {
+        count++;
+        Date currTime = new Date();
+        if (currTime.getTime() / (1000L * 60) != lastTime.getTime() / (1000L * 60)) {
+            lastTime = currTime;
+            log.warn("*****alarmWebSocket-1分钟接收到数据数量: " + count);
+            count = 0;
+        }
+
         try {
             JSONObject alarm = (JSONObject) JSON.parse(arg0);
-            log.warn("*****接收到报警处理数据：" + alarm.get(BaseDecConstant.ID));
+            if (alarm.get(BaseDecConstant.ID) == null) {
+                log.warn("*****接收到报警处理数据：" + alarm);
+            }
             //3为转工单
             if ((Integer) alarm.get(BaseDecConstant.PUSH_TYPE) == 3) {
                 String alarmId = (String) alarm.get(BaseDecConstant.ALARM_ID);

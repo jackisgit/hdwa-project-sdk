@@ -36,6 +36,8 @@ public class AttributeFilteringUtil {
 
         keyWordMap.put("所在建筑", true);
         keyWordMap.put("所在楼层", true);
+        keyWordMap.put("所属楼层", true);
+        keyWordMap.put("所属建筑", true);
         keyWordMap.put("楼层名称", true);
         keyWordMap.put("所在空间", true);
         keyWordMap.put("被设备控制", true);
