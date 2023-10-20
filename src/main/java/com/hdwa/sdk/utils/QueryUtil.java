@@ -151,11 +151,7 @@ public class QueryUtil {
                             } else if (me.value instanceof BigDecimal) {
                                 walker.put(var, ((BigDecimal) me.value).doubleValue());
                             } else {
-                                //throw new Exception(me.value.getClass().toString());
-                                if (me.value.toString().contains("null")) {
-                                    walker.put_null(var);
-                                }
-
+                                throw new Exception(me.value.getClass().toString());
                             }
                         }
                     }
@@ -1668,7 +1664,7 @@ public class QueryUtil {
                             } else if (jt instanceof BigDecimal) {
                                 jtValue = ((BigDecimal) jt).doubleValue();
                             } else {
-                                //throw new Exception(jt.getClass().toString());
+                                throw new Exception(jt.getClass().toString());
                             }
                             sum += jtValue;
                             count_valid++;

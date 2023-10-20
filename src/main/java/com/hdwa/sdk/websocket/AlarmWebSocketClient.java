@@ -40,6 +40,7 @@ public class AlarmWebSocketClient extends WebSocketClient {
      * WebSocket连接地址
      */
     public URI url;
+
     ThreadPoolExecutor executor = new ThreadPoolExecutor(4, 8, 10,
             TimeUnit.SECONDS,
             new LinkedBlockingQueue<>(),
@@ -93,12 +94,12 @@ public class AlarmWebSocketClient extends WebSocketClient {
         try {
             JSONObject alarm = (JSONObject) JSON.parse(arg0);
             log.warn("*****接收到报警处理数据：" + alarm.get(BaseDecConstant.ID));
-            RepositoryImpl repository = DataContainer.projectMap.get(projectId);
+            //3为转工单
             if ((Integer) alarm.get(BaseDecConstant.PUSH_TYPE) == 3) {
                 String alarmId = (String) alarm.get(BaseDecConstant.ALARM_ID);
                 AlarmUtil.processOrderDesc(alarmId, alarm);
             } else {
-                AlarmUtil.updateAlarm(alarm, repository);
+                AlarmUtil.updateAlarm(alarm, DataContainer.projectMap.get(projectId));
                 AlarmUtil.processAlarm(alarm);
             }
         } catch (Exception e) {

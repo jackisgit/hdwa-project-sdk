@@ -12,7 +12,6 @@ import com.hdwa.sdk.entity.scene.SceneDataValue;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
@@ -241,16 +240,18 @@ public class ControlUtil {
             build_object(detail.value_object, infoValueSet);
         }
         JSONArray points = new JSONArray();
-        JSONObject resultJsonObject = FilterUtil.postPage(repository, JSONObject.parseObject(params.toString()));
 
+        //查询需要下发的设备
+        JSONArray resultData = (JSONArray) CalculateApiJsonUtil.getValueJson(CalculateApiJsonUtil.getValueObject(repository, params.getPath()));
         //筛选真实要下发的数据
-        List<Object> list = ((List<Map>) resultJsonObject.get("content")).stream().map(map -> map.get("id")).collect(Collectors.toList());
+        List<Object> list = resultData.stream().map(map -> ((JSONObject) map).getString(BaseDecConstant.ID)).collect(Collectors.toList());
+
         for (SceneDataObject object : objectArray) {
             //真实下发的id包含清单就下发
             if (list.size() > 0 && !list.contains(object.get("id").value_prim.value)) {
                 continue;
             }
-            log.warn("-----下发的设备:" + object.get("id").value_prim.value);
+            log.warn("-----下发的设备Id:" + object.get("id").value_prim.value);
             build_points(repository, object, infoValueSet, points);
             sdoList.add(object);
             build_object(object, infoValueSet);

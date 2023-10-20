@@ -86,7 +86,16 @@ public class AlarmUtil {
             paramObject.put("state", 1);
             paramObject.put("size", 5000);
             paramObject.put("current", 1);
-            JSONArray content = OkHttpClientUtil.httpPost(paramObject, alarmUrl + UrlConstant.ALARM_RECORD_PAGE).getJSONObject(BaseDecConstant.DATA).getJSONArray(BaseDecConstant.RECORDS);
+            JSONObject resultDataAram = OkHttpClientUtil.httpPost(paramObject, alarmUrl + UrlConstant.ALARM_RECORD_PAGE);
+            if (resultDataAram == null || resultDataAram.getIntValue(BaseDecConstant.CODE) != 200 || resultDataAram.getJSONObject(BaseDecConstant.DATA) == null) {
+                log.error("查询报警记录数据异常：{}", resultDataAram);
+                return new JSONArray();
+            }
+            JSONArray content = resultDataAram.getJSONObject(BaseDecConstant.DATA).getJSONArray(BaseDecConstant.RECORDS);
+            if (content == null) {
+                log.error("报警记录数据为null");
+                return new JSONArray();
+            }
             JSONArray ids = new JSONArray();
             Map<String, JSONObject> alarmMap = new HashMap<>(16);
             for (int i = 0; i < content.size(); i++) {
@@ -107,14 +116,24 @@ public class AlarmUtil {
                 param.put("projectId", projectId);
                 param.put("groupCode", groupCode);
                 param.put("ids", ids);
-                JSONArray contentOrderState = OkHttpClientUtil.httpPost(param, alarmUrl + UrlConstant.QUERY_ORDER_STATE).getJSONArray(BaseDecConstant.DATA);
-                //log.warn("*****查询工单状态完成" + ids.size());
-                for (int i = 0; i < contentOrderState.size(); i++) {
-                    JSONObject orderStateItem = contentOrderState.getJSONObject(i);
-                    String alarmId = (String) orderStateItem.get("alarmId");
-                    JSONObject alarm = alarmMap.get(alarmId);
-                    alarm.put("orderId", orderStateItem.get("orderId"));
-                    alarm.put("orderStateDesc", orderStateItem.get("orderStateDesc"));
+                JSONObject resultDataOrder = OkHttpClientUtil.httpPost(param, alarmUrl + UrlConstant.QUERY_ORDER_STATE);
+
+                if (resultDataOrder == null || resultDataOrder.getIntValue(BaseDecConstant.CODE) != 200 || resultDataOrder.getJSONArray(BaseDecConstant.DATA) == null) {
+                    log.error("查询报警工单记录数据异常，{}", resultDataOrder);
+                } else {
+                    JSONArray data = resultDataOrder.getJSONArray(BaseDecConstant.DATA);
+                    if (data == null) {
+                        log.error("报警工单记录数据为null");
+                    } else {
+                        //log.warn("*****查询工单状态完成" + ids.size());
+                        for (int i = 0; i < data.size(); i++) {
+                            JSONObject orderStateItem = data.getJSONObject(i);
+                            String alarmId = (String) orderStateItem.get("alarmId");
+                            JSONObject alarm = alarmMap.get(alarmId);
+                            alarm.put("orderId", orderStateItem.get("orderId"));
+                            alarm.put("orderStateDesc", orderStateItem.get("orderStateDesc"));
+                        }
+                    }
                 }
             }
             result.addAll(content);
@@ -451,9 +470,12 @@ public class AlarmUtil {
             List<Integer> existIndexList = new CopyOnWriteArrayList<>();
             for (int index_alarm = 0; index_alarm < DataContainer.alarmArray.set.size(); index_alarm++) {
                 SceneDataObject alarmItem = DataContainer.alarmArray.set.get(index_alarm);
-                if (alarmItem.value_object.get("id").value_prim.value.equals(id)) {
-                    existIndexList.add(0, index_alarm);
+                if (alarmItem != null && alarmItem.value_object != null) {
+                    if (alarmItem.value_object.get("id").value_prim.value.equals(id)) {
+                        existIndexList.add(0, index_alarm);
+                    }
                 }
+
             }
 
             if (treatState.equals("3")) {
