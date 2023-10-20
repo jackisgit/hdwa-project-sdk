@@ -8588,7 +8588,7 @@
                           {
                             "PropertyName":"数量",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'运营'名称=停车统计'清单\"},\"Criteria\": {\"onlineStatus\": 1.0},\"Aggregation\": {\"Function\": \"count\"}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'运营'名称=停车统计'清单\"},\"Criteria\": {\"onlineStatus\": 1},\"Aggregation\": {\"Function\": \"count\"}}",
                             "read_level":"1",
                             "filter_rule":"",
                             "custom_object":null,
@@ -8626,7 +8626,7 @@
                           {
                             "PropertyName":"数量",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'运营'名称=停车统计'清单\"},\"Criteria\": {\"onlineStatus\": 0.0},\"Aggregation\": {\"Function\": \"count\"}}",
+                            "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'运营'名称=停车统计'清单\"},\"Criteria\": {\"onlineStatus\": 0},\"Aggregation\": {\"Function\": \"count\"}}",
                             "read_level":"1",
                             "filter_rule":"",
                             "custom_object":null,
@@ -26950,7 +26950,7 @@
                           {
                             "PropertyName":"清单",
                             "allow_pass":"1",
-                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"qianwubeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
+                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"zkt-object\",\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"wushuibeng\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "read_level":"4",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
@@ -45491,7 +45491,7 @@
                               {
                                 "PropertyName":"清单",
                                 "allow_pass":"1",
-                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"qianwubeng\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechForArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"wushuibeng\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechForArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "read_level":"4",
                                 "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":  {\"LogicOperator\": \"and\",\"Criterias\": [  {\"当前状态\":{\"ref\":\"ancestor_1'当前状态\"},  },  {\"runStatus\":{\"ref\":\"ancestor_1'开关状态\"},  },  {\"localRemoteStatus\":{\"ref\":\"ancestor_1'本地远程状态\"},  },  {\"LogicOperator\": \"or\",\"Criterias\": [      {\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}        }      },      {\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}        }      }    ]  }]  }}",
                                 "custom_object":null,
@@ -103121,7 +103121,7 @@
                                   {
                                     "PropertyName":"未排序基本参数点位",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"SWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"qianwubeng\",\"infoType\": \"基本参数\",\"isVisible\": true        }      }    }}}",
+                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"SWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"wushuibeng\",\"infoType\": \"基本参数\",\"isVisible\": true        }      }    }}}",
                                     "read_level":"1",
                                     "filter_rule":null,
                                     "custom_object":null,
@@ -103131,7 +103131,7 @@
                                       {
                                         "PropertyName":"sequenceNo",
                                         "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"qianwubeng\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"wushuibeng\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
                                         "read_level":"1",
                                         "filter_rule":null,
                                         "custom_object":null,
@@ -103146,7 +103146,7 @@
                                       {
                                         "PropertyName":"infoStage",
                                         "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"qianwubeng\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"infoStage\"}",
+                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"wushuibeng\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"infoStage\"}",
                                         "read_level":"1",
                                         "filter_rule":null,
                                         "custom_object":null,
@@ -103161,7 +103161,7 @@
                                       {
                                         "PropertyName":"isDefaultVisible",
                                         "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"qianwubeng\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"isDefaultVisible\"}",
+                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"wushuibeng\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"isDefaultVisible\"}",
                                         "read_level":"1",
                                         "filter_rule":null,
                                         "custom_object":null,
@@ -103182,7 +103182,7 @@
                                   {
                                     "PropertyName":"未排序单设备控制点位",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"SWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"qianwubeng\",\"infoType\": \"设定参数\",\"isVisible\": true        }      }    }}}",
+                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"SWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"wushuibeng\",\"infoType\": \"设定参数\",\"isVisible\": true        }      }    }}}",
                                     "read_level":"1",
                                     "filter_rule":null,
                                     "custom_object":null,
@@ -103192,7 +103192,7 @@
                                       {
                                         "PropertyName":"sequenceNo",
                                         "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"qianwubeng\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"wushuibeng\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
                                         "read_level":"1",
                                         "filter_rule":null,
                                         "custom_object":null,
@@ -103228,7 +103228,7 @@
                                   {
                                     "PropertyName":"未排序批量控制点位",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"SWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"qianwubeng\",\"infoType\": \"设定参数\",\"isVisible\": true,\"isBatchControlParam\": true        }      }    }}}",
+                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"SWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"wushuibeng\",\"infoType\": \"设定参数\",\"isVisible\": true,\"isBatchControlParam\": true        }      }    }}}",
                                     "read_level":"1",
                                     "filter_rule":null,
                                     "custom_object":null,
@@ -103238,7 +103238,7 @@
                                       {
                                         "PropertyName":"sequenceNo",
                                         "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"qianwubeng\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"wushuibeng\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
                                         "read_level":"1",
                                         "filter_rule":null,
                                         "custom_object":null,
@@ -103274,7 +103274,7 @@
                                   {
                                     "PropertyName":"未排序运行参数点位",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"SWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"qianwubeng\",\"infoType\": \"运行参数\",\"isVisible\": true        }      }    }}}",
+                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"SWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"wushuibeng\",\"infoType\": \"运行参数\",\"isVisible\": true        }      }    }}}",
                                     "read_level":"1",
                                     "filter_rule":null,
                                     "custom_object":null,
@@ -103284,7 +103284,7 @@
                                       {
                                         "PropertyName":"sequenceNo",
                                         "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"qianwubeng\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"wushuibeng\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
                                         "read_level":"1",
                                         "filter_rule":null,
                                         "custom_object":null,
@@ -103320,7 +103320,7 @@
                                   {
                                     "PropertyName":"未排序关键参数点位",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"SWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"qianwubeng\",\"infoType\": \"运行参数\",\"isVisible\": true,\"isKeyPoint\": true        }      }    }}}",
+                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"SWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"wushuibeng\",\"infoType\": \"运行参数\",\"isVisible\": true,\"isKeyPoint\": true        }      }    }}}",
                                     "read_level":"1",
                                     "filter_rule":null,
                                     "custom_object":null,
@@ -103330,7 +103330,7 @@
                                       {
                                         "PropertyName":"sequenceNo",
                                         "allow_pass":"1",
-                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"qianwubeng\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"wushuibeng\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
                                         "read_level":"1",
                                         "filter_rule":null,
                                         "custom_object":null,
@@ -103366,7 +103366,7 @@
                                   {
                                     "PropertyName":"控制关联点位",
                                     "allow_pass":"1",
-                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-relation\"},\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"qianwubeng\"}}",
+                                    "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-relation\"},\"Criteria\": {\"ibmsSceneCode\": \"psxt\",\"ibmsClassCode\": \"wushuibeng\"}}",
                                     "read_level":"1",
                                     "filter_rule":null,
                                     "custom_object":null,
