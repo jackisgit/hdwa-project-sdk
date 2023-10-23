@@ -92,7 +92,7 @@ public class KafkaMessageReceiver {
                 }
                 // 获取设备手自动状态
                 Object manualAutoSetValue = redisTemplate.opsForValue().get(command.getManualAutoSet());
-                if (!Objects.equals(manualAutoSetValue, 1.0d)) {
+                if (!Objects.equals(manualAutoSetValue, "1.0") && !Objects.equals(manualAutoSetValue, 1.0d)) {
                     responseContent.add(new ControlCommand(command.getId(), -1));
                     log.info("设备[{}]手自动状态未设置自动, {}: {}", command.getObjectId(), command.getManualAutoSet(), manualAutoSetValue);
                     continue;
