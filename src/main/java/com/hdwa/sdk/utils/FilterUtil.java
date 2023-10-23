@@ -55,9 +55,9 @@ public class FilterUtil {
 
     private static List<SceneDataObject> filter(RepositoryBase Repository, JSONArray path, JSONObject params) throws Exception {
         SceneDataValue valueObject = (SceneDataValue) CalculateApiJsonUtil.getValueObject(Repository, path);
-        if (!Repository.enable_factor) {
-            RecursiveUtil.refreshObject(Repository, valueObject);
-        }
+
+        RecursiveUtil.refreshObject(Repository, valueObject);
+
         String filter_rule = valueObject.rel_property.filter_rule;
         if (filter_rule == null || filter_rule.trim().length() == 0) {
             JSONObject sql_json = new JSONObject();

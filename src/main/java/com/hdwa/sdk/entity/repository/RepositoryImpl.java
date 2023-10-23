@@ -4,18 +4,13 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.scene.SceneDataObject;
-import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
 import com.hdwa.sdk.entity.scene.SceneDataSet;
 import com.hdwa.sdk.entity.scene.SceneDataValue;
-import com.hdwa.sdk.utils.BaseApiUtil;
-import com.hdwa.sdk.websocket.WebSocketUtil;
 import lombok.extern.slf4j.Slf4j;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
 public class RepositoryImpl extends RepositoryBase {
@@ -183,103 +178,16 @@ public class RepositoryImpl extends RepositoryBase {
 
     public Map<String, JSONObject> general_queryMap;
 
-    public static boolean accelerate_enable = false;
-    public static long accelerate_ratio = 60 * 60 * 24;
-    public static String init_timeString = "2021-01-01 00:00:00";
-    public static Date init_time;
-    public static Date start_time;
-
     public RepositoryImpl() {
         super();
     }
 
-
-    // TODO: 2023/9/25 待优化 
-    public RepositoryImpl(boolean use_thread, boolean enable_factor, int thread_count,
-                          long interval_between_compute) {
-        super(use_thread, enable_factor, thread_count, interval_between_compute);
-        this.base_value = generate_base_value();
-    }
-
-    public static Map<String, SceneDataValue> generate_base_value() {
-        Map<String, SceneDataValue> base_value = new ConcurrentHashMap<String, SceneDataValue>();
-        Calendar calendar = Calendar.getInstance();
-        Map<String, Date> timeMap = new ConcurrentHashMap<String, Date>();
-        Map<String, SimpleDateFormat> sdfMap = new ConcurrentHashMap<String, SimpleDateFormat>();
-        sdfMap.put("simple", new SimpleDateFormat("yyyyMMddHHmmss"));
-        sdfMap.put("normal", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
-        sdfMap.put("T", new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"));
-
-        Date currTime = new Date();
-        if (accelerate_enable) {
-            if (init_time == null) {
-                try {
-                    init_time = sdfMap.get("normal").parse(init_timeString);
-                } catch (ParseException e) {
-                }
-            }
-
-            if (start_time == null) {
-                start_time = currTime;
-            }
-
-            currTime = new Date(init_time.getTime() + (currTime.getTime() - start_time.getTime()) * accelerate_ratio);
-        }
-        Date today = new Date((currTime.getTime() + (1000L * 60 * 60 * 8)) / (1000L * 60 * 60 * 24) * (1000L * 60 * 60 * 24) - (1000L * 60 * 60 * 8));
-        {
-            calendar.setTime(today);
-            timeMap.put("curr_day", calendar.getTime());
-            calendar.add(Calendar.DAY_OF_MONTH, -1);
-            timeMap.put("last_day", calendar.getTime());
-            calendar.add(Calendar.DAY_OF_MONTH, +1);
-            calendar.add(Calendar.DAY_OF_MONTH, +1);
-            timeMap.put("next_day", calendar.getTime());
-        }
-        {
-            calendar.setTime(today);
-            calendar.set(Calendar.DAY_OF_WEEK, 1);
-            timeMap.put("curr_week", calendar.getTime());
-            calendar.add(Calendar.WEEK_OF_MONTH, -1);
-            timeMap.put("last_week", calendar.getTime());
-            calendar.add(Calendar.WEEK_OF_MONTH, +1);
-            calendar.add(Calendar.WEEK_OF_MONTH, +1);
-            timeMap.put("next_week", calendar.getTime());
-        }
-        {
-            calendar.setTime(today);
-            calendar.set(Calendar.DAY_OF_MONTH, 1);
-            timeMap.put("curr_month", calendar.getTime());
-            calendar.add(Calendar.MONTH, -1);
-            timeMap.put("last_month", calendar.getTime());
-            calendar.add(Calendar.MONTH, +1);
-            calendar.add(Calendar.MONTH, +1);
-            timeMap.put("next_month", calendar.getTime());
-        }
-        {
-            calendar.setTime(today);
-            calendar.set(Calendar.DAY_OF_MONTH, 1);
-            calendar.set(Calendar.MONTH, 0);
-            timeMap.put("curr_year", calendar.getTime());
-            calendar.add(Calendar.YEAR, -1);
-            timeMap.put("last_year", calendar.getTime());
-            calendar.add(Calendar.YEAR, +1);
-            calendar.add(Calendar.YEAR, +1);
-            timeMap.put("next_year", calendar.getTime());
-        }
-
-        for (String key : timeMap.keySet()) {
-            for (String sdfKey : sdfMap.keySet()) {
-                SimpleDateFormat sdf = sdfMap.get(sdfKey);
-                SceneDataValue SceneDataValue = new SceneDataValue(null, null, null, null);
-                SceneDataValue.value_prim = new SceneDataPrimitive();
-                SceneDataValue.value_prim.change = true;
-                SceneDataValue.value_prim.value = sdf.format(timeMap.get(key));
-                base_value.put(key + "_" + sdfKey, SceneDataValue);
-            }
-        }
-        return base_value;
-    }
-
+    /**
+     * 解析数据
+     * @param descSet
+     * @param Source
+     * @return
+     */
     public SceneDataSet ParseSource(JSONObject descSet, String Source) {
         SceneDataSet result = null;
         switch (Source) {
@@ -395,213 +303,4 @@ public class RepositoryImpl extends RepositoryBase {
         return result;
     }
 
-    private void refresh_rwd2zkt() {
-        for (SceneDataObject classItem : this.ZKTClassArray.set) {
-            String ibmsSceneCode = (String) classItem.get("ibmsSceneCode").value_prim.value;
-            String ibmsClassCode = (String) classItem.get("ibmsClassCode").value_prim.value;
-            String flag = null;
-            if (classItem.containsKey("flag")) {
-                flag = (String) classItem.get("flag").value_prim.value;
-            }
-            if (flag != null && flag.equals("reference")) {
-                continue;
-            }
-            SceneDataValue sdv = this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode);
-            for (SceneDataObject obj : sdv.value_array.set) {
-                if (obj.father != null) {
-                    this.dependency.sdv2Children.putIfAbsent(obj.father, new CopyOnWriteArrayList<SceneDataObject>());
-                    this.dependency.sdv2Children.get(obj.father).add(obj);
-                }
-            }
-        }
-    }
-
-    private void refresh_iot2SetColumn() {
-        for (String key : this.objectArrayDic.keySet()) {
-            if (this.objTypeMap.containsKey(key)) {
-                continue;
-            }
-            String classCode = key;
-            SceneDataSet infoArray = this.infoArrayDic.get(classCode);
-            SceneDataSet objectArray = this.objectArrayDic.get(key).value_array;
-            for (int index_info = 0; index_info < infoArray.set.size(); index_info++) {
-                SceneDataObject info = infoArray.set.get(index_info);
-                String infoCode = (String) info.get("code").value_prim.value;
-                if (BaseApiUtil.getInfoTypeByTag(info) == 1) {
-                    for (int index_object = 0; index_object < objectArray.set.size(); index_object++) {
-                        SceneDataObject obj = objectArray.set.get(index_object);
-                        String Key = infoCode;
-                        SceneDataValue sdv = obj.get(Key);
-                        if (sdv != null) {
-                            this.dependency.add_sdv2SetColumn(sdv, objectArray, Key);
-                        }
-                    }
-                } else if (BaseApiUtil.getInfoTypeByTag(info) == 2) {
-                    for (int index_object = 0; index_object < objectArray.set.size(); index_object++) {
-                        SceneDataObject obj = objectArray.set.get(index_object);
-                        String Key = infoCode;
-                        SceneDataValue sdv = obj.get(Key);
-                        if (sdv != null) {
-                            this.dependency.add_sdv2SetColumn(sdv, objectArray, Key);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private void refresh_alarm2SetColumn() {
-        for (String classCode : this.objectArrayDic.keySet()) {
-            if (!this.code2objTypeMap.containsKey(classCode)) {
-                continue;
-            }
-            String objType = this.code2objTypeMap.get(classCode);
-            if (!objType.equals(BaseDecConstant.EQUIPMENT) && !objType.equals(BaseDecConstant.SYSTEM) && !objType.equals(BaseDecConstant.SPACE)) {
-                continue;
-            }
-            SceneDataSet objectArray = this.objectArrayDic.get(classCode).value_array;
-            for (int i = 0; i < objectArray.set.size(); i++) {
-                SceneDataObject objectItem = objectArray.set.get(i);
-                SceneDataValue sdv = objectItem.get("报警数量");
-                this.dependency.add_sdv2SetColumn(sdv, objectArray, "报警数量");
-            }
-        }
-    }
-
-    public void refresh_dependency() {
-        this.dependency.clear();
-        if (this.enable_factor) {
-            // 构建zkt到rwd的依赖
-            this.refresh_rwd2zkt();
-            // 构建IOT到对象信息点的依赖
-            this.refresh_iot2SetColumn();
-            // 构建报警数量到对象信息点的依赖
-            this.refresh_alarm2SetColumn();
-        }
-    }
-
-    public void recompute() {
-        {
-            int[] counts = this.recompute_IOT();
-            log.warn("********************************" + "\t" + "recompute_IOT item: " + counts[0] + " affect: " + counts[1]);
-        }
-        {
-            int[] counts = this.recompute_Alarm();
-            log.warn("********************************" + "\t" + "recompute_Alarm item: " + counts[0] + " affect: " + counts[1]);
-        }
-        // {
-        // int[] counts = this.recompute_weather();
-        // log.warn("********************************" + "\t" + "recompute_weather item: " + counts[0] + " affect: " + counts[1]);
-        // }
-        // if (Constant.scaleplate_enable) {
-        // int[] counts = this.recompute_scaleplate();
-        // log.warn("********************************" + "\t" + "recompute_scaleplate item: " + counts[0] + " affect: " + counts[1]);
-        // }
-    }
-
-    // private int[] recompute_weather() {
-    // int[] counts = new int[2];
-    // int item_count = 0;
-    // int affect_count = 0;
-    // // 加入计算队列
-    // if (this.enable_factor) {
-    // item_count++;
-    // affect_count += this.addWaitCompute(this.weather);
-    // }
-    // counts[0] = item_count;
-    // counts[1] = affect_count;
-    // return counts;
-    // }
-
-    // private int[] recompute_scaleplate() {
-    // int[] counts = new int[2];
-    // int item_count = 0;
-    // int affect_count = 0;
-    // // 加入计算队列
-    // if (this.enable_factor) {
-    // item_count++;
-    // affect_count += this.addWaitCompute(this.scaleplate);
-    // }
-    // counts[0] = item_count;
-    // counts[1] = affect_count;
-    // return counts;
-    // }
-
-    private int[] recompute_IOT() {
-        int[] counts = new int[2];
-        int item_count = 0;
-        int affect_count = 0;
-        // 加入计算队列
-        if (this.enable_factor) {
-            for (String point : DataContainer.point2sdv.keySet()) {
-                SceneDataPrimitive sdv = DataContainer.point2sdv.get(point);
-                if (sdv.value != null) {
-                    item_count++;
-                    affect_count += this.ProcessIOT(point);
-                }
-            }
-            for (String point : DataContainer.set2sdv.keySet()) {
-                SceneDataPrimitive sdv = DataContainer.set2sdv.get(point);
-                if (sdv.value != null) {
-                    item_count++;
-                    affect_count += this.ProcessIOT(point);
-                }
-            }
-        }
-        counts[0] = item_count;
-        counts[1] = affect_count;
-        return counts;
-    }
-
-    public int[] recompute_Alarm() {
-        int[] counts = new int[2];
-        int item_count = 0;
-        int affect_count = 0;
-        // 加入计算队列
-        if (this.enable_factor) {
-            item_count++;
-            affect_count += this.addWaitCompute(DataContainer.alarmArray);
-            for (String objId : DataContainer.id2alarmList.keySet()) {
-                SceneDataValue alarmList = DataContainer.id2alarmList.get(objId);
-                item_count++;
-                affect_count += this.addWaitCompute(alarmList);
-            }
-            for (String objId : DataContainer.id2alarmCount.keySet()) {
-                SceneDataValue alarmCount = DataContainer.id2alarmCount.get(objId);
-                item_count++;
-                affect_count += this.addWaitCompute(alarmCount);
-            }
-        }
-        counts[0] = item_count;
-        counts[1] = affect_count;
-        return counts;
-    }
-
-    public int ProcessIOT(String point) {
-        int add_count = 0;
-        if (this.enable_factor) {
-            if (this.point2ObjectInfoList.containsKey(point)) {
-                List<ObjectInfo> ObjectInfoList = this.point2ObjectInfoList.get(point);
-                for (ObjectInfo ObjectInfo : ObjectInfoList) {
-                    SceneDataValue sdv = ObjectInfo.obj.get(ObjectInfo.infoCode);
-                    // this.ComputeOccur(sdv);
-                    add_count += this.addWaitCompute(sdv);
-                }
-            }
-            if (this.set2ObjectInfoList.containsKey(point)) {
-                List<ObjectInfo> ObjectInfoList = this.set2ObjectInfoList.get(point);
-                for (ObjectInfo ObjectInfo : ObjectInfoList) {
-                    SceneDataValue sdv = ObjectInfo.obj.get(ObjectInfo.infoCode);
-                    // this.ComputeOccur(sdv);
-                    add_count += this.addWaitCompute(sdv);
-                }
-            }
-        }
-        return add_count;
-    }
-
-    @Override
-    public void ComputeOccur(SceneDataValue sdv) {
-        WebSocketUtil.ProcessComputeOccur(sdv);
-    }
 }

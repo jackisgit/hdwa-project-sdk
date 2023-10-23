@@ -420,7 +420,6 @@ public class AlarmUtil {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-        repository.recompute_Alarm();
     }
 
 
@@ -527,37 +526,6 @@ public class AlarmUtil {
             if (!alarmCount.value_prim.value.equals(alarmList.value_array.set.size())) {
                 alarmCount.value_prim.value = alarmList.value_array.set.size();
                 alarmCountChange = true;
-            }
-        }
-
-        if (addWaitCompute && repository.enable_factor) {
-            if (alarmArrayRowChange) {
-                repository.addWaitCompute(DataContainer.alarmArray);
-            } else {
-                for (String col : alarmColChange) {
-                    if (colChangeMap.containsKey(col)) {
-                        repository.addWaitCompute(DataContainer.alarmArray, col);
-                    }
-                }
-            }
-            if (repository.id2sdv.containsKey(objId)) {
-                SceneDataObject objSDV = repository.id2sdv.get(objId);
-                SceneDataValue sv_alarmList = objSDV.get("报警列表");
-                SceneDataValue sv_alarmCount = objSDV.get("报警数量");
-                if (alarmListRowChange) {
-                    // Repository.ComputeOccur(sv_alarmList);
-                    repository.addWaitCompute(sv_alarmList);
-                } else {
-                    for (String col : alarmColChange) {
-                        if (colChangeMap.containsKey(col)) {
-                            repository.addWaitCompute(sv_alarmList.value_array, col);
-                        }
-                    }
-                }
-                if (alarmCountChange) {
-                    // Repository.ComputeOccur(sv_alarmCount);
-                    repository.addWaitCompute(sv_alarmCount);
-                }
             }
         }
     }

@@ -195,14 +195,6 @@ public class ExamineUtil {
                             errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
                                     "quote'Criteria doesn't contain quote", null));
                         }
-                        if (Repository.check_Criteria_useless_item) {
-                            for (String var : CriteriaObject.keySet()) {
-                                if (!var.equals("quote")) {
-                                    errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
-                                            "var: " + var + " is useless", null));
-                                }
-                            }
-                        }
                     }
                     for (String jsonKey : sql_json.keySet()) {
                         if (!jsonKey.equals("QueryType") && !jsonKey.equals("Criteria")) {
@@ -247,14 +239,6 @@ public class ExamineUtil {
                     if (!CriteriaObject.containsKey("currData")) {
                         errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
                                 QueryType + "'Criteria doesn't contain currData", null));
-                    }
-                    if (Repository.check_Criteria_useless_item) {
-                        for (String var : CriteriaObject.keySet()) {
-                            if (!var.equals("currData")) {
-                                errorList.add(
-                                        new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty), "var: " + var + " is useless", null));
-                            }
-                        }
                     }
                 }
             } else {

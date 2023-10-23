@@ -2,6 +2,7 @@ package com.hdwa.sdk.websocket;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
@@ -62,7 +63,7 @@ public class IotWebSocketClient extends WebSocketClient {
 
     @Override
     public void onMessage(String arg0) {
-        RepositoryImpl repository = DataContainer.projectMap.get(projectId);
+        //RepositoryImpl repository = DataContainer.projectMap.get(projectId);
         count++;
         Date currTime = new Date();
         if (currTime.getTime() / (1000L * 60) != lastTime.getTime() / (1000L * 60)) {
@@ -72,61 +73,54 @@ public class IotWebSocketClient extends WebSocketClient {
         }
 
         JSONObject json = (JSONObject) JSON.parse(arg0);
-        WebSocketUtil.ProcessIOTReceived(json);
-        String type = json.getString("type");
-        if (type.equals("iot") || type.equals("text")) {
-            String[] splits = json.getString("data").split(";");
+        //WebSocketUtil.ProcessIOTReceived(json);
+        String type = json.getString(BaseDecConstant.TYPE);
+        String[] splits = json.getString(BaseDecConstant.DATA).split(";");
+        //仪表号
+        String meter = splits[1];
+        //功能号
+        String funcId = splits[2];
+        //采集值
+        String value = splits[3];
+        //点位
+        String point = meter + "-" + funcId;
 
-            for (int i = 0; i < splits.length; i += 4) {
-                String meter = splits[i + 1];//点位
-                String funcid = splits[i + 2];//功能号
-                String value = splits[i + 3];//采集值
-                String point = meter + "-" + funcid;
-                try {
-                    //原始场景数据 SceneDataPrimitive
-                    SceneDataPrimitive sdvInner = new SceneDataPrimitive();
-                    sdvInner.change = true;
-                    SceneDataPrimitive exist_sdv = DataContainer.point2sdv.putIfAbsent(point, sdvInner);
-                    if (exist_sdv == null) {
-                        DataContainer.sdv2point.putIfAbsent(sdvInner, point);
-                    }
-                    SceneDataPrimitive data = DataContainer.point2sdv.get(point);
-                    if (type.equals("iot")) {
-                        if (value.endsWith(".0")) {
-                            value = value.substring(0, value.length() - ".0".length());
-                        }
-                        Object valueNew;
-                        try {
-                            valueNew = Long.parseLong(value);
-                        } catch (Exception e1) {
-                            try {
-                                valueNew = Double.parseDouble(value);
-                            } catch (Exception e) {
-                                valueNew = value;
-                            }
-                        }
-                        boolean valueEqual = valueNew.equals(data.value);
-                        data.value = valueNew;
-                        // 加入计算队列
-                        if (!valueEqual) {
-                            repository.ProcessIOT(point);
-                        }
-                    } else {
-                        data.value = value;
-                    }
-                } catch (Exception e) {
-                    log.error("*****iotWebSocket iot和text数据解析异常", e);
+        if (type.equals("iot") || type.equals("text")) {
+            try {
+                SceneDataPrimitive sdvInner = new SceneDataPrimitive();
+                sdvInner.change = true;
+                SceneDataPrimitive exist_sdv = DataContainer.point2sdv.putIfAbsent(point, sdvInner);
+                if (exist_sdv == null) {
+                    DataContainer.sdv2point.putIfAbsent(sdvInner, point);
                 }
+                SceneDataPrimitive data = DataContainer.point2sdv.get(point);
+                if (type.equals("iot")) {
+                    if (value.endsWith(".0")) {
+                        value = value.substring(0, value.length() - ".0".length());
+                    }
+                    Object valueNew;
+                    try {
+                        valueNew = Long.parseLong(value);
+                    } catch (Exception e1) {
+                        try {
+                            valueNew = Double.parseDouble(value);
+                        } catch (Exception e) {
+                            valueNew = value;
+                        }
+                    }
+                    data.value = valueNew;
+                    // 加入计算队列
+                  /*  if (!valueEqual) {
+                        repository.processIotData(point);
+                    }*/
+                } else {
+                    data.value = value;
+                }
+            } catch (Exception e) {
+                log.error("*****iotWebSocket iot和text数据解析异常", e);
             }
+
         } else if (type.equals("pointset")) {
-            String message = json.getString("data");
-            String[] splits = message.split(";");
-            count++;
-            int i = 0;
-            String meter = splits[i + 1];
-            String funcid = splits[i + 2];
-            String value = splits[i + 3];
-            String point = meter + "-" + funcid;
             try {
                 SceneDataPrimitive sdvInner = new SceneDataPrimitive();
                 sdvInner.change = true;
@@ -148,12 +142,11 @@ public class IotWebSocketClient extends WebSocketClient {
                         valueNew = value;
                     }
                 }
-                boolean valueEqual = valueNew.equals(data.value);
                 data.value = valueNew;
                 // 加入计算队列
-                if (!valueEqual) {
-                    repository.ProcessIOT(point);
-                }
+                //if (!valueEqual) {
+                //    repository.processIotData(point);
+                //}
             } catch (Exception e) {
                 log.error("*****iotWebSocket设置参数数据解析异常", e);
             }

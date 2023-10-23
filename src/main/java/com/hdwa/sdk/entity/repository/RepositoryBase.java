@@ -3,19 +3,16 @@ package com.hdwa.sdk.entity.repository;
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.entity.scene.*;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * 仓库基础
+ */
 public class RepositoryBase {
-    public boolean use_thread;
-    public boolean enable_factor;
-
-    public boolean check_static_value_basic = false;
-    public boolean check_Criteria_useless_item = false;// expression quote trend curve
 
     /**
      * <p>接口数据--全量接口json</p>
@@ -90,50 +87,24 @@ public class RepositoryBase {
      */
     public Map<SceneProperty, List<SceneProperty>> beforeDic = new HashMap<>(16);
 
+    /**
+     * 查询结果数据
+     */
+    public SceneDataObject objectData;
 
-    // deamon任务到点位清单
-    public Map<SceneDataValue, List<String>> deamon_sdv2pointList = new HashMap<>(16);
 
     public Map<SceneProperty, Map<String, Boolean>> p2varDict = new HashMap<>(16);
     public Map<SceneProperty, Map<String, Boolean>> p2varStringDict = new HashMap<>(16);
     public Map<SceneProperty, WalkerWrapper> p2walker1 = new HashMap<>(16);
     public Map<SceneProperty, WalkerList> p2walker2 = new HashMap<>(16);
 
-    // 结果数据
-    public SceneDataObject objectData;
-    public Map<String, SceneDataValue> base_value = new HashMap<>(16);
 
+    public Map<String, SceneDataValue> base_value = new HashMap<>(16);
 
     public RepositoryDependency dependency = new RepositoryDependency();
 
-    public int thread_count;
-    public List<RepositoryComputeThread> threadList = new CopyOnWriteArrayList<>();
-    public WaitComputeQueue WaitCompute = new WaitComputeQueue();
-
-    public RepositoryBase(boolean use_thread, boolean enable_factor, int thread_count, long interval_between_compute) {
-        this.use_thread = use_thread;
-        this.enable_factor = enable_factor;
-        this.thread_count = thread_count;
-        for (int i = 0; i < this.thread_count; i++) {
-            RepositoryComputeThread thread = new RepositoryComputeThread(this, interval_between_compute);
-            threadList.add(thread);
-        }
-    }
 
     public RepositoryBase() {
-
-    }
-
-    public void threadStart() {
-        for (RepositoryComputeThread thread : this.threadList) {
-            thread.start();
-        }
-    }
-
-    public void threadStop() {
-        for (RepositoryComputeThread thread : this.threadList) {
-            thread.requestStop();
-        }
     }
 
     public ConcurrentHashMap<SceneDataPrimitive, String> sdv2point() {
@@ -148,50 +119,4 @@ public class RepositoryBase {
         return null;
     }
 
-    public int addWaitCompute(SceneDataSet set) {
-        int add_count = 0;
-        try {
-            List<SceneDataValue> sdvAffectList = new CopyOnWriteArrayList<SceneDataValue>();
-            JSONObject result = new JSONObject();
-            this.dependency.get_after_value_array(set, sdvAffectList, result);
-            for (SceneDataValue sdvAffect : sdvAffectList) {
-                this.WaitCompute.offer(new WaitItem(sdvAffect, new Date()));
-                add_count++;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return add_count;
-    }
-
-    public void addWaitCompute(SceneDataSet value_array, String col) {
-        if (this.dependency.SetColumn2sdv.containsKey(value_array)) {
-            Map<String, Map<SceneDataValue, Boolean>> Column2sdv = this.dependency.SetColumn2sdv.get(value_array);
-            if (Column2sdv.containsKey(col)) {
-                Map<SceneDataValue, Boolean> afterList = Column2sdv.get(col);
-                for (SceneDataValue key : afterList.keySet()) {
-                    this.WaitCompute.offer(new WaitItem(key, new Date()));
-                }
-            }
-        }
-    }
-
-    public int addWaitCompute(SceneDataValue sdv) {
-        int add_count = 0;
-        try {
-            List<SceneDataValue> sdvAffectList = new CopyOnWriteArrayList<SceneDataValue>();
-            this.dependency.get_after(this, sdv, sdvAffectList);
-            for (SceneDataValue sdvAffect : sdvAffectList) {
-                this.WaitCompute.offer(new WaitItem(sdvAffect, new Date()));
-                add_count++;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return add_count;
-    }
-
-    public void ComputeOccur(SceneDataValue sdv) {
-
-    }
 }

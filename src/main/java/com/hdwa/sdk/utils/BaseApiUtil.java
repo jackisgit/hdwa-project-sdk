@@ -62,6 +62,7 @@ public class BaseApiUtil {
 
     /**
      * object转Sdo
+     *
      * @param arrayItem
      * @return
      */
@@ -400,7 +401,7 @@ public class BaseApiUtil {
                     stringBuffer.append("\\/");
                     break;
                 default:
-                    if ((ch >= '\u0000' && ch <= '\u001F') || (ch >= '\u007F' && ch <= '\u009F') || (ch >= '\u2000' && ch <= '\u20FF')) {
+                    if (ch <= '\u001F' || ch >= '\u007F' && ch <= '\u009F' || ch >= '\u2000' && ch <= '\u20FF') {
                         String ss = Integer.toHexString(ch);
                         stringBuffer.append("\\u");
                         for (int k = 0; k < 4 - ss.length(); k++) {

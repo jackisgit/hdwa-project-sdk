@@ -57,23 +57,6 @@ public class ExpressionUtil {
                 exceptionList.add(MyException);
             }
         }
-        if (Repository.check_Criteria_useless_item) {
-            for (String var : CriteriaObject.keySet()) {
-                if (var.startsWith("string_")) {
-                    if (!scanner.varStringDict.containsKey(var)) {
-                        ExceptionItem MyException = new ExceptionItem(PathUtil.getPropertyPath(Repository, sp),
-                                "varString: " + var + " not exist in expression", null);
-                        exceptionList.add(MyException);
-                    }
-                } else {
-                    if (!scanner.varDict.containsKey(var)) {
-                        ExceptionItem MyException = new ExceptionItem(PathUtil.getPropertyPath(Repository, sp),
-                                "var: " + var + " not exist in expression", null);
-                        exceptionList.add(MyException);
-                    }
-                }
-            }
-        }
         WalkerWrapper WalkerWrapper = new WalkerWrapper();
         WalkerWrapper.walker = new AdvancedExpressionWalker(nodes);
         WalkerWrapper.lock = new ReentrantLock(true);
