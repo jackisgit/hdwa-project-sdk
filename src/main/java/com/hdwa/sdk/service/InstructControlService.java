@@ -58,7 +58,7 @@ public class InstructControlService {
             JSONArray points = ControlUtil.setPoints(DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID), param);
             log.warn("*****下发控制指令参数：" + points);
             //下发操作
-            JSONArray result = controlDelivery(points);
+            JSONArray result = controlDelivery(points, param.getPath().toString());
             log.warn("*****控制指令反馈结果：" + result);
             JSONObject resultDate = new JSONObject();
             //处理返回结果
@@ -102,7 +102,7 @@ public class InstructControlService {
         try {
             //控制请求
             log.warn("*****批量下发控制指令参数：" + points);
-            JSONArray array = controlDelivery(points);
+            JSONArray array = controlDelivery(points, param.getPath().toString());
             log.warn("*****批量下发控制指令反馈结果：" + array);
             //处理返回值
             ControlUtil.disposeResult(result, array);
@@ -121,16 +121,19 @@ public class InstructControlService {
      * @return
      * @throws Exception
      */
-    private JSONArray controlDelivery(JSONArray points) throws Exception {
+    private JSONArray controlDelivery(JSONArray points, String path) throws Exception {
         JSONObject postJSON = new JSONObject();
         postJSON.put("building", BaseDecConstant.CURRENT_PROJECT_ID.substring(2));
         postJSON.put("points", points);
         JSONArray data = OkHttpClientUtil.httpPost(postJSON, iotProjectUrl + UrlConstant.iot_project_control).getJSONArray("points");
 
         try {
-            //如果下发的有手自动点位 就刷新接口，统计手自动数量
-            if (points.toString().contains(BaseDecConstant.MANUAL_AUTO_SET)) {
-                configApiService.analysisDataRefresh(DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID));
+            //如果是照明的
+            if (path.contains("照明") || path.contains("回路") || path.contains("编组")) {
+                //如果下发的有手自动点位 就刷新接口，统计手自动数量
+                if (points.toString().contains(BaseDecConstant.MANUAL_AUTO_SET)) {
+                    configApiService.analysisDataRefresh(DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID));
+                }
             }
         } catch (Exception e) {
             log.error("***手自动统计刷新接口错误", e);
