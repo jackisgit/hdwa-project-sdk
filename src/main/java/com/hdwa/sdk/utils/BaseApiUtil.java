@@ -194,7 +194,7 @@ public class BaseApiUtil {
             if (!infoJSON.get(BaseDecConstant.CODE).value_prim.value.equals(code)) {
                 continue;
             }
-            if (getInfoTypeByTag(infoJSON) == 1) {
+            if (getInfoTypeByTag(infoJSON) == 2) {
                 return true;
             }
         }

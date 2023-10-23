@@ -10,6 +10,7 @@ import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.utils.ControlUtil;
 import com.hdwa.sdk.utils.OkHttpClientUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,9 @@ public class InstructControlService {
 
     @Value("${url.iotProject}")
     private String iotProjectUrl;
+
+    @Autowired
+    private ConfigApiService configApiService;
 
 
     /**
@@ -78,9 +82,9 @@ public class InstructControlService {
         JSONArray points = new JSONArray();
         param.getData().forEach(stringObjectMap -> {
             //查询对象
-            JSONObject obj = repository.id2object.get(stringObjectMap.get("id").toString());
+            JSONObject obj = repository.id2object.get(stringObjectMap.get(BaseDecConstant.ID).toString());
             //控制点名称
-            String code = stringObjectMap.get("code").toString();
+            String code = stringObjectMap.get(BaseDecConstant.CODE).toString();
             //控制值
             String value = stringObjectMap.get("value").toString();
             //功能号和仪表号
@@ -88,10 +92,10 @@ public class InstructControlService {
             //拆解
             int index_ = infoValue.lastIndexOf("-");
             String meter = infoValue.substring(0, index_);
-            int funcid = Integer.parseInt(infoValue.substring(index_ + 1));
+            int funcId = Integer.parseInt(infoValue.substring(index_ + 1));
             JSONObject point = new JSONObject();
             point.put("meter", meter);
-            point.put("funcid", funcid);
+            point.put("funcid", funcId);
             point.put("data", value);
             points.add(point);
         });
@@ -121,7 +125,16 @@ public class InstructControlService {
         JSONObject postJSON = new JSONObject();
         postJSON.put("building", BaseDecConstant.CURRENT_PROJECT_ID.substring(2));
         postJSON.put("points", points);
-        return OkHttpClientUtil.httpPost(postJSON, iotProjectUrl + UrlConstant.iot_project_control).getJSONArray("points");
-    }
+        JSONArray data = OkHttpClientUtil.httpPost(postJSON, iotProjectUrl + UrlConstant.iot_project_control).getJSONArray("points");
 
+        try {
+            //如果下发的有手自动点位 就刷新接口，统计手自动数量
+            if (points.toString().contains(BaseDecConstant.MANUAL_AUTO_SET)) {
+                configApiService.analysisDataRefresh(DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID));
+            }
+        } catch (Exception e) {
+            log.error("***手自动统计刷新接口错误", e);
+        }
+        return data;
+    }
 }

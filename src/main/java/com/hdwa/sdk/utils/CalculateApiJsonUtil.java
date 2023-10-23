@@ -200,6 +200,70 @@ public class CalculateApiJsonUtil {
 
 
     /**
+     * 无检查计算属性
+     *
+     * @param repositoryBase
+     * @return
+     * @throws Exception
+     */
+    public static List<List<SceneProperty>> notCheckCalculateProperty(RepositoryBase repositoryBase) {
+        // 排序
+        List<SceneProperty> properties = BaseApiUtil.getPropertyListBy(repositoryBase.sceneObject);
+
+        //所有属性
+        properties.forEach(property -> {
+            try {
+                List<SceneProperty> beforeList = CheckUtil.getPropertyBefore(repositoryBase, property);
+                repositoryBase.beforeDic.put(property, beforeList);
+            } catch (Exception e) {
+                log.error("无检查计算属性异常", e);
+            }
+        });
+
+        Map<SceneProperty, Boolean> processedDic = new ConcurrentHashMap<>(16);
+        List<List<SceneProperty>> propertyList = new CopyOnWriteArrayList<>();
+
+        while (true) {
+            int count = 0;
+            List<SceneProperty> spInnerList = new CopyOnWriteArrayList<>();
+            for (SceneProperty spInner : properties) {
+                if (processedDic.containsKey(spInner)) {
+                    continue;
+                }
+                List<SceneProperty> beforeList = repositoryBase.beforeDic.get(spInner);
+                boolean allFinish = true;
+                for (SceneProperty property : beforeList) {
+                    if (!processedDic.containsKey(property)) {
+                        allFinish = false;
+                        break;
+                    }
+                }
+                if (allFinish) {
+                    count++;
+                    spInnerList.add(spInner);
+                }
+            }
+            if (count == 0) {
+                break;
+            }
+            propertyList.add(spInnerList);
+            for (SceneProperty spInner : spInnerList) {
+                processedDic.put(spInner, true);
+            }
+        }
+
+        for (List<SceneProperty> spInnerList : propertyList) {
+            for (SceneProperty spInner2 : spInnerList) {
+                if (!repositoryBase.property2SDV.containsKey(spInner2)) {
+                    repositoryBase.property2SDV.put(spInner2, new CopyOnWriteArrayList<>());
+                }
+            }
+        }
+        return propertyList;
+    }
+
+
+    /**
      * 计算全部
      *
      * @param repositoryBase
@@ -210,7 +274,6 @@ public class CalculateApiJsonUtil {
         repositoryBase.objectData = new SceneDataObject(repositoryBase, null, null, null, repositoryBase.sceneObject, null, null);
 
         for (List<SceneProperty> spInnerList : propertyList) {
-            List<SceneDataValue> itemList = new CopyOnWriteArrayList<>();
             for (SceneProperty spInner2 : spInnerList) {
                 List<SceneDataValue> sdvList = repositoryBase.property2SDV.get(spInner2);
                 // 打印路径
@@ -227,44 +290,7 @@ public class CalculateApiJsonUtil {
                 }
             }
         }
-        
-        /*propertyList.forEach(sceneProperties -> {
-            List<SceneDataValue> itemList = new CopyOnWriteArrayList<>();
 
-            sceneProperties.forEach(property -> {
-                List<SceneDataValue> sdvList = repositoryBase.property2SDV.get(property);
-
-                // TODO: 2023/8/2 if不进来
-                //if (repositoryBase.use_thread) {
-                //    itemList.addAll(sdvList);
-                //}
-                // TODO: 2023/8/1 打印
-                   *//* String path = null;
-                    try {
-                        path = PathUtil.getPropertyPath(repositoryBase, property);
-                    } catch (ExceptionItem e) {
-                        log.error(e.getMessage());
-                    }
-                    log.warn("ComputeOnce:" + path);*//*
-
-                for (SceneDataValue sdv : sdvList) {
-                    try {
-                        calculateProperty(repositoryBase, sdv);
-                    } catch (Exception e) {
-                        log.error(e.getMessage(), e);
-
-                        // TODO: 2023/8/1 打印
-                            *//*try {
-                                String pathInner = PathUtil.getPropertyPath(repositoryBase, sdv.rel_property);
-                                log.warn(pathInner + " ");
-                            } catch (Exception e1) {
-                                log.error(e.getMessage(), e);
-                            }*//*
-                    }
-                }
-
-            });
-        });*/
     }
 
     /**
@@ -275,9 +301,6 @@ public class CalculateApiJsonUtil {
      * @throws Exception
      */
     public static void calculateProperty(RepositoryBase repositoryBase, SceneDataValue sv) throws Exception {
-        boolean computeValueChanged = false;
-        // TODO: 2023/8/2 打印
-        //log.warn("calculateProperty: " + PathUtil.getDataPath(sv));
         SceneDataObject objectData = sv.parentObjectData;
         SceneProperty sceneProperty = sv.rel_property;
         switch (sceneProperty.propertyValueType) {
@@ -313,7 +336,7 @@ public class CalculateApiJsonUtil {
             case BaseDecConstant.QUERY:
                 sv.lock.lock();
                 try {
-                    computeValueChanged = calculatePropertyQuery(repositoryBase, sceneProperty, sv);
+                    calculatePropertyQuery(repositoryBase, sceneProperty, sv);
                 } finally {
                     sv.lock.unlock();
                 }
@@ -352,7 +375,6 @@ public class CalculateApiJsonUtil {
                         }
                     }
                 }
-                //repositoryBase.deamon_sdv2pointList.put(sv, pointList);
                 break;
 
             default:
@@ -372,10 +394,6 @@ public class CalculateApiJsonUtil {
     private static boolean calculatePropertyQuery(RepositoryBase repositoryBase, SceneProperty sceneProperty, SceneDataValue sv) throws Exception {
         SceneDataObject objectData = sv.parentObjectData;
         boolean computeValueChanged = false;
-        Object valueBeforeCompute = null;
-        //if (repositoryBase.enable_factor) {
-        //    valueBeforeCompute = sv.toJSON(true, 1);
-        //}
         JSONObject sqlJson = (JSONObject) JSON.parse(sceneProperty.query_sql);
         QueryAssist queryAssist = new QueryAssist(false);
         Object queryResult = QueryUtil.query(repositoryBase, sv, sqlJson, queryAssist);
@@ -385,11 +403,6 @@ public class CalculateApiJsonUtil {
             repositoryBase.dependency.add_compute(sv);
         }
         if (sceneProperty.propertyValueSchema.equals(BaseDecConstant.JSONOBJECT)) {
-           /* if (sv.value_object != null) {
-                SceneDataObject sod = sv.value_object;
-                repositoryBase.dependency.membership_delete(sod);
-            }*/
-
             SceneDataObject queryResultObject = null;
             if (queryResult instanceof SceneDataObject) {
                 queryResultObject = (SceneDataObject) queryResult;
@@ -584,12 +597,6 @@ public class CalculateApiJsonUtil {
             }
         }
         sv.finish = true;
-       /* Object valueAfterCompute;
-        if (repositoryBase) {
-            valueAfterCompute = sv.toJSON(true, 1);
-            computeValueChanged = !FastJsonCompareUtil.Instance().CompareObject(valueBeforeCompute, valueAfterCompute, true);
-        }*/
-
         return computeValueChanged;
     }
 

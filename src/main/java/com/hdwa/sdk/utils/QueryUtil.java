@@ -1650,7 +1650,7 @@ public class QueryUtil {
                     for (SceneDataPrimitive jtSDP : agg_items_one) {
                         Object jt = jtSDP != null ? jtSDP.value : null;
                         if (jt != null) {
-                            double jtValue = 0.0;
+                            double jtValue;
                             if (jt instanceof Integer) {
                                 jtValue = ((Integer) jt).doubleValue();
                             } else if (jt instanceof Long) {

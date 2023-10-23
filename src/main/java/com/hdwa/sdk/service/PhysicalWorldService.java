@@ -405,7 +405,6 @@ public class PhysicalWorldService {
                                 List<ObjectInfo> objectInfos = repository.point2ObjectInfoList.get(pointValue);
                                 objectInfos.add(new ObjectInfo(sdo, objId, s));
 
-                                // TODO: 2023/8/28  RepositoryContainer后续去掉
                                 SceneDataPrimitive sdp = new SceneDataPrimitive();
                                 sdp.change = true;
                                 SceneDataPrimitive exist = DataContainer.point2sdv.putIfAbsent(pointValue, sdp);
@@ -435,7 +434,6 @@ public class PhysicalWorldService {
                                 List<ObjectInfo> objectInfos = repository.set2ObjectInfoList.get(pointValue);
                                 objectInfos.add(new ObjectInfo(sdo, objId, s));
 
-                                // TODO: 2023/8/28  RepositoryContainer后续去掉
                                 SceneDataPrimitive sdp = new SceneDataPrimitive();
                                 sdp.change = true;
                                 SceneDataPrimitive exist = DataContainer.set2sdv.putIfAbsent(pointValue, sdp);

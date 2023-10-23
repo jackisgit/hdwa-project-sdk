@@ -69,6 +69,9 @@ public class InitialDataService implements CommandLineRunner {
     @Autowired
     private PointService pointService;
 
+    @Autowired
+    private ConfigApiService configApiService;
+
     @Override
     public void run(String... args) {
         initDir();
@@ -76,6 +79,7 @@ public class InitialDataService implements CommandLineRunner {
         loadDataMainService.loadDataMain();
         initIotWebsocket();
         initAlarmWebsocket();
+        loadManualAutoSetStatistics();
     }
 
     /**
@@ -295,6 +299,19 @@ public class InitialDataService implements CommandLineRunner {
         if (flag) {
             log.warn("*****开始更新点位过滤数据");
             loadDataMainService.updatePoint(DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID));
+        }
+    }
+
+
+    /**
+     * 延迟加载手自动统计数据
+     */
+    public void loadManualAutoSetStatistics() {
+        try {
+            Thread.sleep(1000 * 60 * 3);
+            configApiService.analysisDataRefresh(DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID));
+        } catch (Exception e) {
+            log.error("延长加载手自动统计数据出现异常", e);
         }
     }
 }
