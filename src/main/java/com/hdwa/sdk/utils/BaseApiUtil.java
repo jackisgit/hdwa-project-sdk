@@ -154,7 +154,7 @@ public class BaseApiUtil {
             } else if (firstTag.contains(BaseDecConstant.EVENT_RECORD)) {
                 return 1;
             } else if (firstTag.contains(BaseDecConstant.SET_PARAM)) {
-                return 2;
+                return 1;
             }
         }
         //其它就是静态参数，技术参数 等等
@@ -193,7 +193,7 @@ public class BaseApiUtil {
             if (!infoJSON.get(BaseDecConstant.CODE).value_prim.value.equals(code)) {
                 continue;
             }
-            if (getInfoTypeByTag(infoJSON) == 2) {
+            if (getInfoTypeByTag(infoJSON) == 1) {
                 return true;
             }
         }
