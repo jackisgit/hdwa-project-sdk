@@ -394,14 +394,18 @@ public class CalculateApiJsonUtil {
     private static boolean calculatePropertyQuery(RepositoryBase repositoryBase, SceneProperty sceneProperty, SceneDataValue sv) throws Exception {
         SceneDataObject objectData = sv.parentObjectData;
         boolean computeValueChanged = false;
+        Object valueBeforeCompute = null;
+        if (repositoryBase.enable_factor) {
+            valueBeforeCompute = sv.toJSON(true, 1);
+        }
         JSONObject sqlJson = (JSONObject) JSON.parse(sceneProperty.query_sql);
-        QueryAssist queryAssist = new QueryAssist(false);
+        QueryAssist queryAssist = new QueryAssist(true);
         Object queryResult = QueryUtil.query(repositoryBase, sv, sqlJson, queryAssist);
-        if (queryAssist.rowChangeNeed) {
+
             sv.rowFactor = queryAssist.rowFactor;
             sv.colFactorMap = queryAssist.colFactorMap;
             repositoryBase.dependency.add_compute(sv);
-        }
+
         if (sceneProperty.propertyValueSchema.equals(BaseDecConstant.JSONOBJECT)) {
             SceneDataObject queryResultObject = null;
             if (queryResult instanceof SceneDataObject) {
@@ -597,6 +601,11 @@ public class CalculateApiJsonUtil {
             }
         }
         sv.finish = true;
+        Object valueAfterCompute = null;
+        if (repositoryBase.enable_factor) {
+            valueAfterCompute = sv.toJSON(true, 1);
+            computeValueChanged = !FastJsonCompareUtil.Instance().CompareObject(valueBeforeCompute, valueAfterCompute, true);
+        }
         return computeValueChanged;
     }
 

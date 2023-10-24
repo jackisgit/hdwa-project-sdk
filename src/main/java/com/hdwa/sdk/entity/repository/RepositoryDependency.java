@@ -13,38 +13,38 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class RepositoryDependency {
-    public Map<SceneDataValue, Map<SceneDataValue, Boolean>> sdv2sdv = new ConcurrentHashMap<SceneDataValue, Map<SceneDataValue, Boolean>>();
-    public Map<SceneDataValue, Map<SceneDataSet, Map<String, Boolean>>> sdv2SetColumn = new ConcurrentHashMap<SceneDataValue, Map<SceneDataSet, Map<String, Boolean>>>();
-    public Map<SceneDataSet, Map<SceneDataValue, Boolean>> SetRow2sdv = new ConcurrentHashMap<SceneDataSet, Map<SceneDataValue, Boolean>>();
-    public Map<SceneDataSet, Map<String, Map<SceneDataValue, Boolean>>> SetColumn2sdv = new ConcurrentHashMap<SceneDataSet, Map<String, Map<SceneDataValue, Boolean>>>();
+    public Map<SceneDataValue, Map<SceneDataValue, Boolean>> sdv2sdv = new ConcurrentHashMap<>(16);
+    public Map<SceneDataValue, Map<SceneDataSet, Map<String, Boolean>>> sdv2SetColumn = new ConcurrentHashMap<>(16);
+    public Map<SceneDataSet, Map<SceneDataValue, Boolean>> SetRow2sdv = new ConcurrentHashMap<>();
+    public Map<SceneDataSet, Map<String, Map<SceneDataValue, Boolean>>> SetColumn2sdv = new ConcurrentHashMap<>(16);
 
-    public Map<SceneDataObject, CopyOnWriteArrayList<SceneDataObject>> sdv2Children = new ConcurrentHashMap<SceneDataObject, CopyOnWriteArrayList<SceneDataObject>>();
+    public Map<SceneDataObject, CopyOnWriteArrayList<SceneDataObject>> sdv2Children = new ConcurrentHashMap<>(16);
 
     public void clear() {
-        sdv2sdv = new ConcurrentHashMap<SceneDataValue, Map<SceneDataValue, Boolean>>();
-        sdv2SetColumn = new ConcurrentHashMap<SceneDataValue, Map<SceneDataSet, Map<String, Boolean>>>();
-        SetRow2sdv = new ConcurrentHashMap<SceneDataSet, Map<SceneDataValue, Boolean>>();
-        SetColumn2sdv = new ConcurrentHashMap<SceneDataSet, Map<String, Map<SceneDataValue, Boolean>>>();
+        sdv2sdv = new ConcurrentHashMap<>();
+        sdv2SetColumn = new ConcurrentHashMap<>();
+        SetRow2sdv = new ConcurrentHashMap<>();
+        SetColumn2sdv = new ConcurrentHashMap<>();
 
         sdv2Children.clear();
     }
 
     public void add_sdv2SetColumn(SceneDataValue point_value, SceneDataSet objectArray, String Column) {
-        sdv2SetColumn.putIfAbsent(point_value, new ConcurrentHashMap<SceneDataSet, Map<String, Boolean>>());
-        sdv2SetColumn.get(point_value).putIfAbsent(objectArray, new ConcurrentHashMap<String, Boolean>());
+        sdv2SetColumn.putIfAbsent(point_value, new ConcurrentHashMap<>());
+        sdv2SetColumn.get(point_value).putIfAbsent(objectArray, new ConcurrentHashMap<>());
         sdv2SetColumn.get(point_value).get(objectArray).putIfAbsent(Column, true);
     }
 
     public void add_compute(SceneDataValue sdv) {
         InfluenceFactor other = sdv.rowFactor;
         for (SceneDataSet key : other.rowChange.keySet()) {
-            SetRow2sdv.putIfAbsent(key, new ConcurrentHashMap<SceneDataValue, Boolean>());
+            SetRow2sdv.putIfAbsent(key, new ConcurrentHashMap<>());
             SetRow2sdv.get(key).putIfAbsent(sdv, true);
         }
         for (SceneDataSet key : other.colChange.keySet()) {
-            SetColumn2sdv.putIfAbsent(key, new ConcurrentHashMap<String, Map<SceneDataValue, Boolean>>());
+            SetColumn2sdv.putIfAbsent(key, new ConcurrentHashMap<>());
             for (String col : other.colChange.get(key).keySet()) {
-                SetColumn2sdv.get(key).putIfAbsent(col, new ConcurrentHashMap<SceneDataValue, Boolean>());
+                SetColumn2sdv.get(key).putIfAbsent(col, new ConcurrentHashMap<>());
                 SetColumn2sdv.get(key).get(col).putIfAbsent(sdv, true);
             }
         }
@@ -54,8 +54,8 @@ public class RepositoryDependency {
         }
         // 考虑附加属性
         if (sdv.parentObjectData.parentArrayData != null && sdv.parentObjectData.parentArrayData.rel_property.propertyValueType.equals("query")) {
-            sdv2SetColumn.putIfAbsent(sdv, new ConcurrentHashMap<SceneDataSet, Map<String, Boolean>>());
-            sdv2SetColumn.get(sdv).putIfAbsent(sdv.parentObjectData.parentArrayData.value_array, new ConcurrentHashMap<String, Boolean>());
+            sdv2SetColumn.putIfAbsent(sdv, new ConcurrentHashMap<>());
+            sdv2SetColumn.get(sdv).putIfAbsent(sdv.parentObjectData.parentArrayData.value_array, new ConcurrentHashMap<>());
             sdv2SetColumn.get(sdv).get(sdv.parentObjectData.parentArrayData.value_array).putIfAbsent(sdv.myPropertyName, true);
         }
     }
@@ -76,9 +76,7 @@ public class RepositoryDependency {
                 JSONObject itemInner = new JSONObject();
                 itemInner.put("path", key.path);
                 JSONArray arrayInner = new JSONArray();
-                for (String col : other.colChange.get(key).keySet()) {
-                    arrayInner.add(col);
-                }
+                arrayInner.addAll(other.colChange.get(key).keySet());
                 itemInner.put("cols", arrayInner);
                 resultItem.add(itemInner);
             }
@@ -88,7 +86,7 @@ public class RepositoryDependency {
             JSONArray resultItem = new JSONArray();
             for (SceneDataValue key : other.valueChange.keySet()) {
                 String path = PathUtil.getDataPath(key);
-                if (path == null || path.length() == 0) {
+                if (path.length() == 0) {
                     ConcurrentHashMap<SceneDataPrimitive, String> sdv2point = Repository.sdv2point();
                     ConcurrentHashMap<SceneDataPrimitive, String> sdv2set = Repository.sdv2set();
                     if (sdv2point.containsKey(key.value_prim)) {
@@ -174,7 +172,7 @@ public class RepositoryDependency {
                     continue;
                 }
                 String path = PathUtil.getDataPath(parentSet);
-                if (path == null || path.length() == 0) {
+                if (path.length() == 0) {
                     path = parentSet.value_array.path;
                 }
                 JSONObject SetColumnJSON = new JSONObject();
@@ -212,7 +210,7 @@ public class RepositoryDependency {
 
     }
 
-    public JSONObject get_after(RepositoryBase Repository, SceneDataValue sdv, List<SceneDataValue> sdvAffectList) throws Exception {
+    public void get_after(RepositoryBase Repository, SceneDataValue sdv, List<SceneDataValue> sdvAffectList) throws Exception {
         JSONObject result = new JSONObject();
 
         if (sdv.value_array != null) {
@@ -220,6 +218,5 @@ public class RepositoryDependency {
         } else if (sdv.value_prim != null) {
             this.get_after_value_prim(Repository, sdv, sdvAffectList, result);
         }
-        return result;
     }
 }

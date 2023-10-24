@@ -4,13 +4,16 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.scene.SceneDataObject;
+import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
 import com.hdwa.sdk.entity.scene.SceneDataSet;
 import com.hdwa.sdk.entity.scene.SceneDataValue;
+import com.hdwa.sdk.utils.BaseApiUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Slf4j
 public class RepositoryImpl extends RepositoryBase {
@@ -184,6 +187,7 @@ public class RepositoryImpl extends RepositoryBase {
 
     /**
      * 解析数据
+     *
      * @param descSet
      * @param Source
      * @return
@@ -303,4 +307,154 @@ public class RepositoryImpl extends RepositoryBase {
         return result;
     }
 
+
+    public int[] recompute_IOT() {
+        int[] counts = new int[2];
+        int item_count = 0;
+        int affect_count = 0;
+        // 加入计算队列
+        for (String point : DataContainer.point2sdv.keySet()) {
+            SceneDataPrimitive sdv = DataContainer.point2sdv.get(point);
+            if (sdv.value != null) {
+                item_count++;
+                affect_count += this.ProcessIOT(point);
+            }
+        }
+        for (String point : DataContainer.set2sdv.keySet()) {
+            SceneDataPrimitive sdv = DataContainer.set2sdv.get(point);
+            if (sdv.value != null) {
+                item_count++;
+                affect_count += this.ProcessIOT(point);
+            }
+        }
+        counts[0] = item_count;
+        counts[1] = affect_count;
+        return counts;
+    }
+
+    public int[] recompute_Alarm() {
+        int[] counts = new int[2];
+        int item_count = 0;
+        int affect_count = 0;
+        // 加入计算队列
+        item_count++;
+        affect_count += this.addWaitCompute(DataContainer.alarmArray);
+        for (String objId : DataContainer.id2alarmList.keySet()) {
+            SceneDataValue alarmList = DataContainer.id2alarmList.get(objId);
+            item_count++;
+            affect_count += this.addWaitCompute(alarmList);
+        }
+        for (String objId : DataContainer.id2alarmCount.keySet()) {
+            SceneDataValue alarmCount = DataContainer.id2alarmCount.get(objId);
+            item_count++;
+            affect_count += this.addWaitCompute(alarmCount);
+        }
+        counts[0] = item_count;
+        counts[1] = affect_count;
+        return counts;
+    }
+
+
+    public int ProcessIOT(String point) {
+        int add_count = 0;
+        if (this.point2ObjectInfoList.containsKey(point)) {
+            List<ObjectInfo> ObjectInfoList = this.point2ObjectInfoList.get(point);
+            for (ObjectInfo ObjectInfo : ObjectInfoList) {
+                SceneDataValue sdv = ObjectInfo.obj.get(ObjectInfo.infoCode);
+                add_count += this.addWaitCompute(sdv);
+            }
+        }
+        if (this.set2ObjectInfoList.containsKey(point)) {
+            List<ObjectInfo> ObjectInfoList = this.set2ObjectInfoList.get(point);
+            for (ObjectInfo ObjectInfo : ObjectInfoList) {
+                SceneDataValue sdv = ObjectInfo.obj.get(ObjectInfo.infoCode);
+                add_count += this.addWaitCompute(sdv);
+            }
+        }
+        return add_count;
+    }
+
+    public void refresh_dependency() {
+        this.dependency.clear();
+        // 构建zkt到rwd的依赖
+        this.refresh_rwd2zkt();
+        // 构建IOT到对象信息点的依赖
+        this.refresh_iot2SetColumn();
+        // 构建报警数量到对象信息点的依赖
+        this.refresh_alarm2SetColumn();
+    }
+
+
+    private void refresh_rwd2zkt() {
+        for (SceneDataObject classItem : this.ZKTClassArray.set) {
+            String ibmsSceneCode = (String) classItem.get("ibmsSceneCode").value_prim.value;
+            String ibmsClassCode = (String) classItem.get("ibmsClassCode").value_prim.value;
+            String flag = null;
+            if (classItem.containsKey("flag")) {
+                flag = (String) classItem.get("flag").value_prim.value;
+            }
+            if (flag != null && flag.equals("reference")) {
+                continue;
+            }
+            SceneDataValue sdv = this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode);
+            if (sdv != null) {
+                for (SceneDataObject obj : sdv.value_array.set) {
+                    if (obj.father != null) {
+                        this.dependency.sdv2Children.putIfAbsent(obj.father, new CopyOnWriteArrayList<SceneDataObject>());
+                        this.dependency.sdv2Children.get(obj.father).add(obj);
+                    }
+                }
+            }
+        }
+    }
+
+    private void refresh_iot2SetColumn() {
+        for (String key : this.objectArrayDic.keySet()) {
+            if (this.objTypeMap.containsKey(key)) {
+                continue;
+            }
+            SceneDataSet infoArray = this.infoArrayDic.get(key);
+            SceneDataSet objectArray = this.objectArrayDic.get(key).value_array;
+            for (int index_info = 0; index_info < infoArray.set.size(); index_info++) {
+                SceneDataObject info = infoArray.set.get(index_info);
+                String infoCode = (String) info.get("code").value_prim.value;
+                if (BaseApiUtil.getInfoTypeByTag(info) == 1) {
+                    for (int index_object = 0; index_object < objectArray.set.size(); index_object++) {
+                        SceneDataObject obj = objectArray.set.get(index_object);
+                        SceneDataValue sdv = obj.get(infoCode);
+                        if (sdv != null) {
+                            this.dependency.add_sdv2SetColumn(sdv, objectArray, infoCode);
+                        }
+                    }
+                } else if (BaseApiUtil.getInfoTypeByTag(info) == 2) {
+                    for (int index_object = 0; index_object < objectArray.set.size(); index_object++) {
+                        SceneDataObject obj = objectArray.set.get(index_object);
+                        String Key = infoCode;
+                        SceneDataValue sdv = obj.get(Key);
+                        if (sdv != null) {
+                            this.dependency.add_sdv2SetColumn(sdv, objectArray, Key);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void refresh_alarm2SetColumn() {
+        for (String classCode : this.objectArrayDic.keySet()) {
+            if (!this.code2objTypeMap.containsKey(classCode)) {
+                continue;
+            }
+            String objType = this.code2objTypeMap.get(classCode);
+            if (!objType.equals("equipment") && !objType.equals("system") && !objType.equals("space")) {
+                continue;
+            }
+            SceneDataSet objectArray = this.objectArrayDic.get(classCode).value_array;
+            for (int i = 0; i < objectArray.set.size(); i++) {
+                SceneDataObject objectItem = objectArray.set.get(i);
+                SceneDataValue sdv = objectItem.get("报警数量");
+                this.dependency.add_sdv2SetColumn(sdv, objectArray, "报警数量");
+            }
+        }
+    }
 }

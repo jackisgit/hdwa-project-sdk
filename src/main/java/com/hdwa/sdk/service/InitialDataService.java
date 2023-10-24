@@ -7,6 +7,7 @@ import com.hdwa.sdk.entity.ExcelSheetEntity;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.utils.AlarmUtil;
+import com.hdwa.sdk.utils.ComputeThread;
 import com.hdwa.sdk.utils.ExcelUtil;
 import com.hdwa.sdk.utils.FileUtil;
 import com.hdwa.sdk.websocket.AlarmWebSocketClient;
@@ -22,7 +23,11 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.net.URI;
 import java.nio.file.Files;
+import java.util.Arrays;
 import java.util.Map;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author abao
@@ -72,6 +77,9 @@ public class InitialDataService implements CommandLineRunner {
     @Autowired
     private ConfigApiService configApiService;
 
+    private final ThreadPoolExecutor variableThreadPool = new ThreadPoolExecutor(5, 10, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
+
+
     @Override
     public void run(String... args) {
         initDir();
@@ -79,7 +87,7 @@ public class InitialDataService implements CommandLineRunner {
         loadDataMainService.loadDataMain();
         initIotWebsocket();
         initAlarmWebsocket();
-        loadManualAutoSetStatistics();
+        startRefreshData();
     }
 
     /**
@@ -258,7 +266,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 刷新报警数据
      */
-    @Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60)
+    //@Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60)
     public void loadAlarmData() {
         try {
             RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
@@ -273,7 +281,6 @@ public class InitialDataService implements CommandLineRunner {
         } catch (Exception e) {
             log.error("****刷新报警数据出现异常", e);
         }
-
     }
 
     /**
@@ -302,16 +309,28 @@ public class InitialDataService implements CommandLineRunner {
         }
     }
 
+    /**
+     * 刷新数据
+     */
+    //@Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60)
+    public void refreshData() {
+        // 重算iot，alarm等
+        RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
+        int[] count = repository.recompute_IOT();
+        log.warn("iot数据：" + Arrays.toString(count));
+        count = repository.recompute_Alarm();
+        log.warn("alarm数据：" + Arrays.toString(count));
+    }
+
 
     /**
-     * 延迟加载手自动统计数据
+     * 刷新改变数据
      */
-    public void loadManualAutoSetStatistics() {
-        try {
-            Thread.sleep(1000 * 60 * 3);
-            configApiService.analysisDataRefresh(DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID));
-        } catch (Exception e) {
-            log.error("延长加载手自动统计数据出现异常", e);
+    public void startRefreshData() {
+        RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
+        for (int i = 0; i < 5; i++) {
+            Runnable thread = new ComputeThread(repository, 10);
+            variableThreadPool.execute(thread);
         }
     }
 }

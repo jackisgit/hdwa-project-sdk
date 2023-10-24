@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.repository.DataContainer;
+import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
@@ -70,6 +71,7 @@ public class IotWebSocketClient extends WebSocketClient {
             count = 0;
         }
         JSONObject json = (JSONObject) JSON.parse(arg0);
+        //WebSocketUtil.ProcessIOTReceived(json);
         String[] splits = json.getString(BaseDecConstant.DATA).split(";");
         //仪表号
         String meter = splits[1];
@@ -101,7 +103,13 @@ public class IotWebSocketClient extends WebSocketClient {
                     valueNew = value;
                 }
             }
+            boolean valueEqual = valueNew.equals(data.value);
             data.value = valueNew;
+            // 加入计算队列
+            if (!valueEqual) {
+                RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
+                repository.ProcessIOT(point);
+            }
         } catch (Exception e) {
             log.error("*****iotWebSocket数据解析异常", e);
         }

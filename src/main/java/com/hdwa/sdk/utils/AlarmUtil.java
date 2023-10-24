@@ -320,7 +320,6 @@ public class AlarmUtil {
      * @param AlarmJob
      */
     public static void calculatedAlarm(RepositoryImpl repository, JSONObject AlarmJob) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         try {
             String type = (String) AlarmJob.get("type");
             switch (type) {
@@ -348,18 +347,6 @@ public class AlarmUtil {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-
-        /*Date currTime = new Date();
-        for (String id : DataContainer.id2alarmList.keySet()) {
-            SceneDataValue alarmList = DataContainer.id2alarmList.get(id);
-            for (int i = 0; i < alarmList.value_array.set.size(); i++) {
-                SceneDataObject sdoInner = alarmList.value_array.set.get(i);
-                //AlarmUtil.durationTime(sdf, currTime, sdoInner);
-            }
-        }
-        for (SceneDataObject sdoInner : DataContainer.alarmArray.set) {
-            //AlarmUtil.durationTime(sdf, currTime, sdoInner);
-        }*/
     }
 
     public static String getTime(SimpleDateFormat sdf_T, SimpleDateFormat sdf_blank, SimpleDateFormat sdf, Object object) {
@@ -412,7 +399,7 @@ public class AlarmUtil {
             for (int i = 0; i < Content.size(); i++) {
                 JSONObject alarm = Content.getJSONObject(i);
                 try {
-                    exeProcessAlarm(alarm, false, repository);
+                    exeProcessAlarm(alarm, true, repository);
                 } catch (Exception e) {
                     log.error("exe_refresh", e);
                 }
@@ -424,15 +411,13 @@ public class AlarmUtil {
 
 
     public static void exeProcessAlarm(JSONObject alarm, boolean addWaitCompute, RepositoryImpl repository) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        Date currentTime = new Date();
         String id = (String) alarm.get("id");
         String objId = (String) alarm.get("objId");
         String treatState = alarm.get("treatState").toString();
         boolean alarmArrayRowChange = false;
         boolean alarmListRowChange = false;
         boolean alarmCountChange = false;
-        Map<String, Boolean> colChangeMap = new ConcurrentHashMap<String, Boolean>();
+        Map<String, Boolean> colChangeMap = new ConcurrentHashMap<>(16);
         {
             SceneDataValue alarmList = DataContainer.id2alarmList.get(objId);
             SceneDataValue alarmCount = DataContainer.id2alarmCount.get(objId);
@@ -489,7 +474,6 @@ public class AlarmUtil {
             } else {
                 // 只替换非空字段
                 SceneDataObject sdoAlarm = BaseApiUtil.objectToSdo(alarm);
-                //durationTime(sdf, currentTime, sdoAlarm);
                 if (existIndex != -1) {
                     SceneDataObject sdoExist = alarmList.value_array.set.get(existIndex);
                     for (String key : sdoAlarm.keySet()) {
@@ -526,6 +510,34 @@ public class AlarmUtil {
             if (!alarmCount.value_prim.value.equals(alarmList.value_array.set.size())) {
                 alarmCount.value_prim.value = alarmList.value_array.set.size();
                 alarmCountChange = true;
+            }
+        }
+        if (addWaitCompute && repository.enable_factor) {
+            if (alarmArrayRowChange) {
+                repository.addWaitCompute(DataContainer.alarmArray);
+            } else {
+                for (String col : AlarmUtil.alarmColChange) {
+                    if (colChangeMap.containsKey(col)) {
+                        repository.addWaitCompute(DataContainer.alarmArray, col);
+                    }
+                }
+            }
+            if (repository.id2sdv.containsKey(objId)) {
+                SceneDataObject objSDV = repository.id2sdv.get(objId);
+                SceneDataValue sv_alarmList = objSDV.get("报警列表");
+                SceneDataValue sv_alarmCount = objSDV.get("报警数量");
+                if (alarmListRowChange) {
+                    repository.addWaitCompute(sv_alarmList);
+                } else {
+                    for (String col : AlarmUtil.alarmColChange) {
+                        if (colChangeMap.containsKey(col)) {
+                            repository.addWaitCompute(sv_alarmList.value_array, col);
+                        }
+                    }
+                }
+                if (alarmCountChange) {
+                    repository.addWaitCompute(sv_alarmCount);
+                }
             }
         }
     }
@@ -567,75 +579,5 @@ public class AlarmUtil {
                 break;
             }
         }
-    }
-
-    public static void durationTime(SimpleDateFormat sdf, Date currentTime, SceneDataObject sdoInner) {
-        try {
-            String triggerTime = (String) sdoInner.get("triggerTime").value_prim.value;
-            String duration;
-            long keep_time;
-            if (sdoInner.containsKey("endTime")) {
-                String endTime = (String) sdoInner.get("endTime").value_prim.value;
-                duration = getTimeDiff(sdf, triggerTime, endTime);
-                keep_time = getTimeDiffLong(sdf, triggerTime, endTime);
-            } else {
-                duration = getTimeDiff(sdf, triggerTime, sdf.format(currentTime));
-                keep_time = getTimeDiffLong(sdf, triggerTime, sdf.format(currentTime));
-            }
-            {
-                SceneDataValue sdvInner = new SceneDataValue(null, null, null, null);
-                sdvInner.value_prim = new SceneDataPrimitive();
-                sdvInner.value_prim.value = keep_time;
-                sdoInner.put("durationMilli", sdvInner);
-            }
-            {
-                SceneDataValue sdvInner = new SceneDataValue(null, null, null, null);
-                sdvInner.value_prim = new SceneDataPrimitive();
-                sdvInner.value_prim.value = duration;
-                sdoInner.put("duration", sdvInner);
-            }
-            {
-                SceneDataValue sdvInner = new SceneDataValue(null, null, null, null);
-                sdvInner.value_prim = new SceneDataPrimitive();
-                sdvInner.value_prim.value = keep_time;
-                sdoInner.put("keep_time", sdvInner);
-            }
-            {
-                SceneDataValue sdvInner = new SceneDataValue(null, null, null, null);
-                sdvInner.value_prim = new SceneDataPrimitive();
-                sdvInner.value_prim.value = sdf.format(currentTime);
-                sdoInner.put("currentTime", sdvInner);
-            }
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-        }
-    }
-
-
-    // 获取时间差方法
-    public static String getTimeDiff(Date startDate, Date endDate) {
-        long diffMS = endDate.getTime() - startDate.getTime();
-        long dayMSRate = 86400000L;
-        long hourMSRate = 3600000L;
-        long minuteMSRate = 60000L;
-        long secondMSRate = 1000L;
-        long days = diffMS / dayMSRate;
-        long hours = diffMS % dayMSRate / hourMSRate;
-        long minutes = diffMS % hourMSRate / minuteMSRate;
-        long seconds = diffMS % minuteMSRate / secondMSRate;
-        return days + "天" + hours + "小时" + minutes + "分" + seconds + "秒";
-    }
-
-
-    public static long getTimeDiffLong(SimpleDateFormat sdf, String startTimestamp, String endTimestamp) throws Exception {
-        Date startDate = sdf.parse(startTimestamp);
-        Date endDate = sdf.parse(endTimestamp);
-        return endDate.getTime() - startDate.getTime();
-    }
-
-    public static String getTimeDiff(SimpleDateFormat sdf, String startTimestamp, String endTimestamp) throws Exception {
-        Date startDate = sdf.parse(startTimestamp);
-        Date endDate = sdf.parse(endTimestamp);
-        return getTimeDiff(startDate, endDate);
     }
 }

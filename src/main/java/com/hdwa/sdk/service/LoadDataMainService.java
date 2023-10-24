@@ -92,6 +92,8 @@ public class LoadDataMainService {
             pointService.loadPointData(repository);
             //加载报警数据
             alarmService.loadAlarmData(repository);
+            //构建依赖
+            repository.refresh_dependency();
             //加载接口数据
             configApiService.loadConfigData(repository);
             //加载到数据容器

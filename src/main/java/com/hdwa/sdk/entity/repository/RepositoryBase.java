@@ -2,7 +2,9 @@ package com.hdwa.sdk.entity.repository;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.entity.scene.*;
+import com.hdwa.sdk.utils.ComputeThread;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,6 +105,9 @@ public class RepositoryBase {
 
     public RepositoryDependency dependency = new RepositoryDependency();
 
+    public WaitComputeQueue WaitCompute = new WaitComputeQueue();
+
+    public boolean enable_factor = true;
 
     public RepositoryBase() {
     }
@@ -115,8 +120,52 @@ public class RepositoryBase {
         return new ConcurrentHashMap<>();
     }
 
+
     public SceneDataSet ParseSource(JSONObject descSet, String Source) {
         return null;
+    }
+
+    public int addWaitCompute(SceneDataSet set) {
+        int add_count = 0;
+        try {
+            List<SceneDataValue> sdvAffectList = new CopyOnWriteArrayList<SceneDataValue>();
+            JSONObject result = new JSONObject();
+            this.dependency.get_after_value_array(set, sdvAffectList, result);
+            for (SceneDataValue sdvAffect : sdvAffectList) {
+                this.WaitCompute.offer(new WaitItem(sdvAffect, new Date()));
+                add_count++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return add_count;
+    }
+
+    public void addWaitCompute(SceneDataSet value_array, String col) {
+        if (this.dependency.SetColumn2sdv.containsKey(value_array)) {
+            Map<String, Map<SceneDataValue, Boolean>> Column2sdv = this.dependency.SetColumn2sdv.get(value_array);
+            if (Column2sdv.containsKey(col)) {
+                Map<SceneDataValue, Boolean> afterList = Column2sdv.get(col);
+                for (SceneDataValue key : afterList.keySet()) {
+                    this.WaitCompute.offer(new WaitItem(key, new Date()));
+                }
+            }
+        }
+    }
+
+    public int addWaitCompute(SceneDataValue sdv) {
+        int add_count = 0;
+        try {
+            List<SceneDataValue> sdvAffectList = new CopyOnWriteArrayList<>();
+            this.dependency.get_after(this, sdv, sdvAffectList);
+            for (SceneDataValue sdvAffect : sdvAffectList) {
+                this.WaitCompute.offer(new WaitItem(sdvAffect, new Date()));
+                add_count++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return add_count;
     }
 
 }

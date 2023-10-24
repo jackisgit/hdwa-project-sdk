@@ -986,7 +986,7 @@ public class QueryUtil {
                 result = parseSetRef(Repository, sv, refString, QueryAssist, isSingleValueSet, false);
             } else {
                 result = Repository.ParseSource(descSet, Source);
-                if (QueryAssist.rowChangeNeed) {
+                if (QueryAssist.rowChangeNeed && result != null) {
                     QueryAssist.rowFactor.rowChange.put(result, true);
                     for (String col : QueryAssist.colChangeNeed.keySet()) {
                         QueryAssist.colFactorMap.putIfAbsent(col, new InfluenceFactor());
@@ -1336,11 +1336,15 @@ public class QueryUtil {
                         result.set.addAll(svTmp.value_array.set);
                     }
                     if (QueryAssist.rowChangeNeed) {
-                        QueryAssist.rowFactor.rowChange.put(svTmp.value_array, true);
+                        if (svTmp.value_array != null) {
+                            QueryAssist.rowFactor.rowChange.put(svTmp.value_array, true);
+                        }
                         for (String col : QueryAssist.colChangeNeed.keySet()) {
                             QueryAssist.colFactorMap.putIfAbsent(col, new InfluenceFactor());
-                            QueryAssist.colFactorMap.get(col).colChange.putIfAbsent(svTmp.value_array, new ConcurrentHashMap<String, Boolean>());
-                            QueryAssist.colFactorMap.get(col).colChange.get(svTmp.value_array).put(col, true);
+                            if (svTmp.value_array != null) {
+                                QueryAssist.colFactorMap.get(col).colChange.putIfAbsent(svTmp.value_array, new ConcurrentHashMap<String, Boolean>());
+                                QueryAssist.colFactorMap.get(col).colChange.get(svTmp.value_array).put(col, true);
+                            }
                         }
                     }
                 }
