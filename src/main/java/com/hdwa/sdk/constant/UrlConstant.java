@@ -61,6 +61,12 @@ public class UrlConstant {
      */
     public static final String LOGICAL_GROUP_URL = "/openApi/queryLogicalGrouping";
 
+
+    /**
+     * 保存日志 接口路径
+     */
+    public static final String SAVE_LOG_URL = "/openApi/insert";
+
     /**
      * 逻辑分组包含的对象数据 接口路径
      */

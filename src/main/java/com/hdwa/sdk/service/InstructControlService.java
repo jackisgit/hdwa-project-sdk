@@ -7,12 +7,15 @@ import com.hdwa.sdk.constant.UrlConstant;
 import com.hdwa.sdk.entity.InstructControlParam;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
+import com.hdwa.sdk.entity.scene.SceneDataObject;
 import com.hdwa.sdk.utils.ControlUtil;
 import com.hdwa.sdk.utils.OkHttpClientUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author abao
@@ -28,6 +31,9 @@ public class InstructControlService {
 
     @Value("${url.iotProject}")
     private String iotProjectUrl;
+
+    @Value("${url.monitor}")
+    private String monitorUrl;
 
     @Autowired
     private ConfigApiService configApiService;
@@ -55,7 +61,8 @@ public class InstructControlService {
         });
         try {
             //组装要下发的指令
-            JSONArray points = ControlUtil.setPoints(DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID), param);
+            JSONObject data = ControlUtil.setPoints(DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID), param);
+            JSONArray points = data.getJSONArray("points");
             log.warn("*****下发控制指令参数：" + points);
             //下发操作
             JSONArray result = controlDelivery(points, param.getPath().toString());
@@ -63,6 +70,9 @@ public class InstructControlService {
             JSONObject resultDate = new JSONObject();
             //处理返回结果
             ControlUtil.disposeResult(resultDate, result);
+
+            //保存日志
+            //ControlUtil.saveOperationLog(param.getUserId(), param.getUsername(), (List<SceneDataObject>) data.get("objectList"), param.getInfoValueSet(), result, monitorUrl);
             return resultDate;
         } catch (Exception e) {
             log.error("******下发控制指令异常", e);

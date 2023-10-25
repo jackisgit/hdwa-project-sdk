@@ -45,7 +45,6 @@ public class InstructControlParam {
      */
     private String groupCode;
 
-
     /**
      * 单点位批量下发数据
      */

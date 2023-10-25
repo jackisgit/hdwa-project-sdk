@@ -3,13 +3,16 @@ package com.hdwa.sdk.utils;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
+import com.hdwa.sdk.constant.UrlConstant;
 import com.hdwa.sdk.entity.InstructControlParam;
+import com.hdwa.sdk.entity.SystemOperationLogSaveDto;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.entity.scene.SceneDataObject;
 import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
 import com.hdwa.sdk.entity.scene.SceneDataValue;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -21,8 +24,13 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ControlUtil {
 
-
-    public static JSONArray setPoints(RepositoryImpl repository, InstructControlParam param) throws Exception {
+    /**
+     * @param repository
+     * @param param
+     * @return
+     * @throws Exception
+     */
+    public static JSONObject setPoints(RepositoryImpl repository, InstructControlParam param) throws Exception {
         JSONArray result;
         Object valueObject = CalculateApiJsonUtil.getValueObject(repository, param.getPath());
 
@@ -42,22 +50,10 @@ public class ControlUtil {
             result = setPoints(repository, currData, param.getInfoValueSet(), sdoList);
         }
 
-        boolean all_success = true;
-        for (int i = 0; i < result.size(); i++) {
-            JSONObject item = result.getJSONObject(i);
-            String status = (String) item.get("status");
-            if (status == null || !status.endsWith("finish:success")) {
-                all_success = false;
-                break;
-            }
-        }
-
-        if (all_success) {
-            setControlValue(param.getPath(), param.getInfoValueSet());
-        }
-        // TODO: 2023/9/7 先去除日志记录 
-        //ControlUtil.saveOperationLog(param.getUserId(), param.getUsername(), sdoList, param.getInfoValueSet(), result);
-        return result;
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("objectList", sdoList);
+        jsonObject.put("points", result);
+        return jsonObject;
     }
 
 
@@ -88,7 +84,7 @@ public class ControlUtil {
      * @param infoValueSet
      * @param points
      */
-    public static void saveOperationLog(String userId, String userName, List<SceneDataObject> sdoList, JSONObject infoValueSet, JSONArray points) {
+    public static void saveOperationLog(String userId, String userName, List<SceneDataObject> sdoList, JSONObject infoValueSet, JSONArray points,String url) {
         try {
             JSONObject postParam = new JSONObject();
             postParam.put("groupCode", BaseDecConstant.WD);
@@ -115,19 +111,23 @@ public class ControlUtil {
             }
             {
                 SceneDataObject sdo = sdoList.get(0);
-                Object objType = sdo.get("objType").value_prim.value;
+                Object belongSystem = sdo.get("subSystemName").value_prim.value;
+
                 Object objName = sdo.get("localName").value_prim.value;
-                Object systemCode = null;
                 String classCode = (String) sdo.get("classCode").value_prim.value;
-                Object belongSystem = sdo.get("所属场景") != null ? sdo.get("所属场景").value_prim.value : null;
+                postParam.put("ibmsSceneCode", sdo.get("ibmsSceneCode").value_prim.value);
+                postParam.put("ibmsSceneName", sdo.get("subSystemName").value_prim.value);
+                postParam.put("ibmsClassCode", sdo.get("ibmsClassCode").value_prim.value);
+                postParam.put("ibmsClassName", sdo.get("数据字典类型名称").value_prim.value);
+                postParam.put("classCode", classCode);
+                postParam.put("systemType", "控制指令下发");
+                postParam.put("module", "指令控制");
+                postParam.put("logSource", "user");
+
 
                 RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
                 List<SceneDataObject> infoList = repository.infoArrayDic.get(classCode).set;
-                postParam.put("objType", objType);
-                postParam.put("objName", objName);
-                postParam.put("systemCode", systemCode);
-                postParam.put("classCode", classCode);
-                postParam.put("functionType", "remoteControl");
+
                 StringBuilder sb = new StringBuilder();
                 for (String key : infoValueSet.keySet()) {
                     Object infoValue = infoValueSet.get(key);
@@ -144,8 +144,8 @@ public class ControlUtil {
                         infoName = (String) infoDef.get("name").value_prim.value;
                         infoValue = ControlUtil.value2CanRead(infoDef, infoValue);
                     }
-                    sb.append("[").append(infoName).append("]").append("设为：").append("[").append(infoValue).append("]");
-                    sb.append(";");
+                    sb.append("【").append(infoName).append("】").append("设为：").append("【").append(infoValue).append("】");
+                    sb.append("；");
                 }
                 JSONArray success_points = new JSONArray();
                 JSONArray failure_points = new JSONArray();
@@ -159,12 +159,16 @@ public class ControlUtil {
                     }
                 }
                 sb.append("控制结果：").append(points.size()).append("个控制指令").append(success_points.size() > 0 ? ("，" + success_points.size() + "个成功") : "").append(failure_points.size() > 0 ? ("，" + failure_points.size() + "个失败") : "");
-                postParam.put("operateDetail", "【" + belongSystem + "】：" + objName + "-" + sb);
-                postParam.put("sourceType", 1);
+                postParam.put("details", "【" + belongSystem + "】：" + objName + "-" + sb);
+
             }
-            //saveOperationLog(postParam);
+
+            SystemOperationLogSaveDto saveDto = postParam.toJavaObject(SystemOperationLogSaveDto.class);
+            System.out.println(saveDto.toString());
+            boolean result = OkHttpClientUtil.httpPost(postParam, url + UrlConstant.SAVE_LOG_URL).getBoolean(BaseDecConstant.SUCCESS);
+            System.out.println(result);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
+            log.error("保存日志操作失败", e);
         }
     }
 
@@ -177,26 +181,11 @@ public class ControlUtil {
                 double value1 = Double.parseDouble(infoValue.toString());
                 double value2 = Double.parseDouble(code);
                 if (value1 == value2) {
-                    String name = item.getString("name");
-                    return name;
+                    return item.getString("name");
                 }
             }
         }
         return infoValue;
-    }
-
-
-    /**
-     * 保存日志
-     *
-     * @param postParam
-     */
-    private static void saveOperationLog(JSONObject postParam) {
-
-    /*    String post_url = Constant.zkt_control_url + "/operationLog/saveOperationLog";
-        String post_result = HttpClientUtil.instance("zkt_control").post(post_url, postParam.toJSONString());
-        JSONObject result = JSON.parseObject(post_result);
-        log.debug(result.toJSONString());*/
     }
 
     private static JSONArray setPoints(RepositoryImpl Repository, SceneDataObject object, JSONObject infoValueSet, List<SceneDataObject> sdoList)
