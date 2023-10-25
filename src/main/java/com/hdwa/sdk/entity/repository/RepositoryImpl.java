@@ -192,7 +192,7 @@ public class RepositoryImpl extends RepositoryBase {
      * @param Source
      * @return
      */
-    public SceneDataSet ParseSource(JSONObject descSet, String Source) {
+    public SceneDataSet parseSource(JSONObject descSet, String Source) {
         SceneDataSet result = null;
         switch (Source) {
             case BaseDecConstant.CLASS:
@@ -308,7 +308,7 @@ public class RepositoryImpl extends RepositoryBase {
     }
 
 
-    public int[] recompute_IOT() {
+    public int[] recomputeIot() {
         int[] counts = new int[2];
         int item_count = 0;
         int affect_count = 0;
@@ -317,14 +317,14 @@ public class RepositoryImpl extends RepositoryBase {
             SceneDataPrimitive sdv = DataContainer.point2sdv.get(point);
             if (sdv.value != null) {
                 item_count++;
-                affect_count += this.ProcessIOT(point);
+                affect_count += this.processIot(point);
             }
         }
         for (String point : DataContainer.set2sdv.keySet()) {
             SceneDataPrimitive sdv = DataContainer.set2sdv.get(point);
             if (sdv.value != null) {
                 item_count++;
-                affect_count += this.ProcessIOT(point);
+                affect_count += this.processIot(point);
             }
         }
         counts[0] = item_count;
@@ -332,7 +332,7 @@ public class RepositoryImpl extends RepositoryBase {
         return counts;
     }
 
-    public int[] recompute_Alarm() {
+    public int[] recomputeAlarm() {
         int[] counts = new int[2];
         int item_count = 0;
         int affect_count = 0;
@@ -355,7 +355,7 @@ public class RepositoryImpl extends RepositoryBase {
     }
 
 
-    public int ProcessIOT(String point) {
+    public int processIot(String point) {
         int add_count = 0;
         if (this.point2ObjectInfoList.containsKey(point)) {
             List<ObjectInfo> ObjectInfoList = this.point2ObjectInfoList.get(point);
@@ -374,18 +374,21 @@ public class RepositoryImpl extends RepositoryBase {
         return add_count;
     }
 
-    public void refresh_dependency() {
+    /**
+     * 构建依赖
+     */
+    public void refreshDependency() {
         this.dependency.clear();
         // 构建zkt到rwd的依赖
-        this.refresh_rwd2zkt();
+        this.refreshRwdToZkt();
         // 构建IOT到对象信息点的依赖
-        this.refresh_iot2SetColumn();
+        this.refreshIotToSetColumn();
         // 构建报警数量到对象信息点的依赖
-        this.refresh_alarm2SetColumn();
+        this.refreshAlarmToSetColumn();
     }
 
 
-    private void refresh_rwd2zkt() {
+    private void refreshRwdToZkt() {
         for (SceneDataObject classItem : this.ZKTClassArray.set) {
             String ibmsSceneCode = (String) classItem.get("ibmsSceneCode").value_prim.value;
             String ibmsClassCode = (String) classItem.get("ibmsClassCode").value_prim.value;
@@ -408,7 +411,7 @@ public class RepositoryImpl extends RepositoryBase {
         }
     }
 
-    private void refresh_iot2SetColumn() {
+    private void refreshIotToSetColumn() {
         for (String key : this.objectArrayDic.keySet()) {
             if (this.objTypeMap.containsKey(key)) {
                 continue;
@@ -440,7 +443,7 @@ public class RepositoryImpl extends RepositoryBase {
         }
     }
 
-    private void refresh_alarm2SetColumn() {
+    private void refreshAlarmToSetColumn() {
         for (String classCode : this.objectArrayDic.keySet()) {
             if (!this.code2objTypeMap.containsKey(classCode)) {
                 continue;

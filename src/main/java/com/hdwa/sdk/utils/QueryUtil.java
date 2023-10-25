@@ -985,7 +985,7 @@ public class QueryUtil {
                 String refString = (descSet.get("ref")).toString();
                 result = parseSetRef(Repository, sv, refString, QueryAssist, isSingleValueSet, false);
             } else {
-                result = Repository.ParseSource(descSet, Source);
+                result = Repository.parseSource(descSet, Source);
                 if (QueryAssist.rowChangeNeed && result != null) {
                     QueryAssist.rowFactor.rowChange.put(result, true);
                     for (String col : QueryAssist.colChangeNeed.keySet()) {

@@ -93,7 +93,7 @@ public class LoadDataMainService {
             //加载报警数据
             alarmService.loadAlarmData(repository);
             //构建依赖
-            repository.refresh_dependency();
+            repository.refreshDependency();
             //加载接口数据
             configApiService.loadConfigData(repository);
             //加载到数据容器

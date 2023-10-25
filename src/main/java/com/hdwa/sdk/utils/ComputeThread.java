@@ -23,7 +23,7 @@ public class ComputeThread implements Runnable {
 
     @Override
     public void run() {
-        log.warn("计算线程已启动");
+        log.warn("****计算线程已启动");
         int cycle_count = 0;
         while (!stop) {
             cycle_count++;

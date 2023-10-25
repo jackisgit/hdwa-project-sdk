@@ -2,7 +2,6 @@ package com.hdwa.sdk.entity.repository;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.entity.scene.*;
-import com.hdwa.sdk.utils.ComputeThread;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -121,7 +120,7 @@ public class RepositoryBase {
     }
 
 
-    public SceneDataSet ParseSource(JSONObject descSet, String Source) {
+    public SceneDataSet parseSource(JSONObject descSet, String Source) {
         return null;
     }
 

@@ -108,7 +108,7 @@ public class IotWebSocketClient extends WebSocketClient {
             // 加入计算队列
             if (!valueEqual) {
                 RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
-                repository.ProcessIOT(point);
+                repository.processIot(point);
             }
         } catch (Exception e) {
             log.error("*****iotWebSocket数据解析异常", e);
