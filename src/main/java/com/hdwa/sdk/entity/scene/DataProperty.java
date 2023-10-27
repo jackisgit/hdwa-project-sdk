@@ -5,7 +5,7 @@ package com.hdwa.sdk.entity.scene;
  * @since 2023/7/25
  * 场景属性对象
  */
-public class SceneProperty {
+public class DataProperty {
 
     /**
      * 属性名称
@@ -32,47 +32,47 @@ public class SceneProperty {
     /**
      * 筛选规则
      */
-    public String filter_rule;
+    public String filterRule;
 
     /**
      * 查询层级 0表示递归全部、其他正整数表示层次
      */
-    public String read_level;
+    public String readLevel;
 
     /**
      * 偏移量
      */
-    public String offset_level;
+    public String offsetLevel;
 
     /**
      * 标识 1表示通过，0表示截断
      */
-    public String allow_pass;
+    public String allowPass;
 
     /**
      * 自定义对象
      */
-    public SceneObject custom_object;
+    public DataObjectBase customObject;
 
     /**
      * 静态值
      */
-    public String static_value;
+    public String staticValue;
 
     /**
      * 静态查询
      */
-    public SceneObject[] static_array;
+    public DataObjectBase[] staticArray;
 
     /**
      * 查询语句
      */
-    public String query_sql;
+    public String querySql;
 
     /**
      * 附加查询
      */
-    public SceneProperty[] query_attached;
+    public DataProperty[] queryAttached;
 
     public String getPropertyName() {
         return propertyName;
@@ -106,75 +106,75 @@ public class SceneProperty {
         this.propertyValueType = propertyValueType;
     }
 
-    public String getFilter_rule() {
-        return filter_rule;
+    public String getFilterRule() {
+        return filterRule;
     }
 
-    public void setFilter_rule(String filter_rule) {
-        this.filter_rule = filter_rule;
+    public void setFilterRule(String filterRule) {
+        this.filterRule = filterRule;
     }
 
-    public String getRead_level() {
-        return read_level;
+    public String getReadLevel() {
+        return readLevel;
     }
 
-    public void setRead_level(String read_level) {
-        this.read_level = read_level;
+    public void setReadLevel(String readLevel) {
+        this.readLevel = readLevel;
     }
 
-    public String getOffset_level() {
-        return offset_level;
+    public String getOffsetLevel() {
+        return offsetLevel;
     }
 
-    public void setOffset_level(String offset_level) {
-        this.offset_level = offset_level;
+    public void setOffsetLevel(String offsetLevel) {
+        this.offsetLevel = offsetLevel;
     }
 
-    public String getAllow_pass() {
-        return allow_pass;
+    public String getAllowPass() {
+        return allowPass;
     }
 
-    public void setAllow_pass(String allow_pass) {
-        this.allow_pass = allow_pass;
+    public void setAllowPass(String allowPass) {
+        this.allowPass = allowPass;
     }
 
-    public SceneObject getCustom_object() {
-        return custom_object;
+    public DataObjectBase getCustomObject() {
+        return customObject;
     }
 
-    public void setCustom_object(SceneObject custom_object) {
-        this.custom_object = custom_object;
+    public void setCustomObject(DataObjectBase customObject) {
+        this.customObject = customObject;
     }
 
-    public String getStatic_value() {
-        return static_value;
+    public String getStaticValue() {
+        return staticValue;
     }
 
-    public void setStatic_value(String static_value) {
-        this.static_value = static_value;
+    public void setStaticValue(String staticValue) {
+        this.staticValue = staticValue;
     }
 
-    public SceneObject[] getStatic_array() {
-        return static_array;
+    public DataObjectBase[] getStaticArray() {
+        return staticArray;
     }
 
-    public void setStatic_array(SceneObject[] static_array) {
-        this.static_array = static_array;
+    public void setStaticArray(DataObjectBase[] staticArray) {
+        this.staticArray = staticArray;
     }
 
-    public String getQuery_sql() {
-        return query_sql;
+    public String getQuerySql() {
+        return querySql;
     }
 
-    public void setQuery_sql(String query_sql) {
-        this.query_sql = query_sql;
+    public void setQuerySql(String querySql) {
+        this.querySql = querySql;
     }
 
-    public SceneProperty[] getQuery_attached() {
-        return query_attached;
+    public DataProperty[] getQueryAttached() {
+        return queryAttached;
     }
 
-    public void setQuery_attached(SceneProperty[] query_attached) {
-        this.query_attached = query_attached;
+    public void setQueryAttached(DataProperty[] queryAttached) {
+        this.queryAttached = queryAttached;
     }
 }

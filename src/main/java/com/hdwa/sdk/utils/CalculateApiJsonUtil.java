@@ -31,9 +31,9 @@ public class CalculateApiJsonUtil {
      * @return
      * @throws Exception
      */
-    public static List<List<SceneProperty>> calculateProperty(RepositoryBase repositoryBase) throws Exception {
+    public static List<List<DataProperty>> calculateProperty(RepositoryBase repositoryBase) throws Exception {
         // 排序
-        List<SceneProperty> properties = BaseApiUtil.getPropertyListBy(repositoryBase.sceneObject);
+        List<DataProperty> properties = BaseApiUtil.getPropertyListBy(repositoryBase.dataObjectBase);
         // 声明一个异常集合
         List<ExceptionItem> exceptionList = new CopyOnWriteArrayList<>();
 
@@ -44,11 +44,11 @@ public class CalculateApiJsonUtil {
                     //这里如果有异常就代表json格式错误
                     JSONObject sqlJson = null;
                     try {
-                        sqlJson = JSON.parseObject(property.query_sql);
+                        sqlJson = JSON.parseObject(property.querySql);
                     } catch (Exception e) {
                         ExceptionItem exceptionItem = null;
                         try {
-                            exceptionItem = new ExceptionItem(PathUtil.getPropertyPath(repositoryBase, property), "Json格式错误", property.query_sql);
+                            exceptionItem = new ExceptionItem(PathUtil.getPropertyPath(repositoryBase, property), "Json格式错误", property.querySql);
                         } catch (Exception e2) {
                             log.error("检查：" + BaseDecConstant.QUERY + "---出现异常");
                         }
@@ -85,11 +85,11 @@ public class CalculateApiJsonUtil {
                 .forEach(property -> {
                     //转换失败代表格式错误
                     try {
-                        JSON.parseObject(property.query_sql);
+                        JSON.parseObject(property.querySql);
                     } catch (Exception e) {
                         ExceptionItem exceptionItem = null;
                         try {
-                            exceptionItem = new ExceptionItem(PathUtil.getPropertyPath(repositoryBase, property), "Json格式错误", property.query_sql);
+                            exceptionItem = new ExceptionItem(PathUtil.getPropertyPath(repositoryBase, property), "Json格式错误", property.querySql);
                         } catch (Exception e2) {
                             log.error("检查：" + BaseDecConstant.DEAMON + "---出现异常");
                         }
@@ -102,11 +102,11 @@ public class CalculateApiJsonUtil {
      /*   properties.stream()
                 .filter(property -> property.getPropertyValueType().equals(BaseDecConstant.STATIC))
                 .filter(property -> !property.propertyValueSchema.equals(BaseDecConstant.JSONARRAY) && !property.propertyValueSchema.equals(BaseDecConstant.JSONOBJECT))
-                .filter(property -> property.static_value == null || property.static_value.length() == 0)
+                .filter(property -> property.staticValue == null || property.staticValue.length() == 0)
                 .forEach(property -> {
                     ExceptionItem exceptionItem = null;
                     try {
-                        exceptionItem = new ExceptionItem(PathUtil.getPropertyPath(repositoryBase, property), "静态属性错误", property.static_value);
+                        exceptionItem = new ExceptionItem(PathUtil.getPropertyPath(repositoryBase, property), "静态属性错误", property.staticValue);
                     } catch (Exception e) {
                         log.error("检查：" + BaseDecConstant.STATIC + "---出现异常");
                     }
@@ -126,7 +126,7 @@ public class CalculateApiJsonUtil {
                 // TODO: 2023/8/1 优化
                 //log.warn(PathUtil.getPropertyPath(repositoryBase, property));
                 // TODO: 2023/8/1 优化
-                List<SceneProperty> beforeList = CheckUtil.getPropertyBefore(repositoryBase, property);
+                List<DataProperty> beforeList = CheckUtil.getPropertyBefore(repositoryBase, property);
                 repositoryBase.beforeDic.put(property, beforeList);
 
                 // TODO: 2023/8/1 打印
@@ -153,19 +153,19 @@ public class CalculateApiJsonUtil {
             throw new ExceptionWrapper(exceptionList);
         }
 
-        Map<SceneProperty, Boolean> processedDic = new ConcurrentHashMap<>(16);
-        List<List<SceneProperty>> propertyList = new CopyOnWriteArrayList<>();
+        Map<DataProperty, Boolean> processedDic = new ConcurrentHashMap<>(16);
+        List<List<DataProperty>> propertyList = new CopyOnWriteArrayList<>();
 
         while (true) {
             int count = 0;
-            List<SceneProperty> spInnerList = new CopyOnWriteArrayList<>();
-            for (SceneProperty spInner : properties) {
+            List<DataProperty> spInnerList = new CopyOnWriteArrayList<>();
+            for (DataProperty spInner : properties) {
                 if (processedDic.containsKey(spInner)) {
                     continue;
                 }
-                List<SceneProperty> beforeList = repositoryBase.beforeDic.get(spInner);
+                List<DataProperty> beforeList = repositoryBase.beforeDic.get(spInner);
                 boolean allFinish = true;
-                for (SceneProperty property : beforeList) {
+                for (DataProperty property : beforeList) {
                     if (!processedDic.containsKey(property)) {
                         allFinish = false;
                         break;
@@ -180,13 +180,13 @@ public class CalculateApiJsonUtil {
                 break;
             }
             propertyList.add(spInnerList);
-            for (SceneProperty spInner : spInnerList) {
+            for (DataProperty spInner : spInnerList) {
                 processedDic.put(spInner, true);
             }
         }
 
-        for (List<SceneProperty> spInnerList : propertyList) {
-            for (SceneProperty spInner2 : spInnerList) {
+        for (List<DataProperty> spInnerList : propertyList) {
+            for (DataProperty spInner2 : spInnerList) {
                 // TODO: 2023/8/1 打印
                 //log.warn(PathUtil.getPropertyPath(repositoryBase, spInner2));
                 if (!repositoryBase.property2SDV.containsKey(spInner2)) {
@@ -206,33 +206,33 @@ public class CalculateApiJsonUtil {
      * @return
      * @throws Exception
      */
-    public static List<List<SceneProperty>> notCheckCalculateProperty(RepositoryBase repositoryBase) {
+    public static List<List<DataProperty>> notCheckCalculateProperty(RepositoryBase repositoryBase) {
         // 排序
-        List<SceneProperty> properties = BaseApiUtil.getPropertyListBy(repositoryBase.sceneObject);
+        List<DataProperty> properties = BaseApiUtil.getPropertyListBy(repositoryBase.dataObjectBase);
 
         //所有属性
         properties.forEach(property -> {
             try {
-                List<SceneProperty> beforeList = CheckUtil.getPropertyBefore(repositoryBase, property);
+                List<DataProperty> beforeList = CheckUtil.getPropertyBefore(repositoryBase, property);
                 repositoryBase.beforeDic.put(property, beforeList);
             } catch (Exception e) {
                 log.error("无检查计算属性异常", e);
             }
         });
 
-        Map<SceneProperty, Boolean> processedDic = new ConcurrentHashMap<>(16);
-        List<List<SceneProperty>> propertyList = new CopyOnWriteArrayList<>();
+        Map<DataProperty, Boolean> processedDic = new ConcurrentHashMap<>(16);
+        List<List<DataProperty>> propertyList = new CopyOnWriteArrayList<>();
 
         while (true) {
             int count = 0;
-            List<SceneProperty> spInnerList = new CopyOnWriteArrayList<>();
-            for (SceneProperty spInner : properties) {
+            List<DataProperty> spInnerList = new CopyOnWriteArrayList<>();
+            for (DataProperty spInner : properties) {
                 if (processedDic.containsKey(spInner)) {
                     continue;
                 }
-                List<SceneProperty> beforeList = repositoryBase.beforeDic.get(spInner);
+                List<DataProperty> beforeList = repositoryBase.beforeDic.get(spInner);
                 boolean allFinish = true;
-                for (SceneProperty property : beforeList) {
+                for (DataProperty property : beforeList) {
                     if (!processedDic.containsKey(property)) {
                         allFinish = false;
                         break;
@@ -247,13 +247,13 @@ public class CalculateApiJsonUtil {
                 break;
             }
             propertyList.add(spInnerList);
-            for (SceneProperty spInner : spInnerList) {
+            for (DataProperty spInner : spInnerList) {
                 processedDic.put(spInner, true);
             }
         }
 
-        for (List<SceneProperty> spInnerList : propertyList) {
-            for (SceneProperty spInner2 : spInnerList) {
+        for (List<DataProperty> spInnerList : propertyList) {
+            for (DataProperty spInner2 : spInnerList) {
                 if (!repositoryBase.property2SDV.containsKey(spInner2)) {
                     repositoryBase.property2SDV.put(spInner2, new CopyOnWriteArrayList<>());
                 }
@@ -270,20 +270,20 @@ public class CalculateApiJsonUtil {
      * @param propertyList
      * @throws Exception
      */
-    public static void calculateAll(RepositoryBase repositoryBase, List<List<SceneProperty>> propertyList) throws Exception {
-        repositoryBase.objectData = new SceneDataObject(repositoryBase, null, null, null, repositoryBase.sceneObject, null, null);
+    public static void calculateAll(RepositoryBase repositoryBase, List<List<DataProperty>> propertyList) throws Exception {
+        repositoryBase.objectData = new DataObject(repositoryBase, null, null, null, repositoryBase.dataObjectBase, null, null);
 
-        for (List<SceneProperty> spInnerList : propertyList) {
-            for (SceneProperty spInner2 : spInnerList) {
-                List<SceneDataValue> sdvList = repositoryBase.property2SDV.get(spInner2);
+        for (List<DataProperty> spInnerList : propertyList) {
+            for (DataProperty spInner2 : spInnerList) {
+                List<DataValue> sdvList = repositoryBase.property2SDV.get(spInner2);
                 // 打印路径
                  /*   String path = PathUtil.getPropertyPath(repositoryBase, spInner2);
                     log.info("ComputeOnce:" + path);*/
-                for (SceneDataValue sdv : sdvList) {
+                for (DataValue sdv : sdvList) {
                     try {
                         calculateProperty(repositoryBase, sdv);
                     } catch (Exception e) {
-                        String pathInner = PathUtil.getPropertyPath(repositoryBase, sdv.rel_property);
+                        String pathInner = PathUtil.getPropertyPath(repositoryBase, sdv.relProperty);
                         log.error(pathInner + " " + e.getMessage(), e);
                         log.error("计算接口出现异常", e);
                     }
@@ -300,19 +300,19 @@ public class CalculateApiJsonUtil {
      * @param sv
      * @throws Exception
      */
-    public static void calculateProperty(RepositoryBase repositoryBase, SceneDataValue sv) throws Exception {
-        SceneDataObject objectData = sv.parentObjectData;
-        SceneProperty sceneProperty = sv.rel_property;
-        switch (sceneProperty.propertyValueType) {
+    public static void calculateProperty(RepositoryBase repositoryBase, DataValue sv) throws Exception {
+        DataObject objectData = sv.parentObjectData;
+        DataProperty dataProperty = sv.relProperty;
+        switch (dataProperty.propertyValueType) {
             case BaseDecConstant.STATIC:
-                if (sv.rel_property.propertyValueSchema.equals(BaseDecConstant.JSONOBJECT)) {
+                if (sv.relProperty.propertyValueSchema.equals(BaseDecConstant.JSONOBJECT)) {
                     sv.finish = true;
-                } else if (sv.rel_property.propertyValueSchema.equals(BaseDecConstant.JSONARRAY)) {
+                } else if (sv.relProperty.propertyValueSchema.equals(BaseDecConstant.JSONARRAY)) {
                     boolean finish = true;
-                    for (SceneDataObject sdbInner : sv.value_array.set) {
+                    for (DataObject sdbInner : sv.valueArray.set) {
                         if (sdbInner != null) {
                             for (String temp : sdbInner.keySet()) {
-                                SceneDataValue sdv = sdbInner.get(temp);
+                                DataValue sdv = sdbInner.get(temp);
                                 if (!sdv.finish) {
                                     finish = false;
                                     break;
@@ -327,38 +327,38 @@ public class CalculateApiJsonUtil {
                         sv.finish = true;
                     }
                 } else {
-                    sv.value_prim = new SceneDataPrimitive();
-                    sv.value_prim.value = QueryUtil.parse_static(sceneProperty.propertyValueSchema, sceneProperty.static_value);
-                    sv.value_prim.change = false;
+                    sv.valuePrim = new DataPrimitive();
+                    sv.valuePrim.value = QueryUtil.parse_static(dataProperty.propertyValueSchema, dataProperty.staticValue);
+                    sv.valuePrim.change = false;
                     sv.finish = true;
                 }
                 break;
             case BaseDecConstant.QUERY:
                 sv.lock.lock();
                 try {
-                    calculatePropertyQuery(repositoryBase, sceneProperty, sv);
+                    calculatePropertyQuery(repositoryBase, dataProperty, sv);
                 } finally {
                     sv.lock.unlock();
                 }
                 break;
             case BaseDecConstant.CUSTOM:
-                if (sv.value_object == null) {
-                    sv.value_object = new SceneDataObject(repositoryBase, objectData, sceneProperty.propertyName, null, sceneProperty.custom_object, null, null);
+                if (sv.valueObject == null) {
+                    sv.valueObject = new DataObject(repositoryBase, objectData, dataProperty.propertyName, null, dataProperty.customObject, null, null);
                 }
                 break;
             case BaseDecConstant.DEAMON:
-                JSONObject sqlJson = (JSONObject) JSON.parse(sceneProperty.query_sql);
+                JSONObject sqlJson = (JSONObject) JSON.parse(dataProperty.querySql);
                 String queryType = (String) sqlJson.get(BaseDecConstant.QUERY_TYPE);
                 if (queryType.endsWith(BaseDecConstant.TREND)) {
-                    if (sv.value_prim == null) {
-                        sv.value_prim = new SceneDataPrimitive();
-                        sv.value_prim.value = 0;
-                        sv.value_prim.change = true;
+                    if (sv.valuePrim == null) {
+                        sv.valuePrim = new DataPrimitive();
+                        sv.valuePrim.value = 0;
+                        sv.valuePrim.change = true;
                     }
                 } else if (queryType.endsWith(BaseDecConstant.CURVE)) {
-                    if (sv.value_array == null) {
-                        sv.value_array = new SceneDataSet(false);
-                        sv.value_array.setRowChange(true);
+                    if (sv.valueArray == null) {
+                        sv.valueArray = new DataSet(false);
+                        sv.valueArray.setRowChange(true);
                     }
                 }
                 JSONObject criteria = (JSONObject) sqlJson.get(BaseDecConstant.CRITERIA);
@@ -366,11 +366,11 @@ public class CalculateApiJsonUtil {
                 for (String key : criteria.keySet()) {
                     JSONObject criteriaItemValue = (JSONObject) criteria.get(key);
                     String refString = (String) criteriaItemValue.get(BaseDecConstant.REF);
-                    SceneDataSet sdvList = QueryUtil.parseSetRef(repositoryBase, sv, refString, new QueryAssist(), false, true);
-                    for (SceneDataValue sdvInner : sdvList.singleValueSet) {
-                        ConcurrentHashMap<SceneDataPrimitive, String> sdv2point = repositoryBase.sdv2point();
-                        if (sdvInner != null && sdv2point.containsKey(sdvInner.value_prim)) {
-                            String point = sdv2point.get(sdvInner.value_prim);
+                    DataSet sdvList = QueryUtil.parseSetRef(repositoryBase, sv, refString, new QueryAssist(), false, true);
+                    for (DataValue sdvInner : sdvList.singleValueSet) {
+                        ConcurrentHashMap<DataPrimitive, String> sdv2point = repositoryBase.sdv2point();
+                        if (sdvInner != null && sdv2point.containsKey(sdvInner.valuePrim)) {
+                            String point = sdv2point.get(sdvInner.valuePrim);
                             pointList.add(point);
                         }
                     }
@@ -379,26 +379,26 @@ public class CalculateApiJsonUtil {
 
             default:
         }
-        sv.last_compute_time = new Date();
+        sv.lastComputeTime = new Date();
     }
 
     /**
      * 计算属性查询
      *
      * @param repositoryBase
-     * @param sceneProperty
+     * @param dataProperty
      * @param sv
      * @return
      * @throws Exception
      */
-    private static boolean calculatePropertyQuery(RepositoryBase repositoryBase, SceneProperty sceneProperty, SceneDataValue sv) throws Exception {
-        SceneDataObject objectData = sv.parentObjectData;
+    private static boolean calculatePropertyQuery(RepositoryBase repositoryBase, DataProperty dataProperty, DataValue sv) throws Exception {
+        DataObject objectData = sv.parentObjectData;
         boolean computeValueChanged = false;
         Object valueBeforeCompute = null;
         if (repositoryBase.enable_factor) {
             valueBeforeCompute = sv.toJSON(true, 1);
         }
-        JSONObject sqlJson = (JSONObject) JSON.parse(sceneProperty.query_sql);
+        JSONObject sqlJson = (JSONObject) JSON.parse(dataProperty.querySql);
         QueryAssist queryAssist = new QueryAssist(true);
         Object queryResult = QueryUtil.query(repositoryBase, sv, sqlJson, queryAssist);
 
@@ -406,18 +406,18 @@ public class CalculateApiJsonUtil {
             sv.colFactorMap = queryAssist.colFactorMap;
             repositoryBase.dependency.add_compute(sv);
 
-        if (sceneProperty.propertyValueSchema.equals(BaseDecConstant.JSONOBJECT)) {
-            SceneDataObject queryResultObject = null;
-            if (queryResult instanceof SceneDataObject) {
-                queryResultObject = (SceneDataObject) queryResult;
-            } else if (queryResult instanceof SceneDataSet) {
-                SceneDataSet queryResultArray = (SceneDataSet) queryResult;
+        if (dataProperty.propertyValueSchema.equals(BaseDecConstant.JSONOBJECT)) {
+            DataObject queryResultObject = null;
+            if (queryResult instanceof DataObject) {
+                queryResultObject = (DataObject) queryResult;
+            } else if (queryResult instanceof DataSet) {
+                DataSet queryResultArray = (DataSet) queryResult;
                 if (queryResultArray.set.size() == 1) {
                     queryResultObject = queryResultArray.set.get(0);
                 }
             }
             if (queryResultObject != null) {
-                SceneDataObject arrayItemTmp = queryResultObject;
+                DataObject arrayItemTmp = queryResultObject;
                 Map<String, Boolean> fatherReturnColumnMap = new ConcurrentHashMap<>(16);
                 while (true) {
                     if (arrayItemTmp.parentArrayData != null || arrayItemTmp.parentObjectData != null) {
@@ -434,54 +434,54 @@ public class CalculateApiJsonUtil {
                     }
                     arrayItemTmp = arrayItemTmp.father;
                 }
-                SceneDataObject sod = new SceneDataObject(repositoryBase, objectData, sceneProperty.propertyName, null, null, sceneProperty.query_attached, arrayItemTmp);
+                DataObject sod = new DataObject(repositoryBase, objectData, dataProperty.propertyName, null, null, dataProperty.queryAttached, arrayItemTmp);
                 if (fatherReturnColumnMap.size() > 0) {
                     sod.fatherReturnColumnMap = fatherReturnColumnMap;
                 }
                 repositoryBase.dependency.sdv2Children.putIfAbsent(arrayItemTmp, new CopyOnWriteArrayList<>());
                 repositoryBase.dependency.sdv2Children.get(arrayItemTmp).add(sod);
-                sv.value_object = sod;
+                sv.valueObject = sod;
             } else {
-                sv.value_object = null;
+                sv.valueObject = null;
             }
-            if (sv.value_object != null) {
-                if (queryResult instanceof SceneDataObject) {
-                    sv.value_object.setRowChange(queryResultObject.getRowChange());
-                    sv.value_object.setColChange(queryResultObject.getColChange());
+            if (sv.valueObject != null) {
+                if (queryResult instanceof DataObject) {
+                    sv.valueObject.setRowChange(queryResultObject.getRowChange());
+                    sv.valueObject.setColChange(queryResultObject.getColChange());
                 } else {
-                    SceneDataSet queryResultArray = (SceneDataSet) queryResult;
-                    sv.value_object.setRowChange(queryResultArray.getRowChange());
-                    sv.value_object.setColChange(queryResultArray.getColChange());
+                    DataSet queryResultArray = (DataSet) queryResult;
+                    sv.valueObject.setRowChange(queryResultArray.getRowChange());
+                    sv.valueObject.setColChange(queryResultArray.getColChange());
                 }
             }
-        } else if (sceneProperty.propertyValueSchema.equals(BaseDecConstant.JSONARRAY)) {
-            SceneDataSet array = (SceneDataSet) queryResult;
+        } else if (dataProperty.propertyValueSchema.equals(BaseDecConstant.JSONARRAY)) {
+            DataSet array = (DataSet) queryResult;
             if (array != null) {
                 if (array.isSingleValueSet) {
-                    if (sv.value_array == null) {
-                        sv.value_array = new SceneDataSet(true);
+                    if (sv.valueArray == null) {
+                        sv.valueArray = new DataSet(true);
                     }
-                    sv.value_array.singleValueSet.clear();
+                    sv.valueArray.singleValueSet.clear();
                     for (int i = 0; i < array.singleValueSet.size(); i++) {
-                        SceneDataValue arrayItem = array.singleValueSet.get(i);
-                        SceneDataValue sod = new SceneDataValue(repositoryBase, null, null, null);
-                        sod.value_prim = new SceneDataPrimitive();
-                        if (arrayItem == null || arrayItem.value_prim == null) {
-                            sod.value_prim.value = null;
+                        DataValue arrayItem = array.singleValueSet.get(i);
+                        DataValue sod = new DataValue(repositoryBase, null, null, null);
+                        sod.valuePrim = new DataPrimitive();
+                        if (arrayItem == null || arrayItem.valuePrim == null) {
+                            sod.valuePrim.value = null;
                         } else {
-                            sod.value_prim.value = arrayItem.value_prim.value;
+                            sod.valuePrim.value = arrayItem.valuePrim.value;
                         }
-                        sv.value_array.singleValueSet.add(sod);
+                        sv.valueArray.singleValueSet.add(sod);
                     }
                 } else {
-                    if (sv.value_array == null) {
-                        sv.value_array = new SceneDataSet(false);
+                    if (sv.valueArray == null) {
+                        sv.valueArray = new DataSet(false);
                     }
-                    if (sv.value_array.set != null) {
-                        sv.value_array.set.clear();
+                    if (sv.valueArray.set != null) {
+                        sv.valueArray.set.clear();
                     }
                     for (int i = 0; i < array.set.size(); i++) {
-                        SceneDataObject arrayItemTmp = array.set.get(i);
+                        DataObject arrayItemTmp = array.set.get(i);
                         Map<String, Boolean> fatherReturnColumnMap = new ConcurrentHashMap<String, Boolean>();
                         while (true) {
                             if (arrayItemTmp.parentArrayData != null || arrayItemTmp.parentObjectData != null) {
@@ -498,11 +498,11 @@ public class CalculateApiJsonUtil {
                             }
                             arrayItemTmp = arrayItemTmp.father;
                         }
-                        SceneDataObject sod = new SceneDataObject(repositoryBase, null, null, sv, null, sceneProperty.query_attached, arrayItemTmp);
+                        DataObject sod = new DataObject(repositoryBase, null, null, sv, null, dataProperty.queryAttached, arrayItemTmp);
                         if (fatherReturnColumnMap.size() > 0) {
                             sod.fatherReturnColumnMap = fatherReturnColumnMap;
                         }
-                        repositoryBase.dependency.sdv2Children.putIfAbsent(arrayItemTmp, new CopyOnWriteArrayList<SceneDataObject>());
+                        repositoryBase.dependency.sdv2Children.putIfAbsent(arrayItemTmp, new CopyOnWriteArrayList<DataObject>());
                         repositoryBase.dependency.sdv2Children.get(arrayItemTmp).add(sod);
                         boolean existKey = false;
                         for (String keyName : AttributeFilteringUtil.keyProperty) {
@@ -513,54 +513,54 @@ public class CalculateApiJsonUtil {
                         }
                         if (!existKey) {
                             String keyDefault = AttributeFilteringUtil.keyDefault();
-                            SceneDataValue keySsv = new SceneDataValue(repositoryBase, sod, keyDefault, null);
-                            keySsv.value_prim = new SceneDataPrimitive();
-                            keySsv.value_prim.value = UUID.randomUUID().toString().replaceAll("-", "");
-                            keySsv.value_prim.change = false;
+                            DataValue keySsv = new DataValue(repositoryBase, sod, keyDefault, null);
+                            keySsv.valuePrim = new DataPrimitive();
+                            keySsv.valuePrim.value = UUID.randomUUID().toString().replaceAll("-", "");
+                            keySsv.valuePrim.change = false;
                             sod.put(keyDefault, keySsv);
                         }
-                        sv.value_array.set.add(sod);
+                        sv.valueArray.set.add(sod);
                     }
                 }
             }
-            if (sv.value_array != null) {
+            if (sv.valueArray != null) {
                 if (array != null) {
-                    sv.value_array.setRowChange(array.getRowChange());
+                    sv.valueArray.setRowChange(array.getRowChange());
                 }
             }
-            if (sv.value_array != null) {
+            if (sv.valueArray != null) {
                 if (array != null) {
-                    sv.value_array.setColChange(array.getColChange());
+                    sv.valueArray.setColChange(array.getColChange());
                 }
             }
-            if (sv.value_array != null) {
-                sv.value_array.path = BaseDecConstant.REF + ":" + PathUtil.getDataPath(sv);
+            if (sv.valueArray != null) {
+                sv.valueArray.path = BaseDecConstant.REF + ":" + PathUtil.getDataPath(sv);
             }
         } else {
-            if (sv.value_prim == null) {
-                sv.value_prim = new SceneDataPrimitive();
+            if (sv.valuePrim == null) {
+                sv.valuePrim = new DataPrimitive();
             }
-            if (queryResult instanceof SceneDataSet) {
-                SceneDataSet sdvListInner = (SceneDataSet) queryResult;
+            if (queryResult instanceof DataSet) {
+                DataSet sdvListInner = (DataSet) queryResult;
                 if (sdvListInner.singleValueSet.size() == 1) {
                     if (sdvListInner.singleValueSet.get(0) != null) {
-                        sv.value_prim.value = sdvListInner.singleValueSet.get(0).value_prim.value;
+                        sv.valuePrim.value = sdvListInner.singleValueSet.get(0).valuePrim.value;
                     }
                 }
-                sv.value_prim.change = sdvListInner.getRowChange();
+                sv.valuePrim.change = sdvListInner.getRowChange();
             } else {
-                SceneDataPrimitive sdp = (SceneDataPrimitive) queryResult;
+                DataPrimitive sdp = (DataPrimitive) queryResult;
                 if (sdp != null) {
-                    sv.value_prim.value = sdp.value;
+                    sv.valuePrim.value = sdp.value;
                 }
                 if (sdp != null) {
-                    sv.value_prim.change = sdp.change;
+                    sv.valuePrim.change = sdp.change;
                 }
             }
-            if (sv.value_prim.change) {
+            if (sv.valuePrim.change) {
                 if (sv.parentObjectData.parentArrayData != null) {
-                    if (!sv.parentObjectData.parentArrayData.value_array.getRowChange()) {
-                        sv.parentObjectData.parentArrayData.value_array.setColChange(sv.myPropertyName);
+                    if (!sv.parentObjectData.parentArrayData.valueArray.getRowChange()) {
+                        sv.parentObjectData.parentArrayData.valueArray.setColChange(sv.myPropertyName);
                     }
                 } else {
                     if (!sv.parentObjectData.getRowChange()) {
@@ -568,9 +568,9 @@ public class CalculateApiJsonUtil {
                     }
                 }
             }
-            if (sceneProperty.propertyValueSchema.equals(BaseDecConstant.INT)) {
-                if (sv.value_prim.value != null) {
-                    Object jt = sv.value_prim.value;
+            if (dataProperty.propertyValueSchema.equals(BaseDecConstant.INT)) {
+                if (sv.valuePrim.value != null) {
+                    Object jt = sv.valuePrim.value;
                     int jtValue;
                     if (jt instanceof Integer) {
                         jtValue = (Integer) jt;
@@ -581,11 +581,11 @@ public class CalculateApiJsonUtil {
                     } else {
                         jtValue = ((Double) jt).intValue();
                     }
-                    sv.value_prim.value = jtValue;
+                    sv.valuePrim.value = jtValue;
                 }
-            } else if (sceneProperty.propertyValueSchema.equals(BaseDecConstant.DOUBLE)) {
-                if (sv.value_prim.value != null) {
-                    Object jt = sv.value_prim.value;
+            } else if (dataProperty.propertyValueSchema.equals(BaseDecConstant.DOUBLE)) {
+                if (sv.valuePrim.value != null) {
+                    Object jt = sv.valuePrim.value;
                     double jtValue;
                     if (jt instanceof Integer) {
                         jtValue = ((Integer) jt).doubleValue();
@@ -596,7 +596,7 @@ public class CalculateApiJsonUtil {
                     } else {
                         jtValue = (Double) jt;
                     }
-                    sv.value_prim.value = jtValue;
+                    sv.valuePrim.value = jtValue;
                 }
             }
         }
@@ -621,20 +621,20 @@ public class CalculateApiJsonUtil {
         Object tmpData = repositoryBase.objectData.get(valuePath.getString(index));
         index++;
         while (index < valuePath.size()) {
-            if (tmpData instanceof SceneDataValue) {
-                SceneDataValue currData = (SceneDataValue) tmpData;
-                currData = currData.value_object.get(valuePath.getString(index));
+            if (tmpData instanceof DataValue) {
+                DataValue currData = (DataValue) tmpData;
+                currData = currData.valueObject.get(valuePath.getString(index));
                 tmpData = currData;
                 if (currData == null) {
                     continue;
                 }
-                if (currData.value_array != null) {
+                if (currData.valueArray != null) {
                     if (index < valuePath.size() - 1) {
                         index++;
-                        SceneDataObject matchItem = null;
+                        DataObject matchItem = null;
                         for (String keyName : AttributeFilteringUtil.keyProperty) {
-                            for (SceneDataObject sdbInner : currData.value_array.set) {
-                                if (sdbInner.containsKey(keyName) && sdbInner.get(keyName).value_prim.value.equals(valuePath.getString(index))) {
+                            for (DataObject sdbInner : currData.valueArray.set) {
+                                if (sdbInner.containsKey(keyName) && sdbInner.get(keyName).valuePrim.value.equals(valuePath.getString(index))) {
                                     matchItem = sdbInner;
                                     break;
                                 }
@@ -647,16 +647,16 @@ public class CalculateApiJsonUtil {
                     }
                 }
             } else if (tmpData != null) {
-                SceneDataObject sdo = (SceneDataObject) tmpData;
-                SceneDataValue currData = sdo.get(valuePath.getString(index));
+                DataObject sdo = (DataObject) tmpData;
+                DataValue currData = sdo.get(valuePath.getString(index));
                 tmpData = currData;
-                if (currData.value_array != null) {
+                if (currData.valueArray != null) {
                     if (index < valuePath.size() - 1) {
                         index++;
-                        SceneDataObject matchItem = null;
+                        DataObject matchItem = null;
                         for (String keyName : AttributeFilteringUtil.keyProperty) {
-                            for (SceneDataObject sdbInner : currData.value_array.set) {
-                                if (sdbInner.containsKey(keyName) && sdbInner.get(keyName).value_prim.value.equals(valuePath.getString(index))) {
+                            for (DataObject sdbInner : currData.valueArray.set) {
+                                if (sdbInner.containsKey(keyName) && sdbInner.get(keyName).valuePrim.value.equals(valuePath.getString(index))) {
                                     matchItem = sdbInner;
                                     break;
                                 }
@@ -689,13 +689,13 @@ public class CalculateApiJsonUtil {
             return null;
         }
 
-        if (tmpData instanceof SceneDataValue) {
-            SceneDataValue currData = (SceneDataValue) tmpData;
-            int level = currData.rel_property == null ? 1 : Integer.parseInt(currData.rel_property.read_level);
+        if (tmpData instanceof DataValue) {
+            DataValue currData = (DataValue) tmpData;
+            int level = currData.relProperty == null ? 1 : Integer.parseInt(currData.relProperty.readLevel);
             result = currData.toJSON(true, level == 0 ? -1 : level);
         } else {
-            SceneDataObject currData = (SceneDataObject) tmpData;
-            int level = (currData.parentArrayData != null && currData.parentArrayData.rel_property != null) ? Integer.parseInt(currData.parentArrayData.rel_property.read_level) : 1;
+            DataObject currData = (DataObject) tmpData;
+            int level = (currData.parentArrayData != null && currData.parentArrayData.relProperty != null) ? Integer.parseInt(currData.parentArrayData.relProperty.readLevel) : 1;
             result = currData.toJSON(level == 0 ? -1 : level);
         }
 
@@ -720,11 +720,11 @@ public class CalculateApiJsonUtil {
      */
     public static Object getValueJson(Object tmpData, int level, boolean change) {
         Object result;
-        if (tmpData instanceof SceneDataValue) {
-            SceneDataValue currData = (SceneDataValue) tmpData;
+        if (tmpData instanceof DataValue) {
+            DataValue currData = (DataValue) tmpData;
             result = currData.toJSON(true, level == 0 ? -1 : level, change);
         } else {
-            SceneDataObject currData = (SceneDataObject) tmpData;
+            DataObject currData = (DataObject) tmpData;
             result = currData.toJSON(level == 0 ? -1 : level, change);
         }
 

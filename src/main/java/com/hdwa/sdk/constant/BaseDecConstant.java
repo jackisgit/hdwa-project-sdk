@@ -74,18 +74,18 @@ public class BaseDecConstant {
     /**
      * PropertyList String
      */
-    public static final String PROPERTY_LIST = "PropertyList";
+    public static final String PROPERTY_LIST = "propertyList";
 
     /**
      * PropertyName String
      */
-    public static final String PROPERTY_NAME = "PropertyName";
+    public static final String PROPERTY_NAME = "propertyName";
 
 
     /**
-     * query_sql String
+     * querySql String
      */
-    public static final String QUERY_SQL = "query_sql";
+    public static final String QUERY_SQL = "querySql";
 
 
     /**
@@ -605,9 +605,9 @@ public class BaseDecConstant {
     public static final String CUSTOM = "custom";
 
     /**
-     * custom_object String
+     * customObject String
      */
-    public static final String CUSTOM_OBJECT = "custom_object";
+    public static final String CUSTOM_OBJECT = "customObject";
 
     /**
      * 手自动点位 String
@@ -756,9 +756,9 @@ public class BaseDecConstant {
 
 
     /**
-     * read_level String
+     * readLevel String
      */
-    public static final String READ_LEVEL = "read_level";
+    public static final String READ_LEVEL = "readLevel";
 
 
     /**

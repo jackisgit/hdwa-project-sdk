@@ -3,13 +3,12 @@ package com.hdwa.sdk.service;
 import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
-import com.hdwa.sdk.entity.scene.SceneDataObject;
-import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
-import com.hdwa.sdk.entity.scene.SceneDataSet;
-import com.hdwa.sdk.entity.scene.SceneDataValue;
+import com.hdwa.sdk.entity.scene.DataObject;
+import com.hdwa.sdk.entity.scene.DataPrimitive;
+import com.hdwa.sdk.entity.scene.DataSet;
+import com.hdwa.sdk.entity.scene.DataValue;
 import com.hdwa.sdk.utils.AlarmUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -42,39 +41,39 @@ public class AlarmService {
                 if (!objType.equals(BaseDecConstant.EQUIPMENT) && !objType.equals(BaseDecConstant.SYSTEM) && !objType.equals(BaseDecConstant.SPACE)) {
                     return;
                 }
-                SceneDataSet objectArray = repository.objectArrayDic.get(s).value_array;
+                DataSet objectArray = repository.objectArrayDic.get(s).valueArray;
                 objectArray.set.forEach(sdo -> {
-                    String objId = (String) sdo.get(BaseDecConstant.ID).value_prim.value;
+                    String objId = (String) sdo.get(BaseDecConstant.ID).valuePrim.value;
                     //报警列表
-                    SceneDataValue advList = new SceneDataValue(null, null, BaseDecConstant.ALARM_LIST, null);
+                    DataValue advList = new DataValue(null, null, BaseDecConstant.ALARM_LIST, null);
                     advList.finish = true;
-                    advList.value_array = new SceneDataSet(false);
-                    advList.value_array.set = new CopyOnWriteArrayList<SceneDataObject>();
-                    advList.value_array.setRowChange(true);
+                    advList.valueArray = new DataSet(false);
+                    advList.valueArray.set = new CopyOnWriteArrayList<DataObject>();
+                    advList.valueArray.setRowChange(true);
                     DataContainer.id2alarmList.putIfAbsent(objId, advList);
                     AlarmUtil.alarmColChange.forEach(s1 -> {
-                        advList.value_array.setColChange(s1);
+                        advList.valueArray.setColChange(s1);
                     });
 
-                    SceneDataValue alarmList = DataContainer.id2alarmList.get(objId);
-                    SceneDataValue sv_alarmList = new SceneDataValue(repository, sdo, BaseDecConstant.ALARM_LIST, null);
+                    DataValue alarmList = DataContainer.id2alarmList.get(objId);
+                    DataValue sv_alarmList = new DataValue(repository, sdo, BaseDecConstant.ALARM_LIST, null);
                     sv_alarmList.finish = true;
-                    sv_alarmList.value_array = alarmList.value_array;
+                    sv_alarmList.valueArray = alarmList.valueArray;
                     sdo.put(BaseDecConstant.ALARM_LIST, sv_alarmList);
 
 
                     //报警数量
-                    SceneDataValue advCount = new SceneDataValue(null, null, BaseDecConstant.ALARM_COUNT, null);
+                    DataValue advCount = new DataValue(null, null, BaseDecConstant.ALARM_COUNT, null);
                     advCount.finish = true;
-                    advCount.value_prim = new SceneDataPrimitive();
-                    advCount.value_prim.value = 0;
-                    advCount.value_prim.change = true;
+                    advCount.valuePrim = new DataPrimitive();
+                    advCount.valuePrim.value = 0;
+                    advCount.valuePrim.change = true;
                     DataContainer.id2alarmCount.putIfAbsent(objId, advCount);
 
-                    SceneDataValue alarmCount = DataContainer.id2alarmCount.get(objId);
-                    SceneDataValue sv_alarmCount = new SceneDataValue(repository, sdo, BaseDecConstant.ALARM_COUNT, null);
+                    DataValue alarmCount = DataContainer.id2alarmCount.get(objId);
+                    DataValue sv_alarmCount = new DataValue(repository, sdo, BaseDecConstant.ALARM_COUNT, null);
                     sv_alarmCount.finish = true;
-                    sv_alarmCount.value_prim = alarmCount.value_prim;
+                    sv_alarmCount.valuePrim = alarmCount.valuePrim;
                     sdo.put(BaseDecConstant.ALARM_COUNT, sv_alarmCount);
 
                     objectArray.setColChange(BaseDecConstant.ALARM_COUNT);

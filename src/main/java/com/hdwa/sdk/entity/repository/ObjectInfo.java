@@ -1,14 +1,14 @@
 package com.hdwa.sdk.entity.repository;
 
 
-import com.hdwa.sdk.entity.scene.SceneDataObject;
+import com.hdwa.sdk.entity.scene.DataObject;
 
 public class ObjectInfo {
-    public SceneDataObject obj;
+    public DataObject obj;
     public String objId;
     public String infoCode;
 
-    public ObjectInfo(SceneDataObject obj, String id, String info) {
+    public ObjectInfo(DataObject obj, String id, String info) {
         this.obj = obj;
         this.objId = id;
         this.infoCode = info;

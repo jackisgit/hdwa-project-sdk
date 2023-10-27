@@ -5,7 +5,7 @@ package com.hdwa.sdk.entity.scene;
  * @since 2023/7/25
  * 值对象
  */
-public class SceneDataPrimitive {
+public class DataPrimitive {
 
     public Object value;
     public boolean change;

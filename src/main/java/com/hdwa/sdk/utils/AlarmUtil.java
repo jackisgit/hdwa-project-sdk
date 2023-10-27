@@ -7,10 +7,10 @@ import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.constant.UrlConstant;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
-import com.hdwa.sdk.entity.scene.SceneDataObject;
-import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
-import com.hdwa.sdk.entity.scene.SceneDataSet;
-import com.hdwa.sdk.entity.scene.SceneDataValue;
+import com.hdwa.sdk.entity.scene.DataObject;
+import com.hdwa.sdk.entity.scene.DataPrimitive;
+import com.hdwa.sdk.entity.scene.DataSet;
+import com.hdwa.sdk.entity.scene.DataValue;
 import lombok.extern.slf4j.Slf4j;
 
 import java.text.SimpleDateFormat;
@@ -180,18 +180,18 @@ public class AlarmUtil {
 
         if (!alarm.containsKey("floorId")) {
             String objId = (String) alarm.get("objId");
-            SceneDataObject sdo = repository.id2sdv.get(objId);
+            DataObject sdo = repository.id2sdv.get(objId);
             if (sdo != null) {
-                SceneDataValue floor = sdo.get("所在楼层-id");
-                if (floor != null && floor.value_prim != null && floor.value_prim.value instanceof String) {
-                    String floorString = (String) floor.value_prim.value;
+                DataValue floor = sdo.get("所在楼层-id");
+                if (floor != null && floor.valuePrim != null && floor.valuePrim.value instanceof String) {
+                    String floorString = (String) floor.valuePrim.value;
                     alarm.put("floorId", floorString);
                 }
             }
             if (sdo != null) {
-                SceneDataValue floor = sdo.get("所属楼层-id");
-                if (floor != null && floor.value_prim != null && floor.value_prim.value instanceof String) {
-                    String floorString = (String) floor.value_prim.value;
+                DataValue floor = sdo.get("所属楼层-id");
+                if (floor != null && floor.valuePrim != null && floor.valuePrim.value instanceof String) {
+                    String floorString = (String) floor.valuePrim.value;
                     alarm.put("floorId", floorString);
                 }
             }
@@ -292,22 +292,22 @@ public class AlarmUtil {
         if (alarm.containsKey("objectId")) {
             String objectId = (String) alarm.get("objectId");
             if (repository.id2sdv.containsKey(objectId)) {
-                SceneDataObject sdoInner = repository.id2sdv.get(objectId);
+                DataObject sdoInner = repository.id2sdv.get(objectId);
                 if (sdoInner.containsKey("ibmsSceneCode")) {
-                    SceneDataValue sdvInner = sdoInner.get("ibmsSceneCode");
-                    alarm.put("ibmsSceneCode", sdvInner.value_prim.value);
+                    DataValue sdvInner = sdoInner.get("ibmsSceneCode");
+                    alarm.put("ibmsSceneCode", sdvInner.valuePrim.value);
                 }
                 if (sdoInner.containsKey("ibmsClassCode")) {
-                    SceneDataValue sdvInner = sdoInner.get("ibmsClassCode");
-                    alarm.put("ibmsClassCode", sdvInner.value_prim.value);
+                    DataValue sdvInner = sdoInner.get("ibmsClassCode");
+                    alarm.put("ibmsClassCode", sdvInner.valuePrim.value);
                 }
                 if (sdoInner.containsKey("localName")) {
-                    SceneDataValue sdvInner = sdoInner.get("localName");
-                    alarm.put("localName", sdvInner.value_prim.value);
+                    DataValue sdvInner = sdoInner.get("localName");
+                    alarm.put("localName", sdvInner.valuePrim.value);
                 }
                 if (sdoInner.containsKey("localId")) {
-                    SceneDataValue sdvInner = sdoInner.get("localId");
-                    alarm.put("localId", sdvInner.value_prim.value);
+                    DataValue sdvInner = sdoInner.get("localId");
+                    alarm.put("localId", sdvInner.valuePrim.value);
                 }
             }
         }
@@ -391,8 +391,8 @@ public class AlarmUtil {
     public static void exeRefresh(JSONArray Content, RepositoryImpl repository) {
         DataContainer.alarmArray.set.clear();
         for (String objId : DataContainer.id2alarmList.keySet()) {
-            DataContainer.id2alarmList.get(objId).value_array.set.clear();
-            DataContainer.id2alarmCount.get(objId).value_prim.value = 0;
+            DataContainer.id2alarmList.get(objId).valueArray.set.clear();
+            DataContainer.id2alarmCount.get(objId).valuePrim.value = 0;
         }
 
         try {
@@ -419,22 +419,22 @@ public class AlarmUtil {
         boolean alarmCountChange = false;
         Map<String, Boolean> colChangeMap = new ConcurrentHashMap<>(16);
         {
-            SceneDataValue alarmList = DataContainer.id2alarmList.get(objId);
-            SceneDataValue alarmCount = DataContainer.id2alarmCount.get(objId);
+            DataValue alarmList = DataContainer.id2alarmList.get(objId);
+            DataValue alarmCount = DataContainer.id2alarmCount.get(objId);
             if (alarmList == null) {
-                SceneDataValue sv_alarmList = new SceneDataValue(null, null, "报警列表", null);
+                DataValue sv_alarmList = new DataValue(null, null, "报警列表", null);
                 sv_alarmList.finish = true;
-                sv_alarmList.value_array = new SceneDataSet(false);
-                sv_alarmList.value_array.set = new CopyOnWriteArrayList<>();
-                sv_alarmList.value_array.setRowChange(true);
+                sv_alarmList.valueArray = new DataSet(false);
+                sv_alarmList.valueArray.set = new CopyOnWriteArrayList<>();
+                sv_alarmList.valueArray.setRowChange(true);
                 DataContainer.id2alarmList.putIfAbsent(objId, sv_alarmList);
             }
             if (alarmCount == null) {
-                SceneDataValue sv_alarmCount = new SceneDataValue(null, null, "报警数量", null);
+                DataValue sv_alarmCount = new DataValue(null, null, "报警数量", null);
                 sv_alarmCount.finish = true;
-                sv_alarmCount.value_prim = new SceneDataPrimitive();
-                sv_alarmCount.value_prim.value = 0;
-                sv_alarmCount.value_prim.change = true;
+                sv_alarmCount.valuePrim = new DataPrimitive();
+                sv_alarmCount.valuePrim.value = 0;
+                sv_alarmCount.valuePrim.change = true;
                 DataContainer.id2alarmCount.putIfAbsent(objId, sv_alarmCount);
             }
             alarmList = DataContainer.id2alarmList.get(objId);
@@ -442,9 +442,9 @@ public class AlarmUtil {
 
             // 从设备下删除
             int existIndex = -1;
-            for (int i = 0; i < alarmList.value_array.set.size(); i++) {
-                SceneDataObject sdoInner = alarmList.value_array.set.get(i);
-                String idInner = (String) sdoInner.get("id").value_prim.value;
+            for (int i = 0; i < alarmList.valueArray.set.size(); i++) {
+                DataObject sdoInner = alarmList.valueArray.set.get(i);
+                String idInner = (String) sdoInner.get("id").valuePrim.value;
                 if (idInner.equals(id)) {
                     existIndex = i;
                     break;
@@ -453,9 +453,9 @@ public class AlarmUtil {
             // 从报警列表下删除
             List<Integer> existIndexList = new CopyOnWriteArrayList<>();
             for (int index_alarm = 0; index_alarm < DataContainer.alarmArray.set.size(); index_alarm++) {
-                SceneDataObject alarmItem = DataContainer.alarmArray.set.get(index_alarm);
-                if (alarmItem != null && alarmItem.value_object != null) {
-                    if (alarmItem.value_object.get("id").value_prim.value.equals(id)) {
+                DataObject alarmItem = DataContainer.alarmArray.set.get(index_alarm);
+                if (alarmItem != null && alarmItem.valueObject != null) {
+                    if (alarmItem.valueObject.get("id").valuePrim.value.equals(id)) {
                         existIndexList.add(0, index_alarm);
                     }
                 }
@@ -464,7 +464,7 @@ public class AlarmUtil {
 
             if (treatState.equals("3")) {
                 if (existIndex != -1) {
-                    alarmList.value_array.set.remove(existIndex);
+                    alarmList.valueArray.set.remove(existIndex);
                     alarmListRowChange = true;
                 }
                 for (int removeIndex : existIndexList) {
@@ -473,30 +473,30 @@ public class AlarmUtil {
                 }
             } else {
                 // 只替换非空字段
-                SceneDataObject sdoAlarm = BaseApiUtil.objectToSdo(alarm);
+                DataObject sdoAlarm = BaseApiUtil.objectToSdo(alarm);
                 if (existIndex != -1) {
-                    SceneDataObject sdoExist = alarmList.value_array.set.get(existIndex);
+                    DataObject sdoExist = alarmList.valueArray.set.get(existIndex);
                     for (String key : sdoAlarm.keySet()) {
-                        SceneDataValue sdvInner = sdoAlarm.get(key);
-                        if (sdvInner == null || sdvInner.value_prim == null || sdvInner.value_prim.value == null) {
+                        DataValue sdvInner = sdoAlarm.get(key);
+                        if (sdvInner == null || sdvInner.valuePrim == null || sdvInner.valuePrim.value == null) {
                             continue;
                         }
-                        if (sdoExist.get(key) == null || sdoExist.get(key).value_prim == null
-                                || !sdvInner.value_prim.value.equals(sdoExist.get(key).value_prim.value)) {
+                        if (sdoExist.get(key) == null || sdoExist.get(key).valuePrim == null
+                                || !sdvInner.valuePrim.value.equals(sdoExist.get(key).valuePrim.value)) {
                             sdoExist.put(key, sdoAlarm.get(key));
                             colChangeMap.put(key, true);
                         }
                     }
                 } else {
-                    alarmList.value_array.set.add(sdoAlarm);
+                    alarmList.valueArray.set.add(sdoAlarm);
                     alarmListRowChange = true;
                 }
                 if (existIndexList.size() > 0) {
                     for (int removeIndex : existIndexList) {
-                        SceneDataObject sdoInner = DataContainer.alarmArray.set.get(removeIndex);
+                        DataObject sdoInner = DataContainer.alarmArray.set.get(removeIndex);
                         for (String key : sdoAlarm.keySet()) {
-                            SceneDataValue sdvInner = sdoAlarm.get(key);
-                            if (sdvInner == null || sdvInner.value_prim == null || sdvInner.value_prim.value == null) {
+                            DataValue sdvInner = sdoAlarm.get(key);
+                            if (sdvInner == null || sdvInner.valuePrim == null || sdvInner.valuePrim.value == null) {
                                 continue;
                             }
                             sdoInner.put(key, sdoAlarm.get(key));
@@ -507,8 +507,8 @@ public class AlarmUtil {
                     alarmArrayRowChange = true;
                 }
             }
-            if (!alarmCount.value_prim.value.equals(alarmList.value_array.set.size())) {
-                alarmCount.value_prim.value = alarmList.value_array.set.size();
+            if (!alarmCount.valuePrim.value.equals(alarmList.valueArray.set.size())) {
+                alarmCount.valuePrim.value = alarmList.valueArray.set.size();
                 alarmCountChange = true;
             }
         }
@@ -523,15 +523,15 @@ public class AlarmUtil {
                 }
             }
             if (repository.id2sdv.containsKey(objId)) {
-                SceneDataObject objSDV = repository.id2sdv.get(objId);
-                SceneDataValue sv_alarmList = objSDV.get("报警列表");
-                SceneDataValue sv_alarmCount = objSDV.get("报警数量");
+                DataObject objSDV = repository.id2sdv.get(objId);
+                DataValue sv_alarmList = objSDV.get("报警列表");
+                DataValue sv_alarmCount = objSDV.get("报警数量");
                 if (alarmListRowChange) {
                     repository.addWaitCompute(sv_alarmList);
                 } else {
                     for (String col : AlarmUtil.alarmColChange) {
                         if (colChangeMap.containsKey(col)) {
-                            repository.addWaitCompute(sv_alarmList.value_array, col);
+                            repository.addWaitCompute(sv_alarmList.valueArray, col);
                         }
                     }
                 }
@@ -543,13 +543,13 @@ public class AlarmUtil {
     }
 
     public static void exeProcessAlarmComment(String id, JSONObject dtoJSON) {
-        SceneDataSet alarmList = DataContainer.alarmArray;
+        DataSet alarmList = DataContainer.alarmArray;
         for (int i = 0; i < alarmList.set.size(); i++) {
-            SceneDataObject sdoInner = (SceneDataObject) alarmList.set.get(i);
-            String idInner = (String) sdoInner.get("id").value_prim.value;
+            DataObject sdoInner = (DataObject) alarmList.set.get(i);
+            String idInner = (String) sdoInner.get("id").valuePrim.value;
             if (idInner.equals(id)) {
-                SceneDataValue sdvInner = sdoInner.get("comments");
-                JSONArray comments = (JSONArray) sdvInner.value_prim.value;
+                DataValue sdvInner = sdoInner.get("comments");
+                JSONArray comments = (JSONArray) sdvInner.valuePrim.value;
                 comments.add(dtoJSON);
                 break;
             }
@@ -557,22 +557,22 @@ public class AlarmUtil {
     }
 
     public static void exeProcessOrderDesc(String id, JSONObject alarm_order) {
-        for (SceneDataObject sdo : DataContainer.alarmArray.set) {
-            String idInner = (String) sdo.get("id").value_prim.value;
+        for (DataObject sdo : DataContainer.alarmArray.set) {
+            String idInner = (String) sdo.get("id").valuePrim.value;
             if (idInner.equals(id)) {
                 for (String key : alarm_order.keySet()) {
                     if (key.equals("alarmId") || key.equals("pushType")) {
                         continue;
                     }
                     Object value = alarm_order.get(key);
-                    SceneDataValue orderIdInner = sdo.get(key);
+                    DataValue orderIdInner = sdo.get(key);
                     if (orderIdInner != null) {
-                        orderIdInner.value_prim.value = value;
+                        orderIdInner.valuePrim.value = value;
                     } else {
-                        SceneDataValue svInner = new SceneDataValue(null, null, null, null);
+                        DataValue svInner = new DataValue(null, null, null, null);
                         svInner.finish = true;
-                        svInner.value_prim = new SceneDataPrimitive();
-                        svInner.value_prim.value = value;
+                        svInner.valuePrim = new DataPrimitive();
+                        svInner.valuePrim.value = value;
                         sdo.put(key, svInner);
                     }
                 }

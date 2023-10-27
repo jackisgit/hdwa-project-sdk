@@ -15,10 +15,10 @@ import com.hdwa.sdk.entity.expression.AdvancedExpressionWalker;
 import com.hdwa.sdk.entity.repository.InfluenceFactor;
 import com.hdwa.sdk.entity.repository.RepositoryBase;
 import com.hdwa.sdk.entity.repository.WalkerWrapper;
-import com.hdwa.sdk.entity.scene.SceneDataObject;
-import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
-import com.hdwa.sdk.entity.scene.SceneDataSet;
-import com.hdwa.sdk.entity.scene.SceneDataValue;
+import com.hdwa.sdk.entity.scene.DataObject;
+import com.hdwa.sdk.entity.scene.DataPrimitive;
+import com.hdwa.sdk.entity.scene.DataSet;
+import com.hdwa.sdk.entity.scene.DataValue;
 import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.CommonTree;
@@ -56,7 +56,7 @@ public class QueryUtil {
     }
 
 
-    public static Object query(RepositoryBase Repository, SceneDataValue sv, JSONObject sql_json, QueryAssist queryAssist) throws Exception {
+    public static Object query(RepositoryBase Repository, DataValue sv, JSONObject sql_json, QueryAssist queryAssist) throws Exception {
         if (sql_json.get("QueryType") != null) {
             String QueryType = (String) sql_json.get("QueryType");
             JSONObject CriteriaObject = (JSONObject) sql_json.get("Criteria");
@@ -66,9 +66,9 @@ public class QueryUtil {
                 Map<String, Boolean> varStringDict;
                 AdvancedExpressionWalker walker = null;
                 ReentrantLock lock = null;
-                if (sv != null && sv.rel_property != null) {
-                    varDict = Repository.p2varDict.get(sv.rel_property);
-                    varStringDict = Repository.p2varStringDict.get(sv.rel_property);
+                if (sv != null && sv.relProperty != null) {
+                    varDict = Repository.p2varDict.get(sv.relProperty);
+                    varStringDict = Repository.p2varStringDict.get(sv.relProperty);
 
                     if (varDict == null) {
                         varDict = new HashMap<>(16);
@@ -77,7 +77,7 @@ public class QueryUtil {
                         varStringDict = new HashMap<>(16);
                     }
                     {
-                        WalkerWrapper WalkerWrapper = Repository.p2walker1.get(sv.rel_property);
+                        WalkerWrapper WalkerWrapper = Repository.p2walker1.get(sv.relProperty);
                         if (WalkerWrapper != null) {
                             walker = WalkerWrapper.walker;
                             lock = WalkerWrapper.lock;
@@ -126,7 +126,7 @@ public class QueryUtil {
                     if (walker != null) {
                         walker.reset();
                     }
-                    SceneDataPrimitive SceneValuePrimitive = new SceneDataPrimitive();
+                    DataPrimitive SceneValuePrimitive = new DataPrimitive();
                     result = SceneValuePrimitive;
                     CriteriaBase criteria = parseCriteria(Repository, sv, CriteriaObject, queryAssist, new ConcurrentHashMap<String, Boolean>());
                     Criteria.CriteriaDefault CriteriaDefault = (Criteria.CriteriaDefault) criteria;
@@ -191,10 +191,10 @@ public class QueryUtil {
                 CriteriaBase criteria = parseCriteria(Repository, sv, CriteriaObject, queryAssist, new ConcurrentHashMap<String, Boolean>());
                 Criteria.CriteriaDefault CriteriaDefault = (Criteria.CriteriaDefault) criteria;
                 MatchBase MatchBase = CriteriaDefault.column2MatchList.get("quote").get(0);
-                if (sv != null && sv.rel_property != null && sv.rel_property.propertyValueSchema.equals("JSONArray")) {
-                    SceneDataSet resultTmp = new SceneDataSet(true);
+                if (sv != null && sv.relProperty != null && sv.relProperty.propertyValueSchema.equals("JSONArray")) {
+                    DataSet resultTmp = new DataSet(true);
                     result = resultTmp;
-                    resultTmp.singleValueSet = new CopyOnWriteArrayList<SceneDataValue>();
+                    resultTmp.singleValueSet = new CopyOnWriteArrayList<DataValue>();
                     if (MatchBase instanceof Match.MatchIn) {
                         Match.MatchIn me = (Match.MatchIn) MatchBase;
                         if (me.change()) {
@@ -202,16 +202,16 @@ public class QueryUtil {
                         }
                         Object[] array = me.value.toArray();
                         for (Object arrayItem : array) {
-                            SceneDataValue sdvInner = new SceneDataValue(null, null, null, null);
-                            sdvInner.value_prim = new SceneDataPrimitive();
-                            sdvInner.value_prim.value = arrayItem;
+                            DataValue sdvInner = new DataValue(null, null, null, null);
+                            sdvInner.valuePrim = new DataPrimitive();
+                            sdvInner.valuePrim.value = arrayItem;
                             resultTmp.singleValueSet.add(sdvInner);
                         }
                     } else {
                         throw new Exception("quote error");
                     }
                 } else {
-                    SceneDataPrimitive SceneValuePrimitive = new SceneDataPrimitive();
+                    DataPrimitive SceneValuePrimitive = new DataPrimitive();
                     result = SceneValuePrimitive;
                     if (MatchBase instanceof Match.MatchE) {
                         Match.MatchE me = (Match.MatchE) MatchBase;
@@ -238,10 +238,10 @@ public class QueryUtil {
                 // 构造返回列
                 List<String> ReturnColumns = null;
                 if (sql_json.get("ReturnColumns") != null) {
-                    SceneDataSet ReturnColumns_ori = parseSet(Repository, sv, sql_json.get("ReturnColumns"), new QueryAssist(), true);
+                    DataSet ReturnColumns_ori = parseSet(Repository, sv, sql_json.get("ReturnColumns"), new QueryAssist(), true);
                     ReturnColumns = new CopyOnWriteArrayList<String>();
-                    for (SceneDataValue sdv : ReturnColumns_ori.singleValueSet) {
-                        ReturnColumns.add((String) sdv.value_prim.value);
+                    for (DataValue sdv : ReturnColumns_ori.singleValueSet) {
+                        ReturnColumns.add((String) sdv.valuePrim.value);
                     }
                 }
                 String UniqueReturnColumn = null;
@@ -381,7 +381,7 @@ public class QueryUtil {
 
                 // 开始解析查询目标
                 Object Target = sql_json.get("Target");
-                SceneDataSet targetSet = parseSet(Repository, sv, Target, QueryAssist2Target, false);
+                DataSet targetSet = parseSet(Repository, sv, Target, QueryAssist2Target, false);
                 if (QueryAssist2Criteria.rowChangeNeed) {
                     QueryAssist2Criteria.rowFactor.merge(QueryAssist2Target.rowFactor);
                     for (String key : QueryAssist_before.colChangeNeed.keySet()) {
@@ -403,7 +403,7 @@ public class QueryUtil {
                 result = query_select(targetSet, criteria);
                 QueryAssist QueryAssist_after = QueryAssist2Criteria;
                 if (Aggregation != null) {
-                    result = query_aggregation((SceneDataSet) result, Aggregation, GroupBy);
+                    result = query_aggregation((DataSet) result, Aggregation, GroupBy);
                     if (GroupBy != null) {
                         if (QueryAssist_3.rowChangeNeed) {
                             QueryAssist_3.rowFactor.merge(QueryAssist_after.rowFactor);
@@ -471,7 +471,7 @@ public class QueryUtil {
                     QueryAssist_after = QueryAssist_3;
                 }
                 if (OrderBy != null || Limit != null) {
-                    result = query_after1((SceneDataSet) result, OrderBy, Limit);
+                    result = query_after1((DataSet) result, OrderBy, Limit);
                     if (OrderBy != null && Limit != null) {
                         if (QueryAssist_2.rowChangeNeed) {
                             QueryAssist_2.rowFactor.merge(QueryAssist_after.rowFactor);
@@ -489,7 +489,7 @@ public class QueryUtil {
                     }
                 }
                 if (ReturnColumns != null || UniqueReturnColumn != null) {
-                    result = query_after2((SceneDataSet) result, ReturnColumns, UniqueReturnColumn);
+                    result = query_after2((DataSet) result, ReturnColumns, UniqueReturnColumn);
                     if (ReturnColumns != null) {
                         if (QueryAssist_1.rowChangeNeed) {
                             QueryAssist_1.rowFactor.merge(QueryAssist_after.rowFactor);
@@ -529,7 +529,7 @@ public class QueryUtil {
         }
     }
 
-    public static Object select_node(RepositoryBase Repository, SceneDataValue sv, JSONObject sql_json, SceneDataSet targetSet) throws Exception {
+    public static Object select_node(RepositoryBase Repository, DataValue sv, JSONObject sql_json, DataSet targetSet) throws Exception {
         // 构造查询条件
         JSONObject CriteriaObject = (JSONObject) sql_json.get("Criteria");
         CriteriaBase criteria = parseCriteria(Repository, sv, CriteriaObject, new QueryAssist(), new ConcurrentHashMap<String, Boolean>());
@@ -537,10 +537,10 @@ public class QueryUtil {
         // 构造返回列
         List<String> ReturnColumns = null;
         if (sql_json.get("ReturnColumns") != null) {
-            SceneDataSet ReturnColumns_ori = parseSet(Repository, sv, sql_json.get("ReturnColumns"), new QueryAssist(), true);
+            DataSet ReturnColumns_ori = parseSet(Repository, sv, sql_json.get("ReturnColumns"), new QueryAssist(), true);
             ReturnColumns = new CopyOnWriteArrayList<String>();
-            for (SceneDataValue sdv : ReturnColumns_ori.singleValueSet) {
-                ReturnColumns.add((String) sdv.value_prim.value);
+            for (DataValue sdv : ReturnColumns_ori.singleValueSet) {
+                ReturnColumns.add((String) sdv.valuePrim.value);
             }
         }
         String UniqueReturnColumn = null;
@@ -570,24 +570,24 @@ public class QueryUtil {
                 new QueryAssist());
     }
 
-    private static Object select_execute(SceneDataSet targetSet, CriteriaBase criteria, Object Aggregation, JSONArray GroupBy, JSONArray OrderBy,
+    private static Object select_execute(DataSet targetSet, CriteriaBase criteria, Object Aggregation, JSONArray GroupBy, JSONArray OrderBy,
                                          JSONObject Limit, List<String> ReturnColumns, String UniqueReturnColumn, QueryAssist QueryAssist) throws Exception {
         Object result;
         result = query_select(targetSet, criteria);
         if (Aggregation != null) {
-            result = query_aggregation((SceneDataSet) result, Aggregation, GroupBy);
+            result = query_aggregation((DataSet) result, Aggregation, GroupBy);
         }
         if (OrderBy != null || Limit != null) {
-            result = query_after1((SceneDataSet) result, OrderBy, Limit);
+            result = query_after1((DataSet) result, OrderBy, Limit);
         }
         if (ReturnColumns != null || UniqueReturnColumn != null) {
-            result = query_after2((SceneDataSet) result, ReturnColumns, UniqueReturnColumn);
+            result = query_after2((DataSet) result, ReturnColumns, UniqueReturnColumn);
         }
 
         return result;
     }
 
-    private static CriteriaBase parseCriteria(RepositoryBase Repository, SceneDataValue sv, JSONObject CriteriaObject, QueryAssist queryAssist,
+    private static CriteriaBase parseCriteria(RepositoryBase Repository, DataValue sv, JSONObject CriteriaObject, QueryAssist queryAssist,
                                               Map<String, Boolean> CriteriaColumns) throws Exception {
         CriteriaBase criteria;
         Object LogicOperator = CriteriaObject.get("LogicOperator");
@@ -629,7 +629,7 @@ public class QueryUtil {
                     JSONObject valueInner = (JSONObject) itemValue;
                     if (valueInner.get("ref") != null) {
                         QueryAssist QueryAssistInner = new QueryAssist(queryAssist.rowChangeNeed);
-                        SceneDataPrimitive svInner_value_primitive = parseCriteriaRef(Repository, valueInner, sv, QueryAssistInner);
+                        DataPrimitive svInner_value_primitive = parseCriteriaRef(Repository, valueInner, sv, QueryAssistInner);
                         if (QueryAssistInner.rowChangeNeed) {
                             queryAssist.rowFactor.merge(QueryAssistInner.rowFactor);
                         }
@@ -654,7 +654,7 @@ public class QueryUtil {
                                         JSONObject valueInnerInner = (JSONObject) itemValueInner;
                                         if (valueInnerInner.get("ref") != null) {
                                             QueryAssist QueryAssistInner = new QueryAssist(queryAssist.rowChangeNeed);
-                                            SceneDataPrimitive svInner_value_primitive = parseCriteriaRef(Repository, valueInnerInner, sv,
+                                            DataPrimitive svInner_value_primitive = parseCriteriaRef(Repository, valueInnerInner, sv,
                                                     QueryAssistInner);
                                             if (QueryAssistInner.rowChangeNeed) {
                                                 queryAssist.rowFactor.merge(QueryAssistInner.rowFactor);
@@ -779,16 +779,16 @@ public class QueryUtil {
                                     } else {
                                         HashSet<Object> valueSet = new HashSet<Object>();
                                         QueryAssist QueryAssistInner = new QueryAssist(queryAssist.rowChangeNeed);
-                                        SceneDataSet resultArray = parseSet(Repository, sv, itemValueInner, QueryAssistInner, true);
+                                        DataSet resultArray = parseSet(Repository, sv, itemValueInner, QueryAssistInner, true);
                                         if (QueryAssistInner.rowChangeNeed) {
                                             queryAssist.rowFactor.merge(QueryAssistInner.rowFactor);
                                         }
-                                        for (SceneDataValue resultItem : resultArray.singleValueSet) {
-                                            if ((resultItem) == null || (resultItem).value_prim == null
-                                                    || (resultItem).value_prim.value == null) {
+                                        for (DataValue resultItem : resultArray.singleValueSet) {
+                                            if ((resultItem) == null || (resultItem).valuePrim == null
+                                                    || (resultItem).valuePrim.value == null) {
                                                 valueSet.add(null);
                                             } else {
-                                                Object normalize_value = DataUtil.primitive_normalize((resultItem).value_prim.value);
+                                                Object normalize_value = DataUtil.primitive_normalize((resultItem).valuePrim.value);
                                                 valueSet.add(normalize_value);
                                             }
                                         }
@@ -865,27 +865,27 @@ public class QueryUtil {
         return criteria;
     }
 
-    private static SceneDataPrimitive parseCriteriaRef(RepositoryBase Repository, JSONObject valueInner, SceneDataValue sv, QueryAssist QueryAssist) {
+    private static DataPrimitive parseCriteriaRef(RepositoryBase Repository, JSONObject valueInner, DataValue sv, QueryAssist QueryAssist) {
         String refString = (valueInner.get("ref")).toString();
         String[] splits = refString.split("'");
         boolean change = false;
         int index_split;
-        SceneDataValue svInner;
+        DataValue svInner;
         if (splits[0].startsWith("ancestor_")) {
             int generate = Integer.parseInt(splits[0].substring("ancestor_".length()));
             Object tmp = sv;
             while (generate > 0) {
-                if (tmp instanceof SceneDataValue) {
-                    SceneDataValue tmpData = (SceneDataValue) tmp;
+                if (tmp instanceof DataValue) {
+                    DataValue tmpData = (DataValue) tmp;
                     tmp = tmpData.parentObjectData;
                 } else if (tmp != null) {
-                    SceneDataObject tmpData = (SceneDataObject) tmp;
+                    DataObject tmpData = (DataObject) tmp;
                     tmp = tmpData.parentObjectData != null ? tmpData.parentObjectData : tmpData.parentArrayData;
                 }
                 generate--;
             }
 
-            SceneDataObject parentData = (SceneDataObject) tmp;
+            DataObject parentData = (DataObject) tmp;
             // 比较值只能是value_object
             if (parentData.hasColChange(splits[1])) {
                 change = true;
@@ -903,22 +903,22 @@ public class QueryUtil {
             index_split = 1;
             svInner = Repository.objectData.get(splits[0]);
         }
-        SceneDataValue last_sdv = null;
+        DataValue last_sdv = null;
         for (int i = index_split; i < splits.length; i++) {
             String split = splits[i];
             int index_ = split.indexOf('=');
             if (index_ != -1) {
                 String propertyName = split.substring(0, index_);
                 String propertyValue = split.substring(index_ + 1);
-                if (svInner != null && (svInner.value_array.getRowChange() || svInner.value_array.hasColChange(propertyName))) {
+                if (svInner != null && (svInner.valueArray.getRowChange() || svInner.valueArray.hasColChange(propertyName))) {
                     change = true;
                 }
-                SceneDataValue sv_valid = null;
+                DataValue sv_valid = null;
                 if (svInner != null) {
-                    for (SceneDataObject sdb : svInner.value_array.set) {
-                        if (sdb.containsKey(propertyName) && propertyValue.equals(sdb.get(propertyName).value_prim.value)) {
-                            SceneDataValue svWrapper = new SceneDataValue(null, sdb, propertyName, null);
-                            svWrapper.value_object = sdb;
+                    for (DataObject sdb : svInner.valueArray.set) {
+                        if (sdb.containsKey(propertyName) && propertyValue.equals(sdb.get(propertyName).valuePrim.value)) {
+                            DataValue svWrapper = new DataValue(null, sdb, propertyName, null);
+                            svWrapper.valueObject = sdb;
                             sv_valid = svWrapper;
                         }
                     }
@@ -927,31 +927,31 @@ public class QueryUtil {
                 svInner = sv_valid;
             } else {
                 if (last_sdv != null) {
-                    if (last_sdv.value_array.getRowChange() || last_sdv.value_array.hasColChange(split)) {
+                    if (last_sdv.valueArray.getRowChange() || last_sdv.valueArray.hasColChange(split)) {
                         change = true;
                     }
                 } else {
-                    if (svInner != null && svInner.value_object != null && (svInner.value_object.getRowChange() || svInner.value_object.hasColChange(split))) {
+                    if (svInner != null && svInner.valueObject != null && (svInner.valueObject.getRowChange() || svInner.valueObject.hasColChange(split))) {
                         change = true;
                     }
                 }
                 last_sdv = null;
                 if (svInner != null) {
-                    if (svInner.value_object != null) {
-                        svInner = svInner.value_object.get(split);
+                    if (svInner.valueObject != null) {
+                        svInner = svInner.valueObject.get(split);
                     }
                 }
             }
         }
-        SceneDataPrimitive result = new SceneDataPrimitive();
+        DataPrimitive result = new DataPrimitive();
         if (change) {
             result.change = true;
         }
-        if (svInner != null && svInner.value_prim != null) {
-            if (svInner.value_prim.change) {
+        if (svInner != null && svInner.valuePrim != null) {
+            if (svInner.valuePrim.change) {
                 result.change = true;
             }
-            result.value = svInner.value_prim.value;
+            result.value = svInner.valuePrim.value;
             if (QueryAssist.rowChangeNeed) {
                 QueryAssist.rowFactor.valueChange.putIfAbsent(svInner, true);
             }
@@ -959,18 +959,18 @@ public class QueryUtil {
         return result;
     }
 
-    private static SceneDataSet parseSet(RepositoryBase Repository, SceneDataValue sv, Object setDesc, QueryAssist QueryAssist,
-                                         boolean isSingleValueSet) throws Exception {
-        SceneDataSet result;
+    private static DataSet parseSet(RepositoryBase Repository, DataValue sv, Object setDesc, QueryAssist QueryAssist,
+                                    boolean isSingleValueSet) throws Exception {
+        DataSet result;
         if (setDesc instanceof JSONArray) {
-            result = new SceneDataSet(isSingleValueSet);
+            result = new DataSet(isSingleValueSet);
             result.setRowChange(false);
             if (isSingleValueSet) {
-                List<SceneDataValue> sdvList = BaseApiUtil.arrayToSdvList((JSONArray) setDesc);
+                List<DataValue> sdvList = BaseApiUtil.arrayToSdvList((JSONArray) setDesc);
                 result.singleValueSet = new CopyOnWriteArrayList<>();
                 result.singleValueSet.addAll(sdvList);
             } else {
-                List<SceneDataObject> sdvList = BaseApiUtil.arrayToSdoList((JSONArray) setDesc);
+                List<DataObject> sdvList = BaseApiUtil.arrayToSdoList((JSONArray) setDesc);
                 result.set = new CopyOnWriteArrayList<>();
                 result.set.addAll(sdvList);
             }
@@ -1001,16 +1001,16 @@ public class QueryUtil {
             result = parseSetRef(Repository, sv, refString, QueryAssist, isSingleValueSet, false);
             return result;
         } else if (descSet.get("SetOperator") != null) {
-            result = new SceneDataSet(isSingleValueSet);
+            result = new DataSet(isSingleValueSet);
             if (isSingleValueSet) {
-                result.singleValueSet = new CopyOnWriteArrayList<SceneDataValue>();
+                result.singleValueSet = new CopyOnWriteArrayList<DataValue>();
 
                 String SetOperator = (descSet.get("SetOperator")).toString();
                 if (SetOperator.equals("add") || SetOperator.equals("merge") || SetOperator.equals("unite")) {
                     JSONArray SetArray = (JSONArray) descSet.get("SetArray");
-                    List<SceneDataSet> resultList = new CopyOnWriteArrayList<SceneDataSet>();
+                    List<DataSet> resultList = new CopyOnWriteArrayList<DataSet>();
                     for (Object SetArrayItem : SetArray) {
-                        SceneDataSet resultItem = parseSet(Repository, sv, SetArrayItem, QueryAssist, isSingleValueSet);
+                        DataSet resultItem = parseSet(Repository, sv, SetArrayItem, QueryAssist, isSingleValueSet);
                         resultList.add(resultItem);
                         if (resultItem.getRowChange()) {
                             result.setRowChange(true);
@@ -1018,15 +1018,15 @@ public class QueryUtil {
                     }
                     switch (SetOperator) {
                         case "add":
-                            for (SceneDataSet resultItem : resultList) {
+                            for (DataSet resultItem : resultList) {
                                 result.singleValueSet.addAll(resultItem.singleValueSet);
                             }
                             break;
                         case "merge":
-                            for (SceneDataSet resultItem : resultList) {
-                                for (SceneDataValue resultItemItem : resultItem.singleValueSet) {
+                            for (DataSet resultItem : resultList) {
+                                for (DataValue resultItemItem : resultItem.singleValueSet) {
                                     boolean exist = false;
-                                    for (SceneDataValue existItem : result.singleValueSet) {
+                                    for (DataValue existItem : result.singleValueSet) {
                                         if (CompareUtil.Instance().CompareObject(existItem, resultItemItem)) {
                                             exist = true;
                                             break;
@@ -1039,12 +1039,12 @@ public class QueryUtil {
                             }
                             break;
                         case "unite":
-                            SceneDataSet resultFirst = resultList.get(0);
-                            for (SceneDataValue existItem : resultFirst.singleValueSet) {
+                            DataSet resultFirst = resultList.get(0);
+                            for (DataValue existItem : resultFirst.singleValueSet) {
                                 int exist = 0;
                                 for (int i = 1; i < resultList.size(); i++) {
-                                    SceneDataSet resultItem = resultList.get(i);
-                                    for (SceneDataValue resultItemItem : resultItem.singleValueSet) {
+                                    DataSet resultItem = resultList.get(i);
+                                    for (DataValue resultItemItem : resultItem.singleValueSet) {
                                         if (CompareUtil.Instance().CompareObject(existItem, resultItemItem)) {
                                             exist++;
                                             break;
@@ -1058,12 +1058,12 @@ public class QueryUtil {
                             break;
                     }
                 } else if (SetOperator.equals("sub")) {
-                    SceneDataSet Set1 = parseSet(Repository, sv, descSet.get("Set1"), QueryAssist, isSingleValueSet);
-                    SceneDataSet Set2 = parseSet(Repository, sv, descSet.get("Set2"), QueryAssist, isSingleValueSet);
+                    DataSet Set1 = parseSet(Repository, sv, descSet.get("Set1"), QueryAssist, isSingleValueSet);
+                    DataSet Set2 = parseSet(Repository, sv, descSet.get("Set2"), QueryAssist, isSingleValueSet);
 
-                    for (SceneDataValue existItem : Set1.singleValueSet) {
+                    for (DataValue existItem : Set1.singleValueSet) {
                         boolean exist = false;
-                        for (SceneDataValue resultItemItem : Set2.singleValueSet) {
+                        for (DataValue resultItemItem : Set2.singleValueSet) {
                             if (CompareUtil.Instance().CompareObject(existItem, resultItemItem)) {
                                 exist = true;
                                 break;
@@ -1075,14 +1075,14 @@ public class QueryUtil {
                     }
                 }
             } else {
-                result.set = new CopyOnWriteArrayList<SceneDataObject>();
+                result.set = new CopyOnWriteArrayList<DataObject>();
 
                 String SetOperator = (descSet.get("SetOperator")).toString();
                 if (SetOperator.equals("add") || SetOperator.equals("merge") || SetOperator.equals("unite")) {
                     JSONArray SetArray = (JSONArray) descSet.get("SetArray");
-                    List<SceneDataSet> resultList = new CopyOnWriteArrayList<SceneDataSet>();
+                    List<DataSet> resultList = new CopyOnWriteArrayList<DataSet>();
                     for (Object SetArrayItem : SetArray) {
-                        SceneDataSet resultItem = parseSet(Repository, sv, SetArrayItem, QueryAssist, isSingleValueSet);
+                        DataSet resultItem = parseSet(Repository, sv, SetArrayItem, QueryAssist, isSingleValueSet);
                         resultList.add(resultItem);
                         if (resultItem.getRowChange()) {
                             result.setRowChange(true);
@@ -1092,14 +1092,14 @@ public class QueryUtil {
                         }
                     }
                     if (SetOperator.equals("add")) {
-                        for (SceneDataSet resultItem : resultList) {
+                        for (DataSet resultItem : resultList) {
                             result.set.addAll(resultItem.set);
                         }
                     } else if (SetOperator.equals("merge")) {
-                        for (SceneDataSet resultItem : resultList) {
-                            for (SceneDataObject resultItemItem : resultItem.set) {
+                        for (DataSet resultItem : resultList) {
+                            for (DataObject resultItemItem : resultItem.set) {
                                 boolean exist = false;
-                                for (SceneDataObject existItem : result.set) {
+                                for (DataObject existItem : result.set) {
                                     if (CompareUtil.Instance().Compare(existItem, resultItemItem)) {
                                         exist = true;
                                         break;
@@ -1111,12 +1111,12 @@ public class QueryUtil {
                             }
                         }
                     } else if (SetOperator.equals("unite")) {
-                        SceneDataSet resultFirst = resultList.get(0);
-                        for (SceneDataObject existItem : resultFirst.set) {
+                        DataSet resultFirst = resultList.get(0);
+                        for (DataObject existItem : resultFirst.set) {
                             int exist = 0;
                             for (int i = 1; i < resultList.size(); i++) {
-                                SceneDataSet resultItem = resultList.get(i);
-                                for (SceneDataObject resultItemItem : resultItem.set) {
+                                DataSet resultItem = resultList.get(i);
+                                for (DataObject resultItemItem : resultItem.set) {
                                     if (CompareUtil.Instance().Compare(existItem, resultItemItem)) {
                                         exist++;
                                         break;
@@ -1129,12 +1129,12 @@ public class QueryUtil {
                         }
                     }
                 } else if (SetOperator.equals("sub")) {
-                    SceneDataSet Set1 = parseSet(Repository, sv, descSet.get("Set1"), QueryAssist, isSingleValueSet);
-                    SceneDataSet Set2 = parseSet(Repository, sv, descSet.get("Set2"), QueryAssist, isSingleValueSet);
+                    DataSet Set1 = parseSet(Repository, sv, descSet.get("Set1"), QueryAssist, isSingleValueSet);
+                    DataSet Set2 = parseSet(Repository, sv, descSet.get("Set2"), QueryAssist, isSingleValueSet);
 
-                    for (SceneDataObject existItem : Set1.set) {
+                    for (DataObject existItem : Set1.set) {
                         boolean exist = false;
-                        for (SceneDataObject resultItemItem : Set2.set) {
+                        for (DataObject resultItemItem : Set2.set) {
                             if (CompareUtil.Instance().Compare(existItem, resultItemItem)) {
                                 exist = true;
                                 break;
@@ -1154,15 +1154,15 @@ public class QueryUtil {
             for (String key : QueryAssist.colChangeNeed.keySet()) {
                 QueryAssistInner.colChangeNeed.put(key, QueryAssist.colChangeNeed.get(key));
             }
-            result = (SceneDataSet) query(Repository, sv, descSet, QueryAssistInner);
+            result = (DataSet) query(Repository, sv, descSet, QueryAssistInner);
             QueryAssist.merge(QueryAssistInner);
             return result;
         }
     }
 
-    public static SceneDataSet parseSetRef(RepositoryBase Repository, SceneDataValue sv, String refString, QueryAssist QueryAssist,
-                                           boolean isSingleValueSet, boolean isDeamon) throws Exception {
-        SceneDataSet result = new SceneDataSet(isSingleValueSet);
+    public static DataSet parseSetRef(RepositoryBase Repository, DataValue sv, String refString, QueryAssist QueryAssist,
+                                      boolean isSingleValueSet, boolean isDeamon) throws Exception {
+        DataSet result = new DataSet(isSingleValueSet);
 
         String[] splits = refString.split("'");
         Object parentData;
@@ -1171,11 +1171,11 @@ public class QueryUtil {
             int generate = Integer.parseInt(splits[0].substring("ancestor_".length()));
             Object tmp = sv;
             while (generate > 0) {
-                if (tmp instanceof SceneDataValue) {
-                    SceneDataValue tmpData = (SceneDataValue) tmp;
+                if (tmp instanceof DataValue) {
+                    DataValue tmpData = (DataValue) tmp;
                     tmp = tmpData.parentObjectData;
-                } else if (tmp instanceof SceneDataObject) {
-                    SceneDataObject tmpData = (SceneDataObject) tmp;
+                } else if (tmp instanceof DataObject) {
+                    DataObject tmpData = (DataObject) tmp;
                     tmp = tmpData.parentObjectData != null ? tmpData.parentObjectData : tmpData.parentArrayData;
                 }
                 generate--;
@@ -1187,52 +1187,52 @@ public class QueryUtil {
             splits_index = 0;
         }
 
-        List<SceneDataValue> svList = new CopyOnWriteArrayList<SceneDataValue>();
+        List<DataValue> svList = new CopyOnWriteArrayList<DataValue>();
         if (isSingleValueSet) {
             // 查询目标可以是value_object或者value_array
-            if (parentData instanceof SceneDataValue) {
-                SceneDataValue tmpData = (SceneDataValue) parentData;
+            if (parentData instanceof DataValue) {
+                DataValue tmpData = (DataValue) parentData;
                 svList.add(tmpData);
             } else if (parentData != null) {
-                SceneDataObject tmpData = (SceneDataObject) parentData;
-                SceneDataValue svWrapper = new SceneDataValue(null, null, null, null);
-                svWrapper.value_object = tmpData;
+                DataObject tmpData = (DataObject) parentData;
+                DataValue svWrapper = new DataValue(null, null, null, null);
+                svWrapper.valueObject = tmpData;
                 svList.add(svWrapper);
             }
             for (int i = splits_index; i < splits.length; i++) {
                 String split = splits[i];
                 int index_ = split.indexOf('=');
-                List<SceneDataValue> svListInner = new CopyOnWriteArrayList<SceneDataValue>();
-                for (SceneDataValue svInner : svList) {
-                    if (svInner.value_object != null) {
-                        if (svInner.value_object.getRowChange() || svInner.value_object.hasColChange(split)) {
+                List<DataValue> svListInner = new CopyOnWriteArrayList<DataValue>();
+                for (DataValue svInner : svList) {
+                    if (svInner.valueObject != null) {
+                        if (svInner.valueObject.getRowChange() || svInner.valueObject.hasColChange(split)) {
                             result.setRowChange(true);
                         }
                         if (index_ != -1) {
                             throw new Exception(refString);
                         }
-                        svListInner.add(svInner.value_object.get(split));
-                    } else if (svInner.value_array != null) {
+                        svListInner.add(svInner.valueObject.get(split));
+                    } else if (svInner.valueArray != null) {
                         if (index_ != -1) {
                             String propertyName = split.substring(0, index_);
                             String propertyValue = split.substring(index_ + 1);
-                            if (svInner.value_array.getRowChange() || svInner.value_array.hasColChange(propertyName)) {
+                            if (svInner.valueArray.getRowChange() || svInner.valueArray.hasColChange(propertyName)) {
                                 result.setRowChange(true);
                             }
-                            for (SceneDataObject sdb : svInner.value_array.set) {
-                                SceneDataObject sod = (SceneDataObject) sdb;
-                                if (sod.containsKey(propertyName) && propertyValue.equals(sod.get(propertyName).value_prim.value)) {
-                                    SceneDataValue svWrapper = new SceneDataValue(null, sod, propertyName, null);
-                                    svWrapper.value_object = sod;
+                            for (DataObject sdb : svInner.valueArray.set) {
+                                DataObject sod = (DataObject) sdb;
+                                if (sod.containsKey(propertyName) && propertyValue.equals(sod.get(propertyName).valuePrim.value)) {
+                                    DataValue svWrapper = new DataValue(null, sod, propertyName, null);
+                                    svWrapper.valueObject = sod;
                                     svListInner.add(svWrapper);
                                 }
                             }
                         } else {
-                            if (svInner.value_array.getRowChange() || svInner.value_array.hasColChange(split)) {
+                            if (svInner.valueArray.getRowChange() || svInner.valueArray.hasColChange(split)) {
                                 result.setRowChange(true);
                             }
-                            for (SceneDataObject sdb : svInner.value_array.set) {
-                                SceneDataObject sod = (SceneDataObject) sdb;
+                            for (DataObject sdb : svInner.valueArray.set) {
+                                DataObject sod = (DataObject) sdb;
                                 svListInner.add(sod.get(split));
                             }
                         }
@@ -1240,78 +1240,78 @@ public class QueryUtil {
                 }
                 svList = svListInner;
             }
-            result.singleValueSet = new CopyOnWriteArrayList<SceneDataValue>();
-            for (SceneDataValue svTmp : svList) {
-                if (svTmp.value_prim != null) {
+            result.singleValueSet = new CopyOnWriteArrayList<DataValue>();
+            for (DataValue svTmp : svList) {
+                if (svTmp.valuePrim != null) {
                     result.singleValueSet.add(svTmp);
                     if (QueryAssist.rowChangeNeed) {
                         QueryAssist.rowFactor.valueChange.put(svTmp, true);
                     }
-                } else if (svTmp.value_array != null) {
-                    result.singleValueSet.addAll(svTmp.value_array.singleValueSet);
+                } else if (svTmp.valueArray != null) {
+                    result.singleValueSet.addAll(svTmp.valueArray.singleValueSet);
                     if (QueryAssist.rowChangeNeed) {
-                        QueryAssist.rowFactor.rowChange.put(svTmp.value_array, true);
+                        QueryAssist.rowFactor.rowChange.put(svTmp.valueArray, true);
                     }
                 }
             }
-            for (SceneDataValue svTmp : svList) {
-                if (svTmp.value_prim != null) {
-                    if (svTmp.value_prim.change) {
+            for (DataValue svTmp : svList) {
+                if (svTmp.valuePrim != null) {
+                    if (svTmp.valuePrim.change) {
                         result.setRowChange(true);
                     }
-                } else if (svTmp.value_array != null) {
-                    if (svTmp.value_array.getRowChange()) {
+                } else if (svTmp.valueArray != null) {
+                    if (svTmp.valueArray.getRowChange()) {
                         result.setRowChange(true);
                     }
                 }
             }
         } else {
             // 查询目标可以是value_object或者value_array
-            if (parentData instanceof SceneDataValue) {
-                SceneDataValue tmpData = (SceneDataValue) parentData;
+            if (parentData instanceof DataValue) {
+                DataValue tmpData = (DataValue) parentData;
                 svList.add(tmpData);
             } else if (parentData != null) {
-                SceneDataObject tmpData = (SceneDataObject) parentData;
-                SceneDataValue svWrapper = new SceneDataValue(null, null, null, null);
-                svWrapper.value_object = tmpData;
+                DataObject tmpData = (DataObject) parentData;
+                DataValue svWrapper = new DataValue(null, null, null, null);
+                svWrapper.valueObject = tmpData;
                 svList.add(svWrapper);
             }
             for (int i = splits_index; i < splits.length; i++) {
                 String split = splits[i];
                 int index_ = split.indexOf('=');
-                List<SceneDataValue> svListInner = new CopyOnWriteArrayList<SceneDataValue>();
-                for (SceneDataValue svInner : svList) {
+                List<DataValue> svListInner = new CopyOnWriteArrayList<DataValue>();
+                for (DataValue svInner : svList) {
                     if (svInner == null) {
                         continue;
                     }
-                    if (svInner.value_object != null) {
-                        if (svInner.value_object.getRowChange()) {
+                    if (svInner.valueObject != null) {
+                        if (svInner.valueObject.getRowChange()) {
                             result.setRowChange(true);
                         }
                         if (index_ != -1) {
                             throw new Exception(refString);
                         }
-                        svListInner.add(svInner.value_object.get(split));
-                    } else if (svInner.value_array != null) {
+                        svListInner.add(svInner.valueObject.get(split));
+                    } else if (svInner.valueArray != null) {
                         if (index_ != -1) {
                             String propertyName = split.substring(0, index_);
                             String propertyValue = split.substring(index_ + 1);
-                            if (svInner.value_array.getRowChange()) {
+                            if (svInner.valueArray.getRowChange()) {
                                 result.setRowChange(true);
                             }
-                            for (SceneDataObject sdb : svInner.value_array.set) {
-                                SceneDataObject sod = (SceneDataObject) sdb;
-                                if (sod.containsKey(propertyName) && propertyValue.equals(sod.get(propertyName).value_prim.value)) {
-                                    SceneDataValue svWrapper = new SceneDataValue(null, sod, propertyName, null);
-                                    svWrapper.value_object = sod;
+                            for (DataObject sdb : svInner.valueArray.set) {
+                                DataObject sod = (DataObject) sdb;
+                                if (sod.containsKey(propertyName) && propertyValue.equals(sod.get(propertyName).valuePrim.value)) {
+                                    DataValue svWrapper = new DataValue(null, sod, propertyName, null);
+                                    svWrapper.valueObject = sod;
                                     svListInner.add(svWrapper);
                                 }
                             }
                         } else {
-                            if (svInner.value_array.getRowChange()) {
+                            if (svInner.valueArray.getRowChange()) {
                                 result.setRowChange(true);
                             }
-                            for (SceneDataObject sdb : svInner.value_array.set) {
+                            for (DataObject sdb : svInner.valueArray.set) {
                                 svListInner.add(sdb.get(split));
                             }
                         }
@@ -1324,36 +1324,36 @@ public class QueryUtil {
                 result.singleValueSet.addAll(svList);
             } else {
                 result.set = new CopyOnWriteArrayList<>();
-                for (SceneDataValue svTmp : svList) {
+                for (DataValue svTmp : svList) {
                     if (svTmp == null) {
                         continue;
                     }
-                    if (svTmp.value_array != null && svTmp.value_array.getRowChange()) {
+                    if (svTmp.valueArray != null && svTmp.valueArray.getRowChange()) {
                         result.setRowChange(true);
                     }
 
-                    if (svTmp.value_array != null) {
-                        result.set.addAll(svTmp.value_array.set);
+                    if (svTmp.valueArray != null) {
+                        result.set.addAll(svTmp.valueArray.set);
                     }
                     if (QueryAssist.rowChangeNeed) {
-                        if (svTmp.value_array != null) {
-                            QueryAssist.rowFactor.rowChange.put(svTmp.value_array, true);
+                        if (svTmp.valueArray != null) {
+                            QueryAssist.rowFactor.rowChange.put(svTmp.valueArray, true);
                         }
                         for (String col : QueryAssist.colChangeNeed.keySet()) {
                             QueryAssist.colFactorMap.putIfAbsent(col, new InfluenceFactor());
-                            if (svTmp.value_array != null) {
-                                QueryAssist.colFactorMap.get(col).colChange.putIfAbsent(svTmp.value_array, new ConcurrentHashMap<String, Boolean>());
-                                QueryAssist.colFactorMap.get(col).colChange.get(svTmp.value_array).put(col, true);
+                            if (svTmp.valueArray != null) {
+                                QueryAssist.colFactorMap.get(col).colChange.putIfAbsent(svTmp.valueArray, new ConcurrentHashMap<String, Boolean>());
+                                QueryAssist.colFactorMap.get(col).colChange.get(svTmp.valueArray).put(col, true);
                             }
                         }
                     }
                 }
                 if (!result.getRowChange()) {
-                    for (SceneDataValue svTmp : svList) {
-                        if (svTmp == null || svTmp.value_array == null) {
+                    for (DataValue svTmp : svList) {
+                        if (svTmp == null || svTmp.valueArray == null) {
                             continue;
                         }
-                        for (String col : svTmp.value_array.getColChange().keySet()) {
+                        for (String col : svTmp.valueArray.getColChange().keySet()) {
                             result.setColChange(col);
                         }
                     }
@@ -1363,12 +1363,12 @@ public class QueryUtil {
         return result;
     }
 
-    private static SceneDataSet query_select(SceneDataSet set, CriteriaBase criteria) {
-        SceneDataSet result = new SceneDataSet(false);
-        result.set = new CopyOnWriteArrayList<SceneDataObject>();
+    private static DataSet query_select(DataSet set, CriteriaBase criteria) {
+        DataSet result = new DataSet(false);
+        result.set = new CopyOnWriteArrayList<DataObject>();
         if (set != null) {
             for (int i = 0; i < set.set.size(); i++) {
-                SceneDataObject setValue = set.set.get(i);
+                DataObject setValue = set.set.get(i);
                 if (criteria.match(setValue)) {
                     result.set.add(setValue);
                 }
@@ -1457,7 +1457,7 @@ public class QueryUtil {
         return false;
     }
 
-    private static Object query_aggregation(SceneDataSet set, Object Aggregation, JSONArray GroupBy) throws Exception {
+    private static Object query_aggregation(DataSet set, Object Aggregation, JSONArray GroupBy) throws Exception {
         JSONArray agg_array = null;
         JSONObject AggregationObject = null;
         JSONArray AggregationArray = null;
@@ -1481,11 +1481,11 @@ public class QueryUtil {
                 columnDic.put(Column, true);
             }
         }
-        Map<String, SceneDataObject> agg_count = new ConcurrentHashMap<String, SceneDataObject>();
-        Map<String, Map<String, List<SceneDataPrimitive>>> agg_items = new ConcurrentHashMap<String, Map<String, List<SceneDataPrimitive>>>();
+        Map<String, DataObject> agg_count = new ConcurrentHashMap<String, DataObject>();
+        Map<String, Map<String, List<DataPrimitive>>> agg_items = new ConcurrentHashMap<String, Map<String, List<DataPrimitive>>>();
 
         for (int i = 0; i < set.set.size(); i++) {
-            SceneDataObject setValue = set.set.get(i);
+            DataObject setValue = set.set.get(i);
             String key;
             if (GroupBy == null) {
                 key = "default";
@@ -1493,9 +1493,9 @@ public class QueryUtil {
                 JSONObject keyObject = new JSONObject();
                 for (int ii = 0; ii < GroupBy.size(); ii++) {
                     String GroupByColumn = (GroupBy.get(ii)).toString();
-                    SceneDataValue sdvColumn = setValue.get(GroupByColumn);
-                    if (sdvColumn != null && sdvColumn.value_prim != null) {
-                        keyObject.put(GroupByColumn, sdvColumn.value_prim.value);
+                    DataValue sdvColumn = setValue.get(GroupByColumn);
+                    if (sdvColumn != null && sdvColumn.valuePrim != null) {
+                        keyObject.put(GroupByColumn, sdvColumn.valuePrim.value);
                     } else {
                         keyObject.put(GroupByColumn, null);
                     }
@@ -1503,36 +1503,36 @@ public class QueryUtil {
                 key = JSONObject.toJSONString(keyObject, SerializerFeature.WriteMapNullValue);
             }
             if (!agg_items.containsKey(key)) {
-                agg_items.put(key, new ConcurrentHashMap<String, List<SceneDataPrimitive>>());
+                agg_items.put(key, new ConcurrentHashMap<String, List<DataPrimitive>>());
             }
             if (!agg_count.containsKey(key)) {
-                SceneDataObject countObject = new SceneDataObject(null, null, null, null, null, null, null);
-                SceneDataValue sdvvvv = new SceneDataValue(null, countObject, "count", null);
-                sdvvvv.value_prim = new SceneDataPrimitive();
-                sdvvvv.value_prim.value = 0;
+                DataObject countObject = new DataObject(null, null, null, null, null, null, null);
+                DataValue sdvvvv = new DataValue(null, countObject, "count", null);
+                sdvvvv.valuePrim = new DataPrimitive();
+                sdvvvv.valuePrim.value = 0;
                 countObject.put("count", sdvvvv);
                 agg_count.put(key, countObject);
             }
             {
-                SceneDataObject countObject = agg_count.get(key);
-                SceneDataValue countValue = countObject.get("count");
-                countValue.value_prim.value = (Integer) countValue.value_prim.value + 1;
+                DataObject countObject = agg_count.get(key);
+                DataValue countValue = countObject.get("count");
+                countValue.valuePrim.value = (Integer) countValue.valuePrim.value + 1;
             }
-            Map<String, List<SceneDataPrimitive>> itemListDic = agg_items.get(key);
+            Map<String, List<DataPrimitive>> itemListDic = agg_items.get(key);
             for (String dicKey : columnDic.keySet()) {
                 if (!itemListDic.containsKey(dicKey)) {
-                    itemListDic.put(dicKey, new CopyOnWriteArrayList<SceneDataPrimitive>());
+                    itemListDic.put(dicKey, new CopyOnWriteArrayList<DataPrimitive>());
                 }
-                List<SceneDataPrimitive> items = itemListDic.get(dicKey);
+                List<DataPrimitive> items = itemListDic.get(dicKey);
                 if (setValue.containsKey(dicKey)) {
-                    items.add(setValue.get(dicKey).value_prim);
+                    items.add(setValue.get(dicKey).valuePrim);
                 }
             }
         }
 
         if (GroupBy == null) {
             if (AggregationObject != null) {
-                SceneDataPrimitive result = new SceneDataPrimitive();
+                DataPrimitive result = new DataPrimitive();
                 result.value = query_aggregationProcess(agg_count, agg_items, AggregationObject, "default");
                 if (set.getRowChange()) {
                     result.change = true;
@@ -1547,14 +1547,14 @@ public class QueryUtil {
                 }
                 return result;
             } else {
-                SceneDataObject result = new SceneDataObject(null, null, null, null, null, null, null);
+                DataObject result = new DataObject(null, null, null, null, null, null, null);
                 for (Object agg_oneObject : AggregationArray) {
                     JSONObject agg_one = (JSONObject) agg_oneObject;
                     String Name = (agg_one.get("Name")).toString();
-                    SceneDataValue sdvvv = new SceneDataValue(null, null, null, null);
+                    DataValue sdvvv = new DataValue(null, null, null, null);
                     sdvvv.finish = true;
-                    sdvvv.value_prim = new SceneDataPrimitive();
-                    sdvvv.value_prim.value = query_aggregationProcess(agg_count, agg_items, agg_one, "default");
+                    sdvvv.valuePrim = new DataPrimitive();
+                    sdvvv.valuePrim.value = query_aggregationProcess(agg_count, agg_items, agg_one, "default");
                     result.put(Name, sdvvv);
                 }
                 if (set.getRowChange()) {
@@ -1579,26 +1579,26 @@ public class QueryUtil {
                 return result;
             }
         } else {
-            SceneDataSet result = new SceneDataSet(false);
-            result.set = new CopyOnWriteArrayList<SceneDataObject>();
+            DataSet result = new DataSet(false);
+            result.set = new CopyOnWriteArrayList<DataObject>();
             for (String key : agg_count.keySet()) {
                 JSONObject keyObject = JSON.parseObject(key);
-                SceneDataObject resultItem = new SceneDataObject(null, null, null, null, null, null, null);
+                DataObject resultItem = new DataObject(null, null, null, null, null, null, null);
                 for (String keyObjectOneKey : keyObject.keySet()) {
                     Object keyObjectOneValue = keyObject.get(keyObjectOneKey);
-                    SceneDataValue sdvvv = new SceneDataValue(null, resultItem, keyObjectOneKey, null);
-                    sdvvv.value_prim = new SceneDataPrimitive();
-                    sdvvv.value_prim.value = keyObjectOneValue;
+                    DataValue sdvvv = new DataValue(null, resultItem, keyObjectOneKey, null);
+                    sdvvv.valuePrim = new DataPrimitive();
+                    sdvvv.valuePrim.value = keyObjectOneValue;
                     sdvvv.finish = true;
                     resultItem.put(keyObjectOneKey, sdvvv);
                 }
                 for (Object agg_oneObject : AggregationArray) {
                     JSONObject agg_one = (JSONObject) agg_oneObject;
                     String Name = (agg_one.get("Name")).toString();
-                    SceneDataValue sdvvv = new SceneDataValue(null, resultItem, Name, null);
+                    DataValue sdvvv = new DataValue(null, resultItem, Name, null);
                     sdvvv.finish = true;
-                    sdvvv.value_prim = new SceneDataPrimitive();
-                    sdvvv.value_prim.value = query_aggregationProcess(agg_count, agg_items, agg_one, key);
+                    sdvvv.valuePrim = new DataPrimitive();
+                    sdvvv.valuePrim.value = query_aggregationProcess(agg_count, agg_items, agg_one, key);
                     resultItem.put(Name, sdvvv);
                 }
                 result.set.add(resultItem);
@@ -1630,19 +1630,19 @@ public class QueryUtil {
         }
     }
 
-    private static Object query_aggregationProcess(Map<String, SceneDataObject> agg_count,
-                                                   Map<String, Map<String, List<SceneDataPrimitive>>> agg_items, JSONObject agg_obj, String key) throws Exception {
+    private static Object query_aggregationProcess(Map<String, DataObject> agg_count,
+                                                   Map<String, Map<String, List<DataPrimitive>>> agg_items, JSONObject agg_obj, String key) throws Exception {
         Object result = null;
         String Function = (agg_obj.get("Function")).toString();
         if (Function.equals("count")) {
             if (!agg_count.containsKey(key)) {
                 result = 0;
             } else {
-                result = agg_count.get(key).get("count").value_prim.value;
+                result = agg_count.get(key).get("count").valuePrim.value;
             }
         } else {
             String Column = (agg_obj.get("Column")).toString();
-            List<SceneDataPrimitive> agg_items_one = new CopyOnWriteArrayList<SceneDataPrimitive>();
+            List<DataPrimitive> agg_items_one = new CopyOnWriteArrayList<DataPrimitive>();
             if (agg_items.get(key) != null && agg_items.get(key).containsKey(Column)) {
                 agg_items_one = agg_items.get(key).get(Column);
             }
@@ -1651,7 +1651,7 @@ public class QueryUtil {
                 case "avg":
                     double sum = 0.0;
                     int count_valid = 0;
-                    for (SceneDataPrimitive jtSDP : agg_items_one) {
+                    for (DataPrimitive jtSDP : agg_items_one) {
                         Object jt = jtSDP != null ? jtSDP.value : null;
                         if (jt != null) {
                             double jtValue;
@@ -1685,7 +1685,7 @@ public class QueryUtil {
                     break;
                 case "max":
                 case "min":
-                    for (SceneDataPrimitive jtSDP : agg_items_one) {
+                    for (DataPrimitive jtSDP : agg_items_one) {
                         Object jt = jtSDP != null ? jtSDP.value : null;
                         if (jt != null) {
                             double jtValue;
@@ -1721,7 +1721,7 @@ public class QueryUtil {
                 case "equal_value":
                     Double value = null;
                     boolean equal = true;
-                    for (SceneDataPrimitive jtSDP : agg_items_one) {
+                    for (DataPrimitive jtSDP : agg_items_one) {
                         Object jt = jtSDP != null ? jtSDP.value : null;
                         if (jt != null) {
                             if (value == null) {
@@ -1743,9 +1743,9 @@ public class QueryUtil {
         return result;
     }
 
-    private static SceneDataSet query_after1(SceneDataSet set, JSONArray OrderBy, JSONObject Limit) {
-        SceneDataSet resultArray = new SceneDataSet(false);
-        resultArray.set = new CopyOnWriteArrayList<SceneDataObject>();
+    private static DataSet query_after1(DataSet set, JSONArray OrderBy, JSONObject Limit) {
+        DataSet resultArray = new DataSet(false);
+        resultArray.set = new CopyOnWriteArrayList<DataObject>();
         resultArray.set.addAll(set.set);
         if (OrderBy != null && OrderBy.size() > 0) {
             resultArray.set.sort(new ComparatorSceneDataObject(OrderBy));
@@ -1753,7 +1753,7 @@ public class QueryUtil {
         if (Limit != null) {
             int Limit_Skip = Limit.getIntValue("Skip");
             int Limit_Count = Limit.getIntValue("Count");
-            List<SceneDataObject> contentList = new CopyOnWriteArrayList<SceneDataObject>();
+            List<DataObject> contentList = new CopyOnWriteArrayList<DataObject>();
             for (int index_ = (int) Limit_Skip; index_ < resultArray.set.size() && index_ < Limit_Skip + Limit_Count; index_++) {
                 contentList.add(resultArray.set.get(index_));
             }
@@ -1785,14 +1785,14 @@ public class QueryUtil {
         return resultArray;
     }
 
-    private static SceneDataSet query_after2(SceneDataSet set, List<String> ReturnColumns, String UniqueReturnColumn) {
-        SceneDataSet resultArray = new SceneDataSet(UniqueReturnColumn != null);
-        resultArray.set = new CopyOnWriteArrayList<SceneDataObject>();
+    private static DataSet query_after2(DataSet set, List<String> ReturnColumns, String UniqueReturnColumn) {
+        DataSet resultArray = new DataSet(UniqueReturnColumn != null);
+        resultArray.set = new CopyOnWriteArrayList<DataObject>();
         resultArray.set.addAll(set.set);
 
         if (UniqueReturnColumn != null) {
-            List<SceneDataValue> resultArray_new = new CopyOnWriteArrayList<SceneDataValue>();
-            for (SceneDataObject setValue : resultArray.set) {
+            List<DataValue> resultArray_new = new CopyOnWriteArrayList<DataValue>();
+            for (DataObject setValue : resultArray.set) {
                 resultArray_new.add(setValue.get(UniqueReturnColumn));
             }
             resultArray.singleValueSet = resultArray_new;
@@ -1809,9 +1809,9 @@ public class QueryUtil {
             for (String Column : ReturnColumns) {
                 ReturnColumnMap.put(Column, true);
             }
-            List<SceneDataObject> resultArray_new = new CopyOnWriteArrayList<SceneDataObject>();
-            for (SceneDataObject setValue : resultArray.set) {
-                SceneDataObject resultItem = new SceneDataObject(null, null, null, null, null, null, setValue);
+            List<DataObject> resultArray_new = new CopyOnWriteArrayList<DataObject>();
+            for (DataObject setValue : resultArray.set) {
+                DataObject resultItem = new DataObject(null, null, null, null, null, null, setValue);
                 resultItem.fatherReturnColumnMap = ReturnColumnMap;
                 resultArray_new.add(resultItem);
             }

@@ -4,9 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.entity.repository.RepositoryBase;
-import com.hdwa.sdk.entity.scene.SceneDataObject;
-import com.hdwa.sdk.entity.scene.SceneDataValue;
-import com.hdwa.sdk.entity.scene.SceneProperty;
+import com.hdwa.sdk.entity.scene.DataObject;
+import com.hdwa.sdk.entity.scene.DataValue;
+import com.hdwa.sdk.entity.scene.DataProperty;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
@@ -114,21 +114,21 @@ public class RecursiveUtil {
      */
     public static void refreshObject(RepositoryBase Repository, Object tmpData) throws Exception {
         Date currTime = new Date();
-        if (tmpData instanceof SceneDataValue) {
-            SceneDataValue currData = (SceneDataValue) tmpData;
-            int read_level = currData.rel_property == null ? 1 : Integer.parseInt(currData.rel_property.read_level);
+        if (tmpData instanceof DataValue) {
+            DataValue currData = (DataValue) tmpData;
+            int read_level = currData.relProperty == null ? 1 : Integer.parseInt(currData.relProperty.readLevel);
             read_level = read_level == 0 ? -1 : read_level;
             refresh(Repository, currData, read_level, currTime, false);
-        } else if (tmpData instanceof SceneDataObject) {
-            SceneDataObject currData = (SceneDataObject) tmpData;
-            int read_level = (currData.parentArrayData != null && currData.parentArrayData.rel_property != null)
-                    ? Integer.parseInt(currData.parentArrayData.rel_property.read_level) : 1;
+        } else if (tmpData instanceof DataObject) {
+            DataObject currData = (DataObject) tmpData;
+            int read_level = (currData.parentArrayData != null && currData.parentArrayData.relProperty != null)
+                    ? Integer.parseInt(currData.parentArrayData.relProperty.readLevel) : 1;
             read_level = read_level == 0 ? -1 : read_level;
             refresh(Repository, currData, read_level, currTime);
         }
     }
 
-    private static void refresh(RepositoryBase Repository, SceneDataObject sdo, int depth, Date currTime) throws Exception {
+    private static void refresh(RepositoryBase Repository, DataObject sdo, int depth, Date currTime) throws Exception {
         if (sdo == null) {
             return;
         }
@@ -145,7 +145,7 @@ public class RecursiveUtil {
         }
     }
 
-    private static void refresh(RepositoryBase Repository, SceneDataValue sdv, int depth, Date currTime, boolean use_offset_level) throws Exception {
+    private static void refresh(RepositoryBase Repository, DataValue sdv, int depth, Date currTime, boolean use_offset_level) throws Exception {
         if (sdv == null) {
             return;
         }
@@ -153,8 +153,8 @@ public class RecursiveUtil {
         // log.info("refreshValue" + "\t" + svPath);
 
         int curr_depth = depth;
-        if (use_offset_level && sdv.rel_property != null && curr_depth != -1) {
-            curr_depth -= Integer.parseInt(sdv.rel_property.offset_level);
+        if (use_offset_level && sdv.relProperty != null && curr_depth != -1) {
+            curr_depth -= Integer.parseInt(sdv.relProperty.offsetLevel);
             if (curr_depth < 0) {
                 return;
             }
@@ -164,14 +164,14 @@ public class RecursiveUtil {
         compute(Repository, sdv);
         // 计算下级节点
         if (depth > 0 || depth == -1) {
-            if (sdv.value_object != null) {
-                refresh(Repository, sdv.value_object, curr_depth, currTime);
-            } else if (sdv.value_array != null) {
-                if (!sdv.value_array.isSingleValueSet) {
-                    for (int i = 0; i < sdv.value_array.set.size(); i++) {
-                        SceneDataObject sdb = sdv.value_array.set.get(i);
+            if (sdv.valueObject != null) {
+                refresh(Repository, sdv.valueObject, curr_depth, currTime);
+            } else if (sdv.valueArray != null) {
+                if (!sdv.valueArray.isSingleValueSet) {
+                    for (int i = 0; i < sdv.valueArray.set.size(); i++) {
+                        DataObject sdb = sdv.valueArray.set.get(i);
                         if (sdb != null) {
-                            refresh(Repository, (SceneDataObject) sdb, curr_depth, currTime);
+                            refresh(Repository, (DataObject) sdb, curr_depth, currTime);
                         }
                     }
                 }
@@ -180,13 +180,13 @@ public class RecursiveUtil {
     }
 
     // 计算节点
-    private static void compute(RepositoryBase Repository, SceneDataValue sdv) throws Exception {
+    private static void compute(RepositoryBase Repository, DataValue sdv) throws Exception {
         if (sdv == null) {
             return;
         }
 
-        if (sdv.rel_property != null && sdv.rel_property.propertyValueType.equals("query")) {
-            if (sdv.rel_property.propertyValueSchema.equals("JSONObject") || sdv.rel_property.propertyValueSchema.equals("JSONArray")) {
+        if (sdv.relProperty != null && sdv.relProperty.propertyValueType.equals("query")) {
+            if (sdv.relProperty.propertyValueSchema.equals("JSONObject") || sdv.relProperty.propertyValueSchema.equals("JSONArray")) {
                 {
                     // 递归计算当前节点及下级
                     computeInner(Repository, sdv);
@@ -204,12 +204,12 @@ public class RecursiveUtil {
      * @param sv
      * @throws Exception
      */
-    private static void computeInner(RepositoryBase Repository, SceneDataValue sv) throws Exception {
-        SceneProperty sceneProperty = sv.rel_property;
-        JSONObject sql_json = JSON.parseObject(sceneProperty.query_sql);
+    private static void computeInner(RepositoryBase Repository, DataValue sv) throws Exception {
+        DataProperty dataProperty = sv.relProperty;
+        JSONObject sql_json = JSON.parseObject(dataProperty.querySql);
         Map<String, Map<String, Boolean>> refList = new ConcurrentHashMap<String, Map<String, Boolean>>();
         CheckUtil.query(sql_json, refList);
-        List<SceneDataValue> svListAll = new CopyOnWriteArrayList<SceneDataValue>();
+        List<DataValue> svListAll = new CopyOnWriteArrayList<DataValue>();
         for (String refString : refList.keySet()) {
             String[] splits = refString.split("'");
             Object parentData;
@@ -218,11 +218,11 @@ public class RecursiveUtil {
                 int generate = Integer.parseInt(splits[0].substring("ancestor_".length()));
                 Object tmp = sv;
                 while (generate > 0) {
-                    if (tmp instanceof SceneDataValue) {
-                        SceneDataValue tmpData = (SceneDataValue) tmp;
+                    if (tmp instanceof DataValue) {
+                        DataValue tmpData = (DataValue) tmp;
                         tmp = tmpData.parentObjectData;
                     } else if (tmp != null) {
-                        SceneDataObject tmpData = (SceneDataObject) tmp;
+                        DataObject tmpData = (DataObject) tmp;
                         tmp = tmpData.parentObjectData != null ? tmpData.parentObjectData : tmpData.parentArrayData;
                     }
                     generate--;
@@ -235,49 +235,49 @@ public class RecursiveUtil {
             }
 
             // 查询目标可以是value_object或者value_array
-            List<SceneDataValue> svList = new CopyOnWriteArrayList<SceneDataValue>();
-            if (parentData instanceof SceneDataValue) {
-                SceneDataValue tmpData = (SceneDataValue) parentData;
+            List<DataValue> svList = new CopyOnWriteArrayList<DataValue>();
+            if (parentData instanceof DataValue) {
+                DataValue tmpData = (DataValue) parentData;
                 svList.add(tmpData);
             } else if (parentData != null) {
-                SceneDataObject tmpData = (SceneDataObject) parentData;
-                SceneDataValue svWrapper = new SceneDataValue(null, null, null, null);
-                svWrapper.value_object = tmpData;
+                DataObject tmpData = (DataObject) parentData;
+                DataValue svWrapper = new DataValue(null, null, null, null);
+                svWrapper.valueObject = tmpData;
                 svList.add(svWrapper);
             }
             for (int i = splits_index; i < splits.length; i++) {
-                List<SceneDataValue> svListInner = new CopyOnWriteArrayList<SceneDataValue>();
+                List<DataValue> svListInner = new CopyOnWriteArrayList<DataValue>();
                 String split = splits[i];
                 int index_ = split.indexOf('=');
                 if (index_ != -1) {
                     String propertyName = split.substring(0, index_);
                     String propertyValue = split.substring(index_ + 1);
-                    for (SceneDataValue svInner : svList) {
-                        if (svInner.value_object != null) {
-                            SceneDataObject sod = svInner.value_object;
-                            if (sod.containsKey(propertyName) && propertyValue.equals(sod.get(propertyName).value_prim.value)) {
-                                SceneDataValue svWrapper = new SceneDataValue(null, sod, propertyName, null);
-                                svWrapper.value_object = sod;
+                    for (DataValue svInner : svList) {
+                        if (svInner.valueObject != null) {
+                            DataObject sod = svInner.valueObject;
+                            if (sod.containsKey(propertyName) && propertyValue.equals(sod.get(propertyName).valuePrim.value)) {
+                                DataValue svWrapper = new DataValue(null, sod, propertyName, null);
+                                svWrapper.valueObject = sod;
                                 svListInner.add(svWrapper);
                             }
-                        } else if (svInner.value_array != null) {
-                            for (SceneDataObject sod : svInner.value_array.set) {
-                                if (sod.containsKey(propertyName) && propertyValue.equals(sod.get(propertyName).value_prim.value)) {
-                                    SceneDataValue svWrapper = new SceneDataValue(null, sod, propertyName, null);
-                                    svWrapper.value_object = sod;
+                        } else if (svInner.valueArray != null) {
+                            for (DataObject sod : svInner.valueArray.set) {
+                                if (sod.containsKey(propertyName) && propertyValue.equals(sod.get(propertyName).valuePrim.value)) {
+                                    DataValue svWrapper = new DataValue(null, sod, propertyName, null);
+                                    svWrapper.valueObject = sod;
                                     svListInner.add(svWrapper);
                                 }
                             }
                         }
                     }
                 } else {
-                    for (SceneDataValue svInner : svList) {
-                        if (svInner.value_object != null) {
-                            svListInner.add(svInner.value_object.get(split));
-                        } else if (svInner.value_array != null) {
-                            for (SceneDataObject sdb : svInner.value_array.set) {
+                    for (DataValue svInner : svList) {
+                        if (svInner.valueObject != null) {
+                            svListInner.add(svInner.valueObject.get(split));
+                        } else if (svInner.valueArray != null) {
+                            for (DataObject sdb : svInner.valueArray.set) {
                                 if (sdb != null) {
-                                    SceneDataObject sod = (SceneDataObject) sdb;
+                                    DataObject sod = (DataObject) sdb;
                                     svListInner.add(sod.get(split));
                                 }
                             }
@@ -289,18 +289,18 @@ public class RecursiveUtil {
             svListAll.addAll(svList);
         }
 
-        for (SceneDataValue sdv : svListAll) {
+        for (DataValue sdv : svListAll) {
             compute(Repository, sdv);
         }
 
-        if (sv.rel_property != null && sv.rel_property.propertyValueType.equals("query")) {
-            if (sv.value_object != null && sv.value_object.getRowChange() || sv.value_array != null && sv.value_array.getRowChange()
-                    || sv.value_prim != null && sv.value_prim.change) {
+        if (sv.relProperty != null && sv.relProperty.propertyValueType.equals("query")) {
+            if (sv.valueObject != null && sv.valueObject.getRowChange() || sv.valueArray != null && sv.valueArray.getRowChange()
+                    || sv.valuePrim != null && sv.valuePrim.change) {
                 ReentrantLock lock = sv.lock;
                 try {
                     lock.lock();
                     Date currTime = new Date();
-                    if (sv.last_compute_time == null || currTime.getTime() - sv.last_compute_time.getTime() > 1000L) {
+                    if (sv.lastComputeTime == null || currTime.getTime() - sv.lastComputeTime.getTime() > 1000L) {
                         // String svPath = RecursiveUtil.getDataPath(sv);
                         // log.info("computeProperty" + "\t" + svPath);
                         CalculateApiJsonUtil.calculateProperty(Repository, sv);
@@ -312,11 +312,11 @@ public class RecursiveUtil {
         }
     }
 
-    public static void print_variable_set(String path, SceneDataObject sdo) {
+    public static void print_variable_set(String path, DataObject sdo) {
         if (sdo == null) {
             return;
         }
-        if (sdo.rel_object == null && sdo.parentArrayData == null) {
+        if (sdo.relObject == null && sdo.parentArrayData == null) {
             return;
         }
 
@@ -328,34 +328,34 @@ public class RecursiveUtil {
         }
     }
 
-    public static void print_variable_set(String path, SceneDataValue sdv) {
+    public static void print_variable_set(String path, DataValue sdv) {
         if (sdv == null) {
             return;
         }
-        if (sdv.rel_property == null) {
+        if (sdv.relProperty == null) {
             return;
         }
 
-        if (sdv.rel_property.propertyValueSchema.equals("JSONObject")) {
-            if (sdv.rel_property.propertyValueType.equals("query")) {
+        if (sdv.relProperty.propertyValueSchema.equals("JSONObject")) {
+            if (sdv.relProperty.propertyValueType.equals("query")) {
                 log.debug(
-                        path + "\t" + "variable set object" + "\t" + sdv.rel_property.propertyValueType + "\t" + sdv.value_object.change.toString());
+                        path + "\t" + "variable set object" + "\t" + sdv.relProperty.propertyValueType + "\t" + sdv.valueObject.dataChange.toString());
             }
-            print_variable_set(path, sdv.value_object);
-        } else if (sdv.rel_property.propertyValueSchema.equals("JSONArray")) {
-            if (sdv.rel_property.propertyValueType.equals("query")) {
-                log.debug(path + "\t" + "variable set array" + "\t" + sdv.rel_property.propertyValueType + "\t" + sdv.value_array.change.toString());
+            print_variable_set(path, sdv.valueObject);
+        } else if (sdv.relProperty.propertyValueSchema.equals("JSONArray")) {
+            if (sdv.relProperty.propertyValueType.equals("query")) {
+                log.debug(path + "\t" + "variable set array" + "\t" + sdv.relProperty.propertyValueType + "\t" + sdv.valueArray.dataChange.toString());
             }
-            for (int i = 0; i < sdv.value_array.set.size(); i++) {
-                SceneDataObject sdb = sdv.value_array.set.get(i);
+            for (int i = 0; i < sdv.valueArray.set.size(); i++) {
+                DataObject sdb = sdv.valueArray.set.get(i);
                 if (sdb != null) {
                     print_variable_set(path + "[" + i + "]", sdb);
                 }
             }
         } else {
-            if (sdv.rel_property.propertyValueType.equals("query")) {
+            if (sdv.relProperty.propertyValueType.equals("query")) {
                 {
-                    log.debug(path + "\t" + "variable value" + "\t" + sdv.value_prim.change);
+                    log.debug(path + "\t" + "variable value" + "\t" + sdv.valuePrim.change);
                 }
             }
         }

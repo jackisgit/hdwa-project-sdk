@@ -6,8 +6,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.constant.UrlConstant;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
-import com.hdwa.sdk.entity.scene.SceneObject;
-import com.hdwa.sdk.entity.scene.SceneProperty;
+import com.hdwa.sdk.entity.scene.DataObjectBase;
+import com.hdwa.sdk.entity.scene.DataProperty;
 import com.hdwa.sdk.utils.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,12 +113,12 @@ public class ConfigApiService {
                 }
             });
             sceneJson.put(BaseDecConstant.PROPERTY_LIST, twoPropertyList);
-            SceneObject sceneObject = new SceneObject();
-            FastJsonUtil.setJava(sceneJson, sceneObject);
+            DataObjectBase dataObjectBase = new DataObjectBase();
+            FastJsonUtil.setJava(sceneJson, dataObjectBase);
             repository.sceneJSON = sceneJson;
-            repository.sceneObject = sceneObject;
+            repository.dataObjectBase = dataObjectBase;
             //点位过滤配置
-            pointService.filterPoint(repository, sceneObject);
+            pointService.filterPoint(repository, dataObjectBase);
 
             analysisData(repository);
             log.warn("************结束加载-config接口数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
@@ -141,7 +141,7 @@ public class ConfigApiService {
             repository.property2SDV_enable = true;
             repository.property2SDV.clear();
             AnalysisApiJsonUtil.analysisMain(repository);
-            List<List<SceneProperty>> propertyList = CalculateApiJsonUtil.calculateProperty(repository);
+            List<List<DataProperty>> propertyList = CalculateApiJsonUtil.calculateProperty(repository);
             CalculateApiJsonUtil.calculateAll(repository, propertyList);
             repository.property2SDV_enable = false;
             repository.property2SDV.clear();
@@ -162,7 +162,7 @@ public class ConfigApiService {
         try {
             repository.property2SDV_enable = true;
             repository.property2SDV.clear();
-            List<List<SceneProperty>> propertyList = CalculateApiJsonUtil.notCheckCalculateProperty(repository);
+            List<List<DataProperty>> propertyList = CalculateApiJsonUtil.notCheckCalculateProperty(repository);
             CalculateApiJsonUtil.calculateAll(repository, propertyList);
             repository.property2SDV_enable = false;
             repository.property2SDV.clear();

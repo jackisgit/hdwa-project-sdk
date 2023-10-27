@@ -4,26 +4,26 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.entity.exception.ExceptionItem;
 import com.hdwa.sdk.entity.repository.RepositoryBase;
-import com.hdwa.sdk.entity.scene.SceneProperty;
+import com.hdwa.sdk.entity.scene.DataProperty;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ExamineAssistUtil {
-    public static void check_UniqueReturnColumn(RepositoryBase Repository, SceneProperty sceneProperty, JSONObject sql_json,
+    public static void check_UniqueReturnColumn(RepositoryBase Repository, DataProperty dataProperty, JSONObject sql_json,
                                                 List<ExceptionItem> errorList, boolean check_UniqueReturnColumn) throws Exception {
         if (check_UniqueReturnColumn) {
             if (sql_json.get("UniqueReturnColumn") != null) {
                 Object UniqueReturnColumn = sql_json.get("UniqueReturnColumn");
                 if (!(UniqueReturnColumn instanceof String)) {
-                    errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                    errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
                             "UniqueReturnColumn type error: " + UniqueReturnColumn.getClass().getName(), sql_json.toString()));
                 }
             }
         }
     }
 
-    public static void check_ReturnColumns(RepositoryBase Repository, SceneProperty sceneProperty, JSONObject sql_json, List<ExceptionItem> errorList,
+    public static void check_ReturnColumns(RepositoryBase Repository, DataProperty dataProperty, JSONObject sql_json, List<ExceptionItem> errorList,
                                            boolean check_ReturnColumns) throws Exception {
         if (check_ReturnColumns) {
             if (sql_json.get("ReturnColumns") != null) {
@@ -33,21 +33,21 @@ public class ExamineAssistUtil {
                     for (Object itemObject : ReturnColumnsArray) {
                         if (itemObject instanceof String) {
                         } else {
-                            errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                            errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
                                     "ReturnColumns item error:"
                                             + (itemObject == null ? "null" : itemObject.toString() + "(" + itemObject.getClass().getName() + ")"),
                                     sql_json.toString()));
                         }
                     }
                 } else {
-                    errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                    errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
                             "ReturnColumns type error: " + ReturnColumns.getClass().getName(), sql_json.toString()));
                 }
             }
         }
     }
 
-    public static void check_Aggregation(RepositoryBase Repository, SceneProperty sceneProperty, JSONObject sql_json, List<ExceptionItem> errorList,
+    public static void check_Aggregation(RepositoryBase Repository, DataProperty dataProperty, JSONObject sql_json, List<ExceptionItem> errorList,
                                          boolean check_SingleAggregation, boolean check_MultiAggregation) throws Exception {
         if (sql_json.get("Aggregation") != null) {
             Object Aggregation = sql_json.get("Aggregation");
@@ -65,7 +65,7 @@ public class ExamineAssistUtil {
                             if (itemObject instanceof JSONObject) {
                                 itemList.add(itemObject);
                             } else {
-                                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
                                         "Aggregation item error:"
                                                 + (itemObject == null ? "null" : itemObject + "(" + itemObject.getClass().getName() + ")"),
                                         sql_json.toString()));
@@ -74,8 +74,8 @@ public class ExamineAssistUtil {
                     }
                 }
                 String[] keys = {"Function", "Column", "Name"};
-                duplicate(Repository, sceneProperty, itemList, keys, errorList);
-                useless(Repository, sceneProperty, itemList, keys, errorList);
+                duplicate(Repository, dataProperty, itemList, keys, errorList);
+                useless(Repository, dataProperty, itemList, keys, errorList);
                 for (Object o : itemList) {
                     JSONObject item = (JSONObject) o;
                     Object FunctionObject = item.get("Function");
@@ -83,50 +83,50 @@ public class ExamineAssistUtil {
                         String Function = (String) FunctionObject;
                         if (Function.equals("count")) {
                             if (item.get("Column") != null) {
-                                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
                                         "Aggregation item count can't has Column", sql_json.toString()));
                             }
                         } else if (Function.equals("sum") || Function.equals("avg") || Function.equals("max") || Function.equals("min")
                                 || Function.equals("equal_value")) {
                             Object itemObject = item.get("Column");
                             if (!(itemObject instanceof String)) {
-                                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
                                         "Aggregation item need Column: "
                                                 + (itemObject == null ? "null" : itemObject + "(" + itemObject.getClass().getName() + ")"),
                                         sql_json.toString()));
                             }
                         } else {
-                            errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                            errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
                                     "Aggregation item Function error: " + Function, sql_json.toString()));
                         }
                         if (check_SingleAggregation) {
                             if (item.get("Name") != null) {
-                                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
                                         "SingleAggregation item can't has Name", sql_json.toString()));
                             }
                         } else {
                             Object itemObject = item.get("Name");
                             if (!(itemObject instanceof String)) {
-                                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
                                         "Aggregation item need Name: "
                                                 + (itemObject == null ? "null" : itemObject + "(" + itemObject.getClass().getName() + ")"),
                                         sql_json.toString()));
                             }
                         }
                     } else {
-                        errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty), "Aggregation item Function type error:"
+                        errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty), "Aggregation item Function type error:"
                                 + (FunctionObject == null ? "null" : FunctionObject + "(" + FunctionObject.getClass().getName() + ")"),
                                 sql_json.toString()));
                     }
                 }
             } else {
-                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
                         "Aggregation type error: " + Aggregation.getClass().getName(), sql_json.toString()));
             }
         }
     }
 
-    public static void check_GroupBy(RepositoryBase Repository, SceneProperty sceneProperty, JSONObject sql_json, List<ExceptionItem> errorList,
+    public static void check_GroupBy(RepositoryBase Repository, DataProperty dataProperty, JSONObject sql_json, List<ExceptionItem> errorList,
                                      boolean check_GroupBy) throws Exception {
         if (sql_json.get("GroupBy") != null) {
             if (check_GroupBy) {
@@ -135,20 +135,20 @@ public class ExamineAssistUtil {
                     JSONArray ReturnColumnsArray = (JSONArray) GroupBy;
                     for (Object columnWrapper : ReturnColumnsArray) {
                         if (!(columnWrapper instanceof String)) {
-                            errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty), "GroupBy item error:"
+                            errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty), "GroupBy item error:"
                                     + (columnWrapper == null ? "null" : columnWrapper + "(" + columnWrapper.getClass().getName() + ")"),
                                     sql_json.toString()));
                         }
                     }
                 } else {
-                    errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                    errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
                             "GroupBy type error:" + GroupBy.getClass().getName(), sql_json.toString()));
                 }
             }
         }
     }
 
-    public static void check_OrderBy(RepositoryBase Repository, SceneProperty sceneProperty, JSONObject sql_json, List<ExceptionItem> errorList,
+    public static void check_OrderBy(RepositoryBase Repository, DataProperty dataProperty, JSONObject sql_json, List<ExceptionItem> errorList,
                                      boolean check_OrderBy) throws Exception {
         if (sql_json.get("OrderBy") != null) {
             if (check_OrderBy) {
@@ -157,8 +157,8 @@ public class ExamineAssistUtil {
                     JSONArray ReturnColumnsArray = (JSONArray) OrderBy;
                     String[] keys = {"Column", "Asc"};
                     String[] keys_dup = {"Column"};
-                    duplicate(Repository, sceneProperty, ReturnColumnsArray, keys_dup, errorList);
-                    useless(Repository, sceneProperty, ReturnColumnsArray, keys, errorList);
+                    duplicate(Repository, dataProperty, ReturnColumnsArray, keys_dup, errorList);
+                    useless(Repository, dataProperty, ReturnColumnsArray, keys, errorList);
                     for (Object columnWrapperObject : ReturnColumnsArray) {
                         if (columnWrapperObject instanceof JSONObject) {
                             JSONObject columnWrapper = (JSONObject) columnWrapperObject;
@@ -166,25 +166,25 @@ public class ExamineAssistUtil {
                             Object AscObject = columnWrapper.get("Asc");
                             if (ColumnObject instanceof String && AscObject instanceof Boolean) {
                             } else {
-                                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
                                         "OrderBy item error:" + columnWrapper, sql_json.toString()));
                             }
                         } else {
-                            errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                            errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
                                     "OrderBy item error:" + (columnWrapperObject == null ? "null"
                                             : columnWrapperObject + "(" + columnWrapperObject.getClass().getName() + ")"),
                                     sql_json.toString()));
                         }
                     }
                 } else {
-                    errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                    errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
                             "OrderBy type error:" + OrderBy.getClass().getName(), sql_json.toString()));
                 }
             }
         }
     }
 
-    public static void check_Limit(RepositoryBase Repository, SceneProperty sceneProperty, JSONObject sql_json, List<ExceptionItem> errorList,
+    public static void check_Limit(RepositoryBase Repository, DataProperty dataProperty, JSONObject sql_json, List<ExceptionItem> errorList,
                                    boolean check_Limit) throws Exception {
         if (sql_json.get("Limit") != null) {
             if (check_Limit) {
@@ -192,25 +192,25 @@ public class ExamineAssistUtil {
                 if (Limit instanceof JSONObject) {
                     JSONObject LimitJSON = (JSONObject) Limit;
                     String[] keys = {"Skip", "Count"};
-                    useless(Repository, sceneProperty, LimitJSON, keys, errorList);
+                    useless(Repository, dataProperty, LimitJSON, keys, errorList);
                     Object ColumnObject = LimitJSON.get("Skip");
                     Object AscObject = LimitJSON.get("Count");
                     if (ColumnObject instanceof Integer && AscObject instanceof Integer) {
                     } else {
-                        errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty), "Limit error:" + LimitJSON.toString(),
+                        errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty), "Limit error:" + LimitJSON.toString(),
                                 sql_json.toString()));
                     }
                 } else {
-                    errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty),
+                    errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
                             "Limit type error:" + Limit.getClass().getName(), sql_json.toString()));
                 }
             }
         }
     }
 
-    public static void duplicate(RepositoryBase Repository, SceneProperty sceneProperty, JSONArray items, String[] keys,
+    public static void duplicate(RepositoryBase Repository, DataProperty dataProperty, JSONArray items, String[] keys,
                                  List<ExceptionItem> errorList) throws Exception {
-        if (sceneProperty == null) {
+        if (dataProperty == null) {
             return;
         }
 
@@ -246,27 +246,27 @@ public class ExamineAssistUtil {
                     sb.append(index);
                     flags[index] = true;
                 }
-                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty), "duplicate key: (" + sb.toString() + ")",
+                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty), "duplicate key: (" + sb.toString() + ")",
                         item.toString()));
             }
         }
     }
 
-    public static void useless(RepositoryBase Repository, SceneProperty sceneProperty, JSONArray items, String[] keys, List<ExceptionItem> errorList)
+    public static void useless(RepositoryBase Repository, DataProperty dataProperty, JSONArray items, String[] keys, List<ExceptionItem> errorList)
             throws Exception {
-        if (sceneProperty == null) {
+        if (dataProperty == null) {
             return;
         }
 
         for (Object o : items) {
             JSONObject item = (JSONObject) o;
-            useless(Repository, sceneProperty, item, keys, errorList);
+            useless(Repository, dataProperty, item, keys, errorList);
         }
     }
 
-    public static void useless(RepositoryBase Repository, SceneProperty sceneProperty, JSONObject item, String[] keys, List<ExceptionItem> errorList)
+    public static void useless(RepositoryBase Repository, DataProperty dataProperty, JSONObject item, String[] keys, List<ExceptionItem> errorList)
             throws Exception {
-        if (sceneProperty == null) {
+        if (dataProperty == null) {
             return;
         }
 
@@ -290,7 +290,7 @@ public class ExamineAssistUtil {
         }
         if (bad_exist) {
             errorList.add(
-                    new ExceptionItem(PathUtil.getPropertyPath(Repository, sceneProperty), "useless key: (" + sb + ")", item.toString()));
+                    new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty), "useless key: (" + sb + ")", item.toString()));
         }
     }
 }

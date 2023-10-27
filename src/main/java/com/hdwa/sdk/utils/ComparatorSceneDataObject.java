@@ -2,7 +2,7 @@ package com.hdwa.sdk.utils;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.hdwa.sdk.entity.scene.SceneDataObject;
+import com.hdwa.sdk.entity.scene.DataObject;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -13,7 +13,7 @@ import java.util.Comparator;
  * @since 2023/8/25
  * 场景排序对象
  */
-public class ComparatorSceneDataObject implements Comparator<SceneDataObject> {
+public class ComparatorSceneDataObject implements Comparator<DataObject> {
 
     JSONArray OrderBy;
 
@@ -21,18 +21,18 @@ public class ComparatorSceneDataObject implements Comparator<SceneDataObject> {
         this.OrderBy = OrderBy;
     }
 
-    public int compare(SceneDataObject o1, SceneDataObject o2) {
+    public int compare(DataObject o1, DataObject o2) {
         for (Object o : OrderBy) {
             JSONObject item = (JSONObject) o;
             String Column = (String) item.get("Column");
             Boolean Asc = (Boolean) item.get("Asc");
             Object v1 = null;
-            if (o1.get(Column) != null && o1.get(Column).value_prim != null) {
-                v1 = o1.get(Column).value_prim.value;
+            if (o1.get(Column) != null && o1.get(Column).valuePrim != null) {
+                v1 = o1.get(Column).valuePrim.value;
             }
             Object v2 = null;
-            if (o2.get(Column) != null && o2.get(Column).value_prim != null) {
-                v2 = o2.get(Column).value_prim.value;
+            if (o2.get(Column) != null && o2.get(Column).valuePrim != null) {
+                v2 = o2.get(Column).valuePrim.value;
             }
             if (v1 == null && v2 != null) {
                 if (Asc) {

@@ -1,7 +1,7 @@
 package com.hdwa.sdk.entity.criteria;
 
-import com.hdwa.sdk.entity.scene.SceneDataObject;
-import com.hdwa.sdk.entity.scene.SceneDataValue;
+import com.hdwa.sdk.entity.scene.DataObject;
+import com.hdwa.sdk.entity.scene.DataValue;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,10 +20,10 @@ public class Criteria {
             this.type = "default";
         }
 
-        public boolean match(SceneDataObject item) {
+        public boolean match(DataObject item) {
             for (String column : column2MatchList.keySet()) {
                 List<MatchBase> matchList = column2MatchList.get(column);
-                SceneDataValue sdv = item.get(column);
+                DataValue sdv = item.get(column);
                 for (MatchBase match : matchList) {
                     if (!match.match(sdv)) {
                         return false;
@@ -42,7 +42,7 @@ public class Criteria {
             this.type = "or";
         }
 
-        public boolean match(SceneDataObject item) {
+        public boolean match(DataObject item) {
             for (CriteriaBase criteria : this.criteriaList) {
                 if (criteria.match(item)) {
                     return true;
@@ -60,7 +60,7 @@ public class Criteria {
             this.type = "not";
         }
 
-        public boolean match(SceneDataObject item) {
+        public boolean match(DataObject item) {
             return !criteria.match(item);
         }
     }
@@ -72,7 +72,7 @@ public class Criteria {
             this.type = "and";
         }
 
-        public boolean match(SceneDataObject item) {
+        public boolean match(DataObject item) {
             for (CriteriaBase criteria : this.criteriaList) {
                 if (!criteria.match(item)) {
                     return false;

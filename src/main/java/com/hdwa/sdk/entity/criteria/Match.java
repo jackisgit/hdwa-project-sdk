@@ -1,8 +1,8 @@
 package com.hdwa.sdk.entity.criteria;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hdwa.sdk.entity.scene.SceneDataObject;
-import com.hdwa.sdk.entity.scene.SceneDataValue;
+import com.hdwa.sdk.entity.scene.DataObject;
+import com.hdwa.sdk.entity.scene.DataValue;
 import com.hdwa.sdk.utils.DataUtil;
 
 import java.util.HashSet;
@@ -33,14 +33,14 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
             String itemValue = null;
             if (item != null) {
-                itemValue = (String) (item.value_prim.value);
+                itemValue = (String) (item.valuePrim.value);
             }
 
             if (itemValue == null) {
@@ -76,14 +76,14 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
             Object itemValue = null;
             if (item != null) {
-                itemValue = (item.value_prim.value);
+                itemValue = (item.valuePrim.value);
             }
 
             if (itemValue == null) {
@@ -108,14 +108,14 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
             Object itemValue = null;
             if (item != null) {
-                itemValue = (item.value_prim.value);
+                itemValue = (item.valuePrim.value);
             }
             itemValue = DataUtil.primitive_normalize(itemValue);
 
@@ -146,14 +146,14 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
             Object itemValue = null;
             if (item != null) {
-                itemValue = (item.value_prim.value);
+                itemValue = (item.valuePrim.value);
             }
 
             if (itemValue == null && value == null) {
@@ -193,14 +193,14 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
             Object itemValue = null;
             if (item != null) {
-                itemValue = (item.value_prim.value);
+                itemValue = (item.valuePrim.value);
             }
 
             if (itemValue == null && value == null) {
@@ -240,14 +240,14 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
             Object itemValue = null;
             if (item != null) {
-                itemValue = (item.value_prim.value);
+                itemValue = (item.valuePrim.value);
             }
 
             if (itemValue == null && value == null) {
@@ -279,14 +279,14 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
             Object itemValue = null;
             if (item != null) {
-                itemValue = (item.value_prim.value);
+                itemValue = (item.valuePrim.value);
             }
             itemValue = DataUtil.primitive_normalize(itemValue);
 
@@ -318,14 +318,14 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
             Object itemValue = null;
             if (item != null) {
-                itemValue = (item.value_prim.value);
+                itemValue = (item.valuePrim.value);
             }
 
             if (itemValue == null && value == null) {
@@ -364,14 +364,14 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
             Object itemValue = null;
             if (item != null) {
-                itemValue = (item.value_prim.value);
+                itemValue = (item.valuePrim.value);
             }
 
             if (itemValue == null && value == null) {
@@ -411,14 +411,14 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
             Object itemValue = null;
             if (item != null) {
-                itemValue = (item.value_prim.value);
+                itemValue = (item.valuePrim.value);
             }
 
             if (itemValue == null && value == null) {
@@ -457,14 +457,14 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
             String itemValue = null;
             if (item != null) {
-                itemValue = (String) (item.value_prim.value);
+                itemValue = (String) (item.valuePrim.value);
             }
 
             if (itemValue == null) {
@@ -497,17 +497,17 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
             int itemValue = 0;
             if (item != null) {
-                if (item.value_array.isSingleValueSet) {
-                    itemValue = item.value_array.singleValueSet.size();
+                if (item.valueArray.isSingleValueSet) {
+                    itemValue = item.valueArray.singleValueSet.size();
                 } else {
-                    itemValue = item.value_array.set.size();
+                    itemValue = item.valueArray.set.size();
                 }
             }
 
@@ -546,20 +546,20 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
-            List<SceneDataValue> sdvList = null;
-            if (item != null && item.value_array != null) {
-                sdvList = (item.value_array.singleValueSet);
+            List<DataValue> sdvList = null;
+            if (item != null && item.valueArray != null) {
+                sdvList = (item.valueArray.singleValueSet);
             }
 
             HashSet<Object> setInner = new HashSet<Object>();
             if (sdvList != null) {
-                for (SceneDataValue sdvInner : sdvList) {
-                    setInner.add(DataUtil.primitive_normalize(sdvInner.value_prim.value));
+                for (DataValue sdvInner : sdvList) {
+                    setInner.add(DataUtil.primitive_normalize(sdvInner.valuePrim.value));
                 }
             }
 
@@ -597,20 +597,20 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
-            List<SceneDataValue> sdvList = null;
-            if (item != null && item.value_array != null) {
-                sdvList = (item.value_array.singleValueSet);
+            List<DataValue> sdvList = null;
+            if (item != null && item.valueArray != null) {
+                sdvList = (item.valueArray.singleValueSet);
             }
 
             boolean result = false;
             if (sdvList != null) {
-                for (SceneDataValue sdvInner : sdvList) {
-                    Object itemValue = sdvInner.value_prim.value;
+                for (DataValue sdvInner : sdvList) {
+                    Object itemValue = sdvInner.valuePrim.value;
                     itemValue = DataUtil.primitive_normalize(itemValue);
                     if (this.value.contains(itemValue)) {
                         result = true;
@@ -636,20 +636,20 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
-            List<SceneDataValue> sdvList = null;
-            if (item != null && item.value_array != null) {
-                sdvList = (item.value_array.singleValueSet);
+            List<DataValue> sdvList = null;
+            if (item != null && item.valueArray != null) {
+                sdvList = (item.valueArray.singleValueSet);
             }
 
             boolean result = true;
             if (sdvList != null) {
-                for (SceneDataValue sdvInner : sdvList) {
-                    Object itemValue = sdvInner.value_prim.value;
+                for (DataValue sdvInner : sdvList) {
+                    Object itemValue = sdvInner.valuePrim.value;
                     itemValue = DataUtil.primitive_normalize(itemValue);
                     if (!this.value.contains(itemValue)) {
                         result = false;
@@ -675,20 +675,20 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
-            List<SceneDataValue> sdvList = null;
-            if (item != null && item.value_array != null) {
-                sdvList = (item.value_array.singleValueSet);
+            List<DataValue> sdvList = null;
+            if (item != null && item.valueArray != null) {
+                sdvList = (item.valueArray.singleValueSet);
             }
 
             HashSet<Object> setInner = new HashSet<Object>();
             if (sdvList != null) {
-                for (SceneDataValue sdvInner : sdvList) {
-                    setInner.add(DataUtil.primitive_normalize(sdvInner.value_prim.value));
+                for (DataValue sdvInner : sdvList) {
+                    setInner.add(DataUtil.primitive_normalize(sdvInner.valuePrim.value));
                 }
             }
 
@@ -718,20 +718,20 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
-            List<SceneDataValue> sdvList = null;
-            if (item != null && item.value_array != null) {
-                sdvList = (item.value_array.singleValueSet);
+            List<DataValue> sdvList = null;
+            if (item != null && item.valueArray != null) {
+                sdvList = (item.valueArray.singleValueSet);
             }
 
             boolean result = true;
             if (sdvList != null) {
-                for (SceneDataValue sdvInner : sdvList) {
-                    Object itemValue = sdvInner.value_prim.value;
+                for (DataValue sdvInner : sdvList) {
+                    Object itemValue = sdvInner.valuePrim.value;
                     itemValue = DataUtil.primitive_normalize(itemValue);
                     if (this.value.contains(itemValue)) {
                         result = false;
@@ -758,7 +758,7 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
@@ -766,13 +766,13 @@ public class Match {
             if (item == null) {
                 return false;
             }
-            if (item.value_object != null) {
-                SceneDataObject sdo = item.value_object;
+            if (item.valueObject != null) {
+                DataObject sdo = item.valueObject;
                 boolean match_result = this.value.match(sdo);
                 return match_result;
             } else {
                 boolean result = true;
-                for (SceneDataObject sdo : item.value_array.set) {
+                for (DataObject sdo : item.valueArray.set) {
                     boolean match_result = this.value.match(sdo);
                     if (!match_result) {
                         result = false;
@@ -799,7 +799,7 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
@@ -807,13 +807,13 @@ public class Match {
             if (item == null) {
                 return false;
             }
-            if (item.value_object != null) {
-                SceneDataObject sdo = item.value_object;
+            if (item.valueObject != null) {
+                DataObject sdo = item.valueObject;
                 boolean match_result = this.value.match(sdo);
                 return match_result;
             } else {
                 boolean result = false;
-                for (SceneDataObject sdo : item.value_array.set) {
+                for (DataObject sdo : item.valueArray.set) {
                     boolean match_result = this.value.match(sdo);
                     if (match_result) {
                         result = true;
@@ -840,20 +840,20 @@ public class Match {
             this.change = change;
         }
 
-        public boolean match(SceneDataValue item) {
+        public boolean match(DataValue item) {
             if (this.pass) {
                 return true;
             }
 
-            List<SceneDataValue> sdvList = null;
-            if (item != null && item.value_array != null) {
-                sdvList = (item.value_array.singleValueSet);
+            List<DataValue> sdvList = null;
+            if (item != null && item.valueArray != null) {
+                sdvList = (item.valueArray.singleValueSet);
             }
 
             HashSet<Object> setInner = new HashSet<Object>();
             if (sdvList != null) {
-                for (SceneDataValue sdvInner : sdvList) {
-                    setInner.add(DataUtil.primitive_normalize(sdvInner.value_prim.value));
+                for (DataValue sdvInner : sdvList) {
+                    setInner.add(DataUtil.primitive_normalize(sdvInner.valuePrim.value));
                 }
             }
 

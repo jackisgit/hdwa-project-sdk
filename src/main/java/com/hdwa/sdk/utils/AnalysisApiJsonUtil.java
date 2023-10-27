@@ -2,8 +2,8 @@ package com.hdwa.sdk.utils;
 
 
 import com.hdwa.sdk.entity.repository.RepositoryBase;
-import com.hdwa.sdk.entity.scene.SceneObject;
-import com.hdwa.sdk.entity.scene.SceneProperty;
+import com.hdwa.sdk.entity.scene.DataObjectBase;
+import com.hdwa.sdk.entity.scene.DataProperty;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -25,7 +25,7 @@ public class AnalysisApiJsonUtil {
         repository.property2customobject = new ConcurrentHashMap<>(16);
         repository.p2walker1 = new ConcurrentHashMap<>(16);
         repository.p2walker2 = new ConcurrentHashMap<>(16);
-        analysisObject(repository, null, repository.sceneObject, false, -1);
+        analysisObject(repository, null, repository.dataObjectBase, false, -1);
     }
 
     /**
@@ -37,7 +37,7 @@ public class AnalysisApiJsonUtil {
      * @param soIsSai
      * @param soIndex
      */
-    private static void analysisObject(RepositoryBase repository, SceneProperty parentProperty, SceneObject object, boolean soIsSai, int soIndex) {
+    private static void analysisObject(RepositoryBase repository, DataProperty parentProperty, DataObjectBase object, boolean soIsSai, int soIndex) {
         if (parentProperty != null) {
             if (soIsSai) {
                 repository.staticobject2host.put(object, parentProperty);
@@ -46,7 +46,7 @@ public class AnalysisApiJsonUtil {
                 repository.customobject2host.put(object, parentProperty);
             }
         }
-        for (SceneProperty sp : object.propertyList) {
+        for (DataProperty sp : object.propertyList) {
             analysisProperty(repository, object, null, sp, soIsSai);
         }
     }
@@ -60,7 +60,7 @@ public class AnalysisApiJsonUtil {
      * @param property
      * @param soIsSai
      */
-    private static void analysisProperty(RepositoryBase repository, SceneObject parentObject, SceneProperty parentProperty, SceneProperty property, boolean soIsSai) {
+    private static void analysisProperty(RepositoryBase repository, DataObjectBase parentObject, DataProperty parentProperty, DataProperty property, boolean soIsSai) {
         if (parentObject != null) {
             if (soIsSai) {
                 repository.property2staticobject.put(property, parentObject);
@@ -71,17 +71,17 @@ public class AnalysisApiJsonUtil {
         if (parentProperty != null) {
             repository.attachproperty2host.put(property, parentProperty);
         }
-        if (property.query_attached != null) {
-            for (SceneProperty spInner : property.query_attached) {
+        if (property.queryAttached != null) {
+            for (DataProperty spInner : property.queryAttached) {
                 analysisProperty(repository, null, property, spInner, false);
             }
         }
-        if (property.custom_object != null) {
-            analysisObject(repository, property, property.custom_object, false, -1);
+        if (property.customObject != null) {
+            analysisObject(repository, property, property.customObject, false, -1);
         }
-        if (property.static_array != null) {
-            for (int soIndex = 0; soIndex < property.static_array.length; soIndex++) {
-                SceneObject object = property.static_array[soIndex];
+        if (property.staticArray != null) {
+            for (int soIndex = 0; soIndex < property.staticArray.length; soIndex++) {
+                DataObjectBase object = property.staticArray[soIndex];
                 analysisObject(repository, property, object, true, soIndex);
             }
         }

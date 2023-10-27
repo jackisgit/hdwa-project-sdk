@@ -8,11 +8,10 @@ import com.hdwa.sdk.entity.InstructControlParam;
 import com.hdwa.sdk.entity.SystemOperationLogSaveDto;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
-import com.hdwa.sdk.entity.scene.SceneDataObject;
-import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
-import com.hdwa.sdk.entity.scene.SceneDataValue;
+import com.hdwa.sdk.entity.scene.DataObject;
+import com.hdwa.sdk.entity.scene.DataPrimitive;
+import com.hdwa.sdk.entity.scene.DataValue;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -34,19 +33,19 @@ public class ControlUtil {
         JSONArray result;
         Object valueObject = CalculateApiJsonUtil.getValueObject(repository, param.getPath());
 
-        List<SceneDataObject> sdoList = new CopyOnWriteArrayList<>();
-        if (valueObject instanceof SceneDataValue) {
-            SceneDataValue currData = (SceneDataValue) valueObject;
-            if (currData.value_array != null) {
-                SceneDataValue detail = currData.parentObjectData.get("详情");
-                result = setInner(repository, detail, currData.value_array.set, param.getInfoValueSet(), sdoList, param);
-            } else if (currData.value_object != null) {
-                result = setPoints(repository, currData.value_object, param.getInfoValueSet(), sdoList);
+        List<DataObject> sdoList = new CopyOnWriteArrayList<>();
+        if (valueObject instanceof DataValue) {
+            DataValue currData = (DataValue) valueObject;
+            if (currData.valueArray != null) {
+                DataValue detail = currData.parentObjectData.get("详情");
+                result = setInner(repository, detail, currData.valueArray.set, param.getInfoValueSet(), sdoList, param);
+            } else if (currData.valueObject != null) {
+                result = setPoints(repository, currData.valueObject, param.getInfoValueSet(), sdoList);
             } else {
                 throw new Exception();
             }
         } else {
-            SceneDataObject currData = (SceneDataObject) valueObject;
+            DataObject currData = (DataObject) valueObject;
             result = setPoints(repository, currData, param.getInfoValueSet(), sdoList);
         }
 
@@ -84,7 +83,7 @@ public class ControlUtil {
      * @param infoValueSet
      * @param points
      */
-    public static void saveOperationLog(String userId, String userName, List<SceneDataObject> sdoList, JSONObject infoValueSet, JSONArray points,String url) {
+    public static void saveOperationLog(String userId, String userName, List<DataObject> sdoList, JSONObject infoValueSet, JSONArray points, String url) {
         try {
             JSONObject postParam = new JSONObject();
             postParam.put("groupCode", BaseDecConstant.WD);
@@ -100,25 +99,25 @@ public class ControlUtil {
                 postParam.put("userName", userName);
             }
             if (sdoList.size() == 1) {
-                SceneDataObject sdo = sdoList.get(0);
-                postParam.put("objId", sdo.get("id").value_prim.value);
+                DataObject sdo = sdoList.get(0);
+                postParam.put("objId", sdo.get("id").valuePrim.value);
             } else {
                 JSONArray objs = new JSONArray();
-                for (SceneDataObject sdo : sdoList) {
-                    objs.add(sdo.get("id").value_prim.value);
+                for (DataObject sdo : sdoList) {
+                    objs.add(sdo.get("id").valuePrim.value);
                 }
                 postParam.put("objs", objs);
             }
             {
-                SceneDataObject sdo = sdoList.get(0);
-                Object belongSystem = sdo.get("subSystemName").value_prim.value;
+                DataObject sdo = sdoList.get(0);
+                Object belongSystem = sdo.get("subSystemName").valuePrim.value;
 
-                Object objName = sdo.get("localName").value_prim.value;
-                String classCode = (String) sdo.get("classCode").value_prim.value;
-                postParam.put("ibmsSceneCode", sdo.get("ibmsSceneCode").value_prim.value);
-                postParam.put("ibmsSceneName", sdo.get("subSystemName").value_prim.value);
-                postParam.put("ibmsClassCode", sdo.get("ibmsClassCode").value_prim.value);
-                postParam.put("ibmsClassName", sdo.get("数据字典类型名称").value_prim.value);
+                Object objName = sdo.get("localName").valuePrim.value;
+                String classCode = (String) sdo.get("classCode").valuePrim.value;
+                postParam.put("ibmsSceneCode", sdo.get("ibmsSceneCode").valuePrim.value);
+                postParam.put("ibmsSceneName", sdo.get("subSystemName").valuePrim.value);
+                postParam.put("ibmsClassCode", sdo.get("ibmsClassCode").valuePrim.value);
+                postParam.put("ibmsClassName", sdo.get("数据字典类型名称").valuePrim.value);
                 postParam.put("classCode", classCode);
                 postParam.put("systemType", "控制指令下发");
                 postParam.put("module", "指令控制");
@@ -126,14 +125,14 @@ public class ControlUtil {
 
 
                 RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
-                List<SceneDataObject> infoList = repository.infoArrayDic.get(classCode).set;
+                List<DataObject> infoList = repository.infoArrayDic.get(classCode).set;
 
                 StringBuilder sb = new StringBuilder();
                 for (String key : infoValueSet.keySet()) {
                     Object infoValue = infoValueSet.get(key);
-                    SceneDataObject infoDef = null;
-                    for (SceneDataObject infoDefInner : infoList) {
-                        String code = (String) infoDefInner.get("code").value_prim.value;
+                    DataObject infoDef = null;
+                    for (DataObject infoDefInner : infoList) {
+                        String code = (String) infoDefInner.get("code").valuePrim.value;
                         if (code.equals(key)) {
                             infoDef = infoDefInner;
                             break;
@@ -141,7 +140,7 @@ public class ControlUtil {
                     }
                     String infoName = key;
                     if (infoDef != null) {
-                        infoName = (String) infoDef.get("name").value_prim.value;
+                        infoName = (String) infoDef.get("name").valuePrim.value;
                         infoValue = ControlUtil.value2CanRead(infoDef, infoValue);
                     }
                     sb.append("【").append(infoName).append("】").append("设为：").append("【").append(infoValue).append("】");
@@ -172,9 +171,9 @@ public class ControlUtil {
         }
     }
 
-    public static Object value2CanRead(SceneDataObject infoDef, Object infoValue) {
+    public static Object value2CanRead(DataObject infoDef, Object infoValue) {
         if (infoDef.containsKey("dataSource")) {
-            JSONArray dataSource = (JSONArray) infoDef.get("dataSource").value_prim.value;
+            JSONArray dataSource = (JSONArray) infoDef.get("dataSource").valuePrim.value;
             for (Object o : dataSource) {
                 JSONObject item = (JSONObject) o;
                 String code = item.getString("code");
@@ -188,32 +187,32 @@ public class ControlUtil {
         return infoValue;
     }
 
-    private static JSONArray setPoints(RepositoryImpl Repository, SceneDataObject object, JSONObject infoValueSet, List<SceneDataObject> sdoList)
+    private static JSONArray setPoints(RepositoryImpl Repository, DataObject object, JSONObject infoValueSet, List<DataObject> sdoList)
             throws Exception {
         JSONArray result = null;
         //系统级别只下自己的控制点位
         if (object.parentObjectData != null && object.parentObjectData.get("名称") != null) {
-            SceneDataValue sceneDataValue = object.parentObjectData.get("名称");
-            if (sceneDataValue.value_prim != null) {
-                SceneDataPrimitive sceneDataPrimitive = sceneDataValue.value_prim;
-                if (sceneDataPrimitive.value != null) {
-                    String name = sceneDataPrimitive.value.toString();
+            DataValue dataValue = object.parentObjectData.get("名称");
+            if (dataValue.valuePrim != null) {
+                DataPrimitive dataPrimitive = dataValue.valuePrim;
+                if (dataPrimitive.value != null) {
+                    String name = dataPrimitive.value.toString();
                     if (name.contains("冷源") || name.contains("热源")) {
                         result = setInner(Repository, object, infoValueSet, sdoList);
                     }
                 }
             }
         } else if (object.containsKey("清单")) {//控制系统下的设备清单
-            SceneDataValue list = object.get("清单");
-            SceneDataValue detail = object.get("详情");
-            result = setInner(Repository, detail, list.value_array.set, infoValueSet, sdoList, null);
+            DataValue list = object.get("清单");
+            DataValue detail = object.get("详情");
+            result = setInner(Repository, detail, list.valueArray.set, infoValueSet, sdoList, null);
         } else {//控制单设备
             result = setInner(Repository, object, infoValueSet, sdoList);
         }
         return result;
     }
 
-    private static JSONArray setInner(RepositoryImpl Repository, SceneDataObject object, JSONObject infoValueSet, List<SceneDataObject> sdoList)
+    private static JSONArray setInner(RepositoryImpl Repository, DataObject object, JSONObject infoValueSet, List<DataObject> sdoList)
             throws Exception {
         JSONArray points = new JSONArray();
         build_points(Repository, object, infoValueSet, points);
@@ -222,11 +221,11 @@ public class ControlUtil {
         return points;
     }
 
-    private static JSONArray setInner(RepositoryImpl repository, SceneDataValue detail, List<SceneDataObject> objectArray, JSONObject infoValueSet,
-                                      List<SceneDataObject> sdoList, InstructControlParam params) throws Exception {
+    private static JSONArray setInner(RepositoryImpl repository, DataValue detail, List<DataObject> objectArray, JSONObject infoValueSet,
+                                      List<DataObject> sdoList, InstructControlParam params) throws Exception {
         if (detail != null) {
-            log.warn("-----下发时有详情:" + detail.value_object);
-            build_object(detail.value_object, infoValueSet);
+            log.warn("-----下发时有详情:" + detail.valueObject);
+            build_object(detail.valueObject, infoValueSet);
         }
         JSONArray points = new JSONArray();
 
@@ -235,12 +234,12 @@ public class ControlUtil {
         //筛选真实要下发的数据
         List<Object> list = resultData.stream().map(map -> ((JSONObject) map).getString(BaseDecConstant.ID)).collect(Collectors.toList());
 
-        for (SceneDataObject object : objectArray) {
+        for (DataObject object : objectArray) {
             //真实下发的id包含清单就下发
-            if (list.size() > 0 && !list.contains(object.get("id").value_prim.value)) {
+            if (list.size() > 0 && !list.contains(object.get("id").valuePrim.value)) {
                 continue;
             }
-            log.warn("-----下发的设备Id:" + object.get("id").value_prim.value);
+            log.warn("-----下发的设备Id:" + object.get("id").valuePrim.value);
             build_points(repository, object, infoValueSet, points);
             sdoList.add(object);
             build_object(object, infoValueSet);
@@ -248,8 +247,8 @@ public class ControlUtil {
         return points;
     }
 
-    private static void build_points(RepositoryImpl Repository, SceneDataObject object, JSONObject infoValueSet, JSONArray points) {
-        String id = (String) object.get("id").value_prim.value;
+    private static void build_points(RepositoryImpl Repository, DataObject object, JSONObject infoValueSet, JSONArray points) {
+        String id = (String) object.get("id").valuePrim.value;
         JSONObject obj = Repository.id2object.get(id);
         for (String key : infoValueSet.keySet()) {
             String infoValue = (String) obj.get(key);
@@ -269,12 +268,12 @@ public class ControlUtil {
         }
     }
 
-    private static void build_object(SceneDataObject object, JSONObject infoValueSet) {
+    private static void build_object(DataObject object, JSONObject infoValueSet) {
         for (String key : infoValueSet.keySet()) {
-            SceneDataValue sdv = object.get(key);
+            DataValue sdv = object.get(key);
             if (sdv != null) {
-                sdv.value_prim = new SceneDataPrimitive();
-                sdv.value_prim.value = infoValueSet.get(key);
+                sdv.valuePrim = new DataPrimitive();
+                sdv.valuePrim.value = infoValueSet.get(key);
             }
         }
     }

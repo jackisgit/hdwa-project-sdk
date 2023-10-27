@@ -17,59 +17,59 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since 2023/8/25
  * 场景对象类
  */
-public class SceneDataObject {
+public class DataObject {
 
-    public SceneDataObject parentObjectData;
+    public DataObject parentObjectData;
     public String myPropertyName;
-    public SceneDataValue parentArrayData;
-    public SceneObject rel_object;
-    public SceneProperty[] query_attached;
-    public Map<String, SceneDataValue> value_object;
-    public Change change = new Change();
-    public SceneDataObject father;
+    public DataValue parentArrayData;
+    public DataObjectBase relObject;
+    public DataProperty[] queryAttached;
+    public Map<String, DataValue> valueObject;
+    public DataChange dataChange = new DataChange();
+    public DataObject father;
     public Map<String, Boolean> fatherReturnColumnMap;
 
-    public SceneDataObject() {
+    public DataObject() {
     }
 
-    public SceneDataObject(RepositoryBase Repository, SceneDataValue parentArrayData, SceneObject custom_object, SceneProperty[] query_attached) {
+    public DataObject(RepositoryBase Repository, DataValue parentArrayData, DataObjectBase custom_object, DataProperty[] queryAttached) {
         this.parentArrayData = parentArrayData;
-        this.rel_object = custom_object;
-        this.query_attached = query_attached;
+        this.relObject = custom_object;
+        this.queryAttached = queryAttached;
 
-        this.value_object = new HashMap<>(16);
-        if (this.rel_object != null) {
-            for (SceneProperty sceneProperty : this.rel_object.propertyList) {
-                SceneDataValue sdv = new SceneDataValue(Repository, this, sceneProperty.propertyName, sceneProperty);
-                this.value_object.put(sceneProperty.propertyName, sdv);
+        this.valueObject = new HashMap<>(16);
+        if (this.relObject != null) {
+            for (DataProperty dataProperty : this.relObject.propertyList) {
+                DataValue sdv = new DataValue(Repository, this, dataProperty.propertyName, dataProperty);
+                this.valueObject.put(dataProperty.propertyName, sdv);
             }
         }
-        if (this.query_attached != null) {
-            for (SceneProperty sceneProperty : this.query_attached) {
-                this.value_object.put(sceneProperty.propertyName, new SceneDataValue(Repository, this, sceneProperty.propertyName, sceneProperty));
+        if (this.queryAttached != null) {
+            for (DataProperty dataProperty : this.queryAttached) {
+                this.valueObject.put(dataProperty.propertyName, new DataValue(Repository, this, dataProperty.propertyName, dataProperty));
             }
         }
     }
 
 
-    public SceneDataObject(RepositoryBase Repository, SceneDataObject parentObjectData, String myPropertyName, SceneDataValue parentArrayData,
-                           SceneObject custom_object, SceneProperty[] query_attached, SceneDataObject father) {
+    public DataObject(RepositoryBase Repository, DataObject parentObjectData, String myPropertyName, DataValue parentArrayData,
+                      DataObjectBase custom_object, DataProperty[] queryAttached, DataObject father) {
         this.parentObjectData = parentObjectData;
         this.myPropertyName = myPropertyName;
         this.parentArrayData = parentArrayData;
-        this.rel_object = custom_object;
-        this.query_attached = query_attached;
+        this.relObject = custom_object;
+        this.queryAttached = queryAttached;
         this.father = father;
 
-        this.value_object = new HashMap<>(16);
-        if (this.rel_object != null) {
-            for (SceneProperty sceneProperty : this.rel_object.propertyList) {
-                this.value_object.put(sceneProperty.propertyName, new SceneDataValue(Repository, this, sceneProperty.propertyName, sceneProperty));
+        this.valueObject = new HashMap<>(16);
+        if (this.relObject != null) {
+            for (DataProperty dataProperty : this.relObject.propertyList) {
+                this.valueObject.put(dataProperty.propertyName, new DataValue(Repository, this, dataProperty.propertyName, dataProperty));
             }
         }
-        if (this.query_attached != null) {
-            for (SceneProperty sceneProperty : this.query_attached) {
-                this.value_object.put(sceneProperty.propertyName, new SceneDataValue(Repository, this, sceneProperty.propertyName, sceneProperty));
+        if (this.queryAttached != null) {
+            for (DataProperty dataProperty : this.queryAttached) {
+                this.valueObject.put(dataProperty.propertyName, new DataValue(Repository, this, dataProperty.propertyName, dataProperty));
             }
         }
     }
@@ -80,7 +80,7 @@ public class SceneDataObject {
 
     public Object toJSON(int depth, boolean with_change) {
         // 根据信息点是否显示过滤设备类型
-        if (this.rel_object != null && this.rel_object.allow_pass.equals("0")) {
+        if (this.relObject != null && this.relObject.allowPass.equals("0")) {
             return null;
         }
 
@@ -93,7 +93,7 @@ public class SceneDataObject {
             if (AttributeFilteringUtil.containsKey(key)) {
                 continue;
             }
-            SceneDataValue sdvInner = this.get(key);
+            DataValue sdvInner = this.get(key);
             if (sdvInner != null) {
                 result.put(key, sdvInner.toJSON(false, depthInner, with_change));
             }
@@ -107,11 +107,11 @@ public class SceneDataObject {
     }
 
     public Set<String> keySetSelf() {
-        return new HashSet<>(this.value_object.keySet());
+        return new HashSet<>(this.valueObject.keySet());
     }
 
     public Set<String> keySet() {
-        Set<String> result = new HashSet<>(this.value_object.keySet());
+        Set<String> result = new HashSet<>(this.valueObject.keySet());
         if (this.father != null) {
             for (String key : this.father.keySet()) {
                 if (this.fatherReturnColumnMap == null || this.fatherReturnColumnMap.containsKey(key)) {
@@ -123,7 +123,7 @@ public class SceneDataObject {
     }
 
     public boolean containsKey(String key) {
-        if (this.value_object.containsKey(key)) {
+        if (this.valueObject.containsKey(key)) {
             return true;
         }
         if (this.father != null) {
@@ -134,9 +134,9 @@ public class SceneDataObject {
         return false;
     }
 
-    public SceneDataValue get(String key) {
-        if (this.value_object.containsKey(key)) {
-            return this.value_object.get(key);
+    public DataValue get(String key) {
+        if (this.valueObject.containsKey(key)) {
+            return this.valueObject.get(key);
         }
         if (this.father != null) {
             if (this.fatherReturnColumnMap == null || this.fatherReturnColumnMap.containsKey(key)) {
@@ -148,12 +148,12 @@ public class SceneDataObject {
         return null;
     }
 
-    public void put(String key, SceneDataValue value) {
-        this.value_object.put(key, value);
+    public void put(String key, DataValue value) {
+        this.valueObject.put(key, value);
     }
 
     public void remove(String key) {
-        this.value_object.remove(key);
+        this.valueObject.remove(key);
     }
 
     public int size() {
@@ -161,7 +161,7 @@ public class SceneDataObject {
         if (this.father != null) {
             result += this.father.size();
         }
-        result += this.value_object.size();
+        result += this.valueObject.size();
         return result;
     }
 
@@ -169,12 +169,12 @@ public class SceneDataObject {
         if (this.father != null) {
             return this.father.getRowChange();
         } else {
-            return this.change.row_change;
+            return this.dataChange.rowChange;
         }
     }
 
     public void setRowChange(boolean value) {
-        this.change.row_change = value;
+        this.dataChange.rowChange = value;
     }
 
     public Map<String, Boolean> getColChange() {
@@ -188,26 +188,26 @@ public class SceneDataObject {
                 }
             }
             {
-                for (String col : this.change.colChangeMap.keySet()) {
+                for (String col : this.dataChange.colChangeMap.keySet()) {
                     result.put(col, true);
                 }
             }
         } else {
-            result = this.change.colChangeMap;
+            result = this.dataChange.colChangeMap;
         }
         return result;
     }
 
     public void setColChange(String col) {
         if (!this.hasColChange(col)) {
-            this.change.colChangeMap.put(col, true);
+            this.dataChange.colChangeMap.put(col, true);
         }
     }
 
     public void setColChange(Map<String, Boolean> colMap) {
         for (String col : colMap.keySet()) {
             if (!this.hasColChange(col)) {
-                this.change.colChangeMap.put(col, true);
+                this.dataChange.colChangeMap.put(col, true);
             }
         }
     }
@@ -218,6 +218,6 @@ public class SceneDataObject {
                 return true;
             }
         }
-        return this.change.colChangeMap.containsKey(col);
+        return this.dataChange.colChangeMap.containsKey(col);
     }
 }

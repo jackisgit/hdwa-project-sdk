@@ -1,7 +1,7 @@
 package com.hdwa.sdk.entity.repository;
 
 
-import com.hdwa.sdk.entity.scene.SceneDataValue;
+import com.hdwa.sdk.entity.scene.DataValue;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class WaitComputeQueue {
     private ConcurrentLinkedQueue<WaitItem> queue = new ConcurrentLinkedQueue<WaitItem>();
-    private Map<SceneDataValue, Boolean> map = new ConcurrentHashMap<SceneDataValue, Boolean>();
+    private Map<DataValue, Boolean> map = new ConcurrentHashMap<DataValue, Boolean>();
 
     public void offer(WaitItem WaitItem) {
         Boolean exist = map.putIfAbsent(WaitItem.sdv, true);

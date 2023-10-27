@@ -8,14 +8,14 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since 2023/8/25
  * 动态值改变标识类
  */
-public class Change {
+public class DataChange {
 
-    public boolean row_change = false;
+    public boolean rowChange = false;
 
     public Map<String, Boolean> colChangeMap = new ConcurrentHashMap<>();
 
     @Override
     public String toString() {
-        return "" + row_change + "\t" + colChangeMap;
+        return "" + rowChange + "\t" + colChangeMap;
     }
 }

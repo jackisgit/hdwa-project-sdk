@@ -5,10 +5,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.hdwa.sdk.entity.repository.RepositoryBase;
-import com.hdwa.sdk.entity.scene.SceneDataObject;
-import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
-import com.hdwa.sdk.entity.scene.SceneDataSet;
-import com.hdwa.sdk.entity.scene.SceneDataValue;
+import com.hdwa.sdk.entity.scene.DataObject;
+import com.hdwa.sdk.entity.scene.DataPrimitive;
+import com.hdwa.sdk.entity.scene.DataSet;
+import com.hdwa.sdk.entity.scene.DataValue;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class FilterUtil {
         try {
             JSONArray path = (JSONArray) paramObject.get("path");
             JSONObject params = (JSONObject) paramObject.get("params");
-            List<SceneDataObject> array = filter(repository, path, params);
+            List<DataObject> array = filter(repository, path, params);
             int pageSize = Integer.MAX_VALUE;
             int pageIndex = 0;
             if (paramObject.containsKey("page")) {
@@ -33,11 +33,11 @@ public class FilterUtil {
                 int pageCount = (array.size() + pageSize - 1) / pageSize;
                 result.put("pageCount", pageCount);
             }
-            SceneDataValue sdv = new SceneDataValue(null, null, null, null);
-            sdv.value_array = new SceneDataSet(false);
-            sdv.value_array.set = new CopyOnWriteArrayList<SceneDataObject>();
+            DataValue sdv = new DataValue(null, null, null, null);
+            sdv.valueArray = new DataSet(false);
+            sdv.valueArray.set = new CopyOnWriteArrayList<DataObject>();
             for (int i = pageSize * pageIndex; i < pageSize * (pageIndex + 1) && i < array.size(); i++) {
-                sdv.value_array.set.add(array.get(i));
+                sdv.valueArray.set.add(array.get(i));
             }
             JSONArray content = (JSONArray) sdv.toJSON(true, -1);
 
@@ -53,12 +53,12 @@ public class FilterUtil {
         return result;
     }
 
-    private static List<SceneDataObject> filter(RepositoryBase Repository, JSONArray path, JSONObject params) throws Exception {
-        SceneDataValue valueObject = (SceneDataValue) CalculateApiJsonUtil.getValueObject(Repository, path);
+    private static List<DataObject> filter(RepositoryBase Repository, JSONArray path, JSONObject params) throws Exception {
+        DataValue valueObject = (DataValue) CalculateApiJsonUtil.getValueObject(Repository, path);
 
         RecursiveUtil.refreshObject(Repository, valueObject);
 
-        String filter_rule = valueObject.rel_property.filter_rule;
+        String filter_rule = valueObject.relProperty.filterRule;
         if (filter_rule == null || filter_rule.trim().length() == 0) {
             JSONObject sql_json = new JSONObject();
             sql_json.put("QueryType", "select");
@@ -69,37 +69,37 @@ public class FilterUtil {
         List<String> refPropertyList = new CopyOnWriteArrayList<String>();
         JSONObject CriteriaNew = (JSONObject) parseCriteria(CriteriaObject, params);
 
-        SceneDataSet targetSet = new SceneDataSet(false);
+        DataSet targetSet = new DataSet(false);
         targetSet.set = new CopyOnWriteArrayList<>();
-        for (SceneDataObject sdb : valueObject.value_array.set) {
+        for (DataObject sdb : valueObject.valueArray.set) {
             if (sdb != null) {
                 targetSet.set.add(sdb);
             }
         }
-        SceneDataObject parentData = new SceneDataObject(null, null, null, null, null, null, null);
+        DataObject parentData = new DataObject(null, null, null, null, null, null, null);
         for (String key : params.keySet()) {
             Object value = params.get(key);
-            SceneDataValue svInner = new SceneDataValue(null, parentData, key, null);
+            DataValue svInner = new DataValue(null, parentData, key, null);
             if (value instanceof JSONArray) {
-                svInner.value_array = new SceneDataSet(true);
-                svInner.value_array.singleValueSet = new CopyOnWriteArrayList<SceneDataValue>();
+                svInner.valueArray = new DataSet(true);
+                svInner.valueArray.singleValueSet = new CopyOnWriteArrayList<DataValue>();
                 JSONArray valueArray = (JSONArray) value;
                 for (Object valueItem : valueArray) {
-                    SceneDataValue svInner2 = new SceneDataValue(null, null, null, null);
-                    svInner2.value_prim = new SceneDataPrimitive();
-                    svInner2.value_prim.value = valueItem;
-                    svInner.value_array.singleValueSet.add(svInner2);
+                    DataValue svInner2 = new DataValue(null, null, null, null);
+                    svInner2.valuePrim = new DataPrimitive();
+                    svInner2.valuePrim.value = valueItem;
+                    svInner.valueArray.singleValueSet.add(svInner2);
                 }
             } else {
-                svInner.value_prim = new SceneDataPrimitive();
-                svInner.value_prim.value = value;
+                svInner.valuePrim = new DataPrimitive();
+                svInner.valuePrim.value = value;
             }
             parentData.put(key, svInner);
         }
-        SceneDataValue sv = new SceneDataValue(Repository, parentData, valueObject.rel_property.propertyName, null);
+        DataValue sv = new DataValue(Repository, parentData, valueObject.relProperty.propertyName, null);
         JSONObject sql_json = JSON.parseObject(filter_rule);
         sql_json.put("Criteria", CriteriaNew);
-        SceneDataSet array = (SceneDataSet) QueryUtil.select_node(Repository, sv, sql_json, targetSet);
+        DataSet array = (DataSet) QueryUtil.select_node(Repository, sv, sql_json, targetSet);
 
         return array.set;
     }

@@ -50,16 +50,16 @@ public class ComputeThread implements Runnable {
             if (WaitItem == null) {
                 continue;
             }
-            /*if (currTime.getTime() < WaitItem.sdv.last_compute_time.getTime() + this.interval) {
+            /*if (currTime.getTime() < WaitItem.sdv.lastComputeTime.getTime() + this.interval) {
                 repository.WaitCompute.offerToQueue(WaitItem);
                 continue;
             }*/
             repository.WaitCompute.removeFromMap(WaitItem);
             try {
-                /*  if (WaitItem.time.getTime() > WaitItem.sdv.last_compute_time.getTime() + this.interval) {
+                /*  if (WaitItem.time.getTime() > WaitItem.sdv.lastComputeTime.getTime() + this.interval) {
                     compute_lag += currTime.getTime() - WaitItem.time.getTime();
                 } else {
-                    compute_lag += currTime.getTime() - (WaitItem.sdv.last_compute_time.getTime() + this.interval);
+                    compute_lag += currTime.getTime() - (WaitItem.sdv.lastComputeTime.getTime() + this.interval);
                 }*/
                 //log.warn("compute: " + PathUtil.getDataPath(WaitItem.sdv));
                 CalculateApiJsonUtil.calculateProperty(repository, WaitItem.sdv);

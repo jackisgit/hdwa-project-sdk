@@ -8,9 +8,9 @@ import com.hdwa.sdk.constant.UrlConstant;
 import com.hdwa.sdk.entity.ExcelSheetEntity;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
-import com.hdwa.sdk.entity.scene.SceneDataObject;
-import com.hdwa.sdk.entity.scene.SceneObject;
-import com.hdwa.sdk.entity.scene.SceneProperty;
+import com.hdwa.sdk.entity.scene.DataObject;
+import com.hdwa.sdk.entity.scene.DataObjectBase;
+import com.hdwa.sdk.entity.scene.DataProperty;
 import com.hdwa.sdk.enums.PointEnum;
 import com.hdwa.sdk.utils.*;
 import lombok.extern.slf4j.Slf4j;
@@ -253,17 +253,17 @@ public class PointService {
      *
      * @param Repository
      */
-    public void filterPoint(RepositoryImpl Repository, SceneObject sceneObject) {
+    public void filterPoint(RepositoryImpl Repository, DataObjectBase dataObjectBase) {
         log.warn("*****开始加载-点位配置过滤设备");
         long startTime = System.currentTimeMillis();
         try {
             Map<String, String> SceneName2Code = new HashMap<>(16);
-            for (SceneDataObject SceneDataObject : Repository.ZKTSceneArray.set) {
-                String id = (String) SceneDataObject.get(BaseDecConstant.ID).value_prim.value;
-                String name = (String) SceneDataObject.get(BaseDecConstant.NAME2).value_prim.value;
+            for (DataObject DataObject : Repository.ZKTSceneArray.set) {
+                String id = (String) DataObject.get(BaseDecConstant.ID).valuePrim.value;
+                String name = (String) DataObject.get(BaseDecConstant.NAME2).valuePrim.value;
                 String alias = null;
-                if (SceneDataObject.containsKey(BaseDecConstant.ALIAS)) {
-                    alias = (String) SceneDataObject.get(BaseDecConstant.ALIAS).value_prim.value;
+                if (DataObject.containsKey(BaseDecConstant.ALIAS)) {
+                    alias = (String) DataObject.get(BaseDecConstant.ALIAS).valuePrim.value;
                 }
                 SceneName2Code.put(name, id);
                 if (alias != null && alias.length() > 0) {
@@ -274,13 +274,13 @@ public class PointService {
                 }
             }
             Map<String, Map<String, String>> SceneClassName = new HashMap<>(16);
-            for (SceneDataObject SceneDataObject : Repository.ZKTClassArray.set) {
-                String ibmsSceneCode = (String) SceneDataObject.get(BaseDecConstant.IBMS_SCENE_CODE).value_prim.value;
-                String ibmsClassCode = (String) SceneDataObject.get(BaseDecConstant.IBMS_CLASS_CODE).value_prim.value;
-                String name = (String) SceneDataObject.get(BaseDecConstant.NAME2).value_prim.value;
+            for (DataObject DataObject : Repository.ZKTClassArray.set) {
+                String ibmsSceneCode = (String) DataObject.get(BaseDecConstant.IBMS_SCENE_CODE).valuePrim.value;
+                String ibmsClassCode = (String) DataObject.get(BaseDecConstant.IBMS_CLASS_CODE).valuePrim.value;
+                String name = (String) DataObject.get(BaseDecConstant.NAME2).valuePrim.value;
                 String alias = null;
-                if (SceneDataObject.containsKey(BaseDecConstant.ALIAS)) {
-                    alias = (String) SceneDataObject.get(BaseDecConstant.ALIAS).value_prim.value;
+                if (DataObject.containsKey(BaseDecConstant.ALIAS)) {
+                    alias = (String) DataObject.get(BaseDecConstant.ALIAS).valuePrim.value;
                 }
                 SceneClassName.putIfAbsent(ibmsSceneCode, new HashMap<>(16));
                 SceneClassName.get(ibmsSceneCode).put(name, ibmsClassCode);
@@ -293,10 +293,10 @@ public class PointService {
             }
             Map<String, Boolean> SceneVisible = new HashMap<>(16);
             Map<String, Map<String, Boolean>> SceneClassVisible = new HashMap<>(16);
-            for (SceneDataObject SceneDataObject : Repository.InfoPointListArray.set) {
-                String ibmsSceneCode = (String) SceneDataObject.get(BaseDecConstant.IBMS_SCENE_CODE).value_prim.value;
-                String ibmsClassCode = (String) SceneDataObject.get(BaseDecConstant.IBMS_CLASS_CODE).value_prim.value;
-                boolean isVisible = (Boolean) SceneDataObject.get(BaseDecConstant.IS_VISIBLE).value_prim.value;
+            for (DataObject DataObject : Repository.InfoPointListArray.set) {
+                String ibmsSceneCode = (String) DataObject.get(BaseDecConstant.IBMS_SCENE_CODE).valuePrim.value;
+                String ibmsClassCode = (String) DataObject.get(BaseDecConstant.IBMS_CLASS_CODE).valuePrim.value;
+                boolean isVisible = (Boolean) DataObject.get(BaseDecConstant.IS_VISIBLE).valuePrim.value;
                 SceneClassVisible.putIfAbsent(ibmsSceneCode, new HashMap<>(16));
                 SceneClassVisible.get(ibmsSceneCode).putIfAbsent(ibmsClassCode, false);
                 SceneVisible.putIfAbsent(ibmsSceneCode, false);
@@ -306,15 +306,15 @@ public class PointService {
                 }
             }
             for (String parentPath : BaseDecConstant.PARENT_PATH_ARRAY) {
-                List<Object> tmpList = PathUtil.getByPath(sceneObject, parentPath);
+                List<Object> tmpList = PathUtil.getByPath(dataObjectBase, parentPath);
                 for (Object tmp : tmpList) {
-                    SceneProperty spInner = (SceneProperty) tmp;
+                    DataProperty spInner = (DataProperty) tmp;
                     if (spInner.propertyValueType.equals(BaseDecConstant.STATIC) && spInner.propertyValueSchema.equals(BaseDecConstant.JSONARRAY)) {
-                        for (SceneObject soScene : spInner.static_array) {
+                        for (DataObjectBase soScene : spInner.staticArray) {
                             String SceneName = null;
-                            for (SceneProperty spInner2 : soScene.propertyList) {
+                            for (DataProperty spInner2 : soScene.propertyList) {
                                 if (spInner2.propertyName.equals(BaseDecConstant.NAME2)) {
-                                    SceneName = spInner2.static_value;
+                                    SceneName = spInner2.staticValue;
                                     break;
                                 }
                             }
@@ -327,38 +327,38 @@ public class PointService {
                             }
                             boolean isVisible = SceneVisible.get(SceneCode);
                             if (!isVisible) {
-                                soScene.allow_pass = "0";
+                                soScene.allowPass = "0";
                             }
                         }
 
-                        List<SceneObject> static_array = new ArrayList<>();
+                        List<DataObjectBase> static_array = new ArrayList<>();
                         boolean has_delete = false;
-                        for (SceneObject soScene : spInner.static_array) {
-                            if (soScene.allow_pass.equals("0")) {
+                        for (DataObjectBase soScene : spInner.staticArray) {
+                            if (soScene.allowPass.equals("0")) {
                                 has_delete = true;
                             } else {
                                 static_array.add(soScene);
                             }
                         }
                         if (has_delete) {
-                            spInner.static_array = static_array.toArray(new SceneObject[0]);
+                            spInner.staticArray = static_array.toArray(new DataObjectBase[0]);
                         }
                     }
                 }
             }
 
-            List<SceneProperty> equipTypeList = new ArrayList<>();
+            List<DataProperty> equipTypeList = new ArrayList<>();
             List<String> SceneCodeList = new ArrayList<>();
             for (String parentPath : BaseDecConstant.PARENT_PATH_ARRAY_2) {
-                List<Object> tmpList = PathUtil.getByPath(sceneObject, parentPath);
+                List<Object> tmpList = PathUtil.getByPath(dataObjectBase, parentPath);
                 for (Object tmp : tmpList) {
-                    SceneProperty spInner = (SceneProperty) tmp;
+                    DataProperty spInner = (DataProperty) tmp;
                     if (spInner.propertyValueType.equals(BaseDecConstant.STATIC) && spInner.propertyValueSchema.equals(BaseDecConstant.JSONARRAY)) {
-                        for (SceneObject soScene : spInner.static_array) {
+                        for (DataObjectBase soScene : spInner.staticArray) {
                             String SceneName = null;
-                            for (SceneProperty spInner2 : soScene.propertyList) {
+                            for (DataProperty spInner2 : soScene.propertyList) {
                                 if (spInner2.propertyName.equals(BaseDecConstant.NAME2)) {
-                                    SceneName = spInner2.static_value;
+                                    SceneName = spInner2.staticValue;
                                     break;
                                 }
                             }
@@ -367,24 +367,24 @@ public class PointService {
                             }
                             String SceneCode = SceneName2Code.get(SceneName);
 
-                            SceneProperty equipType = null;
-                            SceneProperty equipType_gl = null;
-                            SceneProperty gailan = null;
-                            for (SceneProperty spInner2 : soScene.propertyList) {
+                            DataProperty equipType = null;
+                            DataProperty equipType_gl = null;
+                            DataProperty gailan = null;
+                            for (DataProperty spInner2 : soScene.propertyList) {
                                 if (spInner2.propertyName.equals(BaseDecConstant.DEVICE_TYPE)) {
                                     equipType = spInner2;
                                 } else if (spInner2.propertyName.equals(BaseDecConstant.SYSTEM_OVERVIEW)) {
                                     if (spInner2.propertyValueType.equals(BaseDecConstant.STATIC) && spInner2.propertyValueSchema.equals(BaseDecConstant.JSONARRAY)) {
                                         gailan = spInner2;
                                     } else if (spInner2.propertyValueType.equals(BaseDecConstant.QUERY) && spInner2.propertyValueSchema.equals(BaseDecConstant.JSONARRAY)) {
-                                        for (SceneProperty spInner2_att : spInner2.query_attached) {
+                                        for (DataProperty spInner2_att : spInner2.queryAttached) {
                                             if (spInner2_att.propertyName.equals(BaseDecConstant.DEVICE_TYPE)) {
                                                 equipType_gl = spInner2_att;
                                                 break;
                                             }
                                         }
                                     } else if (spInner2.propertyValueType.equals(BaseDecConstant.CUSTOM)) {
-                                        for (SceneProperty spInner2_att : spInner2.custom_object.propertyList) {
+                                        for (DataProperty spInner2_att : spInner2.customObject.propertyList) {
                                             if (spInner2_att.propertyName.equals(BaseDecConstant.DEVICE_TYPE)) {
                                                 equipType_gl = spInner2_att;
                                                 break;
@@ -407,15 +407,15 @@ public class PointService {
                             }
                         }
                     } else if (spInner.propertyValueType.equals(BaseDecConstant.CUSTOM)) {
-                        for (SceneProperty spInner2 : spInner.custom_object.propertyList) {
+                        for (DataProperty spInner2 : spInner.customObject.propertyList) {
                             String SceneName = spInner2.propertyName;
                             if (!SceneName2Code.containsKey(SceneName)) {
                                 continue;
                             }
                             String SceneCode = SceneName2Code.get(SceneName);
 
-                            SceneProperty floor = null;
-                            for (SceneProperty spInner3 : spInner2.custom_object.propertyList) {
+                            DataProperty floor = null;
+                            for (DataProperty spInner3 : spInner2.customObject.propertyList) {
                                 if (spInner3.propertyName.equals(BaseDecConstant.FLOOR_DATA)) {
                                     floor = spInner3;
                                     break;
@@ -425,9 +425,9 @@ public class PointService {
                                 continue;
                             }
 
-                            SceneProperty equipType = null;
-                            SceneProperty gailan = null;
-                            for (SceneProperty spInner2_att : floor.query_attached) {
+                            DataProperty equipType = null;
+                            DataProperty gailan = null;
+                            for (DataProperty spInner2_att : floor.queryAttached) {
                                 if (spInner2_att.propertyName.equals(BaseDecConstant.DEVICE_TYPE)) {
                                     equipType = spInner2_att;
                                 } else if (spInner2_att.propertyName.equals(BaseDecConstant.SYSTEM_OVERVIEW)) {
@@ -447,16 +447,16 @@ public class PointService {
                 }
 
                 for (int i = 0; i < equipTypeList.size(); i++) {
-                    SceneProperty equipType = equipTypeList.get(i);
+                    DataProperty equipType = equipTypeList.get(i);
                     String SceneCode = SceneCodeList.get(i);
-                    for (SceneObject soEquipType : equipType.static_array) {
-                        SceneProperty spName = null;
-                        for (SceneProperty spInner2 : soEquipType.propertyList) {
+                    for (DataObjectBase soEquipType : equipType.staticArray) {
+                        DataProperty spName = null;
+                        for (DataProperty spInner2 : soEquipType.propertyList) {
                             if (spInner2.propertyName.equals(BaseDecConstant.NAME2)) {
                                 spName = spInner2;
                             }
                         }
-                        String ibmsClassCode = SceneClassName.get(SceneCode).get(spName.static_value);
+                        String ibmsClassCode = SceneClassName.get(SceneCode).get(spName.staticValue);
                         if (ibmsClassCode == null) {
                             continue;
                         }
@@ -466,20 +466,20 @@ public class PointService {
                         }
                         boolean isVisible = SceneClassVisible.get(SceneCode).get(ibmsClassCode);
                         if (!isVisible) {
-                            soEquipType.allow_pass = "0";
+                            soEquipType.allowPass = "0";
                         }
                     }
-                    List<SceneObject> static_array = new ArrayList<>();
+                    List<DataObjectBase> static_array = new ArrayList<>();
                     boolean has_delete = false;
-                    for (SceneObject soEquipType : equipType.static_array) {
-                        if (soEquipType.allow_pass.equals("0")) {
+                    for (DataObjectBase soEquipType : equipType.staticArray) {
+                        if (soEquipType.allowPass.equals("0")) {
                             has_delete = true;
                         } else {
                             static_array.add(soEquipType);
                         }
                     }
                     if (has_delete) {
-                        equipType.static_array = static_array.toArray(new SceneObject[0]);
+                        equipType.staticArray = static_array.toArray(new DataObjectBase[0]);
                     }
                 }
             }

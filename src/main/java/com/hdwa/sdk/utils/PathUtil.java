@@ -3,10 +3,10 @@ package com.hdwa.sdk.utils;
 import com.alibaba.fastjson.JSONArray;
 import com.hdwa.sdk.entity.exception.ExceptionItem;
 import com.hdwa.sdk.entity.repository.RepositoryBase;
-import com.hdwa.sdk.entity.scene.SceneDataObject;
-import com.hdwa.sdk.entity.scene.SceneDataValue;
-import com.hdwa.sdk.entity.scene.SceneObject;
-import com.hdwa.sdk.entity.scene.SceneProperty;
+import com.hdwa.sdk.entity.scene.DataObject;
+import com.hdwa.sdk.entity.scene.DataValue;
+import com.hdwa.sdk.entity.scene.DataObjectBase;
+import com.hdwa.sdk.entity.scene.DataProperty;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -23,25 +23,25 @@ public class PathUtil {
             String split = splits[i];
             List<Object> tmpListInner = new CopyOnWriteArrayList<Object>();
             for (Object tmp : tmpList) {
-                if (tmp instanceof SceneObject) {
-                    SceneObject soInner = (SceneObject) tmp;
-                    for (SceneProperty spTmp : soInner.propertyList) {
+                if (tmp instanceof DataObjectBase) {
+                    DataObjectBase soInner = (DataObjectBase) tmp;
+                    for (DataProperty spTmp : soInner.propertyList) {
                         if (spTmp.propertyName.equals(split)) {
                             tmpListInner.add(spTmp);
                         }
                     }
-                } else if (tmp instanceof SceneProperty) {
-                    SceneProperty spInner = (SceneProperty) tmp;
+                } else if (tmp instanceof DataProperty) {
+                    DataProperty spInner = (DataProperty) tmp;
                     if (spInner.propertyValueType.equals("static") && spInner.propertyValueSchema.equals("JSONArray")) {
                         int index_ = split.indexOf('=');
                         if (index_ != -1) {
                             String propertyName = split.substring(0, index_);
                             String propertyValue = split.substring(index_ + 1);
-                            for (SceneObject soInner2 : spInner.static_array) {
+                            for (DataObjectBase soInner2 : spInner.staticArray) {
                                 boolean match = false;
-                                for (SceneProperty spInner2 : soInner2.propertyList) {
+                                for (DataProperty spInner2 : soInner2.propertyList) {
                                     if (spInner2.propertyName.equals(propertyName) && spInner2.propertyValueType.equals("static")
-                                            && spInner2.static_value.equals(propertyValue)) {
+                                            && spInner2.staticValue.equals(propertyValue)) {
                                         match = true;
                                         break;
                                     }
@@ -51,11 +51,11 @@ public class PathUtil {
                                 }
                             }
                         } else {
-                            for (SceneObject soInner2 : spInner.static_array) {
+                            for (DataObjectBase soInner2 : spInner.staticArray) {
                                 boolean match = false;
-                                for (SceneProperty spInner2 : soInner2.propertyList) {
+                                for (DataProperty spInner2 : soInner2.propertyList) {
                                     if ((spInner2.propertyName.equals("名称") || spInner2.propertyName.equals("id"))
-                                            && spInner2.propertyValueType.equals("static") && spInner2.static_value.equals(split)) {
+                                            && spInner2.propertyValueType.equals("static") && spInner2.staticValue.equals(split)) {
                                         match = true;
                                         break;
                                     }
@@ -66,7 +66,7 @@ public class PathUtil {
                             }
                         }
                     } else if (spInner.propertyValueType.equals("custom")) {
-                        for (SceneProperty spInner2 : spInner.custom_object.propertyList) {
+                        for (DataProperty spInner2 : spInner.customObject.propertyList) {
                             if (spInner2.propertyName.equals(split)) {
                                 tmpListInner.add(spInner2);
                                 break;
@@ -94,8 +94,8 @@ public class PathUtil {
             }
             tmpList.add(parentData);
             Integer soIndex = null;
-            if (parentData instanceof SceneProperty) {
-                SceneProperty tmpProperty = (SceneProperty) parentData;
+            if (parentData instanceof DataProperty) {
+                DataProperty tmpProperty = (DataProperty) parentData;
                 if (Repository.attachproperty2host.containsKey(tmpProperty)) {
                     parentData = Repository.attachproperty2host.get(tmpProperty);
                 } else if (Repository.property2customobject.containsKey(tmpProperty)) {
@@ -105,12 +105,12 @@ public class PathUtil {
                 } else {
                     throw new ExceptionItem(PathUtil.getPropertyPath(Repository, spInner), "getPropertyPath error", null);
                 }
-            } else if (parentData instanceof SceneObject) {
-                SceneObject tmpObject = (SceneObject) parentData;
+            } else if (parentData instanceof DataObjectBase) {
+                DataObjectBase tmpObject = (DataObjectBase) parentData;
                 if (Repository.staticobject2host.containsKey(tmpObject)) {
                     parentData = Repository.staticobject2host.get(tmpObject);
                     soIndex = Repository.staticobject2index.get(tmpObject);
-                } else if (parentData == Repository.sceneObject) {
+                } else if (parentData == Repository.dataObjectBase) {
                     break;
                 } else {
                     throw new ExceptionItem(PathUtil.getPropertyPath(Repository, spInner), "getPropertyPath error", null);
@@ -122,13 +122,13 @@ public class PathUtil {
         StringBuilder sb = new StringBuilder();
         for (int i = tmpList.size() - 1; i >= 0; i--) {
             Object obj = tmpList.get(i);
-            if (obj instanceof SceneProperty) {
-                SceneProperty ss = (SceneProperty) obj;
+            if (obj instanceof DataProperty) {
+                DataProperty ss = (DataProperty) obj;
                 if (sb.length() > 0) {
                     sb.append("-");
                 }
                 sb.append(ss.propertyName);
-            } else if (obj instanceof SceneObject) {
+            } else if (obj instanceof DataObjectBase) {
                 Integer soIndex = tmpIndexList.get(i);
                 if (soIndex != null) {
                     sb.append("[").append(soIndex).append("]");
@@ -148,11 +148,11 @@ public class PathUtil {
             Object tmp = sv;
             while (tmp != null) {
                 list.add(0, tmp);
-                if (tmp instanceof SceneDataValue) {
-                    SceneDataValue tmpData = (SceneDataValue) tmp;
+                if (tmp instanceof DataValue) {
+                    DataValue tmpData = (DataValue) tmp;
                     tmp = tmpData.parentObjectData;
-                } else if (tmp instanceof SceneDataObject) {
-                    SceneDataObject tmpData = (SceneDataObject) tmp;
+                } else if (tmp instanceof DataObject) {
+                    DataObject tmpData = (DataObject) tmp;
                     tmp = tmpData.parentObjectData != null ? tmpData.parentObjectData : tmpData.parentArrayData;
                 } else {
                     throw new Exception();
@@ -162,14 +162,14 @@ public class PathUtil {
         StringBuilder sb = new StringBuilder();
         for (int i = 1; i < list.size(); i++) {
             Object tmp = list.get(i);
-            if (tmp instanceof SceneDataValue) {
-                SceneDataValue tmpData = (SceneDataValue) tmp;
+            if (tmp instanceof DataValue) {
+                DataValue tmpData = (DataValue) tmp;
                 sb.append(sb.length() > 0 ? "." : "").append(tmpData.myPropertyName);
                 pathArray.add(tmpData.myPropertyName);
-            } else if (tmp instanceof SceneDataObject) {
-                SceneDataObject tmpData = (SceneDataObject) tmp;
+            } else if (tmp instanceof DataObject) {
+                DataObject tmpData = (DataObject) tmp;
                 if (tmpData.myPropertyName == null) {
-                    SceneDataValue sdvInner = null;
+                    DataValue sdvInner = null;
                     for (String keyName : AttributeFilteringUtil.keyProperty) {
                         if (tmpData.get(keyName) != null) {
                             sdvInner = tmpData.get(keyName);
@@ -177,8 +177,8 @@ public class PathUtil {
                         }
                     }
                     if (sdvInner != null) {
-                        sb.append((sb.length() > 0 ? "." : "") + "[" + (sdvInner.value_prim == null ? "null" : sdvInner.value_prim.value) + "]");
-                        pathArray.add(sdvInner.value_prim == null ? "null" : sdvInner.value_prim.value);
+                        sb.append((sb.length() > 0 ? "." : "") + "[" + (sdvInner.valuePrim == null ? "null" : sdvInner.valuePrim.value) + "]");
+                        pathArray.add(sdvInner.valuePrim == null ? "null" : sdvInner.valuePrim.value);
                     }
                 } else {
                     sb.append((sb.length() > 0 ? "." : "") + tmpData.myPropertyName);

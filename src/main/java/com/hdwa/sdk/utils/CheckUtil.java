@@ -5,8 +5,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.entity.exception.ExceptionItem;
 import com.hdwa.sdk.entity.repository.RepositoryBase;
-import com.hdwa.sdk.entity.scene.SceneObject;
-import com.hdwa.sdk.entity.scene.SceneProperty;
+import com.hdwa.sdk.entity.scene.DataObjectBase;
+import com.hdwa.sdk.entity.scene.DataProperty;
 
 import java.util.List;
 import java.util.Map;
@@ -15,9 +15,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CheckUtil {
 
-    private static void add(List<SceneProperty> result, SceneProperty item) {
+    private static void add(List<DataProperty> result, DataProperty item) {
         boolean exist = false;
-        for (SceneProperty sp : result) {
+        for (DataProperty sp : result) {
             if (sp.equals(item)) {
                 exist = true;
                 break;
@@ -28,15 +28,15 @@ public class CheckUtil {
         }
     }
 
-    private static void addAll(List<SceneProperty> result, List<SceneProperty> itemList) {
-        for (SceneProperty sp : itemList) {
+    private static void addAll(List<DataProperty> result, List<DataProperty> itemList) {
+        for (DataProperty sp : itemList) {
             add(result, sp);
         }
     }
 
-    public static List<SceneProperty> getPropertyBefore(RepositoryBase Repository, SceneProperty sceneProperty) throws Exception {
-        List<SceneProperty> result = new CopyOnWriteArrayList<SceneProperty>();
-        SceneProperty parentTmp = sceneProperty;
+    public static List<DataProperty> getPropertyBefore(RepositoryBase Repository, DataProperty dataProperty) throws Exception {
+        List<DataProperty> result = new CopyOnWriteArrayList<DataProperty>();
+        DataProperty parentTmp = dataProperty;
         while (true) {
             if (Repository.attachproperty2host.containsKey(parentTmp)) {
                 parentTmp = Repository.attachproperty2host.get(parentTmp);
@@ -58,28 +58,28 @@ public class CheckUtil {
             }
         }
 
-        if (sceneProperty.propertyValueType.equals("static")) {
-            if (sceneProperty.propertyValueSchema.equals("JSONArray")) {
+        if (dataProperty.propertyValueType.equals("static")) {
+            if (dataProperty.propertyValueSchema.equals("JSONArray")) {
             } else {
-                if (Repository.attachproperty2host.containsKey(sceneProperty)) {
-                    add(result, Repository.attachproperty2host.get(sceneProperty));
+                if (Repository.attachproperty2host.containsKey(dataProperty)) {
+                    add(result, Repository.attachproperty2host.get(dataProperty));
                 }
             }
         } else {
-            getPropertyBefore_query(Repository, sceneProperty, result);
+            getPropertyBefore_query(Repository, dataProperty, result);
         }
         return result;
     }
 
-    private static void getPropertyBefore_query(RepositoryBase Repository, SceneProperty sceneProperty, List<SceneProperty> result) throws Exception {
-        JSONObject sql_json = JSON.parseObject(sceneProperty.query_sql);
+    private static void getPropertyBefore_query(RepositoryBase Repository, DataProperty dataProperty, List<DataProperty> result) throws Exception {
+        JSONObject sql_json = JSON.parseObject(dataProperty.querySql);
         String requireSchema = null;
         boolean requireSingleValueSet = false;
-        if (sceneProperty.propertyValueType.equals("query")) {
-            requireSchema = sceneProperty.propertyValueSchema;
+        if (dataProperty.propertyValueType.equals("query")) {
+            requireSchema = dataProperty.propertyValueSchema;
         }
         List<ExceptionItem> errorList = new CopyOnWriteArrayList<ExceptionItem>();
-        ExamineUtil.check_sql(Repository, sceneProperty, sceneProperty.propertyValueType, requireSchema, requireSingleValueSet, false, false,
+        ExamineUtil.check_sql(Repository, dataProperty, dataProperty.propertyValueType, requireSchema, requireSingleValueSet, false, false,
                 sql_json, errorList);
         if (errorList.size() > 0) {
             throw new ExceptionWrapper(errorList);
@@ -94,10 +94,10 @@ public class CheckUtil {
             Object parentData;
             if (splits[0].startsWith("ancestor_")) {
                 int generate = Integer.parseInt(splits[0].substring("ancestor_".length()));
-                parentData = sceneProperty;
+                parentData = dataProperty;
                 while (generate > 0) {
-                    if (parentData instanceof SceneProperty) {
-                        SceneProperty tmpProperty = (SceneProperty) parentData;
+                    if (parentData instanceof DataProperty) {
+                        DataProperty tmpProperty = (DataProperty) parentData;
                         if (Repository.attachproperty2host.containsKey(tmpProperty)) {
                             parentData = Repository.attachproperty2host.get(tmpProperty);
                             generate = generate - 2;
@@ -111,7 +111,7 @@ public class CheckUtil {
                             throw new Exception("refString ancestor error: " + refString);
                         }
                     } else {
-                        SceneObject tmpObject = (SceneObject) parentData;
+                        DataObjectBase tmpObject = (DataObjectBase) parentData;
                         if (Repository.staticobject2host.containsKey(tmpObject)) {
                             parentData = Repository.staticobject2host.get(tmpObject);
                             generate--;
@@ -121,29 +121,29 @@ public class CheckUtil {
                     }
                 }
             } else {
-                SceneProperty equalSP = null;
-                for (SceneProperty SceneProperty : Repository.sceneObject.propertyList) {
-                    if (SceneProperty.propertyName.equals(splits[0])) {
-                        equalSP = SceneProperty;
+                DataProperty equalSP = null;
+                for (DataProperty DataProperty : Repository.dataObjectBase.propertyList) {
+                    if (DataProperty.propertyName.equals(splits[0])) {
+                        equalSP = DataProperty;
                         break;
                     }
                 }
                 parentData = equalSP;
             }
 
-            List<SceneProperty> spList;
-            if (parentData instanceof SceneProperty) {
-                SceneProperty tmpProperty = (SceneProperty) parentData;
+            List<DataProperty> spList;
+            if (parentData instanceof DataProperty) {
+                DataProperty tmpProperty = (DataProperty) parentData;
                 spList = getProperty(Repository, tmpProperty, splits, 1);
             } else {
-                SceneObject tmpObject = (SceneObject) parentData;
+                DataObjectBase tmpObject = (DataObjectBase) parentData;
                 spList = getProperty(Repository, tmpObject, splits, 1);
             }
             addAll(result, spList);
             if (columns != null) {
-                List<SceneProperty> tmpList = new CopyOnWriteArrayList<SceneProperty>();
+                List<DataProperty> tmpList = new CopyOnWriteArrayList<DataProperty>();
                 for (String column : columns.keySet()) {
-                    List<SceneProperty> attachedInner = get_attached(Repository, spList, column);
+                    List<DataProperty> attachedInner = get_attached(Repository, spList, column);
                     tmpList.addAll(attachedInner);
                 }
                 result.addAll(tmpList);
@@ -151,11 +151,11 @@ public class CheckUtil {
         }
     }
 
-    private static List<SceneProperty> getProperty(RepositoryBase Repository, SceneObject parentData, String[] splits, int splits_index)
+    private static List<DataProperty> getProperty(RepositoryBase Repository, DataObjectBase parentData, String[] splits, int splits_index)
             throws Exception {
         String name = splits[splits_index];
-        SceneProperty findSP = null;
-        for (SceneProperty spInner : parentData.propertyList) {
+        DataProperty findSP = null;
+        for (DataProperty spInner : parentData.propertyList) {
             if (spInner.propertyName.equals(name)) {
                 findSP = spInner;
                 break;
@@ -169,9 +169,9 @@ public class CheckUtil {
         }
     }
 
-    private static List<SceneProperty> getProperty(RepositoryBase Repository, SceneProperty parentData, String[] splits, int splits_index)
+    private static List<DataProperty> getProperty(RepositoryBase Repository, DataProperty parentData, String[] splits, int splits_index)
             throws Exception {
-        List<SceneProperty> result = new CopyOnWriteArrayList<SceneProperty>();
+        List<DataProperty> result = new CopyOnWriteArrayList<DataProperty>();
         if (parentData.propertyValueType.equals("deamon")) {
             throw new Exception("ref path cant be deamon");
         }
@@ -183,42 +183,42 @@ public class CheckUtil {
             if (index_ != -1) {
                 String propertyName = split.substring(0, index_);
                 String propertyValue = split.substring(index_ + 1);
-                for (SceneObject soInner : parentData.static_array) {
+                for (DataObjectBase soInner : parentData.staticArray) {
                     boolean matchInner = false;
-                    for (SceneProperty spInner : soInner.propertyList) {
+                    for (DataProperty spInner : soInner.propertyList) {
                         if (spInner.propertyName.equals(propertyName)) {
                             if (spInner.propertyValueType.equals("static")) {
-                                matchInner = propertyValue.equals(spInner.static_value);
+                                matchInner = propertyValue.equals(spInner.staticValue);
                             } else {
                                 matchInner = true;
                             }
                         }
                     }
                     if (matchInner) {
-                        List<SceneProperty> resultInner = getProperty(Repository, soInner, splits, splits_index + 1);
+                        List<DataProperty> resultInner = getProperty(Repository, soInner, splits, splits_index + 1);
                         result.addAll(resultInner);
                     }
                 }
             } else {
-                for (SceneObject soInner : parentData.static_array) {
-                    SceneProperty sp_attach = null;
-                    for (SceneProperty spInner : soInner.propertyList) {
+                for (DataObjectBase soInner : parentData.staticArray) {
+                    DataProperty sp_attach = null;
+                    for (DataProperty spInner : soInner.propertyList) {
                         if (spInner.propertyName.equals(splits[splits_index])) {
                             sp_attach = spInner;
                             break;
                         }
                     }
                     if (sp_attach != null) {
-                        List<SceneProperty> resultInner = getProperty(Repository, soInner, splits, splits_index);
+                        List<DataProperty> resultInner = getProperty(Repository, soInner, splits, splits_index);
                         result.addAll(resultInner);
                     }
                 }
             }
         } else {
             String name = splits[splits_index];
-            SceneProperty sp_attach = null;
-            if (parentData.query_attached != null) {
-                for (SceneProperty spInner : parentData.query_attached) {
+            DataProperty sp_attach = null;
+            if (parentData.queryAttached != null) {
+                for (DataProperty spInner : parentData.queryAttached) {
                     if (spInner.propertyName.equals(name)) {
                         sp_attach = spInner;
                         break;
@@ -228,9 +228,9 @@ public class CheckUtil {
             if (sp_attach != null) {
                 result = getProperty(Repository, sp_attach, splits, splits_index + 1);
             } else {
-                SceneProperty sp_custom = null;
-                if (parentData.custom_object != null) {
-                    for (SceneProperty spInner : parentData.custom_object.propertyList) {
+                DataProperty sp_custom = null;
+                if (parentData.customObject != null) {
+                    for (DataProperty spInner : parentData.customObject.propertyList) {
                         if (spInner.propertyName.equals(name)) {
                             sp_custom = spInner;
                             break;
@@ -247,12 +247,12 @@ public class CheckUtil {
         return result;
     }
 
-    private static List<SceneProperty> get_attached(RepositoryBase Repository, List<SceneProperty> startList, String column) throws Exception {
-        List<SceneProperty> result = new CopyOnWriteArrayList<SceneProperty>();
-        for (SceneProperty spTmp : startList) {
-            SceneProperty attach_column = null;
-            if (spTmp.query_attached != null) {
-                for (SceneProperty spTmp2 : spTmp.query_attached) {
+    private static List<DataProperty> get_attached(RepositoryBase Repository, List<DataProperty> startList, String column) throws Exception {
+        List<DataProperty> result = new CopyOnWriteArrayList<DataProperty>();
+        for (DataProperty spTmp : startList) {
+            DataProperty attach_column = null;
+            if (spTmp.queryAttached != null) {
+                for (DataProperty spTmp2 : spTmp.queryAttached) {
                     if (column.equals(spTmp2.propertyName)) {
                         if (spTmp2.propertyValueType.equals("query")
                                 && (!spTmp2.propertyValueSchema.equals("JSONObject") && !spTmp2.propertyValueSchema.equals("JSONArray"))) {
@@ -272,31 +272,31 @@ public class CheckUtil {
                 result.add(attach_column);
             } else {
                 // 往前递归
-                List<SceneProperty> parent_ref_Set = get_parent_ref_Set(Repository, spTmp);
-                List<SceneProperty> resultInner = get_attached(Repository, parent_ref_Set, column);
+                List<DataProperty> parent_ref_Set = get_parent_ref_Set(Repository, spTmp);
+                List<DataProperty> resultInner = get_attached(Repository, parent_ref_Set, column);
                 result.addAll(resultInner);
             }
         }
         return result;
     }
 
-    private static List<SceneProperty> get_parent_ref_Set(RepositoryBase Repository, SceneProperty sceneProperty) throws Exception {
-        List<SceneProperty> result = new CopyOnWriteArrayList<SceneProperty>();
-        if (!sceneProperty.propertyValueType.equals("query")) {
+    private static List<DataProperty> get_parent_ref_Set(RepositoryBase Repository, DataProperty dataProperty) throws Exception {
+        List<DataProperty> result = new CopyOnWriteArrayList<DataProperty>();
+        if (!dataProperty.propertyValueType.equals("query")) {
             return result;
         }
 
-        JSONObject sql_json = JSON.parseObject(sceneProperty.query_sql);
+        JSONObject sql_json = JSON.parseObject(dataProperty.querySql);
         Map<String, Boolean> refMap = get_parent_ref(sql_json);
         for (String refString : refMap.keySet()) {
             String[] splits = refString.split("'");
             Object parentData;
             if (splits[0].startsWith("ancestor_")) {
                 int generate = Integer.parseInt(splits[0].substring("ancestor_".length()));
-                parentData = sceneProperty;
+                parentData = dataProperty;
                 while (generate > 0) {
-                    if (parentData instanceof SceneProperty) {
-                        SceneProperty tmpProperty = (SceneProperty) parentData;
+                    if (parentData instanceof DataProperty) {
+                        DataProperty tmpProperty = (DataProperty) parentData;
                         if (Repository.attachproperty2host.containsKey(tmpProperty)) {
                             parentData = Repository.attachproperty2host.get(tmpProperty);
                             generate = generate - 2;
@@ -310,7 +310,7 @@ public class CheckUtil {
                             throw new Exception("refString error: " + refString);
                         }
                     } else {
-                        SceneObject tmpObject = (SceneObject) parentData;
+                        DataObjectBase tmpObject = (DataObjectBase) parentData;
                         if (Repository.staticobject2host.containsKey(tmpObject)) {
                             parentData = Repository.staticobject2host.get(tmpObject);
                             generate--;
@@ -320,10 +320,10 @@ public class CheckUtil {
                     }
                 }
             } else {
-                SceneProperty equalSP = null;
-                for (SceneProperty SceneProperty : Repository.sceneObject.propertyList) {
-                    if (SceneProperty.propertyName.equals(splits[0])) {
-                        equalSP = SceneProperty;
+                DataProperty equalSP = null;
+                for (DataProperty DataProperty : Repository.dataObjectBase.propertyList) {
+                    if (DataProperty.propertyName.equals(splits[0])) {
+                        equalSP = DataProperty;
                         break;
                     }
                 }
@@ -339,16 +339,16 @@ public class CheckUtil {
                 int index_ = split.indexOf('=');
                 if (index_ != -1) {
                     for (Object tmpObj : tmpList) {
-                        SceneProperty tmpSP = (SceneProperty) tmpObj;
+                        DataProperty tmpSP = (DataProperty) tmpObj;
                         if (tmpSP.propertyValueType.equals("static") && tmpSP.propertyValueSchema.equals("JSONArray")) {
                             String propertyName = split.substring(0, index_);
                             String propertyValue = split.substring(index_ + 1);
-                            for (SceneObject soInner : tmpSP.static_array) {
+                            for (DataObjectBase soInner : tmpSP.staticArray) {
                                 boolean matchInner = false;
-                                for (SceneProperty spInner : soInner.propertyList) {
+                                for (DataProperty spInner : soInner.propertyList) {
                                     if (spInner.propertyName.equals(propertyName)) {
                                         if (spInner.propertyValueType.equals("static")) {
-                                            matchInner = propertyValue.equals(spInner.static_value);
+                                            matchInner = propertyValue.equals(spInner.staticValue);
                                         } else {
                                             matchInner = true;
                                         }
@@ -368,31 +368,31 @@ public class CheckUtil {
                     }
                 } else {
                     for (Object tmpObj : tmpList) {
-                        if (tmpObj instanceof SceneProperty) {
-                            SceneProperty tmpProperty = (SceneProperty) tmpObj;
+                        if (tmpObj instanceof DataProperty) {
+                            DataProperty tmpProperty = (DataProperty) tmpObj;
                             if (tmpProperty.propertyValueType.equals("custom")) {
-                                for (SceneProperty spInner : tmpProperty.custom_object.propertyList) {
+                                for (DataProperty spInner : tmpProperty.customObject.propertyList) {
                                     if (spInner.propertyName.equals(split)) {
                                         tmpListInner.add(spInner);
                                     }
                                 }
                             } else if (tmpProperty.propertyValueType.equals("query") && (tmpProperty.propertyValueSchema.equals("JSONObject")
                                     || tmpProperty.propertyValueSchema.equals("JSONArray"))) {
-                                for (SceneProperty spInner : tmpProperty.query_attached) {
+                                for (DataProperty spInner : tmpProperty.queryAttached) {
                                     if (spInner.propertyName.equals(split)) {
                                         tmpListInner.add(spInner);
                                     }
                                 }
                             } else if (tmpProperty.propertyValueType.equals("static") && tmpProperty.propertyValueSchema.equals("JSONArray")) {
-                                if (tmpProperty.query_attached != null) {
-                                    for (SceneProperty spInner : tmpProperty.query_attached) {
+                                if (tmpProperty.queryAttached != null) {
+                                    for (DataProperty spInner : tmpProperty.queryAttached) {
                                         if (spInner.propertyName.equals(split)) {
                                             tmpListInner.add(spInner);
                                         }
                                     }
                                 }
-                                for (SceneObject soInner : tmpProperty.static_array) {
-                                    for (SceneProperty spInner : soInner.propertyList) {
+                                for (DataObjectBase soInner : tmpProperty.staticArray) {
+                                    for (DataProperty spInner : soInner.propertyList) {
                                         if (spInner.propertyName.equals(split)) {
                                             tmpListInner.add(spInner);
                                         }
@@ -403,8 +403,8 @@ public class CheckUtil {
                                         + "propertyValueSchema: " + tmpProperty.propertyValueSchema);
                             }
                         } else {
-                            SceneObject tmpObject = (SceneObject) tmpObj;
-                            for (SceneProperty spInner : tmpObject.propertyList) {
+                            DataObjectBase tmpObject = (DataObjectBase) tmpObj;
+                            for (DataProperty spInner : tmpObject.propertyList) {
                                 if (spInner.propertyName.equals(split)) {
                                     tmpListInner.add(spInner);
                                 }
@@ -415,7 +415,7 @@ public class CheckUtil {
                 tmpList = tmpListInner;
             }
             for (Object objInner : tmpList) {
-                SceneProperty spInner = (SceneProperty) objInner;
+                DataProperty spInner = (DataProperty) objInner;
                 result.add(spInner);
             }
         }

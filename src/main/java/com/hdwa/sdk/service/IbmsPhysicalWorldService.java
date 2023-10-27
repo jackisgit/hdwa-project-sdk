@@ -5,10 +5,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.constant.UrlConstant;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
-import com.hdwa.sdk.entity.scene.SceneDataObject;
-import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
-import com.hdwa.sdk.entity.scene.SceneDataSet;
-import com.hdwa.sdk.entity.scene.SceneDataValue;
+import com.hdwa.sdk.entity.scene.DataObject;
+import com.hdwa.sdk.entity.scene.DataPrimitive;
+import com.hdwa.sdk.entity.scene.DataSet;
+import com.hdwa.sdk.entity.scene.DataValue;
 import com.hdwa.sdk.utils.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -106,17 +106,17 @@ public class IbmsPhysicalWorldService {
         try {
             //场景数据
             JSONArray sceneArray = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.SCENE_ARRAY));
-            SceneDataSet sceneSds = new SceneDataSet(false);
+            DataSet sceneSds = new DataSet(false);
             sceneSds.set = BaseApiUtil.arrayToSdoList(sceneArray);
             repository.ZKTSceneArray = sceneSds;
 
             //类型定义数据
             JSONArray classArray = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.CLASS_ARRAY));
-            SceneDataSet classSds = new SceneDataSet(false, BaseDecConstant.ZKT_CLASS);
+            DataSet classSds = new DataSet(false, BaseDecConstant.ZKT_CLASS);
             classSds.set = BaseApiUtil.arrayToSdoList(classArray);
             repository.ZKTClassArray = classSds;
 
-            Map<String, Map<String, SceneDataValue>> objectArrayMap = new HashMap<>(16);
+            Map<String, Map<String, DataValue>> objectArrayMap = new HashMap<>(16);
             classArray.forEach(item -> {
                 JSONObject classItem = (JSONObject) item;
                 String ibmsSceneCode = (String) classItem.get(BaseDecConstant.IBMS_SCENE_CODE);
@@ -127,7 +127,7 @@ public class IbmsPhysicalWorldService {
                 if (!objectArrayMap.containsKey(ibmsSceneCode)) {
                     objectArrayMap.put(ibmsSceneCode, new HashMap<>(16));
                 }
-                Map<String, SceneDataValue> mapSdv = objectArrayMap.get(ibmsSceneCode);
+                Map<String, DataValue> mapSdv = objectArrayMap.get(ibmsSceneCode);
 
                 File objectFile = new File(maxDir + File.separator + BaseDecConstant.OBJECT + File.separator + ibmsSceneCode + File.separator + ibmsClassCode + UrlConstant.JSON_FILE);
                 //没有数据的类型不做处理
@@ -141,23 +141,23 @@ public class IbmsPhysicalWorldService {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-                SceneDataSet objectSds = new SceneDataSet(false, BaseDecConstant.ZKT_OBJECT + "/" + ibmsSceneCode + "/" + ibmsClassCode);
+                DataSet objectSds = new DataSet(false, BaseDecConstant.ZKT_OBJECT + "/" + ibmsSceneCode + "/" + ibmsClassCode);
                 //点位数据
-                SceneDataSet infoArray = repository.infoArrayDic.get(code);
+                DataSet infoArray = repository.infoArrayDic.get(code);
                 if (infoArray != null) {
                     infoArray.set.forEach(sdoTemp -> {
                         //采集点位
                         if (BaseApiUtil.getInfoTypeByTag(sdoTemp) != 0) {
-                            objectSds.setColChange(sdoTemp.get(BaseDecConstant.CODE).value_prim.value.toString());
+                            objectSds.setColChange(sdoTemp.get(BaseDecConstant.CODE).valuePrim.value.toString());
                         }
                     });
                 } else {
                     log.warn("***{}-{}-{}：缺少点位定义数据", ibmsSceneCode, ibmsClassCode, code);
                 }
-                SceneDataValue objSdv = new SceneDataValue(null, null, null, null);
+                DataValue objSdv = new DataValue(null, null, null, null);
                 objectArray.forEach(temp -> {
                     JSONObject objItem = (JSONObject) temp;
-                    SceneDataObject sdo = repository.id2sdv.get(objItem.get(BaseDecConstant.ID));
+                    DataObject sdo = repository.id2sdv.get(objItem.get(BaseDecConstant.ID));
                     if (sdo == null) {
                         return;
                     }
@@ -166,23 +166,23 @@ public class IbmsPhysicalWorldService {
                         objectSds.set.add(sdo);
                     } else {
                         //加入ibmsSceneCode属性
-                        SceneDataValue tempSdv = new SceneDataValue(null, null, null, null);
+                        DataValue tempSdv = new DataValue(null, null, null, null);
                         tempSdv.finish = true;
-                        tempSdv.value_prim = new SceneDataPrimitive();
-                        tempSdv.value_prim.value = ibmsSceneCode;
+                        tempSdv.valuePrim = new DataPrimitive();
+                        tempSdv.valuePrim.value = ibmsSceneCode;
                         sdo.put(BaseDecConstant.IBMS_SCENE_CODE, tempSdv);
                         //加入ibmsClassCode属性
-                        tempSdv = new SceneDataValue(null, null, null, null);
+                        tempSdv = new DataValue(null, null, null, null);
                         tempSdv.finish = true;
-                        tempSdv.value_prim = new SceneDataPrimitive();
-                        tempSdv.value_prim.value = ibmsClassCode;
+                        tempSdv.valuePrim = new DataPrimitive();
+                        tempSdv.valuePrim.value = ibmsClassCode;
                         sdo.put(BaseDecConstant.IBMS_CLASS_CODE, tempSdv);
 
-                        SceneDataObject sdoSub = new SceneDataObject(repository, null, null, objSdv, null, null, sdo);
+                        DataObject sdoSub = new DataObject(repository, null, null, objSdv, null, null, sdo);
                         objectSds.set.add(sdoSub);
                     }
                 });
-                objSdv.value_array = objectSds;
+                objSdv.valueArray = objectSds;
                 objSdv.finish = true;
                 mapSdv.put(ibmsClassCode, objSdv);
             });

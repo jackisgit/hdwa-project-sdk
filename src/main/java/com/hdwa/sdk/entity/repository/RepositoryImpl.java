@@ -3,10 +3,10 @@ package com.hdwa.sdk.entity.repository;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
-import com.hdwa.sdk.entity.scene.SceneDataObject;
-import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
-import com.hdwa.sdk.entity.scene.SceneDataSet;
-import com.hdwa.sdk.entity.scene.SceneDataValue;
+import com.hdwa.sdk.entity.scene.DataObject;
+import com.hdwa.sdk.entity.scene.DataPrimitive;
+import com.hdwa.sdk.entity.scene.DataSet;
+import com.hdwa.sdk.entity.scene.DataValue;
 import com.hdwa.sdk.utils.BaseApiUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,7 +23,7 @@ public class RepositoryImpl extends RepositoryBase {
      * <p>类型定义-全量数据</p>
      * <p>数据来源 physical_world/classArray.json</p>
      */
-    public SceneDataSet classArray = new SceneDataSet(false);
+    public DataSet classArray = new DataSet(false);
     /**
      * <p>类型定义数据--类型标记</p>
      * <p>objType--->boolean </p>
@@ -49,7 +49,7 @@ public class RepositoryImpl extends RepositoryBase {
      * <p>classCode--->sds</p>
      * <p>数据来源 physical_world/point/*.json</p>
      */
-    public Map<String, SceneDataSet> infoArrayDic = new HashMap<>(16);
+    public Map<String, DataSet> infoArrayDic = new HashMap<>(16);
     /**
      * <p>点位定义数据--code-对象类型列表</p>
      * <p>classCode--->JsonArray</p>
@@ -63,7 +63,7 @@ public class RepositoryImpl extends RepositoryBase {
      * <p>这两条数据等于"dataSource":[{"code":"0","name":"正常"},{"code":"1","name":"报警"}]</p>
      * <p>数据来源 physical_world/point/*.json</p>
      */
-    public SceneDataSet infoDataSource = new SceneDataSet(false);
+    public DataSet infoDataSource = new DataSet(false);
     /**
      * <p>对象数据--id-对象</p>
      * <p>id--->JsonObject</p>
@@ -75,47 +75,47 @@ public class RepositoryImpl extends RepositoryBase {
      * <p>id--->sdo</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
-    public Map<String, SceneDataObject> id2sdv = new HashMap<>(16);
+    public Map<String, DataObject> id2sdv = new HashMap<>(16);
     /**
      * <p>对象数据--全量数据</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
-    public SceneDataSet objectArrayAll = new SceneDataSet(false);
+    public DataSet objectArrayAll = new DataSet(false);
     /**
      * <p>对象数据--全量数据</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
-    public Map<String, SceneDataValue> objectArrayDic = new HashMap<>(16);
+    public Map<String, DataValue> objectArrayDic = new HashMap<>(16);
     /**
      * <p>对象数据--objType-（id-对象数据）</p>
      * <p>objType--->（id-->sdo）</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
-    public Map<String, Map<String, SceneDataObject>> objType2id2Value = new HashMap<>(16);
+    public Map<String, Map<String, DataObject>> objType2id2Value = new HashMap<>(16);
     /**
      * <p>关系数据--graphCode-（relCode-关系数据）</p>
      * <p>graphCode 图例编码--->（relCode-->sds）</p>
      * <p>数据来源 physical_world/relation/*.json</p>
      */
-    public Map<String, Map<String, SceneDataSet>> relationArrayDic = new HashMap<>(16);
+    public Map<String, Map<String, DataSet>> relationArrayDic = new HashMap<>(16);
     /**
      * <p>关系数据--graphCode-关系数据</p>
      * <p>graphCode 图例编码--->sds</p>
      * <p>数据来源 physical_world/relation/*.json</p>
      */
-    public Map<String, SceneDataSet> graphCodeDic = new HashMap<>(16);
+    public Map<String, DataSet> graphCodeDic = new HashMap<>(16);
     /**
      * <p>关系数据--relCode-关系数据</p>
      * <p>relCode 关系编码--->sds</p>
      * <p>数据来源 physical_world/relation/*.json</p>
      */
-    public Map<String, SceneDataSet> relCodeDic = new HashMap<>(16);
+    public Map<String, DataSet> relCodeDic = new HashMap<>(16);
     /**
      * <p>关系数据--全量数据</p>
      * <p>sds</p>
      * <p>数据来源 physical_world/relation/*.json</p>
      */
-    public SceneDataSet relationAll = new SceneDataSet(false);
+    public DataSet relationAll = new DataSet(false);
     /**
      * <p>对象id--点位数据-（point-value）</p>
      * <p>objId 对象数据--->（point-->value）</p>
@@ -139,45 +139,45 @@ public class RepositoryImpl extends RepositoryBase {
      * <p>场景对象</p>
      * <p>数据来源 ibms_physical_world/sceneArray.json</p>
      */
-    public SceneDataSet ZKTSceneArray = new SceneDataSet(false);
+    public DataSet ZKTSceneArray = new DataSet(false);
     /**
      * <p>IBMS物理世界</p>
      * <p>场景编码--对象数据 (ibms类型编码->对象数据)</p>
      * <p>ibmsSceneCode--ibmsClassCode->对象数据 </p>
      * <p>数据来源 ibms_physical_world/sceneArray.json</p>
      */
-    public Map<String, Map<String, SceneDataValue>> ZKTObjectArrayDic = new HashMap<>(16);
+    public Map<String, Map<String, DataValue>> ZKTObjectArrayDic = new HashMap<>(16);
     /**
      * <p>IBMS物理世界</p>
      * <p>类型定义数据</p>
      * <p>数据来源 ibms_physical_world/classArray.json</p>
      */
-    public SceneDataSet ZKTClassArray = new SceneDataSet(false);
+    public DataSet ZKTClassArray = new DataSet(false);
     /**
      * <p>IBMS逻辑编组</p>
      * <p>逻辑编组数据</p>
      * <p>数据来源 ibms_logical_group/ibmsLogicalGroup.json</p>
      */
-    public SceneDataSet IBMSGroupArray = new SceneDataSet(false);
+    public DataSet IBMSGroupArray = new DataSet(false);
     /**
      * <p>IBMS逻辑编组</p>
      * <p>场景编码--分组数据 (ibms类型编码->分组数据)</p>
      * <p>ibmsSceneCode--ibmsClassCode->分组数据 </p>
      * <p>数据来源 ibms_logical_group/**.json</p>
      */
-    public Map<String, Map<String, SceneDataSet>> IBMSArrayDic = new HashMap<>(16);
+    public Map<String, Map<String, DataSet>> IBMSArrayDic = new HashMap<>(16);
     /**
      * <p>点位数据</p>
      * <p>点位数据</p>
      * <p>数据来源 point/point-list.json</p>
      */
-    public SceneDataSet InfoPointListArray = new SceneDataSet(false, BaseDecConstant.INFO_POINT_LIST);
+    public DataSet InfoPointListArray = new DataSet(false, BaseDecConstant.INFO_POINT_LIST);
     /**
      * <p>点位数据</p>
      * <p>点位关系数据</p>
      * <p>数据来源 point/point-relation.json</p>
      */
-    public SceneDataSet InfoPointRelationArray = new SceneDataSet(false, BaseDecConstant.INFO_POINT_RELATION);
+    public DataSet InfoPointRelationArray = new DataSet(false, BaseDecConstant.INFO_POINT_RELATION);
 
     public Map<String, JSONObject> general_queryMap;
 
@@ -192,8 +192,8 @@ public class RepositoryImpl extends RepositoryBase {
      * @param Source
      * @return
      */
-    public SceneDataSet parseSource(JSONObject descSet, String Source) {
-        SceneDataSet result = null;
+    public DataSet parseSource(JSONObject descSet, String Source) {
+        DataSet result = null;
         switch (Source) {
             case BaseDecConstant.CLASS:
                 result = this.classArray;
@@ -208,20 +208,20 @@ public class RepositoryImpl extends RepositoryBase {
                                 if (descSet.containsKey(BaseDecConstant.CLASS_CODE)) {
                                     String classCode = (descSet.get(BaseDecConstant.CLASS_CODE)).toString();
                                     if (this.objectArrayDic.get(classCode) != null) {
-                                        result = this.objectArrayDic.get(classCode).value_array;
+                                        result = this.objectArrayDic.get(classCode).valueArray;
                                     }
                                 } else {
                                     if (this.objectArrayDic.get(objType) != null) {
-                                        result = this.objectArrayDic.get(objType).value_array;
+                                        result = this.objectArrayDic.get(objType).valueArray;
                                     }
                                 }
                             } else {
-                                result = this.objectArrayDic.get(objType).value_array;
+                                result = this.objectArrayDic.get(objType).valueArray;
                             }
                         } else if (descSet.containsKey(BaseDecConstant.CLASS_CODE)) {
                             String classCode = (descSet.get(BaseDecConstant.CLASS_CODE)).toString();
                             if (this.objectArrayDic.get(classCode) != null) {
-                                result = this.objectArrayDic.get(classCode).value_array;
+                                result = this.objectArrayDic.get(classCode).valueArray;
                             }
                         } else {
                             result = this.objectArrayAll;
@@ -265,7 +265,7 @@ public class RepositoryImpl extends RepositoryBase {
                 String ibmsSceneCode = (descSet.get(BaseDecConstant.IBMS_SCENE_CODE)).toString();
                 String ibmsClassCode = (descSet.get(BaseDecConstant.IBMS_CLASS_CODE)).toString();
                 if (this.ZKTObjectArrayDic.get(ibmsSceneCode) != null && this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode) != null) {
-                    result = this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode).value_array;
+                    result = this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode).valueArray;
                 }
                 break;
             }
@@ -283,11 +283,11 @@ public class RepositoryImpl extends RepositoryBase {
                 String ibmsSceneCode = (descSet.get(BaseDecConstant.IBMS_SCENE_CODE)).toString();
                 String ibmsClassCode = (descSet.get(BaseDecConstant.IBMS_CLASS_CODE)).toString();
                 if (!this.IBMSArrayDic.containsKey(ibmsSceneCode)) {
-                    result = new SceneDataSet(false);
+                    result = new DataSet(false);
                 } else {
-                    Map<String, SceneDataSet> arrayMap = this.IBMSArrayDic.get(ibmsSceneCode);
+                    Map<String, DataSet> arrayMap = this.IBMSArrayDic.get(ibmsSceneCode);
                     if (!arrayMap.containsKey(ibmsClassCode)) {
-                        result = new SceneDataSet(false);
+                        result = new DataSet(false);
                     } else {
                         result = this.IBMSArrayDic.get(ibmsSceneCode).get(ibmsClassCode);
                     }
@@ -314,14 +314,14 @@ public class RepositoryImpl extends RepositoryBase {
         int affect_count = 0;
         // 加入计算队列
         for (String point : DataContainer.point2sdv.keySet()) {
-            SceneDataPrimitive sdv = DataContainer.point2sdv.get(point);
+            DataPrimitive sdv = DataContainer.point2sdv.get(point);
             if (sdv.value != null) {
                 item_count++;
                 affect_count += this.processIot(point);
             }
         }
         for (String point : DataContainer.set2sdv.keySet()) {
-            SceneDataPrimitive sdv = DataContainer.set2sdv.get(point);
+            DataPrimitive sdv = DataContainer.set2sdv.get(point);
             if (sdv.value != null) {
                 item_count++;
                 affect_count += this.processIot(point);
@@ -340,12 +340,12 @@ public class RepositoryImpl extends RepositoryBase {
         item_count++;
         affect_count += this.addWaitCompute(DataContainer.alarmArray);
         for (String objId : DataContainer.id2alarmList.keySet()) {
-            SceneDataValue alarmList = DataContainer.id2alarmList.get(objId);
+            DataValue alarmList = DataContainer.id2alarmList.get(objId);
             item_count++;
             affect_count += this.addWaitCompute(alarmList);
         }
         for (String objId : DataContainer.id2alarmCount.keySet()) {
-            SceneDataValue alarmCount = DataContainer.id2alarmCount.get(objId);
+            DataValue alarmCount = DataContainer.id2alarmCount.get(objId);
             item_count++;
             affect_count += this.addWaitCompute(alarmCount);
         }
@@ -360,14 +360,14 @@ public class RepositoryImpl extends RepositoryBase {
         if (this.point2ObjectInfoList.containsKey(point)) {
             List<ObjectInfo> ObjectInfoList = this.point2ObjectInfoList.get(point);
             for (ObjectInfo ObjectInfo : ObjectInfoList) {
-                SceneDataValue sdv = ObjectInfo.obj.get(ObjectInfo.infoCode);
+                DataValue sdv = ObjectInfo.obj.get(ObjectInfo.infoCode);
                 add_count += this.addWaitCompute(sdv);
             }
         }
         if (this.set2ObjectInfoList.containsKey(point)) {
             List<ObjectInfo> ObjectInfoList = this.set2ObjectInfoList.get(point);
             for (ObjectInfo ObjectInfo : ObjectInfoList) {
-                SceneDataValue sdv = ObjectInfo.obj.get(ObjectInfo.infoCode);
+                DataValue sdv = ObjectInfo.obj.get(ObjectInfo.infoCode);
                 add_count += this.addWaitCompute(sdv);
             }
         }
@@ -389,21 +389,21 @@ public class RepositoryImpl extends RepositoryBase {
 
 
     private void refreshRwdToZkt() {
-        for (SceneDataObject classItem : this.ZKTClassArray.set) {
-            String ibmsSceneCode = (String) classItem.get("ibmsSceneCode").value_prim.value;
-            String ibmsClassCode = (String) classItem.get("ibmsClassCode").value_prim.value;
+        for (DataObject classItem : this.ZKTClassArray.set) {
+            String ibmsSceneCode = (String) classItem.get("ibmsSceneCode").valuePrim.value;
+            String ibmsClassCode = (String) classItem.get("ibmsClassCode").valuePrim.value;
             String flag = null;
             if (classItem.containsKey("flag")) {
-                flag = (String) classItem.get("flag").value_prim.value;
+                flag = (String) classItem.get("flag").valuePrim.value;
             }
             if (flag != null && flag.equals("reference")) {
                 continue;
             }
-            SceneDataValue sdv = this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode);
+            DataValue sdv = this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode);
             if (sdv != null) {
-                for (SceneDataObject obj : sdv.value_array.set) {
+                for (DataObject obj : sdv.valueArray.set) {
                     if (obj.father != null) {
-                        this.dependency.sdv2Children.putIfAbsent(obj.father, new CopyOnWriteArrayList<SceneDataObject>());
+                        this.dependency.sdv2Children.putIfAbsent(obj.father, new CopyOnWriteArrayList<DataObject>());
                         this.dependency.sdv2Children.get(obj.father).add(obj);
                     }
                 }
@@ -416,24 +416,24 @@ public class RepositoryImpl extends RepositoryBase {
             if (this.objTypeMap.containsKey(key)) {
                 continue;
             }
-            SceneDataSet infoArray = this.infoArrayDic.get(key);
-            SceneDataSet objectArray = this.objectArrayDic.get(key).value_array;
+            DataSet infoArray = this.infoArrayDic.get(key);
+            DataSet objectArray = this.objectArrayDic.get(key).valueArray;
             for (int index_info = 0; index_info < infoArray.set.size(); index_info++) {
-                SceneDataObject info = infoArray.set.get(index_info);
-                String infoCode = (String) info.get("code").value_prim.value;
+                DataObject info = infoArray.set.get(index_info);
+                String infoCode = (String) info.get("code").valuePrim.value;
                 if (BaseApiUtil.getInfoTypeByTag(info) == 1) {
                     for (int index_object = 0; index_object < objectArray.set.size(); index_object++) {
-                        SceneDataObject obj = objectArray.set.get(index_object);
-                        SceneDataValue sdv = obj.get(infoCode);
+                        DataObject obj = objectArray.set.get(index_object);
+                        DataValue sdv = obj.get(infoCode);
                         if (sdv != null) {
                             this.dependency.add_sdv2SetColumn(sdv, objectArray, infoCode);
                         }
                     }
                 } else if (BaseApiUtil.getInfoTypeByTag(info) == 2) {
                     for (int index_object = 0; index_object < objectArray.set.size(); index_object++) {
-                        SceneDataObject obj = objectArray.set.get(index_object);
+                        DataObject obj = objectArray.set.get(index_object);
                         String Key = infoCode;
-                        SceneDataValue sdv = obj.get(Key);
+                        DataValue sdv = obj.get(Key);
                         if (sdv != null) {
                             this.dependency.add_sdv2SetColumn(sdv, objectArray, Key);
                         }
@@ -452,10 +452,10 @@ public class RepositoryImpl extends RepositoryBase {
             if (!objType.equals("equipment") && !objType.equals("system") && !objType.equals("space")) {
                 continue;
             }
-            SceneDataSet objectArray = this.objectArrayDic.get(classCode).value_array;
+            DataSet objectArray = this.objectArrayDic.get(classCode).valueArray;
             for (int i = 0; i < objectArray.set.size(); i++) {
-                SceneDataObject objectItem = objectArray.set.get(i);
-                SceneDataValue sdv = objectItem.get("报警数量");
+                DataObject objectItem = objectArray.set.get(i);
+                DataValue sdv = objectItem.get("报警数量");
                 this.dependency.add_sdv2SetColumn(sdv, objectArray, "报警数量");
             }
         }

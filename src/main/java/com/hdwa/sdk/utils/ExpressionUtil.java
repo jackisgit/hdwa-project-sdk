@@ -9,7 +9,7 @@ import com.hdwa.sdk.entity.expression.AdvancedExpressionWalker;
 import com.hdwa.sdk.entity.repository.RepositoryBase;
 import com.hdwa.sdk.entity.repository.WalkerList;
 import com.hdwa.sdk.entity.repository.WalkerWrapper;
-import com.hdwa.sdk.entity.scene.SceneProperty;
+import com.hdwa.sdk.entity.scene.DataProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -29,7 +29,7 @@ import java.util.concurrent.locks.ReentrantLock;
 @Slf4j
 public class ExpressionUtil {
 
-    public static List<ExceptionItem> buildAndPut(RepositoryBase Repository, SceneProperty sp, String expression, JSONObject CriteriaObject)
+    public static List<ExceptionItem> buildAndPut(RepositoryBase Repository, DataProperty sp, String expression, JSONObject CriteriaObject)
             throws Exception {
         List<ExceptionItem> exceptionList = new CopyOnWriteArrayList<ExceptionItem>();
         ANTLRInputStream input = new ANTLRInputStream(new ByteArrayInputStream((expression + "$").getBytes()));

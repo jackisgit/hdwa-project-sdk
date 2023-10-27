@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
-import com.hdwa.sdk.entity.scene.SceneDataPrimitive;
+import com.hdwa.sdk.entity.scene.DataPrimitive;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
@@ -82,13 +82,13 @@ public class IotWebSocketClient extends WebSocketClient {
         //点位
         String point = meter + "-" + funcId;
         try {
-            SceneDataPrimitive sdvInner = new SceneDataPrimitive();
+            DataPrimitive sdvInner = new DataPrimitive();
             sdvInner.change = true;
-            SceneDataPrimitive exist_sdv = DataContainer.point2sdv.putIfAbsent(point, sdvInner);
+            DataPrimitive exist_sdv = DataContainer.point2sdv.putIfAbsent(point, sdvInner);
             if (exist_sdv == null) {
                 DataContainer.sdv2point.putIfAbsent(sdvInner, point);
             }
-            SceneDataPrimitive data = DataContainer.point2sdv.get(point);
+            DataPrimitive data = DataContainer.point2sdv.get(point);
 
             if (value.endsWith(".0")) {
                 value = value.substring(0, value.length() - ".0".length());
