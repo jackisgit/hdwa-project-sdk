@@ -28068,7 +28068,7 @@
                             "PropertyName":"清单",
                             "allow_pass":"1",
                             "query_sql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"gypd\",\"ibmsClassCode\": \"kaibisuo\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
-                            "read_level":"1",
+                            "read_level":"2",
                             "filter_rule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "custom_object":null,
                             "static_value":null,
@@ -75672,7 +75672,7 @@
                                           {
                                             "PropertyName":"数量",
                                             "allow_pass":"1",
-                                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\"},\"Criteria\":{\"valid\":1,\"classCode\":\"OTSECT\",\"wdCode\":\"CO2S\"},\"Aggregation\":{\"Function\":\"count\"}}",
+                                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\"},\"Criteria\":{\"valid\":1,\"classCode\":\"CO2S\",\"wdCode\":\"CO2S\"},\"Aggregation\":{\"Function\":\"count\"}}",
                                             "read_level":"1",
                                             "filter_rule":"",
                                             "custom_object":null,
@@ -75976,7 +75976,7 @@
                                           {
                                             "PropertyName":"数量",
                                             "allow_pass":"1",
-                                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\"},\"Criteria\":{\"valid\":1,\"classCode\":\"OTSECT\",\"wdCode\":\"COS\"},\"Aggregation\":{\"Function\":\"count\"}}",
+                                            "query_sql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\"},\"Criteria\":{\"valid\":1,\"classCode\":\"COS\",\"wdCode\":\"COS\"},\"Aggregation\":{\"Function\":\"count\"}}",
                                             "read_level":"1",
                                             "filter_rule":"",
                                             "custom_object":null,
