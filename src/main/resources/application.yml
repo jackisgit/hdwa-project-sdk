@@ -6,7 +6,6 @@ server:
     max-connections: 10000
     min-spare-threads: 100
 
-
 #项目信息
 project:
   groupCode: WD
@@ -20,31 +19,14 @@ dirName:
   ibmsPhysicalWorld: ibms_physical_world
   temp: temp
 
-#服务请求地址
-url:
-#  dmp: http://127.0.0.1:9805
-  dmp: http://10.199.208.69:32050/api-ibms-dmp
-  monitor: http://10.199.208.69:32050/api-ibms-monitor
-  alarmUrl: http://10.199.208.69:32050/api-ibms-alarm
-  iotProject: http://10.199.205.79:18852
-  iotWebSocket: ws://10.199.205.79:8858/websocket
-  alarmWebSocket: ws://10.199.208.69:32050/ws-ibms-alarm/webSocketServer
-
 spring:
-  redis:
-    host: 10.199.205.81
-#    host: 127.0.0.1
-    port: 6379
-    password: hdwaredis0912jd
-    timeout: 10000000
-    database: 6
-
+  profiles:
+    active: dev
   kafka:
-    bootstrap-servers: 10.199.205.61:9092
     #生产者配置
     producer:
-      retries: 3
-      batch-size: 16384
+      retries: 2
+      batch-size: 65536
       properties:
         linger:
           #提交延时 当生产端积累的消息达到batch-size或接收到消息linger.ms后,生产者就会将消息提交给kafka   linger.ms为0表示每接收到一条消息就提交给kafka,这时候batch-size其实就没用了

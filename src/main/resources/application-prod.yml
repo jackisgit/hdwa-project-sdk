@@ -1,0 +1,20 @@
+#服务请求地址
+url:
+  dmp: http://10.199.87.120:32050/api-ibms-dmp
+  monitor: http://10.199.87.120:32050/api-ibms-monitor
+  alarmUrl: http://10.199.87.120:32050/api-ibms-alarm
+  alarmWebSocket: ws://10.199.87.120:32050/ws-ibms-alarm/webSocketServer
+
+  iotProject: http://10.199.205.79:18852
+  iotWebSocket: ws://10.199.205.79:8858/websocket
+
+spring:
+  redis:
+    host: 10.199.87.78
+    port: 6378
+    password: hdwaredis0912
+    timeout: 10000000
+    database: 6
+
+  kafka:
+    bootstrapServers: 10.199.87.63:19092,10.199.87.79:19092,10.199.87.85:19092
