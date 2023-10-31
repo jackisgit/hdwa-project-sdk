@@ -84,8 +84,8 @@ public class IotWebSocketClient extends WebSocketClient {
         try {
             DataPrimitive sdvInner = new DataPrimitive();
             sdvInner.change = true;
-            DataPrimitive exist_sdv = DataContainer.point2sdv.putIfAbsent(point, sdvInner);
-            if (exist_sdv == null) {
+            DataPrimitive existSdv = DataContainer.point2sdv.putIfAbsent(point, sdvInner);
+            if (existSdv == null) {
                 DataContainer.sdv2point.putIfAbsent(sdvInner, point);
             }
             DataPrimitive data = DataContainer.point2sdv.get(point);

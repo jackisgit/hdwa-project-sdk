@@ -24,16 +24,16 @@ public class ComputeThread implements Runnable {
     @Override
     public void run() {
         log.warn("****计算线程已启动");
-        int cycle_count = 0;
+        int cycleCount = 0;
         while (!stop) {
-            cycle_count++;
-            if (cycle_count >= 1000) {
+            cycleCount++;
+            if (cycleCount >= 1000) {
                 try {
                     Thread.sleep(1L);
                 } catch (InterruptedException e) {
                     log.error(e.getMessage(), e);
                 }
-                cycle_count = 0;
+                cycleCount = 0;
             }
 
            /* Date currTime = new Date();
@@ -46,29 +46,29 @@ public class ComputeThread implements Runnable {
                 }
             }*/
 
-            WaitItem WaitItem = repository.WaitCompute.pollFromQueue();
-            if (WaitItem == null) {
+            WaitItem waitItem = repository.WaitCompute.pollFromQueue();
+            if (waitItem == null) {
                 continue;
             }
             /*if (currTime.getTime() < WaitItem.sdv.lastComputeTime.getTime() + this.interval) {
                 repository.WaitCompute.offerToQueue(WaitItem);
                 continue;
             }*/
-            repository.WaitCompute.removeFromMap(WaitItem);
+            repository.WaitCompute.removeFromMap(waitItem);
             try {
                 /*  if (WaitItem.time.getTime() > WaitItem.sdv.lastComputeTime.getTime() + this.interval) {
                     compute_lag += currTime.getTime() - WaitItem.time.getTime();
                 } else {
                     compute_lag += currTime.getTime() - (WaitItem.sdv.lastComputeTime.getTime() + this.interval);
                 }*/
-                //log.warn("compute: " + PathUtil.getDataPath(WaitItem.sdv));
-                CalculateApiJsonUtil.calculateProperty(repository, WaitItem.sdv);
+                //log.warn("compute: " + PathUtil.getDataPath(waitItem.sdv));
+                CalculateApiJsonUtil.calculateProperty(repository, waitItem.sdv);
 
                 //repository.ComputeOccur(WaitItem.sdv);
-                repository.addWaitCompute(WaitItem.sdv);
+                repository.addWaitCompute(waitItem.sdv);
             } catch (Exception e) {
                 try {
-                    String path = PathUtil.getDataPath(WaitItem.sdv);
+                    String path = PathUtil.getDataPath(waitItem.sdv);
                     log.error(path, e);
                 } catch (Exception e1) {
                     log.error("路径获取异常", e1);

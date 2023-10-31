@@ -303,6 +303,8 @@ public class RepositoryImpl extends RepositoryBase {
             case BaseDecConstant.INFO_POINT_RELATION:
                 result = this.InfoPointRelationArray;
                 break;
+            default:
+                break;
         }
         return result;
     }

@@ -161,7 +161,7 @@ public class ConfigApiService {
         log.warn("*****开始-解析计算对象和属性-精简版");
         try {
             repository.property2SDV_enable = true;
-            repository.property2SDV.clear();
+            //repository.property2SDV.clear();
             List<List<DataProperty>> propertyList = CalculateApiJsonUtil.notCheckCalculateProperty(repository);
             CalculateApiJsonUtil.calculateAll(repository, propertyList);
             repository.property2SDV_enable = false;

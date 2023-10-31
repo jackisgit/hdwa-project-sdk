@@ -12,6 +12,7 @@ import com.hdwa.sdk.utils.OkHttpClientUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 /**
@@ -133,11 +134,21 @@ public class InstructControlService {
         postJSON.put("building", BaseDecConstant.CURRENT_PROJECT_ID.substring(2));
         postJSON.put("points", points);
         JSONArray data = OkHttpClientUtil.httpPost(postJSON, iotProjectUrl + UrlConstant.iot_project_control).getJSONArray("points");
+        //new Thread(() -> refresh(points, path)).start();
+        refresh(points, path);
+        return data;
+    }
 
+
+    /**
+     * 如果下发的有手自动点位 就刷新接口，统计手自动数量
+     *
+     * @param points
+     * @param path
+     */
+    private void refresh(JSONArray points, String path) {
         try {
-            //如果是照明的
-            if (path.contains("照明") || path.contains("回路") || path.contains("编组")) {
-                //如果下发的有手自动点位 就刷新接口，统计手自动数量
+            if (path.contains("照明") || path.contains("回路") || path.contains("编组") || path.contains("末端") || path.contains("空调")) {
                 if (points.toString().contains(BaseDecConstant.MANUAL_AUTO_SET)) {
                     configApiService.analysisDataRefresh(DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID));
                 }
@@ -145,6 +156,5 @@ public class InstructControlService {
         } catch (Exception e) {
             log.error("***手自动统计刷新接口错误", e);
         }
-        return data;
     }
 }
