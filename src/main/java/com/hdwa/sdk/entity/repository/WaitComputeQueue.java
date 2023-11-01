@@ -8,8 +8,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class WaitComputeQueue {
-    private ConcurrentLinkedQueue<WaitItem> queue = new ConcurrentLinkedQueue<WaitItem>();
-    private Map<DataValue, Boolean> map = new ConcurrentHashMap<DataValue, Boolean>();
+    private ConcurrentLinkedQueue<WaitItem> queue = new ConcurrentLinkedQueue<>();
+    private Map<DataValue, Boolean> map = new ConcurrentHashMap<>(16);
 
     public void offer(WaitItem WaitItem) {
         Boolean exist = map.putIfAbsent(WaitItem.sdv, true);
@@ -18,18 +18,17 @@ public class WaitComputeQueue {
         }
     }
 
-    public void offerToQueue(WaitItem WaitItem) {
-        queue.offer(WaitItem);
+    public void offerToQueue(WaitItem waitItem) {
+        queue.offer(waitItem);
     }
 
     public WaitItem pollFromQueue() {
-        WaitItem WaitItem = queue.poll();
-        return WaitItem;
+        return queue.poll();
     }
 
-    public void removeFromMap(WaitItem WaitItem) {
-        if (WaitItem != null) {
-            map.remove(WaitItem.sdv);
+    public void removeFromMap(WaitItem waitItem) {
+        if (waitItem != null) {
+            map.remove(waitItem.sdv);
         }
     }
 }

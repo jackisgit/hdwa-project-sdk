@@ -312,7 +312,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 刷新数据 重算iot，alarm
      */
-    @Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60 * 5)
+    //@Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60 * 5)
     public void refreshData() {
         RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
         int[] count = repository.recomputeIot();
@@ -327,8 +327,8 @@ public class InitialDataService implements CommandLineRunner {
      */
     public void startRefreshData() {
         RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
-        for (int i = 0; i < 5; i++) {
-            Runnable thread = new ComputeThread(repository, 10);
+        for (int i = 0; i < variableThreadPool.getCorePoolSize(); i++) {
+            Runnable thread = new ComputeThread(repository,10);
             variableThreadPool.execute(thread);
         }
     }
