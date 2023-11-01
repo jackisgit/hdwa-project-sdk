@@ -135,7 +135,7 @@ public class InstructControlService {
         postJSON.put("points", points);
         JSONArray data = OkHttpClientUtil.httpPost(postJSON, iotProjectUrl + UrlConstant.iot_project_control).getJSONArray("points");
         //new Thread(() -> refresh(points, path)).start();
-        refresh(points, path);
+        //refresh(points, path);
         return data;
     }
 

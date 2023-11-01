@@ -196,7 +196,7 @@ public class RepositoryImpl extends RepositoryBase {
         DataSet result = null;
         switch (Source) {
             case BaseDecConstant.CLASS:
-                result = this.classArray;
+                result = classArray;
                 break;
             case BaseDecConstant.RWD:
                 String rwd = (descSet.get(BaseDecConstant.RWD)).toString();
@@ -207,89 +207,89 @@ public class RepositoryImpl extends RepositoryBase {
                             if (objType.equals(BaseDecConstant.EQUIPMENT) || objType.equals(BaseDecConstant.SYSTEM) || objType.equals(BaseDecConstant.SPACE)) {
                                 if (descSet.containsKey(BaseDecConstant.CLASS_CODE)) {
                                     String classCode = (descSet.get(BaseDecConstant.CLASS_CODE)).toString();
-                                    if (this.objectArrayDic.get(classCode) != null) {
-                                        result = this.objectArrayDic.get(classCode).valueArray;
+                                    if (objectArrayDic.get(classCode) != null) {
+                                        result = objectArrayDic.get(classCode).valueArray;
                                     }
                                 } else {
-                                    if (this.objectArrayDic.get(objType) != null) {
-                                        result = this.objectArrayDic.get(objType).valueArray;
+                                    if (objectArrayDic.get(objType) != null) {
+                                        result = objectArrayDic.get(objType).valueArray;
                                     }
                                 }
                             } else {
-                                result = this.objectArrayDic.get(objType).valueArray;
+                                result = objectArrayDic.get(objType).valueArray;
                             }
                         } else if (descSet.containsKey(BaseDecConstant.CLASS_CODE)) {
                             String classCode = (descSet.get(BaseDecConstant.CLASS_CODE)).toString();
-                            if (this.objectArrayDic.get(classCode) != null) {
-                                result = this.objectArrayDic.get(classCode).valueArray;
+                            if (objectArrayDic.get(classCode) != null) {
+                                result = objectArrayDic.get(classCode).valueArray;
                             }
                         } else {
-                            result = this.objectArrayAll;
+                            result = objectArrayAll;
                         }
                         break;
                     case BaseDecConstant.INFO:
                         String objType = (descSet.get(BaseDecConstant.OBJ_TYPE)).toString();
                         if (objType.equals(BaseDecConstant.EQUIPMENT) || objType.equals(BaseDecConstant.SYSTEM) || objType.equals(BaseDecConstant.SPACE)) {
                             String classCode = (descSet.get(BaseDecConstant.CLASS_CODE)).toString();
-                            result = this.infoArrayDic.get(classCode);
+                            result = infoArrayDic.get(classCode);
                         } else {
-                            result = this.infoArrayDic.get(objType);
+                            result = infoArrayDic.get(objType);
                         }
                         break;
                     case BaseDecConstant.INFO_DATASOURCE:
-                        result = this.infoDataSource;
+                        result = infoDataSource;
                         break;
                     case BaseDecConstant.RELATION:
                         if (descSet.get(BaseDecConstant.GRAPH_CODE) != null && descSet.get(BaseDecConstant.REL_CODE) != null) {
                             String graphCode = (descSet.get(BaseDecConstant.GRAPH_CODE)).toString();
                             String relCode = (descSet.get(BaseDecConstant.REL_CODE)).toString();
-                            if (this.relationArrayDic.get(graphCode) != null) {
-                                result = this.relationArrayDic.get(graphCode).get(relCode);
+                            if (relationArrayDic.get(graphCode) != null) {
+                                result = relationArrayDic.get(graphCode).get(relCode);
                             }
                         } else if (descSet.get(BaseDecConstant.GRAPH_CODE) != null) {//图例
                             String graphCode = (descSet.get(BaseDecConstant.GRAPH_CODE)).toString();
-                            result = this.graphCodeDic.get(graphCode);
+                            result = graphCodeDic.get(graphCode);
                         } else if (descSet.get(BaseDecConstant.REL_CODE) != null) {//关系类型
                             String relCode = (descSet.get(BaseDecConstant.REL_CODE)).toString();
-                            result = this.relCodeDic.get(relCode);
+                            result = relCodeDic.get(relCode);
                         } else {
-                            result = this.relationAll;
+                            result = relationAll;
                         }
                         break;
                 }
                 break;
             case BaseDecConstant.ZKT_CLASS:
-                result = this.ZKTClassArray;
+                result = ZKTClassArray;
                 break;
             case BaseDecConstant.ZKT_OBJECT: {
                 String ibmsSceneCode = (descSet.get(BaseDecConstant.IBMS_SCENE_CODE)).toString();
                 String ibmsClassCode = (descSet.get(BaseDecConstant.IBMS_CLASS_CODE)).toString();
-                if (this.ZKTObjectArrayDic.get(ibmsSceneCode) != null && this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode) != null) {
-                    result = this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode).valueArray;
+                if (ZKTObjectArrayDic.get(ibmsSceneCode) != null && ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode) != null) {
+                    result = ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode).valueArray;
                 }
                 break;
             }
             case BaseDecConstant.IBMS:
                 String product = (descSet.get(BaseDecConstant.PRODUCT)).toString();
                 String type = (descSet.get(BaseDecConstant.TYPE)).toString();
-                if (this.IBMSArrayDic.get(product) != null) {
-                    result = this.IBMSArrayDic.get(product).get(type);
+                if (IBMSArrayDic.get(product) != null) {
+                    result = IBMSArrayDic.get(product).get(type);
                 }
                 break;
             case BaseDecConstant.IBMS_GROUP:
-                result = this.IBMSGroupArray;
+                result = IBMSGroupArray;
                 break;
             case BaseDecConstant.IBMS_GROUP_OBJECT: {
                 String ibmsSceneCode = (descSet.get(BaseDecConstant.IBMS_SCENE_CODE)).toString();
                 String ibmsClassCode = (descSet.get(BaseDecConstant.IBMS_CLASS_CODE)).toString();
-                if (!this.IBMSArrayDic.containsKey(ibmsSceneCode)) {
+                if (!IBMSArrayDic.containsKey(ibmsSceneCode)) {
                     result = new DataSet(false);
                 } else {
-                    Map<String, DataSet> arrayMap = this.IBMSArrayDic.get(ibmsSceneCode);
+                    Map<String, DataSet> arrayMap = IBMSArrayDic.get(ibmsSceneCode);
                     if (!arrayMap.containsKey(ibmsClassCode)) {
                         result = new DataSet(false);
                     } else {
-                        result = this.IBMSArrayDic.get(ibmsSceneCode).get(ibmsClassCode);
+                        result = IBMSArrayDic.get(ibmsSceneCode).get(ibmsClassCode);
                     }
                 }
                 break;
@@ -298,10 +298,10 @@ public class RepositoryImpl extends RepositoryBase {
                 result = DataContainer.alarmArray;
                 break;
             case BaseDecConstant.INFO_POINT_LIST:
-                result = this.InfoPointListArray;
+                result = InfoPointListArray;
                 break;
             case BaseDecConstant.INFO_POINT_RELATION:
-                result = this.InfoPointRelationArray;
+                result = InfoPointRelationArray;
                 break;
             default:
                 break;
@@ -310,67 +310,83 @@ public class RepositoryImpl extends RepositoryBase {
     }
 
 
+    /**
+     * 重新计算IOT数据
+     *
+     * @return
+     */
     public int[] recomputeIot() {
         int[] counts = new int[2];
-        int item_count = 0;
-        int affect_count = 0;
+        int itemCount = 0;
+        int affectCount = 0;
         // 加入计算队列
         for (String point : DataContainer.point2sdv.keySet()) {
             DataPrimitive sdv = DataContainer.point2sdv.get(point);
             if (sdv.value != null) {
-                item_count++;
-                affect_count += this.processIot(point);
+                itemCount++;
+                affectCount += processIot(point);
             }
         }
         for (String point : DataContainer.set2sdv.keySet()) {
             DataPrimitive sdv = DataContainer.set2sdv.get(point);
             if (sdv.value != null) {
-                item_count++;
-                affect_count += this.processIot(point);
+                itemCount++;
+                affectCount += processIot(point);
             }
         }
-        counts[0] = item_count;
-        counts[1] = affect_count;
+        counts[0] = itemCount;
+        counts[1] = affectCount;
         return counts;
     }
 
+    /**
+     * 重新计算报警数据
+     *
+     * @return
+     */
     public int[] recomputeAlarm() {
         int[] counts = new int[2];
-        int item_count = 0;
-        int affect_count = 0;
+        int itemCount = 0;
+        int affectCount = 0;
         // 加入计算队列
-        item_count++;
-        affect_count += this.addWaitCompute(DataContainer.alarmArray);
+        itemCount++;
+        affectCount += addWaitCompute(DataContainer.alarmArray);
         for (String objId : DataContainer.id2alarmList.keySet()) {
             DataValue alarmList = DataContainer.id2alarmList.get(objId);
-            item_count++;
-            affect_count += this.addWaitCompute(alarmList);
+            itemCount++;
+            affectCount += addWaitCompute(alarmList);
         }
         for (String objId : DataContainer.id2alarmCount.keySet()) {
             DataValue alarmCount = DataContainer.id2alarmCount.get(objId);
-            item_count++;
-            affect_count += this.addWaitCompute(alarmCount);
+            itemCount++;
+            affectCount += addWaitCompute(alarmCount);
         }
-        counts[0] = item_count;
-        counts[1] = affect_count;
+        counts[0] = itemCount;
+        counts[1] = affectCount;
         return counts;
     }
 
 
+    /**
+     * 处理iot数据
+     *
+     * @param point
+     * @return
+     */
     public int processIot(String point) {
         int add_count = 0;
-        if (this.point2ObjectInfoList.containsKey(point)) {
-            List<ObjectInfo> ObjectInfoList = this.point2ObjectInfoList.get(point);
+        if (point2ObjectInfoList.containsKey(point)) {
+            List<ObjectInfo> ObjectInfoList = point2ObjectInfoList.get(point);
             for (ObjectInfo ObjectInfo : ObjectInfoList) {
                 DataValue sdv = ObjectInfo.obj.get(ObjectInfo.infoCode);
-                add_count += this.addWaitCompute(sdv);
+                add_count += addWaitCompute(sdv);
             }
         }
-        if (this.set2ObjectInfoList.containsKey(point)) {
-            List<ObjectInfo> ObjectInfoList = this.set2ObjectInfoList.get(point);
+        if (set2ObjectInfoList.containsKey(point)) {
+            List<ObjectInfo> ObjectInfoList = set2ObjectInfoList.get(point);
             for (ObjectInfo ObjectInfo : ObjectInfoList) {
                 DataValue sdv = ObjectInfo.obj.get(ObjectInfo.infoCode);
-                add_count += this.addWaitCompute(sdv);
+                add_count += addWaitCompute(sdv);
             }
         }
         return add_count;
@@ -380,18 +396,18 @@ public class RepositoryImpl extends RepositoryBase {
      * 构建依赖
      */
     public void refreshDependency() {
-        this.dependency.clear();
+        dependency.clear();
         // 构建zkt到rwd的依赖
-        this.refreshRwdToZkt();
+        refreshRwdToZkt();
         // 构建IOT到对象信息点的依赖
-        this.refreshIotToSetColumn();
+        refreshIotToSetColumn();
         // 构建报警数量到对象信息点的依赖
-        this.refreshAlarmToSetColumn();
+        refreshAlarmToSetColumn();
     }
 
 
     private void refreshRwdToZkt() {
-        for (DataObject classItem : this.ZKTClassArray.set) {
+        for (DataObject classItem : ZKTClassArray.set) {
             String ibmsSceneCode = (String) classItem.get("ibmsSceneCode").valuePrim.value;
             String ibmsClassCode = (String) classItem.get("ibmsClassCode").valuePrim.value;
             String flag = null;
@@ -401,12 +417,12 @@ public class RepositoryImpl extends RepositoryBase {
             if (flag != null && flag.equals("reference")) {
                 continue;
             }
-            DataValue sdv = this.ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode);
+            DataValue sdv = ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode);
             if (sdv != null) {
                 for (DataObject obj : sdv.valueArray.set) {
                     if (obj.father != null) {
-                        this.dependency.sdv2Children.putIfAbsent(obj.father, new CopyOnWriteArrayList<DataObject>());
-                        this.dependency.sdv2Children.get(obj.father).add(obj);
+                        dependency.sdv2Children.putIfAbsent(obj.father, new CopyOnWriteArrayList<DataObject>());
+                        dependency.sdv2Children.get(obj.father).add(obj);
                     }
                 }
             }
@@ -414,12 +430,12 @@ public class RepositoryImpl extends RepositoryBase {
     }
 
     private void refreshIotToSetColumn() {
-        for (String key : this.objectArrayDic.keySet()) {
-            if (this.objTypeMap.containsKey(key)) {
+        for (String key : objectArrayDic.keySet()) {
+            if (objTypeMap.containsKey(key)) {
                 continue;
             }
-            DataSet infoArray = this.infoArrayDic.get(key);
-            DataSet objectArray = this.objectArrayDic.get(key).valueArray;
+            DataSet infoArray = infoArrayDic.get(key);
+            DataSet objectArray = objectArrayDic.get(key).valueArray;
             for (int index_info = 0; index_info < infoArray.set.size(); index_info++) {
                 DataObject info = infoArray.set.get(index_info);
                 String infoCode = (String) info.get("code").valuePrim.value;
@@ -428,16 +444,15 @@ public class RepositoryImpl extends RepositoryBase {
                         DataObject obj = objectArray.set.get(index_object);
                         DataValue sdv = obj.get(infoCode);
                         if (sdv != null) {
-                            this.dependency.add_sdv2SetColumn(sdv, objectArray, infoCode);
+                            dependency.add_sdv2SetColumn(sdv, objectArray, infoCode);
                         }
                     }
                 } else if (BaseApiUtil.getInfoTypeByTag(info) == 2) {
                     for (int index_object = 0; index_object < objectArray.set.size(); index_object++) {
                         DataObject obj = objectArray.set.get(index_object);
-                        String Key = infoCode;
-                        DataValue sdv = obj.get(Key);
+                        DataValue sdv = obj.get(infoCode);
                         if (sdv != null) {
-                            this.dependency.add_sdv2SetColumn(sdv, objectArray, Key);
+                            dependency.add_sdv2SetColumn(sdv, objectArray, infoCode);
                         }
                     }
                 }
@@ -446,19 +461,19 @@ public class RepositoryImpl extends RepositoryBase {
     }
 
     private void refreshAlarmToSetColumn() {
-        for (String classCode : this.objectArrayDic.keySet()) {
-            if (!this.code2objTypeMap.containsKey(classCode)) {
+        for (String classCode : objectArrayDic.keySet()) {
+            if (!code2objTypeMap.containsKey(classCode)) {
                 continue;
             }
-            String objType = this.code2objTypeMap.get(classCode);
+            String objType = code2objTypeMap.get(classCode);
             if (!objType.equals("equipment") && !objType.equals("system") && !objType.equals("space")) {
                 continue;
             }
-            DataSet objectArray = this.objectArrayDic.get(classCode).valueArray;
+            DataSet objectArray = objectArrayDic.get(classCode).valueArray;
             for (int i = 0; i < objectArray.set.size(); i++) {
                 DataObject objectItem = objectArray.set.get(i);
                 DataValue sdv = objectItem.get("报警数量");
-                this.dependency.add_sdv2SetColumn(sdv, objectArray, "报警数量");
+                dependency.add_sdv2SetColumn(sdv, objectArray, "报警数量");
             }
         }
     }

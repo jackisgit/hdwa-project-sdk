@@ -29,7 +29,9 @@ public class Match {
                 }
             }
 
-            this.value = (String) value;
+            if (value instanceof String) {
+                this.value = (String) value;
+            }
             this.change = change;
         }
 
@@ -71,8 +73,12 @@ public class Match {
                 }
             }
 
-            this.value = (String) value;
-            regex = Pattern.compile(this.value);
+            if (value instanceof String) {
+                this.value = (String) value;
+            }
+            if (this.value != null) {
+                regex = Pattern.compile(this.value);
+            }
             this.change = change;
         }
 
@@ -101,7 +107,7 @@ public class Match {
     public static class MatchNotin extends MatchBase {
         public boolean pass;
         public HashSet<Object> value;
-        private boolean change = false;
+        private final boolean change;
 
         public MatchNotin(HashSet<Object> value, boolean change) {
             this.value = value;
@@ -119,8 +125,7 @@ public class Match {
             }
             itemValue = DataUtil.primitive_normalize(itemValue);
 
-            boolean result = !this.value.contains(itemValue);
-            return result;
+            return !this.value.contains(itemValue);
         }
 
         public boolean change() {
@@ -272,7 +277,7 @@ public class Match {
     public static class MatchIn extends MatchBase {
         public boolean pass;
         public HashSet<Object> value;
-        private boolean change = false;
+        private final boolean change;
 
         public MatchIn(HashSet<Object> value, boolean change) {
             this.value = value;
@@ -285,13 +290,12 @@ public class Match {
             }
 
             Object itemValue = null;
-            if (item != null) {
+            if (item != null && item.valuePrim != null) {
                 itemValue = (item.valuePrim.value);
             }
             itemValue = DataUtil.primitive_normalize(itemValue);
 
-            boolean result = this.value.contains(itemValue);
-            return result;
+            return this.value.contains(itemValue);
         }
 
         public boolean change() {
@@ -453,7 +457,9 @@ public class Match {
                 }
             }
 
-            this.value = (String) value;
+            if (value instanceof String) {
+                this.value = (String) value;
+            }
             this.change = change;
         }
 
@@ -539,7 +545,7 @@ public class Match {
     public static class MatchArrayNe extends MatchBase {
         public boolean pass;
         public HashSet<Object> value;
-        private boolean change = false;
+        private final boolean change;
 
         public MatchArrayNe(HashSet<Object> value, boolean change) {
             this.value = value;
@@ -556,7 +562,7 @@ public class Match {
                 sdvList = (item.valueArray.singleValueSet);
             }
 
-            HashSet<Object> setInner = new HashSet<Object>();
+            HashSet<Object> setInner = new HashSet<>();
             if (sdvList != null) {
                 for (DataValue sdvInner : sdvList) {
                     setInner.add(DataUtil.primitive_normalize(sdvInner.valuePrim.value));
@@ -571,7 +577,7 @@ public class Match {
                 }
             }
             if (result) {
-                return result;
+                return true;
             }
             for (Object itemValue : setInner) {
                 if (!this.value.contains(itemValue)) {
@@ -590,7 +596,7 @@ public class Match {
     public static class MatchArrayIntersect extends MatchBase {
         public boolean pass;
         public HashSet<Object> value;
-        private boolean change = false;
+        private final boolean change;
 
         public MatchArrayIntersect(HashSet<Object> value, boolean change) {
             this.value = value;
@@ -629,7 +635,7 @@ public class Match {
     public static class MatchArrayIncluded extends MatchBase {
         public boolean pass;
         public HashSet<Object> value;
-        private boolean change = false;
+        private final boolean change;
 
         public MatchArrayIncluded(HashSet<Object> value, boolean change) {
             this.value = value;
@@ -668,7 +674,7 @@ public class Match {
     public static class MatchArrayInclude extends MatchBase {
         public boolean pass;
         public HashSet<Object> value;
-        private boolean change = false;
+        private final boolean change;
 
         public MatchArrayInclude(HashSet<Object> value, boolean change) {
             this.value = value;
@@ -685,7 +691,7 @@ public class Match {
                 sdvList = (item.valueArray.singleValueSet);
             }
 
-            HashSet<Object> setInner = new HashSet<Object>();
+            HashSet<Object> setInner = new HashSet<>();
             if (sdvList != null) {
                 for (DataValue sdvInner : sdvList) {
                     setInner.add(DataUtil.primitive_normalize(sdvInner.valuePrim.value));
@@ -711,7 +717,7 @@ public class Match {
     public static class MatchArrayExclude extends MatchBase {
         public boolean pass;
         public HashSet<Object> value;
-        private boolean change = false;
+        private final boolean change;
 
         public MatchArrayExclude(HashSet<Object> value, boolean change) {
             this.value = value;
@@ -751,7 +757,7 @@ public class Match {
     public static class MatchArrayElemMatchExist extends MatchBase {
         public boolean pass;
         public CriteriaBase value;
-        private boolean change = false;
+        private final boolean change;
 
         public MatchArrayElemMatchExist(CriteriaBase value, boolean change) {
             this.value = value;
@@ -768,8 +774,7 @@ public class Match {
             }
             if (item.valueObject != null) {
                 DataObject sdo = item.valueObject;
-                boolean match_result = this.value.match(sdo);
-                return match_result;
+                return this.value.match(sdo);
             } else {
                 boolean result = true;
                 for (DataObject sdo : item.valueArray.set) {
@@ -792,7 +797,7 @@ public class Match {
     public static class MatchArrayElemMatchAll extends MatchBase {
         public boolean pass;
         public CriteriaBase value;
-        private boolean change = false;
+        private final boolean change;
 
         public MatchArrayElemMatchAll(CriteriaBase value, boolean change) {
             this.value = value;
@@ -809,8 +814,7 @@ public class Match {
             }
             if (item.valueObject != null) {
                 DataObject sdo = item.valueObject;
-                boolean match_result = this.value.match(sdo);
-                return match_result;
+                return this.value.match(sdo);
             } else {
                 boolean result = false;
                 for (DataObject sdo : item.valueArray.set) {
@@ -833,7 +837,7 @@ public class Match {
     public static class MatchArrayE extends MatchBase {
         public boolean pass;
         public HashSet<Object> value;
-        private boolean change = false;
+        private boolean change;
 
         public MatchArrayE(HashSet<Object> value, boolean change) {
             this.value = value;
@@ -850,7 +854,7 @@ public class Match {
                 sdvList = (item.valueArray.singleValueSet);
             }
 
-            HashSet<Object> setInner = new HashSet<Object>();
+            HashSet<Object> setInner = new HashSet<>(16);
             if (sdvList != null) {
                 for (DataValue sdvInner : sdvList) {
                     setInner.add(DataUtil.primitive_normalize(sdvInner.valuePrim.value));
@@ -865,7 +869,7 @@ public class Match {
                 }
             }
             if (!result) {
-                return result;
+                return false;
             }
             for (Object itemValue : setInner) {
                 if (!this.value.contains(itemValue)) {
