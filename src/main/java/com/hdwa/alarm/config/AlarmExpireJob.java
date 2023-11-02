@@ -2,15 +2,17 @@ package com.hdwa.alarm.config;
 
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
-import cn.hutool.core.date.DateUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.hdwa.alarm.cache.AlarmInfoCache;
 import com.hdwa.alarm.entity.ZktAlarmRecord;
 import com.hdwa.alarm.kafka.KafkaProducer;
+import com.hdwa.alarm.mapper.ZktAlarmRecordMapper;
 import com.hdwa.alarm.service.ZktAlarmRecordServiceImpl;
-import com.redxun.core.cache.alarm.AlarmInfoCache;
-import com.redxun.core.entity.alarm.AlarmRecordVO;
-import com.redxun.core.entity.alarm.AlarmStateVO;
-import com.redxun.core.entity.alarm.netty.NettyMessage;
-import com.redxun.core.util.alarm.StringUtil;
+import com.hdwa.alarm.util.DateUtil;
+import com.hdwa.alarm.util.StringUtil;
+import com.hdwa.alarm.vo.AlarmRecordVO;
+import com.hdwa.alarm.vo.AlarmStateVO;
+import com.hdwa.alarm.vo.NettyMessage;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -18,6 +20,7 @@ import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
+import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicLong;
@@ -32,8 +35,8 @@ public class AlarmExpireJob extends QuartzJobBean {
 
     private final AtomicLong nums = new AtomicLong(1L);
 
-    @Autowired
-    ZktAlarmRecordServiceImpl zktAlarmRecordService;
+    @Resource
+    private ZktAlarmRecordMapper zktAlarmRecordMapper;
 
     @Autowired
     KafkaProducer kafkaProducer;
@@ -76,7 +79,10 @@ public class AlarmExpireJob extends QuartzJobBean {
             if (StringUtils.isNotBlank(alarmRecord)) {
                 ZktAlarmRecord zktAlarmRecordDO = StringUtil.tranferItemToDTO(alarmRecord, ZktAlarmRecord.class);
                 //立即过期，过期的时候可能还没有报警记录ID,需要重新执行下
-                ZktAlarmRecord res = zktAlarmRecordService.getById(zktAlarmRecordDO.getId());
+                LambdaQueryWrapper<ZktAlarmRecord> queryWrapper = new LambdaQueryWrapper<>();
+                queryWrapper.eq(ZktAlarmRecord::getId, zktAlarmRecordDO.getId());
+                ZktAlarmRecord res = zktAlarmRecordMapper.selectOne(queryWrapper);
+
                 if (res == null) {
                     res = new ZktAlarmRecord();
                 }
@@ -100,18 +106,21 @@ public class AlarmExpireJob extends QuartzJobBean {
                         .build();
                 if ("2".equals(state)) {
                     message.setEndInfo(endInfo);
-                    message.setEndTime(com.redxun.core.util.alarm.DateUtil.parse(endTime));
+                    message.setEndTime(DateUtil.parse(endTime));
                 }
                 if("3".equals(state)){
-                    message.setEndTime(com.redxun.core.util.alarm.DateUtil.parse(expireTime));
+                    message.setEndTime(DateUtil.parse(expireTime));
                 }
                 nettyMessage.setContent(Collections.singletonList(message));
                 kafkaProducer.send(nettyMessage);
                 //已经过期的时候删除掉这条报警定义了，保证不会再次产生报警
                 AlarmStateVO alarmState = new AlarmStateVO(defineId);
                 AlarmInfoCache.setAlarmState(defineId, alarmState);
-                if (zktAlarmRecordService.getById(zktAlarmRecordDO.getId()) != null) {
-                    zktAlarmRecordService.delete(zktAlarmRecordDO.getId());
+                LambdaQueryWrapper<ZktAlarmRecord> queryWrapper2 = new LambdaQueryWrapper<>();
+                queryWrapper2.eq(ZktAlarmRecord::getId, zktAlarmRecordDO.getId());
+                ZktAlarmRecord zktAlarmRecord = zktAlarmRecordMapper.selectOne(queryWrapper2);
+                if (zktAlarmRecord != null) {
+                    zktAlarmRecordMapper.deleteById(zktAlarmRecordDO.getId());
                 }
             }
             log.info("----------------结束---------------------");
@@ -128,7 +137,7 @@ public class AlarmExpireJob extends QuartzJobBean {
             } else {
                 Scheduler scheduler = context.getScheduler();
                 Trigger trigger = context.getTrigger();
-                DateTime dateTime = DateUtil.offsetSecond(new Date(), 300);
+                DateTime dateTime = cn.hutool.core.date.DateUtil.offsetSecond(new Date(), 300);
                 Trigger newTrigger = TriggerBuilder.newTrigger()
                         .startAt(dateTime.toJdkDate())
                         .withIdentity(trigger.getKey())

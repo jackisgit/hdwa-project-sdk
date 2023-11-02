@@ -3,15 +3,17 @@ package com.hdwa.alarm.kafka;
 import cn.hutool.core.collection.CollectionUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.hdwa.alarm.cache.AlarmInfoCache;
 import com.hdwa.alarm.config.CommonConst;
 import com.hdwa.alarm.entity.ZktAlarmRecord;
+import com.hdwa.alarm.mapper.ZktAlarmRecordMapper;
 import com.hdwa.alarm.service.ZktAlarmRecordServiceImpl;
-import com.redxun.core.cache.alarm.AlarmInfoCache;
-import com.redxun.core.entity.alarm.AlarmDefineVO;
-import com.redxun.core.entity.alarm.AlarmStateVO;
-import com.redxun.core.entity.alarm.netty.NettyMessage;
-import com.redxun.core.util.alarm.AlarmDefineUtil;
-import com.redxun.core.util.alarm.LockUtil;
+import com.hdwa.alarm.util.AlarmDefineUtil;
+import com.hdwa.alarm.util.LockUtil;
+import com.hdwa.alarm.vo.AlarmDefineVO;
+import com.hdwa.alarm.vo.AlarmStateVO;
+import com.hdwa.alarm.vo.NettyMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -29,13 +32,18 @@ import java.util.Optional;
 @Slf4j
 public class KafkaMessageReceiver {
 
-    @Autowired
-    private ZktAlarmRecordServiceImpl alarmRecordService;
+    @Resource
+    private ZktAlarmRecordMapper zktAlarmRecordMapper;
+    @Resource
+    private ZktAlarmRecordServiceImpl zktAlarmRecordService;
 
     /**
      * listenerContainerFactory设置了批量拉取消息，因此参数是List<ConsumerRecord<Integer, String>>，否则是ConsumerRecord
      */
-    @KafkaListener(topics = {"${spring.kafka.consumer.topics}"}, containerFactory = "listenerContainerFactory")
+    @KafkaListener(
+            containerFactory = "huidaKafkaListenerContainerFactory",
+            topics = "${spring.kafka.consumer.topics}",
+            groupId = "${spring.kafka.consumer.group-id}")
     public void registryReceiver(List<ConsumerRecord<Integer, String>> record, Acknowledgment ack) {
         for (ConsumerRecord<?, String> consumerRecords : record) {
             Optional<String> message = Optional.ofNullable(consumerRecords.value());
@@ -69,15 +77,25 @@ public class KafkaMessageReceiver {
             if (CollectionUtil.isNotEmpty(content)) {
                 JSONObject parseObject = JSONObject.parseObject(JSONObject.toJSONString(content.get(0)));
                 String defineId = AlarmInfoCache.getAlarmDefineId(parseObject);
-                ZktAlarmRecord zktAlarmRecord = alarmRecordService.getById(defineId);
+
+                LambdaQueryWrapper<ZktAlarmRecord> queryWrapper = new LambdaQueryWrapper<>();
+                queryWrapper.eq(ZktAlarmRecord::getId, defineId);
+                ZktAlarmRecord zktAlarmRecord = zktAlarmRecordMapper.selectOne(queryWrapper);
+                boolean exist = true;
                 if (zktAlarmRecord == null) {
+                    exist = false;
                     zktAlarmRecord = new ZktAlarmRecord();
                 }
                 zktAlarmRecord.setId(defineId);
                 zktAlarmRecord.setObjId(parseObject.getString("objId"));
                 zktAlarmRecord.setItemId(parseObject.getString("itemId"));
                 zktAlarmRecord.setAlarmId(parseObject.getString("id"));
-                alarmRecordService.save(zktAlarmRecord);
+
+                if (exist) {
+                    zktAlarmRecordMapper.updateById(zktAlarmRecord);
+                } else {
+                    zktAlarmRecordMapper.insert(zktAlarmRecord);
+                }
             }
         } else if (msg.getOpCode() == 9) {
             NettyMessage<AlarmDefineVO> AlarmDefineMessage = JSONObject.parseObject(msg.toString(), new TypeReference<NettyMessage<AlarmDefineVO>>() {
@@ -118,7 +136,7 @@ public class KafkaMessageReceiver {
             NettyMessage<JSONObject> AlarmStateMessage = JSONObject.parseObject(msg.toString(), new TypeReference<NettyMessage<JSONObject>>() {
             });
             List<JSONObject> stateList = AlarmStateMessage.getContent();
-            alarmRecordService.updateAlarmDefine(stateList);
+            zktAlarmRecordService.updateAlarmDefine(stateList);
         } else if (msg.getOpCode() == 13) {
             // 报警隔离或取消隔离
             NettyMessage<JSONObject> alarmConfigMessage = JSONObject.parseObject(msg.toString(), new TypeReference<NettyMessage<JSONObject>>() {

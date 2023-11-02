@@ -29,7 +29,7 @@ public class AlarmQuartzServiceImpl {
      */
     public String addExpireJob(Date startTime, String jobName, String jobGroupName, JobDataMap jobDataMap) throws SchedulerException {
         if (startTime.before(new Date())) {
-            log.error("执行时间【{}】为历史时间，继续添加", com.redxun.core.util.alarm.DateUtil.formatDate(startTime));
+            log.error("执行时间【{}】为历史时间，继续添加", com.hdwa.alarm.util.DateUtil.formatDate(startTime));
         }
         JobKey jobKey = new JobKey(jobName, jobGroupName);
         JobDetail jobDetail = JobBuilder.newJob(AlarmExpireJob.class).withIdentity(jobKey).requestRecovery().build();
@@ -43,7 +43,7 @@ public class AlarmQuartzServiceImpl {
         HashSet<Trigger> triggerSet = new HashSet<>();
         Date fireTime = trigger.getFireTimeAfter(DateUtil.offsetMinute(startTime, -1).toJdkDate());
         if (fireTime != null) {
-            log.info("执行时间为:【{}】，设置时间为【{}】", com.redxun.core.util.alarm.DateUtil.formatDate(fireTime), com.redxun.core.util.alarm.DateUtil.formatDate(startTime));
+            log.info("执行时间为:【{}】，设置时间为【{}】", com.hdwa.alarm.util.DateUtil.formatDate(fireTime), com.hdwa.alarm.util.DateUtil.formatDate(startTime));
         } else {
             log.info("执行时间为 空!");
         }

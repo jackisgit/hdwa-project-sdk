@@ -1,8 +1,8 @@
 package com.hdwa.alarm.config;
 
+import com.hdwa.alarm.cache.ExpireAlarmQueue;
 import com.hdwa.alarm.service.AlarmQuartzServiceImpl;
-import com.redxun.core.cache.alarm.ExpireAlarmQueue;
-import com.redxun.core.entity.alarm.ExpireAlarmMessageVO;
+import com.hdwa.alarm.vo.ExpireAlarmMessageVO;
 import lombok.extern.slf4j.Slf4j;
 
 /**

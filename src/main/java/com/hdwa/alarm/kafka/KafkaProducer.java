@@ -2,7 +2,7 @@ package com.hdwa.alarm.kafka;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.alarm.config.CommonConst;
-import com.redxun.core.entity.alarm.netty.NettyMessage;
+import com.hdwa.alarm.vo.NettyMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -4,23 +4,26 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.util.StringUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.googlecode.aviator.AviatorEvaluator;
 import com.googlecode.aviator.Expression;
+import com.hdwa.alarm.cache.AlarmInfoCache;
+import com.hdwa.alarm.cache.CurrentDataCache;
+import com.hdwa.alarm.cache.ExpireAlarmQueue;
 import com.hdwa.alarm.config.CommonConst;
 import com.hdwa.alarm.entity.ZktAlarmRecord;
 import com.hdwa.alarm.kafka.KafkaProducer;
-import com.redxun.core.cache.alarm.AlarmInfoCache;
-import com.redxun.core.cache.alarm.CurrentDataCache;
-import com.redxun.core.cache.alarm.ExpireAlarmQueue;
-import com.redxun.core.entity.alarm.*;
-import com.redxun.core.entity.alarm.netty.NettyMessage;
+import com.hdwa.alarm.mapper.ZktAlarmRecordMapper;
+import com.hdwa.alarm.util.JsonUtil;
+import com.hdwa.alarm.util.StringUtil;
+import com.hdwa.alarm.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.quartz.JobDataMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -36,11 +39,14 @@ import static org.apache.commons.lang3.math.NumberUtils.INTEGER_ONE;
 @Slf4j
 public class AlarmHandleServiceImpl {
 
-    @Autowired
+    @Resource
     ZktAlarmRecordServiceImpl zktAlarmRecordService;
 
-    @Autowired
+    @Resource
     KafkaProducer kafkaProducer;
+
+    @Resource
+    private ZktAlarmRecordMapper zktAlarmRecordMapper;
 
     /**
      * 处理iot采集数据
@@ -81,7 +87,7 @@ public class AlarmHandleServiceImpl {
                 //实时数据缓存
                 CurrentDataCache.putCurrentData(meterId, funcId, value);
                 //报警触发条件
-                Condition condition = alarmDefine.getCondition();
+                Condition condition = JsonUtil.parseJson(alarmDefine.getCondition(), Condition.class);
                 List<JSONObject> codeDetail = condition.getInfoCodes();
                 boolean match = codeDetail.stream().allMatch(p -> CurrentDataCache.hasKey(p.getString("meterId"), p.getString("funcId")));
                 //报警定义的所有信息点都有采集数值，具备判断条件
@@ -108,8 +114,9 @@ public class AlarmHandleServiceImpl {
                     if (Objects.isNull(alarmState)) {
                         //默认正常报警状态
                         alarmState = new AlarmStateVO(defineId);
-                        //查询当前报警记录
-                        ZktAlarmRecord zktAlarmRecord = zktAlarmRecordService.getById(defineId);
+                        LambdaQueryWrapper<ZktAlarmRecord> queryWrapper = new LambdaQueryWrapper<>();
+                        queryWrapper.eq(ZktAlarmRecord::getId, defineId);
+                        ZktAlarmRecord zktAlarmRecord = zktAlarmRecordMapper.selectOne(queryWrapper);
                         //判断对象是否存在
                         if (zktAlarmRecord != null) {
                             //数据库报警状态：1-未处理
@@ -171,11 +178,15 @@ public class AlarmHandleServiceImpl {
             //设置开始恢复时间
             int uphold = condition.getEndUphold();
             //超过报警恢复设置的持续时间
-            if (com.redxun.core.util.alarm.DateUtil.betweenTwoTimeSecond(endTime, dateTime) >= uphold) {
-                log.info("产生一条报警恢复消息[{}]>[{}]", com.redxun.core.util.alarm.DateUtil.betweenTwoTimeSecond(endTime, dateTime), uphold);
+            if (com.hdwa.alarm.util.DateUtil.betweenTwoTimeSecond(endTime, dateTime) >= uphold) {
+                log.info("产生一条报警恢复消息[{}]>[{}]", com.hdwa.alarm.util.DateUtil.betweenTwoTimeSecond(endTime, dateTime), uphold);
                 NettyMessage<AlarmRecordVO> nettyMessage = new NettyMessage<>("", 6, CommonConst.projectId, CommonConst.groupCode);
-                ZktAlarmRecord alarmRecordDO = zktAlarmRecordService.getById(AlarmInfoCache.getAlarmDefineId(alarmDefine));
+                LambdaQueryWrapper<ZktAlarmRecord> queryWrapper = new LambdaQueryWrapper<>();
+                queryWrapper.eq(ZktAlarmRecord::getId, AlarmInfoCache.getAlarmDefineId(alarmDefine));
+                ZktAlarmRecord alarmRecordDO = zktAlarmRecordMapper.selectOne(queryWrapper);
+                boolean exist = true;
                 if (alarmRecordDO == null) {
+                    exist = false;
                     alarmRecordDO = new ZktAlarmRecord();
                 }
                 alarmRecordDO.setId(defineId);
@@ -183,17 +194,22 @@ public class AlarmHandleServiceImpl {
                 alarmRecordDO.setItemCode(alarmDefine.getItemCode());
                 alarmRecordDO.setItemId(alarmDefine.getItemId());
                 alarmRecordDO.setState("2");
-                alarmRecordDO.setEndTime(com.redxun.core.util.alarm.DateUtil.parseDate(dateTime));
+                alarmRecordDO.setEndTime(com.hdwa.alarm.util.DateUtil.parseDate(dateTime));
                 alarmRecordDO.setEndInfo(JSONObject.toJSONString(paramMap));
                 //更新报警状态
-                zktAlarmRecordService.save(alarmRecordDO);
+
+                if (exist) {
+                    zktAlarmRecordMapper.updateById(alarmRecordDO);
+                } else {
+                    zktAlarmRecordMapper.insert(alarmRecordDO);
+                }
                 String alarmId = alarmRecordDO.getAlarmId();
                 //报警恢复参数
                 AlarmRecordVO alarmResumeRecord = AlarmRecordVO.builder()
                         .state(2)
                         .groupCode(CommonConst.groupCode)
                         .projectId(CommonConst.projectId)
-                        .endTime(com.redxun.core.util.alarm.DateUtil.parse(dateTime))
+                        .endTime(com.hdwa.alarm.util.DateUtil.parse(dateTime))
                         .endInfo(JSONObject.toJSONString(paramMap))
                         .build();
                 //如果有报警ID,直接报警恢复
@@ -283,7 +299,7 @@ public class AlarmHandleServiceImpl {
     private void handlerAlarmWithLock(AlarmDefineVO alarmDefine, AlarmStateVO alarmState, String dateTime, Condition condition, String defineId, HashMap<String, Object> paramMap, JSONObject effectTime, boolean hasExpire, JSONObject period) throws InterruptedException {
         long timeSecond = 0;
         if (StringUtil.isNotEmpty(alarmState.getAlarmStartTime())) {
-            timeSecond = com.redxun.core.util.alarm.DateUtil.betweenTwoTimeSecond(alarmState.getAlarmStartTime(), dateTime);
+            timeSecond = com.hdwa.alarm.util.DateUtil.betweenTwoTimeSecond(alarmState.getAlarmStartTime(), dateTime);
         } else {
             //设置开始报警时间
             alarmState.setAlarmStartTime(dateTime);
@@ -293,9 +309,9 @@ public class AlarmHandleServiceImpl {
         if (hasExpire && "period".equals(effectTime.getString("type"))) {
             //过期时间
             String expireTime = period.getString("endTime");
-            LocalTime localTime = LocalTime.parse(expireTime, DateTimeFormatter.ofPattern(com.redxun.core.util.alarm.DateUtil.sdfTimeNotDate));
+            LocalTime localTime = LocalTime.parse(expireTime, DateTimeFormatter.ofPattern(com.hdwa.alarm.util.DateUtil.sdfTimeNotDate));
             expireDateTime = LocalDateTime.of(LocalDate.now(), localTime.withNano(0));
-            expireDate = com.redxun.core.util.alarm.DateUtil.localDateTime2Date(expireDateTime);
+            expireDate = com.hdwa.alarm.util.DateUtil.localDateTime2Date(expireDateTime);
         }
 
         if (timeSecond >= condition.getTriggerUphold()) {
@@ -307,7 +323,7 @@ public class AlarmHandleServiceImpl {
                     .projectId(CommonConst.projectId)
                     .state(1)
                     //报警时间为第一次满足报警条件时候的时间
-                    .triggerTime(com.redxun.core.util.alarm.DateUtil.parse(alarmState.getAlarmStartTime()))
+                    .triggerTime(com.hdwa.alarm.util.DateUtil.parse(alarmState.getAlarmStartTime()))
                     .treatState(INTEGER_ONE)
                     .remark(alarmDefine.getRemark())
                     .triggerInfo(JSONObject.toJSONString(paramMap))
@@ -327,8 +343,13 @@ public class AlarmHandleServiceImpl {
             // 推送一条报警记录给远端
             kafkaProducer.send(nettyMessage);
 
-            ZktAlarmRecord zktAlarmRecordDO = zktAlarmRecordService.getById(defineId);
+            LambdaQueryWrapper<ZktAlarmRecord> queryWrapper = new LambdaQueryWrapper<>();
+            queryWrapper.eq(ZktAlarmRecord::getId, defineId);
+            ZktAlarmRecord zktAlarmRecordDO = zktAlarmRecordMapper.selectOne(queryWrapper);
+
+            boolean exist = true;
             if (zktAlarmRecordDO == null) {
+                exist = false;
                 zktAlarmRecordDO = new ZktAlarmRecord();
             }
             zktAlarmRecordDO.setId(defineId);
@@ -338,7 +359,11 @@ public class AlarmHandleServiceImpl {
             zktAlarmRecordDO.setState(AlarmStateVO.State.NOT_DEAL.getType());
             zktAlarmRecordDO.setAlarmTime(alarmState.getAlarmStartTime());
             zktAlarmRecordDO.setProjectId(alarmDefine.getProjectId());
-            zktAlarmRecordService.save(zktAlarmRecordDO);
+            if (exist) {
+                zktAlarmRecordMapper.updateById(zktAlarmRecordDO);
+            } else {
+                zktAlarmRecordMapper.insert(zktAlarmRecordDO);
+            }
             alarmState.setState(AlarmStateVO.State.NOT_DEAL.getType());
             //有过期时间，生成报警过期消息
             if (hasExpire && "period".equals(effectTime.getString("type"))) {
@@ -346,7 +371,7 @@ public class AlarmHandleServiceImpl {
                 log.error("产生一条定时过期报警消息");
                 ZktAlarmRecord zktAlarmRecord = ZktAlarmRecord.builder()
                         .alarmTime(alarmState.getAlarmStartTime())
-                        .effectEndTime(com.redxun.core.util.alarm.DateUtil.format(Objects.requireNonNull(expireDateTime)))
+                        .effectEndTime(com.hdwa.alarm.util.DateUtil.format(Objects.requireNonNull(expireDateTime)))
                         .id(defineId)
                         .itemCode(alarmDefine.getItemCode())
                         .name(alarmDefine.getName())
@@ -356,7 +381,7 @@ public class AlarmHandleServiceImpl {
                         .state("3")  //要变成已过期
                         .build();
 
-                ZktAlarmRecord res = zktAlarmRecordService.getById(defineId);
+                ZktAlarmRecord res = zktAlarmRecordMapper.selectOne(queryWrapper);
                 if (res == null) {
                     res = new ZktAlarmRecord();
                 }
@@ -364,14 +389,14 @@ public class AlarmHandleServiceImpl {
                 JobDataMap jobDataMap = new JobDataMap();
                 jobDataMap.put("alarmRecord", zktAlarmRecord.toString());
                 jobDataMap.put("refire", "0");
-                jobDataMap.put("expireTime", com.redxun.core.util.alarm.DateUtil.format(expireDateTime));
+                jobDataMap.put("expireTime", com.hdwa.alarm.util.DateUtil.format(expireDateTime));
                 jobDataMap.put("defineId", defineId);
                 //过期
                 jobDataMap.put("state", "3");
                 ExpireAlarmMessageVO em = new ExpireAlarmMessageVO();
                 //过期消息
                 em.setType("1");
-                em.setStartTime(com.redxun.core.util.alarm.DateUtil.localDateTime2Date(expireDateTime));
+                em.setStartTime(com.hdwa.alarm.util.DateUtil.localDateTime2Date(expireDateTime));
                 em.setJobDataMap(jobDataMap);
                 em.setJobName(defineId);
                 em.setJobGroupName("expire");

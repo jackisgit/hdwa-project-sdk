@@ -2,35 +2,28 @@ package com.hdwa.alarm.service;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.hdwa.alarm.cache.AlarmInfoCache;
+import com.hdwa.alarm.cache.ExpireAlarmQueue;
 import com.hdwa.alarm.entity.ZktAlarmRecord;
 import com.hdwa.alarm.mapper.ZktAlarmRecordMapper;
-import com.redxun.common.base.db.BaseDao;
-import com.redxun.common.base.db.BaseService;
-import com.redxun.common.service.impl.SuperServiceImpl;
-import com.redxun.core.cache.alarm.AlarmInfoCache;
-import com.redxun.core.cache.alarm.ExpireAlarmQueue;
-import com.redxun.core.entity.alarm.AlarmStateVO;
-import com.redxun.core.entity.alarm.ExpireAlarmMessageVO;
+import com.hdwa.alarm.vo.AlarmStateVO;
+import com.hdwa.alarm.vo.ExpireAlarmMessageVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
-;
-
 /**
 * [报警记录]业务服务类
 */
 @Service
-public class ZktAlarmRecordServiceImpl extends SuperServiceImpl<ZktAlarmRecordMapper, ZktAlarmRecord> implements BaseService<ZktAlarmRecord> {
+@Slf4j
+public class ZktAlarmRecordServiceImpl {
 
     @Resource
     private ZktAlarmRecordMapper zktAlarmRecordMapper;
-
-    @Override
-    public BaseDao<ZktAlarmRecord> getRepository() {
-        return zktAlarmRecordMapper;
-    }
 
     public void updateAlarmDefine(List<JSONObject> alarmDefineList) {
         if (CollectionUtil.isNotEmpty(alarmDefineList)) {
@@ -43,8 +36,12 @@ public class ZktAlarmRecordServiceImpl extends SuperServiceImpl<ZktAlarmRecordMa
                 String newState = "1".equals(state) ? "1" : "0";
                 alarmState.setState(newState);
                 AlarmInfoCache.setAlarmState(defineId, alarmState);
-                ZktAlarmRecord zktAlarmRecord = this.getById(defineId);
+                LambdaQueryWrapper<ZktAlarmRecord> queryWrapper = new LambdaQueryWrapper<>();
+                queryWrapper.eq(ZktAlarmRecord::getId, defineId);
+                ZktAlarmRecord zktAlarmRecord = zktAlarmRecordMapper.selectOne(queryWrapper);
+                boolean exist = true;
                 if (zktAlarmRecord == null) {
+                    exist = false;
                     zktAlarmRecord = new ZktAlarmRecord();
                 }
                 zktAlarmRecord.setId(defineId);
@@ -53,7 +50,13 @@ public class ZktAlarmRecordServiceImpl extends SuperServiceImpl<ZktAlarmRecordMa
                 zktAlarmRecord.setItemCode(stateItem.getString("itemCode"));
                 zktAlarmRecord.setItemId(stateItem.getString("itemId"));
                 zktAlarmRecord.setState(stateItem.getString("state"));
-                this.save(zktAlarmRecord);
+
+                if (exist) {
+                    zktAlarmRecordMapper.updateById(zktAlarmRecord);
+                } else {
+                    zktAlarmRecordMapper.insert(zktAlarmRecord);
+                }
+
                 if("2".equals(state)||"3".equals(state)) {
                     try {
                         ExpireAlarmMessageVO em = new ExpireAlarmMessageVO();

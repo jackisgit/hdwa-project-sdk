@@ -1,6 +1,6 @@
 group:
   alarm:
-    host: 10.199.205.60
+    host: localhost
     code: WD
     project:
       #------------------iot使用项目ID 需更改
@@ -11,6 +11,9 @@ group:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/huiyun?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false
+#    username: root
+#    password: wanda@1234
     url: jdbc:mysql://10.199.205.60:3306/hdwa_ibms_alarm?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false
     username: root
     password: hdwadbajd0520
@@ -54,7 +57,7 @@ spring:
       # 设置生产者内存缓冲区的大小。
       buffer-memory: 33554432
       acks: 1
-      topics: alarm.edge2alarm
+      topics: alarm.edge2alarm-test
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:
       # 自动提交的时间间隔 在spring boot 2.X 版本中这里采用的是值的类型为Duration 需要符合特定的格式，如1S,1M,2H,5D
@@ -67,7 +70,7 @@ spring:
       enable-auto-commit: false
       #------------------后缀为项目id 需要修改
       group-id: zkt-alarm-project-Pj2102110210
-      topics: alarm.alarm2edge
+      topics: alarm.alarm2edge-test
       heartbeat-interval: 10S
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     listener:
@@ -102,7 +105,7 @@ remote:
     # iot-project服务
     project:
       # ------------------需要更改，修改其中的项目ID和ip、port，其中port为websocket的端口，切记不是服务端口
-      websocket: ws://10.2.17.241:30019/websocket?projectId=2102110210&type=pointset,iot&getFullData=true
+      websocket: ws://10.199.205.79:8858/websocket?projectId=2102110210&type=pointset,iot&getFullData=true
 
       # IOT程序
       iot:

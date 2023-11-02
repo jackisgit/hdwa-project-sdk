@@ -5,15 +5,18 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.redxun.core.cache.alarm.AlarmInfoCache;
-import com.redxun.core.constant.alarm.ExtraCommonConstant;
-import com.redxun.core.entity.alarm.AlarmDefineVO;
-import com.redxun.core.util.alarm.AlarmDefineUtil;
+import com.hdwa.alarm.cache.AlarmInfoCache;
+import com.hdwa.alarm.constant.ExtraCommonConstant;
+import com.hdwa.alarm.util.AlarmDefineUtil;
+import com.hdwa.alarm.vo.AlarmDefineVO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -70,13 +73,14 @@ public class InitAlarmDefine implements CommandLineRunner {
 				continue;
 			}
 			
-			String alarmDefines = alarmDefineObject.getString("data");
-			if (StrUtil.isBlank(alarmDefines)) {
+			JSONArray data = alarmDefineObject.getJSONArray("data");
+			if (CollectionUtils.isEmpty(data)) {
 				log.warn("无报警规则要更新");
 				continue;
 			}
-			List<AlarmDefineVO> alarmDefineList = JSONArray.parseArray(alarmDefines, AlarmDefineVO.class);
-            if (CollectionUtil.isNotEmpty(alarmDefineList)) {
+			List<AlarmDefineVO> alarmDefineList = JSONArray.parseArray(data.toJSONString(), AlarmDefineVO.class);
+
+			if (CollectionUtil.isNotEmpty(alarmDefineList)) {
 				AlarmDefineUtil.listSomeAlarmDefine(alarmDefineList);
 				ConcurrentHashMap<String, AlarmDefineVO> alarmDefineMap = AlarmInfoCache.alarmDefineMap;
 				System.out.println(alarmDefineMap);
