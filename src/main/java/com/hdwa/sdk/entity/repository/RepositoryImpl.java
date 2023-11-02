@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * 数据仓库
+ */
 @Slf4j
 public class RepositoryImpl extends RepositoryBase {
 

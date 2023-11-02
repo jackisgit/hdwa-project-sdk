@@ -3,6 +3,9 @@ package com.hdwa.sdk.entity.repository;
 
 import com.hdwa.sdk.entity.scene.DataObject;
 
+/**
+ * 对象信息
+ */
 public class ObjectInfo {
     public DataObject obj;
     public String objId;

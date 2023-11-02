@@ -13,15 +13,15 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class PathUtil {
 
-    public static List<Object> getByPath(Object parentData, String path) throws Exception {
+    public static List<Object> getByPath(Object parentData, String path) {
         String[] splits = path.split("'");
         int splits_index = 0;
         // 查询目标可以是value_object或者value_array
-        List<Object> tmpList = new CopyOnWriteArrayList<Object>();
+        List<Object> tmpList = new CopyOnWriteArrayList<>();
         tmpList.add(parentData);
         for (int i = splits_index; i < splits.length; i++) {
             String split = splits[i];
-            List<Object> tmpListInner = new CopyOnWriteArrayList<Object>();
+            List<Object> tmpListInner = new CopyOnWriteArrayList<>();
             for (Object tmp : tmpList) {
                 if (tmp instanceof DataObjectBase) {
                     DataObjectBase soInner = (DataObjectBase) tmp;
@@ -143,7 +143,7 @@ public class PathUtil {
     }
 
     public static String getDataPath(Object sv, JSONArray pathArray) throws Exception {
-        List<Object> list = new CopyOnWriteArrayList<Object>();
+        List<Object> list = new CopyOnWriteArrayList<>();
         {
             Object tmp = sv;
             while (tmp != null) {
@@ -177,11 +177,11 @@ public class PathUtil {
                         }
                     }
                     if (sdvInner != null) {
-                        sb.append((sb.length() > 0 ? "." : "") + "[" + (sdvInner.valuePrim == null ? "null" : sdvInner.valuePrim.value) + "]");
+                        sb.append(sb.length() > 0 ? "." : "").append("[").append(sdvInner.valuePrim == null ? "null" : sdvInner.valuePrim.value).append("]");
                         pathArray.add(sdvInner.valuePrim == null ? "null" : sdvInner.valuePrim.value);
                     }
                 } else {
-                    sb.append((sb.length() > 0 ? "." : "") + tmpData.myPropertyName);
+                    sb.append(sb.length() > 0 ? "." : "").append(tmpData.myPropertyName);
                     pathArray.add(tmpData.myPropertyName);
                 }
             }

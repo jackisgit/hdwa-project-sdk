@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.ReentrantLock;
 
-// 已废弃，改用WalkerWrapper
 public class WalkerList {
     public int index = -1;
     public List<WalkerWrapper> wrapperList = new CopyOnWriteArrayList<WalkerWrapper>();
@@ -39,7 +38,6 @@ public class WalkerList {
     public synchronized WalkerWrapper get() {
         index++;
         index = index % wrapperList.size();
-        WalkerWrapper WalkerWrapper = this.wrapperList.get(index);
-        return WalkerWrapper;
+        return this.wrapperList.get(index);
     }
 }

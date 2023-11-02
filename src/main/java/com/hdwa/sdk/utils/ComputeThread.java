@@ -69,10 +69,10 @@ public class ComputeThread implements Runnable {
                 }*/
                 //log.warn("compute: " + PathUtil.getDataPath(waitItem.sdv));
 
-                CalculateApiJsonUtil.calculateProperty(repository, waitItem.sdv);
-
-                //repository.ComputeOccur(WaitItem.sdv);
-                repository.addWaitCompute(waitItem.sdv);
+                boolean computeValueChanged = CalculateApiJsonUtil.calculateProperty(repository, waitItem.sdv);
+                if (computeValueChanged) {
+                    repository.addWaitCompute(waitItem.sdv);
+                }
             } catch (Exception e) {
                 try {
                     String path = PathUtil.getDataPath(waitItem.sdv);

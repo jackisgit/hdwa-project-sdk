@@ -300,7 +300,8 @@ public class CalculateApiJsonUtil {
      * @param sv
      * @throws Exception
      */
-    public static void calculateProperty(RepositoryBase repositoryBase, DataValue sv) throws Exception {
+    public static boolean calculateProperty(RepositoryBase repositoryBase, DataValue sv) throws Exception {
+        boolean computeValueChanged = false;
         DataObject objectData = sv.parentObjectData;
         DataProperty dataProperty = sv.relProperty;
         switch (dataProperty.propertyValueType) {
@@ -336,7 +337,7 @@ public class CalculateApiJsonUtil {
             case BaseDecConstant.QUERY:
                 sv.lock.lock();
                 try {
-                    calculatePropertyQuery(repositoryBase, dataProperty, sv);
+                    computeValueChanged = calculatePropertyQuery(repositoryBase, dataProperty, sv);
                 } finally {
                     sv.lock.unlock();
                 }
@@ -380,6 +381,7 @@ public class CalculateApiJsonUtil {
             default:
         }
         sv.lastComputeTime = new Date();
+        return computeValueChanged;
     }
 
     /**
@@ -402,9 +404,9 @@ public class CalculateApiJsonUtil {
         QueryAssist queryAssist = new QueryAssist(true);
         Object queryResult = QueryUtil.query(repositoryBase, sv, sqlJson, queryAssist);
 
-            sv.rowFactor = queryAssist.rowFactor;
-            sv.colFactorMap = queryAssist.colFactorMap;
-            repositoryBase.dependency.add_compute(sv);
+        sv.rowFactor = queryAssist.rowFactor;
+        sv.colFactorMap = queryAssist.colFactorMap;
+        repositoryBase.dependency.add_compute(sv);
 
         if (dataProperty.propertyValueSchema.equals(BaseDecConstant.JSONOBJECT)) {
             DataObject queryResultObject = null;

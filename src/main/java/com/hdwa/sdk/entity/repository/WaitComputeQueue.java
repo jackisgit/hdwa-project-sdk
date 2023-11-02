@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+/**
+ * 计算等待队列
+ */
 public class WaitComputeQueue {
     private ConcurrentLinkedQueue<WaitItem> queue = new ConcurrentLinkedQueue<>();
     private Map<DataValue, Boolean> map = new ConcurrentHashMap<>(16);

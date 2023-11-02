@@ -10,16 +10,16 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class InfluenceFactor {
-    public Map<DataSet, Boolean> rowChange = new ConcurrentHashMap<DataSet, Boolean>();
-    public Map<DataSet, Map<String, Boolean>> colChange = new ConcurrentHashMap<DataSet, Map<String, Boolean>>();
-    public Map<DataValue, Boolean> valueChange = new ConcurrentHashMap<DataValue, Boolean>();
+    public Map<DataSet, Boolean> rowChange = new ConcurrentHashMap<>(16);
+    public Map<DataSet, Map<String, Boolean>> colChange = new ConcurrentHashMap<>(16);
+    public Map<DataValue, Boolean> valueChange = new ConcurrentHashMap<>(16);
 
     public void merge(InfluenceFactor other) {
         for (DataSet key : other.rowChange.keySet()) {
             this.rowChange.put(key, true);
         }
         for (DataSet key : other.colChange.keySet()) {
-            this.colChange.putIfAbsent(key, new ConcurrentHashMap<String, Boolean>());
+            this.colChange.putIfAbsent(key, new ConcurrentHashMap<>(16));
             for (String col : other.colChange.get(key).keySet()) {
                 this.colChange.get(key).put(col, true);
             }

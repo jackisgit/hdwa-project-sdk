@@ -106,13 +106,12 @@ public class DataValue {
             } else if (this.valuePrim != null) {
                 return this.valuePrim.value;
             }
-            return null;
         } else {
             if (this.valuePrim != null) {
                 return this.valuePrim.value;
             }
-            return null;
         }
+        return null;
     }
 
     @Override

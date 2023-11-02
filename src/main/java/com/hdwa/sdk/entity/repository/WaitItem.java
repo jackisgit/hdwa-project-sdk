@@ -5,6 +5,9 @@ import com.hdwa.sdk.entity.scene.DataValue;
 
 import java.util.Date;
 
+/**
+ * 等待元素定义
+ */
 public class WaitItem {
     public DataValue sdv;
     public Date time;
