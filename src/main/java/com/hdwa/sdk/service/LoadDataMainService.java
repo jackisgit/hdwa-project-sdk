@@ -53,7 +53,7 @@ public class LoadDataMainService {
             downLoadDataMain();
             loadDataMain();
         } catch (Exception e) {
-            log.error("***执行全流程出现异常", e);
+            log.error("******** 执行全流程出现异常", e);
         }
     }
 
@@ -72,7 +72,7 @@ public class LoadDataMainService {
             //加载到数据容器
             DataContainer.projectMap.put(System.getProperty(BaseDecConstant.PROJECT_ID), repository);
         } catch (Exception e) {
-            log.error("***执行加载逻辑编组流程出现异常", e);
+            log.error("******** 执行加载逻辑编组流程出现异常", e);
         }
     }
 

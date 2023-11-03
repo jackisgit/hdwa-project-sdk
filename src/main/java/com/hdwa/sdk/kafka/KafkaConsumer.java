@@ -33,16 +33,16 @@ public class KafkaConsumer {
      */
     @KafkaListener(topics = {"dmpToSdk"}, groupId = "${spring.kafka.consumer.properties.group.id}")
     public void receiveSsMsg(ConsumerRecord<String, String> record) {
-        log.warn("=======接收到DMP消息：{}", record.value());
+        log.warn("===============================接收到DMP消息：{}", record.value());
         MessageDto msg = JSONObject.parseObject(record.value(), MessageDto.class);
         if (projectId.equals(msg.getProjectId())) {
-            log.warn("=======开始消费DMP消息：{}", record.value());
+            log.warn("===============================开始消费DMP消息：{}", record.value());
             //全量更新或者只更新逻辑编组数据
             if (msg.getMsgType().equals("0")) {
-                log.warn("=======开始全流程更新数据");
+                log.warn("===============================开始更新所有数据===============================");
                 loadDataMainService.main();
             } else if (msg.getMsgType().equals("1")) {
-                log.warn("=======开始更新逻辑编组数据");
+                log.warn("===============================开始更新逻辑编组数据===============================");
                 loadDataMainService.logicGroupMain();
             }
         }

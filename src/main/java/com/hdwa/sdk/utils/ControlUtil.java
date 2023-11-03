@@ -162,10 +162,7 @@ public class ControlUtil {
 
             }
 
-            SystemOperationLogSaveDto saveDto = postParam.toJavaObject(SystemOperationLogSaveDto.class);
-            System.out.println(saveDto.toString());
-            boolean result = OkHttpClientUtil.httpPost(postParam, url + UrlConstant.SAVE_LOG_URL).getBoolean(BaseDecConstant.SUCCESS);
-            System.out.println(result);
+           OkHttpClientUtil.httpPost(postParam, url + UrlConstant.SAVE_LOG_URL).getBoolean(BaseDecConstant.SUCCESS);
         } catch (Exception e) {
             log.error("保存日志操作失败", e);
         }

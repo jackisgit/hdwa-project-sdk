@@ -74,12 +74,28 @@ public class InitialDataService implements CommandLineRunner {
     @Autowired
     private PointService pointService;
 
-    @Autowired
-    private ConfigApiService configApiService;
+    /**
+     * 计算数据线程池
+     */
+    private final ThreadPoolExecutor variableThreadPool = new ThreadPoolExecutor(10, 20, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
 
-    private final ThreadPoolExecutor variableThreadPool = new ThreadPoolExecutor(5, 10, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
+    /**
+     * iotWebSocket连接
+     */
+    private IotWebSocketClient iotClient;
 
 
+    /**
+     * alarmWebSocket连接
+     */
+    private AlarmWebSocketClient alarmClient;
+
+
+    /**
+     * 项目启动
+     *
+     * @param args incoming main method arguments
+     */
     @Override
     public void run(String... args) {
         initDir();
@@ -88,6 +104,7 @@ public class InitialDataService implements CommandLineRunner {
         initIotWebsocket();
         initAlarmWebsocket();
         startRefreshData();
+        log.warn("===============================" + BaseDecConstant.CURRENT_PROJECT_ID + "：成功启动===============================");
     }
 
     /**
@@ -176,19 +193,14 @@ public class InitialDataService implements CommandLineRunner {
                 log.warn(tempPath.getPath());
                 Files.createDirectories(tempPath.toPath());
             }
-
         } catch (Exception e) {
             log.error("初始化文件异常");
         }
-
     }
 
-
     /**
-     * iotWebSocket连接
+     * 初始化Iot数据连接
      */
-    private IotWebSocketClient iotClient;
-
     private void initIotWebsocket() {
         try {
             log.warn("************初始化iotWebSocket");
@@ -200,12 +212,9 @@ public class InitialDataService implements CommandLineRunner {
         }
     }
 
-
     /**
-     * alarmWebSocket连接
+     * 初始化报警数据连接
      */
-    private AlarmWebSocketClient alarmClient;
-
     private void initAlarmWebsocket() {
         try {
             log.warn("************初始化alarmWebSocket");
@@ -284,7 +293,7 @@ public class InitialDataService implements CommandLineRunner {
     }
 
     /**
-     * 检查point过滤文件是否修改
+     * point过滤文件更新
      */
     @Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60)
     public void resPointExile() throws Exception {
@@ -312,7 +321,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 刷新数据 重算iot，alarm
      */
-    //@Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60 * 5)
+    @Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60 * 5)
     public void refreshData() {
         RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
         int[] count = repository.recomputeIot();
@@ -323,12 +332,12 @@ public class InitialDataService implements CommandLineRunner {
 
 
     /**
-     * 刷新改变数据
+     * 启动刷新数据线程
      */
     public void startRefreshData() {
         RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
         for (int i = 0; i < variableThreadPool.getCorePoolSize(); i++) {
-            Runnable thread = new ComputeThread(repository,10);
+            Runnable thread = new ComputeThread(repository, 10);
             variableThreadPool.execute(thread);
         }
     }
