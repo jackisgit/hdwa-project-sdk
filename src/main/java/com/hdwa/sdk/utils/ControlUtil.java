@@ -194,7 +194,7 @@ public class ControlUtil {
                 DataPrimitive dataPrimitive = dataValue.valuePrim;
                 if (dataPrimitive.value != null) {
                     String name = dataPrimitive.value.toString();
-                    if (name.contains("冷源") || name.contains("热源")) {
+                    if (name.contains("ACCC") || name.contains("ACCH")) {
                         result = setInner(Repository, object, infoValueSet, sdoList);
                     }
                 }

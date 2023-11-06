@@ -12,7 +12,6 @@ import com.hdwa.sdk.utils.OkHttpClientUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 /**
@@ -133,8 +132,10 @@ public class InstructControlService {
         JSONObject postJSON = new JSONObject();
         postJSON.put("building", BaseDecConstant.CURRENT_PROJECT_ID.substring(2));
         postJSON.put("points", points);
+        JSONArray jsonArray = OkHttpClientUtil.httpPost(postJSON, iotProjectUrl + UrlConstant.iot_project_control).getJSONArray("points");
         //new Thread(() -> refresh(points, path)).start();
-        return OkHttpClientUtil.httpPost(postJSON, iotProjectUrl + UrlConstant.iot_project_control).getJSONArray("points");
+        //refresh(points, path);
+        return jsonArray;
     }
 
 
