@@ -6,12 +6,17 @@ import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.entity.scene.DataPrimitive;
+import com.hdwa.sdk.utils.IotJob;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
 import java.util.Date;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * iot实施数据采集
@@ -38,6 +43,12 @@ public class IotWebSocketClient extends WebSocketClient {
      * 统计数量
      */
     private int count = 0;
+
+    ThreadPoolExecutor executor = new ThreadPoolExecutor(4, 8, 10,
+            TimeUnit.SECONDS,
+            new LinkedBlockingQueue<>(),
+            Executors.defaultThreadFactory()
+    );
 
     public IotWebSocketClient(URI url, String projectId) {
         super(url);
@@ -81,6 +92,9 @@ public class IotWebSocketClient extends WebSocketClient {
         String value = splits[3];
         //点位
         String point = meter + "-" + funcId;
+      /*  if (point.contains("903")) {
+            log.info(arg0);
+        }*/
         try {
             DataPrimitive sdvInner = new DataPrimitive();
             sdvInner.change = true;
@@ -105,11 +119,12 @@ public class IotWebSocketClient extends WebSocketClient {
             }
             boolean valueEqual = valueNew.equals(data.value);
             data.value = valueNew;
-            // 加入计算队列
+            // 改变的值才需要计算
             if (!valueEqual) {
                 RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
                 if (repository != null) {
-                    repository.processIot(point);
+                    //多线程解析数据
+                    executor.execute(new IotJob(point, repository));
                 }
             }
         } catch (Exception e) {

@@ -77,7 +77,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 计算数据线程池
      */
-    private final ThreadPoolExecutor variableThreadPool = new ThreadPoolExecutor(10, 20, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
+    private final ThreadPoolExecutor variableThreadPool = new ThreadPoolExecutor(4, 10, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
 
     /**
      * iotWebSocket连接
@@ -321,7 +321,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 刷新数据 重算iot，alarm
      */
-    @Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60 * 5)
+    //@Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60 * 5)
     public void refreshData() {
         RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
         int[] count = repository.recomputeIot();

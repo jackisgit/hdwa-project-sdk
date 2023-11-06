@@ -74,12 +74,7 @@ public class ComputeThread implements Runnable {
                     repository.addWaitCompute(waitItem.sdv);
                 }
             } catch (Exception e) {
-                try {
-                    String path = PathUtil.getDataPath(waitItem.sdv);
-                    log.error(path, e);
-                } catch (Exception e1) {
-                    log.error("路径获取异常", e1);
-                }
+                log.error(PathUtil.getDataPath(waitItem.sdv), e);
             }
         }
     }
