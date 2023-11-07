@@ -300,69 +300,70 @@ public class CalculateApiJsonUtil {
      * @param sv
      * @throws Exception
      */
-    public static boolean calculateProperty(RepositoryBase repositoryBase, DataValue sv) throws Exception {
+    public static boolean calculateProperty(RepositoryBase repositoryBase, DataValue sv) {
         boolean computeValueChanged = false;
-        DataObject objectData = sv.parentObjectData;
-        DataProperty dataProperty = sv.relProperty;
-        switch (dataProperty.propertyValueType) {
-            case BaseDecConstant.STATIC:
-                if (sv.relProperty.propertyValueSchema.equals(BaseDecConstant.JSONOBJECT)) {
-                    sv.finish = true;
-                } else if (sv.relProperty.propertyValueSchema.equals(BaseDecConstant.JSONARRAY)) {
-                    boolean finish = true;
-                    for (DataObject sdbInner : sv.valueArray.set) {
-                        if (sdbInner != null) {
-                            for (String temp : sdbInner.keySet()) {
-                                DataValue sdv = sdbInner.get(temp);
-                                if (!sdv.finish) {
-                                    finish = false;
+        try {
+            DataObject objectData = sv.parentObjectData;
+            DataProperty dataProperty = sv.relProperty;
+            switch (dataProperty.propertyValueType) {
+                case BaseDecConstant.STATIC:
+                    if (sv.relProperty.propertyValueSchema.equals(BaseDecConstant.JSONOBJECT)) {
+                        sv.finish = true;
+                    } else if (sv.relProperty.propertyValueSchema.equals(BaseDecConstant.JSONARRAY)) {
+                        boolean finish = true;
+                        for (DataObject sdbInner : sv.valueArray.set) {
+                            if (sdbInner != null) {
+                                for (String temp : sdbInner.keySet()) {
+                                    DataValue sdv = sdbInner.get(temp);
+                                    if (!sdv.finish) {
+                                        finish = false;
+                                        break;
+                                    }
+                                }
+                                if (!finish) {
                                     break;
                                 }
                             }
-                            if (!finish) {
-                                break;
-                            }
                         }
-                    }
-                    if (finish) {
+                        if (finish) {
+                            sv.finish = true;
+                        }
+                    } else {
+                        sv.valuePrim = new DataPrimitive();
+                        sv.valuePrim.value = QueryUtil.parse_static(dataProperty.propertyValueSchema, dataProperty.staticValue);
+                        sv.valuePrim.change = false;
                         sv.finish = true;
                     }
-                } else {
-                    sv.valuePrim = new DataPrimitive();
-                    sv.valuePrim.value = QueryUtil.parse_static(dataProperty.propertyValueSchema, dataProperty.staticValue);
-                    sv.valuePrim.change = false;
-                    sv.finish = true;
-                }
-                break;
-            case BaseDecConstant.QUERY:
-                sv.lock.lock();
-                try {
-                    computeValueChanged = calculatePropertyQuery(repositoryBase, dataProperty, sv);
-                } finally {
-                    sv.lock.unlock();
-                }
-                break;
-            case BaseDecConstant.CUSTOM:
-                if (sv.valueObject == null) {
-                    sv.valueObject = new DataObject(repositoryBase, objectData, dataProperty.propertyName, null, dataProperty.customObject, null, null);
-                }
-                break;
-            case BaseDecConstant.DEAMON:
-                JSONObject sqlJson = (JSONObject) JSON.parse(dataProperty.querySql);
-                String queryType = (String) sqlJson.get(BaseDecConstant.QUERY_TYPE);
-                if (queryType.endsWith(BaseDecConstant.TREND)) {
-                    if (sv.valuePrim == null) {
-                        sv.valuePrim = new DataPrimitive();
-                        sv.valuePrim.value = 0;
-                        sv.valuePrim.change = true;
+                    break;
+                case BaseDecConstant.QUERY:
+                    sv.lock.lock();
+                    try {
+                        computeValueChanged = calculatePropertyQuery(repositoryBase, dataProperty, sv);
+                    } finally {
+                        sv.lock.unlock();
                     }
-                } else if (queryType.endsWith(BaseDecConstant.CURVE)) {
-                    if (sv.valueArray == null) {
-                        sv.valueArray = new DataSet(false);
-                        sv.valueArray.setRowChange(true);
+                    break;
+                case BaseDecConstant.CUSTOM:
+                    if (sv.valueObject == null) {
+                        sv.valueObject = new DataObject(repositoryBase, objectData, dataProperty.propertyName, null, dataProperty.customObject, null, null);
                     }
-                }
-                JSONObject criteria = (JSONObject) sqlJson.get(BaseDecConstant.CRITERIA);
+                    break;
+                case BaseDecConstant.DEAMON:
+                    JSONObject sqlJson = (JSONObject) JSON.parse(dataProperty.querySql);
+                    String queryType = (String) sqlJson.get(BaseDecConstant.QUERY_TYPE);
+                    if (queryType.endsWith(BaseDecConstant.TREND)) {
+                        if (sv.valuePrim == null) {
+                            sv.valuePrim = new DataPrimitive();
+                            sv.valuePrim.value = 0;
+                            sv.valuePrim.change = true;
+                        }
+                    } else if (queryType.endsWith(BaseDecConstant.CURVE)) {
+                        if (sv.valueArray == null) {
+                            sv.valueArray = new DataSet(false);
+                            sv.valueArray.setRowChange(true);
+                        }
+                    }
+               /* JSONObject criteria = (JSONObject) sqlJson.get(BaseDecConstant.CRITERIA);
                 List<String> pointList = new CopyOnWriteArrayList<>();
                 for (String key : criteria.keySet()) {
                     JSONObject criteriaItemValue = (JSONObject) criteria.get(key);
@@ -375,13 +376,19 @@ public class CalculateApiJsonUtil {
                             pointList.add(point);
                         }
                     }
-                }
-                break;
+                }*/
+                    break;
 
-            default:
+                default:
+            }
+
+        } catch (Exception e) {
+            log.error("计算属性异常{}", e.getMessage());
         }
+
         sv.lastComputeTime = new Date();
         return computeValueChanged;
+
     }
 
     /**

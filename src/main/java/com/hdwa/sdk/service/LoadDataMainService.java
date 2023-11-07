@@ -80,7 +80,11 @@ public class LoadDataMainService {
      * 加载数据入口
      */
     public void loadDataMain() {
-        RepositoryImpl repository = new RepositoryImpl();
+
+        RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
+        if (repository == null) {
+            repository = new RepositoryImpl();
+        }
         try {
             //加载物理世界数据
             physicalWorldService.loadPhysicalWorldData(repository);
@@ -97,7 +101,7 @@ public class LoadDataMainService {
             //加载接口数据
             configApiService.loadConfigData(repository);
             //加载到数据容器
-            DataContainer.projectMap.put(System.getProperty(BaseDecConstant.PROJECT_ID), repository);
+            DataContainer.projectMap.put(BaseDecConstant.CURRENT_PROJECT_ID, repository);
         } catch (Exception e) {
             log.error("******** 加载数据入口异常", e);
         }

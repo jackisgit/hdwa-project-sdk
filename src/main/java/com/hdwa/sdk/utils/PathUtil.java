@@ -4,13 +4,15 @@ import com.alibaba.fastjson.JSONArray;
 import com.hdwa.sdk.entity.exception.ExceptionItem;
 import com.hdwa.sdk.entity.repository.RepositoryBase;
 import com.hdwa.sdk.entity.scene.DataObject;
-import com.hdwa.sdk.entity.scene.DataValue;
 import com.hdwa.sdk.entity.scene.DataObjectBase;
 import com.hdwa.sdk.entity.scene.DataProperty;
+import com.hdwa.sdk.entity.scene.DataValue;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+@Slf4j
 public class PathUtil {
 
     public static List<Object> getByPath(Object parentData, String path) {
@@ -138,8 +140,13 @@ public class PathUtil {
         return sb.toString();
     }
 
-    public static String getDataPath(Object sv) throws Exception {
-        return getDataPath(sv, new JSONArray());
+    public static String getDataPath(Object sv) {
+        try {
+            return getDataPath(sv, new JSONArray());
+        } catch (Exception e) {
+            log.error("获取接口路径出现异常", e);
+        }
+        return "path-error";
     }
 
     public static String getDataPath(Object sv, JSONArray pathArray) throws Exception {
