@@ -51580,7 +51580,7 @@
           {
             "propertyName":"所有楼层",
             "allowPass":"1",
-            "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'楼栋'楼层\"},\"Criteria\":{}}",
+            "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'楼栋'楼层\"},\"Criteria\":{},\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}]}",
             "readLevel":"1",
             "filterRule":"{\"QueryType\":\"select\",\"Criteria\":  {\"LogicOperator\": \"and\",\"Criterias\": [  {\"所属建筑-id\":{\"ref\":\"ancestor_1'所在建筑-id\"},  },  {\"localName\":{\"ref\":\"ancestor_1'stopFloor\"},  }]  }}",
             "customObject":null,
