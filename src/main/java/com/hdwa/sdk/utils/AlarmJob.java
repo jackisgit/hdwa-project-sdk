@@ -37,7 +37,7 @@ public class AlarmJob implements Runnable {
         if (AlarmJob == null) {
             return;
         }
-        log.warn("******计算报警数据");
+        //log.warn("******计算报警数据");
         AlarmUtil.calculatedAlarm(repository, AlarmJob);
     }
 }

@@ -1953,21 +1953,6 @@
                         "propertyValueType":"query"
                       },
                       {
-                        "propertyName":"机房id",
-                        "allowPass":"1",
-                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"zhilengjifang\"},\"Criteria\": {},\"UniqueReturnColumn\": \"id\"}",
-                        "readLevel":"1",
-                        "filterRule":"",
-                        "customObject":null,
-                        "staticValue":null,
-                        "offsetLevel":"0",
-                        "queryAttached":null,
-                        "propertyValueSchema":"string",
-                        "staticArray":null,
-                        "propertyVisible":false,
-                        "propertyValueType":"query"
-                      },
-                      {
                         "propertyName":"系统id",
                         "allowPass":"1",
                         "querySql":"{\"QueryType\": \"quote\",\"Criteria\": {\"quote\": {\"ref\": \"ancestor_1'id\"}}}",
@@ -3533,21 +3518,6 @@
                         "propertyValueType":"query"
                       },
                       {
-                        "propertyName":"机房id",
-                        "allowPass":"1",
-                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lyxt2\",\"ibmsClassCode\": \"zhilengjifang\"},\"Criteria\": {},\"UniqueReturnColumn\": \"id\"}",
-                        "readLevel":"1",
-                        "filterRule":"",
-                        "customObject":null,
-                        "staticValue":null,
-                        "offsetLevel":"0",
-                        "queryAttached":null,
-                        "propertyValueSchema":"string",
-                        "staticArray":null,
-                        "propertyVisible":false,
-                        "propertyValueType":"query"
-                      },
-                      {
                         "propertyName":"系统id",
                         "allowPass":"1",
                         "querySql":"{\"QueryType\": \"quote\",\"Criteria\": {\"quote\": {\"ref\": \"ancestor_1'id\"}}}",
@@ -5109,21 +5079,6 @@
                         "propertyValueSchema":"string",
                         "staticArray":[
                         ],
-                        "propertyVisible":false,
-                        "propertyValueType":"query"
-                      },
-                      {
-                        "propertyName":"机房id",
-                        "allowPass":"1",
-                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lyxt3\",\"ibmsClassCode\": \"zhilengjifang\"},\"Criteria\": {},\"UniqueReturnColumn\": \"id\"}",
-                        "readLevel":"1",
-                        "filterRule":"",
-                        "customObject":null,
-                        "staticValue":null,
-                        "offsetLevel":"0",
-                        "queryAttached":null,
-                        "propertyValueSchema":"string",
-                        "staticArray":null,
                         "propertyVisible":false,
                         "propertyValueType":"query"
                       },
@@ -10937,21 +10892,6 @@
                         "propertyValueSchema":"string",
                         "staticArray":[
                         ],
-                        "propertyVisible":false,
-                        "propertyValueType":"query"
-                      },
-                      {
-                        "propertyName":"机房id",
-                        "allowPass":"1",
-                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"guolufang\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Sy2Sp\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}        }      }    }},\"UniqueReturnColumn\": \"id\"}",
-                        "readLevel":"1",
-                        "filterRule":"",
-                        "customObject":null,
-                        "staticValue":null,
-                        "offsetLevel":"0",
-                        "queryAttached":null,
-                        "propertyValueSchema":"string",
-                        "staticArray":null,
                         "propertyVisible":false,
                         "propertyValueType":"query"
                       },
@@ -67930,21 +67870,6 @@
                           ],
                           "propertyVisible":false,
                           "propertyValueType":"static"
-                        },
-                        {
-                          "propertyName":"机房",
-                          "allowPass":"1",
-                          "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'空间'名称=ACCC1'清单\"},\"Criteria\":{\"id\":{\"ref\":\"ancestor_1'系统'机房id\"}}}",
-                          "readLevel":"4",
-                          "filterRule":"",
-                          "customObject":null,
-                          "staticValue":null,
-                          "offsetLevel":"0",
-                          "queryAttached":null,
-                          "propertyValueSchema":"JSONObject",
-                          "staticArray":null,
-                          "propertyVisible":false,
-                          "propertyValueType":"query"
                         }
                       ]
                     },
@@ -71960,21 +71885,6 @@
                           ],
                           "propertyVisible":false,
                           "propertyValueType":"static"
-                        },
-                        {
-                          "propertyName":"机房",
-                          "allowPass":"1",
-                          "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'空间'名称=ACCC1'清单\"},\"Criteria\":{\"id\":{\"ref\":\"ancestor_1'系统'机房id\"}}}",
-                          "readLevel":"4",
-                          "filterRule":"",
-                          "customObject":null,
-                          "staticValue":null,
-                          "offsetLevel":"0",
-                          "queryAttached":null,
-                          "propertyValueSchema":"JSONObject",
-                          "staticArray":null,
-                          "propertyVisible":false,
-                          "propertyValueType":"query"
                         }
                       ]
                     }
