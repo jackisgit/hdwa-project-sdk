@@ -31911,6 +31911,23 @@
                                 "propertyValueType":"query"
                               },
                               {
+                                "propertyName":"关联的污水泵",
+                                "allowPass":"1",
+                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"equipment\",\"classCode\": \"SWP\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechCtrl\",\"relCode\": \"EqCtrl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_1'id\"    }            }        }    }}}",
+                                "readLevel":"1",
+                                "filterRule":"",
+                                "customObject":null,
+                                "staticValue":null,
+                                "offsetLevel":"0",
+                                "queryAttached":[
+                                ],
+                                "propertyValueSchema":"JSONArray",
+                                "staticArray":[
+                                ],
+                                "propertyVisible":false,
+                                "propertyValueType":"query"
+                              },
+                              {
                                 "propertyName":"未处理",
                                 "allowPass":"1",
                                 "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'报警列表\"},\"Criteria\": {\"state\": 1,\"treatState\": 1  },\"Aggregation\": {\"Function\": \"min\",\"Column\": \"treatState\"}}",
@@ -32475,6 +32492,21 @@
                                 "propertyValueSchema":"string",
                                 "staticArray":[
                                 ],
+                                "propertyVisible":false,
+                                "propertyValueType":"query"
+                              },
+                              {
+                                "propertyName":"关联的污水泵",
+                                "allowPass":"1",
+                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"equipment\",\"classCode\": \"SWP\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechCtrl\",\"relCode\": \"EqCtrl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_1'id\"    }            }        }    }}}",
+                                "readLevel":"1",
+                                "filterRule":"",
+                                "customObject":null,
+                                "staticValue":null,
+                                "offsetLevel":"0",
+                                "queryAttached":null,
+                                "propertyValueSchema":"JSONArray",
+                                "staticArray":null,
                                 "propertyVisible":false,
                                 "propertyValueType":"query"
                               },
@@ -50935,6 +50967,23 @@
                                     "queryAttached":[
                                     ],
                                     "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  },
+                                  {
+                                    "propertyName":"关联的污水泵",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"equipment\",\"classCode\": \"SWP\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechCtrl\",\"relCode\": \"EqCtrl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_1'id\"    }            }        }    }}}",
+                                    "readLevel":"1",
+                                    "filterRule":"",
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"JSONArray",
                                     "staticArray":[
                                     ],
                                     "propertyVisible":false,
