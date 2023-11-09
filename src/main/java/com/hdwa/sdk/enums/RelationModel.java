@@ -1,8 +1,8 @@
 package com.hdwa.sdk.enums;
 
 import lombok.Data;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -54,7 +54,11 @@ public enum RelationModel {
     /**
      *
      */
-    EQNORMAL("EqNormal", "照明配电箱供电照明控制模块", "MechPower", "equipment", "equipment", "给设备供电", "被设备供电", "", "");
+    EQNORMAL("EqNormal", "照明配电箱供电照明控制模块", "MechPower", "equipment", "equipment", "给设备供电", "被设备供电", "", ""),
+    /**
+     *
+     */
+    SWS2SWP("Sws2Swp", "集水井关联污水泵", "Drainage", "equipment", "equipment", "", "", "", "");
 
     /**
      * 关系编码

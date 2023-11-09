@@ -31911,9 +31911,9 @@
                                 "propertyValueType":"query"
                               },
                               {
-                                "propertyName":"关联的污水泵",
+                                "propertyName":"associatedSewagePump",
                                 "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"equipment\",\"classCode\": \"SWP\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechCtrl\",\"relCode\": \"EqCtrl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_1'id\"    }            }        }    }}}",
+                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\":\"基础对象'设备'名称=排水'设备类型'名称=污水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"Drainage\",\"relCode\": \"Sws2Swp\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }            }        }    }}}",
                                 "readLevel":"1",
                                 "filterRule":"",
                                 "customObject":null,
@@ -32496,9 +32496,9 @@
                                 "propertyValueType":"query"
                               },
                               {
-                                "propertyName":"关联的污水泵",
+                                "propertyName":"associatedSewagePump",
                                 "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"equipment\",\"classCode\": \"SWP\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechCtrl\",\"relCode\": \"EqCtrl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_1'id\"    }            }        }    }}}",
+                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\":\"基础对象'设备'名称=排水'设备类型'名称=污水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"Drainage\",\"relCode\": \"Sws2Swp\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }            }        }    }}}",
                                 "readLevel":"1",
                                 "filterRule":"",
                                 "customObject":null,
@@ -50973,9 +50973,9 @@
                                     "propertyValueType":"query"
                                   },
                                   {
-                                    "propertyName":"关联的污水泵",
+                                    "propertyName":"associatedSewagePump",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"equipment\",\"classCode\": \"SWP\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechCtrl\",\"relCode\": \"EqCtrl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_1'id\"    }            }        }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\":\"基础对象'设备'名称=排水'设备类型'名称=污水泵'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"Drainage\",\"relCode\": \"Sws2Swp\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }            }        }    }}}",
                                     "readLevel":"1",
                                     "filterRule":"",
                                     "customObject":null,
