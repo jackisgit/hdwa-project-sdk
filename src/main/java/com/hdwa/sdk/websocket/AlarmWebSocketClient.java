@@ -8,6 +8,7 @@ import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.utils.AlarmJob;
 import com.hdwa.sdk.utils.AlarmUtil;
+import com.hdwa.sdk.utils.CustomThreadFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
@@ -53,10 +54,10 @@ public class AlarmWebSocketClient extends WebSocketClient {
      */
     private int count = 0;
 
-    ThreadPoolExecutor executor = new ThreadPoolExecutor(4, 8, 10,
+    ThreadPoolExecutor executor = new ThreadPoolExecutor(4, 8, 60,
             TimeUnit.SECONDS,
             new LinkedBlockingQueue<>(),
-            Executors.defaultThreadFactory()
+            new CustomThreadFactory("alarm-threadPool")
     );
 
 

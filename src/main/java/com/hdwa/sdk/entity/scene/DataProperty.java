@@ -45,7 +45,7 @@ public class DataProperty {
     public String offsetLevel;
 
     /**
-     * 标识 1表示通过，0表示截断
+     * 标识 1表示通过，0表示截断（本级数据不会显示）
      */
     public String allowPass;
 

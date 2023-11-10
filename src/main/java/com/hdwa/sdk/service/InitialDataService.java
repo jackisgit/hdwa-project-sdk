@@ -6,10 +6,7 @@ import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.ExcelSheetEntity;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
-import com.hdwa.sdk.utils.AlarmUtil;
-import com.hdwa.sdk.utils.ComputeThread;
-import com.hdwa.sdk.utils.ExcelUtil;
-import com.hdwa.sdk.utils.FileUtil;
+import com.hdwa.sdk.utils.*;
 import com.hdwa.sdk.websocket.AlarmWebSocketClient;
 import com.hdwa.sdk.websocket.IotWebSocketClient;
 import lombok.extern.slf4j.Slf4j;
@@ -77,7 +74,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 计算数据线程池
      */
-    private final ThreadPoolExecutor variableThreadPool = new ThreadPoolExecutor(4, 10, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>());
+    private final ThreadPoolExecutor variableThreadPool = new ThreadPoolExecutor(4, 8, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), new CustomThreadFactory("iot-computeThreadPool"));
 
     /**
      * iotWebSocket连接

@@ -6,6 +6,7 @@ import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.entity.scene.DataPrimitive;
+import com.hdwa.sdk.utils.CustomThreadFactory;
 import com.hdwa.sdk.utils.IotJob;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
@@ -44,10 +45,10 @@ public class IotWebSocketClient extends WebSocketClient {
      */
     private int count = 0;
 
-    ThreadPoolExecutor executor = new ThreadPoolExecutor(4, 8, 10,
+    ThreadPoolExecutor executor = new ThreadPoolExecutor(4, 8, 60,
             TimeUnit.SECONDS,
             new LinkedBlockingQueue<>(),
-            Executors.defaultThreadFactory()
+            new CustomThreadFactory("iot-threadPool")
     );
 
     public IotWebSocketClient(URI url, String projectId) {
