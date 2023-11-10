@@ -17,6 +17,15 @@ import java.util.concurrent.TimeUnit;
  */
 public class OkHttpClientUtil {
 
+    static OkHttpClient.Builder builder = new OkHttpClient.Builder();
+    static OkHttpClient httpClient;
+
+    static {
+        builder.connectTimeout(60, TimeUnit.SECONDS);
+        builder.readTimeout(60, TimeUnit.SECONDS);
+        httpClient = builder.build();
+    }
+
     /**
      * post 请求
      *
@@ -26,10 +35,6 @@ public class OkHttpClientUtil {
      * @throws Exception
      */
     public static JSONObject httpPost(JSONObject requestBody, String ur) throws Exception {
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.connectTimeout(60, TimeUnit.SECONDS);
-        builder.readTimeout(60, TimeUnit.SECONDS);
-        OkHttpClient httpClient = builder.build();
         RequestBody res = RequestBody.create(okhttp3.MediaType.parse(MediaType.APPLICATION_JSON_VALUE), requestBody.toJSONString());
         // 创建 POST 请求
         Request request = new Request.Builder()

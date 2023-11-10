@@ -1,15 +1,18 @@
 package com.hdwa.sdk.entity.repository;
 
 
-import com.hdwa.sdk.entity.scene.SceneDataValue;
+import com.hdwa.sdk.entity.scene.DataValue;
 
 import java.util.Date;
 
+/**
+ * 等待元素定义
+ */
 public class WaitItem {
-    public SceneDataValue sdv;
+    public DataValue sdv;
     public Date time;
 
-    public WaitItem(SceneDataValue sdv, Date time) {
+    public WaitItem(DataValue sdv, Date time) {
         this.sdv = sdv;
         this.time = time;
     }

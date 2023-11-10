@@ -14,66 +14,6 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class FastJsonUtil {
-    public static Set<Object> ValueArray2ValueSet(JSONArray valueArray) {
-        Set<Object> valueSet = new HashSet<Object>();
-        for (int index_va = 0; index_va < valueArray.size(); index_va++) {
-            Object valueItem = valueArray.get(index_va);
-            valueSet.add(valueItem);
-        }
-        return valueSet;
-    }
-
-    public static JSONArray ValueSet2ValueArray(Set<Object> valueSet) {
-        JSONArray valueArray = new JSONArray();
-        Iterator<Object> valueIter = valueSet.iterator();
-        while (valueIter.hasNext()) {
-            Object valueItem = valueIter.next();
-            valueArray.add(valueItem);
-        }
-        return valueArray;
-    }
-
-    public static Set<Object> ValueSet_or(List<Set<Object>> valueSetList) {
-        Set<Object> result = new HashSet<Object>();
-        for (int i = 0; i < valueSetList.size(); i++) {
-            Set<Object> valueSet = valueSetList.get(i);
-            result.addAll(valueSet);
-        }
-        return result;
-    }
-
-    public static Set<Object> ValueSet_and(List<Set<Object>> valueSetList) {
-        Set<Object> result = new HashSet<Object>();
-        Set<Object> first = valueSetList.get(0);
-        Iterator<Object> valueIter = first.iterator();
-        while (valueIter.hasNext()) {
-            Object valueItem = valueIter.next();
-            boolean all_in = true;
-            for (int i = 1; i < valueSetList.size(); i++) {
-                Set<Object> valueSet = valueSetList.get(i);
-                if (!valueSet.contains(valueItem)) {
-                    all_in = false;
-                    break;
-                }
-            }
-            if (all_in) {
-                result.add(valueItem);
-            }
-        }
-        return result;
-    }
-
-    public static Set<Object> ValueSet_sub(Set<Object> valueSet1, Set<Object> valueSet2) {
-        Set<Object> result = new HashSet<Object>();
-        Iterator<Object> valueIter = valueSet1.iterator();
-        while (valueIter.hasNext()) {
-            Object valueItem = valueIter.next();
-            if (!valueSet2.contains(valueItem)) {
-                result.add(valueItem);
-            }
-        }
-        return result;
-    }
 
     public static String toFormatString(Object value) {
         return toStringInner(value, true);
@@ -147,10 +87,9 @@ public class FastJsonUtil {
         if (value instanceof JSONArray) {
             JSONArray valueJSON = (JSONArray) value;
             boolean first = true;
-            StringBuffer sb = new StringBuffer();
-
+            StringBuilder sb = new StringBuilder();
             sb.append('[');
-            for (int i = 0; i < valueJSON.size(); i++) {
+            for (Object o : valueJSON) {
                 if (first)
                     first = false;
                 else
@@ -160,12 +99,11 @@ public class FastJsonUtil {
                     sb.append("\r\n\t");
                 }
 
-                Object valueInner = valueJSON.get(i);
-                if (valueInner == null) {
+                if (o == null) {
                     sb.append("null");
                     continue;
                 }
-                String valueString = toStringInner(valueInner, has_enter);
+                String valueString = toStringInner(o, has_enter);
                 sb.append(valueString.replaceAll("\r\n", "\r\n\t"));
             }
             if (has_enter) {
@@ -209,7 +147,7 @@ public class FastJsonUtil {
                     break;
                 default:
                     // Reference: http://www.unicode.org/versions/Unicode5.1.0/
-                    if ((ch >= '\u0000' && ch <= '\u001F') || (ch >= '\u007F' && ch <= '\u009F') || (ch >= '\u2000' && ch <= '\u20FF')) {
+                    if (ch <= '\u001F' || ch >= '\u007F' && ch <= '\u009F' || ch >= '\u2000' && ch <= '\u20FF') {
                         String ss = Integer.toHexString(ch);
                         sb.append("\\u");
                         for (int k = 0; k < 4 - ss.length(); k++) {
@@ -220,103 +158,23 @@ public class FastJsonUtil {
                         sb.append(ch);
                     }
             }
-        } // for
-    }
-
-    public static Long getLong(JSONObject json, String name) throws Exception {
-        if (json.containsKey(name)) {
-            Object item = json.get(name);
-            if (item instanceof Integer) {
-                return ((Integer) item).longValue();
-            } else if (item instanceof Long) {
-                return ((Long) item).longValue();
-            } else if (item instanceof BigInteger) {
-                return ((BigInteger) item).longValue();
-            } else {
-                throw new Exception("FastJsonUtil: " + "JSON property " + name + " cant Cast to Long:"
-                        + JSONObject.toJSONString(json, SerializerFeature.WriteMapNullValue));
-            }
-        } else {
-            return null;
         }
     }
 
-    public static Long getDouble(JSONObject json, String name) throws Exception {
-        if (json.containsKey(name)) {
-            Object item = json.get(name);
-            if (item instanceof Integer) {
-                return ((Integer) item).longValue();
-            } else if (item instanceof Long) {
-                return ((Long) item).longValue();
-            } else if (item instanceof BigInteger) {
-                return ((BigInteger) item).longValue();
-            } else if (item instanceof Float) {
-                return ((Float) item).longValue();
-            } else if (item instanceof Double) {
-                return ((Double) item).longValue();
-            } else if (item instanceof BigDecimal) {
-                return ((BigDecimal) item).longValue();
-            } else {
-                throw new Exception("FastJsonUtil: " + "JSON property " + name + " cant Cast to Double:"
-                        + JSONObject.toJSONString(json, SerializerFeature.WriteMapNullValue));
-            }
-        } else {
-            return null;
-        }
-    }
-
-    public static void Set_JSON(Object entity, JSONObject json) throws Exception {
+    /**
+     * json转换为类
+     *
+     * @param json
+     * @param entity
+     * @throws Exception
+     */
+    public static void setJava(JSONObject json, Object entity) throws Exception {
         Class<?> targetClass = entity.getClass();
-
-        Method[] targetMethodArray = targetClass.getMethods();
-        for (int i = 0; i < targetMethodArray.length; i++) {
-            Method method = targetMethodArray[i];
-            int modifiers = method.getModifiers();
-            String methodName = method.getName();
-            if (modifiers == 1 && methodName.startsWith("get")) {
-                Class<?>[] parameterTypes = method.getParameterTypes();
-                if (parameterTypes.length == 0) {
-                    String fieldName = methodName.substring(3);
-                    fieldName = fieldName.substring(0, 1).toLowerCase() + fieldName.substring(1);
-                    if (json.containsKey(fieldName)) {
-                        json.remove(fieldName);
-                    }
-                    Object value = method.invoke(entity, new Object[]{});
-                    if (value != null) {
-                        String valueClassName = value.getClass().getName();
-                        Object put_value = null;
-                        if (valueClassName.equals("java.lang.String")) {
-                            put_value = value;
-                        } else if (valueClassName.equals("java.util.Date")) {
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                            put_value = sdf.format((Date) value);
-                        } else if (valueClassName.equals("java.lang.Long") || valueClassName.equals("long")) {
-                            put_value = value;
-                        } else if (valueClassName.equals("java.lang.Double") || valueClassName.equals("double")) {
-                            put_value = value;
-                        } else if (valueClassName.equals("java.lang.Boolean") || valueClassName.equals("boolean")) {
-                            put_value = value;
-                        } else {
-                            put_value = To_JSON(value);
-                        }
-
-                        json.put(fieldName, put_value);
-                    }
-                }
-            }
-        }
-    }
-
-    public static void Set_JavaObject(JSONObject json, Object entity) throws Exception {
-        Class<?> targetClass = entity.getClass();
-
         if (json == null) {
             return;
         }
-
         Method[] targetMethodArray = targetClass.getMethods();
-        for (int i = 0; i < targetMethodArray.length; i++) {
-            Method method = targetMethodArray[i];
+        for (Method method : targetMethodArray) {
             int modifiers = method.getModifiers();
             String methodName = method.getName();
             if (modifiers == 1 && methodName.startsWith("set")) {
@@ -331,7 +189,7 @@ public class FastJsonUtil {
                             Object sourceFieldValue = json.get(fieldName);
                             Object targetFieldValue = To_JavaObject(sourceFieldValue, paramClass);
 
-                            method.invoke(entity, new Object[]{targetFieldValue});
+                            method.invoke(entity, targetFieldValue);
                         }
                     }
                     {
@@ -341,7 +199,7 @@ public class FastJsonUtil {
                             Object sourceFieldValue = json.get(fieldName);
                             Object targetFieldValue = To_JavaObject(sourceFieldValue, paramClass);
 
-                            method.invoke(entity, new Object[]{targetFieldValue});
+                            method.invoke(entity, targetFieldValue);
                         }
                     }
                 }
@@ -349,56 +207,6 @@ public class FastJsonUtil {
         }
     }
 
-    public static Object To_JSON(Object source) throws Exception {
-        Class<?> sourceClass = source.getClass();
-        if (sourceClass.isArray()) {
-            JSONArray result = new JSONArray();
-            int array_length = Array.getLength(source);
-            for (int i = 0; i < array_length; i++) {
-                Object item = Array.get(source, i);
-                result.add(To_JSON(item));
-            }
-            return result;
-        } else {
-            JSONObject result = new JSONObject();
-            Method[] meethodArray = sourceClass.getMethods();
-            for (int i = 0; i < meethodArray.length; i++) {
-                Method method = meethodArray[i];
-                int modifiers = method.getModifiers();
-                String methodName = method.getName();
-                if (modifiers == 1 && methodName.startsWith("get")) {
-                    Class<?>[] parameterTypes = method.getParameterTypes();
-                    if (parameterTypes.length == 0) {
-                        String fieldName = methodName.substring(3);
-                        fieldName = fieldName.substring(0, 1).toLowerCase() + fieldName.substring(1);
-                        Object value = method.invoke(source, new Object[]{});
-                        Object put_value;
-                        if (value == null) {
-                            put_value = null;
-                        } else {
-                            String valueClassName = value.getClass().getName();
-                            if (valueClassName.equals("java.lang.String")) {
-                                put_value = value;
-                            } else if (valueClassName.equals("java.util.Date")) {
-                                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                                put_value = sdf.format(value);
-                            } else if (valueClassName.equals("java.lang.Long") || valueClassName.equals("long")) {
-                                put_value = value;
-                            } else if (valueClassName.equals("java.lang.Double") || valueClassName.equals("double")) {
-                                put_value = value;
-                            } else if (valueClassName.equals("java.lang.Boolean") || valueClassName.equals("boolean")) {
-                                put_value = value;
-                            } else {
-                                put_value = To_JSON(value);
-                            }
-                        }
-                        result.put(fieldName, put_value);
-                    }
-                }
-            }
-            return result;
-        }
-    }
 
     public static Object To_JavaObject(Object json, Class<?> entityClass) throws Exception {
         if (json == null) {
@@ -424,11 +232,10 @@ public class FastJsonUtil {
         } else if (json instanceof JSONObject) {
             JSONObject sourceEntity = (JSONObject) json;
 
-            Constructor<?> constructorMethod = entityClass.getConstructor(new Class<?>[]{});
-            Object targetObject = constructorMethod.newInstance(new Object[]{});
+            Constructor<?> constructorMethod = entityClass.getConstructor();
+            Object targetObject = constructorMethod.newInstance();
             Method[] methodArray = entityClass.getMethods();
-            for (int i = 0; i < methodArray.length; i++) {
-                Method method = methodArray[i];
+            for (Method method : methodArray) {
                 int modifiers = method.getModifiers();
                 String methodName = method.getName();
                 if (modifiers == 1 && methodName.startsWith("set")) {
@@ -443,7 +250,7 @@ public class FastJsonUtil {
                                 Object sourceFieldValue = sourceEntity.get(fieldName);
                                 Object targetFieldValue = To_JavaObject(sourceFieldValue, paramClass);
 
-                                method.invoke(targetObject, new Object[]{targetFieldValue});
+                                method.invoke(targetObject, targetFieldValue);
                             }
                         }
                         {
@@ -453,7 +260,7 @@ public class FastJsonUtil {
                                 Object sourceFieldValue = sourceEntity.get(fieldName);
                                 Object targetFieldValue = To_JavaObject(sourceFieldValue, paramClass);
 
-                                method.invoke(targetObject, new Object[]{targetFieldValue});
+                                method.invoke(targetObject, targetFieldValue);
                             }
                         }
                     }
@@ -468,12 +275,11 @@ public class FastJsonUtil {
             return sdf.parse((String) json);
         } else if (targetClassName.equals("java.lang.Long") || targetClassName.equals("long")) {
             if (json instanceof String) {
-                Long value = Long.parseLong((String) json);
-                return value;
+                return Long.parseLong((String) json);
             } else if (json instanceof Integer) {
                 return ((Integer) json).longValue();
             } else if (json instanceof Long) {
-                return ((Long) json).longValue();
+                return (Long) json;
             } else if (json instanceof BigInteger) {
                 return ((BigInteger) json).longValue();
             } else {
@@ -481,8 +287,7 @@ public class FastJsonUtil {
             }
         } else if (targetClassName.equals("java.lang.Double") || targetClassName.equals("double")) {
             if (json instanceof String) {
-                Double value = Double.parseDouble((String) json);
-                return value;
+                return Double.parseDouble((String) json);
             } else if (json instanceof Integer) {
                 return ((Integer) json).doubleValue();
             } else if (json instanceof Long) {
@@ -492,7 +297,7 @@ public class FastJsonUtil {
             } else if (json instanceof Float) {
                 return ((Float) json).doubleValue();
             } else if (json instanceof Double) {
-                return ((Double) json).doubleValue();
+                return (Double) json;
             } else if (json instanceof BigDecimal) {
                 return ((BigDecimal) json).doubleValue();
             } else {
@@ -500,11 +305,9 @@ public class FastJsonUtil {
             }
         } else if (targetClassName.equals("java.lang.Boolean") || targetClassName.equals("boolean")) {
             if (json instanceof String) {
-                Boolean value = ((String) json).equalsIgnoreCase("true") ? true : false;
-                return value;
+                return ((String) json).equalsIgnoreCase("true");
             } else if (json instanceof Boolean) {
-                Boolean value = (Boolean) json;
-                return value;
+                return json;
             } else {
                 return null;
             }
@@ -543,9 +346,8 @@ public class FastJsonUtil {
             }
         } else if (source instanceof JSONArray) {
             JSONArray sourceJSON = (JSONArray) source;
-            for (int i = 0; i < sourceJSON.size(); i++) {
-                Object sourceItem = sourceJSON.get(i);
-                if (sourceItem != null && (sourceItem instanceof JSONObject || sourceItem instanceof JSONArray)) {
+            for (Object sourceItem : sourceJSON) {
+                if ((sourceItem instanceof JSONObject || sourceItem instanceof JSONArray)) {
                     Normalize(sourceItem);
                 }
             }
@@ -564,8 +366,8 @@ public class FastJsonUtil {
         } else if (source instanceof JSONArray) {
             JSONArray result = new JSONArray();
             JSONArray sourceJSON = (JSONArray) source;
-            for (int i = 0; i < sourceJSON.size(); i++) {
-                result.add(Clone_JSON(sourceJSON.get(i)));
+            for (Object o : sourceJSON) {
+                result.add(Clone_JSON(o));
             }
             return result;
         } else if (source instanceof String) {

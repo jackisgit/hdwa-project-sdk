@@ -1,0 +1,102 @@
+package com.hdwa.sdk.entity.repository;
+
+import com.alibaba.fastjson.JSONObject;
+import com.hdwa.sdk.entity.ExcelSheetEntity;
+import com.hdwa.sdk.entity.scene.DataPrimitive;
+import com.hdwa.sdk.entity.scene.DataSet;
+import com.hdwa.sdk.entity.scene.DataValue;
+import com.hdwa.sdk.utils.PacketBuffer;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * @author abao
+ * @since 2023/8/2
+ * 项目数据容器
+ */
+public class DataContainer {
+    /**
+     * <p>数据容器</p>
+     * <p>projectId-----数据</p>
+     */
+    public static Map<String, RepositoryImpl> projectMap = new HashMap<>(16);
+
+
+    /**
+     * <p>IOT采集数据</p>
+     * <p>运行点位值--数据</p>
+     * <p>运行点位值 对象数据--->数据</p>
+     * <p>数据来源 physical_world/object/*.json</p>
+     */
+    public static Map<String, DataPrimitive> point2sdv = new HashMap<>(16);
+
+    /**
+     * <p>IOT采集数据</p>
+     * <p>数据--运行点位值</p>
+     * <p>数据 --->运行点位值</p>
+     * <p>数据来源 physical_world/object/*.json</p>
+     */
+    public static Map<DataPrimitive, String> sdv2point = new HashMap<>(16);
+
+
+    /**
+     * <p>IOT设置数据</p>
+     * <p>设定点位值--数据</p>
+     * <p>设定点位值 对象数据--->数据</p>
+     * <p>数据来源 physical_world/object/*.json</p>
+     */
+    public static Map<String, DataPrimitive> set2sdv = new HashMap<>(16);
+
+    /**
+     * <p>IOT设置数据</p>
+     * <p>数据--设定点位值</p>
+     * <p>数据 --->设定点位值</p>
+     * <p>数据来源 physical_world/object/*.json</p>
+     */
+    public static Map<DataPrimitive, String> sdv2set = new HashMap<>(16);
+
+
+    /**
+     * <p>报警数据</p>
+     */
+    public static DataSet alarmArray = new DataSet(false, true);
+
+    /**
+     * <p>报警数据</p>
+     * <p>报警列表</p>
+     * <p>objId--sdv</p>
+     * <p>对象id --->报警列表</p>
+     */
+    public static Map<String, DataValue> id2alarmList = new HashMap<>(16);
+
+
+    /**
+     * <p>报警数据</p>
+     * <p>报警数量</p>
+     * <p>objId--sdv</p>
+     * <p>对象id --->报警数量</p>
+     */
+    public static Map<String, DataValue> id2alarmCount = new HashMap<>(16);
+
+
+    /**
+     * <p>报警数据</p>
+     * <p>报警缓存数据</p>
+     */
+    public static PacketBuffer<JSONObject> alarmBuffer = new PacketBuffer<>();
+
+
+    /**
+     * <p>点位过滤数据</p>
+     * <p>存储使用的点位过滤文件，用来和最新文件比较，看是否需要更新</p>
+     */
+    public static Map<String, ExcelSheetEntity> pointMap = new HashMap<>(16);
+
+
+    /**
+     * <p>指定路径的控制值</p>
+     */
+    public static Map<String, JSONObject> controlValueMap = new HashMap<>(16);
+
+}

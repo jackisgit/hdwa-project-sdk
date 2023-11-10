@@ -19,7 +19,7 @@ public class IbmsLogicalGroupControl {
     private IbmsLogicalGroupService ibmsLogicalGroupService;
 
     /**
-     * 下载物理世界数据
+     * 下载逻辑编组数据
      *
      * @return
      */

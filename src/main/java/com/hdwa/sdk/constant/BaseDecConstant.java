@@ -23,7 +23,7 @@ public class BaseDecConstant {
     /**
      * CBD接口路径 String
      */
-    public static final String CBD_API_JSON = "BJCBD";
+    public static final String CBD_API_JSON = "BJCBD_SDK_API";
 
     /**
      * CBD项目id String
@@ -43,17 +43,17 @@ public class BaseDecConstant {
     /**
      * 增城接口路径 String
      */
-    public static final String ZENG_CHENG_API_JSON = "GZZC";
+    public static final String ZENG_CHENG_API_JSON = "GZZC_SDK_API";
 
     /**
      * 浦西接口路径 String
      */
-    public static final String PU_XI_API_JSON = "QZPX";
+    public static final String PU_XI_API_JSON = "QZPX_SDK_API";
 
     /**
      * 其它接口路径 String
      */
-    public static final String BASE_API_JSON = "BASE";
+    public static final String BASE_API_JSON = "BASE_SDK_API";
 
     /**
      * 接口json路径 String
@@ -65,6 +65,33 @@ public class BaseDecConstant {
      * 产品模块String
      */
     public static final String PRODUCT_MODULE = "产品模块";
+
+    /**
+     *  product String
+     */
+    public static final String PRODUCT = "product";
+
+    /**
+     * PropertyList String
+     */
+    public static final String PROPERTY_LIST = "propertyList";
+
+    /**
+     * PropertyName String
+     */
+    public static final String PROPERTY_NAME = "propertyName";
+
+
+    /**
+     * querySql String
+     */
+    public static final String QUERY_SQL = "querySql";
+
+
+    /**
+     * general_query String
+     */
+    public static final String GENERAL_QUERY = "general_query";
 
 
     /**
@@ -95,18 +122,102 @@ public class BaseDecConstant {
     public static final String ID = "id";
 
     /**
+     * 现实编码名称 String
+     */
+    public static final String REALITY_CODE_NAME = "localName";
+
+
+    /**
+     * localName String
+     */
+    public static final String LOCAL_NAME = "localName";
+
+    /**
      * name String
      */
     public static final String NAME = "name";
+
+
+    /**
+     * ggzm String
+     */
+    public static final String GGZM = "ggzm";
+
+    /**
+     * yjzm String
+     */
+    public static final String YJZM = "yjzm";
+
+    /**
+     * zhaominghuilu String
+     */
+    public static final String LIGHTING_CIRCUIT = "zhaominghuilu";
+
+
+    /**
+     * 回路编号 String
+     */
+    public static final String CIRCUIT_ID = "回路编号";
+
+    /**
+     * 名称 String
+     */
+    public static final String NAME2 = "名称";
+
+
+    /**
+     * 别名 String
+     */
+    public static final String ALIAS = "别名";
 
     /**
      * aliasName String
      */
     public static final String ALIAS_NAME = "aliasName";
+
+    /**
+     * pushType String
+     */
+    public static final String PUSH_TYPE = "pushType";
+
+    /**
+     * alarm String
+     */
+    public static final String ALARM = "alarm";
+
+    /**
+     * alarmId String
+     */
+    public static final String ALARM_ID = "alarmId";
+
     /**
      * ibms String
      */
     public static final String IBMS = "ibms";
+    /**
+     * floorId String
+     */
+    public static final String FLOOR_ID = "floorId";
+    /**
+     *
+     * 所在楼层 String
+     */
+    public static final String PLACE_FLOOR = "所在楼层";
+    /**
+     *
+     * 楼层编号 String
+     */
+    public static final String FLOOR_CODE = "楼层编号";
+    /**
+     *
+     * 楼层名称 String
+     */
+    public static final String FLOOR_NAME = "楼层名称";
+    /**
+     *
+     * 楼层数据 String
+     */
+    public static final String FLOOR_DATA = "楼层数据";
     /**
      * ibmsSceneCode String
      */
@@ -119,6 +230,114 @@ public class BaseDecConstant {
      * logicalGroupingId String
      */
     public static final String LOGICAL_GROUPING_ID = "logicalGroupingId";
+
+    /**
+     * logicalGroupingName String
+     */
+    public static final String LOGICAL_GROUPING_NAME = "logicalGroupingName";
+
+    /**
+     * firstCode String
+     */
+    public static final String FIRST_CODE = "firstCode";
+
+    /**
+     * 一级编组 String
+     */
+    public static final String PRIMARY_GROUPING = "一级编组";
+
+
+    /**
+     * 一级编组名称 String
+     */
+    public static final String PRIMARY_GROUPING_NAME = "一级编组名称";
+
+    /**
+     * 二级编组 String
+     */
+    public static final String TWO_GROUPING = "二级编组";
+
+    /**
+     * 二级编组名称 String
+     */
+    public static final String TWO_GROUPING_NAME = "二级编组名称";
+
+
+    /**
+     * 模块编号 String
+     */
+    public static final String MODEL_CODE = "模块编号";
+
+    /**
+     * 模块名称 String
+     */
+    public static final String MODEL_NAME = "模块名称";
+
+    /**
+     * 配电箱编号 String
+     */
+    public static final String DISTRIBUTION_BOX_CODE = "配电箱编号";
+
+    /**
+     * 配电箱名称 String
+     */
+    public static final String DISTRIBUTION_BOX_NAME = "配电箱名称";
+
+    /**
+     * 所在物业空间 String
+     */
+    public static final String PROPERTY_SPACE = "所在物业空间";
+
+    /**
+     * 电井编号 String
+     */
+    public static final String ELECTRIC_WELL_CODE = "电井编号";
+
+    /**
+     * 电井名称 String
+     */
+    public static final String ELECTRIC_WELL_NAME = "电井名称";
+
+
+    /**
+     * 回路 String
+     */
+    public static final String LOOP = "回路";
+
+    /**
+     * 被设备供电 String
+     */
+    public static final String POWERED_BY_EQUIPMENT = "被设备供电";
+
+    /**
+     * 被设备控制 String
+     */
+    public static final String DEVICE_CONTROLLED = "被设备控制";
+
+    /**
+     * 编组类型 String
+     */
+    public static final String GROUPING_TYPE = "编组类型";
+    /**
+     * 设备类型 String
+     */
+    public static final String DEVICE_TYPE = "设备类型";
+
+    /**
+     * 系统概览 String
+     */
+    public static final String SYSTEM_OVERVIEW = "系统概览";
+
+    /**
+     * -temp String
+     */
+    public static final String TEMP2 = "temp-";
+
+    /**
+     * temp String
+     */
+    public static final String TEMP = "temp";
+
     /**
      * -id string
      */
@@ -128,6 +347,12 @@ public class BaseDecConstant {
      * code String
      */
     public static final String CODE = "code";
+
+
+    /**
+     * flag String
+     */
+    public static final String FLAG = "flag";
 
     /**
      * 条件 String
@@ -161,6 +386,11 @@ public class BaseDecConstant {
     public static final String TYPE = "type";
 
     /**
+     * refresh string
+     */
+    public static final String REFRESH = "refresh";
+
+    /**
      * from string
      */
     public static final String FROM = "from";
@@ -177,6 +407,51 @@ public class BaseDecConstant {
      */
     public static final String OBJ_TYPE = "objType";
 
+
+    /**
+     * objId string
+     */
+    public static final String OBJ_ID = "objId";
+
+
+    /**
+     * zkt-class string
+     */
+    public static final String ZKT_CLASS = "zkt-class";
+
+
+    /**
+     * zkt-object string
+     */
+    public static final String ZKT_OBJECT = "zkt-object";
+
+    /**
+     * ibms-group string
+     */
+    public static final String IBMS_GROUP = "ibms-group";
+
+
+    /**
+     * ibms-group-object string
+     */
+    public static final String IBMS_GROUP_OBJECT = "ibms-group-object";
+
+
+    /**
+     * group_one string
+     */
+    public static final String GROUP_ONE = "group-one";
+
+
+    /**
+     * circuit回路 string
+     */
+    public static final String CIRCUIT = "circuit";
+
+    /**
+     * group_two string
+     */
+    public static final String GROUP_TWO = "group-two";
 
     /**
      * rwd/class string
@@ -244,6 +519,17 @@ public class BaseDecConstant {
 
 
     /**
+     * 报警数量 String
+     */
+    public static final String ALARM_COUNT = "报警数量";
+
+    /**
+     * 报警列表 String
+     */
+    public static final String ALARM_LIST = "报警列表";
+
+
+    /**
      * 设定参数 String
      */
     public static final String SET_PARAM = "设定参数";
@@ -257,6 +543,11 @@ public class BaseDecConstant {
      * 清单String
      */
     public static final String DETAILED_LIST = "清单";
+
+    /**
+     * id清单String
+     */
+    public static final String ID_DETAILED_LIST = "-id清单";
 
     /**
      * 逻辑运算符String
@@ -312,6 +603,11 @@ public class BaseDecConstant {
      * 自定义 String
      */
     public static final String CUSTOM = "custom";
+
+    /**
+     * customObject String
+     */
+    public static final String CUSTOM_OBJECT = "customObject";
 
     /**
      * 手自动点位 String
@@ -409,9 +705,32 @@ public class BaseDecConstant {
 
 
     /**
+     * info-point-list String
+     */
+    public static final String INFO_POINT_LIST = "info-point-list";
+
+
+    /**
+     * info_dataSource String
+     */
+    public static final String INFO_DATASOURCE = "info_dataSource";
+
+
+    /**
+     * info-point-relation String
+     */
+    public static final String INFO_POINT_RELATION = "info-point-relation";
+
+
+    /**
      * relation String
      */
     public static final String RELATION = "relation";
+
+    /**
+     * reference String
+     */
+    public static final String REFERENCE = "reference";
 
 
     /**
@@ -424,11 +743,22 @@ public class BaseDecConstant {
      */
     public static final String PROJECT_ID = "projectId";
 
+    /**
+     * 当前使用的项目id值
+     */
+    public static final String CURRENT_PROJECT_ID = System.getProperty(PROJECT_ID);
+
 
     /**
-     * read_level String
+     * parentId String
      */
-    public static final String READ_LEVEL = "read_level";
+    public static final String PARENT_ID = "parentId";
+
+
+    /**
+     * readLevel String
+     */
+    public static final String READ_LEVEL = "readLevel";
 
 
     /**
@@ -452,6 +782,17 @@ public class BaseDecConstant {
      * Content String
      */
     public static final String CONTENT = "Content";
+
+    /**
+     * content String
+     */
+    public static final String CONTENT2 = "content";
+
+
+    /**
+     * records String
+     */
+    public static final String RECORDS = "records";
 
     /**
      * path String
@@ -550,4 +891,14 @@ public class BaseDecConstant {
      * 日期格式化
      */
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+
+    /**
+     * 点位过滤父类路径
+     */
+    public static final String[] PARENT_PATH_ARRAY = {"场景数据'首页'模块统计'模块", "场景数据'首页'模块统计'设备运行统计"};
+
+    /**
+     * 点位过滤父类路径
+     */
+    public static final String[] PARENT_PATH_ARRAY_2 = {"基础对象类型'设备", "基础对象'设备", "基础对象'品质", "基础对象'运营", "基础对象'安全", "基础对象'系统", "基础对象'逻辑编组", "场景数据'设备", "场景数据'品质", "场景数据'运营", "场景数据'安全"};
 }

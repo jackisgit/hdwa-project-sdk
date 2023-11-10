@@ -3,10 +3,9 @@ package com.hdwa.sdk.utils;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
-import com.hdwa.sdk.entity.scene.SceneDataObject;
-import com.hdwa.sdk.entity.scene.SceneObject;
-import com.hdwa.sdk.entity.scene.SceneProperty;
+import com.hdwa.sdk.entity.scene.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -18,15 +17,78 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class BaseApiUtil {
 
+
+    /**
+     * Array转List<sdo>
+     *
+     * @param array
+     * @return
+     */
+    public static List<DataObject> arrayToSdoList(JSONArray array) {
+        List<DataObject> result = new ArrayList<>();
+        for (Object item : array) {
+            JSONObject arrayItem = (JSONObject) item;
+            DataObject sod = new DataObject(null, null, null, null, null, null, null);
+            for (String kpKey : arrayItem.keySet()) {
+                Object kpValue = arrayItem.get(kpKey);
+                DataValue svInner = new DataValue(null, sod, kpKey, null);
+                svInner.finish = true;
+                svInner.valuePrim = new DataPrimitive();
+                svInner.valuePrim.value = kpValue;
+                sod.put(kpKey, svInner);
+            }
+            result.add(sod);
+        }
+        return result;
+    }
+
+    /**
+     * Array转List<sdv>
+     *
+     * @param array
+     * @return
+     */
+    public static List<DataValue> arrayToSdvList(JSONArray array) {
+        List<DataValue> result = new CopyOnWriteArrayList<DataValue>();
+        for (Object item : array) {
+            DataValue svInner = new DataValue(null, null, null, null);
+            svInner.finish = true;
+            svInner.valuePrim = new DataPrimitive();
+            svInner.valuePrim.value = item;
+            result.add(svInner);
+        }
+        return result;
+    }
+
+
+    /**
+     * object转Sdo
+     *
+     * @param arrayItem
+     * @return
+     */
+    public static DataObject objectToSdo(JSONObject arrayItem) {
+        DataObject sod = new DataObject(null, null, null, null, null, null, null);
+        for (String kpKey : arrayItem.keySet()) {
+            Object kpValue = arrayItem.get(kpKey);
+            DataValue svInner = new DataValue(null, sod, kpKey, null);
+            svInner.finish = true;
+            svInner.valuePrim = new DataPrimitive();
+            svInner.valuePrim.value = kpValue;
+            sod.put(kpKey, svInner);
+        }
+        return sod;
+    }
+
     /**
      * 获取下级所有非custom自定义类型的对象
      *
      * @param object
      * @return
      */
-    public static List<SceneProperty> getPropertyListBy(SceneObject object) {
-        List<SceneProperty> result = new ArrayList<>();
-        for (SceneProperty property : object.propertyList) {
+    public static List<DataProperty> getPropertyListBy(DataObjectBase object) {
+        List<DataProperty> result = new ArrayList<>();
+        for (DataProperty property : object.propertyList) {
             result.addAll(getPropertyListBy(property));
         }
         return result;
@@ -38,20 +100,20 @@ public class BaseApiUtil {
      * @param property
      * @return
      */
-    public static List<SceneProperty> getPropertyListBy(SceneProperty property) {
-        List<SceneProperty> result = new ArrayList<>();
+    public static List<DataProperty> getPropertyListBy(DataProperty property) {
+        List<DataProperty> result = new ArrayList<>();
         switch (property.propertyValueType) {
             case BaseDecConstant.STATIC:
                 result.add(property);
                 if (property.propertyValueSchema.equals(BaseDecConstant.JSONARRAY)) {
-                    if (property.static_array == null) {
-                        property.static_array = new SceneObject[0];
+                    if (property.staticArray == null) {
+                        property.staticArray = new DataObjectBase[0];
                     }
-                    for (SceneObject object : property.static_array) {
+                    for (DataObjectBase object : property.staticArray) {
                         result.addAll(getPropertyListBy(object));
                     }
-                    if (property.query_attached != null) {
-                        for (SceneProperty spInner : property.query_attached) {
+                    if (property.queryAttached != null) {
+                        for (DataProperty spInner : property.queryAttached) {
                             result.addAll(getPropertyListBy(spInner));
                         }
                     }
@@ -59,17 +121,17 @@ public class BaseApiUtil {
                 break;
             case BaseDecConstant.QUERY:
                 result.add(property);
-                if (property.query_attached != null) {
-                    for (SceneProperty spInner : property.query_attached) {
+                if (property.queryAttached != null) {
+                    for (DataProperty spInner : property.queryAttached) {
                         result.addAll(getPropertyListBy(spInner));
                     }
                 }
                 break;
             case BaseDecConstant.CUSTOM:
-                if (property.custom_object == null) {
-                    property.custom_object = new SceneObject();
+                if (property.customObject == null) {
+                    property.customObject = new DataObjectBase();
                 }
-                result = getPropertyListBy(property.custom_object);
+                result = getPropertyListBy(property.customObject);
                 break;
             case BaseDecConstant.DEAMON:
                 result.add(property);
@@ -86,20 +148,15 @@ public class BaseApiUtil {
      * @param info
      * @return
      */
-    public static int getInfoTypeByTag(SceneDataObject info) {
-        String firstTag = info.get(BaseDecConstant.FIRST_TAG) == null ? null : (String) info.get(BaseDecConstant.FIRST_TAG).value_prim.value;
-        String secondTag = info.get(BaseDecConstant.SECOND_TAG) == null ? null : (String) info.get(BaseDecConstant.SECOND_TAG).value_prim.value;
+    public static int getInfoTypeByTag(DataObject info) {
+        String firstTag = info.get(BaseDecConstant.FIRST_TAG) == null ? null : (String) info.get(BaseDecConstant.FIRST_TAG).valuePrim.value;
         if (firstTag != null) {
             if (firstTag.contains(BaseDecConstant.RUN_PARAM)) {
                 return 1;
             } else if (firstTag.contains(BaseDecConstant.EVENT_RECORD)) {
                 return 1;
             } else if (firstTag.contains(BaseDecConstant.SET_PARAM)) {
-                if (secondTag != null && secondTag.contains(BaseDecConstant.SET_FEEDBACK_VALUE)) {
-                    return 1;
-                } else {
-                    return 2;
-                }
+                return 1;
             }
         }
         //其它就是静态参数，技术参数 等等
@@ -108,13 +165,14 @@ public class BaseApiUtil {
 
     /**
      * 检查是否是运行参数
+     *
      * @param infoArray
      * @param code
      * @return
      */
-    public static boolean isRunParam(List<SceneDataObject> infoArray, String code) {
-        for (SceneDataObject infoJSON : infoArray) {
-            if (!infoJSON.get(BaseDecConstant.CODE).value_prim.value.equals(code)) {
+    public static boolean isRunParam(List<DataObject> infoArray, String code) {
+        for (DataObject infoJSON : infoArray) {
+            if (!infoJSON.get(BaseDecConstant.CODE).valuePrim.value.equals(code)) {
                 continue;
             }
             if (getInfoTypeByTag(infoJSON) == 1) {
@@ -127,13 +185,14 @@ public class BaseApiUtil {
 
     /**
      * 检查是否是设定参数
+     *
      * @param infoArray
      * @param code
      * @return
      */
-    public static boolean isSetParam(List<SceneDataObject> infoArray, String code) {
-        for (SceneDataObject infoJSON : infoArray) {
-            if (!infoJSON.get(BaseDecConstant.CODE).value_prim.value.equals(code)) {
+    public static boolean isSetParam(List<DataObject> infoArray, String code) {
+        for (DataObject infoJSON : infoArray) {
+            if (!infoJSON.get(BaseDecConstant.CODE).valuePrim.value.equals(code)) {
                 continue;
             }
             if (getInfoTypeByTag(infoJSON) == 2) {
@@ -145,6 +204,7 @@ public class BaseApiUtil {
 
     /**
      * 检查点位参数值有效性
+     *
      * @param infoValue
      * @return
      */
@@ -168,9 +228,9 @@ public class BaseApiUtil {
      * @param objectSec
      * @return
      */
-    public static SceneProperty getPropertyByName(String name, SceneObject objectSec) {
-        SceneProperty base = new SceneProperty();
-        for (SceneProperty property : objectSec.getPropertyList()) {
+    public static DataProperty getPropertyByName(String name, DataObjectBase objectSec) {
+        DataProperty base = new DataProperty();
+        for (DataProperty property : objectSec.getPropertyList()) {
             if (name.equals(property.getPropertyName())) {
                 base = property;
                 break;
@@ -187,12 +247,12 @@ public class BaseApiUtil {
      * @param propertySec
      * @return
      */
-    public static SceneProperty getPropertyByName(String name, SceneProperty propertySec) {
-        SceneProperty SceneProperty = new SceneProperty();
-        if (propertySec.getCustom_object() != null) {
-            SceneProperty = getPropertyByName(name, propertySec.getCustom_object());
+    public static DataProperty getPropertyByName(String name, DataProperty propertySec) {
+        DataProperty DataProperty = new DataProperty();
+        if (propertySec.getCustomObject() != null) {
+            DataProperty = getPropertyByName(name, propertySec.getCustomObject());
         }
-        return SceneProperty;
+        return DataProperty;
     }
 
     /**
@@ -342,7 +402,7 @@ public class BaseApiUtil {
                     stringBuffer.append("\\/");
                     break;
                 default:
-                    if ((ch >= '\u0000' && ch <= '\u001F') || (ch >= '\u007F' && ch <= '\u009F') || (ch >= '\u2000' && ch <= '\u20FF')) {
+                    if (ch <= '\u001F' || ch >= '\u007F' && ch <= '\u009F' || ch >= '\u2000' && ch <= '\u20FF') {
                         String ss = Integer.toHexString(ch);
                         stringBuffer.append("\\u");
                         for (int k = 0; k < 4 - ss.length(); k++) {
@@ -363,9 +423,9 @@ public class BaseApiUtil {
      * @param baseObjectSec
      * @return
      */
-    private static List<SceneProperty> getPropertySecAll(SceneObject baseObjectSec) {
-        List<SceneProperty> result = new CopyOnWriteArrayList<>();
-        for (SceneProperty sec : baseObjectSec.getPropertyList()) {
+    private static List<DataProperty> getPropertySecAll(DataObjectBase baseObjectSec) {
+        List<DataProperty> result = new CopyOnWriteArrayList<>();
+        for (DataProperty sec : baseObjectSec.getPropertyList()) {
             result.addAll(getPropertySecAll(sec));
         }
         return result;
@@ -378,21 +438,21 @@ public class BaseApiUtil {
      * @param propertySec
      * @return
      */
-    private static List<SceneProperty> getPropertySecAll(SceneProperty propertySec) {
-        List<SceneProperty> result = new CopyOnWriteArrayList<>();
+    private static List<DataProperty> getPropertySecAll(DataProperty propertySec) {
+        List<DataProperty> result = new CopyOnWriteArrayList<>();
         switch (propertySec.getPropertyValueType()) {
             //静态类型
             case BaseDecConstant.STATIC:
                 result.add(propertySec);
                 if (propertySec.getPropertyValueSchema().equals(BaseDecConstant.JSONARRAY)) {
-                    if (propertySec.getStatic_array() == null) {
-                        propertySec.setStatic_array(new SceneObject[0]);
+                    if (propertySec.getStaticArray() == null) {
+                        propertySec.setStaticArray(new DataObjectBase[0]);
                     }
-                    for (SceneObject baseObjectSec : propertySec.getStatic_array()) {
+                    for (DataObjectBase baseObjectSec : propertySec.getStaticArray()) {
                         result.addAll(getPropertySecAll(baseObjectSec));
                     }
-                    if (propertySec.getQuery_attached() != null) {
-                        for (SceneProperty sec : propertySec.getQuery_attached()) {
+                    if (propertySec.getQueryAttached() != null) {
+                        for (DataProperty sec : propertySec.getQueryAttached()) {
                             result.addAll(getPropertySecAll(sec));
                         }
                     }
@@ -401,21 +461,53 @@ public class BaseApiUtil {
             //查询类型
             case BaseDecConstant.QUERY:
                 result.add(propertySec);
-                if (propertySec.getQuery_attached() != null) {
-                    for (SceneProperty sec : propertySec.getQuery_attached()) {
+                if (propertySec.getQueryAttached() != null) {
+                    for (DataProperty sec : propertySec.getQueryAttached()) {
                         result.addAll(getPropertySecAll(sec));
                     }
                 }
                 break;
             //自定义类型
             case BaseDecConstant.CUSTOM:
-                if (propertySec.getCustom_object() == null) {
-                    propertySec.setCustom_object(new SceneObject());
+                if (propertySec.getCustomObject() == null) {
+                    propertySec.setCustomObject(new DataObjectBase());
                 }
-                result = getPropertySecAll(propertySec.getCustom_object());
+                result = getPropertySecAll(propertySec.getCustomObject());
                 break;
             default:
         }
         return result;
+    }
+
+
+    /**
+     * 获取ip地址
+     *
+     * @param request
+     * @return
+     */
+    public static String getIpAddress(HttpServletRequest request) {
+        String ip = request.getHeader("x-forwarded-for");
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("HTTP_CLIENT_IP");
+        }
+
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+        }
+
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        }
+
+        return ip;
     }
 }

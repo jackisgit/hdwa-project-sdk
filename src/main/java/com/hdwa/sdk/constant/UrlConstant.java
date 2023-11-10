@@ -26,38 +26,62 @@ public class UrlConstant {
     /**
      * 类型定义数据 接口路径
      */
-    public static final String LIST_CLASS_DEFINER_URL = "/classDefiner/listClassDefiner";
+    public static final String LIST_CLASS_DEFINER_URL = "/openApi/listClassDefiner";
 
 
     /**
      * post 接口路径
      */
-    public static final String POST_URL = "/pathApi/post";
+    public static final String POST_URL = "/openApi/post";
 
     /**
      * 点位定义数据 接口路径
      */
-    public static final String LIST_POINT_DEFINER_URL = "/pointDefiner/listPointDefiner";
+    public static final String LIST_POINT_DEFINER_URL = "/openApi/listPointDefiner";
 
     /**
      * 对象数据 接口路径
      */
-    public static final String LIST_OBJECT_DATA_URL = "/objectData/listObjectData";
+    public static final String LIST_OBJECT_DATA_URL = "/openApi/listObjectData";
 
     /**
      * 关系数据 接口路径
      */
-    public static final String LIST_RELATION_DATA_URL = "/relation/listRelationData";
+    public static final String LIST_RELATION_DATA_URL = "/openApi/listRelationData";
+
+
+    /**
+     * 控制指令 接口路径
+     */
+    public static final String iot_project_control = "/sync_pointsetbatch_post";
+
 
     /**
      * 逻辑分组数据 接口路径
      */
-    public static final String LOGICAL_GROUP_URL = "/logicalGrouping/list";
+    public static final String LOGICAL_GROUP_URL = "/openApi/queryLogicalGrouping";
+
+
+    /**
+     * 保存日志 接口路径
+     */
+    public static final String SAVE_LOG_URL = "/openApi/insert";
 
     /**
      * 逻辑分组包含的对象数据 接口路径
      */
-    public static final String LOGICAL_OBJECT_URL = "/logicalObject/listPage";
+    public static final String LOGICAL_OBJECT_URL = "/openApi/queryLogicalObject";
+
+
+    /**
+     * 查询报警记录 接口路径
+     */
+    public static final String ALARM_RECORD_PAGE = "/openApi/alarm/page";
+
+    /**
+     * 查询工单接口 接口路径
+     */
+    public static final String QUERY_ORDER_STATE = "/openApi/alarm/queryOrderStateByAlarmIds";
 
 
     /**
@@ -74,7 +98,7 @@ public class UrlConstant {
     /**
      * ibms逻辑分组数据 文件名
      */
-    public static final String IMBS_GROUP_ARRAY = "imbsGroupArray.json";
+    public static final String IMBS_GROUP_ARRAY = "ibmsGroupArray.json";
 
     /**
      * .json 文件格式
@@ -93,6 +117,6 @@ public class UrlConstant {
     /**
      * tmp-dataSource 文件名
      */
-    public static final String TMP_DATASOURCE = "tmp-dataSource.json";
+    public static final String TMP_DATASOURCE = "temp-dataSource.json";
 
 }

@@ -18,13 +18,11 @@ public class PacketBuffer<T> {
     }
 
     public T poll() {
-        T MyPackage = this.buffer.poll();
-        return MyPackage;
+        return this.buffer.poll();
     }
 
     public T take() {
-        T MyPackage = this.buffer.peek();
-        return MyPackage;
+        return this.buffer.peek();
     }
 
     public int BufferSize() {

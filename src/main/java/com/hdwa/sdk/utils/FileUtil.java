@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -26,9 +25,8 @@ public class FileUtil {
      * 只保留3个版本文件目录数据，老版本删除掉
      *
      * @return
-     * @throws IOException
      */
-    public static void clearHistoryDirectory(File directory) throws IOException {
+    public static void clearHistoryDirectory(File directory) {
         if (directory.exists() && directory.isDirectory()) {
             File[] subdirectories = directory.listFiles(File::isDirectory);
 
@@ -70,11 +68,9 @@ public class FileUtil {
      * 修改temp目录到当前时间目录
      *
      * @param temp
-     * @throws IOException
      */
-    public static void tempToNowDate(File temp, File physicalPath) throws IOException {
+    public static void tempToNowDate(File temp, File physicalPath) {
         File nowFile = new File(physicalPath + File.separator + BaseDecConstant.DATE_TIME_FORMATTER.format(LocalDateTime.now()));
-        Files.createDirectories(nowFile.toPath());
         temp.renameTo(nowFile);
         log.warn("*****rename：" + temp.getPath() + "----->" + nowFile.getPath());
     }
@@ -124,10 +120,24 @@ public class FileUtil {
      */
     public static File getMaxDir(File directory) {
         File[] subdirectories = directory.listFiles(File::isDirectory);
+        File resultFile;
         if (subdirectories != null && subdirectories.length > 0) {
             // 按文件名称降序排序
             Arrays.sort(subdirectories, Comparator.comparing(File::getName).reversed());
-            return subdirectories[0];
+            resultFile = subdirectories[0];
+
+            //临时目录排除
+            if (subdirectories.length == 1 && resultFile.getName().equals(BaseDecConstant.TEMP)) {
+                log.error("只有temp：" + directory.getPath());
+                return null;
+            } else {
+                //temp排序在最大
+                if (resultFile.getName().equals(BaseDecConstant.TEMP)) {
+                    return subdirectories[1];
+                } else {
+                    return resultFile;
+                }
+            }
         } else {
             log.error("未找到文件夹：" + directory.getPath());
         }
