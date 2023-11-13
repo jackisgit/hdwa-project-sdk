@@ -51,6 +51,9 @@ public class ComputeThread implements Runnable {
                 }
             }*/
 
+            if (repository == null) {
+                continue;
+            }
             WaitItem waitItem = repository.WaitCompute.pollFromQueue();
             if (waitItem == null) {
                 continue;

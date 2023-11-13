@@ -21,6 +21,7 @@ import java.io.File;
 import java.net.URI;
 import java.nio.file.Files;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -337,5 +338,18 @@ public class InitialDataService implements CommandLineRunner {
             Runnable thread = new ComputeThread(repository, 10);
             variableThreadPool.execute(thread);
         }
+    }
+
+    /**
+     * 每天2点重新加载数据，清空内存
+     */
+    //@Scheduled(cron = "0 0 2 * * ?")
+    @Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60 * 60 * 3)
+    public void memoryCleanup() {
+        log.warn("************清空内存操作");
+        DataContainer.projectMap.put(BaseDecConstant.CURRENT_PROJECT_ID, null);
+        DataContainer.point2sdv = new HashMap<>(16);
+        DataContainer.sdv2point = new HashMap<>(16);
+        loadDataMainService.loadDataMain();
     }
 }
