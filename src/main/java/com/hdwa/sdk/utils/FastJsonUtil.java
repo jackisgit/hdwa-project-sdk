@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class FastJsonUtil {
 
@@ -319,7 +318,7 @@ public class FastJsonUtil {
     public static void Normalize(Object source) {
         if (source instanceof JSONObject) {
             JSONObject sourceJSON = (JSONObject) source;
-            Map<String, Object> newMap = new ConcurrentHashMap<String, Object>();
+            Map<String, Object> newMap = new HashMap<String, Object>();
             for (String key : sourceJSON.keySet()) {
                 Object value = sourceJSON.get(key);
                 if (value == null) {

@@ -5,7 +5,8 @@ import com.hdwa.sdk.entity.repository.RepositoryBase;
 import com.hdwa.sdk.entity.scene.DataObjectBase;
 import com.hdwa.sdk.entity.scene.DataProperty;
 
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashMap;
+
 
 /**
  * @author abao
@@ -20,11 +21,11 @@ public class AnalysisApiJsonUtil {
      * @param repository
      */
     public static void analysisMain(RepositoryBase repository) {
-        repository.customobject2host = new ConcurrentHashMap<>(16);
-        repository.attachproperty2host = new ConcurrentHashMap<>(16);
-        repository.property2customobject = new ConcurrentHashMap<>(16);
-        repository.p2walker1 = new ConcurrentHashMap<>(16);
-        repository.p2walker2 = new ConcurrentHashMap<>(16);
+        repository.customobject2host = new HashMap<>(16);
+        repository.attachproperty2host = new HashMap<>(16);
+        repository.property2customobject = new HashMap<>(16);
+        repository.p2walker1 = new HashMap<>(16);
+        repository.p2walker2 = new HashMap<>(16);
         analysisObject(repository, null, repository.dataObjectBase, false, -1);
     }
 

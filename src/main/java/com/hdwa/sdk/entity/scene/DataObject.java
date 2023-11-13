@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author abao
@@ -180,7 +179,7 @@ public class DataObject {
     public Map<String, Boolean> getColChange() {
         Map<String, Boolean> result;
         if (this.father != null) {
-            result = new ConcurrentHashMap<>();
+            result = new HashMap<>(16);
             Map<String, Boolean> result_father = this.father.getColChange();
             {
                 for (String col : result_father.keySet()) {

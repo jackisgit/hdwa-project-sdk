@@ -31,7 +31,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -128,7 +127,7 @@ public class QueryUtil {
                     }
                     DataPrimitive SceneValuePrimitive = new DataPrimitive();
                     result = SceneValuePrimitive;
-                    CriteriaBase criteria = parseCriteria(Repository, sv, CriteriaObject, queryAssist, new ConcurrentHashMap<String, Boolean>());
+                    CriteriaBase criteria = parseCriteria(Repository, sv, CriteriaObject, queryAssist, new HashMap<>(16));
                     Criteria.CriteriaDefault CriteriaDefault = (Criteria.CriteriaDefault) criteria;
                     for (String var : varDict.keySet()) {
                         Match.MatchE me = (Match.MatchE) CriteriaDefault.column2MatchList.get(var).get(0);
@@ -188,7 +187,7 @@ public class QueryUtil {
                     }
                 }
             } else if (QueryType.equals("quote")) {
-                CriteriaBase criteria = parseCriteria(Repository, sv, CriteriaObject, queryAssist, new ConcurrentHashMap<String, Boolean>());
+                CriteriaBase criteria = parseCriteria(Repository, sv, CriteriaObject, queryAssist, new HashMap<>(16));
                 Criteria.CriteriaDefault CriteriaDefault = (Criteria.CriteriaDefault) criteria;
                 MatchBase MatchBase = CriteriaDefault.column2MatchList.get("quote").get(0);
                 if (sv != null && sv.relProperty != null && sv.relProperty.propertyValueSchema.equals("JSONArray")) {
@@ -364,7 +363,7 @@ public class QueryUtil {
                 // 构造查询条件
                 QueryAssist QueryAssist2Criteria = new QueryAssist();
                 QueryAssist2Criteria.rowChangeNeed = QueryAssist_before.rowChangeNeed;
-                Map<String, Boolean> CriteriaColumns = new ConcurrentHashMap<String, Boolean>();
+                Map<String, Boolean> CriteriaColumns = new HashMap<String, Boolean>();
                 CriteriaBase criteria = parseCriteria(Repository, sv, CriteriaObject, QueryAssist2Criteria, CriteriaColumns);
 
                 // 构造备选集合
@@ -532,7 +531,7 @@ public class QueryUtil {
     public static Object select_node(RepositoryBase Repository, DataValue sv, JSONObject sql_json, DataSet targetSet) throws Exception {
         // 构造查询条件
         JSONObject CriteriaObject = (JSONObject) sql_json.get("Criteria");
-        CriteriaBase criteria = parseCriteria(Repository, sv, CriteriaObject, new QueryAssist(), new ConcurrentHashMap<String, Boolean>());
+        CriteriaBase criteria = parseCriteria(Repository, sv, CriteriaObject, new QueryAssist(), new HashMap<String, Boolean>());
 
         // 构造返回列
         List<String> ReturnColumns = null;
@@ -841,7 +840,7 @@ public class QueryUtil {
                                     boolean change = false;
                                     JSONObject itemValueInnerJSON = (JSONObject) itemValueInner;
                                     CriteriaBase criteria_elemMatch = parseCriteria(Repository, sv, itemValueInnerJSON, new QueryAssist(),
-                                            new ConcurrentHashMap<String, Boolean>());
+                                            new HashMap<String, Boolean>());
                                     if (itemKeyInner.equals("array_elemMatch_exist")) {
                                         Match.MatchArrayElemMatchExist MatchInner = new Match.MatchArrayElemMatchExist(criteria_elemMatch, change);
                                         matchList.add(MatchInner);
@@ -990,7 +989,7 @@ public class QueryUtil {
                     QueryAssist.rowFactor.rowChange.put(result, true);
                     for (String col : QueryAssist.colChangeNeed.keySet()) {
                         QueryAssist.colFactorMap.putIfAbsent(col, new InfluenceFactor());
-                        QueryAssist.colFactorMap.get(col).colChange.putIfAbsent(result, new ConcurrentHashMap<String, Boolean>());
+                        QueryAssist.colFactorMap.get(col).colChange.putIfAbsent(result, new HashMap<String, Boolean>());
                         QueryAssist.colFactorMap.get(col).colChange.get(result).put(col, true);
                     }
                 }
@@ -1342,7 +1341,7 @@ public class QueryUtil {
                         for (String col : QueryAssist.colChangeNeed.keySet()) {
                             QueryAssist.colFactorMap.putIfAbsent(col, new InfluenceFactor());
                             if (svTmp.valueArray != null) {
-                                QueryAssist.colFactorMap.get(col).colChange.putIfAbsent(svTmp.valueArray, new ConcurrentHashMap<String, Boolean>());
+                                QueryAssist.colFactorMap.get(col).colChange.putIfAbsent(svTmp.valueArray, new HashMap<String, Boolean>());
                                 QueryAssist.colFactorMap.get(col).colChange.get(svTmp.valueArray).put(col, true);
                             }
                         }
@@ -1472,7 +1471,7 @@ public class QueryUtil {
             AggregationArray = (JSONArray) Aggregation;
             agg_array = (JSONArray) FastJsonUtil.Clone_JSON(AggregationArray);
         }
-        Map<String, Boolean> columnDic = new ConcurrentHashMap<String, Boolean>();
+        Map<String, Boolean> columnDic = new HashMap<String, Boolean>();
         for (Object aggItemObject : agg_array) {
             JSONObject aggItem = (JSONObject) aggItemObject;
             String Function = (aggItem.get("Function")).toString();
@@ -1481,8 +1480,8 @@ public class QueryUtil {
                 columnDic.put(Column, true);
             }
         }
-        Map<String, DataObject> agg_count = new ConcurrentHashMap<String, DataObject>();
-        Map<String, Map<String, List<DataPrimitive>>> agg_items = new ConcurrentHashMap<String, Map<String, List<DataPrimitive>>>();
+        Map<String, DataObject> agg_count = new HashMap<String, DataObject>();
+        Map<String, Map<String, List<DataPrimitive>>> agg_items = new HashMap<String, Map<String, List<DataPrimitive>>>();
 
         for (int i = 0; i < set.set.size(); i++) {
             DataObject setValue = set.set.get(i);
@@ -1503,7 +1502,7 @@ public class QueryUtil {
                 key = JSONObject.toJSONString(keyObject, SerializerFeature.WriteMapNullValue);
             }
             if (!agg_items.containsKey(key)) {
-                agg_items.put(key, new ConcurrentHashMap<String, List<DataPrimitive>>());
+                agg_items.put(key, new HashMap<String, List<DataPrimitive>>());
             }
             if (!agg_count.containsKey(key)) {
                 DataObject countObject = new DataObject(null, null, null, null, null, null, null);
@@ -1805,7 +1804,7 @@ public class QueryUtil {
             }
             return resultArray;
         } else {
-            Map<String, Boolean> ReturnColumnMap = new ConcurrentHashMap<String, Boolean>();
+            Map<String, Boolean> ReturnColumnMap = new HashMap<String, Boolean>();
             for (String Column : ReturnColumns) {
                 ReturnColumnMap.put(Column, true);
             }

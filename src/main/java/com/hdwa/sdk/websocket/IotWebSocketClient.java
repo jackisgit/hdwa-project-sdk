@@ -14,7 +14,6 @@ import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
 import java.util.Date;
-import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -82,9 +81,7 @@ public class IotWebSocketClient extends WebSocketClient {
             log.warn("*****iotWebSocket-1分钟接收到数据数量: " + count);
             count = 0;
         }
-        JSONObject json = (JSONObject) JSON.parse(arg0);
-        //WebSocketUtil.ProcessIOTReceived(json);
-        String[] splits = json.getString(BaseDecConstant.DATA).split(";");
+        String[] splits = ((JSONObject) JSON.parse(arg0)).getString(BaseDecConstant.DATA).split(";");
         //仪表号
         String meter = splits[1];
         //功能号
@@ -93,9 +90,6 @@ public class IotWebSocketClient extends WebSocketClient {
         String value = splits[3];
         //点位
         String point = meter + "-" + funcId;
-      /*  if (point.contains("903")) {
-            log.info(arg0);
-        }*/
         try {
             DataPrimitive sdvInner = new DataPrimitive();
             sdvInner.change = true;

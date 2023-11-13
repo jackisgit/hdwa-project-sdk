@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -111,12 +110,12 @@ public class RepositoryBase {
     public RepositoryBase() {
     }
 
-    public ConcurrentHashMap<DataPrimitive, String> sdv2point() {
-        return new ConcurrentHashMap<>();
+    public Map<DataPrimitive, String> sdv2point() {
+        return new HashMap<>(16);
     }
 
-    public ConcurrentHashMap<DataPrimitive, String> sdv2set() {
-        return new ConcurrentHashMap<>();
+    public Map<DataPrimitive, String> sdv2set() {
+        return new HashMap<>(16);
     }
 
 
