@@ -4,14 +4,14 @@ group:
     code: WD
     project:
       #------------------iot使用项目ID 需更改
-      id: Pj2102110210
+      id: Pj3701030060
       #------------------iot使用项目ID，不包含PJ 需更改
-      iotid: 2102110210
+      iotid: 3701030060
 
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/huiyun?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://10.199.205.79:3306/huiyun?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false
     username: root
     password: wanda@1234
     type: com.alibaba.druid.pool.DruidDataSource
@@ -45,7 +45,7 @@ spring:
     ## 是否开启kafka
     enable: true
     #------------------kafka地址 需要修改
-    bootstrapServers: 10.199.205.61:9092,10.199.205.71:9092,10.199.205.81:9092
+    bootstrapServers: 10.199.87.63:19092,10.199.87.79:19092,10.199.87.85:19092
     producer:
       # 发生错误后，消息重发的次数。
       retries: 2
@@ -54,7 +54,7 @@ spring:
       # 设置生产者内存缓冲区的大小。
       buffer-memory: 33554432
       acks: 1
-      topics: alarm.edge2alarm-test
+      topics: alarm.edge2alarm-test1
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:
       # 自动提交的时间间隔 在spring boot 2.X 版本中这里采用的是值的类型为Duration 需要符合特定的格式，如1S,1M,2H,5D
@@ -66,8 +66,8 @@ spring:
       # 是否自动提交偏移量，默认值是true,为了避免出现重复数据和数据丢失，可以把它设置为false,然后手动提交偏移量
       enable-auto-commit: false
       #------------------后缀为项目id 需要修改
-      group-id: zkt-alarm-project-Pj2102110210
-      topics: alarm.alarm2edge-test
+      group-id: zkt-alarm-project-Pj3701030060
+      topics: alarm.alarm2edge-test1
       heartbeat-interval: 10S
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     listener:
@@ -89,11 +89,11 @@ spring:
 remote:
   ibms-alarm:
     # ------------------需要更改，程序端口
-    server-url:  http://10.199.208.69:32050/api-ibms-alarm
+    server-url:  http://10.199.87.120:32050/api-ibms-alarm
     # 推送消息时，是否会开启压缩，true-压缩 false-不压缩
     compress: false
     # ------------------需要更改
-    host: 10.199.208.69
+    host: 10.199.87.120
     # ------------------需要更改，netty端口
     port: 8825
 
@@ -102,7 +102,7 @@ remote:
     # iot-project服务
     project:
       # ------------------需要更改，修改其中的项目ID和ip、port，其中port为websocket的端口，切记不是服务端口
-      websocket: ws://10.199.205.79:8858/websocket?projectId=2102110210&type=pointset,iot&getFullData=true
+      websocket: ws://127.0.0.1:8858/websocket?projectId=3701030060&type=pointset,iot&getFullData=true
 
       # IOT程序
       iot:
@@ -119,9 +119,9 @@ config:
   # ------------------标识哪个接团 比如万达使用WD，需修改
   group-code: WD
   # ------------------项目ID，需修改
-  project-id: Pj2102110210
+  project-id: Pj3701030060
   # ------------------iot数据汇总所使用的项目ID，切记不包含Pj，需修改
-  building: 2102110210
+  building: 3701030060
 
 system:
   id: system  #默认用户表示 ，用于报警记录的创建人

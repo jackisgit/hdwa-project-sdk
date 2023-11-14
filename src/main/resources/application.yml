@@ -3,6 +3,6 @@ server:
 
 spring:
   profiles:
-    active: Pj2102110210
+    active: Pj3701030060
   application:
-    name: hdwa-project-sdk
+    name: hdwa-project-alarm
