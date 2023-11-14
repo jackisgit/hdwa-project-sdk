@@ -6,7 +6,7 @@ url:
   alarmWebSocket: ws://10.199.87.120:32050/ws-ibms-alarm/webSocketServer
 
   iotProject: http://127.0.0.1:18852
-  iotWebSocket: ws://127.0.0.1:8858/websocket
+  iotWebSocket: ws://127.0.0.1:18888/websocket
 
 spring:
   redis:
