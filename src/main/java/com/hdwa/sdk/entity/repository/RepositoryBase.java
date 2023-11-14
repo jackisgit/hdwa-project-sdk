@@ -131,7 +131,9 @@ public class RepositoryBase {
     }
 
     public void threadStart() {
-        for (ComputeThread thread : this.threadList) {
+        for (int i = 0; i < this.threadList.size(); i++) {
+            ComputeThread thread = this.threadList.get(i);
+            thread.setName("iot-computeThread-" + (i + 1));
             thread.start();
         }
     }
