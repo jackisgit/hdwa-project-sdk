@@ -2,6 +2,7 @@ package com.hdwa.sdk.entity.repository;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.entity.scene.*;
+import com.hdwa.sdk.utils.ComputeThread;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -92,6 +93,8 @@ public class RepositoryBase {
      */
     public DataObject objectData;
 
+    public List<ComputeThread> threadList = new CopyOnWriteArrayList<>();
+
 
     public Map<DataProperty, Map<String, Boolean>> p2varDict = new HashMap<>(16);
     public Map<DataProperty, Map<String, Boolean>> p2varStringDict = new HashMap<>(16);
@@ -108,6 +111,10 @@ public class RepositoryBase {
     public boolean enable_factor = true;
 
     public RepositoryBase() {
+        for (int i = 0; i < 4; i++) {
+            ComputeThread thread = new ComputeThread(this, 60);
+            threadList.add(thread);
+        }
     }
 
     public Map<DataPrimitive, String> sdv2point() {
@@ -121,6 +128,18 @@ public class RepositoryBase {
 
     public DataSet parseSource(JSONObject descSet, String Source) {
         return null;
+    }
+
+    public void threadStart() {
+        for (ComputeThread thread : this.threadList) {
+            thread.start();
+        }
+    }
+
+    public void threadStop() {
+        for (ComputeThread thread : this.threadList) {
+            thread.requestStop();
+        }
     }
 
     public int addWaitCompute(DataSet set) {

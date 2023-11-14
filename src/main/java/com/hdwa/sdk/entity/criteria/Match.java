@@ -107,7 +107,7 @@ public class Match {
     public static class MatchNotin extends MatchBase {
         public boolean pass;
         public HashSet<Object> value;
-        private final boolean change;
+        private boolean change;
 
         public MatchNotin(HashSet<Object> value, boolean change) {
             this.value = value;
@@ -277,7 +277,7 @@ public class Match {
     public static class MatchIn extends MatchBase {
         public boolean pass;
         public HashSet<Object> value;
-        private final boolean change;
+        private boolean change;
 
         public MatchIn(HashSet<Object> value, boolean change) {
             this.value = value;
@@ -545,7 +545,7 @@ public class Match {
     public static class MatchArrayNe extends MatchBase {
         public boolean pass;
         public HashSet<Object> value;
-        private final boolean change;
+        private boolean change;
 
         public MatchArrayNe(HashSet<Object> value, boolean change) {
             this.value = value;
@@ -596,7 +596,7 @@ public class Match {
     public static class MatchArrayIntersect extends MatchBase {
         public boolean pass;
         public HashSet<Object> value;
-        private final boolean change;
+        private boolean change;
 
         public MatchArrayIntersect(HashSet<Object> value, boolean change) {
             this.value = value;
@@ -635,7 +635,7 @@ public class Match {
     public static class MatchArrayIncluded extends MatchBase {
         public boolean pass;
         public HashSet<Object> value;
-        private final boolean change;
+        private boolean change;
 
         public MatchArrayIncluded(HashSet<Object> value, boolean change) {
             this.value = value;
@@ -674,7 +674,7 @@ public class Match {
     public static class MatchArrayInclude extends MatchBase {
         public boolean pass;
         public HashSet<Object> value;
-        private final boolean change;
+        private boolean change;
 
         public MatchArrayInclude(HashSet<Object> value, boolean change) {
             this.value = value;
@@ -717,7 +717,7 @@ public class Match {
     public static class MatchArrayExclude extends MatchBase {
         public boolean pass;
         public HashSet<Object> value;
-        private final boolean change;
+        private boolean change;
 
         public MatchArrayExclude(HashSet<Object> value, boolean change) {
             this.value = value;
@@ -757,7 +757,7 @@ public class Match {
     public static class MatchArrayElemMatchExist extends MatchBase {
         public boolean pass;
         public CriteriaBase value;
-        private final boolean change;
+        private boolean change;
 
         public MatchArrayElemMatchExist(CriteriaBase value, boolean change) {
             this.value = value;
@@ -797,7 +797,7 @@ public class Match {
     public static class MatchArrayElemMatchAll extends MatchBase {
         public boolean pass;
         public CriteriaBase value;
-        private final boolean change;
+        private boolean change;
 
         public MatchArrayElemMatchAll(CriteriaBase value, boolean change) {
             this.value = value;

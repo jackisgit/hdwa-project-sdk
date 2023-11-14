@@ -101,7 +101,6 @@ public class InitialDataService implements CommandLineRunner {
         loadDataMainService.loadDataMain();
         initIotWebsocket();
         initAlarmWebsocket();
-        startRefreshData();
         log.warn("===============================" + BaseDecConstant.CURRENT_PROJECT_ID + "：成功启动===============================");
     }
 
@@ -332,22 +331,21 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 启动刷新数据线程
      */
-    public void startRefreshData() {
+  /*  public void startRefreshData() {
         RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
         for (int i = 0; i < variableThreadPool.getCorePoolSize(); i++) {
             Runnable thread = new ComputeThread(repository, 10);
             variableThreadPool.execute(thread);
         }
-    }
+    }*/
 
     /**
-     * 每天2点重新加载数据，清空内存
+     * 每天5点重新加载数据，清空内存
      */
-    //@Scheduled(cron = "0 0 2 * * ?")
-    @Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60 * 60 * 3)
+    @Scheduled(cron = "0 0 5 * * ?")
+    //@Scheduled(initialDelay = 1000 * 60 * 60, fixedDelay = 1000 * 60 * 60)
     public void memoryCleanup() {
         log.warn("************清空内存操作");
-        DataContainer.projectMap.put(BaseDecConstant.CURRENT_PROJECT_ID, null);
         DataContainer.point2sdv = new HashMap<>(16);
         DataContainer.sdv2point = new HashMap<>(16);
         loadDataMainService.loadDataMain();

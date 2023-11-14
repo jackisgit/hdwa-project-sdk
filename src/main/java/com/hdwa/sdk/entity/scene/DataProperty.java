@@ -177,4 +177,14 @@ public class DataProperty {
     public void setQueryAttached(DataProperty[] queryAttached) {
         this.queryAttached = queryAttached;
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

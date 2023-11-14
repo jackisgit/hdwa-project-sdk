@@ -332,12 +332,13 @@ public class CalculateApiJsonUtil {
                     }
                     break;
                 case BaseDecConstant.QUERY:
-                    sv.lock.lock();
+                    computeValueChanged = calculatePropertyQuery(repositoryBase, dataProperty, sv);
+                   /* sv.lock.lock();
                     try {
                         computeValueChanged = calculatePropertyQuery(repositoryBase, dataProperty, sv);
                     } finally {
                         sv.lock.unlock();
-                    }
+                    }*/
                     break;
                 case BaseDecConstant.CUSTOM:
                     if (sv.valueObject == null) {
@@ -379,7 +380,7 @@ public class CalculateApiJsonUtil {
             }
 
         } catch (Exception e) {
-            log.error("计算属性异常{}", e.getMessage());
+            log.error("计算属性异常", e);
         }
 
         sv.lastComputeTime = new Date();

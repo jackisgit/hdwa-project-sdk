@@ -14,11 +14,11 @@ public class IotJob implements Runnable {
     /**
      * point
      */
-    private final String point;
+    private String point;
     /**
      * 项目id
      */
-    private final RepositoryImpl repository;
+    private RepositoryImpl repository;
 
     public IotJob(String point, RepositoryImpl repository) {
         this.point = point;
