@@ -1,5 +1,5 @@
 server:
-  port: 8863
+  port: 7777
   tomcat:
     accept-count: 1000
     max-threads: 1000
