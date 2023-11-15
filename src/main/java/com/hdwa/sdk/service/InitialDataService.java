@@ -6,7 +6,10 @@ import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.ExcelSheetEntity;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
-import com.hdwa.sdk.utils.*;
+import com.hdwa.sdk.utils.AlarmUtil;
+import com.hdwa.sdk.utils.CustomThreadFactory;
+import com.hdwa.sdk.utils.ExcelUtil;
+import com.hdwa.sdk.utils.FileUtil;
 import com.hdwa.sdk.websocket.AlarmWebSocketClient;
 import com.hdwa.sdk.websocket.IotWebSocketClient;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +24,6 @@ import java.io.File;
 import java.net.URI;
 import java.nio.file.Files;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -346,8 +348,7 @@ public class InitialDataService implements CommandLineRunner {
     //@Scheduled(initialDelay = 1000 * 60 * 60, fixedDelay = 1000 * 60 * 60)
     public void memoryCleanup() {
         log.warn("************清空内存操作");
-        DataContainer.point2sdv = new HashMap<>(16);
-        DataContainer.sdv2point = new HashMap<>(16);
-        loadDataMainService.loadDataMain();
+        System.gc();
+        //loadDataMainService.loadDataMain();
     }
 }

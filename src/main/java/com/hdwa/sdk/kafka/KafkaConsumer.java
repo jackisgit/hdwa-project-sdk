@@ -38,10 +38,10 @@ public class KafkaConsumer {
         if (projectId.equals(msg.getProjectId())) {
             log.warn("===============================开始消费DMP消息：{}", record.value());
             //全量更新或者只更新逻辑编组数据
-            if (msg.getMsgType().equals("0")) {
+            if ("0".equals(msg.getMsgType())) {
                 log.warn("===============================开始更新所有数据===============================");
                 loadDataMainService.main();
-            } else if (msg.getMsgType().equals("1")) {
+            } else if ("1".equals(msg.getMsgType())) {
                 log.warn("===============================开始更新逻辑编组数据===============================");
                 loadDataMainService.logicGroupMain();
             }
