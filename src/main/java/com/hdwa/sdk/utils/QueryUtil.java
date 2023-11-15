@@ -135,20 +135,34 @@ public class QueryUtil {
                             SceneValuePrimitive.change = true;
                         }
                         if (me.value == null) {
-                            walker.put_null(var);
+                            if (walker != null) {
+                                walker.put_null(var);
+                            }
                         } else {
                             if (me.value instanceof Integer) {
-                                walker.put(var, (long) ((Integer) me.value));
+                                if (walker != null) {
+                                    walker.put(var, (long) ((Integer) me.value));
+                                }
                             } else if (me.value instanceof Long) {
-                                walker.put(var, (Long) me.value);
+                                if (walker != null) {
+                                    walker.put(var, (Long) me.value);
+                                }
                             } else if (me.value instanceof BigInteger) {
-                                walker.put(var, ((BigInteger) me.value).longValue());
+                                if (walker != null) {
+                                    walker.put(var, ((BigInteger) me.value).longValue());
+                                }
                             } else if (me.value instanceof Float) {
-                                walker.put(var, (double) ((Float) me.value));
+                                if (walker != null) {
+                                    walker.put(var, (double) ((Float) me.value));
+                                }
                             } else if (me.value instanceof Double) {
-                                walker.put(var, (Double) me.value);
+                                if (walker != null) {
+                                    walker.put(var, (Double) me.value);
+                                }
                             } else if (me.value instanceof BigDecimal) {
-                                walker.put(var, ((BigDecimal) me.value).doubleValue());
+                                if (walker != null) {
+                                    walker.put(var, ((BigDecimal) me.value).doubleValue());
+                                }
                             } else {
                                 throw new Exception(me.value.getClass().toString());
                             }
@@ -160,15 +174,23 @@ public class QueryUtil {
                             SceneValuePrimitive.change = true;
                         }
                         if (me.value == null) {
-                            walker.putString(var, null);
+                            if (walker != null) {
+                                walker.putString(var, null);
+                            }
                         } else {
                             // 交付数据信息点可能是JSONObject或者JSONArray，expression用到的地方使用contains
                             if (me.value instanceof String) {
-                                walker.putString(var, (String) me.value);
+                                if (walker != null) {
+                                    walker.putString(var, (String) me.value);
+                                }
                             } else if (me.value instanceof JSONObject) {
-                                walker.putString(var, me.value.toString());
+                                if (walker != null) {
+                                    walker.putString(var, me.value.toString());
+                                }
                             } else if (me.value instanceof JSONArray) {
-                                walker.putString(var, me.value.toString());
+                                if (walker != null) {
+                                    walker.putString(var, me.value.toString());
+                                }
                             } else {
                                 throw new Exception(me.value.getClass().toString());
                             }
