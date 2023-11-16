@@ -331,24 +331,13 @@ public class InitialDataService implements CommandLineRunner {
 
 
     /**
-     * 启动刷新数据线程
+     * 定时清空一下内存,测试环境
      */
-  /*  public void startRefreshData() {
-        RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
-        for (int i = 0; i < variableThreadPool.getCorePoolSize(); i++) {
-            Runnable thread = new ComputeThread(repository, 10);
-            variableThreadPool.execute(thread);
-        }
-    }*/
-
-    /**
-     * 每天5点重新加载数据，清空内存
-     */
-    @Scheduled(cron = "0 0 5 * * ?")
-    //@Scheduled(initialDelay = 1000 * 60 * 60, fixedDelay = 1000 * 60 * 60)
+    @Scheduled(cron = "0 0 6,12,18,23 * * ?")
     public void memoryCleanup() {
-        log.warn("************清空内存操作");
-        System.gc();
-        //loadDataMainService.loadDataMain();
+        if ("dev".equals(System.getProperty(BaseDecConstant.SPRING_PROFILES_ACTIVE))) {
+            log.warn("====================清空内存操作====================");
+            System.gc();
+        }
     }
 }

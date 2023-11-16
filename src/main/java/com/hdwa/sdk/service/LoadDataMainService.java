@@ -105,8 +105,6 @@ public class LoadDataMainService {
             }
             //启动新的计算线程
             repository.threadStart();
-            //手动GC全量回收
-            System.gc();
         } catch (Exception e) {
             log.error("******** 加载数据入口异常", e);
         }

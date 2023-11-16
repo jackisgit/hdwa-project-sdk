@@ -748,6 +748,11 @@ public class BaseDecConstant {
      */
     public static final String CURRENT_PROJECT_ID = System.getProperty(PROJECT_ID);
 
+    /**
+     * 当前配置文件
+     */
+    public static final String SPRING_PROFILES_ACTIVE = "spring.profiles.active";
+
 
     /**
      * parentId String
