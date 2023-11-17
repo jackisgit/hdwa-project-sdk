@@ -15,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -417,7 +416,7 @@ public class AlarmUtil {
         boolean alarmArrayRowChange = false;
         boolean alarmListRowChange = false;
         boolean alarmCountChange = false;
-        Map<String, Boolean> colChangeMap = new ConcurrentHashMap<>(16);
+        Map<String, Boolean> colChangeMap = new HashMap<>(16);
         {
             DataValue alarmList = DataContainer.id2alarmList.get(objId);
             DataValue alarmCount = DataContainer.id2alarmCount.get(objId);

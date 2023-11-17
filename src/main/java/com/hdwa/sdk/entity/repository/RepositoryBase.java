@@ -2,12 +2,12 @@ package com.hdwa.sdk.entity.repository;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.entity.scene.*;
+import com.hdwa.sdk.utils.ComputeThread;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -93,6 +93,8 @@ public class RepositoryBase {
      */
     public DataObject objectData;
 
+    public List<ComputeThread> threadList = new CopyOnWriteArrayList<>();
+
 
     public Map<DataProperty, Map<String, Boolean>> p2varDict = new HashMap<>(16);
     public Map<DataProperty, Map<String, Boolean>> p2varStringDict = new HashMap<>(16);
@@ -109,19 +111,37 @@ public class RepositoryBase {
     public boolean enable_factor = true;
 
     public RepositoryBase() {
+        for (int i = 0; i < 4; i++) {
+            ComputeThread thread = new ComputeThread(this, 60);
+            threadList.add(thread);
+        }
     }
 
-    public ConcurrentHashMap<DataPrimitive, String> sdv2point() {
-        return new ConcurrentHashMap<>();
+    public Map<DataPrimitive, String> sdv2point() {
+        return new HashMap<>(16);
     }
 
-    public ConcurrentHashMap<DataPrimitive, String> sdv2set() {
-        return new ConcurrentHashMap<>();
+    public Map<DataPrimitive, String> sdv2set() {
+        return new HashMap<>(16);
     }
 
 
     public DataSet parseSource(JSONObject descSet, String Source) {
         return null;
+    }
+
+    public void threadStart() {
+        for (int i = 0; i < this.threadList.size(); i++) {
+            ComputeThread thread = this.threadList.get(i);
+            thread.setName("iot-computeThread-" + (i + 1));
+            thread.start();
+        }
+    }
+
+    public void threadStop() {
+        for (ComputeThread thread : this.threadList) {
+            thread.requestStop();
+        }
     }
 
     public int addWaitCompute(DataSet set) {

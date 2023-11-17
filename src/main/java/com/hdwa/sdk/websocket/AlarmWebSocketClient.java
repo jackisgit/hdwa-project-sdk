@@ -15,7 +15,6 @@ import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
 import java.util.Date;
-import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -113,13 +112,18 @@ public class AlarmWebSocketClient extends WebSocketClient {
                 log.warn("*****接收到报警处理数据：" + alarm);
             }
             //3为转工单
-            if ((Integer) alarm.get(BaseDecConstant.PUSH_TYPE) == 3) {
-                String alarmId = (String) alarm.get(BaseDecConstant.ALARM_ID);
-                AlarmUtil.processOrderDesc(alarmId, alarm);
+            if (alarm.get(BaseDecConstant.PUSH_TYPE) != null) {
+                if ((Integer) alarm.get(BaseDecConstant.PUSH_TYPE) == 3) {
+                    String alarmId = (String) alarm.get(BaseDecConstant.ALARM_ID);
+                    AlarmUtil.processOrderDesc(alarmId, alarm);
+                } else {
+                    AlarmUtil.updateAlarm(alarm, DataContainer.projectMap.get(projectId));
+                    AlarmUtil.processAlarm(alarm);
+                }
             } else {
-                AlarmUtil.updateAlarm(alarm, DataContainer.projectMap.get(projectId));
-                AlarmUtil.processAlarm(alarm);
+                log.error("*****接收到报警数据异常，id：" + alarm.get(BaseDecConstant.ID) + "，缺失属性：" + BaseDecConstant.PUSH_TYPE);
             }
+
         } catch (Exception e) {
             log.error("*****alarmWebSocket报警数据解析异常", e);
         }

@@ -6,7 +6,10 @@ import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.ExcelSheetEntity;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
-import com.hdwa.sdk.utils.*;
+import com.hdwa.sdk.utils.AlarmUtil;
+import com.hdwa.sdk.utils.CustomThreadFactory;
+import com.hdwa.sdk.utils.ExcelUtil;
+import com.hdwa.sdk.utils.FileUtil;
 import com.hdwa.sdk.websocket.AlarmWebSocketClient;
 import com.hdwa.sdk.websocket.IotWebSocketClient;
 import lombok.extern.slf4j.Slf4j;
@@ -100,7 +103,6 @@ public class InitialDataService implements CommandLineRunner {
         loadDataMainService.loadDataMain();
         initIotWebsocket();
         initAlarmWebsocket();
-        startRefreshData();
         log.warn("===============================" + BaseDecConstant.CURRENT_PROJECT_ID + "：成功启动===============================");
     }
 
@@ -329,13 +331,13 @@ public class InitialDataService implements CommandLineRunner {
 
 
     /**
-     * 启动刷新数据线程
+     * 定时清空一下内存,测试环境
      */
-    public void startRefreshData() {
-        RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
-        for (int i = 0; i < variableThreadPool.getCorePoolSize(); i++) {
-            Runnable thread = new ComputeThread(repository, 10);
-            variableThreadPool.execute(thread);
+    @Scheduled(cron = "0 0 6,12,18,23 * * ?")
+    public void memoryCleanup() {
+        if ("dev".equals(System.getProperty(BaseDecConstant.SPRING_PROFILES_ACTIVE))) {
+            log.warn("====================清空内存操作====================");
+            System.gc();
         }
     }
 }

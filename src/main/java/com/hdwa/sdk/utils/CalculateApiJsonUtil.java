@@ -9,11 +9,7 @@ import com.hdwa.sdk.entity.repository.RepositoryBase;
 import com.hdwa.sdk.entity.scene.*;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -153,7 +149,7 @@ public class CalculateApiJsonUtil {
             throw new ExceptionWrapper(exceptionList);
         }
 
-        Map<DataProperty, Boolean> processedDic = new ConcurrentHashMap<>(16);
+        Map<DataProperty, Boolean> processedDic = new HashMap<>(16);
         List<List<DataProperty>> propertyList = new CopyOnWriteArrayList<>();
 
         while (true) {
@@ -220,7 +216,7 @@ public class CalculateApiJsonUtil {
             }
         });
 
-        Map<DataProperty, Boolean> processedDic = new ConcurrentHashMap<>(16);
+        Map<DataProperty, Boolean> processedDic = new HashMap<>(16);
         List<List<DataProperty>> propertyList = new CopyOnWriteArrayList<>();
 
         while (true) {
@@ -336,12 +332,13 @@ public class CalculateApiJsonUtil {
                     }
                     break;
                 case BaseDecConstant.QUERY:
-                    sv.lock.lock();
+                    computeValueChanged = calculatePropertyQuery(repositoryBase, dataProperty, sv);
+                   /* sv.lock.lock();
                     try {
                         computeValueChanged = calculatePropertyQuery(repositoryBase, dataProperty, sv);
                     } finally {
                         sv.lock.unlock();
-                    }
+                    }*/
                     break;
                 case BaseDecConstant.CUSTOM:
                     if (sv.valueObject == null) {
@@ -370,7 +367,7 @@ public class CalculateApiJsonUtil {
                     String refString = (String) criteriaItemValue.get(BaseDecConstant.REF);
                     DataSet sdvList = QueryUtil.parseSetRef(repositoryBase, sv, refString, new QueryAssist(), false, true);
                     for (DataValue sdvInner : sdvList.singleValueSet) {
-                        ConcurrentHashMap<DataPrimitive, String> sdv2point = repositoryBase.sdv2point();
+                        HashMap<DataPrimitive, String> sdv2point = repositoryBase.sdv2point();
                         if (sdvInner != null && sdv2point.containsKey(sdvInner.valuePrim)) {
                             String point = sdv2point.get(sdvInner.valuePrim);
                             pointList.add(point);
@@ -383,7 +380,7 @@ public class CalculateApiJsonUtil {
             }
 
         } catch (Exception e) {
-            log.error("计算属性异常{}", e.getMessage());
+            log.error("计算属性异常", e);
         }
 
         sv.lastComputeTime = new Date();
@@ -427,7 +424,7 @@ public class CalculateApiJsonUtil {
             }
             if (queryResultObject != null) {
                 DataObject arrayItemTmp = queryResultObject;
-                Map<String, Boolean> fatherReturnColumnMap = new ConcurrentHashMap<>(16);
+                Map<String, Boolean> fatherReturnColumnMap = new HashMap<>(16);
                 while (true) {
                     if (arrayItemTmp.parentArrayData != null || arrayItemTmp.parentObjectData != null) {
                         break;
@@ -491,7 +488,7 @@ public class CalculateApiJsonUtil {
                     }
                     for (int i = 0; i < array.set.size(); i++) {
                         DataObject arrayItemTmp = array.set.get(i);
-                        Map<String, Boolean> fatherReturnColumnMap = new ConcurrentHashMap<String, Boolean>();
+                        Map<String, Boolean> fatherReturnColumnMap = new HashMap<>(16);
                         while (true) {
                             if (arrayItemTmp.parentArrayData != null || arrayItemTmp.parentObjectData != null) {
                                 break;

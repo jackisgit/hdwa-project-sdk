@@ -12,15 +12,24 @@ import java.util.Date;
  * 计算
  */
 @Slf4j
-public class ComputeThread implements Runnable {
+public class ComputeThread extends Thread {
 
-    private final RepositoryBase repository;
-    private final long interval;
+    private RepositoryBase repository;
+    private long interval;
     private boolean stop = false;
 
-    public ComputeThread(RepositoryBase Repository, long interval) {
-        this.repository = Repository;
+    public ComputeThread(RepositoryBase repository, long interval) {
+        this.repository = repository;
         this.interval = interval;
+    }
+
+    public void requestStop() {
+        stop = true;
+        try {
+            this.join();
+        } catch (InterruptedException e) {
+            log.error("***停止线程失败", e);
+        }
     }
 
     @Override
@@ -51,6 +60,9 @@ public class ComputeThread implements Runnable {
                 }
             }*/
 
+            if (repository == null) {
+                continue;
+            }
             WaitItem waitItem = repository.WaitCompute.pollFromQueue();
             if (waitItem == null) {
                 continue;

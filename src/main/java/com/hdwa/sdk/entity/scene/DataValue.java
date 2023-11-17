@@ -7,6 +7,7 @@ import com.hdwa.sdk.entity.repository.RepositoryBase;
 import com.hdwa.sdk.utils.QueryUtil;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
@@ -117,5 +118,16 @@ public class DataValue {
     @Override
     public String toString() {
         return JSON.toJSONString(this.toJSON(true, 1), SerializerFeature.WriteMapNullValue);
+    }
+
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 }

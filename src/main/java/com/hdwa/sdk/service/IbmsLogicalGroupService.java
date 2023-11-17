@@ -331,6 +331,12 @@ public class IbmsLogicalGroupService {
                 String id = (String) sdo.get(BaseDecConstant.CIRCUIT_ID).valuePrim.value;
                 if (repository.id2sdv.containsKey(id)) {
                     DataObject eqpSdo = repository.id2sdv.get(id);
+                    //防止只有回路编组数据覆盖完整数据
+                    if (eqpSdo.get(BaseDecConstant.PRIMARY_GROUPING_NAME) != null) {
+                        if (eqpSdo.get(BaseDecConstant.PRIMARY_GROUPING_NAME).valuePrim.value != null || eqpSdo.get(BaseDecConstant.TWO_GROUPING_NAME).valuePrim.value != null) {
+                            return;
+                        }
+                    }
                     DataValue sdv = new DataValue(null, null, null, null);
                     sdv.valuePrim = new DataPrimitive();
                     sdv.valuePrim.change = false;

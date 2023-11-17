@@ -153424,7 +153424,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"很冷",
+                                                  "staticValue":"极低",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -153511,7 +153511,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"冷",
+                                                  "staticValue":"较低",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -153598,7 +153598,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"适中",
+                                                  "staticValue":"达标",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -153685,7 +153685,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"热",
+                                                  "staticValue":"较高",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -153772,7 +153772,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"很热",
+                                                  "staticValue":"极高",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -153896,7 +153896,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"很干",
+                                                  "staticValue":"极低",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -153983,7 +153983,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"干",
+                                                  "staticValue":"较低",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -154070,7 +154070,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"适中",
+                                                  "staticValue":"达标",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -154157,7 +154157,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"湿",
+                                                  "staticValue":"较高",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -154244,7 +154244,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"很湿",
+                                                  "staticValue":"极高",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -154368,7 +154368,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"空气品质很好",
+                                                  "staticValue":"极低",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -154455,7 +154455,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"空气品质好",
+                                                  "staticValue":"较低",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -154542,7 +154542,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"空气品质适中",
+                                                  "staticValue":"达标",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -154629,7 +154629,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"空气品质差",
+                                                  "staticValue":"较高",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -154716,7 +154716,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"空气品质很差",
+                                                  "staticValue":"极高",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -154755,577 +154755,6 @@
                                                   "queryAttached":null,
                                                   "propertyValueSchema":"int",
                                                   "staticArray":null,
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                }
-                                              ]
-                                            }
-                                          ],
-                                          "propertyVisible":false,
-                                          "propertyValueType":"static"
-                                        }
-                                      ]
-                                    },
-                                    "staticValue":null,
-                                    "offsetLevel":"0",
-                                    "queryAttached":[
-                                    ],
-                                    "propertyValueSchema":"JSONObject",
-                                    "staticArray":[
-                                    ],
-                                    "propertyVisible":false,
-                                    "propertyValueType":"custom"
-                                  },
-                                  {
-                                    "propertyName":"PM2.5",
-                                    "allowPass":"1",
-                                    "querySql":null,
-                                    "readLevel":"2",
-                                    "filterRule":null,
-                                    "customObject":{
-                                      "propertyList":[
-                                        {
-                                          "propertyName":"区间范围",
-                                          "allowPass":"1",
-                                          "querySql":"",
-                                          "readLevel":"1",
-                                          "filterRule":"",
-                                          "customObject":null,
-                                          "staticValue":null,
-                                          "offsetLevel":"0",
-                                          "queryAttached":[
-                                          ],
-                                          "propertyValueSchema":"JSONArray",
-                                          "staticArray":[
-                                            {
-                                              "propertyList":[
-                                                {
-                                                  "propertyName":"上限",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"35",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"double",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"下限",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"0",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"double",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"名称",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"优",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"string",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"颜色",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"#00D6BA",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"string",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"数值",
-                                                  "allowPass":"1",
-                                                  "querySql":null,
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"44",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"int",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                }
-                                              ]
-                                            },
-                                            {
-                                              "propertyList":[
-                                                {
-                                                  "propertyName":"上限",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"75",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"double",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"下限",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"35",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"double",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"名称",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"良",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"string",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"颜色",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"#0091FF",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"string",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"数值",
-                                                  "allowPass":"1",
-                                                  "querySql":null,
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"45",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"int",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                }
-                                              ]
-                                            },
-                                            {
-                                              "propertyList":[
-                                                {
-                                                  "propertyName":"上限",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"115",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"double",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"下限",
-                                                  "allowPass":"1",
-                                                  "querySql":null,
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"75",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"double",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"名称",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"轻度污染",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"string",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"颜色",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"#E0AC00",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"string",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"数值",
-                                                  "allowPass":"1",
-                                                  "querySql":null,
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"46",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"int",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                }
-                                              ]
-                                            },
-                                            {
-                                              "propertyList":[
-                                                {
-                                                  "propertyName":"上限",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"150",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"double",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"下限",
-                                                  "allowPass":"1",
-                                                  "querySql":null,
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"115",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"double",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"名称",
-                                                  "allowPass":"1",
-                                                  "querySql":null,
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"中度污染",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"string",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"颜色",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"#E24840",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"string",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"数值",
-                                                  "allowPass":"1",
-                                                  "querySql":null,
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"47",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"int",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                }
-                                              ]
-                                            },
-                                            {
-                                              "propertyList":[
-                                                {
-                                                  "propertyName":"上限",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":"",
-                                                  "customObject":null,
-                                                  "staticValue":"250",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"double",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"下限",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"150",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"double",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"名称",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"重度污染",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"string",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"颜色",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"#9812A4",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"string",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"数值",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"48",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"int",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                }
-                                              ]
-                                            },
-                                            {
-                                              "propertyList":[
-                                                {
-                                                  "propertyName":"上限",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":"",
-                                                  "customObject":null,
-                                                  "staticValue":"",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"double",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"下限",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"250",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"double",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"名称",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"严重污染",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"string",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"颜色",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"#6600A5",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"string",
-                                                  "staticArray":[
-                                                  ],
-                                                  "propertyVisible":false,
-                                                  "propertyValueType":"static"
-                                                },
-                                                {
-                                                  "propertyName":"数值",
-                                                  "allowPass":"1",
-                                                  "querySql":"",
-                                                  "readLevel":"1",
-                                                  "filterRule":null,
-                                                  "customObject":null,
-                                                  "staticValue":"49",
-                                                  "offsetLevel":"0",
-                                                  "queryAttached":[
-                                                  ],
-                                                  "propertyValueSchema":"int",
-                                                  "staticArray":[
-                                                  ],
                                                   "propertyVisible":false,
                                                   "propertyValueType":"static"
                                                 }
@@ -155411,7 +154840,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"低",
+                                                  "staticValue":"较低",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -155498,7 +154927,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"中",
+                                                  "staticValue":"达标",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -155585,7 +155014,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"高",
+                                                  "staticValue":"较高",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -155709,7 +155138,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"空气品质很好",
+                                                  "staticValue":"极低",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -155796,7 +155225,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"空气品质好",
+                                                  "staticValue":"较低",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -155883,7 +155312,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"空气品质适中",
+                                                  "staticValue":"达标",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -155970,7 +155399,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"空气品质差",
+                                                  "staticValue":"较高",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],
@@ -156057,7 +155486,7 @@
                                                   "readLevel":"1",
                                                   "filterRule":null,
                                                   "customObject":null,
-                                                  "staticValue":"空气品质很差",
+                                                  "staticValue":"极高",
                                                   "offsetLevel":"0",
                                                   "queryAttached":[
                                                   ],

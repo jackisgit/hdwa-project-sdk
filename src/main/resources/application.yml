@@ -1,5 +1,5 @@
 server:
-  port: 8863
+  port: 7777
   tomcat:
     accept-count: 1000
     max-threads: 1000
@@ -20,8 +20,6 @@ dirName:
   temp: temp
 
 spring:
-  profiles:
-    active: dev
   kafka:
     #生产者配置
     producer:

@@ -6,20 +6,20 @@ import com.hdwa.sdk.entity.scene.DataSet;
 import com.hdwa.sdk.entity.scene.DataValue;
 import com.hdwa.sdk.utils.PathUtil;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class InfluenceFactor {
-    public Map<DataSet, Boolean> rowChange = new ConcurrentHashMap<>(16);
-    public Map<DataSet, Map<String, Boolean>> colChange = new ConcurrentHashMap<>(16);
-    public Map<DataValue, Boolean> valueChange = new ConcurrentHashMap<>(16);
+    public Map<DataSet, Boolean> rowChange = new HashMap<>(16);
+    public Map<DataSet, Map<String, Boolean>> colChange = new HashMap<>(16);
+    public Map<DataValue, Boolean> valueChange = new HashMap<>(16);
 
     public void merge(InfluenceFactor other) {
         for (DataSet key : other.rowChange.keySet()) {
             this.rowChange.put(key, true);
         }
         for (DataSet key : other.colChange.keySet()) {
-            this.colChange.putIfAbsent(key, new ConcurrentHashMap<>(16));
+            this.colChange.putIfAbsent(key, new HashMap<>(16));
             for (String col : other.colChange.get(key).keySet()) {
                 this.colChange.get(key).put(col, true);
             }

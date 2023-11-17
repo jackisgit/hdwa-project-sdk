@@ -8,9 +8,9 @@ import com.hdwa.sdk.entity.repository.RepositoryBase;
 import com.hdwa.sdk.entity.scene.DataObjectBase;
 import com.hdwa.sdk.entity.scene.DataProperty;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CheckUtil {
@@ -85,7 +85,7 @@ public class CheckUtil {
             throw new ExceptionWrapper(errorList);
         }
 
-        Map<String, Map<String, Boolean>> refList = new ConcurrentHashMap<String, Map<String, Boolean>>();
+        Map<String, Map<String, Boolean>> refList = new HashMap<>(16);
         query(sql_json, refList);
 
         for (String refString : refList.keySet()) {
@@ -423,7 +423,7 @@ public class CheckUtil {
     }
 
     private static Map<String, Boolean> get_parent_ref(Object obj) throws Exception {
-        Map<String, Boolean> columnMap = new ConcurrentHashMap<String, Boolean>();
+        Map<String, Boolean> columnMap = new HashMap<String, Boolean>();
         if (!(obj instanceof JSONObject)) {
             return columnMap;
         }
@@ -478,7 +478,7 @@ public class CheckUtil {
             String QueryType = (String) sql_json.get("QueryType");
             if (QueryType.equals("select")) {
                 // 查询条件和返回值中的所有列
-                Map<String, Boolean> columnMap = new ConcurrentHashMap<String, Boolean>();
+                Map<String, Boolean> columnMap = new HashMap<String, Boolean>();
                 if (sql_json.get("UniqueReturnColumn") != null || sql_json.get("ReturnColumns") != null) {
                     if (sql_json.get("UniqueReturnColumn") != null) {
                         Object UniqueReturnColumn = sql_json.get("UniqueReturnColumn");
@@ -528,7 +528,7 @@ public class CheckUtil {
                     Map<String, Map<String, Boolean>> resultInner = parseTarget(Target, columnMap);
                     for (String refString : resultInner.keySet()) {
                         if (!result.containsKey(refString)) {
-                            result.put(refString, new ConcurrentHashMap<String, Boolean>());
+                            result.put(refString, new HashMap<String, Boolean>());
                         }
                         Map<String, Boolean> columnMapTmp = result.get(refString);
                         Map<String, Boolean> columnMapInner = resultInner.get(refString);
@@ -593,7 +593,7 @@ public class CheckUtil {
                         if (itemKeyInner.equals("ref")) {
                             String refString = (itemValueInner).toString();
                             if (!result.containsKey(refString)) {
-                                result.put(refString, new ConcurrentHashMap<String, Boolean>());
+                                result.put(refString, new HashMap<String, Boolean>());
                             }
                         } else if (itemKeyInner.equals("in") || itemKeyInner.equals("notin") || itemKeyInner.equals("array_e")
                                 || itemKeyInner.equals("array_ne") || itemKeyInner.equals("array_include") || itemKeyInner.equals("array_included")
@@ -631,12 +631,12 @@ public class CheckUtil {
     }
 
     private static Map<String, Map<String, Boolean>> parseTarget(JSONObject SetDesc, Map<String, Boolean> columnMap) throws Exception {
-        Map<String, Map<String, Boolean>> result = new ConcurrentHashMap<String, Map<String, Boolean>>();
+        Map<String, Map<String, Boolean>> result = new HashMap<>(16);
         if (SetDesc.containsKey("Source")) {
             String Source = SetDesc.getString("Source");
             if (Source.equals("ref")) {
                 String refString = (SetDesc.get("ref")).toString();
-                result.put(refString, new ConcurrentHashMap<String, Boolean>());
+                result.put(refString, new HashMap<String, Boolean>());
                 Map<String, Boolean> columnMapTmp = result.get(refString);
                 for (String tmp : columnMap.keySet()) {
                     columnMapTmp.put(tmp, true);
@@ -668,7 +668,7 @@ public class CheckUtil {
                     Map<String, Map<String, Boolean>> resultInner = parseTarget(TargetInner, columnMap);
                     for (String refString : resultInner.keySet()) {
                         if (!result.containsKey(refString)) {
-                            result.put(refString, new ConcurrentHashMap<String, Boolean>());
+                            result.put(refString, new HashMap<String, Boolean>());
                         }
                         Map<String, Boolean> columnMapTmp = result.get(refString);
                         Map<String, Boolean> columnMapInner = resultInner.get(refString);

@@ -9,56 +9,55 @@ import com.hdwa.sdk.entity.scene.DataValue;
 import com.hdwa.sdk.utils.PathUtil;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  *
  */
 public class RepositoryDependency {
-    public Map<DataValue, Map<DataValue, Boolean>> sdv2sdv = new ConcurrentHashMap<>(16);
-    public Map<DataValue, Map<DataSet, Map<String, Boolean>>> sdv2SetColumn = new ConcurrentHashMap<>(16);
-    public Map<DataSet, Map<DataValue, Boolean>> SetRow2sdv = new ConcurrentHashMap<>();
-    public Map<DataSet, Map<String, Map<DataValue, Boolean>>> SetColumn2sdv = new ConcurrentHashMap<>(16);
+    public Map<DataValue, Map<DataValue, Boolean>> sdv2sdv = new HashMap<>(16);
+    public Map<DataValue, Map<DataSet, Map<String, Boolean>>> sdv2SetColumn = new HashMap<>(16);
+    public Map<DataSet, Map<DataValue, Boolean>> SetRow2sdv = new HashMap<>(16);
+    public Map<DataSet, Map<String, Map<DataValue, Boolean>>> SetColumn2sdv = new HashMap<>(16);
 
-    public Map<DataObject, CopyOnWriteArrayList<DataObject>> sdv2Children = new ConcurrentHashMap<>(16);
+    public Map<DataObject, CopyOnWriteArrayList<DataObject>> sdv2Children = new HashMap<>(16);
 
     public void clear() {
-        sdv2sdv = new ConcurrentHashMap<>();
-        sdv2SetColumn = new ConcurrentHashMap<>();
-        SetRow2sdv = new ConcurrentHashMap<>();
-        SetColumn2sdv = new ConcurrentHashMap<>();
+        sdv2sdv = new HashMap<>(16);
+        sdv2SetColumn = new HashMap<>(16);
+        SetRow2sdv = new HashMap<>(16);
+        SetColumn2sdv = new HashMap<>(16);
 
         sdv2Children.clear();
     }
 
     public void add_sdv2SetColumn(DataValue point_value, DataSet objectArray, String Column) {
-        sdv2SetColumn.putIfAbsent(point_value, new ConcurrentHashMap<>());
-        sdv2SetColumn.get(point_value).putIfAbsent(objectArray, new ConcurrentHashMap<>());
+        sdv2SetColumn.putIfAbsent(point_value, new HashMap<>(16));
+        sdv2SetColumn.get(point_value).putIfAbsent(objectArray, new HashMap<>(16));
         sdv2SetColumn.get(point_value).get(objectArray).putIfAbsent(Column, true);
     }
 
     public void add_compute(DataValue sdv) {
         InfluenceFactor other = sdv.rowFactor;
         for (DataSet key : other.rowChange.keySet()) {
-            SetRow2sdv.putIfAbsent(key, new ConcurrentHashMap<>());
+            SetRow2sdv.putIfAbsent(key, new HashMap<>(16));
             SetRow2sdv.get(key).putIfAbsent(sdv, true);
         }
         for (DataSet key : other.colChange.keySet()) {
-            SetColumn2sdv.putIfAbsent(key, new ConcurrentHashMap<>());
+            SetColumn2sdv.putIfAbsent(key, new HashMap<>(16));
             for (String col : other.colChange.get(key).keySet()) {
-                SetColumn2sdv.get(key).putIfAbsent(col, new ConcurrentHashMap<>());
+                SetColumn2sdv.get(key).putIfAbsent(col, new HashMap<>(16));
                 SetColumn2sdv.get(key).get(col).putIfAbsent(sdv, true);
             }
         }
         for (DataValue key : other.valueChange.keySet()) {
-            sdv2sdv.putIfAbsent(key, new ConcurrentHashMap<DataValue, Boolean>());
+            sdv2sdv.putIfAbsent(key, new HashMap<>(16));
             sdv2sdv.get(key).putIfAbsent(sdv, true);
         }
         // 考虑附加属性
         if (sdv.parentObjectData.parentArrayData != null && sdv.parentObjectData.parentArrayData.relProperty.propertyValueType.equals("query")) {
-            sdv2SetColumn.putIfAbsent(sdv, new ConcurrentHashMap<>());
-            sdv2SetColumn.get(sdv).putIfAbsent(sdv.parentObjectData.parentArrayData.valueArray, new ConcurrentHashMap<>());
+            sdv2SetColumn.putIfAbsent(sdv, new HashMap<>(16));
+            sdv2SetColumn.get(sdv).putIfAbsent(sdv.parentObjectData.parentArrayData.valueArray, new HashMap<>(16));
             sdv2SetColumn.get(sdv).get(sdv.parentObjectData.parentArrayData.valueArray).putIfAbsent(sdv.myPropertyName, true);
         }
     }
@@ -90,8 +89,8 @@ public class RepositoryDependency {
             for (DataValue key : other.valueChange.keySet()) {
                 String path = PathUtil.getDataPath(key);
                 if (path.length() == 0) {
-                    ConcurrentHashMap<DataPrimitive, String> sdv2point = Repository.sdv2point();
-                    ConcurrentHashMap<DataPrimitive, String> sdv2set = Repository.sdv2set();
+                    Map<DataPrimitive, String> sdv2point = Repository.sdv2point();
+                    Map<DataPrimitive, String> sdv2set = Repository.sdv2set();
                     if (sdv2point.containsKey(key.valuePrim)) {
                         resultItem.add("point: " + sdv2point.get(key.valuePrim));
                     } else if (sdv2set.containsKey(key.valuePrim)) {
@@ -145,8 +144,8 @@ public class RepositoryDependency {
                 sdvAffectList.add(sdvInner);
             }
         }
-        Map<String, Boolean> SetColumnList = new ConcurrentHashMap<String, Boolean>();
-        Map<String, JSONObject> SetColumnMap = new ConcurrentHashMap<String, JSONObject>();
+        Map<String, Boolean> SetColumnList = new HashMap<>(16);
+        Map<String, JSONObject> SetColumnMap = new HashMap<>(16);
         if (sdv2SetColumn.containsKey(sdv)) {
             Map<DataSet, Map<String, Boolean>> afterList = sdv2SetColumn.get(sdv);
             for (DataSet sdvInner : afterList.keySet()) {

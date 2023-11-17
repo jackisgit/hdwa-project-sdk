@@ -10,9 +10,9 @@ import com.hdwa.sdk.entity.scene.DataProperty;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -207,7 +207,7 @@ public class RecursiveUtil {
     private static void computeInner(RepositoryBase Repository, DataValue sv) throws Exception {
         DataProperty dataProperty = sv.relProperty;
         JSONObject sql_json = JSON.parseObject(dataProperty.querySql);
-        Map<String, Map<String, Boolean>> refList = new ConcurrentHashMap<String, Map<String, Boolean>>();
+        Map<String, Map<String, Boolean>> refList = new HashMap<>(16);
         CheckUtil.query(sql_json, refList);
         List<DataValue> svListAll = new CopyOnWriteArrayList<DataValue>();
         for (String refString : refList.keySet()) {

@@ -3,15 +3,15 @@ package com.hdwa.sdk.utils;
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.entity.repository.InfluenceFactor;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class QueryAssist {
     public boolean rowChangeNeed = false;
-    public Map<String, Boolean> colChangeNeed = new ConcurrentHashMap<String, Boolean>();
+    public Map<String, Boolean> colChangeNeed = new HashMap<>(16);
 
     public InfluenceFactor rowFactor = new InfluenceFactor();
-    public Map<String, InfluenceFactor> colFactorMap = new ConcurrentHashMap<String, InfluenceFactor>();
+    public Map<String, InfluenceFactor> colFactorMap = new HashMap<>(16);
 
     public QueryAssist() {
 
