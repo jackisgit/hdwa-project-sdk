@@ -20,7 +20,6 @@ import com.hdwa.alarm.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.quartz.JobDataMap;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -69,7 +68,13 @@ public class AlarmHandleServiceImpl {
             String funcId = split[i * 4 + 2];
             String valueStr = split[i * 4 + 3];
             if (StrUtil.isNotBlank(valueStr) || "null".equalsIgnoreCase(valueStr)) {
-                double value = Double.parseDouble(valueStr);
+                double value;
+                try {
+                    value = Double.parseDouble(valueStr);
+                } catch (Exception e) {
+                    log.error("数据出现异常：{}", msg);
+                    continue;
+                }
                 if (AlarmInfoCache.hasKey(meterId, funcId)) {
                     validIotData(dateTime, meterId, funcId, value);
                 }
@@ -407,3 +412,4 @@ public class AlarmHandleServiceImpl {
         }
     }
 }
+

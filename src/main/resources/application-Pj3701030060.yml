@@ -11,7 +11,7 @@ group:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/huiyun_new?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://10.8.14.155:3306/huiyun_new?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false
     username: root
     password: wanda@1234
     type: com.alibaba.druid.pool.DruidDataSource
@@ -102,7 +102,7 @@ remote:
     # iot-project服务
     project:
       # ------------------需要更改，修改其中的项目ID和ip、port，其中port为websocket的端口，切记不是服务端口
-      websocket: ws://127.0.0.1:18888/websocket?projectId=3701030060&type=pointset,iot&getFullData=true
+      websocket: ws://10.8.14.155:18888/websocket?projectId=3701030060&type=pointset,iot&getFullData=true
 
       # IOT程序
       iot:
