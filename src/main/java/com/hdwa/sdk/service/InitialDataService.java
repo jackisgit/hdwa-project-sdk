@@ -333,7 +333,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 定时清空一下内存,测试环境
      */
-    @Scheduled(cron = "0 0 6,12,18,23 * * ?")
+    @Scheduled(cron = "0 0 0/1 * * ?")
     public void memoryCleanup() {
         if ("dev".equals(System.getProperty(BaseDecConstant.SPRING_PROFILES_ACTIVE))) {
             log.warn("====================清空内存操作====================");
