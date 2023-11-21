@@ -254,7 +254,7 @@ public class ControlUtil {
                 String meter = infoValue.substring(0, index_);
                 int funcid = Integer.parseInt(infoValue.substring(index_ + 1));
                 JSONObject point = new JSONObject();
-                if (key.equals("manualAutoSet")) {
+                if ("manualAutoSet".equals(key)) {
                     point.put("virtual", true);
                 }
                 point.put("meter", meter);
@@ -288,7 +288,7 @@ public class ControlUtil {
         for (int i = 0; i < array.size(); i++) {
             JSONObject point = array.getJSONObject(i);
             String status = (String) point.get("status");
-            if (status.equals("finish:success")) {
+            if ("finish:success".equals(status)) {
                 success_points.add(point);
             } else {
                 failure_points.add(point);

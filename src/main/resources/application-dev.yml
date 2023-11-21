@@ -6,8 +6,8 @@ url:
   alarmUrl: http://10.199.208.69:32050/api-ibms-alarm
   alarmWebSocket: ws://10.199.208.69:32050/ws-ibms-alarm/webSocketServer
 
-  iotProject: http://10.199.205.79:18852
-  iotWebSocket: ws://10.199.205.79:8858/websocket
+  iotProject: http://10.199.205.79:18858
+  iotWebSocket: ws://10.199.205.79:18888/websocket
 
 spring:
   redis:
