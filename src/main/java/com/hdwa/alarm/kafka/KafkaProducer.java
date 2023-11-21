@@ -28,7 +28,7 @@ public class KafkaProducer {
     /**
      * 边缘端报警发送topic
      */
-    @Value("${spring.kafka.producer.topics}")
+    @Value("${spring.kafka.producer.alarm-topic}")
     private String topicEdgeAlarm;
 
     @Bean

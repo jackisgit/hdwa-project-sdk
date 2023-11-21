@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.199.205.79:3306/huiyun?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false
+
+  kafka:
+    bootstrapServers: 10.199.205.61:9092,10.199.205.71:9092,10.199.205.81:9092
+
+url:
+  alarmUrl: http://10.199.208.69:32050/api-ibms-alarm
+  iotWebsocket: ws://10.199.205.79:8858/websocket
+
+

@@ -18,7 +18,7 @@ public class SpringSchedule {
     @Autowired
     KafkaProducer kafkaProducer;
 
-    @Scheduled(cron = "${alarm.get.all.alarmdefine.cron}")
+    @Scheduled(cron = "${alarmDefineCron}")
     public void allResetCron() {
         NettyMessage message = new NettyMessage("", 4, CommonConst.projectId, CommonConst.groupCode);
         JSONObject content = new JSONObject();

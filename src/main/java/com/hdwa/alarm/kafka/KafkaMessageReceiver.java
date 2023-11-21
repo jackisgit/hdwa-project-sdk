@@ -42,8 +42,8 @@ public class KafkaMessageReceiver {
      */
     @KafkaListener(
             containerFactory = "huidaKafkaListenerContainerFactory",
-            topics = "${spring.kafka.consumer.topics}",
-            groupId = "${spring.kafka.consumer.group-id}")
+            topics = "${spring.kafka.consumer.alarm-topic}",
+            groupId = "${spring.kafka.consumer.alarm-group-id}")
     public void registryReceiver(List<ConsumerRecord<Integer, String>> record, Acknowledgment ack) {
         for (ConsumerRecord<?, String> consumerRecords : record) {
             Optional<String> message = Optional.ofNullable(consumerRecords.value());

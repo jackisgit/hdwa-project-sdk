@@ -5,19 +5,18 @@ import cn.hutool.core.date.TimeInterval;
 import cn.hutool.core.thread.ExecutorBuilder;
 import com.hdwa.alarm.config.CommonConst;
 import com.hdwa.alarm.service.AlarmHandleServiceImpl;
-import com.hdwa.alarm.util.GZIPCompressUtil;
 import com.hdwa.alarm.util.LockUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.WebSocket;
 import org.java_websocket.client.WebSocketClient;
-import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.handshake.ServerHandshake;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -29,18 +28,26 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 @Slf4j
 public class WebSocketClientFactory {
+
+    /**
+     * iot-project服务的webSocket地址
+     */
+    @Value("${url.iotWebsocket}")
+    public String iotWebsocket;
+
+
     ExecutorService executor = ExecutorBuilder.create()
             .setCorePoolSize(5)
             .setMaxPoolSize(10)
             .setWorkQueue(new LinkedBlockingQueue<>(102400))
             .setHandler(new ThreadPoolExecutor.AbortPolicy())
             .build();
-    
+
     @Autowired
     private AlarmHandleServiceImpl alarmHandleService;
-    
+
     AtomicInteger total = new AtomicInteger(0);
-    
+
     private WebSocketClient outCallWebSocketClientHolder;
 
     public WebSocketClient getOutCallWebSocketClientHolder() {
@@ -55,24 +62,15 @@ public class WebSocketClientFactory {
      * 创建websocket对象
      */
     private WebSocketClient createNewWebSocketClient() throws URISyntaxException {
-        log.info("iot-project连接地址为:[{}]", CommonConst.websocket);
-        WebSocketClient webSocketClient = new WebSocketClient(new URI(CommonConst.websocket)) {
+        String url = iotWebsocket + "?projectId=" + CommonConst.projectId.substring(2) + "&type=pointset,iot&getFullData=true";
+        log.info("iot-project连接地址为:[{}]", url);
+        WebSocketClient webSocketClient = new WebSocketClient(new URI(url)) {
             @Override
             public void onOpen(ServerHandshake serverHandshake) {
             }
 
             @Override
             public void onMessage(String msg) {
-                String message = msg;
-                if (CommonConst.compress) {
-                    try {
-                        byte[] byteArrayMsg = GZIPCompressUtil.uncompress(msg.getBytes(StandardCharsets.ISO_8859_1));
-                        message = new String(byteArrayMsg);
-                    } catch (Exception e) {
-                        log.error("解密失败！", e);
-                    }
-                }
-
                 try {
                     while (!LockUtil.getInstance().isExecute()) {
                         try {
@@ -85,10 +83,9 @@ public class WebSocketClientFactory {
                             LockUtil.getInstance().lock.unlock();
                         }
                     }
-                    String finalMessage = message;
                     executor.execute(() -> {
                         try {
-                            alarmHandleService.handleIOTData(finalMessage);
+                            alarmHandleService.handleIOTData(msg);
                         } catch (Exception e) {
                             log.error("数据处理失败", e);
                         }
