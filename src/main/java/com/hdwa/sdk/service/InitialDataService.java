@@ -228,7 +228,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * webSocket重新连接
      */
-    @Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60)
+    @Scheduled(initialDelay = 1000 * 60 * 5, fixedDelay = 1000 * 60)
     public void resConnection() {
         //iot重连接
         try {
@@ -294,7 +294,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * point过滤文件更新
      */
-    @Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60)
+    @Scheduled(initialDelay = 1000 * 60 * 5, fixedDelay = 1000 * 60)
     public void resPointExile() throws Exception {
         boolean flag = false;
         Map<String, ExcelSheetEntity> map2 = ExcelUtil.readExcel(pointService.readPointXlsx());
@@ -327,17 +327,5 @@ public class InitialDataService implements CommandLineRunner {
         log.warn("*****计算iot数据：" + Arrays.toString(count));
         count = repository.recomputeAlarm();
         log.warn("*****计alarm数据：" + Arrays.toString(count));
-    }
-
-
-    /**
-     * 定时清空一下内存,测试环境
-     */
-    @Scheduled(cron = "0 0 0/1 * * ?")
-    public void memoryCleanup() {
-        if ("dev".equals(System.getProperty(BaseDecConstant.SPRING_PROFILES_ACTIVE))) {
-            log.warn("====================清空内存操作====================");
-            System.gc();
-        }
     }
 }
