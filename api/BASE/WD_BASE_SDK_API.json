@@ -7933,11 +7933,11 @@
                                 {
                                   "propertyName":"名称",
                                   "allowPass":"1",
-                                  "querySql":"",
+                                  "querySql":null,
                                   "readLevel":"1",
                                   "filterRule":"",
                                   "customObject":null,
-                                  "staticValue":"编解码器",
+                                  "staticValue":"编解码器设备",
                                   "offsetLevel":"0",
                                   "queryAttached":[
                                   ],
@@ -7982,7 +7982,7 @@
                                         {
                                           "propertyName":"数量",
                                           "allowPass":"1",
-                                          "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=视频监控'设备类型'名称=编解码器'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
+                                          "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=视频监控'设备类型'名称=编解码器设备'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
                                           "readLevel":"1",
                                           "filterRule":null,
                                           "customObject":null,
@@ -8020,7 +8020,7 @@
                                         {
                                           "propertyName":"数量",
                                           "allowPass":"1",
-                                          "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=视频监控'设备类型'名称=编解码器'清单\"},\"Criteria\": {\"onlineStatus\": {\"in\": [0.0,0,null]}},\"Aggregation\": {\"Function\": \"count\"}}",
+                                          "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=视频监控'设备类型'名称=编解码器设备'清单\"},\"Criteria\": {\"onlineStatus\": {\"in\": [0.0,0,null]}},\"Aggregation\": {\"Function\": \"count\"}}",
                                           "readLevel":"1",
                                           "filterRule":null,
                                           "customObject":null,
@@ -8058,7 +8058,7 @@
                                         {
                                           "propertyName":"数量",
                                           "allowPass":"1",
-                                          "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=视频监控'设备类型'名称=编解码器'清单\"},\"Criteria\": {\"onlineStatus\": {\"in\": [1.0,1]},\"faultStatus\": {\"in\": [1.0,1]}},\"Aggregation\": {\"Function\": \"count\"}}",
+                                          "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=视频监控'设备类型'名称=编解码器设备'清单\"},\"Criteria\": {\"onlineStatus\": {\"in\": [1.0,1]},\"faultStatus\": {\"in\": [1.0,1]}},\"Aggregation\": {\"Function\": \"count\"}}",
                                           "readLevel":"1",
                                           "filterRule":null,
                                           "customObject":null,
@@ -31722,6 +31722,508 @@
                     "readLevel":"1",
                     "filterRule":"",
                     "customObject":null,
+                    "staticValue":"公共照明",
+                    "offsetLevel":"0",
+                    "queryAttached":[
+                    ],
+                    "propertyValueSchema":"string",
+                    "staticArray":[
+                    ],
+                    "propertyVisible":false,
+                    "propertyValueType":"static"
+                  },
+                  {
+                    "propertyName":"设备类型",
+                    "allowPass":"1",
+                    "querySql":"",
+                    "readLevel":"4",
+                    "filterRule":"",
+                    "customObject":null,
+                    "staticValue":null,
+                    "offsetLevel":"0",
+                    "queryAttached":[
+                    ],
+                    "propertyValueSchema":"JSONArray",
+                    "staticArray":[
+                      {
+                        "propertyList":[
+                          {
+                            "propertyName":"名称",
+                            "allowPass":"1",
+                            "querySql":"",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":"步行街公共照明回路",
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"string",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"static"
+                          },
+                          {
+                            "propertyName":"清单",
+                            "allowPass":"0",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaominghuilu\"},\"Criteria\": {}}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"2",
+                            "queryAttached":[],
+                            "propertyValueSchema":"JSONArray",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"数量",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"int",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"是否显示",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'数量\"}}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"int",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          }
+                        ]
+                      },
+                      {
+                        "propertyList":[
+                          {
+                            "propertyName":"名称",
+                            "allowPass":"1",
+                            "querySql":"",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":"停车场公共照明回路",
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"string",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"static"
+                          },
+                          {
+                            "propertyName":"清单",
+                            "allowPass":"0",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"tcczhaominghuilu\"},\"Criteria\": {}}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"2",
+                            "queryAttached":[],
+                            "propertyValueSchema":"JSONArray",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"数量",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"int",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"是否显示",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'数量\"}}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"int",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          }
+                        ]
+                      },
+                      {
+                        "propertyList":[
+                          {
+                            "propertyName":"名称",
+                            "allowPass":"1",
+                            "querySql":"",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":"百货公共照明回路",
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"string",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"static"
+                          },
+                          {
+                            "propertyName":"清单",
+                            "allowPass":"0",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bhzhaominghuilu\"},\"Criteria\": {}}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"2",
+                            "queryAttached":[],
+                            "propertyValueSchema":"JSONArray",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"数量",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"int",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"是否显示",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'数量\"}}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"int",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          }
+                        ]
+                      }
+                    ],
+                    "propertyVisible":false,
+                    "propertyValueType":"static"
+                  },
+                ]
+              },
+              {
+                "propertyList":[
+                  {
+                    "propertyName":"名称",
+                    "allowPass":"1",
+                    "querySql":"",
+                    "readLevel":"1",
+                    "filterRule":"",
+                    "customObject":null,
+                    "staticValue":"夜景照明",
+                    "offsetLevel":"0",
+                    "queryAttached":[
+                    ],
+                    "propertyValueSchema":"string",
+                    "staticArray":[
+                    ],
+                    "propertyVisible":false,
+                    "propertyValueType":"static"
+                  },
+                  {
+                    "propertyName":"设备类型",
+                    "allowPass":"1",
+                    "querySql":"",
+                    "readLevel":"4",
+                    "filterRule":"",
+                    "customObject":null,
+                    "staticValue":null,
+                    "offsetLevel":"0",
+                    "queryAttached":[
+                    ],
+                    "propertyValueSchema":"JSONArray",
+                    "staticArray":[
+                      {
+                        "propertyList":[
+                          {
+                            "propertyName":"名称",
+                            "allowPass":"1",
+                            "querySql":"",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":"楼体夜景照明回路",
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"string",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"static"
+                          },
+                          {
+                            "propertyName":"清单",
+                            "allowPass":"0",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"yjzm\",\"ibmsClassCode\": \"ltzhaominghuilu\"},\"Criteria\": {}}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"2",
+                            "queryAttached":[],
+                            "propertyValueSchema":"JSONArray",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"数量",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"int",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"是否显示",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'数量\"}}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"int",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          }
+                        ]
+                      },
+                      {
+                        "propertyList":[
+                          {
+                            "propertyName":"名称",
+                            "allowPass":"1",
+                            "querySql":"",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":"景观夜景照明回路",
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"string",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"static"
+                          },
+                          {
+                            "propertyName":"清单",
+                            "allowPass":"0",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"yjzm\",\"ibmsClassCode\": \"jgzhaominghuilu\"},\"Criteria\": {}}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"2",
+                            "queryAttached":[],
+                            "propertyValueSchema":"JSONArray",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"数量",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"int",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"是否显示",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'数量\"}}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"int",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          }
+                        ]
+                      },
+                      {
+                        "propertyList":[
+                          {
+                            "propertyName":"名称",
+                            "allowPass":"1",
+                            "querySql":"",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":"标识夜景照明回路",
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"string",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"static"
+                          },
+                          {
+                            "propertyName":"清单",
+                            "allowPass":"0",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"yjzm\",\"ibmsClassCode\": \"bszhaominghuilu\"},\"Criteria\": {}}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"2",
+                            "queryAttached":[],
+                            "propertyValueSchema":"JSONArray",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"数量",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"int",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"是否显示",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'数量\"}}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"int",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          }
+                        ]
+                      }
+                    ],
+                    "propertyVisible":false,
+                    "propertyValueType":"static"
+                  },
+                ]
+              },
+              {
+                "propertyList":[
+                  {
+                    "propertyName":"名称",
+                    "allowPass":"1",
+                    "querySql":"",
+                    "readLevel":"1",
+                    "filterRule":"",
+                    "customObject":null,
                     "staticValue":"排水",
                     "offsetLevel":"0",
                     "queryAttached":[
@@ -44224,7 +44726,7 @@
                             "readLevel":"1",
                             "filterRule":"",
                             "customObject":null,
-                            "staticValue":"编解码器",
+                            "staticValue":"编解码器设备",
                             "offsetLevel":"0",
                             "queryAttached":[
                             ],
@@ -45207,7 +45709,7 @@
                             "readLevel":"1",
                             "filterRule":"",
                             "customObject":null,
-                            "staticValue":"编解码器",
+                            "staticValue":"编解码器设备",
                             "offsetLevel":"0",
                             "queryAttached":[
                             ],
@@ -87360,7 +87862,7 @@
                                     "readLevel":"1",
                                     "filterRule":"",
                                     "customObject":null,
-                                    "staticValue":"编解码器",
+                                    "staticValue":"编解码器设备",
                                     "offsetLevel":"0",
                                     "queryAttached":[
                                     ],
@@ -87373,7 +87875,7 @@
                                   {
                                     "propertyName":"清单",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=视频监控'设备类型'名称=编解码器'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=视频监控'设备类型'名称=编解码器设备'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":"{\"QueryType\": \"select\",\"Criteria\": {\"LogicOperator\": \"and\",\"Criterias\": [        {\"状态\": {\"ref\": \"ancestor_1'状态\"},\"onlineStatus\": {\"ref\": \"ancestor_1'onlineStatus\"}        },        {\"LogicOperator\": \"or\",\"Criterias\": [                {\"localId\": {\"contain\": {\"ref\": \"ancestor_1'搜索关键字\"            }                    }                },                {\"localName\": {\"contain\": {\"ref\": \"ancestor_1'搜索关键字\"            }                    }                }            ]        }    ]}}",
                                     "customObject":null,
