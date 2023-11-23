@@ -8,6 +8,6 @@ spring:
 
 url:
   alarmUrl: http://10.199.208.69:32050/api-ibms-alarm
-  iotWebsocket: ws://10.199.205.79:8858/websocket
+  iotWebsocket: ws://10.199.205.79:18858/websocket
 
 
