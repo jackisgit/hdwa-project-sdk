@@ -6,7 +6,7 @@
     <groupId>com.hdwa</groupId>
     <artifactId>hdwa-project-sdk</artifactId>
     <name>hdwa-project-sdk</name>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <properties>
