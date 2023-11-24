@@ -63,14 +63,8 @@ public class LoadDataMainService {
      */
     public void logicGroupMain() {
         try {
-            RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
             ibmsLogicalGroupService.downLoadLogicalGroupData();
-            //加载IBMS逻辑编组数据
-            ibmsLogicalGroupService.loadLogicalGroupData(repository);
-            //加载接口数据
-            configApiService.loadConfigData(repository);
-            //加载到数据容器
-            DataContainer.projectMap.put(System.getProperty(BaseDecConstant.PROJECT_ID), repository);
+            loadDataMain();
         } catch (Exception e) {
             log.error("******** 执行加载逻辑编组流程出现异常", e);
         }
