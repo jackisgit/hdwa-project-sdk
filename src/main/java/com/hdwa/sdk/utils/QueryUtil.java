@@ -1002,7 +1002,7 @@ public class QueryUtil {
         if (descSet.get("Source") != null) {
             result = null;
             String Source = (descSet.get("Source")).toString();
-            if (Source.equals("ref")) {
+            if ("ref".equals(Source)) {
                 String refString = (descSet.get("ref")).toString();
                 result = parseSetRef(Repository, sv, refString, QueryAssist, isSingleValueSet, false);
             } else {
@@ -1024,10 +1024,10 @@ public class QueryUtil {
         } else if (descSet.get("SetOperator") != null) {
             result = new DataSet(isSingleValueSet);
             if (isSingleValueSet) {
-                result.singleValueSet = new CopyOnWriteArrayList<DataValue>();
+                result.singleValueSet = new CopyOnWriteArrayList<>();
 
                 String SetOperator = (descSet.get("SetOperator")).toString();
-                if (SetOperator.equals("add") || SetOperator.equals("merge") || SetOperator.equals("unite")) {
+                if ("add".equals(SetOperator) || "merge".equals(SetOperator) || "unite".equals(SetOperator)) {
                     JSONArray SetArray = (JSONArray) descSet.get("SetArray");
                     List<DataSet> resultList = new CopyOnWriteArrayList<DataSet>();
                     for (Object SetArrayItem : SetArray) {
@@ -1078,7 +1078,7 @@ public class QueryUtil {
                             }
                             break;
                     }
-                } else if (SetOperator.equals("sub")) {
+                } else if ("sub".equals(SetOperator)) {
                     DataSet Set1 = parseSet(Repository, sv, descSet.get("Set1"), QueryAssist, isSingleValueSet);
                     DataSet Set2 = parseSet(Repository, sv, descSet.get("Set2"), QueryAssist, isSingleValueSet);
 
@@ -1096,12 +1096,12 @@ public class QueryUtil {
                     }
                 }
             } else {
-                result.set = new CopyOnWriteArrayList<DataObject>();
+                result.set = new CopyOnWriteArrayList<>();
 
                 String SetOperator = (descSet.get("SetOperator")).toString();
-                if (SetOperator.equals("add") || SetOperator.equals("merge") || SetOperator.equals("unite")) {
+                if ("add".equals(SetOperator) || "merge".equals(SetOperator) || "unite".equals(SetOperator)) {
                     JSONArray SetArray = (JSONArray) descSet.get("SetArray");
-                    List<DataSet> resultList = new CopyOnWriteArrayList<DataSet>();
+                    List<DataSet> resultList = new CopyOnWriteArrayList<>();
                     for (Object SetArrayItem : SetArray) {
                         DataSet resultItem = parseSet(Repository, sv, SetArrayItem, QueryAssist, isSingleValueSet);
                         resultList.add(resultItem);
