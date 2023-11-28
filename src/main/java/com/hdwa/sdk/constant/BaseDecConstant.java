@@ -19,6 +19,23 @@ public class BaseDecConstant {
      */
     public static final String Y = "Y";
 
+    /**
+     * 验证
+     */
+    public static final String AUTHORIZATION = "Authorization";
+
+
+    /**
+     * token
+     */
+    public static final String TOKEN = "TOKEN_";
+
+
+    /**
+     * token 过期时间
+     */
+    public static final Long TOKEN_TIME_OUT = 1000L * 60 * 60;
+
 
     /**
      * CBD接口路径 String
@@ -67,7 +84,7 @@ public class BaseDecConstant {
     public static final String PRODUCT_MODULE = "产品模块";
 
     /**
-     *  product String
+     * product String
      */
     public static final String PRODUCT = "product";
 
@@ -199,22 +216,18 @@ public class BaseDecConstant {
      */
     public static final String FLOOR_ID = "floorId";
     /**
-     *
      * 所在楼层 String
      */
     public static final String PLACE_FLOOR = "所在楼层";
     /**
-     *
      * 楼层编号 String
      */
     public static final String FLOOR_CODE = "楼层编号";
     /**
-     *
      * 楼层名称 String
      */
     public static final String FLOOR_NAME = "楼层名称";
     /**
-     *
      * 楼层数据 String
      */
     public static final String FLOOR_DATA = "楼层数据";

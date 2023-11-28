@@ -1002,7 +1002,7 @@ public class QueryUtil {
         if (descSet.get("Source") != null) {
             result = null;
             String Source = (descSet.get("Source")).toString();
-            if (Source.equals("ref")) {
+            if ("ref".equals(Source)) {
                 String refString = (descSet.get("ref")).toString();
                 result = parseSetRef(Repository, sv, refString, QueryAssist, isSingleValueSet, false);
             } else {
@@ -1024,10 +1024,10 @@ public class QueryUtil {
         } else if (descSet.get("SetOperator") != null) {
             result = new DataSet(isSingleValueSet);
             if (isSingleValueSet) {
-                result.singleValueSet = new CopyOnWriteArrayList<DataValue>();
+                result.singleValueSet = new CopyOnWriteArrayList<>();
 
                 String SetOperator = (descSet.get("SetOperator")).toString();
-                if (SetOperator.equals("add") || SetOperator.equals("merge") || SetOperator.equals("unite")) {
+                if ("add".equals(SetOperator) || "merge".equals(SetOperator) || "unite".equals(SetOperator)) {
                     JSONArray SetArray = (JSONArray) descSet.get("SetArray");
                     List<DataSet> resultList = new CopyOnWriteArrayList<DataSet>();
                     for (Object SetArrayItem : SetArray) {
@@ -1078,7 +1078,7 @@ public class QueryUtil {
                             }
                             break;
                     }
-                } else if (SetOperator.equals("sub")) {
+                } else if ("sub".equals(SetOperator)) {
                     DataSet Set1 = parseSet(Repository, sv, descSet.get("Set1"), QueryAssist, isSingleValueSet);
                     DataSet Set2 = parseSet(Repository, sv, descSet.get("Set2"), QueryAssist, isSingleValueSet);
 
@@ -1096,12 +1096,12 @@ public class QueryUtil {
                     }
                 }
             } else {
-                result.set = new CopyOnWriteArrayList<DataObject>();
+                result.set = new CopyOnWriteArrayList<>();
 
                 String SetOperator = (descSet.get("SetOperator")).toString();
-                if (SetOperator.equals("add") || SetOperator.equals("merge") || SetOperator.equals("unite")) {
+                if ("add".equals(SetOperator) || "merge".equals(SetOperator) || "unite".equals(SetOperator)) {
                     JSONArray SetArray = (JSONArray) descSet.get("SetArray");
-                    List<DataSet> resultList = new CopyOnWriteArrayList<DataSet>();
+                    List<DataSet> resultList = new CopyOnWriteArrayList<>();
                     for (Object SetArrayItem : SetArray) {
                         DataSet resultItem = parseSet(Repository, sv, SetArrayItem, QueryAssist, isSingleValueSet);
                         resultList.add(resultItem);
@@ -1363,7 +1363,7 @@ public class QueryUtil {
                         for (String col : QueryAssist.colChangeNeed.keySet()) {
                             QueryAssist.colFactorMap.putIfAbsent(col, new InfluenceFactor());
                             if (svTmp.valueArray != null) {
-                                QueryAssist.colFactorMap.get(col).colChange.putIfAbsent(svTmp.valueArray, new HashMap<String, Boolean>());
+                                QueryAssist.colFactorMap.get(col).colChange.putIfAbsent(svTmp.valueArray, new HashMap<>());
                                 QueryAssist.colFactorMap.get(col).colChange.get(svTmp.valueArray).put(col, true);
                             }
                         }
@@ -1512,8 +1512,8 @@ public class QueryUtil {
                 key = "default";
             } else {
                 JSONObject keyObject = new JSONObject();
-                for (int ii = 0; ii < GroupBy.size(); ii++) {
-                    String GroupByColumn = (GroupBy.get(ii)).toString();
+                for (Object o : GroupBy) {
+                    String GroupByColumn = o.toString();
                     DataValue sdvColumn = setValue.get(GroupByColumn);
                     if (sdvColumn != null && sdvColumn.valuePrim != null) {
                         keyObject.put(GroupByColumn, sdvColumn.valuePrim.value);
@@ -1524,7 +1524,7 @@ public class QueryUtil {
                 key = JSONObject.toJSONString(keyObject, SerializerFeature.WriteMapNullValue);
             }
             if (!agg_items.containsKey(key)) {
-                agg_items.put(key, new HashMap<String, List<DataPrimitive>>());
+                agg_items.put(key, new HashMap<>());
             }
             if (!agg_count.containsKey(key)) {
                 DataObject countObject = new DataObject(null, null, null, null, null, null, null);
@@ -1542,7 +1542,7 @@ public class QueryUtil {
             Map<String, List<DataPrimitive>> itemListDic = agg_items.get(key);
             for (String dicKey : columnDic.keySet()) {
                 if (!itemListDic.containsKey(dicKey)) {
-                    itemListDic.put(dicKey, new CopyOnWriteArrayList<DataPrimitive>());
+                    itemListDic.put(dicKey, new CopyOnWriteArrayList<>());
                 }
                 List<DataPrimitive> items = itemListDic.get(dicKey);
                 if (setValue.containsKey(dicKey)) {
@@ -1559,7 +1559,7 @@ public class QueryUtil {
                     result.change = true;
                 } else {
                     String Function = (String) AggregationObject.get("Function");
-                    if (!Function.equals("count")) {
+                    if (!"count".equals(Function)) {
                         String Column = (String) AggregationObject.get("Column");
                         if (set.hasColChange(Column)) {
                             result.change = true;
@@ -1589,7 +1589,7 @@ public class QueryUtil {
                         JSONObject aggItem = (JSONObject) aggItemObject;
                         String Function = (aggItem.get("Function")).toString();
                         String Name = (aggItem.get("Name")).toString();
-                        if (!Function.equals("count")) {
+                        if (!"count".equals(Function)) {
                             String Column = (aggItem.get("Column")).toString();
                             if (set.hasColChange(Column)) {
                                 result.setColChange(Name);
@@ -1601,7 +1601,7 @@ public class QueryUtil {
             }
         } else {
             DataSet result = new DataSet(false);
-            result.set = new CopyOnWriteArrayList<DataObject>();
+            result.set = new CopyOnWriteArrayList<>();
             for (String key : agg_count.keySet()) {
                 JSONObject keyObject = JSON.parseObject(key);
                 DataObject resultItem = new DataObject(null, null, null, null, null, null, null);
@@ -1638,7 +1638,7 @@ public class QueryUtil {
                 for (Object aggItemObject : agg_array) {
                     JSONObject aggItem = (JSONObject) aggItemObject;
                     String Function = (aggItem.get("Function")).toString();
-                    if (!Function.equals("count")) {
+                    if (!"count".equals(Function)) {
                         String Column = (aggItem.get("Column")).toString();
                         String Name = (aggItem.get("Name")).toString();
                         if (set.hasColChange(Column)) {

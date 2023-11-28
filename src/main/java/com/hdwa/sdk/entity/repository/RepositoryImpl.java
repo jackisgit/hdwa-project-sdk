@@ -214,18 +214,29 @@ public class RepositoryImpl extends RepositoryBase {
                                     if (objectArrayDic.get(classCode) != null) {
                                         result = objectArrayDic.get(classCode).valueArray;
                                     }
+                                   /* else {
+                                        log.error("*****缺少objType数据：" + classCode);
+                                    }*/
                                 } else {
                                     if (objectArrayDic.get(objType) != null) {
                                         result = objectArrayDic.get(objType).valueArray;
+                                    } else {
+                                        log.error("*****缺少objType数据：" + objType);
                                     }
                                 }
                             } else {
-                                result = objectArrayDic.get(objType).valueArray;
+                                if (objectArrayDic.get(objType) != null) {
+                                    result = objectArrayDic.get(objType).valueArray;
+                                } else {
+                                    log.error("*****缺少objType数据：" + objType);
+                                }
                             }
                         } else if (descSet.containsKey(BaseDecConstant.CLASS_CODE)) {
                             String classCode = (descSet.get(BaseDecConstant.CLASS_CODE)).toString();
                             if (objectArrayDic.get(classCode) != null) {
                                 result = objectArrayDic.get(classCode).valueArray;
+                            } else {
+                                log.error("*****缺少classCode数据：" + classCode);
                             }
                         } else {
                             result = objectArrayAll;

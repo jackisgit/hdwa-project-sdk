@@ -1,6 +1,7 @@
 package com.hdwa.sdk.utils;
 
 import com.hdwa.sdk.entity.ExcelSheetEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
 
 import java.io.InputStream;
@@ -14,6 +15,7 @@ import java.util.Map;
  * @since 2023/8/16
  * excel文件工具类
  */
+@Slf4j
 public class ExcelUtil {
 
     public static Map<String, ExcelSheetEntity> readExcel(InputStream stream) throws Exception {
@@ -88,10 +90,18 @@ public class ExcelUtil {
         switch (cell.getCellType()) {
             case NUMERIC:
             case FORMULA:
-                value = "" + cell.getNumericCellValue();
+                try {
+                    value = "" + cell.getNumericCellValue();
+                } catch (Exception e) {
+                    log.error("*****单元格转换number错误：" + cell.getSheet().getSheetName() + "--" + (cell.getRowIndex()+1) + "行--" + (cell.getColumnIndex()+1) + "列----值：" + cell);
+                }
                 break;
             case STRING:
-                value = cell.getStringCellValue();
+                try {
+                    value = cell.getStringCellValue();
+                } catch (Exception e) {
+                    log.error("*****单元格转换string错误：" + cell.getSheet().getSheetName() + "--" + (cell.getRowIndex()+1) + "行--" + (cell.getColumnIndex()+1) + "列----值：" + cell);
+                }
                 break;
             default:
         }
