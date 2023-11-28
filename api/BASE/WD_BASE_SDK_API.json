@@ -2654,7 +2654,7 @@
                                 "readLevel":"1",
                                 "filterRule":"",
                                 "customObject":null,
-                                "staticValue":"供冷定压补水装置",
+                                "staticValue":"膨胀水箱",
                                 "offsetLevel":"0",
                                 "queryAttached":[
                                 ],
@@ -2667,7 +2667,7 @@
                               {
                                 "propertyName":"清单",
                                 "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=供冷定压补水装置'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC1'设备类型'名称=膨胀水箱'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "readLevel":"4",
                                 "filterRule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "customObject":null,
@@ -4257,7 +4257,7 @@
                                 "readLevel":"1",
                                 "filterRule":"",
                                 "customObject":null,
-                                "staticValue":"供冷定压补水装置",
+                                "staticValue":"膨胀水箱",
                                 "offsetLevel":"0",
                                 "queryAttached":[
                                 ],
@@ -4270,7 +4270,7 @@
                               {
                                 "propertyName":"清单",
                                 "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=供冷定压补水装置'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC2'设备类型'名称=膨胀水箱'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "readLevel":"4",
                                 "filterRule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "customObject":null,
@@ -5860,7 +5860,7 @@
                                 "readLevel":"1",
                                 "filterRule":"",
                                 "customObject":null,
-                                "staticValue":"供冷定压补水装置",
+                                "staticValue":"膨胀水箱",
                                 "offsetLevel":"0",
                                 "queryAttached":[
                                 ],
@@ -5873,7 +5873,7 @@
                               {
                                 "propertyName":"清单",
                                 "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC3'设备类型'名称=供冷定压补水装置'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
+                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCC3'设备类型'名称=膨胀水箱'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechSubset\",\"relCode\": \"Sy2Eq\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_3'id\"}        }      }    }}}",
                                 "readLevel":"4",
                                 "filterRule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                 "customObject":null,
@@ -20462,7 +20462,7 @@
                             "readLevel":"1",
                             "filterRule":"",
                             "customObject":null,
-                            "staticValue":"供冷定压补水装置",
+                            "staticValue":"膨胀水箱",
                             "offsetLevel":"0",
                             "queryAttached":[
                             ],
@@ -24261,7 +24261,7 @@
                             "readLevel":"1",
                             "filterRule":"",
                             "customObject":null,
-                            "staticValue":"供冷定压补水装置",
+                            "staticValue":"膨胀水箱",
                             "offsetLevel":"0",
                             "queryAttached":[
                             ],
@@ -28060,7 +28060,7 @@
                             "readLevel":"1",
                             "filterRule":"",
                             "customObject":null,
-                            "staticValue":"供冷定压补水装置",
+                            "staticValue":"膨胀水箱",
                             "offsetLevel":"0",
                             "queryAttached":[
                             ],
@@ -105616,7 +105616,7 @@
                               "propertyValueType":"custom"
                             },
                             {
-                              "propertyName":"供冷定压补水装置",
+                              "propertyName":"膨胀水箱",
                               "allowPass":"1",
                               "querySql":null,
                               "readLevel":"0",
@@ -105910,7 +105910,7 @@
                               "propertyValueType":"custom"
                             },
                             {
-                              "propertyName":"供冷定压补水装置（定压水箱）",
+                              "propertyName":"膨胀水箱（定压水箱）",
                               "allowPass":"1",
                               "querySql":null,
                               "readLevel":"0",
@@ -113378,7 +113378,7 @@
                               "propertyValueType":"custom"
                             },
                             {
-                              "propertyName":"供冷定压补水装置",
+                              "propertyName":"膨胀水箱",
                               "allowPass":"1",
                               "querySql":null,
                               "readLevel":"0",
@@ -113672,7 +113672,7 @@
                               "propertyValueType":"custom"
                             },
                             {
-                              "propertyName":"供冷定压补水装置（定压水箱）",
+                              "propertyName":"膨胀水箱（定压水箱）",
                               "allowPass":"1",
                               "querySql":null,
                               "readLevel":"0",
@@ -121140,7 +121140,7 @@
                               "propertyValueType":"custom"
                             },
                             {
-                              "propertyName":"供冷定压补水装置",
+                              "propertyName":"膨胀水箱",
                               "allowPass":"1",
                               "querySql":null,
                               "readLevel":"0",
@@ -121434,7 +121434,7 @@
                               "propertyValueType":"custom"
                             },
                             {
-                              "propertyName":"供冷定压补水装置（定压水箱）",
+                              "propertyName":"膨胀水箱（定压水箱）",
                               "allowPass":"1",
                               "querySql":null,
                               "readLevel":"0",
