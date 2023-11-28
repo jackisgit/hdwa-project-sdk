@@ -6,7 +6,6 @@ import com.hdwa.control.constant.CommonConst;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.experimental.Accessors;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -99,6 +98,11 @@ public class ControlCommand implements Serializable {
     private String localId;
 
     /**
+     * 设备名称
+     */
+    private String localName;
+
+    /**
      * 逻辑编组名称
      */
     private String logicalGroupingName;
@@ -107,6 +111,12 @@ public class ControlCommand implements Serializable {
      * 产品模块编码
      */
     private String ibmsSceneCode;
+
+    /**
+     * 产品类型编码
+     */
+    private String ibmsClassCode;
+
 
     @Override
     public String toString() {
