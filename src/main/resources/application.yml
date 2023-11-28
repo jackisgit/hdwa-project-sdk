@@ -1,14 +1,14 @@
 server:
-  port: 18824
+    port: 18828
 spring:
   application:
     name: zkt-project-control
   profiles:
-    active: Pj2102110210
+    active: Pj3701030060
 
 iot:
   project:
-    url: 127.0.0.1:18852
+    url: 127.0.0.1:18858
 
 kafka:
-  bootstrapServers: 10.199.205.61:9092,10.199.205.71:9092,10.199.205.81:9092
+  bootstrapServers: 10.199.87.63:19092,10.199.87.79:19092,10.199.87.85:19092

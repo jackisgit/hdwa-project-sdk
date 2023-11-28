@@ -11,7 +11,7 @@
 
     <groupId>com.hdwa</groupId>
     <artifactId>hdwa-project-control</artifactId>
-    <version>1.0.0-R20231023</version>
+    <version>1.0.0-R20231128</version>
 
     <name>hdwa-project-control</name>
     <description>边端控制服务</description>
