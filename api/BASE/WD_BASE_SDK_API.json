@@ -83254,7 +83254,7 @@
                             "propertyName":"清单",
                             "allowPass":"1",
                             "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'设备类型'清单\"},\"Criteria\":{}}",
-                            "readLevel":"1",
+                            "readLevel":"2",
                             "filterRule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "customObject":null,
                             "staticValue":null,
