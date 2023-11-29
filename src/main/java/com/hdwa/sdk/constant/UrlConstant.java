@@ -62,6 +62,13 @@ public class UrlConstant {
     public static final String LOGICAL_GROUP_URL = "/openApi/queryLogicalGrouping";
 
 
+
+    /**
+     * 验证token接口 接口路径
+     */
+    public static final String VERIFY_TOKEN_URL = "/monitor/core/staticFiles/checking";
+
+
     /**
      * 保存日志 接口路径
      */
