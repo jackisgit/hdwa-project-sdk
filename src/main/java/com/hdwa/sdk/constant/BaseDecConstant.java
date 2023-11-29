@@ -20,6 +20,11 @@ public class BaseDecConstant {
     public static final String Y = "Y";
 
     /**
+     * y String
+     */
+    public static final String OK = "OK";
+
+    /**
      * 验证
      */
     public static final String AUTHORIZATION = "Authorization";
@@ -172,9 +177,20 @@ public class BaseDecConstant {
 
 
     /**
+     * zhaomingchangjing String
+     */
+    public static final String LIGHTING_SCENE = "zhaomingchangjing";
+
+
+    /**
      * 回路编号 String
      */
     public static final String CIRCUIT_ID = "回路编号";
+
+    /**
+     * 场景编号 String
+     */
+    public static final String SCENE_ID = "场景编号";
 
     /**
      * 名称 String
@@ -259,6 +275,11 @@ public class BaseDecConstant {
      */
     public static final String PRIMARY_GROUPING = "一级编组";
 
+    /**
+     * 一级编组场景 String
+     */
+    public static final String PRIMARY_GROUPING_SCENE = "一级编组场景";
+
 
     /**
      * 一级编组名称 String
@@ -269,6 +290,12 @@ public class BaseDecConstant {
      * 二级编组 String
      */
     public static final String TWO_GROUPING = "二级编组";
+
+    /**
+     * 二级编组场景 String
+     */
+    public static final String TWO_GROUPING_SCENE = "二级编组场景";
+
 
     /**
      * 二级编组名称 String
@@ -316,6 +343,11 @@ public class BaseDecConstant {
      * 回路 String
      */
     public static final String LOOP = "回路";
+
+    /**
+     * 场景 String
+     */
+    public static final String SCENE_NAME = "场景";
 
     /**
      * 被设备供电 String
@@ -451,9 +483,16 @@ public class BaseDecConstant {
 
 
     /**
-     * group_one string
+     * group-one string
      */
     public static final String GROUP_ONE = "group-one";
+
+
+
+    /**
+     * group-one-scene string
+     */
+    public static final String GROUP_ONE_SCENE = "group-one-scene";
 
 
     /**
@@ -461,10 +500,20 @@ public class BaseDecConstant {
      */
     public static final String CIRCUIT = "circuit";
 
+
     /**
-     * group_two string
+     * scene场景 string
+     */
+    public static final String SCENE = "scene";
+
+    /**
+     * group-two string
      */
     public static final String GROUP_TWO = "group-two";
+    /**
+     * group-two-scene string
+     */
+    public static final String GROUP_TWO_SCENE = "group-two-scene";
 
     /**
      * rwd/class string

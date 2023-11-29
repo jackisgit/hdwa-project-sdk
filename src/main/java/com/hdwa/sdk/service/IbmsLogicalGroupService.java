@@ -137,8 +137,11 @@ public class IbmsLogicalGroupService {
                         if (dir.getName().equals(BaseDecConstant.GGZM) || dir.getName().equals(BaseDecConstant.YJZM)) {
                             Map<String, DataSet> arrayMap = repository.IBMSArrayDic.get(dir.getName());
                             levelGroupOneData(repository, dir, arrayMap);
+                            levelGroupOneDataScene(repository, dir, arrayMap);
                             levelGroupTowData(repository, dir, arrayMap);
+                            levelGroupTowDataScene(repository, dir, arrayMap);
                             lightingCircuit(repository, dir, arrayMap);
+                            lightingScene(repository, dir, arrayMap);
                         }
                     });
             log.warn("*****结束加载-逻辑编组数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
@@ -150,7 +153,7 @@ public class IbmsLogicalGroupService {
 
 
     /**
-     * 照明一级逻辑编组数据
+     * 照明回路一级逻辑编组数据
      *
      * @param repository
      * @param dir
@@ -162,7 +165,7 @@ public class IbmsLogicalGroupService {
                 String parentId = itemSdo.get(BaseDecConstant.PARENT_ID).valuePrim.value.toString();
                 String ibmsClassCode = itemSdo.get(BaseDecConstant.IBMS_CLASS_CODE).valuePrim.value.toString();
                 String ibmsSceneCode = itemSdo.get(BaseDecConstant.IBMS_SCENE_CODE).valuePrim.value.toString();
-                if (!ibmsSceneCode.equals(dir.getName()) || !ibmsClassCode.equals(BaseDecConstant.LIGHTING_CIRCUIT) || !parentId.equals("0")) {
+                if (!ibmsSceneCode.equals(dir.getName()) || !ibmsClassCode.equals(BaseDecConstant.LIGHTING_CIRCUIT) || !"0".equals(parentId)) {
                     return;
                 }
                 String logicalGroupingName = itemSdo.get(BaseDecConstant.LOGICAL_GROUPING_NAME).valuePrim.value.toString();
@@ -182,6 +185,39 @@ public class IbmsLogicalGroupService {
         }
     }
 
+    /**
+     * 照明场景一级逻辑编组数据
+     *
+     * @param repository
+     * @param dir
+     */
+    private void levelGroupOneDataScene(RepositoryImpl repository, File dir, Map<String, DataSet> arrayMap) {
+        try {
+            JSONArray levelGroupOne = new JSONArray();
+            repository.IBMSGroupArray.set.forEach(itemSdo -> {
+                String parentId = itemSdo.get(BaseDecConstant.PARENT_ID).valuePrim.value.toString();
+                String ibmsClassCode = itemSdo.get(BaseDecConstant.IBMS_CLASS_CODE).valuePrim.value.toString();
+                String ibmsSceneCode = itemSdo.get(BaseDecConstant.IBMS_SCENE_CODE).valuePrim.value.toString();
+                if (!ibmsSceneCode.equals(dir.getName()) || !ibmsClassCode.equals(BaseDecConstant.LIGHTING_SCENE) || !"0".equals(parentId)) {
+                    return;
+                }
+                String logicalGroupingName = itemSdo.get(BaseDecConstant.LOGICAL_GROUPING_NAME).valuePrim.value.toString();
+                String logicalGroupingId = itemSdo.get(BaseDecConstant.LOGICAL_GROUPING_ID).valuePrim.value.toString();
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put(BaseDecConstant.ID, logicalGroupingId);
+                jsonObject.put(BaseDecConstant.NAME, logicalGroupingName);
+                levelGroupOne.add(jsonObject);
+            });
+            DataSet levelGroupSdsOne = new DataSet(false);
+            levelGroupSdsOne.set = BaseApiUtil.arrayToSdoList(levelGroupOne);
+            arrayMap.put(BaseDecConstant.PRIMARY_GROUPING_SCENE, levelGroupSdsOne);
+
+            FileUtil.save(groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + temp + File.separator + BaseDecConstant.TEMP2 + dir.getName() + "-" + BaseDecConstant.GROUP_ONE_SCENE + UrlConstant.JSON_FILE, FastJsonUtil.toFormatString(levelGroupOne));
+        } catch (Exception e) {
+            log.error("处理照明一级逻辑编组数据异常", e);
+        }
+    }
+
 
     /**
      * 照明二级逻辑编组数据
@@ -196,12 +232,12 @@ public class IbmsLogicalGroupService {
                 String parentId = itemSdo.get(BaseDecConstant.PARENT_ID).valuePrim.value.toString();
                 String ibmsClassCode = itemSdo.get(BaseDecConstant.IBMS_CLASS_CODE).valuePrim.value.toString();
                 String ibmsSceneCode = itemSdo.get(BaseDecConstant.IBMS_SCENE_CODE).valuePrim.value.toString();
-                if (!ibmsSceneCode.equals(dir.getName()) || !ibmsClassCode.equals(BaseDecConstant.LIGHTING_CIRCUIT) || parentId.equals("0")) {
+                if (!ibmsSceneCode.equals(dir.getName()) || !ibmsClassCode.equals(BaseDecConstant.LIGHTING_CIRCUIT) || !"0".equals(parentId)) {
                     return;
                 }
                 String logicalGroupingName = itemSdo.get(BaseDecConstant.LOGICAL_GROUPING_NAME).valuePrim.value.toString();
                 String logicalGroupingId = itemSdo.get(BaseDecConstant.LOGICAL_GROUPING_ID).valuePrim.value.toString();
-                String firstCode = itemSdo.get(BaseDecConstant.FIRST_CODE).valuePrim.value.toString();
+                String firstCode = itemSdo.get(BaseDecConstant.FIRST_CODE) == null ? "" : itemSdo.get(BaseDecConstant.FIRST_CODE).valuePrim.value.toString();
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put(BaseDecConstant.ID, logicalGroupingId);
                 jsonObject.put(BaseDecConstant.NAME, logicalGroupingName);
@@ -225,6 +261,50 @@ public class IbmsLogicalGroupService {
             log.error("处理照明二级逻辑编组数据异常", e);
         }
     }
+
+    /**
+     * 照明场景二级逻辑编组数据
+     *
+     * @param repository
+     * @param dir
+     */
+    private void levelGroupTowDataScene(RepositoryImpl repository, File dir, Map<String, DataSet> arrayMap) {
+        try {
+            JSONArray levelGroupTow = new JSONArray();
+            repository.IBMSGroupArray.set.forEach(itemSdo -> {
+                String parentId = itemSdo.get(BaseDecConstant.PARENT_ID).valuePrim.value.toString();
+                String ibmsClassCode = itemSdo.get(BaseDecConstant.IBMS_CLASS_CODE).valuePrim.value.toString();
+                String ibmsSceneCode = itemSdo.get(BaseDecConstant.IBMS_SCENE_CODE).valuePrim.value.toString();
+                if (!ibmsSceneCode.equals(dir.getName()) || !ibmsClassCode.equals(BaseDecConstant.LIGHTING_SCENE) || !"0".equals(parentId)) {
+                    return;
+                }
+                String logicalGroupingName = itemSdo.get(BaseDecConstant.LOGICAL_GROUPING_NAME).valuePrim.value.toString();
+                String logicalGroupingId = itemSdo.get(BaseDecConstant.LOGICAL_GROUPING_ID).valuePrim.value.toString();
+                String firstCode = itemSdo.get(BaseDecConstant.FIRST_CODE) == null ? "" : itemSdo.get(BaseDecConstant.FIRST_CODE).valuePrim.value.toString();
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put(BaseDecConstant.ID, logicalGroupingId);
+                jsonObject.put(BaseDecConstant.NAME, logicalGroupingName);
+                jsonObject.put(BaseDecConstant.PRIMARY_GROUPING, parentId);
+                jsonObject.put(BaseDecConstant.GROUPING_TYPE, firstCode);
+                //楼层编码
+                if (dir.getName().equals(BaseDecConstant.GGZM)) {
+                    if (itemSdo.get(BaseDecConstant.FLOOR_ID) != null) {
+                        String floorId = (String) itemSdo.get(BaseDecConstant.FLOOR_ID).valuePrim.value;
+                        jsonObject.put(BaseDecConstant.FLOOR_CODE, floorId);
+                    }
+                }
+                levelGroupTow.add(jsonObject);
+            });
+            DataSet levelGroupSdsOne = new DataSet(false);
+            levelGroupSdsOne.set = BaseApiUtil.arrayToSdoList(levelGroupTow);
+            arrayMap.put(BaseDecConstant.TWO_GROUPING_SCENE, levelGroupSdsOne);
+
+            FileUtil.save(groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + temp + File.separator + BaseDecConstant.TEMP2 + dir.getName() + "-" + BaseDecConstant.GROUP_TWO_SCENE + UrlConstant.JSON_FILE, FastJsonUtil.toFormatString(levelGroupTow));
+        } catch (Exception e) {
+            log.error("处理照明场景二级逻辑编组数据异常", e);
+        }
+    }
+
 
     /**
      * 照明回路数据
@@ -356,6 +436,110 @@ public class IbmsLogicalGroupService {
             });
         } catch (Exception e) {
             log.error("处理照明回路编组数据异常", e);
+        }
+    }
+
+    /**
+     * 照明场景数据
+     *
+     * @param repository
+     * @param dir
+     */
+    private void lightingScene(RepositoryImpl repository, File dir, Map<String, DataSet> arrayMap) {
+        try {
+            DataSet sceneSds = arrayMap.get(BaseDecConstant.LIGHTING_SCENE) == null ? new DataSet(false) : arrayMap.get(BaseDecConstant.LIGHTING_SCENE);
+            JSONArray sceneArray = new JSONArray();
+            //一级编组数据
+            DataSet leveOne = arrayMap.get(BaseDecConstant.PRIMARY_GROUPING);
+            //二级编组数据
+            DataSet leveTwo = arrayMap.get(BaseDecConstant.TWO_GROUPING);
+            sceneSds.set.forEach(temp -> {
+                String logicalGroupingId = temp.get(BaseDecConstant.LOGICAL_GROUPING_ID).valuePrim.value.toString();
+
+                DataObject sdoOne = null;
+                DataObject sdoTwo = null;
+
+                for (DataObject sdoInner : leveTwo.set) {
+                    String id = sdoInner.get(BaseDecConstant.ID).valuePrim.value.toString();
+                    if (id.equals(logicalGroupingId)) {
+                        sdoTwo = sdoInner;
+                        break;
+                    }
+                }
+
+                String oneId = null;
+                String twoId = null;
+                if (sdoTwo != null) {
+                    oneId = sdoTwo.get(BaseDecConstant.PRIMARY_GROUPING).valuePrim.value.toString();
+                    twoId = sdoTwo.get(BaseDecConstant.ID).valuePrim.value.toString();
+                    for (DataObject sdoInner : leveOne.set) {
+                        String idInner = sdoInner.get(BaseDecConstant.ID).valuePrim.value.toString();
+                        if (idInner.equals(oneId)) {
+                            sdoOne = sdoInner;
+                            break;
+                        }
+                    }
+                }
+
+                String objId = temp.get(BaseDecConstant.OBJ_ID).valuePrim.value.toString();
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put(BaseDecConstant.SCENE_ID, objId);
+
+                if (oneId != null && sdoOne != null && twoId != null) {
+                    String groupType = (String) sdoTwo.get(BaseDecConstant.GROUPING_TYPE).valuePrim.value;
+                    jsonObject.put(BaseDecConstant.GROUPING_TYPE, groupType);
+                    jsonObject.put(BaseDecConstant.PRIMARY_GROUPING, oneId);
+                    jsonObject.put(BaseDecConstant.PRIMARY_GROUPING_NAME, sdoOne.get(BaseDecConstant.NAME).valuePrim.value);
+                    jsonObject.put(BaseDecConstant.TWO_GROUPING, twoId);
+                    jsonObject.put(BaseDecConstant.TWO_GROUPING_NAME, sdoTwo.get(BaseDecConstant.NAME).valuePrim.value);
+                    if (!repository.id2sdv.containsKey(objId)) {
+                        log.warn(dir.getName() + " " + "场景不存在: " + objId);
+                        return;
+                    }
+
+                    DataObject illuminationSdo = repository.id2sdv.get(objId);
+                    if (dir.getName().equals(BaseDecConstant.GGZM)) {
+                        DataValue floorArray = illuminationSdo.get(BaseDecConstant.PLACE_FLOOR);
+                        if (floorArray != null && floorArray.valueArray != null && floorArray.valueArray.set != null
+                                && floorArray.valueArray.set.size() == 1) {
+                            DataObject floor = floorArray.valueArray.set.get(0);
+                            jsonObject.put(BaseDecConstant.FLOOR_CODE, floor.get(BaseDecConstant.ID).valuePrim.value);
+                            jsonObject.put(BaseDecConstant.FLOOR_NAME, getName(floor));
+                        }
+                    }
+                }
+                sceneArray.add(jsonObject);
+            });
+            DataSet scene = new DataSet(false);
+            scene.set = BaseApiUtil.arrayToSdoList(sceneArray);
+            arrayMap.put(BaseDecConstant.SCENE_NAME, scene);
+            FileUtil.save(groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + temp + File.separator + BaseDecConstant.TEMP2 + dir.getName() + "-" + BaseDecConstant.SCENE + UrlConstant.JSON_FILE, FastJsonUtil.toFormatString(sceneArray));
+
+            //加入场景信息
+            scene.set.forEach(sdo -> {
+                String id = (String) sdo.get(BaseDecConstant.SCENE_ID).valuePrim.value;
+                if (repository.id2sdv.containsKey(id)) {
+                    DataObject eqpSdo = repository.id2sdv.get(id);
+                    //防止只有场景编组数据覆盖完整数据
+                    if (eqpSdo.get(BaseDecConstant.PRIMARY_GROUPING_NAME) != null) {
+                        if (eqpSdo.get(BaseDecConstant.PRIMARY_GROUPING_NAME).valuePrim.value != null || eqpSdo.get(BaseDecConstant.TWO_GROUPING_NAME).valuePrim.value != null) {
+                            return;
+                        }
+                    }
+                    DataValue sdv = new DataValue(null, null, null, null);
+                    sdv.valuePrim = new DataPrimitive();
+                    sdv.valuePrim.change = false;
+                    eqpSdo.put(BaseDecConstant.PRIMARY_GROUPING_NAME, sdo.containsKey(BaseDecConstant.PRIMARY_GROUPING_NAME) ? sdo.get(BaseDecConstant.PRIMARY_GROUPING_NAME) : sdv);
+                    eqpSdo.put(BaseDecConstant.TWO_GROUPING_NAME, sdo.containsKey(BaseDecConstant.TWO_GROUPING_NAME) ? sdo.get(BaseDecConstant.TWO_GROUPING_NAME) : sdv);
+                    eqpSdo.put(BaseDecConstant.GROUPING_TYPE, sdo.containsKey(BaseDecConstant.GROUPING_TYPE) ? sdo.get(BaseDecConstant.GROUPING_TYPE) : sdv);
+                    if (dir.getName().equals(BaseDecConstant.GGZM)) {
+                        eqpSdo.put(BaseDecConstant.FLOOR_CODE, sdo.containsKey(BaseDecConstant.FLOOR_CODE) ? sdo.get(BaseDecConstant.FLOOR_CODE) : sdv);
+                        eqpSdo.put(BaseDecConstant.FLOOR_NAME, sdo.containsKey(BaseDecConstant.FLOOR_NAME) ? sdo.get(BaseDecConstant.FLOOR_NAME) : sdv);
+                    }
+                }
+            });
+        } catch (Exception e) {
+            log.error("处理照明场景编组数据异常", e);
         }
     }
 
