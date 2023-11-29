@@ -20,21 +20,31 @@ public class BaseDecConstant {
     public static final String Y = "Y";
 
     /**
+     * y String
+     */
+    public static final String OK = "OK";
+
+    /**
      * 验证
      */
     public static final String AUTHORIZATION = "Authorization";
 
 
     /**
+     * 开发token
+     */
+    public static final String DEV_TOKEN = "Bearer 3dff1bf2-3aee-4caa-a57c-5124360afc451";
+
+    /**
      * token
      */
-    public static final String TOKEN = "TOKEN_";
+    public static final String TOKEN = "WD_TOKEN_";
 
 
     /**
      * token 过期时间
      */
-    public static final Long TOKEN_TIME_OUT = 1000L * 60 * 60;
+    public static final Long TOKEN_TIME_OUT = 60L * 60;
 
 
     /**

@@ -40,7 +40,6 @@ public class OkHttpClientUtil {
         Request request = new Request.Builder()
                 .url(ur)
                 .post(res)
-                .header(UrlConstant.AUTHORIZATION, UrlConstant.TOKEN)
                 .build();
         // 执行 POST 请求并接收响应
         Response response = httpClient.newCall(request).execute();
@@ -49,5 +48,28 @@ public class OkHttpClientUtil {
         //关闭连接
         response.close();
         return jsonObject;
+    }
+
+
+    /**
+     * get 请求 验证token
+     *
+     * @param ur    请求路径
+     * @param token token
+     * @return
+     * @throws Exception
+     */
+    public static String httpGet(String ur, String token) throws Exception {
+        // 创建 GET 请求
+        Request request = new Request.Builder()
+                .url(ur)
+                .get()
+                .header(UrlConstant.AUTHORIZATION, token)
+                .build();
+        Response response = httpClient.newCall(request).execute();
+        String res = response.body().string().replaceAll("\"", "");
+        //关闭连接
+        response.close();
+        return res;
     }
 }
