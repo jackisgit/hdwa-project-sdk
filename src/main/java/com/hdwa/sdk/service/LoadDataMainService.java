@@ -71,6 +71,18 @@ public class LoadDataMainService {
     }
 
     /**
+     * 下载接口数据后加载数据流程
+     */
+    public void logicApiMain() {
+        try {
+            configApiService.downLoadConfig();
+            loadDataMain();
+        } catch (Exception e) {
+            log.error("******** 执行加载接口数据流程出现异常", e);
+        }
+    }
+
+    /**
      * 加载数据入口
      */
     public void loadDataMain() {
