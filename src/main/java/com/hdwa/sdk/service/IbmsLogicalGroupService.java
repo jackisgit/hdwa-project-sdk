@@ -232,7 +232,7 @@ public class IbmsLogicalGroupService {
                 String parentId = itemSdo.get(BaseDecConstant.PARENT_ID).valuePrim.value.toString();
                 String ibmsClassCode = itemSdo.get(BaseDecConstant.IBMS_CLASS_CODE).valuePrim.value.toString();
                 String ibmsSceneCode = itemSdo.get(BaseDecConstant.IBMS_SCENE_CODE).valuePrim.value.toString();
-                if (!ibmsSceneCode.equals(dir.getName()) || !ibmsClassCode.equals(BaseDecConstant.LIGHTING_CIRCUIT) || !"0".equals(parentId)) {
+                if (!ibmsSceneCode.equals(dir.getName()) || !ibmsClassCode.equals(BaseDecConstant.LIGHTING_CIRCUIT) || "0".equals(parentId)) {
                     return;
                 }
                 String logicalGroupingName = itemSdo.get(BaseDecConstant.LOGICAL_GROUPING_NAME).valuePrim.value.toString();
@@ -275,7 +275,7 @@ public class IbmsLogicalGroupService {
                 String parentId = itemSdo.get(BaseDecConstant.PARENT_ID).valuePrim.value.toString();
                 String ibmsClassCode = itemSdo.get(BaseDecConstant.IBMS_CLASS_CODE).valuePrim.value.toString();
                 String ibmsSceneCode = itemSdo.get(BaseDecConstant.IBMS_SCENE_CODE).valuePrim.value.toString();
-                if (!ibmsSceneCode.equals(dir.getName()) || !ibmsClassCode.equals(BaseDecConstant.LIGHTING_SCENE) || !"0".equals(parentId)) {
+                if (!ibmsSceneCode.equals(dir.getName()) || !ibmsClassCode.equals(BaseDecConstant.LIGHTING_SCENE) || "0".equals(parentId)) {
                     return;
                 }
                 String logicalGroupingName = itemSdo.get(BaseDecConstant.LOGICAL_GROUPING_NAME).valuePrim.value.toString();
@@ -450,9 +450,9 @@ public class IbmsLogicalGroupService {
             DataSet sceneSds = arrayMap.get(BaseDecConstant.LIGHTING_SCENE) == null ? new DataSet(false) : arrayMap.get(BaseDecConstant.LIGHTING_SCENE);
             JSONArray sceneArray = new JSONArray();
             //一级编组数据
-            DataSet leveOne = arrayMap.get(BaseDecConstant.PRIMARY_GROUPING);
+            DataSet leveOne = arrayMap.get(BaseDecConstant.PRIMARY_GROUPING_SCENE);
             //二级编组数据
-            DataSet leveTwo = arrayMap.get(BaseDecConstant.TWO_GROUPING);
+            DataSet leveTwo = arrayMap.get(BaseDecConstant.TWO_GROUPING_SCENE);
             sceneSds.set.forEach(temp -> {
                 String logicalGroupingId = temp.get(BaseDecConstant.LOGICAL_GROUPING_ID).valuePrim.value.toString();
 

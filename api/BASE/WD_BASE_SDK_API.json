@@ -67923,7 +67923,7 @@
                                 {
                                   "propertyName":"二级编组",
                                   "allowPass":"1",
-                                  "querySql":"{\"Target\": {\"Source\": \"ibms\",\"product\": \"yjzm\",\"type\": \"二级编组\"},\"Criteria\": {\"一级编组\":{\"ref\":\"ancestor_1'id\"}},\"QueryType\": \"select\"}",
+                                  "querySql":"{\"Target\": {\"Source\": \"ibms\",\"product\": \"yjzm\",\"type\": \"二级编组场景\"},\"Criteria\": {\"一级编组\":{\"ref\":\"ancestor_1'id\"}},\"QueryType\": \"select\"}",
                                   "readLevel":"1",
                                   "filterRule":"",
                                   "customObject":null,
@@ -76439,7 +76439,7 @@
                                 {
                                   "propertyName":"二级编组",
                                   "allowPass":"1",
-                                  "querySql":"{\"Target\": {\"Source\": \"ibms\",\"product\": \"ggzm\",\"type\": \"二级编组\"},\"Criteria\": {\"一级编组\":{\"ref\":\"ancestor_1'id\"}},\"QueryType\": \"select\"}",
+                                  "querySql":"{\"Target\": {\"Source\": \"ibms\",\"product\": \"ggzm\",\"type\": \"二级编组场景\"},\"Criteria\": {\"一级编组\":{\"ref\":\"ancestor_1'id\"}},\"QueryType\": \"select\"}",
                                   "readLevel":"1",
                                   "filterRule":"",
                                   "customObject":null,
