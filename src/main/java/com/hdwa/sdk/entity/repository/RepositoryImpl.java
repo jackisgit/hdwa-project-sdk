@@ -235,9 +235,10 @@ public class RepositoryImpl extends RepositoryBase {
                             String classCode = (descSet.get(BaseDecConstant.CLASS_CODE)).toString();
                             if (objectArrayDic.get(classCode) != null) {
                                 result = objectArrayDic.get(classCode).valueArray;
-                            } else {
-                                log.error("*****缺少classCode数据：" + classCode);
                             }
+                            /*else {
+                                log.error("*****缺少classCode数据：" + classCode);
+                            }*/
                         } else {
                             result = objectArrayAll;
                         }
