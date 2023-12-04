@@ -6,10 +6,7 @@ import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.ExcelSheetEntity;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
-import com.hdwa.sdk.utils.AlarmUtil;
-import com.hdwa.sdk.utils.CustomThreadFactory;
-import com.hdwa.sdk.utils.ExcelUtil;
-import com.hdwa.sdk.utils.FileUtil;
+import com.hdwa.sdk.utils.*;
 import com.hdwa.sdk.websocket.AlarmWebSocketClient;
 import com.hdwa.sdk.websocket.IotWebSocketClient;
 import lombok.extern.slf4j.Slf4j;
@@ -281,11 +278,13 @@ public class InitialDataService implements CommandLineRunner {
             JSONArray content = AlarmUtil.alarmRefresh(BaseDecConstant.CURRENT_PROJECT_ID, groupCode, alarmUrl, repository);
             if (content.size() != 0) {
                 log.warn("****定时刷新报警数据数量：" + content.size());
-                JSONObject AlarmJob = new JSONObject();
-                AlarmJob.put(BaseDecConstant.TYPE, BaseDecConstant.REFRESH);
-                AlarmJob.put(BaseDecConstant.CONTENT, content);
-                DataContainer.alarmBuffer.offer(AlarmJob, 16384);
             }
+            JSONObject AlarmJob = new JSONObject();
+            AlarmJob.put(BaseDecConstant.TYPE, BaseDecConstant.REFRESH);
+            AlarmJob.put(BaseDecConstant.CONTENT, content);
+            DataContainer.alarmBuffer.offer(AlarmJob, 16384);
+
+            BaseDecConstant.EXECUTOR.execute(new AlarmJob(BaseDecConstant.CURRENT_PROJECT_ID));
         } catch (Exception e) {
             log.error("****刷新报警数据出现异常", e);
         }
