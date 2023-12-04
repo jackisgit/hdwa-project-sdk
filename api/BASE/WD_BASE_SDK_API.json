@@ -61377,6 +61377,59 @@
                         "propertyValueType":"custom"
                       },
                       {
+                        "propertyName":"回路和场景",
+                        "allowPass":"1",
+                        "querySql":"",
+                        "readLevel":"2",
+                        "filterRule":"",
+                        "customObject":{
+                          "propertyList":[
+                            {
+                              "propertyName":"清单",
+                              "allowPass":"1",
+                              "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"yjzm\",\"ibmsClassCode\":\"zhaominghuiluandchangjing\"},\"Criteria\":{}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}}",
+                              "readLevel":"1",
+                              "filterRule":"",
+                              "customObject":null,
+                              "staticValue":null,
+                              "offsetLevel":"2",
+                              "queryAttached":[],
+                              "propertyValueSchema":"JSONArray",
+                              "staticArray":[
+                              ],
+                              "propertyVisible":false,
+                              "propertyValueType":"query"
+                            },
+                            {
+                              "propertyName":"名称",
+                              "allowPass":"1",
+                              "querySql":null,
+                              "readLevel":"1",
+                              "filterRule":null,
+                              "customObject":null,
+                              "staticValue":"回路和场景",
+                              "offsetLevel":"0",
+                              "queryAttached":[
+                              ],
+                              "propertyValueSchema":"string",
+                              "staticArray":[
+                              ],
+                              "propertyVisible":false,
+                              "propertyValueType":"static"
+                            }
+                          ]
+                        },
+                        "staticValue":null,
+                        "offsetLevel":"0",
+                        "queryAttached":[
+                        ],
+                        "propertyValueSchema":"JSONObject",
+                        "staticArray":[
+                        ],
+                        "propertyVisible":false,
+                        "propertyValueType":"custom"
+                      },
+                      {
                         "propertyName":"楼体夜景照明回路",
                         "allowPass":"1",
                         "querySql":"",
@@ -70286,6 +70339,59 @@
                               ],
                               "propertyVisible": true,
                               "propertyValueType": "static"
+                            }
+                          ]
+                        },
+                        "staticValue":null,
+                        "offsetLevel":"0",
+                        "queryAttached":[
+                        ],
+                        "propertyValueSchema":"JSONObject",
+                        "staticArray":[
+                        ],
+                        "propertyVisible":false,
+                        "propertyValueType":"custom"
+                      },
+                      {
+                        "propertyName":"回路和场景",
+                        "allowPass":"1",
+                        "querySql":"",
+                        "readLevel":"2",
+                        "filterRule":"",
+                        "customObject":{
+                          "propertyList":[
+                            {
+                              "propertyName":"清单",
+                              "allowPass":"1",
+                              "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\":\"zhaominghuiluandchangjing\"},\"Criteria\":{}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}}",
+                              "readLevel":"1",
+                              "filterRule":"",
+                              "customObject":null,
+                              "staticValue":null,
+                              "offsetLevel":"2",
+                              "queryAttached":[],
+                              "propertyValueSchema":"JSONArray",
+                              "staticArray":[
+                              ],
+                              "propertyVisible":false,
+                              "propertyValueType":"query"
+                            },
+                            {
+                              "propertyName":"名称",
+                              "allowPass":"1",
+                              "querySql":null,
+                              "readLevel":"1",
+                              "filterRule":null,
+                              "customObject":null,
+                              "staticValue":"回路和场景",
+                              "offsetLevel":"0",
+                              "queryAttached":[
+                              ],
+                              "propertyValueSchema":"string",
+                              "staticArray":[
+                              ],
+                              "propertyVisible":false,
+                              "propertyValueType":"static"
                             }
                           ]
                         },
@@ -93942,6 +94048,23 @@
                             "propertyValueType":"query"
                           },
                           {
+                            "propertyName":"二级编组场景",
+                            "allowPass":"1",
+                            "querySql":"{\"Target\": {\"Source\":\"ref\",\"ref\":\"基础对象'品质'公共照明'二级编组场景'清单\"},\"Criteria\": {\"楼层编号\":{\"ref\":\"ancestor_1'id\"}},\"QueryType\": \"select\"}",
+                            "readLevel":"2",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"2",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"JSONArray",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          },
+                          {
                             "propertyName":"回路",
                             "allowPass":"1",
                             "querySql":"",
@@ -94551,6 +94674,23 @@
                             "propertyName":"二级编组",
                             "allowPass":"1",
                             "querySql":"{\"Target\": {\"Source\":\"ref\",\"ref\":\"基础对象'品质'夜景照明'二级编组'清单\"},\"Criteria\": {\"楼层编号\":{\"ref\":\"ancestor_1'id\"}},\"QueryType\": \"select\"}",
+                            "readLevel":"2",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"2",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"JSONArray",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"二级编组场景",
+                            "allowPass":"1",
+                            "querySql":"{\"Target\": {\"Source\":\"ref\",\"ref\":\"基础对象'品质'夜景照明'二级编组场景'清单\"},\"Criteria\": {\"楼层编号\":{\"ref\":\"ancestor_1'id\"}},\"QueryType\": \"select\"}",
                             "readLevel":"2",
                             "filterRule":"",
                             "customObject":null,
