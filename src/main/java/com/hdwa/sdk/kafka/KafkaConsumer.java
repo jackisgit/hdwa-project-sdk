@@ -43,6 +43,9 @@ public class KafkaConsumer {
             } else if ("1".equals(msg.getMsgType())) {
                 log.warn("===============================开始更新逻辑编组数据===============================");
                 loadDataMainService.logicGroupMain();
+            } else if ("2".equals(msg.getMsgType())) {
+                log.warn("===============================开始更新接口数据===============================");
+                loadDataMainService.logicApiMain();
             }
         }
     }

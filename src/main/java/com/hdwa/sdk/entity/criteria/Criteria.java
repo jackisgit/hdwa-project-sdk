@@ -20,6 +20,7 @@ public class Criteria {
             this.type = "default";
         }
 
+        @Override
         public boolean match(DataObject item) {
             for (String column : column2MatchList.keySet()) {
                 List<MatchBase> matchList = column2MatchList.get(column);
@@ -42,6 +43,7 @@ public class Criteria {
             this.type = "or";
         }
 
+        @Override
         public boolean match(DataObject item) {
             for (CriteriaBase criteria : this.criteriaList) {
                 if (criteria.match(item)) {
@@ -60,6 +62,7 @@ public class Criteria {
             this.type = "not";
         }
 
+        @Override
         public boolean match(DataObject item) {
             return !criteria.match(item);
         }
@@ -72,6 +75,7 @@ public class Criteria {
             this.type = "and";
         }
 
+        @Override
         public boolean match(DataObject item) {
             for (CriteriaBase criteria : this.criteriaList) {
                 if (!criteria.match(item)) {

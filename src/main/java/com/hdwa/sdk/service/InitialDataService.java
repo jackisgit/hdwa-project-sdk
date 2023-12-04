@@ -274,7 +274,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 刷新报警数据
      */
-    //@Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60)
+    @Scheduled(initialDelay = 1000 * 60 * 5, fixedDelay = 1000 * 60)
     public void loadAlarmData() {
         try {
             RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);

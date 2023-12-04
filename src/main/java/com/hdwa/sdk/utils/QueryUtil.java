@@ -19,6 +19,7 @@ import com.hdwa.sdk.entity.scene.DataObject;
 import com.hdwa.sdk.entity.scene.DataPrimitive;
 import com.hdwa.sdk.entity.scene.DataSet;
 import com.hdwa.sdk.entity.scene.DataValue;
+import lombok.extern.slf4j.Slf4j;
 import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.tree.CommonTree;
@@ -34,6 +35,7 @@ import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.ReentrantLock;
 
+@Slf4j
 public class QueryUtil {
 
     public static Object parse_static(String PropertyValueSchema, String static_value) {
@@ -163,9 +165,15 @@ public class QueryUtil {
                                 if (walker != null) {
                                     walker.put(var, ((BigDecimal) me.value).doubleValue());
                                 }
-                            } else {
-                                throw new Exception(me.value.getClass().toString());
                             }
+                           /* else if (me.value instanceof Boolean) {
+                                if (walker != null) {
+                                    walker.put(var, ((Boolean) me.value) ? 1.0 : 0.0);
+                                }
+                            }
+                            else {
+                                log.error("计算属性格式不正确：" + me.value);
+                            }*/
                         }
                     }
                     for (String var : varStringDict.keySet()) {
@@ -178,7 +186,6 @@ public class QueryUtil {
                                 walker.putString(var, null);
                             }
                         } else {
-                            // 交付数据信息点可能是JSONObject或者JSONArray，expression用到的地方使用contains
                             if (me.value instanceof String) {
                                 if (walker != null) {
                                     walker.putString(var, (String) me.value);
@@ -192,7 +199,7 @@ public class QueryUtil {
                                     walker.putString(var, me.value.toString());
                                 }
                             } else {
-                                throw new Exception(me.value.getClass().toString());
+                                log.error("计算属性格式不正确：" + me.value);
                             }
                         }
                     }
@@ -208,14 +215,14 @@ public class QueryUtil {
                         lock.unlock();
                     }
                 }
-            } else if (QueryType.equals("quote")) {
+            } else if ("quote".equals(QueryType)) {
                 CriteriaBase criteria = parseCriteria(Repository, sv, CriteriaObject, queryAssist, new HashMap<>(16));
                 Criteria.CriteriaDefault CriteriaDefault = (Criteria.CriteriaDefault) criteria;
                 MatchBase MatchBase = CriteriaDefault.column2MatchList.get("quote").get(0);
-                if (sv != null && sv.relProperty != null && sv.relProperty.propertyValueSchema.equals("JSONArray")) {
+                if (sv != null && sv.relProperty != null && "JSONArray".equals(sv.relProperty.propertyValueSchema)) {
                     DataSet resultTmp = new DataSet(true);
                     result = resultTmp;
-                    resultTmp.singleValueSet = new CopyOnWriteArrayList<DataValue>();
+                    resultTmp.singleValueSet = new CopyOnWriteArrayList<>();
                     if (MatchBase instanceof Match.MatchIn) {
                         Match.MatchIn me = (Match.MatchIn) MatchBase;
                         if (me.change()) {
@@ -340,8 +347,7 @@ public class QueryUtil {
                                 String Column = (String) Item.get("Column");
                                 String Function = (String) Item.get("Function");
                                 String Name = (String) Item.get("Name");
-                                if (Function.equals("count")) {
-                                } else {
+                                if (!"count".equals(Function)) {
                                     if (QueryAssist_before.colChangeNeed.containsKey(Name)) {
                                         QueryAssist_3.colChangeNeed.put(Column, true);
                                     }
@@ -357,8 +363,7 @@ public class QueryUtil {
                                 String Column = (String) Item.get("Column");
                                 String Function = (String) Item.get("Function");
                                 String Name = (String) Item.get("Name");
-                                if (Function.equals("count")) {
-                                } else {
+                                if (!"count".equals(Function)) {
                                     if (QueryAssist_before.colChangeNeed.containsKey(Name)) {
                                         QueryAssist_3.colChangeNeed.put(Column, true);
                                     }
@@ -370,11 +375,9 @@ public class QueryUtil {
                         if (QueryAssist_3.rowChangeNeed) {
                             JSONObject AggregationObject = (JSONObject) Aggregation;
                             {
-                                JSONObject Item = AggregationObject;
-                                String Column = (String) Item.get("Column");
-                                String Function = (String) Item.get("Function");
-                                if (Function.equals("count")) {
-                                } else {
+                                String Column = (String) AggregationObject.get("Column");
+                                String Function = (String) AggregationObject.get("Function");
+                                if (!"count".equals(Function)) {
                                     QueryAssist_3.colChangeNeed.put(Column, true);
                                 }
                             }
@@ -442,8 +445,7 @@ public class QueryUtil {
                                 String Column = (String) Item.get("Column");
                                 String Function = (String) Item.get("Function");
                                 String Name = (String) Item.get("Name");
-                                if (Function.equals("count")) {
-                                } else {
+                                if (!"count".equals(Function)) {
                                     if (QueryAssist_after.colFactorMap.containsKey(Column)) {
                                         InfluenceFactor InfluenceFactor = QueryAssist_after.colFactorMap.get(Column);
                                         QueryAssist_3.colFactorMap.putIfAbsent(Name, new InfluenceFactor());
@@ -461,7 +463,7 @@ public class QueryUtil {
                                 String Function = (String) Item.get("Function");
                                 String Name = (String) Item.get("Name");
                                 QueryAssist_3.colFactorMap.putIfAbsent(Name, new InfluenceFactor());
-                                if (Function.equals("count")) {
+                                if ("count".equals(Function)) {
                                     QueryAssist_3.colFactorMap.get(Name).merge(QueryAssist_after.rowFactor);
                                 } else {
                                     QueryAssist_3.colFactorMap.get(Name).merge(QueryAssist_after.rowFactor);
@@ -479,8 +481,7 @@ public class QueryUtil {
                             {
                                 String Column = (String) AggregationObject.get("Column");
                                 String Function = (String) AggregationObject.get("Function");
-                                if (Function.equals("count")) {
-                                } else {
+                                if (!"count".equals(Function)) {
                                     if (QueryAssist_after.colFactorMap.containsKey(Column)) {
                                         InfluenceFactor InfluenceFactor = QueryAssist_after.colFactorMap.get(Column);
                                         QueryAssist_3.rowFactor.merge(InfluenceFactor);
@@ -614,7 +615,7 @@ public class QueryUtil {
         Object LogicOperator = CriteriaObject.get("LogicOperator");
         if (LogicOperator != null) {
             String LogicOperatorString = (LogicOperator).toString();
-            if (LogicOperatorString.equals("and") || LogicOperatorString.equals("or")) {
+            if ("and".equals(LogicOperatorString) || "or".equals(LogicOperatorString)) {
                 JSONArray Criterias = (JSONArray) CriteriaObject.get("Criterias");
                 List<CriteriaBase> criteriaList = new CopyOnWriteArrayList<CriteriaBase>();
                 for (Object o : Criterias) {
@@ -622,7 +623,7 @@ public class QueryUtil {
                     CriteriaBase criteriaInner = parseCriteria(Repository, sv, CriteriaObjectInner, queryAssist, CriteriaColumns);
                     criteriaList.add(criteriaInner);
                 }
-                if (LogicOperatorString.equals("and")) {
+                if ("and".equals(LogicOperatorString)) {
                     Criteria.CriteriaAnd Criteria_and = new Criteria.CriteriaAnd();
                     Criteria_and.criteriaList = criteriaList;
                     criteria = Criteria_and;
@@ -631,7 +632,7 @@ public class QueryUtil {
                     Criteria_or.criteriaList = criteriaList;
                     criteria = Criteria_or;
                 }
-            } else if (LogicOperatorString.equals("not")) {
+            } else if ("not".equals(LogicOperatorString)) {
                 JSONObject CriteriaObjectInner = (JSONObject) CriteriaObject.get("Criteria");
                 CriteriaBase criteriaInner = parseCriteria(Repository, sv, CriteriaObjectInner, queryAssist, CriteriaColumns);
                 Criteria.CriteriaNot Criteria_not = new Criteria.CriteriaNot();
@@ -645,7 +646,7 @@ public class QueryUtil {
             for (String itemKey : CriteriaObject.keySet()) {
                 CriteriaColumns.put(itemKey, true);
                 Object itemValue = CriteriaObject.get(itemKey);
-                List<MatchBase> matchList = new CopyOnWriteArrayList<MatchBase>();
+                List<MatchBase> matchList = new CopyOnWriteArrayList<>();
                 if (itemValue instanceof JSONObject) {
                     JSONObject valueInner = (JSONObject) itemValue;
                     if (valueInner.get("ref") != null) {
@@ -913,7 +914,7 @@ public class QueryUtil {
             }
             index_split = 2;
             svInner = parentData.get(splits[1]);
-        } else if (splits[0].equals("base_value")) {
+        } else if ("base_value".equals(splits[0])) {
             change = true;
             index_split = 2;
             svInner = Repository.base_value.get(splits[1]);
@@ -1000,7 +1001,6 @@ public class QueryUtil {
 
         JSONObject descSet = (JSONObject) setDesc;
         if (descSet.get("Source") != null) {
-            result = null;
             String Source = (descSet.get("Source")).toString();
             if ("ref".equals(Source)) {
                 String refString = (descSet.get("ref")).toString();
@@ -1112,44 +1112,48 @@ public class QueryUtil {
                             result.setColChange(col);
                         }
                     }
-                    if (SetOperator.equals("add")) {
-                        for (DataSet resultItem : resultList) {
-                            result.set.addAll(resultItem.set);
-                        }
-                    } else if (SetOperator.equals("merge")) {
-                        for (DataSet resultItem : resultList) {
-                            for (DataObject resultItemItem : resultItem.set) {
-                                boolean exist = false;
-                                for (DataObject existItem : result.set) {
-                                    if (CompareUtil.Instance().Compare(existItem, resultItemItem)) {
-                                        exist = true;
-                                        break;
-                                    }
-                                }
-                                if (!exist) {
-                                    result.set.add(resultItemItem);
-                                }
+                    switch (SetOperator) {
+                        case "add":
+                            for (DataSet resultItem : resultList) {
+                                result.set.addAll(resultItem.set);
                             }
-                        }
-                    } else if (SetOperator.equals("unite")) {
-                        DataSet resultFirst = resultList.get(0);
-                        for (DataObject existItem : resultFirst.set) {
-                            int exist = 0;
-                            for (int i = 1; i < resultList.size(); i++) {
-                                DataSet resultItem = resultList.get(i);
+                            break;
+                        case "merge":
+                            for (DataSet resultItem : resultList) {
                                 for (DataObject resultItemItem : resultItem.set) {
-                                    if (CompareUtil.Instance().Compare(existItem, resultItemItem)) {
-                                        exist++;
-                                        break;
+                                    boolean exist = false;
+                                    for (DataObject existItem : result.set) {
+                                        if (CompareUtil.Instance().Compare(existItem, resultItemItem)) {
+                                            exist = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!exist) {
+                                        result.set.add(resultItemItem);
                                     }
                                 }
                             }
-                            if (exist == resultList.size() - 1) {
-                                result.set.add(existItem);
+                            break;
+                        case "unite":
+                            DataSet resultFirst = resultList.get(0);
+                            for (DataObject existItem : resultFirst.set) {
+                                int exist = 0;
+                                for (int i = 1; i < resultList.size(); i++) {
+                                    DataSet resultItem = resultList.get(i);
+                                    for (DataObject resultItemItem : resultItem.set) {
+                                        if (CompareUtil.Instance().Compare(existItem, resultItemItem)) {
+                                            exist++;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (exist == resultList.size() - 1) {
+                                    result.set.add(existItem);
+                                }
                             }
-                        }
+                            break;
                     }
-                } else if (SetOperator.equals("sub")) {
+                } else if ("sub".equals(SetOperator)) {
                     DataSet Set1 = parseSet(Repository, sv, descSet.get("Set1"), QueryAssist, isSingleValueSet);
                     DataSet Set2 = parseSet(Repository, sv, descSet.get("Set2"), QueryAssist, isSingleValueSet);
 
@@ -1195,7 +1199,7 @@ public class QueryUtil {
                 if (tmp instanceof DataValue) {
                     DataValue tmpData = (DataValue) tmp;
                     tmp = tmpData.parentObjectData;
-                } else if (tmp instanceof DataObject) {
+                } else if (tmp != null) {
                     DataObject tmpData = (DataObject) tmp;
                     tmp = tmpData.parentObjectData != null ? tmpData.parentObjectData : tmpData.parentArrayData;
                 }
@@ -1208,7 +1212,7 @@ public class QueryUtil {
             splits_index = 0;
         }
 
-        List<DataValue> svList = new CopyOnWriteArrayList<DataValue>();
+        List<DataValue> svList = new CopyOnWriteArrayList<>();
         if (isSingleValueSet) {
             // 查询目标可以是value_object或者value_array
             if (parentData instanceof DataValue) {
@@ -1223,7 +1227,7 @@ public class QueryUtil {
             for (int i = splits_index; i < splits.length; i++) {
                 String split = splits[i];
                 int index_ = split.indexOf('=');
-                List<DataValue> svListInner = new CopyOnWriteArrayList<DataValue>();
+                List<DataValue> svListInner = new CopyOnWriteArrayList<>();
                 for (DataValue svInner : svList) {
                     if (svInner.valueObject != null) {
                         if (svInner.valueObject.getRowChange() || svInner.valueObject.hasColChange(split)) {
@@ -1241,10 +1245,9 @@ public class QueryUtil {
                                 result.setRowChange(true);
                             }
                             for (DataObject sdb : svInner.valueArray.set) {
-                                DataObject sod = (DataObject) sdb;
-                                if (sod.containsKey(propertyName) && propertyValue.equals(sod.get(propertyName).valuePrim.value)) {
-                                    DataValue svWrapper = new DataValue(null, sod, propertyName, null);
-                                    svWrapper.valueObject = sod;
+                                if (sdb.containsKey(propertyName) && propertyValue.equals(sdb.get(propertyName).valuePrim.value)) {
+                                    DataValue svWrapper = new DataValue(null, sdb, propertyName, null);
+                                    svWrapper.valueObject = sdb;
                                     svListInner.add(svWrapper);
                                 }
                             }
@@ -1253,15 +1256,14 @@ public class QueryUtil {
                                 result.setRowChange(true);
                             }
                             for (DataObject sdb : svInner.valueArray.set) {
-                                DataObject sod = (DataObject) sdb;
-                                svListInner.add(sod.get(split));
+                                svListInner.add(sdb.get(split));
                             }
                         }
                     }
                 }
                 svList = svListInner;
             }
-            result.singleValueSet = new CopyOnWriteArrayList<DataValue>();
+            result.singleValueSet = new CopyOnWriteArrayList<>();
             for (DataValue svTmp : svList) {
                 if (svTmp.valuePrim != null) {
                     result.singleValueSet.add(svTmp);
@@ -1321,10 +1323,9 @@ public class QueryUtil {
                                 result.setRowChange(true);
                             }
                             for (DataObject sdb : svInner.valueArray.set) {
-                                DataObject sod = (DataObject) sdb;
-                                if (sod.containsKey(propertyName) && propertyValue.equals(sod.get(propertyName).valuePrim.value)) {
-                                    DataValue svWrapper = new DataValue(null, sod, propertyName, null);
-                                    svWrapper.valueObject = sod;
+                                if (sdb.containsKey(propertyName) && propertyValue.equals(sdb.get(propertyName).valuePrim.value)) {
+                                    DataValue svWrapper = new DataValue(null, sdb, propertyName, null);
+                                    svWrapper.valueObject = sdb;
                                     svListInner.add(svWrapper);
                                 }
                             }
@@ -1461,8 +1462,7 @@ public class QueryUtil {
         } else if (criteria instanceof Criteria.CriteriaNot) {
             Criteria.CriteriaNot Criteria_not = (Criteria.CriteriaNot) criteria;
             CriteriaBase criteriaInner = Criteria_not.criteria;
-            boolean tmp = criteriaValueChange(criteriaInner);
-            return tmp;
+            return criteriaValueChange(criteriaInner);
         } else if (criteria instanceof Criteria.CriteriaDefault) {
             Criteria.CriteriaDefault CriteriaDefault = (Criteria.CriteriaDefault) criteria;
             for (String col : CriteriaDefault.column2MatchList.keySet()) {
