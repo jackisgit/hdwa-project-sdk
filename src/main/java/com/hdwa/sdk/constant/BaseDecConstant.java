@@ -1,6 +1,11 @@
 package com.hdwa.sdk.constant;
 
+import com.hdwa.sdk.utils.CustomThreadFactory;
+
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author abao
@@ -493,7 +498,6 @@ public class BaseDecConstant {
     public static final String GROUP_ONE = "group-one";
 
 
-
     /**
      * group-one-scene string
      */
@@ -594,6 +598,15 @@ public class BaseDecConstant {
      * 报警列表 String
      */
     public static final String ALARM_LIST = "报警列表";
+
+    /**
+     * 报警线程
+     */
+    public static ThreadPoolExecutor EXECUTOR = new ThreadPoolExecutor(4, 8, 60,
+            TimeUnit.SECONDS,
+            new LinkedBlockingQueue<>(),
+            new CustomThreadFactory("alarm-threadPool")
+    );
 
 
     /**
