@@ -27,9 +27,9 @@ public class AlarmService {
      *
      * @param repository
      */
-    public void loadAlarmData(RepositoryImpl repository) {
+    public boolean loadAlarmData(RepositoryImpl repository) {
         try {
-            log.warn("************开始加载-报警数据");
+            log.warn("************开始加载-报警数据************");
             long startTime = System.currentTimeMillis();
 
             AlarmUtil.alarmColChange.forEach(s -> DataContainer.alarmArray.setColChange(s));
@@ -80,9 +80,10 @@ public class AlarmService {
                 });
             });
             log.warn("************结束加载-报警数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+            return true;
         } catch (Exception e) {
             log.error("加载报警数据异常", e);
-            throw e;
+            return false;
         }
     }
 

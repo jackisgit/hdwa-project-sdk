@@ -49,7 +49,7 @@ public class ConfigApiService {
     /**
      * 下载config接口文件
      */
-    public Object downLoadConfig() {
+    public boolean downLoadConfig() {
         try {
             log.warn("************开始下载-config接口数据");
             long startTime = System.currentTimeMillis();
@@ -58,7 +58,7 @@ public class ConfigApiService {
             JSONObject jsonObject = JSONObject.parseObject(redisTemplate.opsForValue().get(redisKey));
             if (jsonObject == null) {
                 log.error("未查询到config接口文件");
-                return null;
+                return false;
             }
 
             File tempFile = new File(getPath() + File.separator + temp);
@@ -76,11 +76,11 @@ public class ConfigApiService {
             //只保留3个版本数据
             FileUtil.clearHistoryDirectory(new File(getPath()));
             log.warn("************结束下载-config接口数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
-            return "ok";
+            return true;
         } catch (Exception e) {
             log.error("下载config接口文件异常", e);
+            return false;
         }
-        return null;
     }
 
 
@@ -89,8 +89,8 @@ public class ConfigApiService {
      *
      * @param repository
      */
-    public String loadConfigData(RepositoryImpl repository) throws Exception {
-        log.warn("************开始加载-config接口数据");
+    public boolean loadConfigData(RepositoryImpl repository) {
+        log.warn("************开始加载-config接口数据************");
         long startTime = System.currentTimeMillis();
         try {
             File maxDir = FileUtil.getMaxDir(new File(getPath()));
@@ -122,10 +122,10 @@ public class ConfigApiService {
 
             analysisData(repository);
             log.warn("************结束加载-config接口数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
-            return "ok";
+            return true;
         } catch (Exception e) {
             log.error("加载config接口数据异常", e);
-            throw e;
+            return false;
         }
     }
 

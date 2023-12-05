@@ -46,7 +46,7 @@ public class IbmsPhysicalWorldService {
      *
      * @return
      */
-    public Object downLoadIbmsPhysicalWorldData() {
+    public boolean downLoadIbmsPhysicalWorldData() {
         log.warn("************开始下载-IBMS物理世界数据");
         long startTime = System.currentTimeMillis();
         try {
@@ -72,27 +72,11 @@ public class IbmsPhysicalWorldService {
             //只保留3个版本数据
             FileUtil.clearHistoryDirectory(new File(getPath()));
             log.warn("************结束下载-IBMS物理世界数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
-            return "ok";
+            return true;
         } catch (Exception e) {
             log.error("下载IBMS物理世界数据异常", e);
+            return false;
         }
-        return null;
-    }
-
-
-    /**
-     * 加载IBMS物理世界数据
-     *
-     * @return
-     * @return
-     */
-    public String loadIbmsPhysicalWorldData(RepositoryImpl repository) throws Exception {
-        log.warn("************开始加载-IBMS物理世界数据");
-        long startTime = System.currentTimeMillis();
-        File maxDir = FileUtil.getMaxDir(new File(getPath()));
-        loadObjectData(repository, maxDir);
-        log.warn("************结束加载-IBMS物理世界数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
-        return "ok";
     }
 
     /**
@@ -100,10 +84,11 @@ public class IbmsPhysicalWorldService {
      *
      * @param repository
      */
-    private void loadObjectData(RepositoryImpl repository, File maxDir) throws Exception {
-        log.warn("*****开始加载-对象数据");
+    public boolean loadObjectData(RepositoryImpl repository) {
+        log.warn("************开始加载-IBMS物理世界数据************");
         long startTime = System.currentTimeMillis();
         try {
+            File maxDir = FileUtil.getMaxDir(new File(getPath()));
             //场景数据
             JSONArray sceneArray = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.SCENE_ARRAY));
             DataSet sceneSds = new DataSet(false);
@@ -187,10 +172,11 @@ public class IbmsPhysicalWorldService {
                 mapSdv.put(ibmsClassCode, objSdv);
             });
             repository.ZKTObjectArrayDic = objectArrayMap;
-            log.warn("*****结束加载-对象数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+            log.warn("************结束加载-IBMS物理世界数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+            return true;
         } catch (Exception e) {
             log.error("加载IBMS物理世界数据异常", e);
-            throw e;
+            return false;
         }
     }
 

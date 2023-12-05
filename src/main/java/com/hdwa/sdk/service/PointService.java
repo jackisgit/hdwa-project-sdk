@@ -50,7 +50,7 @@ public class PointService {
      *
      * @return
      */
-    public Object downLoadPoint() {
+    public boolean downLoadPoint() {
         log.warn("************开始下载点位数据");
         long startTime = System.currentTimeMillis();
         try {
@@ -74,11 +74,11 @@ public class PointService {
             FileUtil.clearHistoryDirectory(new File(pointPath));
             DataContainer.pointMap = pointMap;
             log.warn("************结束下载-点位数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
-            return "ok";
+            return true;
         } catch (Exception e) {
             log.error("下载点位数据异常", e);
+            return false;
         }
-        return null;
     }
 
     /**
@@ -87,11 +87,9 @@ public class PointService {
      * @param repository
      * @return
      */
-    public void loadPointData(RepositoryImpl repository) throws Exception {
-        log.warn("************开始加载-点位数据");
+    public boolean loadPointData(RepositoryImpl repository) {
+        log.warn("************开始加载-点位数据************");
         long startTime = System.currentTimeMillis();
-        //先加载控制文件
-        downLoadPoint();
         try {
             File maxDir = FileUtil.getMaxDir(new File(getPath()));
             JSONArray pointList = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.POINT_LIST));
@@ -99,9 +97,10 @@ public class PointService {
             JSONArray pointRelation = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.POINT_RELATION));
             repository.InfoPointRelationArray.set = BaseApiUtil.arrayToSdoList(pointRelation);
             log.warn("************结束加载-点位数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+            return true;
         } catch (Exception e) {
             log.error("加载点位数据异常", e);
-            throw e;
+            return false;
         }
     }
 
@@ -116,7 +115,6 @@ public class PointService {
             String filePath = System.getProperty(BaseDecConstant.USER_DIR) + File.separator + BaseDecConstant.POINT_FILE_NAME;
             InputStream inputStream = ResourceUtil.getStream(filePath);
             if (inputStream != null) {
-                //log.warn("*****加载pointExcel文件路径：" + filePath);
                 return inputStream;
             }
         } catch (Exception e) {
@@ -124,9 +122,7 @@ public class PointService {
         //classPath/config目录默认文件
         try {
             String filePath = File.separator + BaseDecConstant.CONFIG_DIR + File.separator + BaseDecConstant.POINT_FILE_NAME;
-            InputStream inputStream = new ClassPathResource(filePath).getInputStream();
-            //log.warn("*****加载pointExcel文件路径：" + filePath);
-            return inputStream;
+            return new ClassPathResource(filePath).getInputStream();
         } catch (Exception e) {
             log.error("*****加载pointExcel默认文件路径异常", e);
         }

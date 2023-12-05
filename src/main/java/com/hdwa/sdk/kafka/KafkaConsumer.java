@@ -36,16 +36,31 @@ public class KafkaConsumer {
         MessageDto msg = JSONObject.parseObject(record.value(), MessageDto.class);
         if (projectId.equals(msg.getProjectId())) {
             log.warn("===============================开始消费DMP消息：{}", record.value());
-            //全量更新或者只更新逻辑编组数据
+            //全量更新/更新逻辑编组数据/更新接口数据
+            boolean flag;
             if ("0".equals(msg.getMsgType())) {
-                log.warn("===============================开始更新所有数据===============================");
-                loadDataMainService.main();
+                flag = loadDataMainService.main();
+                if (flag) {
+                    log.warn("===============================更新所有数据-成功===============================");
+                } else {
+                    log.error("===============================更新所有数据-失败===============================");
+                }
             } else if ("1".equals(msg.getMsgType())) {
-                log.warn("===============================开始更新逻辑编组数据============================");
-                loadDataMainService.logicGroupMain();
+                flag = loadDataMainService.logicGroupMain();
+                if (flag) {
+                    log.warn("===============================更新逻辑编组数据-成功============================");
+                } else {
+                    log.error("===============================更新逻辑编组数据-失败============================");
+                }
             } else if ("2".equals(msg.getMsgType())) {
-                log.warn("===============================开始更新接口数据===============================");
-                loadDataMainService.logicApiMain();
+                flag = loadDataMainService.logicApiMain();
+                if (flag) {
+                    log.warn("===============================更新接口数据-成功============================");
+                } else {
+                    log.error("===============================更新接口数据-失败============================");
+                }
+            } else {
+                log.error("===============================错误消息类型：" + msg.getMsgType() + "============================");
             }
         }
     }

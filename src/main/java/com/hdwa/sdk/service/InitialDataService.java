@@ -95,19 +95,31 @@ public class InitialDataService implements CommandLineRunner {
      */
     @Override
     public void run(String... args) {
-        initDir();
-        downloadData();
-        loadDataMainService.loadDataMain();
+        boolean flag;
+        flag = initDir();
+        if (!flag) {
+            log.error("************初始数据文件夹-失败************");
+            return;
+        }
+        flag = downloadData();
+        if (!flag) {
+            log.error("************下载数据-失败************");
+            return;
+        }
+        flag = loadDataMainService.loadDataMain();
+        if (!flag) {
+            log.error("************加载数据-失败************");
+            return;
+        }
         initIotWebsocket();
         initAlarmWebsocket();
-        log.warn("===============================" + BaseDecConstant.CURRENT_PROJECT_ID + "：成功启动===============================");
+        log.warn("===============================" + BaseDecConstant.CURRENT_PROJECT_ID + "-成功启动===============================");
     }
 
     /**
      * 如果本地没有数据就下载数据
      */
-    private void downloadData() {
-        log.warn("*****检查本地已下载的文件");
+    private boolean downloadData() {
         String root = groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator;
         File physicalWorldDir = FileUtil.getMaxDir(new File(root + physicalWorld));
         File ibmsPhysicalWorldDir = FileUtil.getMaxDir(new File(root + ibmsPhysicalWorld));
@@ -131,15 +143,17 @@ public class InitialDataService implements CommandLineRunner {
             flag = true;
         }
         if (flag) {
-            loadDataMainService.downLoadDataMain();
+            log.warn("************本地缺少数据************");
+            return loadDataMainService.downLoadDataMain();
         }
+        return true;
     }
 
     /**
      * 初始文件夹
      */
-    private void initDir() {
-        log.warn("*****初始数据文件夹");
+    private boolean initDir() {
+        log.warn("************初始数据文件夹************");
         try {
             // 创建根目录文件夹
             File root = new File(groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID);
@@ -189,8 +203,10 @@ public class InitialDataService implements CommandLineRunner {
                 log.warn(tempPath.getPath());
                 Files.createDirectories(tempPath.toPath());
             }
+            return true;
         } catch (Exception e) {
-            log.error("初始化文件异常");
+            log.error("初始数据文件夹出现异常", e);
+            return false;
         }
     }
 
@@ -199,12 +215,12 @@ public class InitialDataService implements CommandLineRunner {
      */
     private void initIotWebsocket() {
         try {
-            log.warn("************初始化iotWebSocket");
+            log.warn("************初始化iotWebSocket************");
             String url = iotWebSocketUrl + "?projectId=" + BaseDecConstant.CURRENT_PROJECT_ID.substring(2) + "&type=iot,text,pointset";
             iotClient = new IotWebSocketClient(new URI(url), BaseDecConstant.CURRENT_PROJECT_ID);
             iotClient.connect();
         } catch (Exception e) {
-            log.error("*****建立iotWebsocket异常", e);
+            log.error("建立iotWebsocket异常", e);
         }
     }
 
@@ -213,12 +229,12 @@ public class InitialDataService implements CommandLineRunner {
      */
     private void initAlarmWebsocket() {
         try {
-            log.warn("************初始化alarmWebSocket");
+            log.warn("************初始化alarmWebSocket************");
             String url = alarmWebSocketUrl + "/" + BaseDecConstant.CURRENT_PROJECT_ID;
             alarmClient = new AlarmWebSocketClient(new URI(url), alarmUrl, BaseDecConstant.CURRENT_PROJECT_ID, groupCode);
             alarmClient.connect();
         } catch (Exception e) {
-            log.error("*****建立alarmWebsocket异常", e);
+            log.error("建立alarmWebsocket异常", e);
         }
     }
 
@@ -277,7 +293,7 @@ public class InitialDataService implements CommandLineRunner {
             RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
             JSONArray content = AlarmUtil.alarmRefresh(BaseDecConstant.CURRENT_PROJECT_ID, groupCode, alarmUrl, repository);
             if (content.size() != 0) {
-                log.warn("****定时刷新报警数据数量：" + content.size());
+                log.warn("************定时刷新报警数据数量：" + content.size());
             }
             JSONObject AlarmJob = new JSONObject();
             AlarmJob.put(BaseDecConstant.TYPE, BaseDecConstant.REFRESH);
@@ -286,7 +302,7 @@ public class InitialDataService implements CommandLineRunner {
 
             BaseDecConstant.EXECUTOR.execute(new AlarmJob(BaseDecConstant.CURRENT_PROJECT_ID));
         } catch (Exception e) {
-            log.error("****刷新报警数据出现异常", e);
+            log.error("刷新报警数据出现异常", e);
         }
     }
 
@@ -298,6 +314,7 @@ public class InitialDataService implements CommandLineRunner {
         boolean flag = false;
         Map<String, ExcelSheetEntity> map2 = ExcelUtil.readExcel(pointService.readPointXlsx());
 
+        //判断点位文件是否有进行修改
         if (DataContainer.pointMap.size() != map2.size()) {
             flag = true;
         } else {
@@ -311,8 +328,12 @@ public class InitialDataService implements CommandLineRunner {
             }
         }
         if (flag) {
-            log.warn("*****开始更新点位过滤数据");
-            loadDataMainService.updatePoint(DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID));
+            flag = loadDataMainService.updatePoint();
+            if (flag) {
+                log.warn("===============更新点位过滤数据-成功===============");
+            } else {
+                log.error("===============更新点位过滤数据-失败===============");
+            }
         }
     }
 

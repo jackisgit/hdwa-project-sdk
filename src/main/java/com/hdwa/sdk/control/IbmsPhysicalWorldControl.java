@@ -35,6 +35,6 @@ public class IbmsPhysicalWorldControl {
      */
     @GetMapping("/loadIbmsPhysicalWorldData")
     public Object loadIbmsPhysicalWorldData() throws Exception {
-        return ibmsPhysicalWorldService.loadIbmsPhysicalWorldData(new RepositoryImpl());
+        return ibmsPhysicalWorldService.loadObjectData(new RepositoryImpl());
     }
 }

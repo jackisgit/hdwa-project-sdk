@@ -49,7 +49,7 @@ public class IbmsLogicalGroupService {
      *
      * @return
      */
-    public Object downLoadLogicalGroupData() {
+    public boolean downLoadLogicalGroupData() {
         log.warn("************开始下载-IBMS逻辑编组数据");
         long startTime = System.currentTimeMillis();
         try {
@@ -72,38 +72,24 @@ public class IbmsLogicalGroupService {
             FileUtil.clearHistoryDirectory(new File(getPath()));
             log.warn("************结束下载-IBMS逻辑编组数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
 
-            return "ok";
+            return true;
         } catch (Exception e) {
             log.error("下载IBMS逻辑编组数据异常", e);
+            return false;
         }
-        return null;
-    }
-
-    /**
-     * 加载IBMS逻辑编组数据
-     *
-     * @return
-     * @return
-     */
-    public String loadLogicalGroupData(RepositoryImpl repository) throws Exception {
-        log.warn("************开始加载-IBMS逻辑编组数据");
-        long startTime = System.currentTimeMillis();
-        File maxDir = FileUtil.getMaxDir(new File(getPath()));
-        loadGroupData(repository, maxDir);
-        log.warn("************结束加载-IBMS逻辑编组数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
-        return "ok";
     }
 
     /**
      * 加载逻辑编组
      *
      * @param repository
-     * @param maxDir
      */
-    private void loadGroupData(RepositoryImpl repository, File maxDir) throws Exception {
-        log.warn("*****开始加载-逻辑编组数据");
+    public boolean loadGroupData(RepositoryImpl repository) {
+        log.warn("************开始加载-IBMS逻辑编组数据************");
         long startTime = System.currentTimeMillis();
         try {
+            File maxDir = FileUtil.getMaxDir(new File(getPath()));
+
             //逻辑编组
             JSONArray groupArray = ReadFileUtil.readJsonArray(new File(maxDir + File.separator + UrlConstant.IMBS_GROUP_ARRAY));
             //添加一个id属性
@@ -144,10 +130,11 @@ public class IbmsLogicalGroupService {
                             lightingScene(repository, dir, arrayMap);
                         }
                     });
-            log.warn("*****结束加载-逻辑编组数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+            log.warn("************结束加载-IBMS逻辑编组数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+            return true;
         } catch (Exception e) {
-            log.error("加载逻辑编组数据异常", e);
-            throw e;
+            log.error("加载IBMS逻辑编组数据异常", e);
+            return false;
         }
     }
 

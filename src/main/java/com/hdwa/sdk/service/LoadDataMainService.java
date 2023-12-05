@@ -37,72 +37,101 @@ public class LoadDataMainService {
     /**
      * 下载数据入口
      */
-    public void downLoadDataMain() {
-        physicalWorldService.downLoadPhysicalWorldData();
-        ibmsPhysicalWorldService.downLoadIbmsPhysicalWorldData();
-        ibmsLogicalGroupService.downLoadLogicalGroupData();
+    public boolean downLoadDataMain() {
+        boolean flag;
+        flag = physicalWorldService.downLoadPhysicalWorldData();
+        if (!flag) {
+            return false;
+        }
+        flag = ibmsPhysicalWorldService.downLoadIbmsPhysicalWorldData();
+        if (!flag) {
+            return false;
+        }
+        flag = ibmsLogicalGroupService.downLoadLogicalGroupData();
+        if (!flag) {
+            return false;
+        }
+        //本地点位控制数据不影响系统运行
         pointService.downLoadPoint();
-        configApiService.downLoadConfig();
+        flag = configApiService.downLoadConfig();
+        return flag;
     }
 
     /**
      * 先下载后加载数据全流程
      */
-    public void main() {
-        try {
-            downLoadDataMain();
-            loadDataMain();
-        } catch (Exception e) {
-            log.error("******** 执行全流程出现异常", e);
+    public boolean main() {
+        boolean flag = downLoadDataMain();
+        if (!flag) {
+            return false;
         }
+        return loadDataMain();
     }
 
 
     /**
      * 下载逻辑编组数据后加载数据流程
      */
-    public void logicGroupMain() {
-        try {
-            ibmsLogicalGroupService.downLoadLogicalGroupData();
-            loadDataMain();
-        } catch (Exception e) {
-            log.error("******** 执行加载逻辑编组流程出现异常", e);
+    public boolean logicGroupMain() {
+        boolean flag = ibmsLogicalGroupService.downLoadLogicalGroupData();
+        if (!flag) {
+            return false;
         }
+        return loadDataMain();
     }
 
     /**
      * 下载接口数据后加载数据流程
      */
-    public void logicApiMain() {
-        try {
-            configApiService.downLoadConfig();
-            loadDataMain();
-        } catch (Exception e) {
-            log.error("******** 执行加载接口数据流程出现异常", e);
+    public boolean logicApiMain() {
+        boolean flag = configApiService.downLoadConfig();
+        if (!flag) {
+            return false;
         }
+        return loadDataMain();
     }
 
     /**
      * 加载数据入口
      */
-    public void loadDataMain() {
+    public boolean loadDataMain() {
+        log.warn("************加载数据************");
         RepositoryImpl repository = new RepositoryImpl();
         RepositoryImpl repositoryOld = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
+        boolean flag;
         try {
             //加载物理世界数据
-            physicalWorldService.loadPhysicalWorldData(repository);
+            flag = physicalWorldService.loadPhysicalWorldData(repository);
+            if (!flag) {
+                return false;
+            }
             //加载IBMS物理世界数据
-            ibmsPhysicalWorldService.loadIbmsPhysicalWorldData(repository);
+            flag = ibmsPhysicalWorldService.loadObjectData(repository);
+            if (!flag) {
+                return false;
+            }
             //加载IBMS逻辑编组数据
-            ibmsLogicalGroupService.loadLogicalGroupData(repository);
-            //加载点位数据
+            flag = ibmsLogicalGroupService.loadGroupData(repository);
+            if (!flag) {
+                return false;
+            }
+            //加载点位数据，加载失败不影响系统运行
             pointService.loadPointData(repository);
             //加载报警数据
-            alarmService.loadAlarmData(repository);
+            flag = alarmService.loadAlarmData(repository);
+            if (!flag) {
+                return false;
+            }
             //构建依赖
-            repository.refreshDependency();
+            flag = repository.refreshDependency();
+            if (!flag) {
+                return false;
+            }
             //加载接口数据
-            configApiService.loadConfigData(repository);
+            flag = configApiService.loadConfigData(repository);
+            if (!flag) {
+                return false;
+            }
             //加载到数据容器
             DataContainer.projectMap.put(BaseDecConstant.CURRENT_PROJECT_ID, repository);
             //关闭老的计算线程
@@ -111,8 +140,10 @@ public class LoadDataMainService {
             }
             //启动新的计算线程
             repository.threadStart();
+            return true;
         } catch (Exception e) {
-            log.error("******** 加载数据入口异常", e);
+            log.error("********加载数据入口异常", e);
+            return false;
         }
     }
 
@@ -120,16 +151,12 @@ public class LoadDataMainService {
     /**
      * 更新点位过滤数据
      */
-    public void updatePoint(RepositoryImpl repository) {
-        try {
-            //加载点位数据
-            pointService.loadPointData(repository);
-            //加载接口数据
-            configApiService.loadConfigData(repository);
-            //加载到数据容器
-            DataContainer.projectMap.put(System.getProperty(BaseDecConstant.PROJECT_ID), repository);
-        } catch (Exception e) {
-            log.error("******** 更新点位数据异常", e);
+    public boolean updatePoint() {
+        boolean flag = pointService.downLoadPoint();
+        if (!flag) {
+            return false;
         }
+        return loadDataMain();
+
     }
 }
