@@ -403,6 +403,9 @@ public class AlarmUtil {
                     log.error("exe_refresh", e);
                 }
             }
+
+            //重新计算iot数据
+            repository.recomputeAlarm();
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }

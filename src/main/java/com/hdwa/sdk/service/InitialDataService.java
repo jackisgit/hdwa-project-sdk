@@ -287,7 +287,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 刷新报警数据
      */
-    @Scheduled(initialDelay = 1000 * 60 * 5, fixedDelay = 1000 * 60)
+    @Scheduled(initialDelay = 1000 * 60 * 3, fixedDelay = 1000 * 60)
     public void loadAlarmData() {
         try {
             RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
@@ -299,7 +299,6 @@ public class InitialDataService implements CommandLineRunner {
             AlarmJob.put(BaseDecConstant.TYPE, BaseDecConstant.REFRESH);
             AlarmJob.put(BaseDecConstant.CONTENT, content);
             DataContainer.alarmBuffer.offer(AlarmJob, 16384);
-
             BaseDecConstant.EXECUTOR.execute(new AlarmJob(BaseDecConstant.CURRENT_PROJECT_ID));
         } catch (Exception e) {
             log.error("刷新报警数据出现异常", e);
@@ -346,6 +345,6 @@ public class InitialDataService implements CommandLineRunner {
         int[] count = repository.recomputeIot();
         log.warn("*****计算iot数据：" + Arrays.toString(count));
         count = repository.recomputeAlarm();
-        log.warn("*****计alarm数据：" + Arrays.toString(count));
+        log.warn("*****计算alarm数据：" + Arrays.toString(count));
     }
 }
