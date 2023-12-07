@@ -98,9 +98,7 @@ public class AlarmWebSocketClient extends WebSocketClient {
 
         try {
             JSONObject alarm = (JSONObject) JSON.parse(arg0);
-            if (alarm.get(BaseDecConstant.ID) == null) {
-                log.warn("*****接收到报警处理数据：" + alarm);
-            }
+            //log.warn("*****接收到报警处理数据：" + alarm);
             //3为转工单
             if (alarm.get(BaseDecConstant.PUSH_TYPE) != null) {
                 if ((Integer) alarm.get(BaseDecConstant.PUSH_TYPE) == 3) {

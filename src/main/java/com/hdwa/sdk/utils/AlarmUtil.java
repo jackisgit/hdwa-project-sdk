@@ -403,6 +403,9 @@ public class AlarmUtil {
                     log.error("exe_refresh", e);
                 }
             }
+
+            //重新计算iot数据
+            repository.recomputeAlarm();
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
@@ -461,7 +464,7 @@ public class AlarmUtil {
 
             }
 
-            if (treatState.equals("3")) {
+            if ("3".equals(treatState)) {
                 if (existIndex != -1) {
                     alarmList.valueArray.set.remove(existIndex);
                     alarmListRowChange = true;
