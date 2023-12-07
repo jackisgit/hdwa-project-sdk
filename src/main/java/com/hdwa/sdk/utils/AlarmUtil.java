@@ -461,7 +461,7 @@ public class AlarmUtil {
 
             }
 
-            if (treatState.equals("3")) {
+            if ("3".equals(treatState)) {
                 if (existIndex != -1) {
                     alarmList.valueArray.set.remove(existIndex);
                     alarmListRowChange = true;
@@ -544,7 +544,7 @@ public class AlarmUtil {
     public static void exeProcessAlarmComment(String id, JSONObject dtoJSON) {
         DataSet alarmList = DataContainer.alarmArray;
         for (int i = 0; i < alarmList.set.size(); i++) {
-            DataObject sdoInner = (DataObject) alarmList.set.get(i);
+            DataObject sdoInner = alarmList.set.get(i);
             String idInner = (String) sdoInner.get("id").valuePrim.value;
             if (idInner.equals(id)) {
                 DataValue sdvInner = sdoInner.get("comments");
@@ -560,7 +560,7 @@ public class AlarmUtil {
             String idInner = (String) sdo.get("id").valuePrim.value;
             if (idInner.equals(id)) {
                 for (String key : alarm_order.keySet()) {
-                    if (key.equals("alarmId") || key.equals("pushType")) {
+                    if ("alarmId".equals(key) || "pushType".equals(key)) {
                         continue;
                     }
                     Object value = alarm_order.get(key);

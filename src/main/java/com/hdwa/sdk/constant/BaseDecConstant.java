@@ -951,6 +951,11 @@ public class BaseDecConstant {
      */
     public static final String IS_BATCH_CONTROL_PARAM = "isBatchControlParam";
 
+    /**
+     * isListControlParam String
+     */
+    public static final String IS_LIST_CONTROL_PARAM = "isListControlParam";
+
 
     /**
      * isVisible String
