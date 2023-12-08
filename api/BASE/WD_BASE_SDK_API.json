@@ -71323,6 +71323,120 @@
                                         "propertyValueType":"query"
                                       }
                                     ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "惠云控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "子系统控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "本地控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
                                   }
                                 ],
                                 "propertyVisible":false,
@@ -71368,6 +71482,268 @@
                             ],
                             "propertyVisible":false,
                             "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"数量",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=末端'设备类型'名称=组合式空调机组'清单\"},\"Criteria\": { },\"Aggregation\": {\"Function\": \"count\"}}",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"int",
+                            "staticArray":[
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"统计",
+                            "allowPass":"1",
+                            "querySql":"",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"JSONArray",
+                            "staticArray":[
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"总数",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=组合式空调机组'清单\"},\"Criteria\":{},\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"开启",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": { \"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=末端'设备类型'名称=组合式空调机组'清单\"},\"Criteria\": {\"runStatus\": 1 },\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"故障",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=组合式空调机组'清单\"},\"Criteria\":{\"faultStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "惠云控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=组合式空调机组'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "子系统控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=组合式空调机组'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "本地控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=组合式空调机组'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              }
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"static"
                           },
                           {
                             "propertyName":"数量",
@@ -71611,6 +71987,120 @@
                                         "propertyValueType":"query"
                                       }
                                     ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "惠云控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "子系统控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "本地控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
                                   }
                                 ],
                                 "propertyVisible":false,
@@ -71656,6 +72146,251 @@
                             ],
                             "propertyVisible":false,
                             "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"统计",
+                            "allowPass":"1",
+                            "querySql":"",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"JSONArray",
+                            "staticArray":[
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"总数",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=风机盘管'清单\"},\"Criteria\":{},\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"开启",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": { \"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=末端'设备类型'名称=风机盘管'清单\"},\"Criteria\": {\"runStatus\": 1 },\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"故障",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=风机盘管'清单\"},\"Criteria\":{\"faultStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "惠云控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=风机盘管'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "子系统控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=风机盘管'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "本地控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=风机盘管'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              }
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"static"
                           },
                           {
                             "propertyName":"数量",
@@ -71899,6 +72634,120 @@
                                         "propertyValueType":"query"
                                       }
                                     ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "惠云控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "子系统控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "本地控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
                                   }
                                 ],
                                 "propertyVisible":false,
@@ -71944,6 +72793,251 @@
                             ],
                             "propertyVisible":false,
                             "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"统计",
+                            "allowPass":"1",
+                            "querySql":"",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"JSONArray",
+                            "staticArray":[
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"总数",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=吊装空调'清单\"},\"Criteria\":{},\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"开启",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": { \"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=末端'设备类型'名称=吊装空调'清单\"},\"Criteria\": {\"runStatus\": 1 },\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"故障",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=吊装空调'清单\"},\"Criteria\":{\"faultStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "惠云控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=吊装空调'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "子系统控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=吊装空调'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "本地控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=吊装空调'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              }
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"static"
                           },
                           {
                             "propertyName":"数量",
@@ -72187,6 +73281,120 @@
                                         "propertyValueType":"query"
                                       }
                                     ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "惠云控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "子系统控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "本地控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
                                   }
                                 ],
                                 "propertyVisible":false,
@@ -72232,6 +73440,251 @@
                             ],
                             "propertyVisible":false,
                             "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"统计",
+                            "allowPass":"1",
+                            "querySql":"",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"JSONArray",
+                            "staticArray":[
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"总数",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=穹顶排风机'清单\"},\"Criteria\":{},\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"开启",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": { \"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=末端'设备类型'名称=穹顶排风机'清单\"},\"Criteria\": {\"runStatus\": 1 },\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"故障",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=穹顶排风机'清单\"},\"Criteria\":{\"faultStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "惠云控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=穹顶排风机'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "子系统控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=穹顶排风机'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "本地控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=穹顶排风机'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              }
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"static"
                           },
                           {
                             "propertyName":"数量",
@@ -72475,6 +73928,120 @@
                                         "propertyValueType":"query"
                                       }
                                     ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "惠云控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "子系统控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "本地控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
                                   }
                                 ],
                                 "propertyVisible":false,
@@ -72520,6 +74087,251 @@
                             ],
                             "propertyVisible":false,
                             "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"统计",
+                            "allowPass":"1",
+                            "querySql":"",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"JSONArray",
+                            "staticArray":[
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"总数",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=新风机组'清单\"},\"Criteria\":{},\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"开启",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": { \"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=末端'设备类型'名称=新风机组'清单\"},\"Criteria\": {\"runStatus\": 1 },\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"故障",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=新风机组'清单\"},\"Criteria\":{\"faultStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "惠云控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=新风机组'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "子系统控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=新风机组'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "本地控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=新风机组'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              }
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"static"
                           },
                           {
                             "propertyName":"数量",
@@ -72763,6 +74575,120 @@
                                         "propertyValueType":"query"
                                       }
                                     ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "惠云控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "子系统控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "本地控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
                                   }
                                 ],
                                 "propertyVisible":false,
@@ -72808,6 +74734,251 @@
                             ],
                             "propertyVisible":false,
                             "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"统计",
+                            "allowPass":"1",
+                            "querySql":"",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"JSONArray",
+                            "staticArray":[
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"总数",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=热回收新风机组'清单\"},\"Criteria\":{},\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"开启",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": { \"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=末端'设备类型'名称=热回收新风机组'清单\"},\"Criteria\": {\"runStatus\": 1 },\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"故障",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=热回收新风机组'清单\"},\"Criteria\":{\"faultStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "惠云控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=热回收新风机组'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "子系统控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=热回收新风机组'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "本地控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=热回收新风机组'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              }
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"static"
                           },
                           {
                             "propertyName":"数量",
@@ -73051,6 +75222,120 @@
                                         "propertyValueType":"query"
                                       }
                                     ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "惠云控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "子系统控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "本地控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
                                   }
                                 ],
                                 "propertyVisible":false,
@@ -73096,6 +75381,251 @@
                             ],
                             "propertyVisible":false,
                             "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"统计",
+                            "allowPass":"1",
+                            "querySql":"",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"JSONArray",
+                            "staticArray":[
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"总数",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=送风机'清单\"},\"Criteria\":{},\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"开启",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": { \"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=末端'设备类型'名称=送风机'清单\"},\"Criteria\": {\"runStatus\": 1 },\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"故障",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=送风机'清单\"},\"Criteria\":{\"faultStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "惠云控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=送风机'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "子系统控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=送风机'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "本地控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=送风机'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              }
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"static"
                           },
                           {
                             "propertyName":"数量",
@@ -73339,6 +75869,120 @@
                                         "propertyValueType":"query"
                                       }
                                     ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "惠云控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "子系统控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "本地控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
                                   }
                                 ],
                                 "propertyVisible":false,
@@ -73384,6 +76028,251 @@
                             ],
                             "propertyVisible":false,
                             "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"统计",
+                            "allowPass":"1",
+                            "querySql":"",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"JSONArray",
+                            "staticArray":[
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"总数",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=排风机'清单\"},\"Criteria\":{},\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"开启",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": { \"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=末端'设备类型'名称=排风机'清单\"},\"Criteria\": {\"runStatus\": 1 },\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"故障",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=排风机'清单\"},\"Criteria\":{\"faultStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "惠云控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=排风机'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "子系统控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=排风机'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "本地控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=排风机'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              }
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"static"
                           },
                           {
                             "propertyName":"数量",
@@ -73627,6 +76516,120 @@
                                         "propertyValueType":"query"
                                       }
                                     ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "惠云控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "子系统控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "propertyList": [
+                                      {
+                                        "propertyName": "名称",
+                                        "allowPass": "1",
+                                        "querySql": "",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "本地控制",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "string",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "static"
+                                      },
+                                      {
+                                        "propertyName": "数量",
+                                        "allowPass": "1",
+                                        "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_3'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                        "readLevel": "1",
+                                        "filterRule": null,
+                                        "customObject": null,
+                                        "staticValue": "",
+                                        "offsetLevel": "0",
+                                        "queryAttached": [
+                                        ],
+                                        "propertyValueSchema": "int",
+                                        "staticArray": [
+                                        ],
+                                        "propertyVisible": false,
+                                        "propertyValueType": "query"
+                                      }
+                                    ]
                                   }
                                 ],
                                 "propertyVisible":false,
@@ -73672,6 +76675,251 @@
                             ],
                             "propertyVisible":false,
                             "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"统计",
+                            "allowPass":"1",
+                            "querySql":"",
+                            "readLevel":"1",
+                            "filterRule":"",
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":[
+                            ],
+                            "propertyValueSchema":"JSONArray",
+                            "staticArray":[
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"总数",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=风幕机'清单\"},\"Criteria\":{},\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"开启",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": { \"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=末端'设备类型'名称=风幕机'清单\"},\"Criteria\": {\"runStatus\": 1 },\"Aggregation\": {\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":null,
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList":[
+                                  {
+                                    "propertyName":"名称",
+                                    "allowPass":"1",
+                                    "querySql":"",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"故障",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"string",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"static"
+                                  },
+                                  {
+                                    "propertyName":"数量",
+                                    "allowPass":"1",
+                                    "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=风幕机'清单\"},\"Criteria\":{\"faultStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}}",
+                                    "readLevel":"1",
+                                    "filterRule":null,
+                                    "customObject":null,
+                                    "staticValue":"",
+                                    "offsetLevel":"0",
+                                    "queryAttached":[
+                                    ],
+                                    "propertyValueSchema":"int",
+                                    "staticArray":[
+                                    ],
+                                    "propertyVisible":false,
+                                    "propertyValueType":"query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "惠云控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=风幕机'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[1,1.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "子系统控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=风幕机'清单\"},\"Criteria\":{\"inCloudStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              },
+                              {
+                                "propertyList": [
+                                  {
+                                    "propertyName": "名称",
+                                    "allowPass": "1",
+                                    "querySql": "",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "本地控制",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "string",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "static"
+                                  },
+                                  {
+                                    "propertyName": "数量",
+                                    "allowPass": "1",
+                                    "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'设备'名称=末端'设备类型'名称=风幕机'清单\"},\"Criteria\":{\"manualAutoStatus\":{\"in\":[0,0.0]}},\"Aggregation\":{\"Function\": \"count\"}\n}",
+                                    "readLevel": "1",
+                                    "filterRule": null,
+                                    "customObject": null,
+                                    "staticValue": "",
+                                    "offsetLevel": "0",
+                                    "queryAttached": [
+                                    ],
+                                    "propertyValueSchema": "int",
+                                    "staticArray": [
+                                    ],
+                                    "propertyVisible": false,
+                                    "propertyValueType": "query"
+                                  }
+                                ]
+                              }
+                            ],
+                            "propertyVisible":false,
+                            "propertyValueType":"static"
                           },
                           {
                             "propertyName":"数量",
