@@ -134,7 +134,7 @@ public class ConfigApiService {
      *
      * @param repository
      */
-    private void analysisData(RepositoryImpl repository) {
+    private void analysisData(RepositoryImpl repository) throws Exception {
         long startTime = System.currentTimeMillis();
         log.warn("*****开始-解析计算对象和属性");
         try {
@@ -148,30 +148,9 @@ public class ConfigApiService {
             log.warn("*****结束-解析计算对象和属性用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
         } catch (Exception e) {
             log.error("解析-解析计算对象和属性-出现错误", e);
+            throw e;
         }
     }
-
-    /**
-     * 解析对象和属性-精简版本
-     *
-     * @param repository
-     */
-    public void analysisDataRefresh(RepositoryImpl repository) {
-        long startTime = System.currentTimeMillis();
-        log.warn("*****开始-解析计算对象和属性-精简版");
-        try {
-            repository.property2SDV_enable = true;
-            //repository.property2SDV.clear();
-            List<List<DataProperty>> propertyList = CalculateApiJsonUtil.notCheckCalculateProperty(repository);
-            CalculateApiJsonUtil.calculateAll(repository, propertyList);
-            repository.property2SDV_enable = false;
-            repository.property2SDV.clear();
-            log.warn("*****结束-解析计算对象和属性-精简版-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
-        } catch (Exception e) {
-            log.error("解析-解析计算对象和属性-精简版-出现错误", e);
-        }
-    }
-
 
     /**
      * 获取根目录路径

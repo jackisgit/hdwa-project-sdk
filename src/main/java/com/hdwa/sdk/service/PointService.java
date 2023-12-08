@@ -482,6 +482,7 @@ public class PointService {
             log.warn("*****结束加载-点位配置过滤设备-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
         } catch (Exception e) {
             log.error("过滤点位配置设备时异常", e);
+            throw e;
         }
     }
 
