@@ -65450,7 +65450,7 @@
                           {
                             "propertyName":"清单",
                             "allowPass":"1",
-                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"mjgl\",\"ibmsClassCode\": \"menjindukaqi\"},\"Criteria\": {\"valid\": 1  }}",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"mjgl\",\"ibmsClassCode\": \"menjindukaqi\"},\"Criteria\": {\"valid\": 1  },\"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "readLevel":"4",
                             "filterRule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "customObject":null,
@@ -66167,7 +66167,7 @@
                           {
                             "propertyName":"清单",
                             "allowPass":"1",
-                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"fdxt\",\"ibmsClassCode\": \"shoubao\"},\"Criteria\": {\"valid\": 1  }}",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"fdxt\",\"ibmsClassCode\": \"shoubao\"},\"Criteria\": {\"valid\": 1  },\"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "readLevel":"4",
                             "filterRule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "customObject":null,
@@ -66333,7 +66333,7 @@
                           {
                             "propertyName":"清单",
                             "allowPass":"1",
-                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"fdxt\",\"ibmsClassCode\": \"bopo\"},\"Criteria\": {\"valid\": 1  }}",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"fdxt\",\"ibmsClassCode\": \"bopo\"},\"Criteria\": {\"valid\": 1  },\"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "readLevel":"4",
                             "filterRule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "customObject":null,
@@ -66499,7 +66499,7 @@
                           {
                             "propertyName":"清单",
                             "allowPass":"1",
-                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"fdxt\",\"ibmsClassCode\": \"hongwai\"},\"Criteria\": {\"valid\": 1  }}",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"fdxt\",\"ibmsClassCode\": \"hongwai\"},\"Criteria\": {\"valid\": 1  },\"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "readLevel":"4",
                             "filterRule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "customObject":null,
@@ -114625,7 +114625,7 @@
                           {
                             "propertyName":"楼层",
                             "allowPass":"1",
-                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'公共照明'电井'清单\"},\"Criteria\": {\"所属楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所属楼层-id\"}    }}}",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'公共照明'回路和场景'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                             "readLevel":"4",
                             "filterRule":"",
                             "customObject":null,
@@ -114679,7 +114679,7 @@
                           {
                             "propertyName":"楼层",
                             "allowPass":"1",
-                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'夜景照明'电井'清单\"},\"Criteria\": {\"所属楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所属楼层-id\"}    }}}",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"ReturnColumns\": [\"id\",\"localId\",\"localName\",\"SN\"  ],\"OrderBy\": [{\"Column\": \"SN\",\"Asc\": true}],\"Criteria\": {\"valid\": 1,\"id\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'夜景照明'回路和场景'清单\"},\"Criteria\": {\"所在楼层-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }              }            }          }        },\"UniqueReturnColumn\": \"所在楼层-id\"}    }}}",
                             "readLevel":"4",
                             "filterRule":"",
                             "customObject":null,
