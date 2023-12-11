@@ -16,11 +16,11 @@ import org.quartz.JobExecutionContext;
 import org.quartz.PersistJobDataAfterExecution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import java.time.temporal.ChronoUnit;
-import java.util.Collections;
-import java.util.Date;
+import java.util.*;
 
 @DisallowConcurrentExecution
 @PersistJobDataAfterExecution
@@ -47,6 +47,8 @@ public class CommandJob extends QuartzJobBean {
 
     @Value("${spring.kafka.producer.edgeTopic}")
     public String topics;
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Override
     protected void executeInternal(JobExecutionContext context) {
@@ -64,6 +66,17 @@ public class CommandJob extends QuartzJobBean {
             log.warn("controlCommand：" + controlCommandStr);
             if (StringUtils.isNotBlank(controlCommandStr)) {
                 ControlCommand command = JSONUtil.toBean(controlCommandStr, ControlCommand.class);
+                ControlCommandMessage message = new ControlCommandMessage(2);
+                // 获取设备手自动状态
+                Object manualAutoSetValue = redisTemplate.opsForValue().get(command.getManualAutoSet());
+                List<ControlCommand> responseContent = new ArrayList<>();
+                if (!Objects.equals(manualAutoSetValue, "1.0") && !Objects.equals(manualAutoSetValue, 1.0d)) {
+                    responseContent.add(new ControlCommand(command.getId(), -1));
+                    log.info("设备[{}]手自动状态未设置自动, {}: {}", command.getObjectId(), command.getManualAutoSet(), manualAutoSetValue);
+                    message.setContent(responseContent);
+                    kafkaProducer.send(topics, message);
+                    return;
+                }
                 String value = JSONObject.parseObject(command.getPointAction()).getString("value");
                 if (value.contains("true")) {
                     value = "1";
@@ -78,7 +91,7 @@ public class CommandJob extends QuartzJobBean {
                 } catch (Exception e) {
                     log.error("下发控制指令失败", e);
                 }
-                ControlCommandMessage message = new ControlCommandMessage(2);
+
                 command.setCommandResult(2);
                 message.setContent(Collections.singletonList(command));
                 kafkaProducer.send(topics, message);
