@@ -8,16 +8,12 @@ import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.utils.AlarmJob;
 import com.hdwa.sdk.utils.AlarmUtil;
-import com.hdwa.sdk.utils.CustomThreadFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
 import java.util.Date;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 /**
  * 报警数据采集
@@ -53,12 +49,6 @@ public class AlarmWebSocketClient extends WebSocketClient {
      */
     private int count = 0;
 
-    ThreadPoolExecutor executor = new ThreadPoolExecutor(4, 8, 60,
-            TimeUnit.SECONDS,
-            new LinkedBlockingQueue<>(),
-            new CustomThreadFactory("alarm-threadPool")
-    );
-
 
     public AlarmWebSocketClient(URI url, String alarmUrl, String projectId, String groupCode) {
         super(url);
@@ -80,7 +70,7 @@ public class AlarmWebSocketClient extends WebSocketClient {
             AlarmJob.put(BaseDecConstant.CONTENT, content);
             log.warn("*****查询到报警数据: " + content.size());
             //多线程处理报警
-            executor.execute(new AlarmJob(projectId));
+            BaseDecConstant.EXECUTOR.execute(new AlarmJob(projectId));
         } catch (Exception e) {
             log.error("*****alarmWebSocket打开报警连接操作时异常", e);
         }
@@ -108,9 +98,7 @@ public class AlarmWebSocketClient extends WebSocketClient {
 
         try {
             JSONObject alarm = (JSONObject) JSON.parse(arg0);
-            if (alarm.get(BaseDecConstant.ID) == null) {
-                log.warn("*****接收到报警处理数据：" + alarm);
-            }
+            //log.warn("*****接收到报警处理数据：" + alarm);
             //3为转工单
             if (alarm.get(BaseDecConstant.PUSH_TYPE) != null) {
                 if ((Integer) alarm.get(BaseDecConstant.PUSH_TYPE) == 3) {
@@ -129,6 +117,6 @@ public class AlarmWebSocketClient extends WebSocketClient {
         }
 
         //多线程处理报警
-        executor.execute(new AlarmJob(projectId));
+        BaseDecConstant.EXECUTOR.execute(new AlarmJob(projectId));
     }
 }

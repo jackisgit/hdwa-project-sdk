@@ -6,10 +6,7 @@ import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.ExcelSheetEntity;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
-import com.hdwa.sdk.utils.AlarmUtil;
-import com.hdwa.sdk.utils.CustomThreadFactory;
-import com.hdwa.sdk.utils.ExcelUtil;
-import com.hdwa.sdk.utils.FileUtil;
+import com.hdwa.sdk.utils.*;
 import com.hdwa.sdk.websocket.AlarmWebSocketClient;
 import com.hdwa.sdk.websocket.IotWebSocketClient;
 import lombok.extern.slf4j.Slf4j;
@@ -274,18 +271,19 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 刷新报警数据
      */
-    //@Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60)
+    @Scheduled(initialDelay = 1000 * 60 * 3, fixedDelay = 1000 * 60)
     public void loadAlarmData() {
         try {
             RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
             JSONArray content = AlarmUtil.alarmRefresh(BaseDecConstant.CURRENT_PROJECT_ID, groupCode, alarmUrl, repository);
             if (content.size() != 0) {
                 log.warn("****定时刷新报警数据数量：" + content.size());
-                JSONObject AlarmJob = new JSONObject();
-                AlarmJob.put(BaseDecConstant.TYPE, BaseDecConstant.REFRESH);
-                AlarmJob.put(BaseDecConstant.CONTENT, content);
-                DataContainer.alarmBuffer.offer(AlarmJob, 16384);
             }
+            JSONObject AlarmJob = new JSONObject();
+            AlarmJob.put(BaseDecConstant.TYPE, BaseDecConstant.REFRESH);
+            AlarmJob.put(BaseDecConstant.CONTENT, content);
+            DataContainer.alarmBuffer.offer(AlarmJob, 16384);
+            BaseDecConstant.EXECUTOR.execute(new AlarmJob(BaseDecConstant.CURRENT_PROJECT_ID));
         } catch (Exception e) {
             log.error("****刷新报警数据出现异常", e);
         }
@@ -326,6 +324,6 @@ public class InitialDataService implements CommandLineRunner {
         int[] count = repository.recomputeIot();
         log.warn("*****计算iot数据：" + Arrays.toString(count));
         count = repository.recomputeAlarm();
-        log.warn("*****计alarm数据：" + Arrays.toString(count));
+        log.warn("*****计算alarm数据：" + Arrays.toString(count));
     }
 }
