@@ -404,7 +404,7 @@ public class AlarmUtil {
                 }
             }
 
-            //重新计算iot数据
+            //重新计算报警数据数据
             repository.recomputeAlarm();
         } catch (Exception e) {
             log.error(e.getMessage(), e);

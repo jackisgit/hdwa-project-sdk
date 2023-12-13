@@ -343,7 +343,9 @@ public class InitialDataService implements CommandLineRunner {
     public void refreshData() {
         RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
         int[] count = repository.recomputeIot();
-        log.warn("*****计算iot数据：" + Arrays.toString(count));
+        if (count[0] > 0) {
+            log.warn("************定时计算iot数据数量：" + Arrays.toString(count));
+        }
       /*  count = repository.recomputeAlarm();
         log.warn("*****计算alarm数据：" + Arrays.toString(count));*/
     }

@@ -335,7 +335,6 @@ public class RepositoryImpl extends RepositoryBase {
         int[] counts = new int[2];
         int itemCount = 0;
         int affectCount = 0;
-        // 加入计算队列
         for (String point : DataContainer.point2sdv.keySet()) {
             DataPrimitive sdv = DataContainer.point2sdv.get(point);
             if (sdv.value != null) {
@@ -364,7 +363,6 @@ public class RepositoryImpl extends RepositoryBase {
         int[] counts = new int[2];
         int itemCount = 0;
         int affectCount = 0;
-        // 加入计算队列
         itemCount++;
         affectCount += addWaitCompute(DataContainer.alarmArray);
         for (String objId : DataContainer.id2alarmList.keySet()) {
