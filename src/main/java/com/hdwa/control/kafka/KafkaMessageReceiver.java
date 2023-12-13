@@ -90,6 +90,13 @@ public class KafkaMessageReceiver {
                     log.warn("command is not valid; [{}]", JSON.toJSONString(command));
                     continue;
                 }
+                // 获取设备手自动状态
+                Object manualAutoSetValue = redisTemplate.opsForValue().get(command.getManualAutoSet());
+                if (!Objects.equals(manualAutoSetValue, "1.0") && !Objects.equals(manualAutoSetValue, 1.0d)) {
+                    responseContent.add(new ControlCommand(command.getId(), -1));
+                    log.info("【生成任务时】设备[{}]手自动状态未设置自动, {}: {}", command.getObjectId(), command.getManualAutoSet(), manualAutoSetValue);
+                    continue;
+                }
                 LocalDateTime commandTime = DateUtils.parse(command.getCommandTime());
                 Date startTime = DateUtils.localDateTime2Date(commandTime);
                 String hour = DateUtils.format(commandTime, DateUtils.sdfHour);
