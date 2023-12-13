@@ -339,12 +339,12 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 刷新数据 重算iot，alarm
      */
-    //@Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60 * 5)
+    @Scheduled(initialDelay = 1000 * 60 * 3, fixedDelay = 1000 * 60)
     public void refreshData() {
         RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
         int[] count = repository.recomputeIot();
         log.warn("*****计算iot数据：" + Arrays.toString(count));
-        count = repository.recomputeAlarm();
-        log.warn("*****计算alarm数据：" + Arrays.toString(count));
+      /*  count = repository.recomputeAlarm();
+        log.warn("*****计算alarm数据：" + Arrays.toString(count));*/
     }
 }
