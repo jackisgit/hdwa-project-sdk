@@ -52315,6 +52315,23 @@
                               "offsetLevel":"2",
                               "queryAttached":[
                                 {
+                                  "propertyName":"控制回路",
+                                  "allowPass":"1",
+                                  "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'夜景照明'回路'清单\"},\"Criteria\": {\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objTo\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechCtrl\",\"relCode\":\"EqCtrl\"},\"Criteria\":{\"objFrom\":{\"ref\":\"ancestor_1'id\"}}}}}}}",
+                                  "readLevel":"4",
+                                  "filterRule":"",
+                                  "customObject":null,
+                                  "staticValue":null,
+                                  "offsetLevel":"0",
+                                  "queryAttached":[
+                                  ],
+                                  "propertyValueSchema":"JSONArray",
+                                  "staticArray":[
+                                  ],
+                                  "propertyVisible":false,
+                                  "propertyValueType":"query"
+                                },
+                                {
                                   "propertyName":"所属电井对象",
                                   "allowPass":"1",
                                   "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"object\",\"classCode\":\"GeneralZone\"},\"Criteria\":{\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objTo\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechInArch\",\"relCode\":\"Eq2Sp\"},\"Criteria\":{\"objFrom\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objFrom\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechPower\",\"relCode\":\"EqNormal\"},\"Criteria\":{\"objTo\":{\"ref\":\"ancestor_1'id\"}}}}}}}}}",
@@ -52365,14 +52382,31 @@
                                   "propertyVisible":false,
                                   "propertyValueType":"query"
                                 },
-                                {
-                                  "propertyName":"配电箱编号",
+                                 {
+                                  "propertyName":"所属配电箱对象",
                                   "allowPass":"1",
-                                  "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'夜景照明'配电箱'清单\"},\"UniqueReturnColumn\": \"id\",\"Criteria\": {\"id\": {\"in\": {\"Target\": {\"Source\": \"ibms\",\"product\": \"yjzm\",\"type\": \"回路\"},\"UniqueReturnColumn\": \"配电箱编号\",\"Criteria\": {\"模块编号\": { \"ref\": \"ancestor_1'id\"    },\"配电箱编号\": {\"ne\": null                }            },\"QueryType\": \"select\"}    }}}",
+                                  "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'夜景照明'配电箱'清单\"},\"Criteria\": {\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objFrom\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechPower\",\"relCode\":\"EqNormal\"},\"Criteria\":{\"objTo\":{\"ref\":\"ancestor_1'id\"}}}}}}",
                                   "readLevel":"1",
                                   "filterRule":null,
                                   "customObject":null,
                                   "staticValue":null,
+                                  "offsetLevel":"0",
+                                  "queryAttached":[
+                                  ],
+                                  "propertyValueSchema":"JSONObject",
+                                  "staticArray":[
+                                  ],
+                                  "propertyVisible":false,
+                                  "propertyValueType":"query"
+                                },
+                                 {
+                                  "propertyName":"配电箱名称",
+                                  "allowPass":"1",
+                                  "querySql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"ancestor_1'所属配电箱对象'localName\"}}}",
+                                  "readLevel":"1",
+                                  "filterRule":"",
+                                  "customObject":null,
+                                  "staticValue":"",
                                   "offsetLevel":"0",
                                   "queryAttached":[
                                   ],
@@ -52383,13 +52417,13 @@
                                   "propertyValueType":"query"
                                 },
                                 {
-                                  "propertyName":"配电箱名称",
+                                  "propertyName":"配电箱编号",
                                   "allowPass":"1",
-                                  "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'夜景照明'配电箱'清单\"},\"UniqueReturnColumn\": \"localName\",\"Criteria\": {\"id\": {\"in\": {\"Target\": {\"Source\": \"ibms\",\"product\": \"yjzm\",\"type\": \"回路\"},\"UniqueReturnColumn\": \"配电箱编号\",\"Criteria\": {\"模块编号\": { \"ref\": \"ancestor_1'id\"    },\"配电箱编号\": {\"ne\": null                }            },\"QueryType\": \"select\"}    }}}",
+                                  "querySql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"ancestor_1'所属配电箱对象'id\"}}}",
                                   "readLevel":"1",
-                                  "filterRule":null,
+                                  "filterRule":"",
                                   "customObject":null,
-                                  "staticValue":null,
+                                  "staticValue":"",
                                   "offsetLevel":"0",
                                   "queryAttached":[
                                   ],
@@ -53584,7 +53618,7 @@
                             {
                               "propertyName":"清单",
                               "allowPass":"1",
-                              "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"yjzm\",\"ibmsClassCode\": \"peidianxiang\"},\"Criteria\": {\"id\": {\"in\": {\"Target\": {\"Source\": \"ibms\",\"product\": \"yjzm\",\"type\": \"回路\"},\"UniqueReturnColumn\": \"配电箱编号\",\"Criteria\": {\"配电箱编号\": {\"ne\": null                }            },\"QueryType\": \"select\"}    }}}",
+                              "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"yjzm\",\"ibmsClassCode\": \"peidianxiang\"},\"Criteria\": { }, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}}",
                               "readLevel":"1",
                               "filterRule":"",
                               "customObject":null,
@@ -61091,6 +61125,23 @@
                               "staticValue":null,
                               "offsetLevel":"2",
                               "queryAttached":[
+                               {
+                                  "propertyName":"控制回路",
+                                  "allowPass":"1",
+                                  "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'公共照明'回路'清单\"},\"Criteria\": {\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objTo\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechCtrl\",\"relCode\":\"EqCtrl\"},\"Criteria\":{\"objFrom\":{\"ref\":\"ancestor_1'id\"}}}}}}}",
+                                  "readLevel":"4",
+                                  "filterRule":"",
+                                  "customObject":null,
+                                  "staticValue":null,
+                                  "offsetLevel":"0",
+                                  "queryAttached":[
+                                  ],
+                                  "propertyValueSchema":"JSONArray",
+                                  "staticArray":[
+                                  ],
+                                  "propertyVisible":false,
+                                  "propertyValueType":"query"
+                                },
                                 {
                                   "propertyName":"所属电井对象",
                                   "allowPass":"1",
@@ -61143,13 +61194,30 @@
                                   "propertyValueType":"query"
                                 },
                                 {
-                                  "propertyName":"配电箱名称",
+                                  "propertyName":"所属配电箱对象",
                                   "allowPass":"1",
-                                  "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'公共照明'配电箱'清单\"},\"UniqueReturnColumn\": \"localName\",\"Criteria\": {\"id\": {\"in\": {\"Target\": {\"Source\": \"ibms\",\"product\": \"ggzm\",\"type\": \"回路\"},\"UniqueReturnColumn\": \"配电箱编号\",\"Criteria\": {\"模块编号\": { \"ref\": \"ancestor_1'id\"    },\"配电箱编号\": {\"ne\": null                }            },\"QueryType\": \"select\"}    }}}",
+                                  "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'公共照明'配电箱'清单\"},\"Criteria\": {\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objFrom\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechPower\",\"relCode\":\"EqNormal\"},\"Criteria\":{\"objTo\":{\"ref\":\"ancestor_1'id\"}}}}}}",
                                   "readLevel":"1",
                                   "filterRule":null,
                                   "customObject":null,
                                   "staticValue":null,
+                                  "offsetLevel":"0",
+                                  "queryAttached":[
+                                  ],
+                                  "propertyValueSchema":"JSONObject",
+                                  "staticArray":[
+                                  ],
+                                  "propertyVisible":false,
+                                  "propertyValueType":"query"
+                                },
+                                 {
+                                  "propertyName":"配电箱名称",
+                                  "allowPass":"1",
+                                  "querySql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"ancestor_1'所属配电箱对象'localName\"}}}",
+                                  "readLevel":"1",
+                                  "filterRule":"",
+                                  "customObject":null,
+                                  "staticValue":"",
                                   "offsetLevel":"0",
                                   "queryAttached":[
                                   ],
@@ -61162,11 +61230,11 @@
                                 {
                                   "propertyName":"配电箱编号",
                                   "allowPass":"1",
-                                  "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'品质'公共照明'配电箱'清单\"},\"UniqueReturnColumn\": \"id\",\"Criteria\": {\"id\": {\"in\": {\"Target\": {\"Source\": \"ibms\",\"product\": \"ggzm\",\"type\": \"回路\"},\"UniqueReturnColumn\": \"配电箱编号\",\"Criteria\": {\"模块编号\": {\"ref\": \"ancestor_1'id\"},\"配电箱编号\": {\"ne\": null      }    },\"QueryType\": \"select\"}}}}",
+                                  "querySql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"ancestor_1'所属配电箱对象'id\"}}}",
                                   "readLevel":"1",
-                                  "filterRule":null,
+                                  "filterRule":"",
                                   "customObject":null,
-                                  "staticValue":null,
+                                  "staticValue":"",
                                   "offsetLevel":"0",
                                   "queryAttached":[
                                   ],
