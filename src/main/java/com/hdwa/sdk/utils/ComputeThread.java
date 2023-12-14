@@ -36,9 +36,6 @@ public class ComputeThread extends Thread {
     public void run() {
         log.warn("****计算线程已启动");
         int cycleCount = 0;
-       /* int computeCount = 0;
-        long computeLag = 0;
-        Date lastTime = new Date();*/
         while (!stop) {
             cycleCount++;
             if (cycleCount >= 1000) {
@@ -51,14 +48,6 @@ public class ComputeThread extends Thread {
             }
 
             Date currTime = new Date();
-           /* if (currTime.getTime() / (1000L * 15) != lastTime.getTime() / (1000L * 15)) {
-                lastTime = currTime;
-                if (computeCount > 0) {
-                    log.warn("compute_count: " + computeCount + " avg_lag: " + (computeLag / computeCount));
-                    computeCount = 0;
-                    computeLag = 0;
-                }
-            }*/
 
             if (repository == null) {
                 continue;
@@ -73,14 +62,6 @@ public class ComputeThread extends Thread {
             }
             repository.WaitCompute.removeFromMap(waitItem);
             try {
-               /* computeCount++;
-                if (waitItem.time.getTime() > waitItem.sdv.lastComputeTime.getTime() + this.interval) {
-                    computeLag += currTime.getTime() - waitItem.time.getTime();
-                } else {
-                    computeLag += currTime.getTime() - (waitItem.sdv.lastComputeTime.getTime() + this.interval);
-                }*/
-                //log.warn("compute: " + PathUtil.getDataPath(waitItem.sdv));
-
                 boolean computeValueChanged = CalculateApiJsonUtil.calculateProperty(repository, waitItem.sdv);
                 if (computeValueChanged) {
                     repository.addWaitCompute(waitItem.sdv);

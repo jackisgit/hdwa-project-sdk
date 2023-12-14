@@ -52,15 +52,14 @@ public class CheckUtil {
                 break;
             }
 
-            if (parentTmp.propertyValueType.equals("query")) {
+            if ("query".equals(parentTmp.propertyValueType)) {
                 add(result, parentTmp);
                 break;
             }
         }
 
-        if (dataProperty.propertyValueType.equals("static")) {
-            if (dataProperty.propertyValueSchema.equals("JSONArray")) {
-            } else {
+        if ("static".equals(dataProperty.propertyValueType)) {
+            if (!"JSONArray".equals(dataProperty.propertyValueSchema)) {
                 if (Repository.attachproperty2host.containsKey(dataProperty)) {
                     add(result, Repository.attachproperty2host.get(dataProperty));
                 }
@@ -75,7 +74,7 @@ public class CheckUtil {
         JSONObject sql_json = JSON.parseObject(dataProperty.querySql);
         String requireSchema = null;
         boolean requireSingleValueSet = false;
-        if (dataProperty.propertyValueType.equals("query")) {
+        if ("query".equals(dataProperty.propertyValueType)) {
             requireSchema = dataProperty.propertyValueSchema;
         }
         List<ExceptionItem> errorList = new CopyOnWriteArrayList<ExceptionItem>();
@@ -172,12 +171,12 @@ public class CheckUtil {
     private static List<DataProperty> getProperty(RepositoryBase Repository, DataProperty parentData, String[] splits, int splits_index)
             throws Exception {
         List<DataProperty> result = new CopyOnWriteArrayList<DataProperty>();
-        if (parentData.propertyValueType.equals("deamon")) {
-            throw new Exception("ref path cant be deamon");
+        if ("deamon".equals(parentData.propertyValueType)) {
+            throw new Exception("引用路径不能是deamon");
         }
         if (splits_index == splits.length) {
             result.add(parentData);
-        } else if (parentData.propertyValueType.equals("static") && parentData.propertyValueSchema.equals("JSONArray")) {
+        } else if ("static".equals(parentData.propertyValueType) && "JSONArray".equals(parentData.propertyValueSchema)) {
             String split = splits[splits_index];
             int index_ = split.indexOf('=');
             if (index_ != -1) {
@@ -187,7 +186,7 @@ public class CheckUtil {
                     boolean matchInner = false;
                     for (DataProperty spInner : soInner.propertyList) {
                         if (spInner.propertyName.equals(propertyName)) {
-                            if (spInner.propertyValueType.equals("static")) {
+                            if ("static".equals(spInner.propertyValueType)) {
                                 matchInner = propertyValue.equals(spInner.staticValue);
                             } else {
                                 matchInner = true;
@@ -239,7 +238,7 @@ public class CheckUtil {
                 }
                 if (sp_custom != null) {
                     result = getProperty(Repository, sp_custom, splits, splits_index + 1);
-                } else if (parentData.propertyValueType.equals("query") && splits_index == splits.length - 1) {
+                } else if ("query".equals(parentData.propertyValueType) && splits_index == splits.length - 1) {
                     result.add(parentData);
                 }
             }
@@ -248,20 +247,20 @@ public class CheckUtil {
     }
 
     private static List<DataProperty> get_attached(RepositoryBase Repository, List<DataProperty> startList, String column) throws Exception {
-        List<DataProperty> result = new CopyOnWriteArrayList<DataProperty>();
+        List<DataProperty> result = new CopyOnWriteArrayList<>();
         for (DataProperty spTmp : startList) {
             DataProperty attach_column = null;
             if (spTmp.queryAttached != null) {
                 for (DataProperty spTmp2 : spTmp.queryAttached) {
                     if (column.equals(spTmp2.propertyName)) {
-                        if (spTmp2.propertyValueType.equals("query")
-                                && (!spTmp2.propertyValueSchema.equals("JSONObject") && !spTmp2.propertyValueSchema.equals("JSONArray"))) {
+                        if ("query".equals(spTmp2.propertyValueType)
+                                && (!"JSONObject".equals(spTmp2.propertyValueSchema) && !"JSONArray".equals(spTmp2.propertyValueSchema))) {
                             attach_column = spTmp2;
-                        } else if (spTmp2.propertyValueType.equals("static")
-                                && (!spTmp2.propertyValueSchema.equals("JSONObject") && !spTmp2.propertyValueSchema.equals("JSONArray"))) {
+                        } else if ("static".equals(spTmp2.propertyValueType)
+                                && (!"JSONObject".equals(spTmp2.propertyValueSchema) && !"JSONArray".equals(spTmp2.propertyValueSchema))) {
                             attach_column = spTmp2;
                         } else {
-                            throw new Exception("get_attached error: " + "propertyValueType: " + spTmp2.propertyValueType + "\t"
+                            throw new Exception("attached error: " + "propertyValueType: " + spTmp2.propertyValueType + "\t"
                                     + "propertyValueSchema: " + spTmp2.propertyValueSchema);
                         }
                         break;
@@ -271,7 +270,6 @@ public class CheckUtil {
             if (attach_column != null) {
                 result.add(attach_column);
             } else {
-                // 往前递归
                 List<DataProperty> parent_ref_Set = get_parent_ref_Set(Repository, spTmp);
                 List<DataProperty> resultInner = get_attached(Repository, parent_ref_Set, column);
                 result.addAll(resultInner);
@@ -281,8 +279,8 @@ public class CheckUtil {
     }
 
     private static List<DataProperty> get_parent_ref_Set(RepositoryBase Repository, DataProperty dataProperty) throws Exception {
-        List<DataProperty> result = new CopyOnWriteArrayList<DataProperty>();
-        if (!dataProperty.propertyValueType.equals("query")) {
+        List<DataProperty> result = new CopyOnWriteArrayList<>();
+        if (!"query".equals(dataProperty.propertyValueType)) {
             return result;
         }
 
@@ -331,23 +329,23 @@ public class CheckUtil {
             }
 
             int splits_index = 1;
-            List<Object> tmpList = new CopyOnWriteArrayList<Object>();
+            List<Object> tmpList = new CopyOnWriteArrayList<>();
             tmpList.add(parentData);
             for (int i = splits_index; i < splits.length; i++) {
-                List<Object> tmpListInner = new CopyOnWriteArrayList<Object>();
+                List<Object> tmpListInner = new CopyOnWriteArrayList<>();
                 String split = splits[i];
                 int index_ = split.indexOf('=');
                 if (index_ != -1) {
                     for (Object tmpObj : tmpList) {
                         DataProperty tmpSP = (DataProperty) tmpObj;
-                        if (tmpSP.propertyValueType.equals("static") && tmpSP.propertyValueSchema.equals("JSONArray")) {
+                        if ("static".equals(tmpSP.propertyValueType) && "JSONArray".equals(tmpSP.propertyValueSchema)) {
                             String propertyName = split.substring(0, index_);
                             String propertyValue = split.substring(index_ + 1);
                             for (DataObjectBase soInner : tmpSP.staticArray) {
                                 boolean matchInner = false;
                                 for (DataProperty spInner : soInner.propertyList) {
                                     if (spInner.propertyName.equals(propertyName)) {
-                                        if (spInner.propertyValueType.equals("static")) {
+                                        if ("static".equals(spInner.propertyValueType)) {
                                             matchInner = propertyValue.equals(spInner.staticValue);
                                         } else {
                                             matchInner = true;
@@ -359,7 +357,7 @@ public class CheckUtil {
                                 }
                             }
 
-                        } else if (tmpSP.propertyValueType.equals("query") && tmpSP.propertyValueSchema.equals("JSONArray")) {
+                        } else if ("query".equals(tmpSP.propertyValueType) && "JSONArray".equals(tmpSP.propertyValueSchema)) {
                             tmpListInner.add(tmpSP);
                         } else {
                             throw new Exception("get_parent_ref_Set error: " + "propertyValueType: " + tmpSP.propertyValueType + "\t"
@@ -370,20 +368,20 @@ public class CheckUtil {
                     for (Object tmpObj : tmpList) {
                         if (tmpObj instanceof DataProperty) {
                             DataProperty tmpProperty = (DataProperty) tmpObj;
-                            if (tmpProperty.propertyValueType.equals("custom")) {
+                            if ("custom".equals(tmpProperty.propertyValueType)) {
                                 for (DataProperty spInner : tmpProperty.customObject.propertyList) {
                                     if (spInner.propertyName.equals(split)) {
                                         tmpListInner.add(spInner);
                                     }
                                 }
-                            } else if (tmpProperty.propertyValueType.equals("query") && (tmpProperty.propertyValueSchema.equals("JSONObject")
-                                    || tmpProperty.propertyValueSchema.equals("JSONArray"))) {
+                            } else if ("query".equals(tmpProperty.propertyValueType) && ("JSONObject".equals(tmpProperty.propertyValueSchema)
+                                    || "JSONArray".equals(tmpProperty.propertyValueSchema))) {
                                 for (DataProperty spInner : tmpProperty.queryAttached) {
                                     if (spInner.propertyName.equals(split)) {
                                         tmpListInner.add(spInner);
                                     }
                                 }
-                            } else if (tmpProperty.propertyValueType.equals("static") && tmpProperty.propertyValueSchema.equals("JSONArray")) {
+                            } else if ("static".equals(tmpProperty.propertyValueType) && "JSONArray".equals(tmpProperty.propertyValueSchema)) {
                                 if (tmpProperty.queryAttached != null) {
                                     for (DataProperty spInner : tmpProperty.queryAttached) {
                                         if (spInner.propertyName.equals(split)) {
@@ -431,11 +429,11 @@ public class CheckUtil {
         JSONObject sql_json = (JSONObject) obj;
         String QueryType = (String) sql_json.get("QueryType");
         if (QueryType != null) {
-            if (QueryType.equals("select")) {
+            if ("select".equals(QueryType)) {
                 JSONObject TargetObject = sql_json.getJSONObject("Target");
                 if (TargetObject.containsKey("Source")) {
                     String Source = TargetObject.getString("Source");
-                    if (Source.equals("ref")) {
+                    if ("ref".equals(Source)) {
                         String ref = TargetObject.getString("ref");
                         columnMap.put(ref, true);
                     }
@@ -447,7 +445,7 @@ public class CheckUtil {
             }
         } else if (sql_json.get("SetOperator") != null) {
             String SetOperator = (sql_json.get("SetOperator")).toString();
-            if (SetOperator.equals("add") || SetOperator.equals("merge") || SetOperator.equals("unite")) {
+            if ("add".equals(SetOperator) || "merge".equals(SetOperator) || "unite".equals(SetOperator)) {
                 JSONArray SetArray = (JSONArray) sql_json.get("SetArray");
                 for (Object SetArrayItem : SetArray) {
                     Map<String, Boolean> tmpMap = get_parent_ref(SetArrayItem);
@@ -455,7 +453,7 @@ public class CheckUtil {
                         columnMap.put(key, true);
                     }
                 }
-            } else if (SetOperator.equals("sub")) {
+            } else if ("sub".equals(SetOperator)) {
                 {
                     Map<String, Boolean> tmpMap = get_parent_ref(sql_json.get("Set1"));
                     for (String key : tmpMap.keySet()) {
@@ -476,9 +474,8 @@ public class CheckUtil {
     public static void query(JSONObject sql_json, Map<String, Map<String, Boolean>> result) throws Exception {
         if (sql_json.containsKey("QueryType")) {
             String QueryType = (String) sql_json.get("QueryType");
-            if (QueryType.equals("select")) {
-                // 查询条件和返回值中的所有列
-                Map<String, Boolean> columnMap = new HashMap<String, Boolean>();
+            if ("select".equals(QueryType)) {
+                Map<String, Boolean> columnMap = new HashMap<>();
                 if (sql_json.get("UniqueReturnColumn") != null || sql_json.get("ReturnColumns") != null) {
                     if (sql_json.get("UniqueReturnColumn") != null) {
                         Object UniqueReturnColumn = sql_json.get("UniqueReturnColumn");
@@ -552,13 +549,13 @@ public class CheckUtil {
         Object LogicOperator = CriteriaObject.get("LogicOperator");
         if (LogicOperator != null) {
             String LogicOperatorString = (LogicOperator).toString();
-            if (LogicOperatorString.equals("and") || LogicOperatorString.equals("or")) {
+            if ("and".equals(LogicOperatorString) || "or".equals(LogicOperatorString)) {
                 JSONArray Criterias = (JSONArray) CriteriaObject.get("Criterias");
                 for (Object criteria : Criterias) {
                     JSONObject CriteriaObjectInner = (JSONObject) criteria;
                     parseCriteriaColumn(CriteriaObjectInner, columnMap);
                 }
-            } else if (LogicOperatorString.equals("not")) {
+            } else if ("not".equals(LogicOperatorString)) {
                 JSONObject CriteriaObjectInner = (JSONObject) CriteriaObject.get("Criteria");
                 parseCriteriaColumn(CriteriaObjectInner, columnMap);
             }
@@ -573,13 +570,13 @@ public class CheckUtil {
         Object LogicOperator = CriteriaObject.get("LogicOperator");
         if (LogicOperator != null) {
             String LogicOperatorString = (LogicOperator).toString();
-            if (LogicOperatorString.equals("and") || LogicOperatorString.equals("or")) {
+            if ("and".equals(LogicOperatorString) || "or".equals(LogicOperatorString)) {
                 JSONArray Criterias = (JSONArray) CriteriaObject.get("Criterias");
                 for (Object criteria : Criterias) {
                     JSONObject CriteriaObjectInner = (JSONObject) criteria;
                     parseCriteria(CriteriaObjectInner, result);
                 }
-            } else if (LogicOperatorString.equals("not")) {
+            } else if ("not".equals(LogicOperatorString)) {
                 JSONObject CriteriaObjectInner = (JSONObject) CriteriaObject.get("Criteria");
                 parseCriteria(CriteriaObjectInner, result);
             }
@@ -590,14 +587,14 @@ public class CheckUtil {
                     JSONObject valueInner = (JSONObject) itemValue;
                     for (String itemKeyInner : valueInner.keySet()) {
                         Object itemValueInner = valueInner.get(itemKeyInner);
-                        if (itemKeyInner.equals("ref")) {
+                        if ("ref".equals(itemKeyInner)) {
                             String refString = (itemValueInner).toString();
                             if (!result.containsKey(refString)) {
-                                result.put(refString, new HashMap<String, Boolean>());
+                                result.put(refString, new HashMap<>());
                             }
-                        } else if (itemKeyInner.equals("in") || itemKeyInner.equals("notin") || itemKeyInner.equals("array_e")
-                                || itemKeyInner.equals("array_ne") || itemKeyInner.equals("array_include") || itemKeyInner.equals("array_included")
-                                || itemKeyInner.equals("array_exclude") || itemKeyInner.equals("array_intersect")) {
+                        } else if ("in".equals(itemKeyInner) || "notin".equals(itemKeyInner) || "array_e".equals(itemKeyInner)
+                                || "array_ne".equals(itemKeyInner) || "array_include".equals(itemKeyInner) || "array_included".equals(itemKeyInner)
+                                || "array_exclude".equals(itemKeyInner) || "array_intersect".equals(itemKeyInner)) {
                             parseSet(itemValueInner, result);
                         }
                     }
@@ -616,12 +613,12 @@ public class CheckUtil {
             query(descSet, result);
         } else if (descSet.get("SetOperator") != null) {
             String SetOperator = (descSet.get("SetOperator")).toString();
-            if (SetOperator.equals("add") || SetOperator.equals("merge") || SetOperator.equals("unite")) {
+            if ("add".equals(SetOperator) || "merge".equals(SetOperator) || "unite".equals(SetOperator)) {
                 JSONArray SetArray = (JSONArray) descSet.get("SetArray");
                 for (Object SetArrayItem : SetArray) {
                     parseSet(SetArrayItem, result);
                 }
-            } else if (SetOperator.equals("sub")) {
+            } else if ("sub".equals(SetOperator)) {
                 parseSet(descSet.get("Set1"), result);
                 parseSet(descSet.get("Set2"), result);
             }
@@ -634,9 +631,9 @@ public class CheckUtil {
         Map<String, Map<String, Boolean>> result = new HashMap<>(16);
         if (SetDesc.containsKey("Source")) {
             String Source = SetDesc.getString("Source");
-            if (Source.equals("ref")) {
+            if ("ref".equals(Source)) {
                 String refString = (SetDesc.get("ref")).toString();
-                result.put(refString, new HashMap<String, Boolean>());
+                result.put(refString, new HashMap<>());
                 Map<String, Boolean> columnMapTmp = result.get(refString);
                 for (String tmp : columnMap.keySet()) {
                     columnMapTmp.put(tmp, true);
@@ -653,10 +650,10 @@ public class CheckUtil {
         } else if (SetDesc.containsKey("SetOperator")) {
             String SetOperator = SetDesc.getString("SetOperator");
             JSONArray children = new JSONArray();
-            if (SetOperator.equals("add") || SetOperator.equals("merge") || SetOperator.equals("unite")) {
+            if ("add".equals(SetOperator) || "merge".equals(SetOperator) || "unite".equals(SetOperator)) {
                 JSONArray SetArray = (JSONArray) SetDesc.get("SetArray");
                 children.addAll(SetArray);
-            } else if (SetOperator.equals("sub")) {
+            } else if ("sub".equals(SetOperator)) {
                 Object Set1 = SetDesc.get("Set1");
                 Object Set2 = SetDesc.get("Set2");
                 children.add(Set1);
@@ -668,7 +665,7 @@ public class CheckUtil {
                     Map<String, Map<String, Boolean>> resultInner = parseTarget(TargetInner, columnMap);
                     for (String refString : resultInner.keySet()) {
                         if (!result.containsKey(refString)) {
-                            result.put(refString, new HashMap<String, Boolean>());
+                            result.put(refString, new HashMap<>());
                         }
                         Map<String, Boolean> columnMapTmp = result.get(refString);
                         Map<String, Boolean> columnMapInner = resultInner.get(refString);

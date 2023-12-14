@@ -2,7 +2,6 @@ package com.hdwa.sdk.utils;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
@@ -10,7 +9,8 @@ import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FastJsonUtil {
 

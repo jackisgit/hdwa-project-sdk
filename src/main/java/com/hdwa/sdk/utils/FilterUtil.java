@@ -66,7 +66,6 @@ public class FilterUtil {
             filter_rule = JSONObject.toJSONString(sql_json, SerializerFeature.WriteMapNullValue);
         }
         JSONObject CriteriaObject = JSON.parseObject(filter_rule).getJSONObject("Criteria");
-        List<String> refPropertyList = new CopyOnWriteArrayList<String>();
         JSONObject CriteriaNew = (JSONObject) parseCriteria(CriteriaObject, params);
 
         DataSet targetSet = new DataSet(false);
@@ -82,7 +81,7 @@ public class FilterUtil {
             DataValue svInner = new DataValue(null, parentData, key, null);
             if (value instanceof JSONArray) {
                 svInner.valueArray = new DataSet(true);
-                svInner.valueArray.singleValueSet = new CopyOnWriteArrayList<DataValue>();
+                svInner.valueArray.singleValueSet = new CopyOnWriteArrayList<>();
                 JSONArray valueArray = (JSONArray) value;
                 for (Object valueItem : valueArray) {
                     DataValue svInner2 = new DataValue(null, null, null, null);
@@ -104,7 +103,7 @@ public class FilterUtil {
         return array.set;
     }
 
-    public static Object parseCriteria(JSONObject CriteriaObject, JSONObject params) throws Exception {
+    public static Object parseCriteria(JSONObject CriteriaObject, JSONObject params) {
         JSONObject pass = new JSONObject();
         pass.put("pass", true);
         boolean is_ref_ancestor_1 = false;
@@ -112,7 +111,7 @@ public class FilterUtil {
         if (CriteriaObject.containsKey("ref")) {
             String refString = CriteriaObject.getString("ref");
             String[] splits = refString.split("'");
-            if (splits[0].equals("ancestor_1")) {
+            if ("ancestor_1".equals(splits[0])) {
                 is_ref_ancestor_1 = true;
                 ref_value = params.getOrDefault(splits[1], pass);
             }

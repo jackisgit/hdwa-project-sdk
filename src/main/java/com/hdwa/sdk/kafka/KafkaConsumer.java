@@ -18,15 +18,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaConsumer {
 
-    @Autowired
-    private LoadDataMainService loadDataMainService;
-
     private static final String projectId;
 
     static {
         projectId = System.getProperty(BaseDecConstant.PROJECT_ID);
     }
 
+    @Autowired
+    private LoadDataMainService loadDataMainService;
 
     /**
      * @Description 监听云端消息

@@ -35,47 +35,34 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class InitialDataService implements CommandLineRunner {
 
-    @Value("${project.groupCode}")
-    private String groupCode;
-
-    @Value("${dirName.config}")
-    private String config;
-
-    @Value("${dirName.point}")
-    private String point;
-
-    @Value("${dirName.physicalWorld}")
-    private String physicalWorld;
-
-    @Value("${dirName.ibmsPhysicalWorld}")
-    private String ibmsPhysicalWorld;
-
-    @Value("${dirName.ibmsLogicalGroup}")
-    private String ibmsLogicalGroup;
-
-    @Value("${dirName.temp}")
-    private String temp;
-
-    @Value("${url.iotWebSocket}")
-    private String iotWebSocketUrl;
-
-    @Value("${url.alarmWebSocket}")
-    private String alarmWebSocketUrl;
-
-    @Value("${url.alarmUrl}")
-    private String alarmUrl;
-
-    @Autowired
-    private LoadDataMainService loadDataMainService;
-
-    @Autowired
-    private PointService pointService;
-
     /**
      * 计算数据线程池
      */
     private final ThreadPoolExecutor variableThreadPool = new ThreadPoolExecutor(4, 8, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), new CustomThreadFactory("iot-computeThreadPool"));
-
+    @Value("${project.groupCode}")
+    private String groupCode;
+    @Value("${dirName.config}")
+    private String config;
+    @Value("${dirName.point}")
+    private String point;
+    @Value("${dirName.physicalWorld}")
+    private String physicalWorld;
+    @Value("${dirName.ibmsPhysicalWorld}")
+    private String ibmsPhysicalWorld;
+    @Value("${dirName.ibmsLogicalGroup}")
+    private String ibmsLogicalGroup;
+    @Value("${dirName.temp}")
+    private String temp;
+    @Value("${url.iotWebSocket}")
+    private String iotWebSocketUrl;
+    @Value("${url.alarmWebSocket}")
+    private String alarmWebSocketUrl;
+    @Value("${url.alarmUrl}")
+    private String alarmUrl;
+    @Autowired
+    private LoadDataMainService loadDataMainService;
+    @Autowired
+    private PointService pointService;
     /**
      * iotWebSocket连接
      */

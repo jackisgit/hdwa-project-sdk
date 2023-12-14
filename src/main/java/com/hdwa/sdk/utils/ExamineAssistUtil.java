@@ -35,7 +35,7 @@ public class ExamineAssistUtil {
                         } else {
                             errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
                                     "ReturnColumns item error:"
-                                            + (itemObject == null ? "null" : itemObject.toString() + "(" + itemObject.getClass().getName() + ")"),
+                                            + (itemObject == null ? "null" : itemObject + "(" + itemObject.getClass().getName() + ")"),
                                     sql_json.toString()));
                         }
                     }
@@ -81,13 +81,13 @@ public class ExamineAssistUtil {
                     Object FunctionObject = item.get("Function");
                     if (FunctionObject instanceof String) {
                         String Function = (String) FunctionObject;
-                        if (Function.equals("count")) {
+                        if ("count".equals(Function)) {
                             if (item.get("Column") != null) {
                                 errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
                                         "Aggregation item count can't has Column", sql_json.toString()));
                             }
-                        } else if (Function.equals("sum") || Function.equals("avg") || Function.equals("max") || Function.equals("min")
-                                || Function.equals("equal_value")) {
+                        } else if ("sum".equals(Function) || "avg".equals(Function) || "max".equals(Function) || "min".equals(Function)
+                                || "equal_value".equals(Function)) {
                             Object itemObject = item.get("Column");
                             if (!(itemObject instanceof String)) {
                                 errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty),
@@ -220,7 +220,7 @@ public class ExamineAssistUtil {
                 continue;
             }
             JSONObject item = (JSONObject) items.get(i);
-            List<Integer> indexList = new CopyOnWriteArrayList<Integer>();
+            List<Integer> indexList = new CopyOnWriteArrayList<>();
             for (int ii = i + 1; ii < items.size(); ii++) {
                 if (flags[ii]) {
                     continue;
@@ -238,7 +238,7 @@ public class ExamineAssistUtil {
                 }
             }
             if (indexList.size() > 0) {
-                StringBuffer sb = new StringBuffer();
+                StringBuilder sb = new StringBuilder();
                 sb.append(i);
                 flags[i] = true;
                 for (int index : indexList) {
@@ -246,7 +246,7 @@ public class ExamineAssistUtil {
                     sb.append(index);
                     flags[index] = true;
                 }
-                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty), "duplicate key: (" + sb.toString() + ")",
+                errorList.add(new ExceptionItem(PathUtil.getPropertyPath(Repository, dataProperty), "duplicate key: (" + sb + ")",
                         item.toString()));
             }
         }

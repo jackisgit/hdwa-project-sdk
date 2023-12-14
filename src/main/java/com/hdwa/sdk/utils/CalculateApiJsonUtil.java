@@ -542,9 +542,8 @@ public class CalculateApiJsonUtil {
             }
         }
         sv.finish = true;
-        Object valueAfterCompute = null;
         if (repositoryBase.enable_factor) {
-            valueAfterCompute = sv.toJSON(true, 1);
+            Object valueAfterCompute = sv.toJSON(true, 1);
             computeValueChanged = !FastJsonCompareUtil.Instance().CompareObject(valueBeforeCompute, valueAfterCompute, true);
         }
         return computeValueChanged;

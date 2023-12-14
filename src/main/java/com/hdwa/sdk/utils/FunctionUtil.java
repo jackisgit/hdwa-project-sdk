@@ -7,9 +7,9 @@ public class FunctionUtil {
     public static ValueObject constant(String constant) {
         ValueObject result = new ValueObject();
         result.type = 1;
-        if (constant.equals("PI")) {
+        if ("PI".equals(constant)) {
             result.doubleValue = Math.PI;
-        } else if (constant.equals("E")) {
+        } else if ("E".equals(constant)) {
             result.doubleValue = Math.E;
         }
         return result;

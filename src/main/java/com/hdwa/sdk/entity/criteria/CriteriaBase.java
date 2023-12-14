@@ -8,5 +8,6 @@ import com.hdwa.sdk.entity.scene.DataObject;
  */
 public abstract class CriteriaBase {
     public String type;
+
     public abstract boolean match(DataObject item);
 }
