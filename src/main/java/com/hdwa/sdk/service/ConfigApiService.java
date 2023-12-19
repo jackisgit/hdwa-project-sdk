@@ -32,7 +32,7 @@ public class ConfigApiService {
 
 
     @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+    private RedisTemplate<String, String> redisTemplate1;
 
     @Autowired
     private PointService pointService;
@@ -55,7 +55,7 @@ public class ConfigApiService {
             long startTime = System.currentTimeMillis();
             //从redis读取配置数据
             String redisKey = getKey();
-            JSONObject jsonObject = JSONObject.parseObject(redisTemplate.opsForValue().get(redisKey));
+            JSONObject jsonObject = JSONObject.parseObject(redisTemplate1.opsForValue().get(redisKey));
             if (jsonObject == null) {
                 log.error("未查询到config接口文件");
                 return false;

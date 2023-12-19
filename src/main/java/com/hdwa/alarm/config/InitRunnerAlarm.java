@@ -13,7 +13,7 @@ import javax.servlet.ServletContextAttributeListener;
 
 @Component
 @Order(1)
-public class InitRunner implements ServletContextAttributeListener, CommandLineRunner {
+public class InitRunnerAlarm implements ServletContextAttributeListener, CommandLineRunner {
 
     @Autowired
     AlarmQuartzServiceImpl alarmQuartzService;

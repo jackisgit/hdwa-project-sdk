@@ -209,7 +209,7 @@ public class CalculateApiJsonUtil {
                 List<DataValue> sdvList = repositoryBase.property2SDV.get(spInner2);
                 // 打印路径
                  /*   String path = PathUtil.getPropertyPath(repositoryBase, spInner2);
-                    log.info("ComputeOnce:" + path);*/
+                    log.warn("ComputeOnce:" + path);*/
                 for (DataValue sdv : sdvList) {
                     try {
                         calculateProperty(repositoryBase, sdv);
