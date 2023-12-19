@@ -11,6 +11,7 @@ import com.hdwa.sdk.entity.scene.DataSet;
 import com.hdwa.sdk.entity.scene.DataValue;
 import com.hdwa.sdk.utils.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -218,25 +219,24 @@ public class IbmsLogicalGroupService {
                 String parentId = itemSdo.get(BaseDecConstant.PARENT_ID).valuePrim.value.toString();
                 String ibmsClassCode = itemSdo.get(BaseDecConstant.IBMS_CLASS_CODE).valuePrim.value.toString();
                 String ibmsSceneCode = itemSdo.get(BaseDecConstant.IBMS_SCENE_CODE).valuePrim.value.toString();
-                if (!ibmsSceneCode.equals(dir.getName()) || !ibmsClassCode.equals(BaseDecConstant.LIGHTING_CIRCUIT) || "0".equals(parentId)) {
+                if (!ibmsSceneCode.equals(dir.getName()) || !ibmsClassCode.equals(BaseDecConstant.LIGHTING_CIRCUIT) || "0".equals(parentId) || StringUtils.isEmpty(parentId)) {
                     return;
                 }
+
+                //本编组信息
                 String logicalGroupingName = itemSdo.get(BaseDecConstant.LOGICAL_GROUPING_NAME).valuePrim.value.toString();
                 String logicalGroupingId = itemSdo.get(BaseDecConstant.LOGICAL_GROUPING_ID).valuePrim.value.toString();
                 String firstCode = itemSdo.get(BaseDecConstant.FIRST_CODE) == null ? "" : itemSdo.get(BaseDecConstant.FIRST_CODE).valuePrim.value.toString();
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put(BaseDecConstant.ID, logicalGroupingId);
-                jsonObject.put(BaseDecConstant.NAME, logicalGroupingName);
-                jsonObject.put(BaseDecConstant.PRIMARY_GROUPING, parentId);
-                jsonObject.put(BaseDecConstant.GROUPING_TYPE, firstCode);
-                //楼层编码
-                if (dir.getName().equals(BaseDecConstant.GGZM)) {
-                    if (itemSdo.get(BaseDecConstant.FLOOR_ID) != null) {
-                        String floorId = (String) itemSdo.get(BaseDecConstant.FLOOR_ID).valuePrim.value;
-                        jsonObject.put(BaseDecConstant.FLOOR_CODE, floorId);
+
+                //parentId用,分割的代表此2级编组属于多个1级编组，保存多条不同parentId的二级编组数据
+                if (parentId.contains(",")) {
+                    String[] parentIds = parentId.split(",");
+                    for (String id : parentIds) {
+                        levelGroupTow.add(getTowGroup(logicalGroupingId, logicalGroupingName, id, firstCode, dir, itemSdo));
                     }
+                } else {
+                    levelGroupTow.add(getTowGroup(logicalGroupingId, logicalGroupingName, parentId, firstCode, dir, itemSdo));
                 }
-                levelGroupTow.add(jsonObject);
             });
             DataSet levelGroupSdsOne = new DataSet(false);
             levelGroupSdsOne.set = BaseApiUtil.arrayToSdoList(levelGroupTow);
@@ -247,6 +247,34 @@ public class IbmsLogicalGroupService {
             log.error("处理照明二级逻辑编组数据异常", e);
         }
     }
+
+    /**
+     * 获取二级编组对象
+     *
+     * @param logicalGroupingId
+     * @param logicalGroupingName
+     * @param parentId
+     * @param firstCode
+     * @param dir
+     * @param itemSdo
+     * @return
+     */
+    private JSONObject getTowGroup(String logicalGroupingId, String logicalGroupingName, String parentId, String firstCode, File dir, DataObject itemSdo) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put(BaseDecConstant.ID, logicalGroupingId);
+        jsonObject.put(BaseDecConstant.NAME, logicalGroupingName);
+        jsonObject.put(BaseDecConstant.PRIMARY_GROUPING, parentId);
+        jsonObject.put(BaseDecConstant.GROUPING_TYPE, firstCode);
+        //楼层编码
+        if (dir.getName().equals(BaseDecConstant.GGZM)) {
+            if (itemSdo.get(BaseDecConstant.FLOOR_ID) != null) {
+                String floorId = (String) itemSdo.get(BaseDecConstant.FLOOR_ID).valuePrim.value;
+                jsonObject.put(BaseDecConstant.FLOOR_CODE, floorId);
+            }
+        }
+        return jsonObject;
+    }
+
 
     /**
      * 照明场景二级逻辑编组数据（弃用，场景不需要二级编组）
