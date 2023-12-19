@@ -24,11 +24,11 @@ public class KafkaProducer {
 
     public <K, T> void sendMessage(T message) {
         String topic = ((MessageDto) message).getTopic();
-        log.info("send kafka message,topic:{},message:{}", topic, message);
+        log.warn("send kafka message,topic:{},message:{}", topic, message);
         ListenableFuture<SendResult<K, T>> listenableFuture = kafkaTemplate.send(topic, message);
 
         //成功回调
-        SuccessCallback<SendResult<K, T>> successCallback = result -> log.info("发送成功,topic:{},message:{}", topic, message);
+        SuccessCallback<SendResult<K, T>> successCallback = result -> log.warn("发送成功,topic:{},message:{}", topic, message);
 
         //失败回调
         FailureCallback failureCallback = e -> {
