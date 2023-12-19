@@ -2,7 +2,6 @@ package com.hdwa.sdk.utils;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
@@ -10,7 +9,8 @@ import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FastJsonUtil {
 
@@ -30,7 +30,7 @@ public class FastJsonUtil {
         if (value instanceof String) {
             StringBuffer sb = new StringBuffer();
             escape((String) value, sb);
-            return "\"" + sb.toString() + "\"";
+            return "\"" + sb + "\"";
         }
 
         if (value instanceof Double) {
@@ -42,17 +42,20 @@ public class FastJsonUtil {
         }
 
         if (value instanceof Float) {
-            if (((Float) value).isInfinite() || ((Float) value).isNaN())
+            if (((Float) value).isInfinite() || ((Float) value).isNaN()) {
                 return "null";
-            else
+            } else {
                 return value.toString();
+            }
         }
 
-        if (value instanceof Number)
+        if (value instanceof Number) {
             return value.toString();
+        }
 
-        if (value instanceof Boolean)
+        if (value instanceof Boolean) {
             return value.toString();
+        }
 
         if (value instanceof JSONObject) {
             JSONObject valueJSON = (JSONObject) value;
@@ -61,10 +64,11 @@ public class FastJsonUtil {
 
             sb.append('{');
             for (String key : valueJSON.keySet()) {
-                if (first)
+                if (first) {
                     first = false;
-                else
+                } else {
                     sb.append(',');
+                }
 
                 if (has_enter) {
                     sb.append("\r\n\t");
@@ -89,10 +93,11 @@ public class FastJsonUtil {
             StringBuilder sb = new StringBuilder();
             sb.append('[');
             for (Object o : valueJSON) {
-                if (first)
+                if (first) {
                     first = false;
-                else
+                } else {
                     sb.append(',');
+                }
 
                 if (has_enter) {
                     sb.append("\r\n\t");
@@ -267,12 +272,12 @@ public class FastJsonUtil {
             }
 
             return targetObject;
-        } else if (json instanceof String && targetClassName.equals("java.lang.String")) {
+        } else if (json instanceof String && "java.lang.String".equals(targetClassName)) {
             return (String) json;
-        } else if (json instanceof String && targetClassName.equals("java.util.Date")) {
+        } else if (json instanceof String && "java.util.Date".equals(targetClassName)) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
             return sdf.parse((String) json);
-        } else if (targetClassName.equals("java.lang.Long") || targetClassName.equals("long")) {
+        } else if ("java.lang.Long".equals(targetClassName) || "long".equals(targetClassName)) {
             if (json instanceof String) {
                 return Long.parseLong((String) json);
             } else if (json instanceof Integer) {
@@ -284,7 +289,7 @@ public class FastJsonUtil {
             } else {
                 return null;
             }
-        } else if (targetClassName.equals("java.lang.Double") || targetClassName.equals("double")) {
+        } else if ("java.lang.Double".equals(targetClassName) || "double".equals(targetClassName)) {
             if (json instanceof String) {
                 return Double.parseDouble((String) json);
             } else if (json instanceof Integer) {
@@ -302,9 +307,9 @@ public class FastJsonUtil {
             } else {
                 return null;
             }
-        } else if (targetClassName.equals("java.lang.Boolean") || targetClassName.equals("boolean")) {
+        } else if ("java.lang.Boolean".equals(targetClassName) || "boolean".equals(targetClassName)) {
             if (json instanceof String) {
-                return ((String) json).equalsIgnoreCase("true");
+                return "true".equalsIgnoreCase((String) json);
             } else if (json instanceof Boolean) {
                 return json;
             } else {
@@ -326,12 +331,10 @@ public class FastJsonUtil {
                 }
                 if (value instanceof Integer) {
                     newMap.put(key, ((Integer) value).longValue());
-                } else if (value instanceof Long) {
-                } else if (value instanceof BigInteger) {
+                }  else if (value instanceof BigInteger) {
                     newMap.put(key, ((BigInteger) value).longValue());
                 } else if (value instanceof Float) {
                     newMap.put(key, ((Float) value).doubleValue());
-                } else if (value instanceof Double) {
                 } else if (value instanceof BigDecimal) {
                     newMap.put(key, ((BigDecimal) value).doubleValue());
                 } else if (value instanceof JSONObject || value instanceof JSONArray) {

@@ -194,71 +194,6 @@ public class CalculateApiJsonUtil {
         return propertyList;
     }
 
-
-    /**
-     * 无检查计算属性
-     *
-     * @param repositoryBase
-     * @return
-     * @throws Exception
-     */
-    public static List<List<DataProperty>> notCheckCalculateProperty(RepositoryBase repositoryBase) {
-        // 排序
-        List<DataProperty> properties = BaseApiUtil.getPropertyListBy(repositoryBase.dataObjectBase);
-
-        //所有属性
-        properties.forEach(property -> {
-            try {
-                List<DataProperty> beforeList = CheckUtil.getPropertyBefore(repositoryBase, property);
-                repositoryBase.beforeDic.put(property, beforeList);
-            } catch (Exception e) {
-                log.error("无检查计算属性异常", e);
-            }
-        });
-
-        Map<DataProperty, Boolean> processedDic = new HashMap<>(16);
-        List<List<DataProperty>> propertyList = new CopyOnWriteArrayList<>();
-
-        while (true) {
-            int count = 0;
-            List<DataProperty> spInnerList = new CopyOnWriteArrayList<>();
-            for (DataProperty spInner : properties) {
-                if (processedDic.containsKey(spInner)) {
-                    continue;
-                }
-                List<DataProperty> beforeList = repositoryBase.beforeDic.get(spInner);
-                boolean allFinish = true;
-                for (DataProperty property : beforeList) {
-                    if (!processedDic.containsKey(property)) {
-                        allFinish = false;
-                        break;
-                    }
-                }
-                if (allFinish) {
-                    count++;
-                    spInnerList.add(spInner);
-                }
-            }
-            if (count == 0) {
-                break;
-            }
-            propertyList.add(spInnerList);
-            for (DataProperty spInner : spInnerList) {
-                processedDic.put(spInner, true);
-            }
-        }
-
-        for (List<DataProperty> spInnerList : propertyList) {
-            for (DataProperty spInner2 : spInnerList) {
-                if (!repositoryBase.property2SDV.containsKey(spInner2)) {
-                    repositoryBase.property2SDV.put(spInner2, new CopyOnWriteArrayList<>());
-                }
-            }
-        }
-        return propertyList;
-    }
-
-
     /**
      * 计算全部
      *
@@ -607,9 +542,8 @@ public class CalculateApiJsonUtil {
             }
         }
         sv.finish = true;
-        Object valueAfterCompute = null;
         if (repositoryBase.enable_factor) {
-            valueAfterCompute = sv.toJSON(true, 1);
+            Object valueAfterCompute = sv.toJSON(true, 1);
             computeValueChanged = !FastJsonCompareUtil.Instance().CompareObject(valueBeforeCompute, valueAfterCompute, true);
         }
         return computeValueChanged;

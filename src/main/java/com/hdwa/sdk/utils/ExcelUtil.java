@@ -93,14 +93,14 @@ public class ExcelUtil {
                 try {
                     value = "" + cell.getNumericCellValue();
                 } catch (Exception e) {
-                    log.error("*****单元格转换number错误：" + cell.getSheet().getSheetName() + "--" + (cell.getRowIndex()+1) + "行--" + (cell.getColumnIndex()+1) + "列----值：" + cell);
+                    log.error("*****单元格转换number错误：" + cell.getSheet().getSheetName() + "--" + (cell.getRowIndex() + 1) + "行--" + (cell.getColumnIndex() + 1) + "列----值：" + cell);
                 }
                 break;
             case STRING:
                 try {
                     value = cell.getStringCellValue();
                 } catch (Exception e) {
-                    log.error("*****单元格转换string错误：" + cell.getSheet().getSheetName() + "--" + (cell.getRowIndex()+1) + "行--" + (cell.getColumnIndex()+1) + "列----值：" + cell);
+                    log.error("*****单元格转换string错误：" + cell.getSheet().getSheetName() + "--" + (cell.getRowIndex() + 1) + "行--" + (cell.getColumnIndex() + 1) + "列----值：" + cell);
                 }
                 break;
             default:

@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.constant.UrlConstant;
 import com.hdwa.sdk.entity.InstructControlParam;
-import com.hdwa.sdk.entity.SystemOperationLogSaveDto;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.entity.scene.DataObject;
@@ -162,7 +161,7 @@ public class ControlUtil {
 
             }
 
-           OkHttpClientUtil.httpPost(postParam, url + UrlConstant.SAVE_LOG_URL).getBoolean(BaseDecConstant.SUCCESS);
+            OkHttpClientUtil.httpPost(postParam, url + UrlConstant.SAVE_LOG_URL).getBoolean(BaseDecConstant.SUCCESS);
         } catch (Exception e) {
             log.error("保存日志操作失败", e);
         }
@@ -219,7 +218,7 @@ public class ControlUtil {
     }
 
     private static JSONArray setInner(RepositoryImpl repository, DataValue detail, List<DataObject> objectArray, JSONObject infoValueSet,
-                                      List<DataObject> sdoList, InstructControlParam params) throws Exception {
+                                      List<DataObject> sdoList, InstructControlParam params) {
         if (detail != null) {
             log.warn("-----下发时有详情:" + detail.valueObject);
             build_object(detail.valueObject, infoValueSet);

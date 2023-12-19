@@ -8,5 +8,6 @@ import com.hdwa.sdk.entity.scene.DataValue;
  */
 public abstract class MatchBase {
     public abstract boolean match(DataValue item);
+
     public abstract boolean change();
 }

@@ -21,7 +21,7 @@ public class DataUtil {
         } else if (value instanceof Float) {
             return ((Float) value).doubleValue();
         } else if (value instanceof Double) {
-            return ((Double) value).doubleValue();
+            return value;
         } else if (value instanceof BigDecimal) {
             return ((BigDecimal) value).doubleValue();
         } else {

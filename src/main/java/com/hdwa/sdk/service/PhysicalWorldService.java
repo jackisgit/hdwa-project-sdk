@@ -50,7 +50,7 @@ public class PhysicalWorldService {
      *
      * @return
      */
-    public Object downLoadPhysicalWorldData() {
+    public boolean downLoadPhysicalWorldData() {
         log.warn("************开始下载-物理世界数据");
         long startTime = System.currentTimeMillis();
         try {
@@ -88,12 +88,11 @@ public class PhysicalWorldService {
             //只保留3个版本数据
             FileUtil.clearHistoryDirectory(new File(getPath()));
             log.warn("************结束下载-物理世界数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
-
-            return "ok";
+            return true;
         } catch (Exception e) {
             log.error("下载物理世界数据异常", e);
+            return false;
         }
-        return null;
     }
 
     /**
@@ -101,30 +100,48 @@ public class PhysicalWorldService {
      *
      * @return
      */
-    public Object loadPhysicalWorldData(RepositoryImpl repository) throws Exception {
-        log.warn("************开始加载-物理世界数据");
+    public boolean loadPhysicalWorldData(RepositoryImpl repository) {
+        log.warn("************开始加载-物理世界数据************");
         long startTime = System.currentTimeMillis();
-        try {
-            File maxDir = FileUtil.getMaxDir(new File(getPath()));
-            loadClassDefData(repository, maxDir);
-            loadPointDefData(repository, maxDir);
-            loadObjectData(repository, maxDir);
-            loadRelationData(repository, maxDir);
-            disposePoint(repository);
-            loadRelationRef(repository);
-            log.warn("************结束加载-物理世界数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
-            return "ok";
-        } catch (Exception e) {
-            log.error("***加载-物理世界数据异常", e);
-            throw e;
+        boolean flag;
+        File maxDir = FileUtil.getMaxDir(new File(getPath()));
+        flag = maxDir != null;
+        if (!flag) {
+            return false;
         }
+        flag = loadClassDefData(repository, maxDir);
+        if (!flag) {
+            return false;
+        }
+        flag = loadPointDefData(repository, maxDir);
+        if (!flag) {
+            return false;
+        }
+        flag = loadObjectData(repository, maxDir);
+        if (!flag) {
+            return false;
+        }
+        flag = loadRelationData(repository, maxDir);
+        if (!flag) {
+            return false;
+        }
+        flag = disposePoint(repository);
+        if (!flag) {
+            return false;
+        }
+        flag = loadRelationRef(repository);
+        if (!flag) {
+            return false;
+        }
+        log.warn("************结束加载-物理世界数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+        return true;
     }
 
 
     /**
      * 加载类型定义数据
      */
-    private void loadClassDefData(RepositoryImpl repository, File maxDir) throws Exception {
+    private boolean loadClassDefData(RepositoryImpl repository, File maxDir) {
         log.warn("*****开始加载-类型定义数据数据");
         long startTime = System.currentTimeMillis();
         try {
@@ -148,9 +165,10 @@ public class PhysicalWorldService {
                 repository.classCode2NameMap.put(code, name);
             }
             log.warn("*****结束加载-类型定义数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+            return true;
         } catch (Exception e) {
             log.error("加载类型定义数据异常", e);
-            throw e;
+            return false;
         }
     }
 
@@ -159,7 +177,7 @@ public class PhysicalWorldService {
      *
      * @param repository
      */
-    private void loadPointDefData(RepositoryImpl repository, File maxDir) throws Exception {
+    private boolean loadPointDefData(RepositoryImpl repository, File maxDir) {
         log.warn("*****开始加载-点位定义数据");
         long startTime = System.currentTimeMillis();
         try {
@@ -197,7 +215,7 @@ public class PhysicalWorldService {
                             });
 
                 } catch (Exception e) {
-                    throw new RuntimeException(e);
+                    log.error("***加载点位数据出现异常：", e);
                 }
             });
             repository.infoArrayDic = sdsMap;
@@ -208,9 +226,10 @@ public class PhysicalWorldService {
             repository.infoDataSource = sds;
             FileUtil.save(groupCode + File.separator + BaseDecConstant.CURRENT_PROJECT_ID + File.separator + temp + File.separator + UrlConstant.TMP_DATASOURCE, FastJsonUtil.toFormatString(dataSourceAll));
             log.warn("*****结束加载-点位定义数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+            return true;
         } catch (Exception e) {
-            log.error("加载点位定义数据异常", e);
-            throw e;
+            log.error("加载文件定义数据异常", e);
+            return false;
         }
     }
 
@@ -219,8 +238,8 @@ public class PhysicalWorldService {
      *
      * @param repository
      */
-    private void loadObjectData(RepositoryImpl repository, File maxDir) {
-        log.warn("*****开始加载-对象数据");
+    private boolean loadObjectData(RepositoryImpl repository, File maxDir) {
+        log.warn("*****开始加载-物理世界");
         long startTime = System.currentTimeMillis();
         try {
             Map<String, DataValue> objectMap = new HashMap<>(16);
@@ -270,22 +289,21 @@ public class PhysicalWorldService {
                         }
                         objectMap.get(objType).valueArray.set.addAll(sds.set);
 
-                        // TODO: 2023/8/28 可能无用
                         for (String col : sds.getColChange().keySet()) {
                             objectMap.get(objType).valueArray.setColChange(col);
                         }
                     }
                     repository.objectArrayAll.set.addAll(sds.set);
                 } catch (Exception e) {
-                    throw new RuntimeException(e);
+                    log.error("****文件对象数据加载异常", e);
                 }
             });
             repository.objectArrayDic = objectMap;
-
-            log.warn("*****结束加载-对象数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+            log.warn("*****结束加载-物理世界-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+            return true;
         } catch (Exception e) {
-            log.error("加载对象数据异常", e);
-            throw e;
+            log.error("加载物理世界数据异常", e);
+            return false;
         }
 
     }
@@ -295,7 +313,7 @@ public class PhysicalWorldService {
      *
      * @param repository
      */
-    private void loadRelationData(RepositoryImpl repository, File maxDir) {
+    private boolean loadRelationData(RepositoryImpl repository, File maxDir) {
         log.warn("*****开始加载-关系数据");
         long startTime = System.currentTimeMillis();
         try {
@@ -341,7 +359,7 @@ public class PhysicalWorldService {
                         relCodeMap.get(relCode).set.addAll(sds.set);
                         repository.relationAll.set.addAll(sds.set);
                     } catch (Exception e) {
-                        throw new RuntimeException(e);
+                        log.error("***加载文件关系数据异常", e);
                     }
                 });
                 relationMap.put(graphicDir.getName(), tempSds);
@@ -351,9 +369,10 @@ public class PhysicalWorldService {
             repository.graphCodeDic = graphCodeMap;
             repository.relationArrayDic = relationMap;
             log.warn("*****结束加载-关系数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+            return true;
         } catch (Exception e) {
             log.error("加载关系数据异常", e);
-            throw e;
+            return false;
         }
     }
 
@@ -362,7 +381,7 @@ public class PhysicalWorldService {
      *
      * @param repository
      */
-    private void disposePoint(RepositoryImpl repository) {
+    private boolean disposePoint(RepositoryImpl repository) {
         log.warn("*****开始加载-处理点位");
         long startTime = System.currentTimeMillis();
         try {
@@ -454,9 +473,10 @@ public class PhysicalWorldService {
                 });
             });
             log.warn("*****结束加载-处理点位-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+            return true;
         } catch (Exception e) {
             log.error("加载处理点位数据异常", e);
-            throw e;
+            return false;
         }
     }
 
@@ -481,7 +501,7 @@ public class PhysicalWorldService {
      *
      * @param repository
      */
-    private void loadRelationRef(RepositoryImpl repository) {
+    private boolean loadRelationRef(RepositoryImpl repository) {
         log.warn("*****开始加载-解析关系模版数据");
         long startTime = System.currentTimeMillis();
         try {
@@ -492,9 +512,10 @@ public class PhysicalWorldService {
                 relationToObject(rel, repository);
             });
             log.warn("*****结束加载-解析关系模版数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
+            return true;
         } catch (Exception e) {
             log.error("加载解析关系模版数据异常", e);
-            throw e;
+            return false;
         }
     }
 

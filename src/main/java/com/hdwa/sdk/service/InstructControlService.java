@@ -132,28 +132,7 @@ public class InstructControlService {
         JSONObject postJSON = new JSONObject();
         postJSON.put("building", BaseDecConstant.CURRENT_PROJECT_ID.substring(2));
         postJSON.put("points", points);
-        JSONArray jsonArray = OkHttpClientUtil.httpPost(postJSON, iotProjectUrl + UrlConstant.iot_project_control).getJSONArray("points");
-        //new Thread(() -> refresh(points, path)).start();
-        //refresh(points, path);
-        return jsonArray;
+        return OkHttpClientUtil.httpPost(postJSON, iotProjectUrl + UrlConstant.iot_project_control).getJSONArray("points");
     }
 
-
-    /**
-     * 如果下发的有手自动点位 就刷新接口，统计手自动数量
-     *
-     * @param points
-     * @param path
-     */
-    private void refresh(JSONArray points, String path) {
-        try {
-            if (path.contains("照明") || path.contains("回路") || path.contains("编组") || path.contains("末端") || path.contains("空调")) {
-                if (points.toString().contains(BaseDecConstant.MANUAL_AUTO_SET)) {
-                    configApiService.analysisDataRefresh(DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID));
-                }
-            }
-        } catch (Exception e) {
-            log.error("***手自动统计刷新接口错误", e);
-        }
-    }
 }

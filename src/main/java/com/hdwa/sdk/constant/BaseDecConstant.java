@@ -498,13 +498,6 @@ public class BaseDecConstant {
     public static final String GROUP_ONE = "group-one";
 
 
-
-    /**
-     * group-one-scene string
-     */
-    public static final String GROUP_ONE_SCENE = "group-one-scene";
-
-
     /**
      * group-one-scene string
      */
@@ -605,48 +598,30 @@ public class BaseDecConstant {
      * 报警列表 String
      */
     public static final String ALARM_LIST = "报警列表";
-
-    /**
-     * 报警线程
-     */
-    public static ThreadPoolExecutor EXECUTOR = new ThreadPoolExecutor(4, 8, 60,
-            TimeUnit.SECONDS,
-            new LinkedBlockingQueue<>(),
-            new CustomThreadFactory("alarm-threadPool")
-    );
-
-
     /**
      * 设定参数 String
      */
     public static final String SET_PARAM = "设定参数";
-
     /**
      * 设定反馈值 String
      */
     public static final String SET_FEEDBACK_VALUE = "设定反馈值";
-
     /**
      * 清单String
      */
     public static final String DETAILED_LIST = "清单";
-
     /**
      * id清单String
      */
     public static final String ID_DETAILED_LIST = "-id清单";
-
     /**
      * 逻辑运算符String
      */
     public static final String LOGIC_OPERATOR = "LogicOperator";
-
-
     /**
      * and String
      */
     public static final String AND = "and";
-
     /**
      * 标准 String
      */
@@ -655,62 +630,50 @@ public class BaseDecConstant {
      * criteria String
      */
     public static final String CRITERIA_2 = "criteria";
-
     /**
      * 标准复数 String
      */
     public static final String CRITERIAS = "Criterias";
-
     /**
      * 静态的 String
      */
     public static final String STATIC = "static";
-
     /**
      * JSONArray String
      */
     public static final String JSONARRAY = "JSONArray";
-
     /**
      * JSONObject String
      */
     public static final String JSONOBJECT = "JSONObject";
-
     /**
      * QUERY String
      */
     public static final String QUERY = "query";
-
     /**
      * DEAMON String
      */
     public static final String DEAMON = "deamon";
-
     /**
      * 自定义 String
      */
     public static final String CUSTOM = "custom";
-
     /**
      * customObject String
      */
     public static final String CUSTOM_OBJECT = "customObject";
-
     /**
      * 手自动点位 String
      */
     public static final String MANUAL_AUTO_SET = "manualAutoSet";
-
     /**
      * one String
      */
     public static final String ONE = "one";
-
     /**
      * QueryType String
      */
     public static final String QUERY_TYPE = "QueryType";
-
     /**
      * select String
      */
@@ -723,7 +686,6 @@ public class BaseDecConstant {
      * trend String
      */
     public static final String TREND = "trend";
-
     /**
      * curve String
      */
@@ -732,7 +694,6 @@ public class BaseDecConstant {
      * ref String
      */
     public static final String REF = "ref";
-
     /**
      * int String
      */
@@ -741,256 +702,200 @@ public class BaseDecConstant {
      * double String
      */
     public static final String DOUBLE = "double";
-
-
     /**
      * rwd String
      */
     public static final String RWD = "rwd";
-
     /**
      * WD String
      */
     public static final String WD = "WD";
-
     /**
      * class String
      */
     public static final String CLASS = "class";
-
-
     /**
      * object String
      */
     public static final String OBJECT = "object";
-
-
     /**
      * equipment String
      */
     public static final String EQUIPMENT = "equipment";
-
     /**
      * system String
      */
     public static final String SYSTEM = "system";
-
     /**
      * space String
      */
     public static final String SPACE = "space";
-
     /**
      * info String
      */
     public static final String INFO = "info";
-
     /**
      * point String
      */
     public static final String POINT = "point";
-
-
     /**
      * info-point-list String
      */
     public static final String INFO_POINT_LIST = "info-point-list";
-
-
     /**
      * info_dataSource String
      */
     public static final String INFO_DATASOURCE = "info_dataSource";
-
-
     /**
      * info-point-relation String
      */
     public static final String INFO_POINT_RELATION = "info-point-relation";
-
-
     /**
      * relation String
      */
     public static final String RELATION = "relation";
-
     /**
      * reference String
      */
     public static final String REFERENCE = "reference";
-
-
     /**
      * groupCode String
      */
     public static final String GROUP_CODE = "groupCode";
-
     /**
      * projectId String
      */
     public static final String PROJECT_ID = "projectId";
-
     /**
      * 当前使用的项目id值
      */
     public static final String CURRENT_PROJECT_ID = System.getProperty(PROJECT_ID);
-
     /**
      * 当前配置文件
      */
     public static final String SPRING_PROFILES_ACTIVE = "spring.profiles.active";
-
-
     /**
      * parentId String
      */
     public static final String PARENT_ID = "parentId";
-
-
     /**
      * readLevel String
      */
     public static final String READ_LEVEL = "readLevel";
-
-
     /**
      * result String
      */
     public static final String RESULT = "result";
-
-
     /**
      * data String
      */
     public static final String DATA = "data";
-
     /**
      * dataSource String
      */
     public static final String DATA_SOURCE = "dataSource";
-
-
     /**
      * Content String
      */
     public static final String CONTENT = "Content";
-
     /**
      * content String
      */
     public static final String CONTENT2 = "content";
-
-
     /**
      * records String
      */
     public static final String RECORDS = "records";
-
     /**
      * path String
      */
     public static final String PATH = "path";
-
-
     /**
      * count String
      */
     public static final String COUNT = "count";
-
     /**
      * Source String
      */
     public static final String SOURCE = "Source";
-
-
     /**
      * Target String
      */
     public static final String TARGET = "Target";
-
-
     /**
      * success String
      */
     public static final String SUCCESS = "success";
-
-
     /**
      * onlyCount String
      */
     public static final String ONLY_COUNT = "onlyCount";
-
-
     /**
      * sequenceNo String
      */
     public static final String SEQUENCE_NO = "sequenceNo";
-
     /**
      * infoCode String
      */
     public static final String INFO_CODE = "infoCode";
-
     /**
      * infoType String
      */
     public static final String INFO_TYPE = "infoType";
-
     /**
      * infoName String
      */
     public static final String INFO_NAME = "infoName";
-
-
     /**
      * infoAlias String
      */
     public static final String INFO_ALIAS = "infoAlias";
-
     /**
      * isKeyPoint String
      */
     public static final String IS_KEY_POINT = "isKeyPoint";
-
-
     /**
      * isBatchControlParam String
      */
     public static final String IS_BATCH_CONTROL_PARAM = "isBatchControlParam";
-
-
+    /**
+     * isListControlParam String
+     */
+    public static final String IS_LIST_CONTROL_PARAM = "isListControlParam";
     /**
      * isVisible String
      */
     public static final String IS_VISIBLE = "isVisible";
-
     /**
      * 点位配置表格名称 String
      */
     public static final String POINT_FILE_NAME = "point.xlsx";
-
     /**
      * 配置文件目录名称 String
      */
     public static final String CONFIG_DIR = "config";
-
     /**
      * jar同级目录标识 String
      */
     public static final String USER_DIR = "user.dir";
-
     /**
      * 日期格式化
      */
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
-
     /**
      * 点位过滤父类路径
      */
     public static final String[] PARENT_PATH_ARRAY = {"场景数据'首页'模块统计'模块", "场景数据'首页'模块统计'设备运行统计"};
-
     /**
      * 点位过滤父类路径
      */
     public static final String[] PARENT_PATH_ARRAY_2 = {"基础对象类型'设备", "基础对象'设备", "基础对象'品质", "基础对象'运营", "基础对象'安全", "基础对象'系统", "基础对象'逻辑编组", "场景数据'设备", "场景数据'品质", "场景数据'运营", "场景数据'安全"};
+    /**
+     * 报警线程
+     */
+    public static ThreadPoolExecutor EXECUTOR = new ThreadPoolExecutor(4, 8, 60,
+            TimeUnit.SECONDS,
+            new LinkedBlockingQueue<>(),
+            new CustomThreadFactory("alarm-threadPool")
+    );
 }

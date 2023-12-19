@@ -235,9 +235,10 @@ public class RepositoryImpl extends RepositoryBase {
                             String classCode = (descSet.get(BaseDecConstant.CLASS_CODE)).toString();
                             if (objectArrayDic.get(classCode) != null) {
                                 result = objectArrayDic.get(classCode).valueArray;
-                            } else {
-                                log.error("*****缺少classCode数据：" + classCode);
                             }
+                            /*else {
+                                log.error("*****缺少classCode数据：" + classCode);
+                            }*/
                         } else {
                             result = objectArrayAll;
                         }
@@ -334,7 +335,6 @@ public class RepositoryImpl extends RepositoryBase {
         int[] counts = new int[2];
         int itemCount = 0;
         int affectCount = 0;
-        // 加入计算队列
         for (String point : DataContainer.point2sdv.keySet()) {
             DataPrimitive sdv = DataContainer.point2sdv.get(point);
             if (sdv.value != null) {
@@ -363,7 +363,6 @@ public class RepositoryImpl extends RepositoryBase {
         int[] counts = new int[2];
         int itemCount = 0;
         int affectCount = 0;
-        // 加入计算队列
         itemCount++;
         affectCount += addWaitCompute(DataContainer.alarmArray);
         for (String objId : DataContainer.id2alarmList.keySet()) {
@@ -410,33 +409,39 @@ public class RepositoryImpl extends RepositoryBase {
     /**
      * 构建依赖
      */
-    public void refreshDependency() {
-        dependency.clear();
-        // 构建zkt到rwd的依赖
-        refreshRwdToZkt();
-        // 构建IOT到对象信息点的依赖
-        refreshIotToSetColumn();
-        // 构建报警数量到对象信息点的依赖
-        refreshAlarmToSetColumn();
+    public boolean refreshDependency() {
+        try {
+            dependency.clear();
+            // 构建zkt到rwd的依赖
+            refreshRwdToZkt();
+            // 构建IOT到对象信息点的依赖
+            refreshIotToSetColumn();
+            // 构建报警数量到对象信息点的依赖
+            refreshAlarmToSetColumn();
+            return true;
+        } catch (Exception e) {
+            log.error("构建依赖出现异常", e);
+            return false;
+        }
     }
 
 
     private void refreshRwdToZkt() {
         for (DataObject classItem : ZKTClassArray.set) {
-            String ibmsSceneCode = (String) classItem.get("ibmsSceneCode").valuePrim.value;
-            String ibmsClassCode = (String) classItem.get("ibmsClassCode").valuePrim.value;
+            String ibmsSceneCode = (String) classItem.get(BaseDecConstant.IBMS_SCENE_CODE).valuePrim.value;
+            String ibmsClassCode = (String) classItem.get(BaseDecConstant.IBMS_CLASS_CODE).valuePrim.value;
             String flag = null;
-            if (classItem.containsKey("flag")) {
-                flag = (String) classItem.get("flag").valuePrim.value;
+            if (classItem.containsKey(BaseDecConstant.FLAG)) {
+                flag = (String) classItem.get(BaseDecConstant.FLAG).valuePrim.value;
             }
-            if (flag != null && flag.equals("reference")) {
+            if (BaseDecConstant.REFERENCE.equals(flag)) {
                 continue;
             }
             DataValue sdv = ZKTObjectArrayDic.get(ibmsSceneCode).get(ibmsClassCode);
             if (sdv != null) {
                 for (DataObject obj : sdv.valueArray.set) {
                     if (obj.father != null) {
-                        dependency.sdv2Children.putIfAbsent(obj.father, new CopyOnWriteArrayList<DataObject>());
+                        dependency.sdv2Children.putIfAbsent(obj.father, new CopyOnWriteArrayList<>());
                         dependency.sdv2Children.get(obj.father).add(obj);
                     }
                 }
@@ -481,14 +486,14 @@ public class RepositoryImpl extends RepositoryBase {
                 continue;
             }
             String objType = code2objTypeMap.get(classCode);
-            if (!objType.equals("equipment") && !objType.equals("system") && !objType.equals("space")) {
+            if (!BaseDecConstant.EQUIPMENT.equals(objType) && !BaseDecConstant.SYSTEM.equals(objType) && !BaseDecConstant.SPACE.equals(objType)) {
                 continue;
             }
             DataSet objectArray = objectArrayDic.get(classCode).valueArray;
             for (int i = 0; i < objectArray.set.size(); i++) {
                 DataObject objectItem = objectArray.set.get(i);
-                DataValue sdv = objectItem.get("报警数量");
-                dependency.add_sdv2SetColumn(sdv, objectArray, "报警数量");
+                DataValue sdv = objectItem.get(BaseDecConstant.ALARM_COUNT);
+                dependency.add_sdv2SetColumn(sdv, objectArray, BaseDecConstant.ALARM_COUNT);
             }
         }
     }

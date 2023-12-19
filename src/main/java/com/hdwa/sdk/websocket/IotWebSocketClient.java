@@ -33,22 +33,19 @@ public class IotWebSocketClient extends WebSocketClient {
      * 项目id
      */
     private final String projectId;
-
-    /**
-     * 统计时间
-     */
-    private Date lastTime = new Date();
-
-    /**
-     * 统计数量
-     */
-    private int count = 0;
-
     ThreadPoolExecutor executor = new ThreadPoolExecutor(4, 8, 60,
             TimeUnit.SECONDS,
             new LinkedBlockingQueue<>(),
             new CustomThreadFactory("iot-threadPool")
     );
+    /**
+     * 统计时间
+     */
+    private Date lastTime = new Date();
+    /**
+     * 统计数量
+     */
+    private int count = 0;
 
     public IotWebSocketClient(URI url, String projectId) {
         super(url);

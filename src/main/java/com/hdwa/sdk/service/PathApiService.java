@@ -28,8 +28,8 @@ public class PathApiService {
      * @return
      */
     public Object post(PathApiParam param) {
+        JSONArray valuePath = param.getPath();
         try {
-            JSONArray valuePath = param.getPath();
             RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
             if (repository == null) {
                 return "null";
@@ -41,7 +41,7 @@ public class PathApiService {
 
             return CalculateApiJsonUtil.getValueJson(valueObject);
         } catch (Exception e) {
-            log.error("按路径查询接口出现异常", e);
+            log.error("按路径查询接口出现异常：" + valuePath, e);
             throw e;
         }
     }
@@ -61,7 +61,7 @@ public class PathApiService {
             }
             return FilterUtil.postPage(repository, (JSONObject) JSON.toJSON(param));
         } catch (Exception e) {
-            log.error("按路径查询分页接口出现异常", e);
+            log.error("按路径查询分页接口出现异常：" + param.getPath(), e);
             throw e;
         }
     }
