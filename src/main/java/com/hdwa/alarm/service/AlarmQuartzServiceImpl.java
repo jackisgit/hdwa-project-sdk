@@ -21,8 +21,8 @@ import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 public class AlarmQuartzServiceImpl {
 
     @Autowired
-    @Qualifier("quartzScheduler")
-    Scheduler quartzScheduler;
+    @Qualifier("quartzScheduler-alarm")
+    Scheduler quartzSchedulerAlarm;
 
     /**
      * 添加定时器
@@ -48,7 +48,7 @@ public class AlarmQuartzServiceImpl {
             log.warn("执行时间为 空!");
         }
         triggerSet.add(trigger);
-        quartzScheduler.scheduleJob(jobDetail, triggerSet, true);
+        quartzSchedulerAlarm.scheduleJob(jobDetail, triggerSet, true);
 
         return "success";
     }
@@ -58,9 +58,9 @@ public class AlarmQuartzServiceImpl {
      */
     public synchronized String deleteExpireJob(String jobName, String jobGroupName) throws SchedulerException {
         JobKey jobKey = new JobKey(jobName, jobGroupName);
-        boolean checkExists = quartzScheduler.checkExists(jobKey);
+        boolean checkExists = quartzSchedulerAlarm.checkExists(jobKey);
         if (checkExists) {
-            quartzScheduler.deleteJob(jobKey);
+            quartzSchedulerAlarm.deleteJob(jobKey);
         }
 
         return "success!";

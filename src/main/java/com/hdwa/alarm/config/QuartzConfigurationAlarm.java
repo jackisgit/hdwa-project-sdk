@@ -18,28 +18,28 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * 定时任务配置
+ * 报警定时任务配置
  */
 @Configuration
 @EnableScheduling
-public class QuartzConfiguration {
+public class QuartzConfigurationAlarm {
     /**
      * 配置任务工厂实例
      */
     @Bean
-    public JobFactory jobFactory(ApplicationContext applicationContext) {
+    public JobFactory jobFactory1(ApplicationContext applicationContext) {
         AutowiringSpringBeanJobFactory jobFactory = new AutowiringSpringBeanJobFactory();
         jobFactory.setApplicationContext(applicationContext);
         return jobFactory;
     }
 
-    @Bean(name = "quartzScheduler")
-    public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource, JobFactory jobFactory,
-                                                     Properties quartzProperties) throws IOException {
+    @Bean(name = "quartzScheduler-alarm")
+    public SchedulerFactoryBean schedulerFactoryBean1(DataSource dataSource, JobFactory jobFactory1,
+                                                      Properties quartzProperties1) {
         SchedulerFactoryBean factory = new SchedulerFactoryBean();
         // 将spring管理job自定义工厂交由调度器维护
-        factory.setJobFactory(jobFactory);
-        factory.setSchedulerName("quartzScheduler");
+        factory.setJobFactory(jobFactory1);
+        factory.setSchedulerName("quartzScheduler-alarm");
         factory.setDataSource(dataSource);
         // 设置覆盖已存在的任务
         factory.setOverwriteExistingJobs(true);
@@ -47,16 +47,16 @@ public class QuartzConfiguration {
         factory.setStartupDelay(20);
         // 设置调度器自动运行
         factory.setAutoStartup(true);
-        // factory.setConfigLocation(new ClassPathResource("/quartz.properties"));
-        factory.setQuartzProperties(quartzProperties);
+        // factory.setConfigLocation(new ClassPathResource("/quartz-alarm.properties"));
+        factory.setQuartzProperties(quartzProperties1);
 
         return factory;
     }
 
     @Bean
-    public Properties quartzProperties() throws IOException {
+    public Properties quartzProperties1() throws IOException {
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
-        propertiesFactoryBean.setLocation(new ClassPathResource("/quartz.properties"));
+        propertiesFactoryBean.setLocation(new ClassPathResource("/quartz-alarm.properties"));
         // 在quartz.properties中的属性被读取并注入后再初始化对象
         propertiesFactoryBean.afterPropertiesSet();
 

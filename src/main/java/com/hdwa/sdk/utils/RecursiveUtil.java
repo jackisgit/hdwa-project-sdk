@@ -133,7 +133,7 @@ public class RecursiveUtil {
             return;
         }
         // String svPath = RecursiveUtil.getDataPath(sdo);
-        // log.info("refreshObject" + "\t" + svPath);
+        // log.warn("refreshObject" + "\t" + svPath);
 
         int depthInner = depth == -1 ? -1 : (depth > 0 ? depth - 1 : 0);
         for (String key : sdo.keySet()) {
@@ -150,7 +150,7 @@ public class RecursiveUtil {
             return;
         }
         // String svPath = RecursiveUtil.getDataPath(sdv);
-        // log.info("refreshValue" + "\t" + svPath);
+        // log.warn("refreshValue" + "\t" + svPath);
 
         int curr_depth = depth;
         if (use_offset_level && sdv.relProperty != null && curr_depth != -1) {
@@ -302,7 +302,7 @@ public class RecursiveUtil {
                     Date currTime = new Date();
                     if (sv.lastComputeTime == null || currTime.getTime() - sv.lastComputeTime.getTime() > 1000L) {
                         // String svPath = RecursiveUtil.getDataPath(sv);
-                        // log.info("computeProperty" + "\t" + svPath);
+                        // log.warn("computeProperty" + "\t" + svPath);
                         CalculateApiJsonUtil.calculateProperty(Repository, sv);
                     }
                 } finally {
