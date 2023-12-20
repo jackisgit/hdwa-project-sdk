@@ -12,17 +12,25 @@ url:
 spring:
   #  redis
   redis:
-    host: 10.199.205.81
-    port: 6379
-    password: hdwaredis0912jd
-    timeout: 10000000
-    database: 6
+    #    sdk
+    primary:
+      host: 10.199.205.81
+      port: 6379
+      password: hdwaredis0912jd
+      timeout: 10000000
+      database: 6
+    #      control
+    secondary:
+      host: 10.199.205.79
+      port: 16379
 
   # kafka
   kafka:
     bootstrap-servers: 10.199.205.61:9092
     alarm:
-      bootstrap-servers: 10.199.205.61:9092
+      bootstrap-servers: ${spring.kafka.bootstrap-servers}
+    control:
+      bootstrap-servers: ${spring.kafka.bootstrap-servers}
 
   # mysql
   datasource:

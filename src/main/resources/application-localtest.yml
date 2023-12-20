@@ -10,17 +10,25 @@ url:
 
 spring:
   redis:
-    sentinel:
-      master: mymaster
-      nodes: 10.199.87.62:26379,10.199.87.70:26379,10.199.87.78:26379
-    password: hdwaredis0912
-    timeout: 10000000
-    database: 6
+    #    sdk
+    primary:
+      sentinel:
+        master: mymaster
+        nodes: 10.199.87.62:26379,10.199.87.70:26379,10.199.87.78:26379
+      password: hdwaredis0912
+      timeout: 10000000
+      database: 6
+    #      control
+    secondary:
+      host: 10.8.14.155
+      port: 16379
 
   kafka:
     bootstrapServers: 10.199.87.63:19092,10.199.87.79:19092,10.199.87.85:19092
     alarm:
-      bootstrapServers: 10.199.87.63:19092,10.199.87.79:19092,10.199.87.85:19092
+      bootstrapServers: ${spring.kafka.bootstrap-servers}
+    control:
+      bootstrapServers: ${spring.kafka.bootstrap-servers}
 
   datasource:
     url: jdbc:mysql://10.8.14.155:3306/huiyun_new?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false
