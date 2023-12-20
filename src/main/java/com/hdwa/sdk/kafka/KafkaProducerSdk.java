@@ -16,16 +16,16 @@ import org.springframework.util.concurrent.SuccessCallback;
  */
 @Slf4j
 @Component
-public class KafkaProducer {
+public class KafkaProducerSdk {
 
     @Autowired
-    private KafkaTemplate kafkaTemplate;
+    private KafkaTemplate kafkaTemplateSdk;
 
 
     public <K, T> void sendMessage(T message) {
         String topic = ((MessageDto) message).getTopic();
         log.warn("send kafka message,topic:{},message:{}", topic, message);
-        ListenableFuture<SendResult<K, T>> listenableFuture = kafkaTemplate.send(topic, message);
+        ListenableFuture<SendResult<K, T>> listenableFuture = kafkaTemplateSdk.send(topic, message);
 
         //成功回调
         SuccessCallback<SendResult<K, T>> successCallback = result -> log.warn("发送成功,topic:{},message:{}", topic, message);

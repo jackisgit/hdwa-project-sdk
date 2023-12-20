@@ -26,11 +26,12 @@ spring:
 
   # kafka
   kafka:
-    bootstrap-servers: 10.199.205.61:9092
+    sdk:
+      bootstrap-servers: 10.199.205.61:9092
     alarm:
-      bootstrap-servers: ${spring.kafka.bootstrap-servers}
+      bootstrap-servers: ${spring.kafka.sdk.bootstrap-servers}
     control:
-      bootstrap-servers: ${spring.kafka.bootstrap-servers}
+      bootstrap-servers: ${spring.kafka.sdk.bootstrap-servers}
 
   # mysql
   datasource:

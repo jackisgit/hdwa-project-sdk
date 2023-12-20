@@ -51,7 +51,7 @@ public class RedisSdkConfig {
         jedisConnectionFactory.setPort(redisProperties.getPort());
         jedisConnectionFactory.setHostName(redisProperties.getHost());
         jedisConnectionFactory.setDatabase(redisProperties.getDatabase());
-        jedisConnectionFactory.setTimeout(redisProperties.getTimeout().getNano());
+        jedisConnectionFactory.setTimeout((int) redisProperties.getTimeout().getSeconds());
         jedisConnectionFactory.setPassword(redisProperties.getPassword());
         return jedisConnectionFactory;
     }

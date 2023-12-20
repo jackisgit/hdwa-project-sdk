@@ -17,44 +17,43 @@ import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.kafka.listener.ContainerProperties;
 
 @Configuration
-public class HuidaKafkaConfig {
+public class KafkaConfigAlarm {
 
     /**
-     * 读取惠达kafka配置
+     * 读取kafka配置
      * Primary注解表示默认以这个为准
      *
-     * @return 惠达kafka配置
+     * @return kafka配置
      */
-    @Primary
     @ConfigurationProperties(prefix = "spring.kafka.alarm")
     @Bean
-    public KafkaProperties huidaKafkaProperties() {
+    public KafkaProperties alarmKafkaProperties() {
         return new KafkaProperties();
     }
 
     /**
-     * 构建惠达kafka的生产者发送template
+     * 构建kafka的生产者发送template
      *
-     * @param huidaKafkaProperties 惠达kafka配置
-     * @return 惠达kafka的生产者发送template
+     * @param alarmKafkaProperties kafka配置
+     * @return kafka的生产者发送template
      */
-    @Bean("kafkaTemplate")
+    @Bean("kafkaTemplateAlarm")
     public KafkaTemplate<String, Object> kafkaTemplate(
-            @Autowired @Qualifier("huidaKafkaProperties") KafkaProperties huidaKafkaProperties) {
-        return new KafkaTemplate<>(huidaProducerFactory(huidaKafkaProperties));
+            @Autowired @Qualifier("alarmKafkaProperties") KafkaProperties alarmKafkaProperties) {
+        return new KafkaTemplate<>(alarmProducerFactory(alarmKafkaProperties));
     }
 
     /**
-     * 构建惠达kafka的消费者监听容器工厂
+     * 构建kafka的消费者监听容器工厂
      *
-     * @param huidaKafkaProperties 惠达kafka配置
-     * @return 惠达kafka的消费者监听容器工厂
+     * @param alarmKafkaProperties kafka配置
+     * @return kafka的消费者监听容器工厂
      */
     @Bean
     public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<Integer, String>>
-    huidaKafkaListenerContainerFactory(@Autowired @Qualifier("huidaKafkaProperties") KafkaProperties huidaKafkaProperties) {
+    alarmKafkaListenerContainerFactory(@Autowired @Qualifier("alarmKafkaProperties") KafkaProperties alarmKafkaProperties) {
         ConcurrentKafkaListenerContainerFactory<Integer, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(huidaConsumerFactory(huidaKafkaProperties));
+        factory.setConsumerFactory(alarmConsumerFactory(alarmKafkaProperties));
         factory.setBatchListener(true);
         factory.setConcurrency(1);
         factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
@@ -63,22 +62,22 @@ public class HuidaKafkaConfig {
     }
 
     /**
-     * 新建惠达kafka的消费者工厂
+     * 新建kafka的消费者工厂
      *
-     * @param huidaKafkaProperties 惠达kafka配置
-     * @return 惠达kafka的消费者工厂
+     * @param alarmKafkaProperties kafka配置
+     * @return kafka的消费者工厂
      */
-    private ConsumerFactory<? super Integer, ? super String> huidaConsumerFactory(KafkaProperties huidaKafkaProperties) {
-        return new DefaultKafkaConsumerFactory<>(huidaKafkaProperties.buildConsumerProperties());
+    private ConsumerFactory<? super Integer, ? super String> alarmConsumerFactory(KafkaProperties alarmKafkaProperties) {
+        return new DefaultKafkaConsumerFactory<>(alarmKafkaProperties.buildConsumerProperties());
     }
 
     /**
-     * 新建惠达kafka的生产者工厂
+     * 新建kafka的生产者工厂
      *
-     * @param huidaKafkaProperties 惠达kafka配置
-     * @return 惠达kafka的生产者工厂
+     * @param alarmKafkaProperties kafka配置
+     * @return kafka的生产者工厂
      */
-    private DefaultKafkaProducerFactory<String, Object> huidaProducerFactory(KafkaProperties huidaKafkaProperties) {
-        return new DefaultKafkaProducerFactory<>(huidaKafkaProperties.buildProducerProperties());
+    private DefaultKafkaProducerFactory<String, Object> alarmProducerFactory(KafkaProperties alarmKafkaProperties) {
+        return new DefaultKafkaProducerFactory<>(alarmKafkaProperties.buildProducerProperties());
     }
 }
