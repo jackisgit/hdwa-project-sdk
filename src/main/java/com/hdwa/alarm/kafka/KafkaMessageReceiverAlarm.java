@@ -20,16 +20,16 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-@Configuration
-@ConditionalOnProperty(prefix = "spring.kafka.alarm", name = "enable", havingValue = "true")
 @Slf4j
-public class KafkaMessageReceiver {
+@Configuration
+public class KafkaMessageReceiverAlarm {
 
     @Resource
     private ZktAlarmRecordMapper zktAlarmRecordMapper;
@@ -40,7 +40,7 @@ public class KafkaMessageReceiver {
      * listenerContainerFactory设置了批量拉取消息，因此参数是List<ConsumerRecord<Integer, String>>，否则是ConsumerRecord
      */
     @KafkaListener(
-            containerFactory = "huidaKafkaListenerContainerFactory",
+            containerFactory = "alarmKafkaListenerContainerFactory",
             topics = "${spring.kafka.alarm.consumer.alarm-topic}",
             groupId = "${spring.kafka.alarm.consumer.alarm-group-id}")
     public void registryReceiver(List<ConsumerRecord<Integer, String>> record, Acknowledgment ack) {

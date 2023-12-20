@@ -6,7 +6,10 @@ import com.hdwa.sdk.service.LoadDataMainService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,8 +18,8 @@ import org.springframework.stereotype.Component;
  * kafka消费
  */
 @Slf4j
-@Component
-public class KafkaConsumer {
+@Configuration
+public class KafkaMessageReceiverSdk {
 
     private static final String projectId;
 
@@ -30,8 +33,8 @@ public class KafkaConsumer {
     /**
      * @Description 监听云端消息
      */
-    @KafkaListener(topics = {"dmpToSdk"}, groupId = "${spring.kafka.consumer.properties.group.id}")
-    public void receiveSsMsg(ConsumerRecord<String, String> record) {
+    @KafkaListener(topics = "${spring.kafka.sdk.consumer.properties.topic}", containerFactory = "sdkKafkaListenerContainerFactory", groupId = "${spring.kafka.sdk.consumer.properties.group.id}")
+    public void receiveSsMsg(ConsumerRecord<String, String> record, Acknowledgment ack) {
         MessageDto msg = JSONObject.parseObject(record.value(), MessageDto.class);
         if (projectId.equals(msg.getProjectId())) {
             log.warn("===============================开始消费DMP消息：{}", record.value());
@@ -62,6 +65,8 @@ public class KafkaConsumer {
                 log.error("===============================错误消息类型：" + msg.getMsgType() + "============================");
             }
         }
+
+        ack.acknowledge();
     }
 
 }
