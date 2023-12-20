@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class TokenService {
 
     @Autowired
-    private RedisTemplate<String, String> redisTemplate1;
+    private RedisTemplate<String, String> primaryRedisTemplate;
 
     @Value("${url.monitor}")
     private String monitorUrl;
@@ -33,7 +33,7 @@ public class TokenService {
     public boolean verifyToken(String token) {
         String redisKey = BaseDecConstant.TOKEN + token;
         //先去redis查询token有效标识是否存在
-        if (!Boolean.TRUE.equals(redisTemplate1.hasKey(redisKey))) {
+        if (!Boolean.TRUE.equals(primaryRedisTemplate.hasKey(redisKey))) {
             //验证token
             String res;
             try {
@@ -43,7 +43,7 @@ public class TokenService {
             }
             //验证通过存储到redis，设置过期时间
             if (BaseDecConstant.OK.equals(res)) {
-                redisTemplate1.opsForValue().set(redisKey, token, BaseDecConstant.TOKEN_TIME_OUT, TimeUnit.SECONDS);
+                primaryRedisTemplate.opsForValue().set(redisKey, token, BaseDecConstant.TOKEN_TIME_OUT, TimeUnit.SECONDS);
                 return true;
             } else {
                 return false;
