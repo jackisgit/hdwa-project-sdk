@@ -63,7 +63,7 @@ public class KafkaMessageReceiverAlarm {
 
     private void handlerMsg(NettyMessage<?> msg) {
         if (msg.getOpCode() == 7) {
-            log.warn("--报警定义新增或更新--{}", msg);
+            log.debug("--报警定义新增或更新--{}", msg);
             NettyMessage<AlarmDefineVO> AlarmDefineMessage = JSONObject.parseObject(msg.toString(), new TypeReference<NettyMessage<AlarmDefineVO>>() {
             });
             List<AlarmDefineVO> definesList = AlarmDefineMessage.getContent();
@@ -71,7 +71,7 @@ public class KafkaMessageReceiverAlarm {
                 AlarmDefineUtil.listSomeAlarmDefine(definesList);
             }
         } else if (msg.getOpCode() == 8) {
-            log.warn("-----报警记录id推送----[{}]", msg);
+            log.debug("-----报警记录id推送----[{}]", msg);
             List<?> content = msg.getContent();
             if (CollectionUtil.isNotEmpty(content)) {
                 JSONObject parseObject = JSONObject.parseObject(JSONObject.toJSONString(content.get(0)));

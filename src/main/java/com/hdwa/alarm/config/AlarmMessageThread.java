@@ -24,7 +24,7 @@ public class AlarmMessageThread implements Runnable {
             Thread.sleep(20000);
             while (true) {
                 ExpireAlarmMessageVO expireAlarmMessage = ExpireAlarmQueue.getExpireAlarmMessageQueue().consume();
-                log.warn("剩余过期消息总数:{}", ExpireAlarmQueue.getExpireAlarmMessageQueue().size());
+                log.debug("剩余过期消息总数:{}", ExpireAlarmQueue.getExpireAlarmMessageQueue().size());
                 if ("1".equals(expireAlarmMessage.getType())) {
                     alarmQuartzService.addExpireJob(expireAlarmMessage.getStartTime(), expireAlarmMessage.getJobName(), expireAlarmMessage.getJobGroupName(), expireAlarmMessage.getJobDataMap());
                 } else if ("2".equals(expireAlarmMessage.getType())) {
