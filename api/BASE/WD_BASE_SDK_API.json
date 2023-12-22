@@ -36882,7 +36882,7 @@
                             "readLevel":"1",
                             "filterRule":"",
                             "customObject":null,
-                            "staticValue":"楼控控制模块",
+                            "staticValue":"DDC",
                             "offsetLevel":"0",
                             "queryAttached":[
                             ],
@@ -95396,7 +95396,7 @@
                                     "readLevel":"1",
                                     "filterRule":"",
                                     "customObject":null,
-                                    "staticValue":"楼控控制模块",
+                                    "staticValue":"DDC",
                                     "offsetLevel":"0",
                                     "queryAttached":[
                                     ],
@@ -95409,7 +95409,7 @@
                                   {
                                     "propertyName":"清单",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=DDC'设备类型'名称=楼控控制模块'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"}}}    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=DDC'设备类型'名称=DDC'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"}}}    }}}",
                                     "readLevel":"1",
                                     "filterRule":"{\"QueryType\": \"select\",\"Criteria\": {\"LogicOperator\": \"and\",\"Criterias\": [        {\"状态\": {\"ref\": \"ancestor_1'状态\"},\"onlineStatus\": {\"ref\": \"ancestor_1'onlineStatus\"}        },        {\"LogicOperator\": \"or\",\"Criterias\": [                {\"localId\": {\"contain\": {\"ref\": \"ancestor_1'搜索关键字\"            }                    }                },                {\"localName\": {\"contain\": {\"ref\": \"ancestor_1'搜索关键字\"            }                    }                }            ]        }    ]}}",
                                     "customObject":null,
@@ -164185,7 +164185,7 @@
                         "customObject":{
                           "propertyList":[
                             {
-                              "propertyName":"楼控控制模块",
+                              "propertyName":"DDC",
                               "allowPass":"1",
                               "querySql":null,
                               "readLevel":"0",
