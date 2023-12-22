@@ -50,13 +50,13 @@ public class KafkaProducerAlarm {
             @Override
             public void onFailure(Throwable throwable) {
                 //发送失败的处理
-                log.warn(topicEdgeAlarm + " - 边缘端 发送消息失败：" + throwable.getMessage());
+                log.error(topicEdgeAlarm + " - 边缘端 发送消息失败：" + throwable.getMessage());
             }
 
             @Override
             public void onSuccess(SendResult<String, Object> stringObjectSendResult) {
                 //成功的处理
-                log.warn(topicEdgeAlarm + " - 边缘端 发送消息成功：" + stringObjectSendResult.toString());
+                log.debug(topicEdgeAlarm + " - 边缘端 发送消息成功：" + stringObjectSendResult.toString());
             }
         });
     }

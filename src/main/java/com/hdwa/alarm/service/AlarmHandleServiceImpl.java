@@ -38,9 +38,6 @@ import java.util.*;
 public class AlarmHandleServiceImpl {
 
     @Resource
-    ZktAlarmRecordServiceImpl zktAlarmRecordService;
-
-    @Resource
     KafkaProducerAlarm kafkaProducerAlarm;
 
     @Resource
@@ -108,9 +105,9 @@ public class AlarmHandleServiceImpl {
                     Expression endExp = AviatorEvaluator.compile(end, true);
                     Boolean triggerResult = (Boolean) triggerExp.execute(paramMap);
                     Boolean endResult = (Boolean) endExp.execute(paramMap);
-                    log.warn("triggerResult：[{}],endResult：[{}]", triggerResult, endResult);
+                    log.debug("triggerResult：[{}],endResult：[{}]", triggerResult, endResult);
                     if (triggerResult && endResult) {
-                        log.warn("报警触发条件和报警恢复条件同时满足，请检查，报警定义详情【{}】", alarmDefine);
+                        log.debug("报警触发条件和报警恢复条件同时满足，请检查，报警定义详情【{}】", alarmDefine);
                     }
                     //获取当前报警状态
                     AlarmStateVO alarmState = AlarmInfoCache.getAlarmState(defineId);
@@ -132,25 +129,25 @@ public class AlarmHandleServiceImpl {
                     }
                     //报警产生值满足（这里的满足不考虑报警持续时间）
                     if (triggerResult) {
-                        log.warn("有一条满足报警条件：{}，-----{}----{}", defineId, paramMap, alarmDefine.getCondition());
+                        log.debug("有一条满足报警条件：{}，-----{}----{}", defineId, paramMap, alarmDefine.getCondition());
                         //屏蔽报警
                         if (alarmDefine.getOpen() == 0) {
-                            log.warn("报警定义ID为：[{}]已经屏蔽", defineId);
+                            log.debug("报警定义ID为：[{}]已经屏蔽", defineId);
                             continue;
                         }
                         if (AlarmInfoCache.isolationSystemList.contains(alarmDefine.getSystemCode())) {
-                            log.warn("报警定义ID为：[{}]的系统[{}]已经隔离，不产生报警", defineId, alarmDefine.getSystemCode());
+                            log.debug("报警定义ID为：[{}]的系统[{}]已经隔离，不产生报警", defineId, alarmDefine.getSystemCode());
                             continue;
                         }
                         //报警的时候不考虑报警恢复，因为同时报警和报警恢复是不应该出现的
                         handlerNowDataAlarm(alarmDefine, alarmState, dateTime, condition, defineId, paramMap, meterId, funcId, value);
                     } else {
-                        log.warn("不满足报警条件：{}，{}----{}", defineId, paramMap, alarmDefine.getCondition());
+                        log.debug("不满足报警条件：{}，{}----{}", defineId, paramMap, alarmDefine.getCondition());
                         //当前数据正常
                         handlerNowDataNormal(alarmDefine, dateTime, condition, defineId, endResult, alarmState, paramMap, meterId, funcId, value);
                     }
                 } else {
-                    log.warn("部分信息点没有数值:[{}]", codeDetail);
+                    log.debug("部分信息点没有数值:[{}]", codeDetail);
                 }
             }
         }
@@ -183,7 +180,7 @@ public class AlarmHandleServiceImpl {
             int uphold = condition.getEndUphold();
             //超过报警恢复设置的持续时间
             if (com.hdwa.alarm.util.DateUtil.betweenTwoTimeSecond(endTime, dateTime) >= uphold) {
-                log.warn("产生一条报警恢复消息：[{}]>[{}]", com.hdwa.alarm.util.DateUtil.betweenTwoTimeSecond(endTime, dateTime), uphold);
+                log.debug("产生一条报警恢复消息：[{}]>[{}]", com.hdwa.alarm.util.DateUtil.betweenTwoTimeSecond(endTime, dateTime), uphold);
                 NettyMessage<AlarmRecordVO> nettyMessage = new NettyMessage<>("", 6, CommonConst.projectId, CommonConst.groupCode);
                 LambdaQueryWrapper<ZktAlarmRecord> queryWrapper = new LambdaQueryWrapper<>();
                 queryWrapper.eq(ZktAlarmRecord::getId, AlarmInfoCache.getAlarmDefineId(alarmDefine));
@@ -319,7 +316,7 @@ public class AlarmHandleServiceImpl {
         }
 
         if (timeSecond >= condition.getTriggerUphold()) {
-            log.warn("大于持续时间了，产生一条报警：[{}]>[{}]", timeSecond, condition.getTriggerUphold());
+            log.debug("大于持续时间了，产生一条报警：[{}]>[{}]", timeSecond, condition.getTriggerUphold());
             AlarmRecordVO alarmRecord = AlarmRecordVO.builder()
                     .objType(alarmDefine.getObjType())
                     .concern(alarmDefine.getConcern())
