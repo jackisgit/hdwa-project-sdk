@@ -43,4 +43,14 @@ public class PathApiControl {
         return pathApiService.postPage(param);
     }
 
+    /**
+     * 路径查询数据筛选数据导出
+     *
+     * @param param
+     */
+    @PostMapping(path = {"/postExport"})
+    public void postExport(@RequestBody PathApiParam param) {
+        pathApiService.postExport(param);
+    }
+
 }

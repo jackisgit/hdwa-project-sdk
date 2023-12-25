@@ -28,6 +28,11 @@ public class PathApiParam {
      */
     private JSONArray path;
 
+    /**
+     * 点位路径
+     */
+    private JSONArray pointPath;
+
 
     /**
      * 项目id
