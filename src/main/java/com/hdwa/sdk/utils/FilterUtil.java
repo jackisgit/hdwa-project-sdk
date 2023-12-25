@@ -35,7 +35,7 @@ public class FilterUtil {
             }
             DataValue sdv = new DataValue(null, null, null, null);
             sdv.valueArray = new DataSet(false);
-            sdv.valueArray.set = new CopyOnWriteArrayList<DataObject>();
+            sdv.valueArray.set = new CopyOnWriteArrayList<>();
             for (int i = pageSize * pageIndex; i < pageSize * (pageIndex + 1) && i < array.size(); i++) {
                 sdv.valueArray.set.add(array.get(i));
             }
