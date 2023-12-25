@@ -1,5 +1,6 @@
 package com.hdwa.sdk.constant;
 
+import com.alibaba.fastjson.JSONArray;
 import com.hdwa.sdk.utils.CustomThreadFactory;
 
 import java.time.format.DateTimeFormatter;
@@ -902,4 +903,9 @@ public class BaseDecConstant {
             new LinkedBlockingQueue<>(),
             new CustomThreadFactory("alarm-threadPool")
     );
+
+    /**
+     * 导出实时数据基础表头
+     */
+    public static final JSONArray BASE_HEADER = JSONArray.parseArray("[{\"name\":\"序号\",\"code\":\"number\"},{\"name\":\"设备名称\",\"code\":\"localName\"},{\"name\":\"设备编码\",\"code\":\"localId\"},{\"name\":\"楼栋/楼层\",\"code\":\"buildingName\"},{\"name\":\"当前报警状态\",\"code\":\"报警处理状态\"}]");
 }
