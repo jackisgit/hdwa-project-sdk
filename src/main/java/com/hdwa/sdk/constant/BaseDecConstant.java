@@ -898,14 +898,10 @@ public class BaseDecConstant {
     /**
      * 报警线程
      */
-    public static ThreadPoolExecutor EXECUTOR = new ThreadPoolExecutor(4, 8, 60,
-            TimeUnit.SECONDS,
-            new LinkedBlockingQueue<>(),
-            new CustomThreadFactory("alarm-threadPool")
-    );
+    public static ThreadPoolExecutor EXECUTOR = new ThreadPoolExecutor(4, 8, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), new CustomThreadFactory("alarm-threadPool"));
 
     /**
      * 导出实时数据基础表头
      */
-    public static final JSONArray BASE_HEADER = JSONArray.parseArray("[{\"name\":\"序号\",\"code\":\"number\"},{\"name\":\"设备名称\",\"code\":\"localName\"},{\"name\":\"设备编码\",\"code\":\"localId\"},{\"name\":\"楼栋/楼层\",\"code\":\"buildingName\"},{\"name\":\"当前报警状态\",\"code\":\"报警处理状态\"}]");
+    public static final JSONArray BASE_HEADER = JSONArray.parseArray("[{\"name\":\"序号\",\"code\":\"number\",\"dataType\":\"int\"},{\"name\":\"设备名称\",\"code\":\"localName\",\"dataType\":\"String\"},{\"name\":\"设备编码\",\"code\":\"localId\",\"dataType\":\"String\"},{\"name\":\"楼栋/楼层\",\"code\":\"buildingName\",\"dataType\":\"String\"},{\"name\":\"当前报警状态\",\"code\":\"报警数量\",\"dataType\":\"ENUM\",\"dataSource\":[{\"code\":\"0\",\"name\":\"正常\"},{\"code\":\"1\",\"name\":\"报警\"}]}]");
 }
