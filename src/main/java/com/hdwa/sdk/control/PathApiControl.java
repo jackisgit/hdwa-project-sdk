@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @author abao
  * @since 2023/9/6
@@ -19,6 +22,12 @@ public class PathApiControl {
 
     @Autowired
     private PathApiService pathApiService;
+
+    @Autowired
+    private HttpServletRequest request;
+
+    @Autowired
+    private HttpServletResponse response;
 
     /**
      * 路径查询接口
@@ -50,7 +59,7 @@ public class PathApiControl {
      */
     @PostMapping(path = {"/postExport"})
     public void postExport(@RequestBody PathApiParam param) {
-        pathApiService.postExport(param);
+        pathApiService.postExport(param, request, response);
     }
 
 }

@@ -24,6 +24,11 @@ public class PathApiParam {
     private String projectId;
 
     /**
+     * 设备类型名称
+     */
+    private String className;
+
+    /**
      * 接口路径
      */
     private JSONArray path;
