@@ -103,7 +103,9 @@ public class PathApiService {
             // 创建一个工作表
             Sheet sheet = workbook.createSheet(param.getClassName());
             Row headerRow = sheet.createRow(0);
-            setTitle(pointArray, headerRow);
+            //设置行高
+            headerRow.setHeightInPoints(40);
+            setTitle(pointArray, headerRow, workbook, sheet);
             setRow(jsonDataArray, sheet, pointArray, workbook);
 
             // 获取当前时间
@@ -135,13 +137,26 @@ public class PathApiService {
      * @param pointArray
      * @param headerRow
      */
-    public void setTitle(JSONArray pointArray, Row headerRow) {
+    public void setTitle(JSONArray pointArray, Row headerRow, Workbook workbook, Sheet sheet) {
         int colNum = 0;
-        for (Object o : pointArray) {
-            JSONObject jsonObject = (JSONObject) o;
+        for (int i = 0; i < pointArray.size(); i++) {
+            //设置列宽
+            sheet.setColumnWidth(i, 25 * 256);
+            JSONObject jsonObject = (JSONObject) pointArray.get(i);
             String columnName = (String) jsonObject.get(BaseDecConstant.NAME);
             Cell headerCell = headerRow.createCell(colNum);
             headerCell.setCellValue(columnName);
+            // 创建样式
+            CellStyle titleCellStyle = workbook.createCellStyle();
+            // 设置样式属性，例如字体、颜色、对齐等
+            titleCellStyle.setAlignment(HorizontalAlignment.CENTER);
+            titleCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+            Font titleFont = workbook.createFont();
+            titleFont.setBold(true);
+            titleFont.setFontHeightInPoints((short) 16);
+            titleCellStyle.setFont(titleFont);
+            // 应用样式
+            headerCell.setCellStyle(titleCellStyle);
             colNum++;
         }
     }
@@ -201,9 +216,19 @@ public class PathApiService {
                         } else {
                             dataCell.setCellValue(value.intValue());
                         }
-
                     }
                 }
+                // 创建样式
+                CellStyle titleCellStyle = workbook.createCellStyle();
+                // 设置样式属性，例如字体、颜色、对齐等
+                titleCellStyle.setAlignment(HorizontalAlignment.CENTER);
+                titleCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+                //字体
+                Font titleFont = workbook.createFont();
+                titleFont.setFontHeightInPoints((short) 12);
+                titleCellStyle.setFont(titleFont);
+                // 应用样式
+                dataCell.setCellStyle(titleCellStyle);
             }
         }
     }
