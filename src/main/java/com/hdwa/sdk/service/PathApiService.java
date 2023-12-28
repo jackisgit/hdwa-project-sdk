@@ -14,11 +14,10 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileOutputStream;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * @author abao
@@ -80,7 +79,7 @@ public class PathApiService {
      * @param param
      * @return
      */
-    public void postExport(PathApiParam param, HttpServletRequest request, HttpServletResponse response) {
+    public void postExport(PathApiParam param, HttpServletResponse response) {
         try {
             RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
             if (repository == null) {
@@ -110,22 +109,24 @@ public class PathApiService {
 
             // 获取当前时间
             LocalDateTime currentTime = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
             // 设置响应头
-            String fileName = param.getClassName() + "-" + currentTime.format(formatter) + ".xlsx";
+            String fileName = param.getClassName() + "-" + currentTime.format(BaseDecConstant.DATE_TIME_FORMATTER) + ".xlsx";
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
             response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
 
-            // 获取输出流，将文件内容写入响应
-            try (FileOutputStream ignored = new FileOutputStream(fileName)) {
-                // 将工作簿写入输出流
-                //workbook.write(response.getOutputStream());
+            ServletOutputStream outputStream = response.getOutputStream();
+            // 将工作簿写入输出流
+            workbook.write(outputStream);
+            // 刷新和关闭输出流
+            outputStream.flush();
+            outputStream.close();
 
-                //下载到本地测试使用
+            //下载到本地测试使用
+           /* try (FileOutputStream ignored = new FileOutputStream(fileName)) {
                 workbook.write(ignored);
-            }
+            }*/
         } catch (Exception e) {
-            log.error("数据筛选数据导出出现异常：" + param.getPath(), e);
+            log.error("筛选数据导出出现异常：" + param.getPath(), e);
         }
 
     }
@@ -172,14 +173,14 @@ public class PathApiService {
         // 遍历数据行 JSONArray
         for (int i = 0; i < jsonDataArray.size(); i++) {
             JSONObject jsonDataObject = (JSONObject) jsonDataArray.get(i);
-            jsonDataObject.put("number", i + 1);
+            jsonDataObject.put(BaseDecConstant.NUMBER, i + 1);
             // 创建数据行
             Row dataRow = sheet.createRow(i + 1);
             // 遍历表头行的 code 值，匹配数据行的属性名
             for (int j = 0; j < pointArray.size(); j++) {
                 JSONObject headerObject = (JSONObject) pointArray.get(j);
-                String codeInHeader = headerObject.getString("code");
-                String dataType = headerObject.getString("dataType");
+                String codeInHeader = headerObject.getString(BaseDecConstant.CODE);
+                String dataType = headerObject.getString(BaseDecConstant.DATA_TYPE);
                 // 根据表头中的 code 值在数据行中查找对应的数据
                 Object cellValue = jsonDataObject.get(codeInHeader);
                 // 创建数据单元格
@@ -187,20 +188,20 @@ public class PathApiService {
                 // 根据属性类型设置数据
                 if (cellValue instanceof String) {
                     //楼栋/楼层需要拼接
-                    if (codeInHeader.equals("buildingName")) {
-                        dataCell.setCellValue(cellValue + "/" + jsonDataObject.getString("floorName"));
+                    if (codeInHeader.equals(BaseDecConstant.BUILDING_NAME)) {
+                        dataCell.setCellValue(cellValue + "/" + jsonDataObject.getString(BaseDecConstant.FLOOR_NAME_2));
                     } else {
                         dataCell.setCellValue((String) cellValue);
                     }
                 } else if (cellValue instanceof Number) {
                     Number value = (Number) cellValue;
                     //点位是枚举类型需要回显示中文
-                    if (dataType.equals("BOOLEAN") || dataType.equals("ENUM")) {
-                        JSONArray dataSource = headerObject.getJSONArray("dataSource");
+                    if (dataType.equals(BaseDecConstant.BOOLEAN) || dataType.equals(BaseDecConstant.ENUM)) {
+                        JSONArray dataSource = headerObject.getJSONArray(BaseDecConstant.DATA_SOURCE);
                         for (Object dataSourceObj : dataSource) {
                             JSONObject dataSourceJObj = (JSONObject) dataSourceObj;
-                            if (dataSourceJObj.getIntValue("code") == (value.intValue())) {
-                                dataCell.setCellValue(dataSourceJObj.getString("name"));
+                            if (dataSourceJObj.getIntValue(BaseDecConstant.CODE) == (value.intValue())) {
+                                dataCell.setCellValue(dataSourceJObj.getString(BaseDecConstant.NAME));
                                 break;
                             }
                         }
