@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileOutputStream;
+import java.net.URLEncoder;
 import java.time.LocalDateTime;
 
 /**
@@ -112,7 +112,8 @@ public class PathApiService {
             // 设置响应头
             String fileName = param.getClassName() + "-" + currentTime.format(BaseDecConstant.DATE_TIME_FORMATTER) + ".xlsx";
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-            response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+            String encodedFileName = URLEncoder.encode(fileName, "UTF-8");
+            response.setHeader("Content-Disposition", "attachment; filename=" + encodedFileName);
 
             ServletOutputStream outputStream = response.getOutputStream();
             // 将工作簿写入输出流
@@ -120,11 +121,6 @@ public class PathApiService {
             // 刷新和关闭输出流
             outputStream.flush();
             outputStream.close();
-
-            //下载到本地测试使用
-           /* try (FileOutputStream ignored = new FileOutputStream(fileName)) {
-                workbook.write(ignored);
-            }*/
         } catch (Exception e) {
             log.error("筛选数据导出出现异常：" + param.getPath(), e);
         }
