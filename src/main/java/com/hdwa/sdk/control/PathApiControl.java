@@ -59,7 +59,7 @@ public class PathApiControl {
      */
     @PostMapping(path = {"/postExport"})
     public void postExport(@RequestBody PathApiParam param) {
-        pathApiService.postExport(param, request, response);
+        pathApiService.postExport(param, response);
     }
 
 }
