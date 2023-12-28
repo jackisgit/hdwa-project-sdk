@@ -215,9 +215,19 @@ public class BaseDecConstant {
     public static final String ALIAS = "别名";
 
     /**
-     * aliasName String
+     * "BOOLEAN" String
      */
-    public static final String ALIAS_NAME = "aliasName";
+    public static final String BOOLEAN ="BOOLEAN";
+
+    /**
+     * "ENUM" String
+     */
+    public static final String ENUM ="ENUM";
+
+    /**
+     * "number" String
+     */
+    public static final String NUMBER ="number";
 
     /**
      * pushType String
@@ -254,6 +264,10 @@ public class BaseDecConstant {
      * 楼层名称 String
      */
     public static final String FLOOR_NAME = "楼层名称";
+    /**
+     * floorName String
+     */
+    public static final String FLOOR_NAME_2 = "floorName";
     /**
      * 楼层数据 String
      */
@@ -403,6 +417,16 @@ public class BaseDecConstant {
      * code String
      */
     public static final String CODE = "code";
+
+    /**
+     * dataType String
+     */
+    public static final String DATA_TYPE = "dataType";
+
+    /**
+     * buildingName String
+     */
+    public static final String BUILDING_NAME = "buildingName";
 
 
     /**
