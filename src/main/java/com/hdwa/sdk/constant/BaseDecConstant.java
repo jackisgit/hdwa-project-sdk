@@ -217,17 +217,17 @@ public class BaseDecConstant {
     /**
      * "BOOLEAN" String
      */
-    public static final String BOOLEAN ="BOOLEAN";
+    public static final String BOOLEAN = "BOOLEAN";
 
     /**
      * "ENUM" String
      */
-    public static final String ENUM ="ENUM";
+    public static final String ENUM = "ENUM";
 
     /**
      * "number" String
      */
-    public static final String NUMBER ="number";
+    public static final String NUMBER = "number";
 
     /**
      * pushType String
@@ -920,12 +920,11 @@ public class BaseDecConstant {
      */
     public static final String[] PARENT_PATH_ARRAY_2 = {"基础对象类型'设备", "基础对象'设备", "基础对象'品质", "基础对象'运营", "基础对象'安全", "基础对象'系统", "基础对象'逻辑编组", "场景数据'设备", "场景数据'品质", "场景数据'运营", "场景数据'安全"};
     /**
-     * 报警线程
-     */
-    public static ThreadPoolExecutor EXECUTOR = new ThreadPoolExecutor(4, 8, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), new CustomThreadFactory("alarm-threadPool"));
-
-    /**
      * 导出实时数据基础表头
      */
     public static final JSONArray BASE_HEADER = JSONArray.parseArray("[{\"name\":\"序号\",\"code\":\"number\",\"dataType\":\"int\"},{\"name\":\"设备名称\",\"code\":\"localName\",\"dataType\":\"String\"},{\"name\":\"设备编码\",\"code\":\"localId\",\"dataType\":\"String\"},{\"name\":\"楼栋/楼层\",\"code\":\"buildingName\",\"dataType\":\"String\"},{\"name\":\"当前报警状态\",\"code\":\"报警数量\",\"dataType\":\"ENUM\",\"dataSource\":[{\"code\":\"0\",\"name\":\"正常\"},{\"code\":\"1\",\"name\":\"报警\"}]}]");
+    /**
+     * 报警线程
+     */
+    public static ThreadPoolExecutor EXECUTOR = new ThreadPoolExecutor(4, 8, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), new CustomThreadFactory("alarm-threadPool"));
 }

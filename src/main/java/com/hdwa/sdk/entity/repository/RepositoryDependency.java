@@ -12,14 +12,13 @@ import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- *
+ * 依赖库
  */
 public class RepositoryDependency {
     public Map<DataValue, Map<DataValue, Boolean>> sdv2sdv = new HashMap<>(16);
     public Map<DataValue, Map<DataSet, Map<String, Boolean>>> sdv2SetColumn = new HashMap<>(16);
     public Map<DataSet, Map<DataValue, Boolean>> SetRow2sdv = new HashMap<>(16);
     public Map<DataSet, Map<String, Map<DataValue, Boolean>>> SetColumn2sdv = new HashMap<>(16);
-
     public Map<DataObject, CopyOnWriteArrayList<DataObject>> sdv2Children = new HashMap<>(16);
 
     public void clear() {
@@ -54,7 +53,6 @@ public class RepositoryDependency {
             sdv2sdv.putIfAbsent(key, new HashMap<>(16));
             sdv2sdv.get(key).putIfAbsent(sdv, true);
         }
-        // 考虑附加属性
         if (sdv.parentObjectData.parentArrayData != null && sdv.parentObjectData.parentArrayData.relProperty.propertyValueType.equals("query")) {
             sdv2SetColumn.putIfAbsent(sdv, new HashMap<>(16));
             sdv2SetColumn.get(sdv).putIfAbsent(sdv.parentObjectData.parentArrayData.valueArray, new HashMap<>(16));
@@ -62,7 +60,7 @@ public class RepositoryDependency {
         }
     }
 
-    public JSONObject get_before(RepositoryBase Repository, DataValue sdv) throws Exception {
+    public JSONObject get_before(RepositoryBase Repository, DataValue sdv) {
         JSONObject result = new JSONObject();
         InfluenceFactor other = sdv.rowFactor;
         {
@@ -105,7 +103,7 @@ public class RepositoryDependency {
         return result;
     }
 
-    public void get_after_value_array(DataSet value_array, List<DataValue> sdvAffectList, JSONObject result) throws Exception {
+    public void get_after_value_array(DataSet value_array, List<DataValue> sdvAffectList, JSONObject result) {
         if (SetRow2sdv.containsKey(value_array)) {
             Map<DataValue, Boolean> afterList = SetRow2sdv.get(value_array);
             JSONArray resultItem = new JSONArray();
@@ -134,9 +132,8 @@ public class RepositoryDependency {
         }
     }
 
-    public void get_after_value_prim(RepositoryBase Repository, DataValue sdv, List<DataValue> sdvAffectList, JSONObject result)
-            throws Exception {
-        List<String> sdvList = new CopyOnWriteArrayList<String>();
+    public void get_after_value_prim(DataValue sdv, List<DataValue> sdvAffectList, JSONObject result) {
+        List<String> sdvList = new CopyOnWriteArrayList<>();
         if (sdv2sdv.containsKey(sdv)) {
             Map<DataValue, Boolean> afterList = sdv2sdv.get(sdv);
             for (DataValue sdvInner : afterList.keySet()) {
@@ -157,7 +154,7 @@ public class RepositoryDependency {
         }
         // 根据上级object间接关联
         if (sdv.parentObjectData != null) {
-            Queue<DataObject> queue = new LinkedList<DataObject>();
+            Queue<DataObject> queue = new LinkedList<>();
             queue.offer(sdv.parentObjectData);
             while (queue.size() > 0) {
                 DataObject sdoTmp = queue.poll();
@@ -212,13 +209,13 @@ public class RepositoryDependency {
 
     }
 
-    public void get_after(RepositoryBase Repository, DataValue sdv, List<DataValue> sdvAffectList) throws Exception {
+    public void get_after(DataValue sdv, List<DataValue> sdvAffectList) {
         JSONObject result = new JSONObject();
 
         if (sdv.valueArray != null) {
             this.get_after_value_array(sdv.valueArray, sdvAffectList, result);
         } else if (sdv.valuePrim != null) {
-            this.get_after_value_prim(Repository, sdv, sdvAffectList, result);
+            this.get_after_value_prim(sdv, sdvAffectList, result);
         }
     }
 }

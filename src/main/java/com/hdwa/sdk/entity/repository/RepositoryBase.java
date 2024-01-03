@@ -176,7 +176,7 @@ public class RepositoryBase {
         int add_count = 0;
         try {
             List<DataValue> sdvAffectList = new CopyOnWriteArrayList<>();
-            this.dependency.get_after(this, sdv, sdvAffectList);
+            this.dependency.get_after(sdv, sdvAffectList);
             for (DataValue sdvAffect : sdvAffectList) {
                 this.WaitCompute.offer(new WaitItem(sdvAffect, new Date()));
                 add_count++;

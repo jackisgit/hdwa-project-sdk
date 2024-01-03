@@ -18,15 +18,15 @@ public class UrlConstant {
     public static final String AUTHORIZATION = "Authorization";
 
     /**
-     * 测试token
-     */
-    public static final String TOKEN = "9be2851574aee0e310b093bff0e115188a3d020255fa57866cd0b8ca2eca140b.DS865SDFGVX5GN8GE8RDV2B4XB5D8B5";
-
-
-    /**
      * 类型定义数据 接口路径
      */
     public static final String LIST_CLASS_DEFINER_URL = "/openApi/listClassDefiner";
+
+
+    /**
+     * 接口数据路径
+     */
+    public static final String GET_CONFIG_API_URL = "/openApi/getConfigApi";
 
 
     /**
