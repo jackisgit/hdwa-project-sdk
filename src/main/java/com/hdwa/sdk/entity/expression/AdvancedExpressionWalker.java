@@ -1454,7 +1454,7 @@ public class AdvancedExpressionWalker extends TreeParser {
 
 
                     match(input, Token.UP, null);
-                    value = ValueObjectUtil.stringcompare("==", b);
+                    value = ValueObjectUtil.stringCompare("==", b);
 
                 }
                 break;
@@ -1472,7 +1472,7 @@ public class AdvancedExpressionWalker extends TreeParser {
 
 
                     match(input, Token.UP, null);
-                    value = ValueObjectUtil.stringcompare("!=", b);
+                    value = ValueObjectUtil.stringCompare("!=", b);
 
                 }
                 break;
@@ -1494,7 +1494,7 @@ public class AdvancedExpressionWalker extends TreeParser {
 
 
                     match(input, Token.UP, null);
-                    value = ValueObjectUtil.stringcompare("<", a, b);
+                    value = ValueObjectUtil.stringCompare("<", a, b);
 
                 }
                 break;
@@ -1516,7 +1516,7 @@ public class AdvancedExpressionWalker extends TreeParser {
 
 
                     match(input, Token.UP, null);
-                    value = ValueObjectUtil.stringcompare("<=", a, b);
+                    value = ValueObjectUtil.stringCompare("<=", a, b);
 
                 }
                 break;
@@ -1538,7 +1538,7 @@ public class AdvancedExpressionWalker extends TreeParser {
 
 
                     match(input, Token.UP, null);
-                    value = ValueObjectUtil.stringcompare(">", a, b);
+                    value = ValueObjectUtil.stringCompare(">", a, b);
 
                 }
                 break;
@@ -1560,7 +1560,7 @@ public class AdvancedExpressionWalker extends TreeParser {
 
 
                     match(input, Token.UP, null);
-                    value = ValueObjectUtil.stringcompare(">=", a, b);
+                    value = ValueObjectUtil.stringCompare(">=", a, b);
 
                 }
                 break;
@@ -1582,7 +1582,7 @@ public class AdvancedExpressionWalker extends TreeParser {
 
 
                     match(input, Token.UP, null);
-                    value = ValueObjectUtil.stringcompare("==", a, b);
+                    value = ValueObjectUtil.stringCompare("==", a, b);
 
                 }
                 break;
@@ -1604,7 +1604,7 @@ public class AdvancedExpressionWalker extends TreeParser {
 
 
                     match(input, Token.UP, null);
-                    value = ValueObjectUtil.stringcompare("!=", a, b);
+                    value = ValueObjectUtil.stringCompare("!=", a, b);
 
                 }
                 break;
@@ -1626,7 +1626,7 @@ public class AdvancedExpressionWalker extends TreeParser {
 
 
                     match(input, Token.UP, null);
-                    value = ValueObjectUtil.stringcompare("contains", a, b);
+                    value = ValueObjectUtil.stringCompare("contains", a, b);
 
                 }
                 break;
@@ -1648,7 +1648,7 @@ public class AdvancedExpressionWalker extends TreeParser {
 
 
                     match(input, Token.UP, null);
-                    value = ValueObjectUtil.stringcompare("match", a, b);
+                    value = ValueObjectUtil.stringCompare("match", a, b);
 
                 }
                 break;

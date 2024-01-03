@@ -24,9 +24,6 @@ public class PathApiControl {
     private PathApiService pathApiService;
 
     @Autowired
-    private HttpServletRequest request;
-
-    @Autowired
     private HttpServletResponse response;
 
     /**

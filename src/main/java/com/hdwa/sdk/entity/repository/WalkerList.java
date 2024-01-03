@@ -15,7 +15,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class WalkerList {
     public int index = -1;
-    public List<WalkerWrapper> wrapperList = new CopyOnWriteArrayList<WalkerWrapper>();
+    public List<WalkerWrapper> wrapperList = new CopyOnWriteArrayList<>();
 
     public WalkerList(String expression, int count) throws Exception {
         for (int i = 0; i < count; i++) {

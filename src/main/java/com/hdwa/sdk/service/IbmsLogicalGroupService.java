@@ -72,7 +72,6 @@ public class IbmsLogicalGroupService {
             //只保留3个版本数据
             FileUtil.clearHistoryDirectory(new File(getPath()));
             log.warn("************结束下载-IBMS逻辑编组数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
-
             return true;
         } catch (Exception e) {
             log.error("下载IBMS逻辑编组数据异常", e);
@@ -703,7 +702,7 @@ public class IbmsLogicalGroupService {
                         jsonArray.forEach(o -> ((JSONObject) o).put(BaseDecConstant.LOGICAL_GROUPING_ID, logicalGroupingId));
                         dataArray.addAll(jsonArray);
                     } catch (Exception e) {
-                        log.error("-----下载：" + sceneCode + "---" + classCode + "，异常" + e);
+                        log.error("-----下载：" + sceneCode + "---" + classCode + "，出现异常：", e);
                     }
                 });
                 try {
