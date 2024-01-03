@@ -10,11 +10,10 @@ url:
 
 spring:
   redis:
-    sentinel:
-      master: mymaster
-      nodes: 10.199.87.62:26379,10.199.87.70:26379,10.199.87.78:26379
-    password: hdwaredis0912
-    timeout: 10000000
+    host: 10.8.14.155
+    port: 16379
+    password:
+    timeout: 10000
     database: 6
 
   kafka:

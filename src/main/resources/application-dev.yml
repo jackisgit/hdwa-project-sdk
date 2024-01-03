@@ -11,10 +11,10 @@ url:
 
 spring:
   redis:
-    host: 10.199.205.81
+    host: 127.0.0.1
     port: 6379
-    password: hdwaredis0912jd
-    timeout: 10000000
+    password:
+    timeout: 10000
     database: 6
 
   kafka:
