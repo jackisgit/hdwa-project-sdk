@@ -331,7 +331,7 @@ public class FastJsonUtil {
                 }
                 if (value instanceof Integer) {
                     newMap.put(key, ((Integer) value).longValue());
-                }  else if (value instanceof BigInteger) {
+                } else if (value instanceof BigInteger) {
                     newMap.put(key, ((BigInteger) value).longValue());
                 } else if (value instanceof Float) {
                     newMap.put(key, ((Float) value).doubleValue());

@@ -703,7 +703,7 @@ public class IbmsLogicalGroupService {
                         jsonArray.forEach(o -> ((JSONObject) o).put(BaseDecConstant.LOGICAL_GROUPING_ID, logicalGroupingId));
                         dataArray.addAll(jsonArray);
                     } catch (Exception e) {
-                        log.error("-----下载：" + sceneCode + "---" + classCode + "，异常" + e);
+                        log.error("-----下载：" + sceneCode + "---" + classCode + "，出现异常：", e);
                     }
                 });
                 try {

@@ -278,6 +278,9 @@ public class InitialDataService implements CommandLineRunner {
     public void loadAlarmData() {
         try {
             RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
+            if (repository == null) {
+                return;
+            }
             JSONArray content = AlarmUtil.alarmRefresh(BaseDecConstant.CURRENT_PROJECT_ID, groupCode, alarmUrl, repository);
             if (content.size() != 0) {
                 log.warn("************定时刷新报警数据数量：" + content.size());
@@ -329,6 +332,9 @@ public class InitialDataService implements CommandLineRunner {
     @Scheduled(initialDelay = 1000 * 60 * 3, fixedDelay = 1000 * 60)
     public void refreshData() {
         RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
+        if (repository == null) {
+            return;
+        }
         int[] count = repository.recomputeIot();
         if (count[0] > 0) {
             log.warn("************定时计算iot数据数量：" + Arrays.toString(count));

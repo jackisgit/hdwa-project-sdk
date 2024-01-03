@@ -12,7 +12,6 @@ import com.hdwa.sdk.utils.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -30,10 +29,6 @@ import java.util.Map;
 @Service
 public class ConfigApiService {
 
-
-    @Autowired
-    private RedisTemplate<String, String> redisTemplate;
-
     @Autowired
     private PointService pointService;
 
@@ -46,6 +41,9 @@ public class ConfigApiService {
     @Value("${dirName.temp}")
     private String temp;
 
+    @Value("${url.dmp}")
+    private String dmpUrl;
+
     /**
      * 下载config接口文件
      */
@@ -53,11 +51,11 @@ public class ConfigApiService {
         try {
             log.warn("************开始下载-config接口数据");
             long startTime = System.currentTimeMillis();
-            //从redis读取配置数据
-            String redisKey = getKey();
-            JSONObject jsonObject = JSONObject.parseObject(redisTemplate.opsForValue().get(redisKey));
+            JSONObject requestBody = new JSONObject();
+            addProject(requestBody);
+            JSONObject jsonObject = OkHttpClientUtil.httpPost(requestBody, dmpUrl + UrlConstant.GET_CONFIG_API_URL);
             if (jsonObject == null) {
-                log.error("未查询到config接口文件");
+                log.error("****接口数据为空");
                 return false;
             }
 
@@ -70,7 +68,7 @@ public class ConfigApiService {
                 Files.createDirectories(tempFile.toPath());
             }
 
-            FileUtil.save(tempFile + File.separator + redisKey + UrlConstant.JSON_FILE, FastJsonUtil.toFormatString(jsonObject));
+            FileUtil.save(tempFile + File.separator + BaseDecConstant.WD + "_" + BaseDecConstant.BASE_API_JSON + UrlConstant.JSON_FILE, FastJsonUtil.toFormatString(jsonObject));
             //修改temp目录为当前时间目录
             FileUtil.tempToNowDate(tempFile, new File(getPath()));
             //只保留3个版本数据
@@ -94,8 +92,7 @@ public class ConfigApiService {
         long startTime = System.currentTimeMillis();
         try {
             File maxDir = FileUtil.getMaxDir(new File(getPath()));
-            String redisKey = getKey();
-            JSONObject jsonObject = (JSONObject) ReadFileUtil.readJson(new File(maxDir + File.separator + redisKey + UrlConstant.JSON_FILE));
+            JSONObject jsonObject = (JSONObject) ReadFileUtil.readJson(new File(maxDir + File.separator + BaseDecConstant.WD + "_" + BaseDecConstant.BASE_API_JSON + UrlConstant.JSON_FILE));
             //一级节点
             JSONArray levelOneJson = jsonObject.getJSONArray(BaseDecConstant.PROPERTY_LIST);
             JSONObject sceneJson = new JSONObject();
@@ -162,31 +159,6 @@ public class ConfigApiService {
     }
 
     /**
-     * 得到匹配的key
-     *
-     * @return
-     */
-    private String getKey() {
-        String key = BaseDecConstant.WD + "_";
-        switch (BaseDecConstant.CURRENT_PROJECT_ID) {
-            case BaseDecConstant.CBD_PROJECT_ID:
-                key += BaseDecConstant.CBD_API_JSON;
-                break;
-            case BaseDecConstant.ZNEG_CHENG_PROJECT_ID:
-                key += BaseDecConstant.ZENG_CHENG_API_JSON;
-                break;
-            case BaseDecConstant.PU_XI_PROJECT_ID:
-                key += BaseDecConstant.PU_XI_API_JSON;
-                break;
-            default:
-                key += BaseDecConstant.BASE_API_JSON;
-                break;
-        }
-        return key;
-    }
-
-
-    /**
      * 解析generalQuery查询
      *
      * @param repository
@@ -200,6 +172,16 @@ public class ConfigApiService {
             queryMap.put(property.getString(BaseDecConstant.PROPERTY_NAME), JSON.parseObject(property.getString(BaseDecConstant.QUERY_SQL)));
         });
         repository.general_queryMap = queryMap;
+    }
+
+    /**
+     * 添加项目信息
+     *
+     * @param requestBody
+     */
+    private void addProject(JSONObject requestBody) {
+        requestBody.put(BaseDecConstant.GROUP_CODE, groupCode);
+        requestBody.put(BaseDecConstant.PROJECT_ID, BaseDecConstant.CURRENT_PROJECT_ID);
     }
 
 }
