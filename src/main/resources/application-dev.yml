@@ -11,11 +11,11 @@ url:
 
 spring:
   redis:
-    host: 127.0.0.1
-    port: 6379
+    host: 10.199.205.79
+    port: 16379
     password:
     timeout: 10000
     database: 6
 
   kafka:
-    bootstrap-servers: 10.199.205.61:9092
+    bootstrap-servers: 10.199.205.64:9092,10.199.205.74:9092,10.199.205.84:9092
