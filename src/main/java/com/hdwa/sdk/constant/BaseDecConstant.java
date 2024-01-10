@@ -824,6 +824,10 @@ public class BaseDecConstant {
      */
     public static final String DATA_SOURCE = "dataSource";
     /**
+     * huiyunListControlShow String
+     */
+    public static final String HUIYUN_LIST_CONTROL_SHOW = "huiyunListControlShow";
+    /**
      * Content String
      */
     public static final String CONTENT = "Content";
