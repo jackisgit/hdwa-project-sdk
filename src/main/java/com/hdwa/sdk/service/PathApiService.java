@@ -85,12 +85,23 @@ public class PathApiService {
             if (repository == null) {
                 return;
             }
-            //点位数据
+            //运行点位数据
             Object valueObject = CalculateApiJsonUtil.getValueObject(repository, param.getPointPath());
+            //控制参数点位数据
+            JSONArray controlPoint = param.getPointPath();
+            controlPoint.set(controlPoint.size() - 1, BaseDecConstant.SINGLE_DEVICE_CONTROL_POINT);
+            Object controlValueObject = CalculateApiJsonUtil.getValueObject(repository, controlPoint);
+
             JSONArray pointArray = new JSONArray();
             //加入默认的列
             pointArray.addAll(BaseDecConstant.BASE_HEADER);
-            pointArray.addAll((JSONArray) CalculateApiJsonUtil.getValueJson(valueObject));
+
+            if (controlValueObject != null) {
+                pointArray.addAll((JSONArray) CalculateApiJsonUtil.getValueJson(controlValueObject));
+            }
+            if (valueObject != null) {
+                pointArray.addAll((JSONArray) CalculateApiJsonUtil.getValueJson(valueObject));
+            }
 
             //对象数据
             param.setPageIndex(0);
