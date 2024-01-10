@@ -148,9 +148,13 @@ public class PathApiService {
     public void setTitle(JSONArray pointArray, Row headerRow, Workbook workbook, Sheet sheet) {
         int colNum = 0;
         for (int i = 0; i < pointArray.size(); i++) {
+            JSONObject jsonObject = (JSONObject) pointArray.get(i);
+            //非列表显示控制
+            if (!jsonObject.getString(BaseDecConstant.HUIYUN_LIST_CONTROL_SHOW).equals("1")) {
+                return;
+            }
             //设置列宽
             sheet.setColumnWidth(i, 25 * 256);
-            JSONObject jsonObject = (JSONObject) pointArray.get(i);
             String columnName = (String) jsonObject.get(BaseDecConstant.NAME);
             Cell headerCell = headerRow.createCell(colNum);
             headerCell.setCellValue(columnName);
