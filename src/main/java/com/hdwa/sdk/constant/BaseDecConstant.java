@@ -170,6 +170,10 @@ public class BaseDecConstant {
      */
     public static final String NAME = "name";
 
+    /**
+     * 单设备控制点位
+     */
+    public static final String SINGLE_DEVICE_CONTROL_POINT = "单设备控制点位";
 
     /**
      * ggzm String
