@@ -150,7 +150,7 @@ public class PathApiService {
         for (int i = 0; i < pointArray.size(); i++) {
             JSONObject jsonObject = (JSONObject) pointArray.get(i);
             //非列表显示控制
-            if (!jsonObject.getString(BaseDecConstant.HUIYUN_LIST_CONTROL_SHOW).equals("1")) {
+            if (!("1").equals(jsonObject.getString(BaseDecConstant.HUIYUN_LIST_CONTROL_SHOW))) {
                 return;
             }
             //设置列宽
