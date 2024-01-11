@@ -151,7 +151,7 @@ public class PathApiService {
             JSONObject jsonObject = (JSONObject) pointArray.get(i);
             //设定参数非列表显示控制
             if (BaseDecConstant.SET_PARAM.equals(jsonObject.getString(BaseDecConstant.TYPE_NAME)) && !("1").equals(jsonObject.getString(BaseDecConstant.HUIYUN_LIST_CONTROL_SHOW))) {
-                return;
+                continue;
             }
             //设置列宽
             sheet.setColumnWidth(i, 25 * 256);
