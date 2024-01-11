@@ -10,6 +10,7 @@ import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import com.hdwa.sdk.utils.CalculateApiJsonUtil;
 import com.hdwa.sdk.utils.FilterUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
@@ -97,7 +98,14 @@ public class PathApiService {
             pointArray.addAll(BaseDecConstant.BASE_HEADER);
 
             if (controlValueObject != null) {
-                pointArray.addAll((JSONArray) CalculateApiJsonUtil.getValueJson(controlValueObject));
+                JSONArray temp = (JSONArray) CalculateApiJsonUtil.getValueJson(controlValueObject);
+                //设定参数显示控制
+                temp.forEach(o -> {
+                    JSONObject jsonObject = (JSONObject) o;
+                    if (BaseDecConstant.SET_PARAM.equals(jsonObject.getString(BaseDecConstant.TYPE_NAME)) && ("1").equals(jsonObject.getString(BaseDecConstant.HUIYUN_LIST_CONTROL_SHOW))) {
+                        pointArray.add(o);
+                    }
+                });
             }
             if (valueObject != null) {
                 pointArray.addAll((JSONArray) CalculateApiJsonUtil.getValueJson(valueObject));
@@ -149,15 +157,17 @@ public class PathApiService {
         int colNum = 0;
         for (int i = 0; i < pointArray.size(); i++) {
             JSONObject jsonObject = (JSONObject) pointArray.get(i);
-            //设定参数非列表显示控制
-            if (BaseDecConstant.SET_PARAM.equals(jsonObject.getString(BaseDecConstant.TYPE_NAME)) && !("1").equals(jsonObject.getString(BaseDecConstant.HUIYUN_LIST_CONTROL_SHOW))) {
-                continue;
-            }
             //设置列宽
             sheet.setColumnWidth(i, 25 * 256);
             String columnName = (String) jsonObject.get(BaseDecConstant.NAME);
             Cell headerCell = headerRow.createCell(colNum);
-            headerCell.setCellValue(columnName);
+            String unit = jsonObject.getString(BaseDecConstant.UNIT);
+            if (StringUtils.isNotEmpty(unit)) {
+                unit = "(" + unit + "）";
+            } else {
+                unit = "";
+            }
+            headerCell.setCellValue(columnName + unit);
             // 创建样式
             CellStyle titleCellStyle = workbook.createCellStyle();
             // 设置样式属性，例如字体、颜色、对齐等
@@ -196,6 +206,16 @@ public class PathApiService {
                 Object cellValue = jsonDataObject.get(codeInHeader);
                 // 创建数据单元格
                 Cell dataCell = dataRow.createCell(j);
+                // 创建样式
+                CellStyle titleCellStyle = workbook.createCellStyle();
+                // 设置样式属性，例如字体、颜色、对齐等
+                titleCellStyle.setAlignment(HorizontalAlignment.CENTER);
+                titleCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+                //字体
+                Font titleFont = workbook.createFont();
+                titleFont.setFontHeightInPoints((short) 12);
+                titleCellStyle.setFont(titleFont);
+
                 // 根据属性类型设置数据
                 if (cellValue instanceof String) {
                     //楼栋/楼层需要拼接
@@ -218,27 +238,15 @@ public class PathApiService {
                         }
                     } else {
                         // 创建一个数据格式对象，设置为两位小数
-                        if (cellValue instanceof Double) {
+                        if (cellValue instanceof Double || cellValue instanceof Long) {
                             DataFormat dataFormat = workbook.createDataFormat();
-                            CellStyle cellStyle = workbook.createCellStyle();
-                            cellStyle.setDataFormat(dataFormat.getFormat("0.00"));
-                            dataCell.setCellStyle(cellStyle);
-
+                            titleCellStyle.setDataFormat(dataFormat.getFormat("0.00"));
                             dataCell.setCellValue(value.doubleValue());
                         } else {
                             dataCell.setCellValue(value.intValue());
                         }
                     }
                 }
-                // 创建样式
-                CellStyle titleCellStyle = workbook.createCellStyle();
-                // 设置样式属性，例如字体、颜色、对齐等
-                titleCellStyle.setAlignment(HorizontalAlignment.CENTER);
-                titleCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-                //字体
-                Font titleFont = workbook.createFont();
-                titleFont.setFontHeightInPoints((short) 12);
-                titleCellStyle.setFont(titleFont);
                 // 应用样式
                 dataCell.setCellStyle(titleCellStyle);
             }
