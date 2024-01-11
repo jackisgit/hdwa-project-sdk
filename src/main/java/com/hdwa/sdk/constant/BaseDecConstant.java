@@ -303,6 +303,10 @@ public class BaseDecConstant {
      * firstCode String
      */
     public static final String FIRST_CODE = "firstCode";
+    /**
+     * secondCode String
+     */
+    public static final String SECOND_CODE = "secondCode";
 
     /**
      * 一级编组 String

@@ -227,7 +227,8 @@ public class IbmsLogicalGroupService {
                 String logicalGroupingName = itemSdo.get(BaseDecConstant.LOGICAL_GROUPING_NAME).valuePrim.value.toString();
                 String logicalGroupingId = itemSdo.get(BaseDecConstant.LOGICAL_GROUPING_ID).valuePrim.value.toString();
                 String firstCode = itemSdo.get(BaseDecConstant.FIRST_CODE) == null ? "" : itemSdo.get(BaseDecConstant.FIRST_CODE).valuePrim.value.toString();
-
+                String secondCode = itemSdo.get(BaseDecConstant.SECOND_CODE) == null ? "" : itemSdo.get(BaseDecConstant.SECOND_CODE).valuePrim.value.toString();
+                firstCode += secondCode;
                 //parentId用,分割的代表此2级编组属于多个1级编组，保存多条不同parentId的二级编组数据
                 if (parentId.contains(",")) {
                     String[] parentIds = parentId.split(",");
@@ -295,6 +296,8 @@ public class IbmsLogicalGroupService {
                 String logicalGroupingName = itemSdo.get(BaseDecConstant.LOGICAL_GROUPING_NAME).valuePrim.value.toString();
                 String logicalGroupingId = itemSdo.get(BaseDecConstant.LOGICAL_GROUPING_ID).valuePrim.value.toString();
                 String firstCode = itemSdo.get(BaseDecConstant.FIRST_CODE) == null ? "" : itemSdo.get(BaseDecConstant.FIRST_CODE).valuePrim.value.toString();
+                String secondCode = itemSdo.get(BaseDecConstant.SECOND_CODE) == null ? "" : itemSdo.get(BaseDecConstant.SECOND_CODE).valuePrim.value.toString();
+                firstCode += secondCode;
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put(BaseDecConstant.ID, logicalGroupingId);
                 jsonObject.put(BaseDecConstant.NAME, logicalGroupingName);
