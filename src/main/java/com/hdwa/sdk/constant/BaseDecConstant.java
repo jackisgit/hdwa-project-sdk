@@ -468,6 +468,10 @@ public class BaseDecConstant {
      * 类型string
      */
     public static final String TYPE = "type";
+    /**
+     * typeName
+     */
+    public static final String TYPE_NAME = "typeName";
 
     /**
      * refresh string

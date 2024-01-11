@@ -149,8 +149,8 @@ public class PathApiService {
         int colNum = 0;
         for (int i = 0; i < pointArray.size(); i++) {
             JSONObject jsonObject = (JSONObject) pointArray.get(i);
-            //非列表显示控制
-            if (!("1").equals(jsonObject.getString(BaseDecConstant.HUIYUN_LIST_CONTROL_SHOW))) {
+            //设定参数非列表显示控制
+            if (BaseDecConstant.SET_PARAM.equals(jsonObject.getString(BaseDecConstant.TYPE_NAME)) && !("1").equals(jsonObject.getString(BaseDecConstant.HUIYUN_LIST_CONTROL_SHOW))) {
                 return;
             }
             //设置列宽
