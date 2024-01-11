@@ -229,6 +229,11 @@ public class BaseDecConstant {
     public static final String ENUM = "ENUM";
 
     /**
+     * "unit" String
+     */
+    public static final String UNIT = "unit";
+
+    /**
      * "number" String
      */
     public static final String NUMBER = "number";
