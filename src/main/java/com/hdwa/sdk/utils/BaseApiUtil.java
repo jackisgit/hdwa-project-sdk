@@ -171,11 +171,11 @@ public class BaseApiUtil {
      * @return
      */
     public static boolean isRunParam(List<DataObject> infoArray, String code) {
-        for (DataObject infoJSON : infoArray) {
-            if (!infoJSON.get(BaseDecConstant.CODE).valuePrim.value.equals(code)) {
+        for (DataObject infoJson : infoArray) {
+            if (!infoJson.get(BaseDecConstant.CODE).valuePrim.value.equals(code)) {
                 continue;
             }
-            if (getInfoTypeByTag(infoJSON) == 1) {
+            if (getInfoTypeByTag(infoJson) == 1) {
                 return true;
             }
         }
@@ -191,11 +191,11 @@ public class BaseApiUtil {
      * @return
      */
     public static boolean isSetParam(List<DataObject> infoArray, String code) {
-        for (DataObject infoJSON : infoArray) {
-            if (!infoJSON.get(BaseDecConstant.CODE).valuePrim.value.equals(code)) {
+        for (DataObject infoJson : infoArray) {
+            if (!infoJson.get(BaseDecConstant.CODE).valuePrim.value.equals(code)) {
                 continue;
             }
-            if (getInfoTypeByTag(infoJSON) == 2) {
+            if (getInfoTypeByTag(infoJson) == 2) {
                 return true;
             }
         }
