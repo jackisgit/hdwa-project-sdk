@@ -17,6 +17,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * 数据仓库
+ * @author abao
  */
 @Slf4j
 public class RepositoryImpl extends RepositoryBase {
@@ -192,13 +193,13 @@ public class RepositoryImpl extends RepositoryBase {
      * 解析数据
      *
      * @param descSet
-     * @param Source
+     * @param source
      * @return
      */
     @Override
-    public DataSet parseSource(JSONObject descSet, String Source) {
+    public DataSet parseSource(JSONObject descSet, String source) {
         DataSet result = null;
-        switch (Source) {
+        switch (source) {
             case BaseDecConstant.CLASS:
                 result = classArray;
                 break;
@@ -214,9 +215,6 @@ public class RepositoryImpl extends RepositoryBase {
                                     if (objectArrayDic.get(classCode) != null) {
                                         result = objectArrayDic.get(classCode).valueArray;
                                     }
-                                   /* else {
-                                        log.error("*****缺少objType数据：" + classCode);
-                                    }*/
                                 } else {
                                     if (objectArrayDic.get(objType) != null) {
                                         result = objectArrayDic.get(objType).valueArray;
@@ -236,9 +234,6 @@ public class RepositoryImpl extends RepositoryBase {
                             if (objectArrayDic.get(classCode) != null) {
                                 result = objectArrayDic.get(classCode).valueArray;
                             }
-                            /*else {
-                                log.error("*****缺少classCode数据：" + classCode);
-                            }*/
                         } else {
                             result = objectArrayAll;
                         }
@@ -262,16 +257,20 @@ public class RepositoryImpl extends RepositoryBase {
                             if (relationArrayDic.get(graphCode) != null) {
                                 result = relationArrayDic.get(graphCode).get(relCode);
                             }
-                        } else if (descSet.get(BaseDecConstant.GRAPH_CODE) != null) {//图例
+                        }//图例
+                        else if (descSet.get(BaseDecConstant.GRAPH_CODE) != null) {
                             String graphCode = (descSet.get(BaseDecConstant.GRAPH_CODE)).toString();
                             result = graphCodeDic.get(graphCode);
-                        } else if (descSet.get(BaseDecConstant.REL_CODE) != null) {//关系类型
+                        } //关系类型
+                        else if (descSet.get(BaseDecConstant.REL_CODE) != null) {
                             String relCode = (descSet.get(BaseDecConstant.REL_CODE)).toString();
                             result = relCodeDic.get(relCode);
                         } else {
                             result = relationAll;
                         }
                         break;
+
+                    default:
                 }
                 break;
             case BaseDecConstant.ZKT_CLASS:
