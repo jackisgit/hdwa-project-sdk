@@ -12800,19 +12800,34 @@
                             "propertyValueType":"query"
                           },
                           {
-                            "propertyName":"是否显示",
+                            "propertyName":"设备数量",
                             "allowPass":"1",
-                            "querySql":null,
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
                             "readLevel":"1",
                             "filterRule":null,
                             "customObject":null,
-                            "staticValue":"1",
+                            "staticValue":null,
                             "offsetLevel":"0",
                             "queryAttached":null,
                             "propertyValueSchema":"int",
                             "staticArray":null,
                             "propertyVisible":false,
-                            "propertyValueType":"static"
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"是否显示",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'设备数量\"}}}",
+                            "readLevel":"1",
+                            "filterRule":null,
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":null,
+                            "propertyValueSchema":"int",
+                            "staticArray":null,
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
                           }
                         ]
                       },
@@ -13205,19 +13220,34 @@
                             "propertyValueType":"query"
                           },
                           {
-                            "propertyName":"是否显示",
+                            "propertyName":"设备数量",
                             "allowPass":"1",
-                            "querySql":null,
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
                             "readLevel":"1",
                             "filterRule":null,
                             "customObject":null,
-                            "staticValue":"1",
+                            "staticValue":null,
                             "offsetLevel":"0",
                             "queryAttached":null,
                             "propertyValueSchema":"int",
                             "staticArray":null,
                             "propertyVisible":false,
-                            "propertyValueType":"static"
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"是否显示",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'设备数量\"}}}",
+                            "readLevel":"1",
+                            "filterRule":null,
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":null,
+                            "propertyValueSchema":"int",
+                            "staticArray":null,
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
                           }
                         ]
                       },
@@ -13865,19 +13895,34 @@
                             "propertyValueType":"query"
                           },
                           {
-                            "propertyName":"是否显示",
+                            "propertyName":"设备数量",
                             "allowPass":"1",
-                            "querySql":null,
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
                             "readLevel":"1",
                             "filterRule":null,
                             "customObject":null,
-                            "staticValue":"1",
+                            "staticValue":null,
                             "offsetLevel":"0",
                             "queryAttached":null,
                             "propertyValueSchema":"int",
                             "staticArray":null,
                             "propertyVisible":false,
-                            "propertyValueType":"static"
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"是否显示",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'设备数量\"}}}",
+                            "readLevel":"1",
+                            "filterRule":null,
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":null,
+                            "propertyValueSchema":"int",
+                            "staticArray":null,
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
                           }
                         ]
                       },
@@ -14338,19 +14383,34 @@
                             "propertyValueType":"query"
                           },
                           {
-                            "propertyName":"是否显示",
+                            "propertyName":"设备数量",
                             "allowPass":"1",
-                            "querySql":null,
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
                             "readLevel":"1",
                             "filterRule":null,
                             "customObject":null,
-                            "staticValue":"1",
+                            "staticValue":null,
                             "offsetLevel":"0",
                             "queryAttached":null,
                             "propertyValueSchema":"int",
                             "staticArray":null,
                             "propertyVisible":false,
-                            "propertyValueType":"static"
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"是否显示",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'设备数量\"}}}",
+                            "readLevel":"1",
+                            "filterRule":null,
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":null,
+                            "propertyValueSchema":"int",
+                            "staticArray":null,
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
                           }
                         ]
                       },
@@ -14811,19 +14871,34 @@
                             "propertyValueType":"query"
                           },
                           {
-                            "propertyName":"是否显示",
+                            "propertyName":"设备数量",
                             "allowPass":"1",
-                            "querySql":null,
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
                             "readLevel":"1",
                             "filterRule":null,
                             "customObject":null,
-                            "staticValue":"1",
+                            "staticValue":null,
                             "offsetLevel":"0",
                             "queryAttached":null,
                             "propertyValueSchema":"int",
                             "staticArray":null,
                             "propertyVisible":false,
-                            "propertyValueType":"static"
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"是否显示",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'设备数量\"}}}",
+                            "readLevel":"1",
+                            "filterRule":null,
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":null,
+                            "propertyValueSchema":"int",
+                            "staticArray":null,
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
                           }
                         ]
                       },
@@ -15165,19 +15240,34 @@
                             "propertyValueType":"query"
                           },
                           {
-                            "propertyName":"是否显示",
+                            "propertyName":"设备数量",
                             "allowPass":"1",
-                            "querySql":null,
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
                             "readLevel":"1",
                             "filterRule":null,
                             "customObject":null,
-                            "staticValue":"1",
+                            "staticValue":null,
                             "offsetLevel":"0",
                             "queryAttached":null,
                             "propertyValueSchema":"int",
                             "staticArray":null,
                             "propertyVisible":false,
-                            "propertyValueType":"static"
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"是否显示",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'设备数量\"}}}",
+                            "readLevel":"1",
+                            "filterRule":null,
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":null,
+                            "propertyValueSchema":"int",
+                            "staticArray":null,
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
                           }
                         ]
                       },
@@ -15451,19 +15541,34 @@
                             "propertyValueType":"query"
                           },
                           {
-                            "propertyName":"是否显示",
+                            "propertyName":"设备数量",
                             "allowPass":"1",
-                            "querySql":null,
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
                             "readLevel":"1",
                             "filterRule":null,
                             "customObject":null,
-                            "staticValue":"1",
+                            "staticValue":null,
                             "offsetLevel":"0",
                             "queryAttached":null,
                             "propertyValueSchema":"int",
                             "staticArray":null,
                             "propertyVisible":false,
-                            "propertyValueType":"static"
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"是否显示",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'设备数量\"}}}",
+                            "readLevel":"1",
+                            "filterRule":null,
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":null,
+                            "propertyValueSchema":"int",
+                            "staticArray":null,
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
                           }
                         ]
                       },
@@ -15805,19 +15910,34 @@
                             "propertyValueType":"query"
                           },
                           {
-                            "propertyName":"是否显示",
+                            "propertyName":"设备数量",
                             "allowPass":"1",
-                            "querySql":null,
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
                             "readLevel":"1",
                             "filterRule":null,
                             "customObject":null,
-                            "staticValue":"1",
+                            "staticValue":null,
                             "offsetLevel":"0",
                             "queryAttached":null,
                             "propertyValueSchema":"int",
                             "staticArray":null,
                             "propertyVisible":false,
-                            "propertyValueType":"static"
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"是否显示",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'设备数量\"}}}",
+                            "readLevel":"1",
+                            "filterRule":null,
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":null,
+                            "propertyValueSchema":"int",
+                            "staticArray":null,
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
                           }
                         ]
                       },
@@ -16159,19 +16279,34 @@
                             "propertyValueType":"query"
                           },
                           {
-                            "propertyName":"是否显示",
+                            "propertyName":"设备数量",
                             "allowPass":"1",
-                            "querySql":null,
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
                             "readLevel":"1",
                             "filterRule":null,
                             "customObject":null,
-                            "staticValue":"1",
+                            "staticValue":null,
                             "offsetLevel":"0",
                             "queryAttached":null,
                             "propertyValueSchema":"int",
                             "staticArray":null,
                             "propertyVisible":false,
-                            "propertyValueType":"static"
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"是否显示",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'设备数量\"}}}",
+                            "readLevel":"1",
+                            "filterRule":null,
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":null,
+                            "propertyValueSchema":"int",
+                            "staticArray":null,
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
                           }
                         ]
                       },
@@ -16391,19 +16526,34 @@
                             "propertyValueType":"query"
                           },
                           {
-                            "propertyName":"是否显示",
+                            "propertyName":"设备数量",
                             "allowPass":"1",
-                            "querySql":null,
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
                             "readLevel":"1",
                             "filterRule":null,
                             "customObject":null,
-                            "staticValue":"0",
+                            "staticValue":null,
                             "offsetLevel":"0",
                             "queryAttached":null,
                             "propertyValueSchema":"int",
                             "staticArray":null,
                             "propertyVisible":false,
-                            "propertyValueType":"static"
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"是否显示",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'设备数量\"}}}",
+                            "readLevel":"1",
+                            "filterRule":null,
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":null,
+                            "propertyValueSchema":"int",
+                            "staticArray":null,
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
                           }
                         ]
                       },
@@ -16623,234 +16773,34 @@
                             "propertyValueType":"query"
                           },
                           {
-                            "propertyName":"是否显示",
+                            "propertyName":"设备数量",
                             "allowPass":"1",
-                            "querySql":null,
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
                             "readLevel":"1",
                             "filterRule":null,
                             "customObject":null,
-                            "staticValue":"0",
+                            "staticValue":null,
                             "offsetLevel":"0",
                             "queryAttached":null,
                             "propertyValueSchema":"int",
                             "staticArray":null,
-                            "propertyVisible":false,
-                            "propertyValueType":"static"
-                          }
-                        ]
-                      },
-                      {
-                        "propertyList":[
-                          {
-                            "propertyName":"名称",
-                            "allowPass":"1",
-                            "querySql":"",
-                            "readLevel":"1",
-                            "filterRule":"",
-                            "customObject":null,
-                            "staticValue":"配电箱",
-                            "offsetLevel":"0",
-                            "queryAttached":[
-                            ],
-                            "propertyValueSchema":"string",
-                            "staticArray":[
-                            ],
-                            "propertyVisible":false,
-                            "propertyValueType":"static"
-                          },
-                          {
-                            "propertyName":"清单",
-                            "allowPass":"1",
-                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"ktmd\",\"ibmsClassCode\": \"peidianxiang\"},\"Criteria\": {}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
-                            "readLevel":"4",
-                            "filterRule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"manualAutoStatus\":{\"ref\":\"ancestor_1'manualAutoStatus\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
-                            "customObject":null,
-                            "staticValue":null,
-                            "offsetLevel":"2",
-                            "queryAttached":[
-                              {
-                                "propertyName":"所属场景",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"ancestor_5'名称\"}}}",
-                                "readLevel":"1",
-                                "filterRule":"",
-                                "customObject":null,
-                                "staticValue":"",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"string",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"对象类型",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"ancestor_3'名称\"}}}",
-                                "readLevel":"1",
-                                "filterRule":"",
-                                "customObject":null,
-                                "staticValue":"",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"string",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"报警处理状态",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([treatState1>0]){treatState1}elseif([treatState2>0]){treatState2}else{null}\",\"Criteria\": {\"treatState1\": {\"ref\": \"ancestor_1'未处理\"},\"treatState2\": {\"ref\": \"ancestor_1'处理中\"}}}",
-                                "readLevel":"1",
-                                "filterRule":"",
-                                "customObject":null,
-                                "staticValue":"0",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"int",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"状态",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([alarmStatus>0]){alarmStatus}elseif([onlineStatus==1]){if([runStatus>0]){3}else{4}}else{5}\",\"Criteria\": {\"alarmStatus\": {\"ref\": \"ancestor_1'报警处理状态\"},\"onlineStatus\": {\"ref\": \"ancestor_1'onlineStatus\"},\"runStatus\": {\"ref\": \"ancestor_1'runStatus\"}}}",
-                                "readLevel":"1",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"int",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"楼层名称",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"Criteria\": {\"id\": {\"ref\":\"ancestor_1'所在楼层-id\"}},\"UniqueReturnColumn\": \"localName\"}",
-                                "readLevel":"1",
-                                "filterRule":"",
-                                "customObject":null,
-                                "staticValue":"0",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"JSONArray",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"空间名称",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"space\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }            }        }    }},\"UniqueReturnColumn\": \"localName\"}",
-                                "readLevel":"1",
-                                "filterRule":"",
-                                "customObject":null,
-                                "staticValue":"0",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"JSONArray",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"未处理",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'报警列表\"},\"Criteria\": {\"state\": 1,\"treatState\": 1  },\"Aggregation\": {\"Function\": \"min\",\"Column\": \"treatState\"}}",
-                                "readLevel":"1",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":null,
-                                "propertyValueSchema":"int",
-                                "staticArray":null,
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"处理中",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'报警列表\"},\"Criteria\": {\"treatState\": 2  },\"Aggregation\": {\"Function\": \"min\",\"Column\": \"treatState\"}}",
-                                "readLevel":"1",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":null,
-                                "propertyValueSchema":"int",
-                                "staticArray":null,
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"所在空间",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"space\",\"classCode\": \"GeneralZone\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}}}    }},\"ReturnColumns\": [\"ibmsClassCode\",\"ibmsSceneCode\",\"classCode\",\"localName\",\"localId\",\"id\",\"bimId\",\"所在建筑-id\",\"所在楼层-id\",\"所属场景\",\"对象类型\",\"所属模块\",\"对象类别\",\"所属楼层-id\",\"所属建筑名称\",\"所属楼层名称\",\"localName\",\"localId\",\"localId\",\"localName\"  ]}",
-                                "readLevel":"4",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":null,
-                                "propertyValueSchema":"JSONArray",
-                                "staticArray":null,
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"服务空间",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"space\",\"classCode\": \"EnvironmentZone\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechForArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}}}    }},\"ReturnColumns\": [\"ibmsClassCode\",\"ibmsSceneCode\",\"classCode\",\"localName\",\"localId\",\"id\",\"bimId\",\"所在建筑-id\",\"所在楼层-id\",\"所属场景\",\"对象类型\",\"所属模块\",\"对象类别\",\"所属楼层-id\",\"所属建筑名称\",\"所属楼层名称\",\"localName\",\"localId\",\"localId\",\"localName\"  ]}",
-                                "readLevel":"4",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":null,
-                                "propertyValueSchema":"JSONArray",
-                                "staticArray":null,
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              }
-                            ],
-                            "propertyValueSchema":"JSONArray",
-                            "staticArray":[
-                            ],
                             "propertyVisible":false,
                             "propertyValueType":"query"
                           },
                           {
                             "propertyName":"是否显示",
                             "allowPass":"1",
-                            "querySql":null,
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'设备数量\"}}}",
                             "readLevel":"1",
                             "filterRule":null,
                             "customObject":null,
-                            "staticValue":"0",
+                            "staticValue":null,
                             "offsetLevel":"0",
                             "queryAttached":null,
                             "propertyValueSchema":"int",
                             "staticArray":null,
                             "propertyVisible":false,
-                            "propertyValueType":"static"
+                            "propertyValueType":"query"
                           }
                         ]
                       }
@@ -38390,206 +38340,6 @@
                             "readLevel":"1",
                             "filterRule":"",
                             "customObject":null,
-                            "staticValue":"换热站补水泵",
-                            "offsetLevel":"0",
-                            "queryAttached":[
-                            ],
-                            "propertyValueSchema":"string",
-                            "staticArray":[
-                            ],
-                            "propertyVisible":false,
-                            "propertyValueType":"static"
-                          },
-                          {
-                            "propertyName":"清单",
-                            "allowPass":"1",
-                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"ryxt1\",\"ibmsClassCode\": \"gongrebushuibeng\"},\"Criteria\": {},\"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
-                            "readLevel":"4",
-                            "filterRule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
-                            "customObject":null,
-                            "staticValue":null,
-                            "offsetLevel":"2",
-                            "queryAttached":[
-                              {
-                                "propertyName":"对象类型",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"ancestor_3'名称\"}}}",
-                                "readLevel":"1",
-                                "filterRule":"",
-                                "customObject":null,
-                                "staticValue":"",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"string",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"报警处理状态",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([treatState1>0]){treatState1}elseif([treatState2>0]){treatState2}else{null}\",\"Criteria\": {\"treatState1\": {\"ref\": \"ancestor_1'未处理\"},\"treatState2\": {\"ref\": \"ancestor_1'处理中\"}}}",
-                                "readLevel":"1",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":"0",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"int",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"状态",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([alarmStatus>0]){alarmStatus}elseif([onlineStatus==1]){if([runStatus>0]){3}else{4}}else{5}\",\"Criteria\": {\"alarmStatus\": {\"ref\": \"ancestor_1'报警处理状态\"},\"onlineStatus\": {\"ref\": \"ancestor_1'onlineStatus\"},\"runStatus\": {\"ref\": \"ancestor_1'runStatus\"}}}",
-                                "readLevel":"1",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"int",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"楼层名称",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"Criteria\": {\"id\": {\"ref\":\"ancestor_1'所在楼层-id\"}},\"UniqueReturnColumn\": \"localName\"}",
-                                "readLevel":"1",
-                                "filterRule":"",
-                                "customObject":null,
-                                "staticValue":"0",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"JSONArray",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"空间名称",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"space\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }            }        }    }},\"UniqueReturnColumn\": \"localName\"}",
-                                "readLevel":"1",
-                                "filterRule":"",
-                                "customObject":null,
-                                "staticValue":"0",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"JSONArray",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"所属场景",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"ancestor_5'名称\"}}}",
-                                "readLevel":"1",
-                                "filterRule":"",
-                                "customObject":null,
-                                "staticValue":"",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"string",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"未处理",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'报警列表\"},\"Criteria\": {\"state\": 1,\"treatState\": 1  },\"Aggregation\": {\"Function\": \"min\",\"Column\": \"treatState\"}}",
-                                "readLevel":"1",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":null,
-                                "propertyValueSchema":"int",
-                                "staticArray":null,
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"处理中",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'报警列表\"},\"Criteria\": {\"treatState\": 2  },\"Aggregation\": {\"Function\": \"min\",\"Column\": \"treatState\"}}",
-                                "readLevel":"1",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":null,
-                                "propertyValueSchema":"int",
-                                "staticArray":null,
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"所在空间",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"space\",\"classCode\": \"GeneralZone\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}}}    }},\"ReturnColumns\": [\"ibmsClassCode\",\"ibmsSceneCode\",\"classCode\",\"localName\",\"localId\",\"id\",\"bimId\",\"所在建筑-id\",\"所在楼层-id\",\"所属场景\",\"对象类型\",\"所属模块\",\"对象类别\",\"所属楼层-id\",\"所属建筑名称\",\"所属楼层名称\",\"localName\",\"localId\",\"localId\",\"localName\"  ]}",
-                                "readLevel":"4",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":null,
-                                "propertyValueSchema":"JSONArray",
-                                "staticArray":null,
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"服务空间",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"space\",\"classCode\": \"GeneralZone\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechForArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}}}    }},\"ReturnColumns\": [\"ibmsClassCode\",\"ibmsSceneCode\",\"classCode\",\"localName\",\"localId\",\"id\",\"bimId\",\"所在建筑-id\",\"所在楼层-id\",\"所属场景\",\"对象类型\",\"所属模块\",\"对象类别\",\"所属楼层-id\",\"所属建筑名称\",\"所属楼层名称\",\"localName\",\"localId\",\"localId\",\"localName\"  ]}",
-                                "readLevel":"4",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":null,
-                                "propertyValueSchema":"JSONArray",
-                                "staticArray":null,
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              }
-                            ],
-                            "propertyValueSchema":"JSONArray",
-                            "staticArray":[
-                            ],
-                            "propertyVisible":false,
-                            "propertyValueType":"query"
-                          }
-                        ]
-                      },
-                      {
-                        "propertyList":[
-                          {
-                            "propertyName":"名称",
-                            "allowPass":"1",
-                            "querySql":"",
-                            "readLevel":"1",
-                            "filterRule":"",
-                            "customObject":null,
                             "staticValue":"供热水箱",
                             "offsetLevel":"0",
                             "queryAttached":[
@@ -41646,206 +41396,6 @@
                             "readLevel":"1",
                             "filterRule":"",
                             "customObject":null,
-                            "staticValue":"换热站补水泵",
-                            "offsetLevel":"0",
-                            "queryAttached":[
-                            ],
-                            "propertyValueSchema":"string",
-                            "staticArray":[
-                            ],
-                            "propertyVisible":false,
-                            "propertyValueType":"static"
-                          },
-                          {
-                            "propertyName":"清单",
-                            "allowPass":"1",
-                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"ryxt2\",\"ibmsClassCode\": \"gongrebushuibeng\"},\"Criteria\": {},\"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
-                            "readLevel":"4",
-                            "filterRule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
-                            "customObject":null,
-                            "staticValue":null,
-                            "offsetLevel":"2",
-                            "queryAttached":[
-                              {
-                                "propertyName":"对象类型",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"ancestor_3'名称\"}}}",
-                                "readLevel":"1",
-                                "filterRule":"",
-                                "customObject":null,
-                                "staticValue":"",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"string",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"报警处理状态",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([treatState1>0]){treatState1}elseif([treatState2>0]){treatState2}else{null}\",\"Criteria\": {\"treatState1\": {\"ref\": \"ancestor_1'未处理\"},\"treatState2\": {\"ref\": \"ancestor_1'处理中\"}}}",
-                                "readLevel":"1",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":"0",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"int",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"状态",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([alarmStatus>0]){alarmStatus}elseif([onlineStatus==1]){if([runStatus>0]){3}else{4}}else{5}\",\"Criteria\": {\"alarmStatus\": {\"ref\": \"ancestor_1'报警处理状态\"},\"onlineStatus\": {\"ref\": \"ancestor_1'onlineStatus\"},\"runStatus\": {\"ref\": \"ancestor_1'runStatus\"}}}",
-                                "readLevel":"1",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"int",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"楼层名称",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"Criteria\": {\"id\": {\"ref\":\"ancestor_1'所在楼层-id\"}},\"UniqueReturnColumn\": \"localName\"}",
-                                "readLevel":"1",
-                                "filterRule":"",
-                                "customObject":null,
-                                "staticValue":"0",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"JSONArray",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"空间名称",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"space\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }            }        }    }},\"UniqueReturnColumn\": \"localName\"}",
-                                "readLevel":"1",
-                                "filterRule":"",
-                                "customObject":null,
-                                "staticValue":"0",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"JSONArray",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"所属场景",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"ancestor_5'名称\"}}}",
-                                "readLevel":"1",
-                                "filterRule":"",
-                                "customObject":null,
-                                "staticValue":"",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"string",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"未处理",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'报警列表\"},\"Criteria\": {\"state\": 1,\"treatState\": 1  },\"Aggregation\": {\"Function\": \"min\",\"Column\": \"treatState\"}}",
-                                "readLevel":"1",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":null,
-                                "propertyValueSchema":"int",
-                                "staticArray":null,
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"处理中",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'报警列表\"},\"Criteria\": {\"treatState\": 2  },\"Aggregation\": {\"Function\": \"min\",\"Column\": \"treatState\"}}",
-                                "readLevel":"1",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":null,
-                                "propertyValueSchema":"int",
-                                "staticArray":null,
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"所在空间",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"space\",\"classCode\": \"GeneralZone\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}}}    }},\"ReturnColumns\": [\"ibmsClassCode\",\"ibmsSceneCode\",\"classCode\",\"localName\",\"localId\",\"id\",\"bimId\",\"所在建筑-id\",\"所在楼层-id\",\"所属场景\",\"对象类型\",\"所属模块\",\"对象类别\",\"所属楼层-id\",\"所属建筑名称\",\"所属楼层名称\",\"localName\",\"localId\",\"localId\",\"localName\"  ]}",
-                                "readLevel":"4",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":null,
-                                "propertyValueSchema":"JSONArray",
-                                "staticArray":null,
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"服务空间",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"space\",\"classCode\": \"GeneralZone\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechForArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}}}    }},\"ReturnColumns\": [\"ibmsClassCode\",\"ibmsSceneCode\",\"classCode\",\"localName\",\"localId\",\"id\",\"bimId\",\"所在建筑-id\",\"所在楼层-id\",\"所属场景\",\"对象类型\",\"所属模块\",\"对象类别\",\"所属楼层-id\",\"所属建筑名称\",\"所属楼层名称\",\"localName\",\"localId\",\"localId\",\"localName\"  ]}",
-                                "readLevel":"4",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":null,
-                                "propertyValueSchema":"JSONArray",
-                                "staticArray":null,
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              }
-                            ],
-                            "propertyValueSchema":"JSONArray",
-                            "staticArray":[
-                            ],
-                            "propertyVisible":false,
-                            "propertyValueType":"query"
-                          }
-                        ]
-                      },
-                      {
-                        "propertyList":[
-                          {
-                            "propertyName":"名称",
-                            "allowPass":"1",
-                            "querySql":"",
-                            "readLevel":"1",
-                            "filterRule":"",
-                            "customObject":null,
                             "staticValue":"供热水箱",
                             "offsetLevel":"0",
                             "queryAttached":[
@@ -44716,206 +44266,6 @@
                             "propertyName":"清单",
                             "allowPass":"1",
                             "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"ryxt3\",\"ibmsClassCode\": \"gongreshuibeng\"},\"Criteria\": {},\"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
-                            "readLevel":"4",
-                            "filterRule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
-                            "customObject":null,
-                            "staticValue":null,
-                            "offsetLevel":"2",
-                            "queryAttached":[
-                              {
-                                "propertyName":"对象类型",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"ancestor_3'名称\"}}}",
-                                "readLevel":"1",
-                                "filterRule":"",
-                                "customObject":null,
-                                "staticValue":"",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"string",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"报警处理状态",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([treatState1>0]){treatState1}elseif([treatState2>0]){treatState2}else{null}\",\"Criteria\": {\"treatState1\": {\"ref\": \"ancestor_1'未处理\"},\"treatState2\": {\"ref\": \"ancestor_1'处理中\"}}}",
-                                "readLevel":"1",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":"0",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"int",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"状态",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([alarmStatus>0]){alarmStatus}elseif([onlineStatus==1]){if([runStatus>0]){3}else{4}}else{5}\",\"Criteria\": {\"alarmStatus\": {\"ref\": \"ancestor_1'报警处理状态\"},\"onlineStatus\": {\"ref\": \"ancestor_1'onlineStatus\"},\"runStatus\": {\"ref\": \"ancestor_1'runStatus\"}}}",
-                                "readLevel":"1",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"int",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"楼层名称",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"floor\"},\"Criteria\": {\"id\": {\"ref\":\"ancestor_1'所在楼层-id\"}},\"UniqueReturnColumn\": \"localName\"}",
-                                "readLevel":"1",
-                                "filterRule":"",
-                                "customObject":null,
-                                "staticValue":"0",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"JSONArray",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"空间名称",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"space\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"    }            }        }    }},\"UniqueReturnColumn\": \"localName\"}",
-                                "readLevel":"1",
-                                "filterRule":"",
-                                "customObject":null,
-                                "staticValue":"0",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"JSONArray",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"所属场景",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\":\"quote\",\"Criteria\":{\"quote\":{\"ref\":\"ancestor_5'名称\"}}}",
-                                "readLevel":"1",
-                                "filterRule":"",
-                                "customObject":null,
-                                "staticValue":"",
-                                "offsetLevel":"0",
-                                "queryAttached":[
-                                ],
-                                "propertyValueSchema":"string",
-                                "staticArray":[
-                                ],
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"未处理",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'报警列表\"},\"Criteria\": {\"state\": 1,\"treatState\": 1  },\"Aggregation\": {\"Function\": \"min\",\"Column\": \"treatState\"}}",
-                                "readLevel":"1",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":null,
-                                "propertyValueSchema":"int",
-                                "staticArray":null,
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"处理中",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'报警列表\"},\"Criteria\": {\"treatState\": 2  },\"Aggregation\": {\"Function\": \"min\",\"Column\": \"treatState\"}}",
-                                "readLevel":"1",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":null,
-                                "propertyValueSchema":"int",
-                                "staticArray":null,
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"所在空间",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"space\",\"classCode\": \"GeneralZone\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}}}    }},\"ReturnColumns\": [\"ibmsClassCode\",\"ibmsSceneCode\",\"classCode\",\"localName\",\"localId\",\"id\",\"bimId\",\"所在建筑-id\",\"所在楼层-id\",\"所属场景\",\"对象类型\",\"所属模块\",\"对象类别\",\"所属楼层-id\",\"所属建筑名称\",\"所属楼层名称\",\"localName\",\"localId\",\"localId\",\"localName\"  ]}",
-                                "readLevel":"4",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":null,
-                                "propertyValueSchema":"JSONArray",
-                                "staticArray":null,
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              },
-                              {
-                                "propertyName":"服务空间",
-                                "allowPass":"1",
-                                "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"space\",\"classCode\": \"GeneralZone\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objTo\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechForArch\",\"relCode\": \"Eq2Sp\"},\"Criteria\": {\"objFrom\": {\"ref\": \"ancestor_1'id\"}}}    }},\"ReturnColumns\": [\"ibmsClassCode\",\"ibmsSceneCode\",\"classCode\",\"localName\",\"localId\",\"id\",\"bimId\",\"所在建筑-id\",\"所在楼层-id\",\"所属场景\",\"对象类型\",\"所属模块\",\"对象类别\",\"所属楼层-id\",\"所属建筑名称\",\"所属楼层名称\",\"localName\",\"localId\",\"localId\",\"localName\"  ]}",
-                                "readLevel":"4",
-                                "filterRule":null,
-                                "customObject":null,
-                                "staticValue":null,
-                                "offsetLevel":"0",
-                                "queryAttached":null,
-                                "propertyValueSchema":"JSONArray",
-                                "staticArray":null,
-                                "propertyVisible":false,
-                                "propertyValueType":"query"
-                              }
-                            ],
-                            "propertyValueSchema":"JSONArray",
-                            "staticArray":[
-                            ],
-                            "propertyVisible":false,
-                            "propertyValueType":"query"
-                          }
-                        ]
-                      },
-                      {
-                        "propertyList":[
-                          {
-                            "propertyName":"名称",
-                            "allowPass":"1",
-                            "querySql":"",
-                            "readLevel":"1",
-                            "filterRule":"",
-                            "customObject":null,
-                            "staticValue":"换热站补水泵",
-                            "offsetLevel":"0",
-                            "queryAttached":[
-                            ],
-                            "propertyValueSchema":"string",
-                            "staticArray":[
-                            ],
-                            "propertyVisible":false,
-                            "propertyValueType":"static"
-                          },
-                          {
-                            "propertyName":"清单",
-                            "allowPass":"1",
-                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"ryxt3\",\"ibmsClassCode\": \"gongrebushuibeng\"},\"Criteria\": {},\"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                             "readLevel":"4",
                             "filterRule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "customObject":null,
