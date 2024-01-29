@@ -72,7 +72,6 @@ public class IbmsLogicalGroupService {
             //只保留3个版本数据
             FileUtil.clearHistoryDirectory(new File(getPath()));
             log.warn("************结束下载-IBMS逻辑编组数据-用时：" + (System.currentTimeMillis() - startTime) / 1000 + " 秒");
-
             return true;
         } catch (Exception e) {
             log.error("下载IBMS逻辑编组数据异常", e);

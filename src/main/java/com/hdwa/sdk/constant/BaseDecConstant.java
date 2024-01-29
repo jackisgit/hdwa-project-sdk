@@ -817,6 +817,10 @@ public class BaseDecConstant {
      */
     public static final String SPRING_PROFILES_ACTIVE = "spring.profiles.active";
     /**
+     * 开发环境
+     */
+    public static final String DEV = "dev";
+    /**
      * parentId String
      */
     public static final String PARENT_ID = "parentId";

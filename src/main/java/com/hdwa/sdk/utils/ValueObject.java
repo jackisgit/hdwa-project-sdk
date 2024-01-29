@@ -1,7 +1,7 @@
 package com.hdwa.sdk.utils;
 
 public class ValueObject {
-    public int type;// 0:int;1:double;2:string
+    public int type;
     public Long intValue;
     public Double doubleValue;
     public String stringValue;

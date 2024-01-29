@@ -1,8 +1,12 @@
 package com.hdwa.sdk.utils;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * 值 对象工具类
+ */
 public class ValueObjectUtil {
 
     public static ValueObject compute(String operator, ValueObject a, ValueObject b) {
@@ -64,7 +68,7 @@ public class ValueObjectUtil {
         return result;
     }
 
-    public static boolean stringcompare(String operator, ValueObject b) {
+    public static boolean stringCompare(String operator, ValueObject b) {
         if (operator.equals("==")) {
             return b.stringValue == null;
         } else if (operator.equals("!=")) {
@@ -73,7 +77,7 @@ public class ValueObjectUtil {
         return true;
     }
 
-    public static boolean stringcompare(String operator, ValueObject a, ValueObject b) {
+    public static boolean stringCompare(String operator, ValueObject a, ValueObject b) {
         if (a.is_null() && b.is_null()) {
             return operator.equals("==");
         } else if (a.is_null()) {
@@ -141,9 +145,9 @@ public class ValueObjectUtil {
                         case ">=":
                             return a.intValue >= b.intValue;
                         case "==":
-                            return a.intValue == b.intValue;
+                            return Objects.equals(a.intValue, b.intValue);
                         case "!=":
-                            return a.intValue != b.intValue;
+                            return !Objects.equals(a.intValue, b.intValue);
                     }
                 } else {
                     double valuea;
