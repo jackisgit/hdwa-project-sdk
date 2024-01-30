@@ -23,6 +23,7 @@ spring:
     secondary:
       host: 10.1.106.166
       port: 16379
+      timeout: 10000
 
   kafka:
     sdk:
