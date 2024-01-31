@@ -68,7 +68,7 @@ public class AlarmHandleServiceImpl {
                 try {
                     value = Double.parseDouble(valueStr);
                 } catch (Exception e) {
-                    log.error("数据出现异常：{}", msg);
+                    log.debug("数据出现异常：{}", msg);
                     continue;
                 }
                 if (AlarmInfoCache.hasKey(meterId, funcId)) {
