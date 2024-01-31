@@ -10148,6 +10148,22 @@
                     "propertyValueType":"static"
                   },
                   {
+                    "propertyName":"系统",
+                    "allowPass":"1",
+                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"tcxt\",\"ibmsClassCode\": \"chekuguanlixitong\"},\"Criteria\": {}}",
+                    "readLevel":"1",
+                    "filterRule":"",
+                    "customObject":null,
+                    "staticValue":null,
+                    "offsetLevel":"0",
+                    "queryAttached":[],
+                    "propertyValueSchema":"JSONObject",
+                    "staticArray":[
+                    ],
+                    "propertyVisible":false,
+                    "propertyValueType":"query"
+                  },
+                  {
                     "propertyName":"清单",
                     "allowPass":"1",
                     "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'运营'名称=停车统计'清单\"},\"Criteria\": {\"valid\": 1}}",
