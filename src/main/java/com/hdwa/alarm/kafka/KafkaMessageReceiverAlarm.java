@@ -16,11 +16,9 @@ import com.hdwa.alarm.vo.AlarmStateVO;
 import com.hdwa.alarm.vo.NettyMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -63,15 +61,15 @@ public class KafkaMessageReceiverAlarm {
 
     private void handlerMsg(NettyMessage<?> msg) {
         if (msg.getOpCode() == 7) {
-            log.debug("--报警定义新增或更新--{}", msg);
-            NettyMessage<AlarmDefineVO> AlarmDefineMessage = JSONObject.parseObject(msg.toString(), new TypeReference<NettyMessage<AlarmDefineVO>>() {
+            log.debug("--报警定义-新增/更新--{}", msg);
+            NettyMessage<AlarmDefineVO> alarmDefineMessage = JSONObject.parseObject(msg.toString(), new TypeReference<NettyMessage<AlarmDefineVO>>() {
             });
-            List<AlarmDefineVO> definesList = AlarmDefineMessage.getContent();
+            List<AlarmDefineVO> definesList = alarmDefineMessage.getContent();
             if (CollectionUtil.isNotEmpty(definesList)) {
                 AlarmDefineUtil.listSomeAlarmDefine(definesList);
             }
         } else if (msg.getOpCode() == 8) {
-            log.debug("-----报警记录id推送----[{}]", msg);
+            log.debug("-----报警记录-id推送----[{}]", msg);
             List<?> content = msg.getContent();
             if (CollectionUtil.isNotEmpty(content)) {
                 JSONObject parseObject = JSONObject.parseObject(JSONObject.toJSONString(content.get(0)));
@@ -97,9 +95,10 @@ public class KafkaMessageReceiverAlarm {
                 }
             }
         } else if (msg.getOpCode() == 9) {
-            NettyMessage<AlarmDefineVO> AlarmDefineMessage = JSONObject.parseObject(msg.toString(), new TypeReference<NettyMessage<AlarmDefineVO>>() {
+            log.debug("-----报警定义-9----[{}]", msg);
+            NettyMessage<AlarmDefineVO> alarmDefineMessage = JSONObject.parseObject(msg.toString(), new TypeReference<NettyMessage<AlarmDefineVO>>() {
             });
-            List<AlarmDefineVO> definesList = AlarmDefineMessage.getContent();
+            List<AlarmDefineVO> definesList = alarmDefineMessage.getContent();
             if (CollectionUtil.isNotEmpty(definesList)) {
                 try {
                     LockUtil.getInstance().lock.lock();
@@ -116,27 +115,31 @@ public class KafkaMessageReceiverAlarm {
                 }
             }
         } else if (msg.getOpCode() == 10) {
-            NettyMessage<AlarmDefineVO> AlarmDefineMessage = JSONObject.parseObject(msg.toString(), new TypeReference<NettyMessage<AlarmDefineVO>>() {
+            log.debug("-----报警定义-删除----[{}]", msg);
+            NettyMessage<AlarmDefineVO> alarmDefineMessage = JSONObject.parseObject(msg.toString(), new TypeReference<NettyMessage<AlarmDefineVO>>() {
             });
-            List<AlarmDefineVO> definesList = AlarmDefineMessage.getContent();
+            List<AlarmDefineVO> definesList = alarmDefineMessage.getContent();
             if (CollectionUtil.isNotEmpty(definesList)) {
                 AlarmDefineUtil.deleteAlarmDefine(definesList);
             }
         } else if (msg.getOpCode() == 11) {
+            log.debug("-----报警定义-11----[{}]", msg);
             // 更新隔离的系统对象
-            NettyMessage<String> AlarmDefineMessage = JSONObject.parseObject(msg.toString(), new TypeReference<NettyMessage<String>>() {
+            NettyMessage<String> alarmDefineMessage = JSONObject.parseObject(msg.toString(), new TypeReference<NettyMessage<String>>() {
             });
-            List<String> isolationSystemList = AlarmDefineMessage.getContent();
+            List<String> isolationSystemList = alarmDefineMessage.getContent();
             if (CollectionUtil.isNotEmpty(isolationSystemList)) {
                 AlarmInfoCache.isolationSystemList = isolationSystemList;
             }
         } else if (msg.getOpCode() == 12) {
+            log.debug("-----报警记录-更新（报警转工单处理完成）----[{}]", msg);
             // 云端更新报警记录状态
-            NettyMessage<JSONObject> AlarmStateMessage = JSONObject.parseObject(msg.toString(), new TypeReference<NettyMessage<JSONObject>>() {
+            NettyMessage<JSONObject> alarmDefineMessage = JSONObject.parseObject(msg.toString(), new TypeReference<NettyMessage<JSONObject>>() {
             });
-            List<JSONObject> stateList = AlarmStateMessage.getContent();
+            List<JSONObject> stateList = alarmDefineMessage.getContent();
             zktAlarmRecordService.updateAlarmDefine(stateList);
         } else if (msg.getOpCode() == 13) {
+            log.debug("-----报警定义-隔离-更新----[{}]", msg);
             // 报警隔离或取消隔离
             NettyMessage<JSONObject> alarmConfigMessage = JSONObject.parseObject(msg.toString(), new TypeReference<NettyMessage<JSONObject>>() {
             });
@@ -153,10 +156,12 @@ public class KafkaMessageReceiverAlarm {
                     if (alarmState != null) {
                         alarmState.setState("0");
                     } else {
-                        log.warn(alarmConfig.toString());
+                        log.debug(alarmConfig.toString());
                     }
                 }
             }
+        } else {
+            log.debug("-----报警-位置操作码----[{}]", msg);
         }
     }
 }
