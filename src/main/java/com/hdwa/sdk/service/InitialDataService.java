@@ -337,7 +337,7 @@ public class InitialDataService implements CommandLineRunner {
         }
         int[] count = repository.recomputeIot();
         if (count[0] > 0) {
-            log.warn("************定时计算iot数据数量：" + Arrays.toString(count));
+            log.debug("************定时计算iot数据数量：" + Arrays.toString(count));
         }
       /*  count = repository.recomputeAlarm();
         log.warn("*****计算alarm数据：" + Arrays.toString(count));*/
