@@ -12,6 +12,7 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import redis.clients.jedis.JedisPoolConfig;
 
 
 /**
@@ -29,6 +30,18 @@ public class RedisControlConfig {
         JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
         jedisConnectionFactory.setPort(redisProperties.getPort());
         jedisConnectionFactory.setHostName(redisProperties.getHost());
+        jedisConnectionFactory.setDatabase(redisProperties.getDatabase());
+        jedisConnectionFactory.setTimeout((int) redisProperties.getTimeout().getSeconds());
+        jedisConnectionFactory.setPassword(redisProperties.getPassword());
+        //连接池配置
+        JedisPoolConfig poolConfig = new JedisPoolConfig();
+        RedisProperties.Pool pool = redisProperties.getJedis().getPool();
+        poolConfig.setMaxTotal(pool.getMaxActive());
+        poolConfig.setMaxIdle(pool.getMaxIdle());
+        poolConfig.setMinIdle(pool.getMinIdle());
+        poolConfig.setMaxWaitMillis(pool.getMaxWait().toMillis());
+
+        jedisConnectionFactory.setPoolConfig(poolConfig);
         return jedisConnectionFactory;
     }
 
