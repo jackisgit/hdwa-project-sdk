@@ -13,8 +13,8 @@ spring:
     host: 127.0.0.1
     port: 16379
     password:
-    timeout: 10000
-    database: 6
+    timeout: 1000000
+    database: 5
 
   kafka:
     bootstrapServers: 10.199.87.63:19092,10.199.87.79:19092,10.199.87.85:19092
