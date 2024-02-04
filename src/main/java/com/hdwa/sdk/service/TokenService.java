@@ -3,6 +3,7 @@ package com.hdwa.sdk.service;
 import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.constant.UrlConstant;
 import com.hdwa.sdk.utils.OkHttpClientUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -15,6 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @since 2023/11/29
  * 验证token服务
  */
+@Slf4j
 @Service
 public class TokenService {
 
@@ -46,6 +48,7 @@ public class TokenService {
                 redisTemplate.opsForValue().set(redisKey, token, BaseDecConstant.TOKEN_TIME_OUT, TimeUnit.SECONDS);
                 return true;
             } else {
+                log.error("***token验证失败：" + res);
                 return false;
             }
         } else {
