@@ -48695,7 +48695,7 @@
                                             {
                                               "propertyName": "数量",
                                               "allowPass": "1",
-                                              "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_6'模块'清单\"},\"Criteria\":{\"runStatus\":{\"in\":[1,1.0]}},\"Aggregation\": {\"Function\": \"count\"}\n}",
+                                              "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_6'模块'清单\"},\"Criteria\":{\"onlineStatus\":{\"in\":[1,1.0]}},\"Aggregation\": {\"Function\": \"count\"}\n}",
                                               "readLevel": "1",
                                               "filterRule": null,
                                               "customObject": null,
@@ -57497,7 +57497,7 @@
                                             {
                                               "propertyName": "数量",
                                               "allowPass": "1",
-                                              "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_6'模块'清单\"},\"Criteria\":{\"runStatus\":{\"in\":[1,1.0]}},\"Aggregation\": {\"Function\": \"count\"}\n}",
+                                              "querySql": "{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_6'模块'清单\"},\"Criteria\":{\"onlineStatus\":{\"in\":[1,1.0]}},\"Aggregation\": {\"Function\": \"count\"}\n}",
                                               "readLevel": "1",
                                               "filterRule": null,
                                               "customObject": null,
