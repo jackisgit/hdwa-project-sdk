@@ -230,6 +230,9 @@ public class InitialDataService implements CommandLineRunner {
      */
     @Scheduled(initialDelay = 1000 * 60 * 5, fixedDelay = 1000 * 60)
     public void resConnection() {
+        if (iotClient == null) {
+            initIotWebsocket();
+        }
         //iot重连接
         try {
             if (!iotClient.isOpen()) {
@@ -251,6 +254,9 @@ public class InitialDataService implements CommandLineRunner {
         }
 
         //报警重连
+        if (alarmClient == null) {
+            initAlarmWebsocket();
+        }
         try {
             if (!alarmClient.isOpen()) {
                 log.error("************alarmWebSocket连接已断开，正在重新连接，当前状态为[{}]", alarmClient.getReadyState());
@@ -285,10 +291,10 @@ public class InitialDataService implements CommandLineRunner {
             if (content.size() != 0) {
                 log.warn("************定时刷新报警数据数量：" + content.size());
             }
-            JSONObject AlarmJob = new JSONObject();
-            AlarmJob.put(BaseDecConstant.TYPE, BaseDecConstant.REFRESH);
-            AlarmJob.put(BaseDecConstant.CONTENT, content);
-            DataContainer.alarmBuffer.offer(AlarmJob, 16384);
+            JSONObject alarmJob = new JSONObject();
+            alarmJob.put(BaseDecConstant.TYPE, BaseDecConstant.REFRESH);
+            alarmJob.put(BaseDecConstant.CONTENT, content);
+            DataContainer.alarmBuffer.offer(alarmJob, 16384);
             BaseDecConstant.EXECUTOR.execute(new AlarmJob(BaseDecConstant.CURRENT_PROJECT_ID));
         } catch (Exception e) {
             log.error("刷新报警数据出现异常", e);
