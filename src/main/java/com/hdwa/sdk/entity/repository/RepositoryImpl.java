@@ -17,6 +17,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * 数据仓库
+ *
  * @author abao
  */
 @Slf4j
@@ -218,16 +219,18 @@ public class RepositoryImpl extends RepositoryBase {
                                 } else {
                                     if (objectArrayDic.get(objType) != null) {
                                         result = objectArrayDic.get(objType).valueArray;
-                                    } else {
-                                        log.error("*****缺少objType数据：" + objType);
                                     }
+                                   /* else {
+                                        log.error("*****缺少objType数据：" + objType);
+                                    }*/
                                 }
                             } else {
                                 if (objectArrayDic.get(objType) != null) {
                                     result = objectArrayDic.get(objType).valueArray;
-                                } else {
-                                    log.error("*****缺少objType数据：" + objType);
                                 }
+                               /* else {
+                                    log.error("*****缺少objType数据：" + objType);
+                                }*/
                             }
                         } else if (descSet.containsKey(BaseDecConstant.CLASS_CODE)) {
                             String classCode = (descSet.get(BaseDecConstant.CLASS_CODE)).toString();
