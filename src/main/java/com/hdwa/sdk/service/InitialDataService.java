@@ -333,7 +333,7 @@ public class InitialDataService implements CommandLineRunner {
     }
 
     /**
-     * 刷新数据 重算iot，alarm
+     * 刷新数据 重算iot
      */
     @Scheduled(initialDelay = 1000 * 60 * 5, fixedDelay = 1000 * 60)
     public void refreshData() {
@@ -347,5 +347,19 @@ public class InitialDataService implements CommandLineRunner {
         }
       /*  count = repository.recomputeAlarm();
         log.warn("*****计算alarm数据：" + Arrays.toString(count));*/
+    }
+
+
+    /**
+     * 定时加载数据
+     */
+    @Scheduled(cron = "0 0 0 * * ?")
+    public void refreshDataByCron() {
+        log.warn("===============定时加载数据开始===============");
+        RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
+        if (repository == null) {
+            return;
+        }
+        loadDataMainService.loadDataMain();
     }
 }
