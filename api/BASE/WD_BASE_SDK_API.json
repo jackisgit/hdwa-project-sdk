@@ -115229,8 +115229,8 @@
                               "readLevel":"0",
                               "filterRule":null,
                               "customObject":{
-                                "propertyList":[
-                                  {
+                                 "propertyList":[
+                                   {
                                     "propertyName":"基础参数点位",
                                     "allowPass":"1",
                                     "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengdongbushuibeng\",\"infoType\": \"基础参数\",\"isVisible\": true        }      }    }}}",
@@ -115294,7 +115294,7 @@
                                   {
                                     "propertyName":"未排序单设备控制点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengquebushuibeng\",\"infoType\": \"设定参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengdongbushuibeng\",\"infoType\": \"设定参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -115340,7 +115340,7 @@
                                   {
                                     "propertyName":"未排序批量控制点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengquebushuibeng\",\"infoType\": \"设定参数\",\"isVisible\": true,\"isBatchControlParam\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengdongbushuibeng\",\"infoType\": \"设定参数\",\"isVisible\": true,\"isBatchControlParam\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -115386,7 +115386,7 @@
                                   {
                                     "propertyName":"未排序运行参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengquebushuibeng\",\"infoType\": \"运行参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengdongbushuibeng\",\"infoType\": \"运行参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -115432,7 +115432,7 @@
                                   {
                                     "propertyName":"未排序关键参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengquebushuibeng\",\"infoType\": \"运行参数\",\"isVisible\": true,\"isKeyPoint\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengdongbushuibeng\",\"infoType\": \"运行参数\",\"isVisible\": true,\"isKeyPoint\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -122690,7 +122690,7 @@
                               "propertyVisible":false,
                               "propertyValueType":"custom"
                             },
-                            {
+                          {
                               "propertyName":"冷冻补水泵",
                               "allowPass":"1",
                               "querySql":null,
@@ -122762,7 +122762,7 @@
                                   {
                                     "propertyName":"未排序单设备控制点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengquebushuibeng\",\"infoType\": \"设定参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengdongbushuibeng\",\"infoType\": \"设定参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -122808,7 +122808,7 @@
                                   {
                                     "propertyName":"未排序批量控制点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengquebushuibeng\",\"infoType\": \"设定参数\",\"isVisible\": true,\"isBatchControlParam\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengdongbushuibeng\",\"infoType\": \"设定参数\",\"isVisible\": true,\"isBatchControlParam\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -122854,7 +122854,7 @@
                                   {
                                     "propertyName":"未排序运行参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengquebushuibeng\",\"infoType\": \"运行参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengdongbushuibeng\",\"infoType\": \"运行参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -122900,7 +122900,7 @@
                                   {
                                     "propertyName":"未排序关键参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengquebushuibeng\",\"infoType\": \"运行参数\",\"isVisible\": true,\"isKeyPoint\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengdongbushuibeng\",\"infoType\": \"运行参数\",\"isVisible\": true,\"isKeyPoint\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -130230,7 +130230,7 @@
                                   {
                                     "propertyName":"未排序单设备控制点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengquebushuibeng\",\"infoType\": \"设定参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengdongbushuibeng\",\"infoType\": \"设定参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -130276,7 +130276,7 @@
                                   {
                                     "propertyName":"未排序批量控制点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengquebushuibeng\",\"infoType\": \"设定参数\",\"isVisible\": true,\"isBatchControlParam\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengdongbushuibeng\",\"infoType\": \"设定参数\",\"isVisible\": true,\"isBatchControlParam\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -130322,7 +130322,7 @@
                                   {
                                     "propertyName":"未排序运行参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengquebushuibeng\",\"infoType\": \"运行参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengdongbushuibeng\",\"infoType\": \"运行参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -130368,7 +130368,7 @@
                                   {
                                     "propertyName":"未排序关键参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengquebushuibeng\",\"infoType\": \"运行参数\",\"isVisible\": true,\"isKeyPoint\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"CHFWP\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"lyxt1\",\"ibmsClassCode\": \"lengdongbushuibeng\",\"infoType\": \"运行参数\",\"isVisible\": true,\"isKeyPoint\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
