@@ -168553,7 +168553,7 @@
                                   {
                                     "propertyName":"基础参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt1\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"基础参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt1\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"基础参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -168614,7 +168614,7 @@
                                   {
                                     "propertyName":"未排序单设备控制点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt1\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"设定参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt1\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"设定参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -168660,7 +168660,7 @@
                                   {
                                     "propertyName":"未排序批量控制点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt1\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"设定参数\",\"isVisible\": true,\"isBatchControlParam\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt1\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"设定参数\",\"isVisible\": true,\"isBatchControlParam\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -168706,7 +168706,7 @@
                                   {
                                     "propertyName":"未排序运行参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt1\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"运行参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt1\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"运行参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -168752,7 +168752,7 @@
                                   {
                                     "propertyName":"未排序关键参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt1\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"运行参数\",\"isVisible\": true,\"isKeyPoint\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt1\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"运行参数\",\"isVisible\": true,\"isKeyPoint\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -168813,7 +168813,7 @@
                                   {
                                     "propertyName":"设备状态点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": [\"runStatus\",\"onlineStatus\",\"faultStatus\"]}}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": [\"runStatus\",\"onlineStatus\",\"faultStatus\"]}}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -173374,7 +173374,7 @@
                                   {
                                     "propertyName":"基础参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt2\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"基础参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt2\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"基础参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -173435,7 +173435,7 @@
                                   {
                                     "propertyName":"未排序单设备控制点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt2\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"设定参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt2\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"设定参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -173481,7 +173481,7 @@
                                   {
                                     "propertyName":"未排序批量控制点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt2\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"设定参数\",\"isVisible\": true,\"isBatchControlParam\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt2\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"设定参数\",\"isVisible\": true,\"isBatchControlParam\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -173527,7 +173527,7 @@
                                   {
                                     "propertyName":"未排序运行参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt2\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"运行参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt2\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"运行参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -173573,7 +173573,7 @@
                                   {
                                     "propertyName":"未排序关键参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt2\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"运行参数\",\"isVisible\": true,\"isKeyPoint\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt2\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"运行参数\",\"isVisible\": true,\"isKeyPoint\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -173634,7 +173634,7 @@
                                   {
                                     "propertyName":"设备状态点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": [\"runStatus\",\"onlineStatus\",\"faultStatus\"]}}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": [\"runStatus\",\"onlineStatus\",\"faultStatus\"]}}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -178195,7 +178195,7 @@
                                   {
                                     "propertyName":"基础参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt3\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"基础参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt3\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"基础参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -178256,7 +178256,7 @@
                                   {
                                     "propertyName":"未排序单设备控制点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt3\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"设定参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt3\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"设定参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -178302,7 +178302,7 @@
                                   {
                                     "propertyName":"未排序批量控制点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt3\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"设定参数\",\"isVisible\": true,\"isBatchControlParam\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt3\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"设定参数\",\"isVisible\": true,\"isBatchControlParam\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -178348,7 +178348,7 @@
                                   {
                                     "propertyName":"未排序运行参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt3\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"运行参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt3\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"运行参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -178394,7 +178394,7 @@
                                   {
                                     "propertyName":"未排序关键参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt3\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"运行参数\",\"isVisible\": true,\"isKeyPoint\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ryxt3\",\"ibmsClassCode\": \"gongrehuanre\",\"infoType\": \"运行参数\",\"isVisible\": true,\"isKeyPoint\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -178455,7 +178455,7 @@
                                   {
                                     "propertyName":"设备状态点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"FCHEWD\"},\"Criteria\": {\"code\": {\"in\": [\"runStatus\",\"onlineStatus\",\"faultStatus\"]}}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"HHE\"},\"Criteria\": {\"code\": {\"in\": [\"runStatus\",\"onlineStatus\",\"faultStatus\"]}}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
