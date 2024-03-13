@@ -947,5 +947,5 @@ public class BaseDecConstant {
     /**
      * 报警线程
      */
-    public static ThreadPoolExecutor EXECUTOR = new ThreadPoolExecutor(4, 8, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), new CustomThreadFactory("alarm-threadPool"));
+    public static ThreadPoolExecutor EXECUTOR = new ThreadPoolExecutor(8, 16, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), new CustomThreadFactory("alarm-threadPool"));
 }
