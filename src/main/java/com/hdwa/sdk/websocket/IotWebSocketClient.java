@@ -33,7 +33,7 @@ public class IotWebSocketClient extends WebSocketClient {
      * 项目id
      */
     private final String projectId;
-    ThreadPoolExecutor executor = new ThreadPoolExecutor(4, 8, 60,
+    ThreadPoolExecutor executor = new ThreadPoolExecutor(8, 16, 60,
             TimeUnit.SECONDS,
             new LinkedBlockingQueue<>(),
             new CustomThreadFactory("iot-threadPool")
