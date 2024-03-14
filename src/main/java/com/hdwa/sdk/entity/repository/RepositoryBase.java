@@ -111,7 +111,7 @@ public class RepositoryBase {
     public boolean enable_factor = true;
 
     public RepositoryBase() {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 8; i++) {
             ComputeThread thread = new ComputeThread(this, 60);
             threadList.add(thread);
         }
