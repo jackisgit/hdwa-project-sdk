@@ -353,7 +353,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 定时加载数据
      */
-    @Scheduled(cron = "0 30 * * * ?")
+    @Scheduled(cron = "0 0 0 * * ?")
     public void refreshDataByCron() {
         log.warn("===============定时加载数据开始===============");
         RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);

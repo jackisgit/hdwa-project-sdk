@@ -72,6 +72,7 @@ public class IotWebSocketClient extends WebSocketClient {
 
     @Override
     public void onMessage(String arg0) {
+
         String[] splits = ((JSONObject) JSON.parse(arg0)).getString(BaseDecConstant.DATA).split(";");
         //仪表号
         String meter = splits[1];
@@ -81,12 +82,10 @@ public class IotWebSocketClient extends WebSocketClient {
         String value = splits[3];
         //点位
         String point = meter + "-" + funcId;
-
-        //没绑点数据不接收
+        //没绑点不处理数据
         if (repository == null || repository.point2ObjectInfoList.get(point) == null) {
             return;
         }
-
         count++;
         Date currTime = new Date();
         if (currTime.getTime() / (1000L * 60) != lastTime.getTime() / (1000L * 60)) {
@@ -95,7 +94,14 @@ public class IotWebSocketClient extends WebSocketClient {
             count = 0;
         }
         try {
-            //采集值处理
+            DataPrimitive sdvInner = new DataPrimitive();
+            sdvInner.change = true;
+            DataPrimitive existSdv = DataContainer.point2sdv.putIfAbsent(point, sdvInner);
+            if (existSdv == null) {
+                DataContainer.sdv2point.putIfAbsent(sdvInner, point);
+            }
+            DataPrimitive data = DataContainer.point2sdv.get(point);
+
             if (value.endsWith(".0")) {
                 value = value.substring(0, value.length() - ".0".length());
             }
@@ -109,24 +115,10 @@ public class IotWebSocketClient extends WebSocketClient {
                     valueNew = value;
                 }
             }
-
-            boolean valueEqual;
-            DataPrimitive data = DataContainer.point2sdv.get(point);
-            //没有点位值
-            if (data == null || data.value == null) {
-                valueEqual = true;
-            } else {
-                valueEqual = !valueNew.equals(data.value);
-            }
-
+            boolean valueEqual = valueNew.equals(data.value);
+            data.value = valueNew;
             // 改变的值才需要计算
-            if (valueEqual) {
-                //新的值放进来
-                data = new DataPrimitive();
-                data.change = true;
-                data.value = valueNew;
-                DataContainer.sdv2point.put(data, point);
-                DataContainer.point2sdv.put(point, data);
+            if (!valueEqual) {
                 //多线程解析数据
                 executor.execute(new IotJob(point, repository));
             }
