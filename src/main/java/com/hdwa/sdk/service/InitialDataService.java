@@ -335,7 +335,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 刷新数据 重算iot
      */
-    //@Scheduled(initialDelay = 1000 * 60 * 5, fixedDelay = 1000 * 60)
+    //@Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60)
     public void refreshData() {
         RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
         if (repository == null) {
@@ -353,7 +353,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 定时加载数据
      */
-    @Scheduled(cron = "0 0 0 * * ?")
+    @Scheduled(cron = "0 30 * * * ?")
     public void refreshDataByCron() {
         log.warn("===============定时加载数据开始===============");
         RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
