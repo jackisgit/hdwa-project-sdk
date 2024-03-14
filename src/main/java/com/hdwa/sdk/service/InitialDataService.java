@@ -335,7 +335,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 刷新数据 重算iot
      */
-    @Scheduled(initialDelay = 1000 * 60 * 5, fixedDelay = 1000 * 60)
+    //@Scheduled(initialDelay = 1000 * 60 * 5, fixedDelay = 1000 * 60)
     public void refreshData() {
         RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
         if (repository == null) {
