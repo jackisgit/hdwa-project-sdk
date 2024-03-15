@@ -38,7 +38,6 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 计算数据线程池
      */
-    private final ThreadPoolExecutor variableThreadPool = new ThreadPoolExecutor(4, 8, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), new CustomThreadFactory("iot-computeThreadPool"));
     @Value("${project.groupCode}")
     private String groupCode;
     @Value("${dirName.config}")
@@ -335,7 +334,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 刷新数据 重算iot
      */
-    //@Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60)
+    @Scheduled(initialDelay = 1000 * 60 * 5, fixedDelay = 1000 * 60)
     public void refreshData() {
         RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
         if (repository == null) {
@@ -345,8 +344,6 @@ public class InitialDataService implements CommandLineRunner {
         if (count[0] > 0) {
             log.debug("************定时计算iot数据数量：" + Arrays.toString(count));
         }
-      /*  count = repository.recomputeAlarm();
-        log.warn("*****计算alarm数据：" + Arrays.toString(count));*/
     }
 
 
