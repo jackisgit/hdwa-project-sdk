@@ -398,10 +398,10 @@
     <!--设置日志输出文件的内容-->
     <root level="INFO">
         <appender-ref ref="CONSOLE_SDK"/>
-        <appender-ref ref="DEBUG_FILE_SDK"/>
-        <appender-ref ref="INFO_FILE_SDK"/>
-        <appender-ref ref="WARN_FILE_SDK"/>
-        <appender-ref ref="ERROR_FILE_SDK"/>
+<!--        <appender-ref ref="DEBUG_FILE_SDK"/>-->
+<!--        <appender-ref ref="INFO_FILE_SDK"/>-->
+<!--        <appender-ref ref="WARN_FILE_SDK"/>-->
+<!--        <appender-ref ref="ERROR_FILE_SDK"/>-->
 
         <!-- <appender-ref ref="DEBUG_FILE_ALARM"/>
          <appender-ref ref="INFO_FILE_ALARM"/>
@@ -415,7 +415,7 @@
     </root>
 
 
-    <logger name="com.hdwa.sdk" level="INFO">
+    <logger name="com.hdwa.sdk" level="DEBUG">
         <appender-ref ref="DEBUG_FILE_SDK"/>
         <appender-ref ref="INFO_FILE_SDK"/>
         <appender-ref ref="WARN_FILE_SDK"/>
