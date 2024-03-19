@@ -3,6 +3,7 @@ package com.hdwa.sdk.entity.repository;
 import com.alibaba.fastjson.JSONObject;
 import com.hdwa.sdk.entity.scene.*;
 import com.hdwa.sdk.utils.ComputeThread;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -112,7 +113,7 @@ public class RepositoryBase {
 
     public RepositoryBase() {
         for (int i = 0; i < 8; i++) {
-            ComputeThread thread = new ComputeThread(this, 60);
+            ComputeThread thread = new ComputeThread(this, 100);
             threadList.add(thread);
         }
     }

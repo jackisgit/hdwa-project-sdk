@@ -120,7 +120,10 @@ public class IotWebSocketClient extends WebSocketClient {
             // 改变的值才需要计算
             if (!valueEqual) {
                 //多线程解析数据
+                log.debug("需要计算的数据：" + arg0);
                 executor.execute(new IotJob(point, repository));
+            } else {
+                log.debug("接收到的数据：" + arg0);
             }
         } catch (Exception e) {
             log.error("*****iotWebSocket数据解析异常", e);
