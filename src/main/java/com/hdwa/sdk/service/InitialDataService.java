@@ -6,7 +6,10 @@ import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.ExcelSheetEntity;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
-import com.hdwa.sdk.utils.*;
+import com.hdwa.sdk.utils.AlarmJob;
+import com.hdwa.sdk.utils.AlarmUtil;
+import com.hdwa.sdk.utils.ExcelUtil;
+import com.hdwa.sdk.utils.FileUtil;
 import com.hdwa.sdk.websocket.AlarmWebSocketClient;
 import com.hdwa.sdk.websocket.IotWebSocketClient;
 import lombok.extern.slf4j.Slf4j;
@@ -22,9 +25,6 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Map;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author abao
@@ -334,7 +334,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 刷新数据 重算iot
      */
-    @Scheduled(initialDelay = 1000 * 60 * 5, fixedDelay = 1000 * 60)
+    //@Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60 * 3)
     public void refreshData() {
         RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
         if (repository == null) {

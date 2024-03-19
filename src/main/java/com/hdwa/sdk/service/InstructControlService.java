@@ -7,6 +7,7 @@ import com.hdwa.sdk.constant.UrlConstant;
 import com.hdwa.sdk.entity.InstructControlParam;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
+import com.hdwa.sdk.utils.AlarmJob;
 import com.hdwa.sdk.utils.ControlUtil;
 import com.hdwa.sdk.utils.OkHttpClientUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +34,7 @@ public class InstructControlService {
     private String monitorUrl;
 
     @Autowired
-    private ConfigApiService configApiService;
+    private LoadDataMainService loadDataMainService;
 
 
     /**
@@ -68,6 +69,10 @@ public class InstructControlService {
             //处理返回结果
             ControlUtil.disposeResult(resultDate, result);
 
+            //如果是照明设备下发的手自动控制 就刷新数据
+            if (param.getInfoValueSet().get(BaseDecConstant.MANUAL_AUTO_SET) != null && param.getPath().toString().contains("照明") && param.getPath().toString().contains("品质")) {
+                refreshData();
+            }
             //保存日志
             //ControlUtil.saveOperationLog(param.getUserId(), param.getUsername(), (List<SceneDataObject>) data.get("objectList"), param.getInfoValueSet(), result, monitorUrl);
             return resultDate;
@@ -75,6 +80,14 @@ public class InstructControlService {
             log.error("******下发控制指令异常", e);
         }
         return null;
+    }
+
+    /**
+     * 刷新数据
+     */
+    public void refreshData() {
+        Runnable myRunnable = () -> loadDataMainService.loadDataMain();
+        BaseDecConstant.EXECUTOR.execute(myRunnable);
     }
 
     /**

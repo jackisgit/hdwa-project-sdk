@@ -35,32 +35,24 @@ public class ComputeThread extends Thread {
     @Override
     public void run() {
         log.warn("****计算线程已启动");
-        int cycleCount = 0;
         while (!stop) {
-            cycleCount++;
-            if (cycleCount >= 1000) {
+            WaitItem waitItem = repository.WaitCompute.pollFromQueue();
+            if (waitItem == null) {
                 try {
-                    Thread.sleep(100L);
+                    Thread.sleep(10L);
                 } catch (InterruptedException e) {
                     log.error("线程休眠异常", e);
                 }
-                cycleCount = 0;
+                continue;
             }
 
             Date currTime = new Date();
-
-            if (repository == null) {
-                continue;
-            }
-            WaitItem waitItem = repository.WaitCompute.pollFromQueue();
-            if (waitItem == null) {
-                continue;
-            }
             if (currTime.getTime() < waitItem.sdv.lastComputeTime.getTime() + this.interval) {
                 repository.WaitCompute.offerToQueue(waitItem);
                 continue;
             }
             repository.WaitCompute.removeFromMap(waitItem);
+
             try {
                 boolean computeValueChanged = CalculateApiJsonUtil.calculateProperty(repository, waitItem.sdv);
                 if (computeValueChanged) {
@@ -69,6 +61,8 @@ public class ComputeThread extends Thread {
             } catch (Exception e) {
                 log.error(PathUtil.getDataPath(waitItem.sdv), e);
             }
+
+
         }
     }
 }
