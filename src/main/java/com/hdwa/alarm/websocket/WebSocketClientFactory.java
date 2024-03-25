@@ -3,9 +3,14 @@ package com.hdwa.alarm.websocket;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.TimeInterval;
 import cn.hutool.core.thread.ExecutorBuilder;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.hdwa.alarm.config.CommonConst;
 import com.hdwa.alarm.service.AlarmHandleServiceImpl;
 import com.hdwa.alarm.util.LockUtil;
+import com.hdwa.sdk.constant.BaseDecConstant;
+import com.hdwa.sdk.entity.repository.DataContainer;
+import com.hdwa.sdk.entity.repository.RepositoryImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.java_websocket.WebSocket;
 import org.java_websocket.client.WebSocketClient;
@@ -30,8 +35,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class WebSocketClientFactory {
 
     ExecutorService executor = ExecutorBuilder.create()
-            .setCorePoolSize(5)
-            .setMaxPoolSize(10)
+            .setCorePoolSize(8)
+            .setMaxPoolSize(16)
             .setWorkQueue(new LinkedBlockingQueue<>(102400))
             .setHandler(new ThreadPoolExecutor.AbortPolicy())
             .build();
@@ -56,6 +61,8 @@ public class WebSocketClientFactory {
         this.outCallWebSocketClientHolder = outCallWebSocketClientHolder;
     }
 
+    RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
+
     /**
      * 创建websocket对象
      */
@@ -69,6 +76,17 @@ public class WebSocketClientFactory {
 
             @Override
             public void onMessage(String msg) {
+                String[] splits = ((JSONObject) JSON.parse(msg)).getString(BaseDecConstant.DATA).split(";");
+                //仪表号
+                String meter = splits[1];
+                //功能号
+                String funcId = splits[2];
+                //点位
+                String point = meter + "-" + funcId;
+                //没绑点不处理数据
+                if (repository == null || repository.point2ObjectInfoList.get(point) == null) {
+                    return;
+                }
                 try {
                     while (!LockUtil.getInstance().isExecute()) {
                         try {
