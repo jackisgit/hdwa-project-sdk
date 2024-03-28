@@ -1594,7 +1594,7 @@
                             "readLevel":"1",
                             "filterRule":"",
                             "customObject":null,
-                            "staticValue":"供热燃气锅炉",
+                            "staticValue":"燃气锅炉",
                             "offsetLevel":"0",
                             "queryAttached":[
                             ],
@@ -1607,7 +1607,7 @@
                           {
                             "propertyName":"清单",
                             "allowPass":"1",
-                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCH1'设备类型'名称=供热燃气锅炉'清单\"},\"Criteria\": {}}",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'设备'名称=ACCH1'设备类型'名称=燃气锅炉'清单\"},\"Criteria\": {}}",
                             "readLevel":"4",
                             "filterRule":"{\"QueryType\":\"select\",\"Criteria\":{\"LogicOperator\":\"and\",\"Criterias\":[{\"状态\":{\"ref\":\"ancestor_1'状态\"}},{\"所在楼层-id\":{\"ref\":\"ancestor_1'所在楼层-id\"}},{\"状态\":{\"in\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'状态清单\"}}},{\"LogicOperator\":\"or\",\"Criterias\":[{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},{\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                             "customObject":null,
@@ -37956,7 +37956,7 @@
                             "readLevel":"1",
                             "filterRule":"",
                             "customObject":null,
-                            "staticValue":"供热燃气锅炉",
+                            "staticValue":"燃气锅炉",
                             "offsetLevel":"0",
                             "queryAttached":[
                             ],
@@ -41012,7 +41012,7 @@
                             "readLevel":"1",
                             "filterRule":"",
                             "customObject":null,
-                            "staticValue":"供热燃气锅炉",
+                            "staticValue":"燃气锅炉",
                             "offsetLevel":"0",
                             "queryAttached":[
                             ],
@@ -44068,7 +44068,7 @@
                             "readLevel":"1",
                             "filterRule":"",
                             "customObject":null,
-                            "staticValue":"供热燃气锅炉",
+                            "staticValue":"燃气锅炉",
                             "offsetLevel":"0",
                             "queryAttached":[
                             ],
@@ -166839,7 +166839,7 @@
                               "propertyValueType":"custom"
                             },
                             {
-                              "propertyName":"供热燃气锅炉",
+                              "propertyName":"燃气锅炉",
                               "allowPass":"1",
                               "querySql":null,
                               "readLevel":"0",
@@ -171660,7 +171660,7 @@
                               "propertyValueType":"custom"
                             },
                             {
-                              "propertyName":"供热燃气锅炉",
+                              "propertyName":"燃气锅炉",
                               "allowPass":"1",
                               "querySql":null,
                               "readLevel":"0",
@@ -176481,7 +176481,7 @@
                               "propertyValueType":"custom"
                             },
                             {
-                              "propertyName":"供热燃气锅炉",
+                              "propertyName":"燃气锅炉",
                               "allowPass":"1",
                               "querySql":null,
                               "readLevel":"0",
