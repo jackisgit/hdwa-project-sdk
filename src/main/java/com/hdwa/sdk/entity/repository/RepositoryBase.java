@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -38,56 +39,56 @@ public class RepositoryBase {
      * <p>sp--list-sdv</p>
      * <p>数据来源config.json</p>
      */
-    public Map<DataProperty, CopyOnWriteArrayList<DataValue>> property2SDV = new HashMap<>(16);
+    public Map<DataProperty, CopyOnWriteArrayList<DataValue>> property2SDV = new ConcurrentHashMap<>(16);
 
     /**
      * <p>接口数据--自定义--上级属性</p>
      * <p>自定义custom_object包含的对象-->上级属性</p>
      * <p>数据来源config.json</p>
      */
-    public Map<DataObjectBase, DataProperty> customobject2host = new HashMap<>(16);
+    public Map<DataObjectBase, DataProperty> customobject2host = new ConcurrentHashMap<>(16);
 
     /**
      * <p>接口数据--静态--同级属性</p>
      * <p>静态static_array包含的对象-->上级属性</p>
      * <p>数据来源config.json</p>
      */
-    public Map<DataObjectBase, DataProperty> staticobject2host = new HashMap<>(16);
+    public Map<DataObjectBase, DataProperty> staticobject2host = new ConcurrentHashMap<>(16);
 
     /**
      * <p>接口数据--静态--所在下标</p>
      * <p>静态static_array包含的对象-->下标值0开始</p>
      * <p>数据来源config.json</p>
      */
-    public Map<DataObjectBase, Integer> staticobject2index = new HashMap<>(16);
+    public Map<DataObjectBase, Integer> staticobject2index = new ConcurrentHashMap<>(16);
 
     /**
      * <p>接口数据--static_array下的属性--静态对象列表</p>
      * <p>静态static_array下的单个属性-->同级所有静态对象元素</p>
      * <p>数据来源config.json</p>
      */
-    public Map<DataProperty, DataObjectBase> property2staticobject = new HashMap<>(16);
+    public Map<DataProperty, DataObjectBase> property2staticobject = new ConcurrentHashMap<>(16);
 
     /**
      * <p>接口数据--custom_object下的属性--同级对象列表</p>
      * <p>custom_object下的单个属性-->同级所有元素对象</p>
      * <p>数据来源config.json</p>
      */
-    public Map<DataProperty, DataObjectBase> property2customobject = new HashMap<>(16);
+    public Map<DataProperty, DataObjectBase> property2customobject = new ConcurrentHashMap<>(16);
 
     /**
      * <p>接口数据--单个附加查询属性--上级属性</p>
      * <p>单个附加查询属性-->上级属性</p>
      * <p>数据来源config.json</p>
      */
-    public Map<DataProperty, DataProperty> attachproperty2host = new HashMap<>(16);
+    public Map<DataProperty, DataProperty> attachproperty2host = new ConcurrentHashMap<>(16);
 
     /**
      * <p>接口数据--属性--属性列表</p>
      * <p>属性-->属性</p>
      * <p>数据来源config.json</p>
      */
-    public Map<DataProperty, List<DataProperty>> beforeDic = new HashMap<>(16);
+    public Map<DataProperty, List<DataProperty>> beforeDic = new ConcurrentHashMap<>(16);
 
     /**
      * 查询结果数据
@@ -97,13 +98,13 @@ public class RepositoryBase {
     public List<ComputeThread> threadList = new CopyOnWriteArrayList<>();
 
 
-    public Map<DataProperty, Map<String, Boolean>> p2varDict = new HashMap<>(16);
-    public Map<DataProperty, Map<String, Boolean>> p2varStringDict = new HashMap<>(16);
-    public Map<DataProperty, WalkerWrapper> p2walker1 = new HashMap<>(16);
-    public Map<DataProperty, WalkerList> p2walker2 = new HashMap<>(16);
+    public Map<DataProperty, Map<String, Boolean>> p2varDict = new ConcurrentHashMap<>(16);
+    public Map<DataProperty, Map<String, Boolean>> p2varStringDict = new ConcurrentHashMap<>(16);
+    public Map<DataProperty, WalkerWrapper> p2walker1 = new ConcurrentHashMap<>(16);
+    public Map<DataProperty, WalkerList> p2walker2 = new ConcurrentHashMap<>(16);
 
 
-    public Map<String, DataValue> base_value = new HashMap<>(16);
+    public Map<String, DataValue> base_value = new ConcurrentHashMap<>(16);
 
     public RepositoryDependency dependency = new RepositoryDependency();
 

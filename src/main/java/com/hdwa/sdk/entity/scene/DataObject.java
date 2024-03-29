@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author abao
@@ -36,7 +37,7 @@ public class DataObject {
         this.relObject = custom_object;
         this.queryAttached = queryAttached;
 
-        this.valueObject = new HashMap<>(16);
+        this.valueObject = new ConcurrentHashMap<>(16);
         if (this.relObject != null) {
             for (DataProperty dataProperty : this.relObject.propertyList) {
                 DataValue sdv = new DataValue(Repository, this, dataProperty.propertyName, dataProperty);

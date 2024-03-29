@@ -10,6 +10,7 @@ import com.hdwa.sdk.entity.scene.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -359,7 +360,7 @@ public class CalculateApiJsonUtil {
             }
             if (queryResultObject != null) {
                 DataObject arrayItemTmp = queryResultObject;
-                Map<String, Boolean> fatherReturnColumnMap = new HashMap<>(16);
+                Map<String, Boolean> fatherReturnColumnMap = new ConcurrentHashMap<>(16);
                 while (true) {
                     if (arrayItemTmp.parentArrayData != null || arrayItemTmp.parentObjectData != null) {
                         break;
@@ -423,7 +424,7 @@ public class CalculateApiJsonUtil {
                     }
                     for (int i = 0; i < array.set.size(); i++) {
                         DataObject arrayItemTmp = array.set.get(i);
-                        Map<String, Boolean> fatherReturnColumnMap = new HashMap<>(16);
+                        Map<String, Boolean> fatherReturnColumnMap = new ConcurrentHashMap<>(16);
                         while (true) {
                             if (arrayItemTmp.parentArrayData != null || arrayItemTmp.parentObjectData != null) {
                                 break;

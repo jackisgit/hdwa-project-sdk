@@ -70,9 +70,9 @@ public class InstructControlService {
             ControlUtil.disposeResult(resultDate, result);
 
             //如果是照明设备下发的手自动控制 就刷新数据
-            if (param.getInfoValueSet().get(BaseDecConstant.MANUAL_AUTO_SET) != null && param.getPath().toString().contains("照明") && param.getPath().toString().contains("品质")) {
+          /*  if (param.getInfoValueSet().get(BaseDecConstant.MANUAL_AUTO_SET) != null && param.getPath().toString().contains("照明") && param.getPath().toString().contains("品质")) {
                 refreshData();
-            }
+            }*/
             //保存日志
             //ControlUtil.saveOperationLog(param.getUserId(), param.getUsername(), (List<SceneDataObject>) data.get("objectList"), param.getInfoValueSet(), result, monitorUrl);
             return resultDate;

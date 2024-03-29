@@ -6,10 +6,8 @@ import com.hdwa.sdk.constant.BaseDecConstant;
 import com.hdwa.sdk.entity.ExcelSheetEntity;
 import com.hdwa.sdk.entity.repository.DataContainer;
 import com.hdwa.sdk.entity.repository.RepositoryImpl;
-import com.hdwa.sdk.utils.AlarmJob;
-import com.hdwa.sdk.utils.AlarmUtil;
-import com.hdwa.sdk.utils.ExcelUtil;
-import com.hdwa.sdk.utils.FileUtil;
+import com.hdwa.sdk.entity.scene.DataSet;
+import com.hdwa.sdk.utils.*;
 import com.hdwa.sdk.websocket.AlarmWebSocketClient;
 import com.hdwa.sdk.websocket.IotWebSocketClient;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +22,9 @@ import java.io.File;
 import java.net.URI;
 import java.nio.file.Files;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author abao
@@ -334,7 +334,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 刷新数据 重算iot
      */
-    //@Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60 * 3)
+    @Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60)
     public void refreshData() {
         RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
         if (repository == null) {
@@ -350,7 +350,7 @@ public class InitialDataService implements CommandLineRunner {
     /**
      * 定时加载数据
      */
-    @Scheduled(cron = "0 0 0 * * ?")
+    //@Scheduled(cron = "0 0 0 * * ?")
     public void refreshDataByCron() {
         log.warn("===============定时加载数据开始===============");
         RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
@@ -359,4 +359,49 @@ public class InitialDataService implements CommandLineRunner {
         }
         loadDataMainService.loadDataMain();
     }
+
+
+    /**
+     * 清空内存操作
+     */
+    @Scheduled(cron = "0 30 5 * * ?")
+    public void clear1() {
+        clearBiz();
+    }
+
+    /**
+     * 清空内存操作（增城）
+     */
+    @Scheduled(cron = "0 30 13 * * ?")
+    public void clear() {
+        if (BaseDecConstant.CURRENT_PROJECT_ID.equals(BaseDecConstant.ZNEG_CHENG_PROJECT_ID)) {
+            clearBiz();
+        }
+    }
+
+    public void clearBiz() {
+        log.warn("=========定时清空内存=====");
+        BaseDecConstant.FLAG_NUMBER = 1;
+        RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
+        repository.threadStop();
+        repository = null;
+        DataContainer.projectMap = new ConcurrentHashMap<>(16);
+        DataContainer.point2sdv = new ConcurrentHashMap<>(16);
+        DataContainer.sdv2point = new ConcurrentHashMap<>(16);
+        DataContainer.id2alarmList = new ConcurrentHashMap<>(16);
+        DataContainer.id2alarmCount = new ConcurrentHashMap<>(16);
+        DataContainer.pointMap = new HashMap<>(16);
+        DataContainer.alarmArray = new DataSet(false, true);
+        DataContainer.alarmBuffer = new PacketBuffer<>();
+        System.gc();
+        try {
+            Thread.sleep(1000 * 5);
+        } catch (Exception e) {
+            log.error("休眠失败", e);
+        }
+        loadDataMainService.loadDataMain();
+        BaseDecConstant.FLAG_NUMBER = 0;
+    }
+
+
 }

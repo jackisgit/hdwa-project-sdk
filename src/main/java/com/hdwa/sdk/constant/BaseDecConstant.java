@@ -447,6 +447,9 @@ public class BaseDecConstant {
      */
     public static final String FLAG = "flag";
 
+
+    public static int FLAG_NUMBER = 0;
+
     /**
      * 条件 String
      */

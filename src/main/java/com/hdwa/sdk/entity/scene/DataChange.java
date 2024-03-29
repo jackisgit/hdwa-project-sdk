@@ -2,6 +2,7 @@ package com.hdwa.sdk.entity.scene;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author abao
@@ -12,7 +13,7 @@ public class DataChange {
 
     public boolean rowChange = false;
 
-    public Map<String, Boolean> colChangeMap = new HashMap<>(16);
+    public Map<String, Boolean> colChangeMap = new ConcurrentHashMap<>(16);
 
     @Override
     public String toString() {
