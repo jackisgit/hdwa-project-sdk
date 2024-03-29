@@ -72,7 +72,12 @@ public class IotWebSocketClient extends WebSocketClient {
 
     @Override
     public void onMessage(String arg0) {
-
+        if (BaseDecConstant.FLAG_NUMBER == 1) {
+            return;
+        }
+        if (repository == null) {
+            return;
+        }
         String[] splits = ((JSONObject) JSON.parse(arg0)).getString(BaseDecConstant.DATA).split(";");
         //仪表号
         String meter = splits[1];
@@ -83,7 +88,7 @@ public class IotWebSocketClient extends WebSocketClient {
         //点位
         String point = meter + "-" + funcId;
         //没绑点不处理数据
-        if (repository == null || repository.point2ObjectInfoList.get(point) == null) {
+        if (repository.point2ObjectInfoList.get(point) == null) {
             return;
         }
         count++;
@@ -119,9 +124,12 @@ public class IotWebSocketClient extends WebSocketClient {
             data.value = valueNew;
             // 改变的值才需要计算
             if (!valueEqual) {
-                //多线程解析数据
+                //多线程计算数据
                 log.debug("需要计算的数据：" + arg0);
-                executor.execute(new IotJob(point, repository));
+                repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
+                if (repository != null) {
+                    executor.execute(new IotJob(point, repository));
+                }
             } else {
                 log.debug("接收到的数据：" + arg0);
             }

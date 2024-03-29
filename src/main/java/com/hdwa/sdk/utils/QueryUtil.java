@@ -32,6 +32,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -1827,7 +1828,7 @@ public class QueryUtil {
             }
             return resultArray;
         } else {
-            Map<String, Boolean> ReturnColumnMap = new HashMap<String, Boolean>();
+            Map<String, Boolean> ReturnColumnMap = new ConcurrentHashMap<>(16);
             for (String Column : ReturnColumns) {
                 ReturnColumnMap.put(Column, true);
             }

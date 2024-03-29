@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -36,31 +37,31 @@ public class RepositoryImpl extends RepositoryBase {
      * <p>false：code!=objType</p>
      * <p>数据来源 physical_world/classArray.json</p>
      */
-    public Map<String, Boolean> objTypeMap = new HashMap<>(16);
+    public Map<String, Boolean> objTypeMap = new ConcurrentHashMap<>(16);
     /**
      * <p>类型定义数据--code-对象类型</p>
      * <p>classCode--->objType</p>
      * <p>数据来源 physical_world/classArray.json</p>
      */
-    public Map<String, String> code2objTypeMap = new HashMap<>(16);
+    public Map<String, String> code2objTypeMap = new ConcurrentHashMap<>(16);
     /**
      * <p>类型定义数据--code-类型名称</p>
      * <p>classCode--->name</p>
      * <p>数据来源 physical_world/classArray.json</p>
      */
-    public Map<String, String> classCode2NameMap = new HashMap<>(16);
+    public Map<String, String> classCode2NameMap = new ConcurrentHashMap<>(16);
     /**
      * <p>点位定义数据--code-对象类型列表</p>
      * <p>classCode--->sds</p>
      * <p>数据来源 physical_world/point/*.json</p>
      */
-    public Map<String, DataSet> infoArrayDic = new HashMap<>(16);
+    public Map<String, DataSet> infoArrayDic = new ConcurrentHashMap<>(16);
     /**
      * <p>点位定义数据--code-对象类型列表</p>
      * <p>classCode--->JsonArray</p>
      * <p>数据来源 physical_world/point/*.json</p>
      */
-    public Map<String, JSONArray> infoArrayJson = new HashMap<>(16);
+    public Map<String, JSONArray> infoArrayJson = new ConcurrentHashMap<>(16);
     /**
      * <p>dataSource数据</p>
      * <p>{"classCode":"FFEACU","code":"0","name":"正常","infoCode":"orderFailAlarm"}</p>
@@ -74,13 +75,13 @@ public class RepositoryImpl extends RepositoryBase {
      * <p>id--->JsonObject</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
-    public Map<String, JSONObject> id2object = new HashMap<>(16);
+    public Map<String, JSONObject> id2object = new ConcurrentHashMap<>(16);
     /**
      * <p>对象数据--id-sdo</p>
      * <p>id--->sdo</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
-    public Map<String, DataObject> id2sdv = new HashMap<>(16);
+    public Map<String, DataObject> id2sdv = new ConcurrentHashMap<>(16);
     /**
      * <p>对象数据--全量数据</p>
      * <p>数据来源 physical_world/object/*.json</p>
@@ -90,31 +91,31 @@ public class RepositoryImpl extends RepositoryBase {
      * <p>对象数据--全量数据</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
-    public Map<String, DataValue> objectArrayDic = new HashMap<>(16);
+    public Map<String, DataValue> objectArrayDic = new ConcurrentHashMap<>(16);
     /**
      * <p>对象数据--objType-（id-对象数据）</p>
      * <p>objType--->（id-->sdo）</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
-    public Map<String, Map<String, DataObject>> objType2id2Value = new HashMap<>(16);
+    public Map<String, Map<String, DataObject>> objType2id2Value = new ConcurrentHashMap<>(16);
     /**
      * <p>关系数据--graphCode-（relCode-关系数据）</p>
      * <p>graphCode 图例编码--->（relCode-->sds）</p>
      * <p>数据来源 physical_world/relation/*.json</p>
      */
-    public Map<String, Map<String, DataSet>> relationArrayDic = new HashMap<>(16);
+    public Map<String, Map<String, DataSet>> relationArrayDic = new ConcurrentHashMap<>(16);
     /**
      * <p>关系数据--graphCode-关系数据</p>
      * <p>graphCode 图例编码--->sds</p>
      * <p>数据来源 physical_world/relation/*.json</p>
      */
-    public Map<String, DataSet> graphCodeDic = new HashMap<>(16);
+    public Map<String, DataSet> graphCodeDic = new ConcurrentHashMap<>(16);
     /**
      * <p>关系数据--relCode-关系数据</p>
      * <p>relCode 关系编码--->sds</p>
      * <p>数据来源 physical_world/relation/*.json</p>
      */
-    public Map<String, DataSet> relCodeDic = new HashMap<>(16);
+    public Map<String, DataSet> relCodeDic = new ConcurrentHashMap<>(16);
     /**
      * <p>关系数据--全量数据</p>
      * <p>sds</p>
@@ -126,19 +127,19 @@ public class RepositoryImpl extends RepositoryBase {
      * <p>objId 对象数据--->（point-->value）</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
-    public Map<String, HashMap<String, String>> object2info2point = new HashMap<>(16);
+    public Map<String, HashMap<String, String>> object2info2point = new ConcurrentHashMap<>(16);
     /**
      * <p>运行点位值--对象信息</p>
      * <p>运行点点位值 对象数据--->对象信息</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
-    public Map<String, List<ObjectInfo>> point2ObjectInfoList = new HashMap<>(16);
+    public Map<String, List<ObjectInfo>> point2ObjectInfoList = new ConcurrentHashMap<>(16);
     /**
      * <p>设定点位值--对象信息</p>
      * <p>设定点位值 对象数据--->对象信息</p>
      * <p>数据来源 physical_world/object/*.json</p>
      */
-    public Map<String, List<ObjectInfo>> set2ObjectInfoList = new HashMap<>(16);
+    public Map<String, List<ObjectInfo>> set2ObjectInfoList = new ConcurrentHashMap<>(16);
     /**
      * <p>IBMS物理世界</p>
      * <p>场景对象</p>
@@ -151,7 +152,7 @@ public class RepositoryImpl extends RepositoryBase {
      * <p>ibmsSceneCode--ibmsClassCode->对象数据 </p>
      * <p>数据来源 ibms_physical_world/sceneArray.json</p>
      */
-    public Map<String, Map<String, DataValue>> ZKTObjectArrayDic = new HashMap<>(16);
+    public Map<String, Map<String, DataValue>> ZKTObjectArrayDic = new ConcurrentHashMap<>(16);
     /**
      * <p>IBMS物理世界</p>
      * <p>类型定义数据</p>
@@ -170,7 +171,7 @@ public class RepositoryImpl extends RepositoryBase {
      * <p>ibmsSceneCode--ibmsClassCode->分组数据 </p>
      * <p>数据来源 ibms_logical_group/**.json</p>
      */
-    public Map<String, Map<String, DataSet>> IBMSArrayDic = new HashMap<>(16);
+    public Map<String, Map<String, DataSet>> IBMSArrayDic = new ConcurrentHashMap<>(16);
     /**
      * <p>点位数据</p>
      * <p>点位数据</p>

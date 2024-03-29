@@ -39,7 +39,7 @@ public class ComputeThread extends Thread {
             WaitItem waitItem = repository.WaitCompute.pollFromQueue();
             if (waitItem == null) {
                 try {
-                    Thread.sleep(10L);
+                    Thread.sleep(1L);
                 } catch (InterruptedException e) {
                     log.error("线程休眠异常", e);
                 }
@@ -61,8 +61,6 @@ public class ComputeThread extends Thread {
             } catch (Exception e) {
                 log.error(PathUtil.getDataPath(waitItem.sdv), e);
             }
-
-
         }
     }
 }

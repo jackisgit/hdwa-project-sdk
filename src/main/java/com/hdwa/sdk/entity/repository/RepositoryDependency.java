@@ -9,24 +9,24 @@ import com.hdwa.sdk.entity.scene.DataValue;
 import com.hdwa.sdk.utils.PathUtil;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * 依赖库
  */
 public class RepositoryDependency {
-    public Map<DataValue, Map<DataValue, Boolean>> sdv2sdv = new HashMap<>(16);
-    public Map<DataValue, Map<DataSet, Map<String, Boolean>>> sdv2SetColumn = new HashMap<>(16);
-    public Map<DataSet, Map<DataValue, Boolean>> SetRow2sdv = new HashMap<>(16);
-    public Map<DataSet, Map<String, Map<DataValue, Boolean>>> SetColumn2sdv = new HashMap<>(16);
-    public Map<DataObject, CopyOnWriteArrayList<DataObject>> sdv2Children = new HashMap<>(16);
+    public Map<DataValue, Map<DataValue, Boolean>> sdv2sdv = new ConcurrentHashMap<>(16);
+    public Map<DataValue, Map<DataSet, Map<String, Boolean>>> sdv2SetColumn = new ConcurrentHashMap<>(16);
+    public Map<DataSet, Map<DataValue, Boolean>> SetRow2sdv = new ConcurrentHashMap<>(16);
+    public Map<DataSet, Map<String, Map<DataValue, Boolean>>> SetColumn2sdv = new ConcurrentHashMap<>(16);
+    public Map<DataObject, CopyOnWriteArrayList<DataObject>> sdv2Children = new ConcurrentHashMap<>(16);
 
     public void clear() {
-        sdv2sdv = new HashMap<>(16);
-        sdv2SetColumn = new HashMap<>(16);
-        SetRow2sdv = new HashMap<>(16);
-        SetColumn2sdv = new HashMap<>(16);
-
+        sdv2sdv = new ConcurrentHashMap<>(16);
+        sdv2SetColumn = new ConcurrentHashMap<>(16);
+        SetRow2sdv = new ConcurrentHashMap<>(16);
+        SetColumn2sdv = new ConcurrentHashMap<>(16);
         sdv2Children.clear();
     }
 
