@@ -17,7 +17,11 @@
     </properties>
 
     <dependencies>
-
+<!--        <dependency>-->
+<!--            <groupId>commons-beanutils</groupId>-->
+<!--            <artifactId>commons-beanutils</artifactId>-->
+<!--            <version>1.9.4</version>-->
+<!--        </dependency>-->
         <!-- 数学逻辑运算解析库-->
         <dependency>
             <groupId>com.googlecode.aviator</groupId>
