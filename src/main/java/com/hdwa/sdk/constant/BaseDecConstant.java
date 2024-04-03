@@ -596,6 +596,16 @@ public class BaseDecConstant {
     public static final String OBJ_FROM = "objFrom";
 
     /**
+     * status
+     */
+    public static final String STATUS = "status";
+
+    /**
+     * subSystem
+     */
+    public static final String SUB_SYSTEM = "subSystem";
+
+    /**
      * meter-funcid string
      */
     public static final String METER_FUNGICIDE = "meter-funcid";
