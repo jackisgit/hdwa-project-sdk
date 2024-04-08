@@ -60,9 +60,6 @@ public class WebSocketClientFactory {
     public void setOutCallWebSocketClientHolder(WebSocketClient outCallWebSocketClientHolder) {
         this.outCallWebSocketClientHolder = outCallWebSocketClientHolder;
     }
-
-    RepositoryImpl repository = DataContainer.projectMap.get(BaseDecConstant.CURRENT_PROJECT_ID);
-
     /**
      * 创建websocket对象
      */
@@ -76,17 +73,6 @@ public class WebSocketClientFactory {
 
             @Override
             public void onMessage(String msg) {
-                String[] splits = ((JSONObject) JSON.parse(msg)).getString(BaseDecConstant.DATA).split(";");
-                //仪表号
-                String meter = splits[1];
-                //功能号
-                String funcId = splits[2];
-                //点位
-                String point = meter + "-" + funcId;
-                //没绑点不处理数据
-                if (repository == null || repository.point2ObjectInfoList.get(point) == null) {
-                    return;
-                }
                 try {
                     while (!LockUtil.getInstance().isExecute()) {
                         try {
