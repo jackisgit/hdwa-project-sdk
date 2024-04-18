@@ -188740,7 +188740,7 @@
                                   {
                                     "propertyName":"基础参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"PSPLSC\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchanjing\",\"infoType\": \"基础参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"PSPLSC\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchangjing\",\"infoType\": \"基础参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -188750,7 +188750,7 @@
                                       {
                                         "propertyName":"sequenceNo",
                                         "allowPass":"1",
-                                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchanjing\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchangjing\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
                                         "readLevel":"1",
                                         "filterRule":null,
                                         "customObject":null,
@@ -188765,7 +188765,7 @@
                                       {
                                         "propertyName":"infoStage",
                                         "allowPass":"1",
-                                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchanjing\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"infoStage\"}",
+                                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchangjing\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"infoStage\"}",
                                         "readLevel":"1",
                                         "filterRule":null,
                                         "customObject":null,
@@ -188780,7 +188780,7 @@
                                       {
                                         "propertyName":"isDefaultVisible",
                                         "allowPass":"1",
-                                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchanjing\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"isDefaultVisible\"}",
+                                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchangjing\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"isDefaultVisible\"}",
                                         "readLevel":"1",
                                         "filterRule":null,
                                         "customObject":null,
@@ -188801,7 +188801,7 @@
                                   {
                                     "propertyName":"未排序单设备控制点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"PSPLSC\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchanjing\",\"infoType\": \"设定参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"PSPLSC\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchangjing\",\"infoType\": \"设定参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -188811,7 +188811,7 @@
                                       {
                                         "propertyName":"sequenceNo",
                                         "allowPass":"1",
-                                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchanjing\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchangjing\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
                                         "readLevel":"1",
                                         "filterRule":null,
                                         "customObject":null,
@@ -188847,7 +188847,7 @@
                                   {
                                     "propertyName":"未排序批量控制点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"PSPLSC\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchanjing\",\"infoType\": \"设定参数\",\"isVisible\": true,\"isBatchControlParam\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"PSPLSC\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchangjing\",\"infoType\": \"设定参数\",\"isVisible\": true,\"isBatchControlParam\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -188857,7 +188857,7 @@
                                       {
                                         "propertyName":"sequenceNo",
                                         "allowPass":"1",
-                                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchanjing\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchangjing\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
                                         "readLevel":"1",
                                         "filterRule":null,
                                         "customObject":null,
@@ -188893,7 +188893,7 @@
                                   {
                                     "propertyName":"未排序运行参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"PSPLSC\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchanjing\",\"infoType\": \"运行参数\",\"isVisible\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"PSPLSC\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchangjing\",\"infoType\": \"运行参数\",\"isVisible\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -188903,7 +188903,7 @@
                                       {
                                         "propertyName":"sequenceNo",
                                         "allowPass":"1",
-                                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchanjing\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchangjing\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
                                         "readLevel":"1",
                                         "filterRule":null,
                                         "customObject":null,
@@ -188939,7 +188939,7 @@
                                   {
                                     "propertyName":"未排序关键参数点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"PSPLSC\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchanjing\",\"infoType\": \"运行参数\",\"isVisible\": true,\"isKeyPoint\": true        }      }    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"info\",\"objType\": \"equipment\",\"classCode\": \"PSPLSC\"},\"Criteria\": {\"code\": {\"in\": {\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"UniqueReturnColumn\": \"infoCode\",\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchangjing\",\"infoType\": \"运行参数\",\"isVisible\": true,\"isKeyPoint\": true        }      }    }}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
@@ -188949,7 +188949,7 @@
                                       {
                                         "propertyName":"sequenceNo",
                                         "allowPass":"1",
-                                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchanjing\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
+                                        "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-list\"},\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchangjing\",\"infoCode\": {\"ref\": \"ancestor_1'code\"}},\"Limit\": {\"Skip\": 0,\"Count\": 1  },\"UniqueReturnColumn\": \"sequenceNo\"}",
                                         "readLevel":"1",
                                         "filterRule":null,
                                         "customObject":null,
@@ -188985,7 +188985,7 @@
                                   {
                                     "propertyName":"控制关联点位",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-relation\"},\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchanjing\"}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"info-point-relation\"},\"Criteria\": {\"ibmsSceneCode\": \"ggzm\",\"ibmsClassCode\": \"bxjzhaomingchangjing\"}}",
                                     "readLevel":"1",
                                     "filterRule":null,
                                     "customObject":null,
