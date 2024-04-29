@@ -6,12 +6,12 @@ url:
   alarmUrl: http://10.199.208.69:32050/api-ibms-alarm
   alarmWebSocket: ws://10.199.208.69:32050/ws-ibms-alarm/webSocketServer
 
-  iotProject: http://10.199.205.79:18858
-  iotWebSocket: ws://10.199.205.79:18888/websocket
+  iotProject: http://10.199.205.86:18858
+  iotWebSocket: ws://10.199.205.86:18888/websocket
 
 spring:
   redis:
-    host: 10.199.205.79
+    host: 10.199.205.86
     port: 16379
     password:
     timeout: 1000000
