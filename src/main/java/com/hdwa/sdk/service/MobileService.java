@@ -25,13 +25,18 @@ public class MobileService {
 
     private static final String ACCC_PREFIX = "ACCC";
     private static final String HVAC_PREFIX = "HVAC";
+    private static final String SELT_PREFIX = "SELT";
+    private static final String SEYJ_PREFIX = "SEYJ";
     private static final String SCENE_DATA = "[\"场景数据\",\"设备\",\"冷源\",\"";
     private static final String ENDPOINT_COLD_SOURCE = "\",\"系统\"]";
     private static final String ENDPOINT_HEATING_VENTILATION = "[\"基础对象\",\"设备\",\"末端\",\"手自动统计\"]";
+    private static final String SELT_VENTILATION = "[\"基础对象\",\"品质\",\"公共照明\",\"回路和场景\"]";
+    private static final String SEYJ_VENTILATION = "[\"基础对象\",\"品质\",\"夜景照明\",\"回路和场景\"]";
     private static final int STATUS_AUTO = 0;
     private static final int STATUS_MANUAL = 1;
     private static final int STATUS_BOTH = 2;
     private static final String NUMBER = "数量";
+    private static final String MANUAL_AUTOMATIC_STATISTICS = "手自动统计";
 
     /**
      * 系统手自动状态
@@ -49,6 +54,10 @@ public class MobileService {
                 processAcccSystem(s, jsonObject);
             } else if (s.startsWith(HVAC_PREFIX)) {
                 processHvacSystem(jsonObject);
+            } else if (s.startsWith(SELT_PREFIX)) {
+                lighting(jsonObject, SELT_VENTILATION);
+            } else if (s.startsWith(SEYJ_PREFIX)) {
+                lighting(jsonObject, SEYJ_VENTILATION);
             }
             jsonArray.add(jsonObject);
         });
@@ -60,7 +69,6 @@ public class MobileService {
      * 冷源系统
      *
      * @param subSystem
-     * @param result
      */
     private void processAcccSystem(String subSystem, JSONObject result) {
         PathApiParam param = new PathApiParam();
@@ -78,7 +86,6 @@ public class MobileService {
     /**
      * 空调末端
      *
-     * @param result
      */
     private void processHvacSystem(JSONObject result) {
         PathApiParam param = new PathApiParam();
@@ -99,6 +106,34 @@ public class MobileService {
         } catch (Exception e) {
             result.put(BaseDecConstant.STATUS, "");
             log.error("****查询空调末端数据出现异常" + param.getPath(), e);
+        }
+    }
+
+    /**
+     * 照明
+     *
+     * @param result
+     */
+    private void lighting(JSONObject result, String path) {
+        PathApiParam param = new PathApiParam();
+        param.setPath(JSONArray.parseArray(path));
+        try {
+            JSONObject json = (JSONObject) pathApiService.post(param);
+            JSONArray jsonArray = (JSONArray) json.get(MANUAL_AUTOMATIC_STATISTICS);
+            JSONObject data1 = (JSONObject) jsonArray.get(0);
+            JSONObject data2 = (JSONObject) jsonArray.get(1);
+            int manualCount = data1.getIntValue(NUMBER);
+            int autoCount = data2.getIntValue(NUMBER);
+            if (manualCount == 0 && autoCount > 0) {
+                result.put(BaseDecConstant.STATUS, STATUS_AUTO);
+            } else if (manualCount > 0 && autoCount == 0) {
+                result.put(BaseDecConstant.STATUS, STATUS_MANUAL);
+            } else {
+                result.put(BaseDecConstant.STATUS, STATUS_BOTH);
+            }
+        } catch (Exception e) {
+            result.put(BaseDecConstant.STATUS, "");
+            log.error("****查询照明数据出现异常" + param.getPath(), e);
         }
     }
 }
