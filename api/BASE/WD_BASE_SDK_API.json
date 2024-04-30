@@ -82908,6 +82908,36 @@
                             ],
                             "propertyVisible":false,
                             "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"设备数量",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"ancestor_1'清单\"},\"Criteria\": {},\"Aggregation\": {\"Function\": \"count\"}}",
+                            "readLevel":"1",
+                            "filterRule":null,
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":null,
+                            "propertyValueSchema":"int",
+                            "staticArray":null,
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
+                          },
+                          {
+                            "propertyName":"是否显示",
+                            "allowPass":"1",
+                            "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([num>0]){1}else{0}\",\"Criteria\": {\"num\": {\"ref\": \"ancestor_1'设备数量\"}}}",
+                            "readLevel":"1",
+                            "filterRule":null,
+                            "customObject":null,
+                            "staticValue":null,
+                            "offsetLevel":"0",
+                            "queryAttached":null,
+                            "propertyValueSchema":"int",
+                            "staticArray":null,
+                            "propertyVisible":false,
+                            "propertyValueType":"query"
                           }
                         ]
                       },
