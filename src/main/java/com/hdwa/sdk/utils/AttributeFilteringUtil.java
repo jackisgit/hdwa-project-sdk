@@ -90,6 +90,7 @@ public class AttributeFilteringUtil {
         keyWordMap.put("leasable", true);
         keyWordMap.put("leasedArea", true);
         keyWordMap.put("naturalGasSupply", true);
+        keyWordMap.put("anchorStoreType", true);
         //keyWordMap.put("associatedCamera", true);
     }
 
