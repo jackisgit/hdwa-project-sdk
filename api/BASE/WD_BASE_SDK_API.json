@@ -63178,57 +63178,6 @@
                                   "propertyValueType":"static"
                                 },
                                 {
-                                  "propertyName":"显示名称",
-                                  "allowPass":"1",
-                                  "querySql":"{\"QueryType\": \"expression\",\"expression\": \"string_localName\",\"Criteria\": {\"string_localId\": {\"ref\": \"ancestor_1'localId\"},\"string_localName\": {\"ref\": \"ancestor_1'localName\"}}}",
-                                  "readLevel":"1",
-                                  "filterRule":"",
-                                  "customObject":null,
-                                  "staticValue":null,
-                                  "offsetLevel":"0",
-                                  "queryAttached":[
-                                  ],
-                                  "propertyValueSchema":"string",
-                                  "staticArray":[
-                                  ],
-                                  "propertyVisible":false,
-                                  "propertyValueType":"query"
-                                },
-                                {
-                                  "propertyName":"下级报警列表",
-                                  "allowPass":"1",
-                                  "querySql":"{\"SetOperator\": \"add\",\"SetArray\": [{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'清单'报警列表\"},\"Criteria\":{}},{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'模块'清单'报警列表\"},\"Criteria\":{}}]}",
-                                  "readLevel":"1",
-                                  "filterRule":null,
-                                  "customObject":null,
-                                  "staticValue":null,
-                                  "offsetLevel":"0",
-                                  "queryAttached":[
-                                  ],
-                                  "propertyValueSchema":"JSONArray",
-                                  "staticArray":[
-                                  ],
-                                  "propertyVisible":false,
-                                  "propertyValueType":"query"
-                                },
-                                {
-                                  "propertyName":"下级报警数量",
-                                  "allowPass":"1",
-                                  "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"ancestor_1'下级报警列表\"},\"Criteria\":{},\"Aggregation\":{\"Function\": \"count\"}}",
-                                  "readLevel":"1",
-                                  "filterRule":null,
-                                  "customObject":null,
-                                  "staticValue":null,
-                                  "offsetLevel":"0",
-                                  "queryAttached":[
-                                  ],
-                                  "propertyValueSchema":"int",
-                                  "staticArray":[
-                                  ],
-                                  "propertyVisible":false,
-                                  "propertyValueType":"query"
-                                },
-                                {
                                   "propertyName":"所属模块",
                                   "allowPass":"1",
                                   "querySql":null,
@@ -63293,23 +63242,6 @@
                                   "staticArray":null,
                                   "propertyVisible":false,
                                   "propertyValueType":"static"
-                                },
-                                {
-                                  "propertyName":"照明状态",
-                                  "allowPass":"1",
-                                  "querySql":"{\"QueryType\": \"expression\",\"expression\": \"if([openCount==0]){21}elseif([openCount==totalCount]){25}elseif([1.0*openCount\/totalCount<0.5]){23}elseif([1.0*openCount\/totalCount>0.5]){if([openCount<totalCount]){24}else{22}}else{22}\",\"Criteria\": {\"totalCount\": {\"ref\": \"ancestor_1'统计'名称=总数'数量\"},\"openCount\": {\"ref\": \"ancestor_1'开关统计'名称=开启'数量\"}}}",
-                                  "readLevel":"1",
-                                  "filterRule":"",
-                                  "customObject":null,
-                                  "staticValue":null,
-                                  "offsetLevel":"0",
-                                  "queryAttached":[
-                                  ],
-                                  "propertyValueSchema":"int",
-                                  "staticArray":[
-                                  ],
-                                  "propertyVisible":false,
-                                  "propertyValueType":"query"
                                 }
                               ],
                               "propertyValueSchema":"JSONArray",
@@ -97625,7 +97557,7 @@
                               {
                                 "propertyName":"回路",
                                 "allowPass":"1",
-                                "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'品质'公共照明'回路'清单\"},\"Criteria\":{\"id\":{\"in\":{\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechInArch\",\"relCode\":\"Eq2Sp\"},\"UniqueReturnColumn\":\"objFrom\",\"Criteria\":{\"objTo\":{\"ref\":\"ancestor_1'id\"}},\"QueryType\":\"select\"}}}}",
+                                "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\":\"ref\",\"ref\":\"基础对象'品质'公共照明'回路'清单\"},\"Criteria\":{\"id\":{\"in\":{\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechInArch\",\"relCode\":\"Eq2Sp\"},\"UniqueReturnColumn\":\"objFrom\",\"Criteria\":{\"objTo\":{\"ref\":\"ancestor_1'id\"}},\"QueryType\":\"select\"}}},\"ReturnColumns\": [\"localName\",\"localId\",\"id\",\"所属电井\",\"编组类型\",\"runStatus\",\"equipSwitchSet\",\"manualAutoSet\",\"一级编组名称\",\"二级编组名称\"]}",
                                 "readLevel":"1",
                                 "filterRule":"",
                                 "customObject":null,
