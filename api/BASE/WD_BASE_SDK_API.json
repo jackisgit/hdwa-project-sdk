@@ -35072,7 +35072,7 @@
                               {
                                 "propertyName":"下属高压开关柜",
                                 "allowPass":"1",
-                                "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"gypd\",\"ibmsClassCode\": \"gaoyakaiguangui\" },\"Criteria\":{\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objFrom\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechInArch\",\"relCode\":\"Eq2Sp\"},\"Criteria\":{\"objTo\":{\"ref\":\"ancestor_1'id\"}}}}}}",
+                                "querySql":"{\"QueryType\":\"select\",\"Target\":{\"Source\": \"zkt-object\",\"ibmsSceneCode\": \"gypd\",\"ibmsClassCode\": \"gaoyakaiguangui\" },\"Criteria\":{\"id\":{\"in\":{\"QueryType\":\"select\",\"UniqueReturnColumn\":\"objFrom\",\"Target\":{\"Source\":\"rwd\",\"rwd\":\"relation\",\"graphCode\":\"MechInArch\",\"relCode\":\"Eq2Sp\"},\"Criteria\":{\"objTo\":{\"ref\":\"ancestor_1'id\"}}}}}, \"OrderBy\": [{\"Column\": \"sort1\",\"Asc\": true },{\"Column\": \"sort2\",\"Asc\": true }]}",
                                 "readLevel":"1",
                                 "filterRule":"",
                                 "customObject":null,
