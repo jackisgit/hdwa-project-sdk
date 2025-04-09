@@ -1,9 +1,9 @@
 #服务请求地址
 url:
-  dmp: http://10.199.87.120:32050/api-ibms-dmp
-  monitor: http://10.199.87.120:32050/api-ibms-monitor
-  alarmUrl: http://10.199.87.120:32050/api-ibms-alarm
-  alarmWebSocket: ws://10.199.87.120:32050/ws-ibms-alarm/webSocketServer
+  dmp: http://jd-api.wandacm.cn/api-ibms-dmp
+  monitor: http://jd-api.wandacm.cn/api-ibms-monitor
+  alarmUrl: http://jd-api.wandacm.cn/api-ibms-alarm
+  alarmWebSocket: ws://jd-api.wandacm.cn/ws-ibms-alarm/webSocketServer
 
   iotProject: http://127.0.0.1:18858
   iotWebSocket: ws://127.0.0.1:18888/websocket
@@ -48,7 +48,7 @@ spring:
 
   kafka:
     sdk:
-      bootstrapServers: 10.199.87.63:19092,10.199.87.79:19092,10.199.87.85:19092
+      bootstrapServers: 172.27.142.111:9092,172.27.142.136:9092,172.27.142.221:9092
     alarm:
       bootstrapServers: ${spring.kafka.sdk.bootstrap-servers}
     control:
@@ -56,4 +56,3 @@ spring:
 
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/huiyun_new?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&failOverReadOnly=false
-
