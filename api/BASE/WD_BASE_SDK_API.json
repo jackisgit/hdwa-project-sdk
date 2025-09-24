@@ -105848,7 +105848,7 @@
                                   {
                                     "propertyName":"清单",
                                     "allowPass":"1",
-                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=电梯'设备类型'名称=直梯'清单\"},\"Criteria\": {\"所在建筑-id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"ArchSubset\",\"relCode\": \"Bd2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"}}}    }}}",
+                                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=电梯'设备类型'名称=直梯'清单\"},\"Criteria\": {\"id\": {\"in\": {\"QueryType\": \"select\",\"UniqueReturnColumn\": \"objFrom\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"relation\",\"graphCode\": \"MechInArch\",\"relCode\": \"Eq2Fl\"},\"Criteria\": {\"objTo\": {\"ref\": \"ancestor_3'id\"}}}    }}}",
                                     "readLevel":"4",
                                     "filterRule":"{\"QueryType\":\"select\",\"Criteria\":  {\"LogicOperator\": \"and\",\"Criterias\": [  {\"状态\":{\"ref\":\"ancestor_1'状态\"},  },  {\"LogicOperator\": \"or\",\"Criterias\": [{\"localId\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}},      {\"localName\":{\"contain\":{\"ref\":\"ancestor_1'搜索关键字\"}}}]}]}}",
                                     "customObject":null,
