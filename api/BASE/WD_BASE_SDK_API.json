@@ -6737,7 +6737,7 @@
                   {
                     "propertyName":"清单",
                     "allowPass":"1",
-                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"equipment\",\"classCode\": \"ACAT\"},\"Criteria\": {\"valid\": 1,\"grouping\": 1,\"id\": {\"notin\": [\"test-id\"]}},\"Limit\": {\"Skip\": 0,\"Count\": 1  }}",
+                    "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"rwd\",\"rwd\": \"object\",\"objType\": \"equipment\",\"classCode\": \"HVAC\"},\"Criteria\": {\"valid\": 1,\"grouping\": 1,\"id\": {\"notin\": [\"test-id\"]}},\"Limit\": {\"Skip\": 0,\"Count\": 1  }}",
                     "readLevel":"3",
                     "filterRule":"",
                     "customObject":null,
