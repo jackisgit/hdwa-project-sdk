@@ -10717,7 +10717,7 @@
                                 {
                                   "propertyName":"数量",
                                   "allowPass":"1",
-                                  "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=防盗管理'清单\"},\"Criteria\": {\"valid\": 1,\"deployWithdrawAlarmStatus\": 1  },\"Aggregation\": {\"Function\": \"count\"}}",
+                                  "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=防盗管理'清单\"},\"Criteria\": {\"deployWithdrawAlarmStatus\": 1  },\"Aggregation\": {\"Function\": \"count\"}}",
                                   "readLevel":"1",
                                   "filterRule":null,
                                   "customObject":null,
@@ -10755,7 +10755,7 @@
                                 {
                                   "propertyName":"数量",
                                   "allowPass":"1",
-                                  "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=防盗管理'清单\"},\"Criteria\": {\"valid\": 1,\"deployWithdrawAlarmStatus\": 2  },\"Aggregation\": {\"Function\": \"count\"}}",
+                                  "querySql":"{\"QueryType\": \"select\",\"Target\": {\"Source\": \"ref\",\"ref\": \"基础对象'安全'名称=防盗管理'清单\"},\"Criteria\": {\"deployWithdrawAlarmStatus\": 0  },\"Aggregation\": {\"Function\": \"count\"}}",
                                   "readLevel":"1",
                                   "filterRule":null,
                                   "customObject":null,
