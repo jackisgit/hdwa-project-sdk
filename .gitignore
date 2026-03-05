@@ -60,3 +60,6 @@ fabric.properties
 hs_err_pid*
 /WD/
 tmp*/
+*-logs/
+rebel.xml
+lib.zip
